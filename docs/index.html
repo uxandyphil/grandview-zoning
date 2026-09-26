@@ -3,220 +3,288 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Zoning cases in Grandview Heights</title>
-<meta name="description" content="Every address on a Grandview Heights Board of Zoning Appeals or Planning Commission agenda, updated daily.">
+<meta name="robots" content="noindex, nofollow">
+<title>Grandview zoning cases</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪧</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
   :root {
-    --paper: #F1F4EF;
-    --ink: #1E2A24;
-    --muted: #56645C;
-    --line: #C7D0C5;
-    --sign: #F5C518;
-    --bza: #1F5E8C;
-    --pc: #5F7A2E;
-    --surface: #FFFFFF;
+    --bg: #F3F5F4; --surface: #FFFFFF; --ink: #15201B; --muted: #5E6B64;
+    --line: #E0E5E2; --hover: #F7F9F8; --sign: #F2C230; --sign-ink: #3D3000;
+    --bza: #2563A8; --bza-bg: #E8F0FA; --pc: #4E7A2C; --pc-bg: #EDF4E6;
+    --radius: 14px; --shadow: 0 1px 2px rgba(21,32,27,.06), 0 4px 16px rgba(21,32,27,.05);
+    color-scheme: light dark;
     box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper: #151C18; --ink: #E6ECE7; --muted: #9AA8A0; --line: #34403A;
-      --surface: #1D2621; --bza: #7FB3DA; --pc: #A8C46A;
+      --bg: #0F1512; --surface: #18201C; --ink: #E8EDEA; --muted: #95A39B;
+      --line: #28332D; --hover: #1E2823; --bza: #86B6EA; --bza-bg: #1B2A3B;
+      --pc: #A5C97F; --pc-bg: #1F2B18; --shadow: none;
     }
   }
   *, *::before, *::after { box-sizing: inherit; }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font: 400 17px/1.55 "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 400 16px/1.55 "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+         -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px 56px; }
 
-  header { padding: 48px 0 24px; }
-  h1 { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; line-height: 1.05;
-       letter-spacing: -0.02em; margin: 0 0 14px; max-width: 16ch; }
-  .lede { margin: 0; max-width: 60ch; color: var(--muted); }
-  .updated { margin: 10px 0 0; font-size: 0.875rem; color: var(--muted); }
+  header { padding: 40px 0 20px; display: flex; flex-wrap: wrap; gap: 8px 24px;
+           align-items: end; justify-content: space-between; }
+  h1 { margin: 0; font-size: clamp(1.75rem, 4.5vw, 2.5rem); font-weight: 700;
+       letter-spacing: -0.025em; line-height: 1.1; }
+  .meta { margin: 0; color: var(--muted); font-size: 0.9rem; }
 
-  #map { height: 360px; border: 2px solid var(--ink); border-radius: 4px; }
-  .pin { width: 18px; height: 18px; background: var(--sign); border: 2px solid #1E2A24;
-         border-radius: 2px; transform: rotate(45deg); }
-  .pin.upcoming { box-shadow: 0 0 0 4px rgba(245,197,24,.45); }
+  .toolbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 1000;
+             background: color-mix(in srgb, var(--bg) 88%, transparent);
+             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+             padding: 12px 0; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .search { flex: 1 1 220px; font: inherit; color: var(--ink); background: var(--surface);
+            border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; }
+  .search:focus { outline: 2px solid var(--bza); outline-offset: 0; border-color: transparent; }
+  .seg { display: flex; gap: 2px; padding: 3px; background: var(--surface);
+         border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; max-width: 100%; }
+  .seg button { font: 500 0.875rem "Instrument Sans", sans-serif; color: var(--muted);
+                background: transparent; border: 0; border-radius: 7px; padding: 6px 11px;
+                cursor: pointer; white-space: nowrap; }
+  .seg button:hover { color: var(--ink); }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  select.board { font: 500 0.875rem "Instrument Sans", sans-serif; color: var(--ink);
+                 background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+                 padding: 8px 10px; }
+  :focus-visible { outline: 2px solid var(--bza); outline-offset: 2px; }
 
-  .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 24px 0 8px; }
-  .search { flex: 1 1 240px; font: inherit; padding: 10px 12px; color: var(--ink);
-            background: var(--surface); border: 2px solid var(--line); border-radius: 4px; }
-  .search:focus { outline: none; border-color: var(--ink); }
-  .boards { display: flex; border: 2px solid var(--line); border-radius: 4px; overflow: hidden; }
-  .boards button { font: 600 0.9rem "Public Sans", sans-serif; padding: 9px 14px; border: 0;
-                   background: var(--surface); color: var(--ink); cursor: pointer; }
-  .boards button + button { border-left: 2px solid var(--line); }
-  .boards button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-  :focus-visible { outline: 3px solid var(--bza); outline-offset: 2px; }
-  .count { font-size: 0.875rem; color: var(--muted); margin: 0 0 8px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+          box-shadow: var(--shadow); overflow: hidden; }
+  #map { height: 320px; }
+  .pin { width: 14px; height: 14px; border-radius: 50%; background: var(--sign);
+         border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.35); }
+  .pin.upcoming { width: 18px; height: 18px; box-shadow: 0 0 0 1px rgba(0,0,0,.35), 0 0 0 6px rgba(242,194,48,.35); }
 
-  .meeting { margin: 32px 0 0; }
-  .meeting h2 { font-size: 1.05rem; font-weight: 800; margin: 0 0 12px; padding-bottom: 8px;
-                border-bottom: 2px solid var(--ink); display: flex; gap: 10px; align-items: baseline; }
-  .soon { font-size: 0.8rem; font-weight: 600; background: var(--sign); color: #1E2A24;
-          padding: 1px 8px; border-radius: 2px; }
+  .summary-line { margin: 20px 2px 10px; color: var(--muted); font-size: 0.9rem; }
+  .meetings { display: grid; gap: 10px; }
 
-  .case { padding: 16px 0; border-bottom: 1px solid var(--line); }
-  .plate { display: inline-block; font: 800 1.15rem/1.2 "Public Sans", sans-serif; color: #1E2A24;
-           background: var(--sign); border: 3px solid #1E2A24; padding: 6px 12px; border-radius: 2px;
-           cursor: pointer; text-align: left; }
-  .plate[disabled] { cursor: default; }
-  .case.active .plate { outline: 3px solid var(--bza); outline-offset: 3px; }
-  .board { font-size: 0.85rem; font-weight: 600; margin: 8px 0 4px; }
-  .board.bza { color: var(--bza); } .board.pc { color: var(--pc); }
-  .desc { margin: 0; max-width: 68ch; }
-  .desc.clamped { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .actions { display: flex; gap: 18px; margin-top: 6px; font-size: 0.9rem; }
-  .actions a, .actions button { color: var(--ink); font: 600 0.9rem "Public Sans", sans-serif;
-    background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline;
-    text-underline-offset: 3px; }
+  details.meeting > summary { list-style: none; cursor: pointer; display: flex; align-items: center;
+    gap: 12px; padding: 16px 18px; }
+  details.meeting > summary::-webkit-details-marker, details.case > summary::-webkit-details-marker { display: none; }
+  details.meeting > summary:hover { background: var(--hover); }
+  .m-date { font-weight: 600; font-size: 1.02rem; }
+  .m-count { color: var(--muted); font-size: 0.875rem; margin-left: auto; white-space: nowrap; }
+  .chip { font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .chip.soon { background: var(--sign); color: var(--sign-ink); }
+  .chip.bza { background: var(--bza-bg); color: var(--bza); }
+  .chip.pc { background: var(--pc-bg); color: var(--pc); }
+  .chev { width: 18px; height: 18px; flex: none; color: var(--muted); transition: transform .2s ease; }
+  details[open] > summary .chev { transform: rotate(90deg); }
 
-  .empty { padding: 32px 0; color: var(--muted); }
-  footer { margin: 56px 0 40px; font-size: 0.85rem; color: var(--muted); max-width: 68ch; }
+  .cases { border-top: 1px solid var(--line); }
+  details.case { border-bottom: 1px solid var(--line); }
+  details.case:last-child { border-bottom: 0; }
+  details.case > summary { list-style: none; cursor: pointer; display: grid;
+    grid-template-columns: 18px 1fr auto; gap: 4px 12px; align-items: center; padding: 12px 18px; }
+  details.case > summary:hover { background: var(--hover); }
+  details.case.active > summary { background: color-mix(in srgb, var(--sign) 18%, var(--surface)); }
+  .addr { font-weight: 600; }
+  .teaser { grid-column: 2 / 4; color: var(--muted); font-size: 0.9rem; overflow: hidden;
+            text-overflow: ellipsis; white-space: nowrap; }
+  details.case[open] .teaser { display: none; }
+  .case-body { padding: 0 18px 16px 48px; }
+  .case-body p { margin: 0 0 12px; max-width: 70ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn { font: 500 0.875rem "Instrument Sans", sans-serif; color: var(--ink); background: var(--bg);
+         border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer;
+         text-decoration: none; }
+  .btn:hover { border-color: var(--muted); }
+  .btn[disabled] { opacity: .5; cursor: default; }
+
+  .empty { padding: 36px 18px; text-align: center; color: var(--muted); }
+  footer { margin-top: 40px; font-size: 0.85rem; color: var(--muted); max-width: 70ch; }
   footer a { color: inherit; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  @media (max-width: 560px) {
+    .m-count { display: none; }
+    .case-body { padding-left: 18px; }
+    details.case > summary .chip { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>Zoning cases in Grandview Heights</h1>
-    <p class="lede">Every address that appears on a Board of Zoning Appeals or Planning Commission agenda: additions, variances, new garages, teardowns. Pulled from city records and checked every morning.</p>
-    <p class="updated" id="updated">Loading cases…</p>
+    <h1>Grandview zoning cases</h1>
+    <p class="meta" id="updated">Loading…</p>
   </header>
 
-  <div id="map" role="region" aria-label="Map of zoning cases"></div>
+  <div class="card"><div id="map" role="region" aria-label="Map of zoning cases"></div></div>
 
-  <div class="controls">
+  <div class="toolbar">
     <input class="search" id="search" type="search" placeholder="Search a street or address" aria-label="Search cases">
-    <div class="boards" role="group" aria-label="Filter by board">
-      <button type="button" data-board="all" aria-pressed="true">All</button>
-      <button type="button" data-board="Board of Zoning Appeals" aria-pressed="false">Zoning appeals</button>
-      <button type="button" data-board="Planning Commission" aria-pressed="false">Planning</button>
-    </div>
+    <div class="seg" id="years" role="group" aria-label="Filter by year"></div>
+    <select class="board" id="board" aria-label="Filter by board">
+      <option value="all">All boards</option>
+      <option value="Board of Zoning Appeals">Zoning appeals</option>
+      <option value="Planning Commission">Planning</option>
+    </select>
   </div>
-  <p class="count" id="count" aria-live="polite"></p>
-  <main id="list"></main>
+
+  <p class="summary-line" id="count" aria-live="polite"></p>
+  <main class="meetings" id="list"></main>
 
   <footer>
-    Unofficial. Addresses are extracted automatically from agenda PDFs, so a case can be missed or misplaced on the map. Always check the linked agenda. To comment on a case, use the city's <a href="https://www.grandviewheights.gov/330/Board-of-Zoning-Appeals">Board of Zoning Appeals page</a>.
+    Unofficial. Addresses are extracted automatically from city agenda PDFs, so a case can be missed or misplaced on the map. Check the agenda before relying on anything here. Comments on a case go through the city's <a href="https://www.grandviewheights.gov/330/Board-of-Zoning-Appeals">Board of Zoning Appeals page</a>.
   </footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 (async function () {
-  const today = new Date().toISOString().slice(0, 10);
-  const state = { board: "all", q: "", cases: [], markers: new Map() };
   const $ = (id) => document.getElementById(id);
+  const today = new Date().toISOString().slice(0, 10);
+  const CHEV = '<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 4l6 6-6 6"/></svg>';
+  const state = { cases: [], year: null, board: "all", q: "", markers: new Map() };
 
   const map = L.map("map", { scrollWheelZoom: false }).setView([39.979, -83.043], 15);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19, attribution: "&copy; OpenStreetMap contributors"
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    maxZoom: 19, attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
   }).addTo(map);
   const layer = L.layerGroup().addTo(map);
 
-  const fmtDate = (iso) => iso
-    ? new Date(iso + "T12:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })
-    : "Meeting date not listed";
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const fmtDate = (iso) => iso
+    ? new Date(iso + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric", year: "numeric" })
+    : "Date not listed";
+  const yearOf = (c) => (c.meeting_date || "").slice(0, 4) || "Unknown";
+  const boardClass = (b) => b.startsWith("Planning") ? "pc" : "bza";
+  const boardShort = (b) => b.startsWith("Planning") ? "Planning" : "BZA";
 
   try {
     const res = await fetch("cases.json", { cache: "no-cache" });
     if (!res.ok) throw new Error(res.status);
     const data = await res.json();
     state.cases = data.cases || [];
-    $("updated").textContent = "Last checked " + new Date(data.updated).toLocaleString("en-US", { month: "long", day: "numeric", hour: "numeric", minute: "2-digit" });
+    $("updated").textContent = data.updated
+      ? "Checked " + new Date(data.updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
+      : "Not checked yet";
   } catch (e) {
-    $("updated").textContent = "Cases couldn't load. Refresh the page, or check that cases.json exists in the docs folder.";
+    $("updated").textContent = "Cases couldn't load. Refresh to try again.";
     return;
   }
 
-  function focusCase(id, fromMap) {
-    document.querySelectorAll(".case.active").forEach((el) => el.classList.remove("active"));
-    const el = document.querySelector(`[data-id="${CSS.escape(id)}"]`);
-    if (el) { el.classList.add("active"); if (fromMap) el.scrollIntoView({ block: "center" }); }
-    const m = state.markers.get(id);
-    if (m && !fromMap) { map.setView(m.getLatLng(), 17); m.openPopup(); $("map").scrollIntoView({ block: "nearest" }); }
+  // Year filter: newest year first, default to the most recent year with cases
+  const years = [...new Set(state.cases.map(yearOf))].sort().reverse();
+  state.year = years[0] || "all";
+  $("years").innerHTML = years.map((y) => `<button type="button" data-year="${esc(y)}">${esc(y)}</button>`).join("")
+    + '<button type="button" data-year="all">All</button>';
+  const syncYears = () => $("years").querySelectorAll("button").forEach((b) =>
+    b.setAttribute("aria-pressed", String(b.dataset.year === state.year)));
+
+  function filtered() {
+    const q = state.q.trim().toLowerCase();
+    return state.cases.filter((c) =>
+      (q || state.year === "all" || yearOf(c) === state.year) &&   // search spans all years
+      (state.board === "all" || c.board === state.board) &&
+      (!q || (c.address + " " + c.description).toLowerCase().includes(q)));
   }
 
   function render() {
-    const q = state.q.trim().toLowerCase();
-    const shown = state.cases.filter((c) =>
-      (state.board === "all" || c.board === state.board) &&
-      (!q || (c.address + " " + c.description).toLowerCase().includes(q)));
+    syncYears();
+    const shown = filtered();
+    const q = state.q.trim();
+    const meetingsCount = new Set(shown.map((c) => c.meeting_date + c.board)).size;
+    $("count").textContent = shown.length
+      ? `${shown.length} case${shown.length === 1 ? "" : "s"} across ${meetingsCount} meeting${meetingsCount === 1 ? "" : "s"}${q ? " (all years)" : ""}`
+      : "";
 
-    $("count").textContent = shown.length === 1 ? "1 case" : `${shown.length} cases`;
+    // map
     layer.clearLayers(); state.markers.clear();
     const bounds = [];
-
-    const groups = new Map();
     for (const c of shown) {
-      const k = c.meeting_date || "";
-      if (!groups.has(k)) groups.set(k, []);
-      groups.get(k).push(c);
-
-      if (c.lat != null) {
-        const upcoming = c.meeting_date && c.meeting_date >= today;
-        const icon = L.divIcon({ className: "", html: `<div class="pin${upcoming ? " upcoming" : ""}"></div>`, iconSize: [18, 18] });
-        const m = L.marker([c.lat, c.lon], { icon, title: c.address })
-          .bindPopup(`<strong>${esc(c.address)}</strong><br>${esc(fmtDate(c.meeting_date))}`)
-          .on("click", () => focusCase(c.id, true))
-          .addTo(layer);
-        state.markers.set(c.id, m); bounds.push([c.lat, c.lon]);
-      }
+      if (c.lat == null) continue;
+      const up = c.meeting_date && c.meeting_date >= today;
+      const m = L.marker([c.lat, c.lon], {
+        icon: L.divIcon({ className: "", html: `<div class="pin${up ? " upcoming" : ""}"></div>`, iconSize: up ? [18, 18] : [14, 14] }),
+        title: c.address
+      }).bindPopup(`<strong>${esc(c.address)}</strong><br>${esc(fmtDate(c.meeting_date))}`)
+        .on("click", () => reveal(c.id)).addTo(layer);
+      state.markers.set(c.id, m); bounds.push([c.lat, c.lon]);
     }
-    if (bounds.length && q) map.fitBounds(bounds, { maxZoom: 17, padding: [30, 30] });
+    if (bounds.length) map.fitBounds(bounds, { maxZoom: 16, padding: [30, 30] });
 
+    // list
     if (!shown.length) {
-      $("list").innerHTML = q
-        ? `<p class="empty">No cases mention “${esc(state.q)}”. Try just the street name, like “First Ave” or “Oxley”.</p>`
-        : `<p class="empty">No cases yet. The first agendas appear after the daily update runs.</p>`;
+      $("list").innerHTML = `<div class="card empty">${q
+        ? `No cases mention “${esc(q)}”. Try just the street name, like “First Ave”.`
+        : "No cases for this filter. Try another year or All."}</div>`;
       return;
     }
-
-    $("list").innerHTML = [...groups].map(([date, cs]) => `
-      <section class="meeting">
-        <h2>${esc(fmtDate(date))}${date && date >= today ? '<span class="soon">Upcoming</span>' : ""}</h2>
-        ${cs.map((c) => `
-          <article class="case" data-id="${esc(c.id)}">
-            <button class="plate" type="button" data-focus="${esc(c.id)}" ${c.lat == null ? "disabled title=\"Not found on the map\"" : ""}>${esc(c.address)}</button>
-            <p class="board ${c.board.startsWith("Planning") ? "pc" : "bza"}">${esc(c.board)}</p>
-            <p class="desc clamped">${esc(c.description) || "No description in the agenda."}</p>
-            <div class="actions">
-              ${c.description && c.description.length > 220 ? '<button type="button" data-more>Show full request</button>' : ""}
-              <a href="${esc(c.agenda_url)}" target="_blank" rel="noopener">Open agenda PDF</a>
+    const groups = new Map();
+    for (const c of shown) {
+      const k = (c.meeting_date || "") + "|" + c.board;
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push(c);
+    }
+    let first = true;
+    $("list").innerHTML = [...groups.values()].map((cs) => {
+      const d = cs[0].meeting_date, up = d && d >= today;
+      const open = q || first || up; first = false;
+      return `
+      <details class="meeting card"${open ? " open" : ""}>
+        <summary>
+          ${CHEV}
+          <span class="m-date">${esc(fmtDate(d))}</span>
+          <span class="chip ${boardClass(cs[0].board)}">${boardShort(cs[0].board)}</span>
+          ${up ? '<span class="chip soon">Upcoming</span>' : ""}
+          <span class="m-count">${cs.length} case${cs.length === 1 ? "" : "s"}</span>
+        </summary>
+        <div class="cases">
+          ${cs.map((c) => `
+          <details class="case" data-id="${esc(c.id)}">
+            <summary>
+              ${CHEV}
+              <span class="addr">${esc(c.address)}</span>
+              <span class="chip ${boardClass(c.board)}">${boardShort(c.board)}</span>
+              <span class="teaser">${esc(c.description) || "No description in the agenda"}</span>
+            </summary>
+            <div class="case-body">
+              <p>${esc(c.description) || "No description in the agenda."}</p>
+              <div class="actions">
+                <button class="btn" type="button" data-map="${esc(c.id)}" ${c.lat == null ? "disabled" : ""}>${c.lat == null ? "Not on map" : "Show on map"}</button>
+                <a class="btn" href="${esc(c.agenda_url)}" target="_blank" rel="noopener">Open agenda PDF</a>
+              </div>
             </div>
-          </article>`).join("")}
-      </section>`).join("");
+          </details>`).join("")}
+        </div>
+      </details>`;
+    }).join("");
+  }
+
+  function reveal(id) {
+    document.querySelectorAll("details.case.active").forEach((el) => el.classList.remove("active"));
+    const el = document.querySelector(`details.case[data-id="${CSS.escape(id)}"]`);
+    if (!el) return;
+    el.closest("details.meeting").open = true;
+    el.open = true; el.classList.add("active");
+    el.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }
 
   $("list").addEventListener("click", (e) => {
-    const plate = e.target.closest("[data-focus]");
-    if (plate) return focusCase(plate.dataset.focus, false);
-    const more = e.target.closest("[data-more]");
-    if (more) {
-      const d = more.closest(".case").querySelector(".desc");
-      const open = d.classList.toggle("clamped");
-      more.textContent = open ? "Show full request" : "Show less";
-    }
+    const b = e.target.closest("[data-map]");
+    if (!b) return;
+    const m = state.markers.get(b.dataset.map);
+    if (!m) return;
+    map.setView(m.getLatLng(), 17); m.openPopup();
+    $("map").scrollIntoView({ block: "nearest", behavior: "smooth" });
   });
-  $("search").addEventListener("input", (e) => { state.q = e.target.value; render(); });
-  document.querySelectorAll(".boards button").forEach((b) => b.addEventListener("click", () => {
-    state.board = b.dataset.board;
-    document.querySelectorAll(".boards button").forEach((x) => x.setAttribute("aria-pressed", x === b));
-    render();
-  }));
+  $("years").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-year]");
+    if (b) { state.year = b.dataset.year; render(); }
+  });
+  $("board").addEventListener("change", (e) => { state.board = e.target.value; render(); });
+  let t; $("search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
 
   render();
 })();
