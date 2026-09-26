@@ -38,17 +38,16 @@ To start over, delete `state.json` and reset `docs/cases.json` to
 
 ## Building permits
 
-`permits.py` looks up permit numbers (like `R-26-82`) one at a time on the
-city's OpenGov portal API, walking each series forward from the last number
-it found and stopping after 12 misses in a row. The first run of each year
-checks which prefixes exist (R, B, Z, and so on). It is capped at 450
-lookups per run with a pause between each, so the first backfill may take
-two days to catch up.
+`permits.py` reads permits from the city's OpenGov portal through a headless
+browser (the API refuses plain scripted requests). It walks each permit
+series (R-26, E-26, H-26, P-26, ZON-26, ...) forward from the last number
+found; each search also returns ~20 neighboring records, so few searches are
+needed. Then it opens each new record's page once for the address and filing
+date, up to 120 per run, so the first backfill takes a few days to fill in
+every address.
 
-If permits come out with blank addresses or types, run
-`python permits.py --probe` (or read the "Sample API record" in the Actions
-log) to see the raw field names. Optional repo variables: `PERMIT_PREFIXES`
-(extra prefixes, comma separated) and `PERMIT_SEED` (a known number).
+If the API refuses three runs in a row, the permit step turns itself off.
+Set `"refused_runs"` to 0 in state.json to turn it back on.
 
 ## Known limits
 

@@ -1,13 +1,19 @@
 """
 Building permits from the city's OpenGov portal.
 
-The portal's front end calls a ViewPoint Cloud search endpoint that looks up
-one record number at a time (R-26-82 = prefix R, year 26, sequence 82). There
-is no public list endpoint, so we walk each prefix's numbers forward from the
-last one we found and stop after a run of misses.
+The portal's search endpoint (ViewPoint Cloud) takes a record number like
+R-26-82 and returns up to ~20 fuzzy matches, each with the record number,
+its type ("Building Permit - Residential") and an internal id, but no
+address. So:
 
-Called from scrape.py once a day. To see raw API responses (useful if the
-fields come out blank):
+  1. Walk each series (R-26, E-26, ZON-26, ...) forward from the last number
+     found. Every search also returns neighbors, so most numbers come free.
+  2. For each new record, open its portal page once to read the address and
+     filing date.
+
+The API refuses plain scripted requests (HTTP 403), so everything runs in a
+headless browser that loads the portal like a visitor and reuses the headers
+the page itself sends. Called from scrape.py once a day. To inspect:
 
     python permits.py --probe
 """
@@ -24,28 +30,41 @@ from urllib.parse import urlencode
 API = os.environ.get("VP_API_BASE", "https://api-east.viewpointcloud.com/v2/grandviewheightsoh")
 PORTAL = "https://grandviewheightsoh.portal.opengov.com"
 PERMITS_FILE = Path("docs/permits.json")
-SEED = os.environ.get("PERMIT_SEED", "R-26-82")  # a number known to exist
-# Prefixes to try once a year. Misses cost one tiny request each.
-CANDIDATE_PREFIXES = ["R", "B", "C", "M", "Z", "E", "P", "D", "F", "S", "H", "ROW", "SW", "SIGN", "DEMO"]
+SEED = os.environ.get("PERMIT_SEED", "R-26-82")
+# Prefixes seen on the portal so far, plus a few guesses. Checked once a year.
+CANDIDATE_PREFIXES = ["R", "E", "H", "P", "ZON", "B", "C", "D", "F", "M", "S", "Z", "ROW", "SIGN", "DEMO"]
 EXTRA_PREFIXES = [p.strip().upper() for p in os.environ.get("PERMIT_PREFIXES", "").split(",") if p.strip()]
-LOOKAHEAD = int(os.environ.get("PERMIT_LOOKAHEAD", "12"))    # misses in a row before we stop
-MAX_LOOKUPS = int(os.environ.get("PERMIT_MAX_LOOKUPS", "450"))  # per run, all prefixes
+LOOKAHEAD = int(os.environ.get("PERMIT_LOOKAHEAD", "12"))        # misses in a row before a series stops
+MAX_SEARCHES = int(os.environ.get("PERMIT_MAX_SEARCHES", "300"))  # API searches per run
+MAX_DETAILS = int(os.environ.get("PERMIT_MAX_DETAILS", "120"))    # record pages opened per run
 PAUSE_SECONDS = 1.5
+GIVE_UP_AFTER = 3  # refused runs in a row before the watcher turns itself off
 
-GIVE_UP_AFTER = 3  # refused runs in a row before we stop trying
+NUMBER_RE = re.compile(r"\b([A-Z]{1,5})-(\d{2})-0*(\d{1,6})\b", re.I)
+STREET = (r"(?:Ave(?:nue)?|St(?:reet)?|Rd|Road|Blvd|Boulevard|Dr(?:ive)?|Ct|Court|Pl(?:ace)?|Way|"
+          r"Ln|Lane|Pkwy|Parkway|Cir(?:cle)?|Ter(?:race)?)")
+ADDRESS_RE = re.compile(r"\b\d{1,5}(?:-\d{1,5})?\s+(?:[NSEW]\.?\s+)?(?:[A-Za-z0-9']+\.?\s+){1,3}?"
+                        + STREET + r"\b\.?", re.I)
+CITY_HALL = re.compile(r"^1525\s+(W\.?\s+)?Goodale", re.I)
 
 
 class Blocked(Exception):
     pass
 
 
-# ---------- API (through a headless browser) ----------
-#
-# The API refuses plain scripted requests (HTTP 403). So we open the portal's
-# search page in Chromium like a visitor, watch the request the page itself
-# makes to the API, and reuse that request's headers and cookies for lookups.
+def norm_number(text):
+    """'Record r-26-0082' -> 'R-26-82', or None."""
+    m = NUMBER_RE.search(str(text or ""))
+    return f"{m[1].upper()}-{m[2]}-{int(m[3])}" if m else None
 
-_browser = {}
+
+def seq_of(number):
+    return int(number.rsplit("-", 1)[1])
+
+
+# ---------- browser session ----------
+
+_b = {}
 SKIP_HEADERS = {"host", "content-length", "cookie", "connection", "accept-encoding"}
 
 
@@ -55,13 +74,12 @@ def open_browser():
     browser = pw.chromium.launch()
     context = browser.new_context()
     page = context.new_page()
-    api_requests = []
-    page.on("request", lambda r: api_requests.append(r) if "viewpointcloud.com" in r.url else None)
+    seen = []
+    page.on("request", lambda r: seen.append(r) if "viewpointcloud.com" in r.url else None)
     page.goto(PORTAL + "/search", wait_until="networkidle", timeout=90_000)
     page.wait_for_timeout(2000)
     print(f"Portal page loaded: '{page.title()}'")
-    # Run one search in the page so it makes an API call we can copy
-    try:
+    try:  # run one search so the page makes an API call we can copy
         box = page.locator("input[type=search], input[type=text]").first
         box.fill(SEED, timeout=15_000)
         box.press("Enter")
@@ -69,37 +87,34 @@ def open_browser():
     except Exception as err:
         print(f"  couldn't use the search box ({err})")
     headers = {}
-    if api_requests:
-        headers = {k: v for k, v in api_requests[-1].all_headers().items()
+    if seen:
+        headers = {k: v for k, v in seen[-1].all_headers().items()
                    if k.lower() not in SKIP_HEADERS and not k.startswith(":")}
-        print(f"  saw {len(api_requests)} API call(s) from the page; reusing headers: "
-              f"{', '.join(sorted(headers))}")
+        print(f"  page made {len(seen)} API call(s); reusing headers: {', '.join(sorted(headers))}")
     else:
-        print("  the page made no API calls we could see; trying with the page's cookies only")
+        print("  the page made no API calls we could see; trying with its cookies only")
     headers.setdefault("origin", PORTAL)
     headers.setdefault("referer", PORTAL + "/")
-    _browser.update(pw=pw, browser=browser, context=context, headers=headers)
+    _b.update(pw=pw, browser=browser, context=context, page=page, headers=headers)
 
 
 def close_browser():
-    if _browser:
-        _browser["browser"].close()
-        _browser["pw"].stop()
-        _browser.clear()
+    if _b:
+        _b["browser"].close()
+        _b["pw"].stop()
+        _b.clear()
 
 
 def search(key, criteria="record"):
-    if not _browser:
+    if not _b:
         open_browser()
     time.sleep(PAUSE_SECONDS)
     query = urlencode({"criteria": criteria, "key": key,
                        "timeStamp": str(int(time.time() * 1000)), "ignoreCommunity": "true"})
-    resp = _browser["context"].request.get(f"{API}/search_results?{query}",
-                                           headers=_browser["headers"], timeout=30_000)
+    resp = _b["context"].request.get(f"{API}/search_results?{query}", headers=_b["headers"],
+                                     timeout=30_000)
     if resp.status in (401, 403, 429):
         raise Blocked(f"HTTP {resp.status} from the permit API")
-    if resp.status == 404:
-        return None
     if resp.status >= 400:
         raise RuntimeError(f"HTTP {resp.status} from the permit API")
     try:
@@ -108,14 +123,39 @@ def search(key, criteria="record"):
         return None
 
 
-def norm_number(text):
-    """'r-26-0082' -> 'R-26-82', or None if it isn't a record number."""
-    m = re.fullmatch(r"\s*([A-Za-z]+)-(\d{2})-0*(\d+)\s*", str(text))
-    return f"{m[1].upper()}-{m[2]}-{m[3]}" if m else None
+# ---------- search results ----------
 
+def harvest(data, pool):
+    """Add every record in a search response to pool: {number: {type, id}}."""
+    items = data if isinstance(data, list) else (data or {}).get("results") or (data or {}).get("value") or []
+    for item in items:
+        if not isinstance(item, dict) or item.get("entityType", "record") != "record":
+            continue
+        number = norm_number(item.get("resultText"))
+        if number:
+            pool.setdefault(number, {"type": (item.get("secondaryText") or "").strip() or None,
+                                     "id": item.get("entityID")})
+
+
+class Finder:
+    """Answers 'does this record number exist?', using as few searches as possible."""
+
+    def __init__(self, budget):
+        self.pool, self.searched, self.budget = {}, set(), budget
+
+    def get(self, number):
+        if number not in self.pool and number not in self.searched:
+            if self.budget <= 0:
+                raise StopIteration
+            self.budget -= 1
+            self.searched.add(number)
+            harvest(search(number), self.pool)
+        return self.pool.get(number)
+
+
+# ---------- record page (address, date) ----------
 
 def flatten(obj, prefix=""):
-    """Nested JSON -> {'a.b.c': scalar}."""
     out = {}
     if isinstance(obj, dict):
         for k, v in obj.items():
@@ -128,147 +168,157 @@ def flatten(obj, prefix=""):
     return out
 
 
-def matching_record(data, number):
-    """The smallest dict in the response that contains this exact record number.
-    The search may be fuzzy (R-26-8 could match R-26-80), so exact match only."""
-    best = None
-
-    def walk(node, parent):
-        nonlocal best
-        if isinstance(node, dict):
-            if any(isinstance(v, str) and norm_number(v) == number for v in node.values()):
-                # keep the parent's scalar fields too; they often hold the address
-                merged = {k: v for k, v in (parent or {}).items() if not isinstance(v, (dict, list))}
-                merged.update(node)
-                if best is None or len(json.dumps(merged)) < len(json.dumps(best)):
-                    best = merged
-            for v in node.values():
-                walk(v, node)
-        elif isinstance(node, list):
-            for v in node:
-                walk(v, parent)
-
-    walk(data, None)
-    return best
+def clean_address(a):
+    a = re.sub(r"\s+", " ", a).strip(" ,.")
+    return re.sub(r",?\s*(Grandview Heights|Columbus)?,?\s*OH(io)?\b.*$", "", a, flags=re.I).strip(" ,")
 
 
-def pick(flat, key_pattern, value_test=lambda v: True, skip=()):
-    for k, v in flat.items():
-        leaf = k.rsplit(".", 1)[-1]
-        if re.search(key_pattern, leaf, re.I) and not any(re.search(s, leaf, re.I) for s in skip) \
-                and value_test(v):
-            return v
-    return None
-
-
-def looks_like_address(v):
-    return isinstance(v, str) and re.match(r"\s*\d{1,5}\s+[A-Za-z]", v) and len(v) < 120
-
-
-def parse_when(v):
-    if isinstance(v, (int, float)) and v > 1e11:  # epoch ms
+def parse_date(v):
+    if isinstance(v, (int, float)) and v > 1e11:
         return datetime.fromtimestamp(v / 1000, timezone.utc).date().isoformat()
-    if isinstance(v, str) and (m := re.match(r"(20\d\d-\d\d-\d\d)", v)):
-        return m[1]
+    if isinstance(v, str):
+        if m := re.search(r"(20\d\d-\d\d-\d\d)", v):
+            return m[1]
+        if m := re.search(r"\b(\d{1,2})/(\d{1,2})/(20\d\d)\b", v):
+            return f"{m[3]}-{int(m[1]):02d}-{int(m[2]):02d}"
     return None
 
 
-def to_permit(number, rec):
-    flat = flatten(rec)
-    is_number = lambda v: isinstance(v, str) and norm_number(v) == number
-    address = pick(flat, r"address|location|street|secondary|subtitle|description", looks_like_address) \
-        or next((v for v in flat.values() if looks_like_address(v)), None)
-    type_ok = lambda v: isinstance(v, str) and not is_number(v) and not looks_like_address(v) \
-        and 2 < len(v) < 120 and v.lower() not in ("record", "records")
-    rtype = next((t for pattern in (r"recordType|typeName|template|permitType|category",
-                                    r"type|name|title|resultText")
-                  if (t := pick(flat, pattern, type_ok, skip=(r"^resulttype$", r"criteria")))), None)
-    status = pick(flat, r"status", lambda v: isinstance(v, str))
-    date = next((d for d in (parse_when(v) for k, v in flat.items()
-                             if re.search(r"submit|creat|appl|issue|date", k, re.I)) if d), None)
-    rec_id = pick(flat, r"^(entityID|recordID|record_id|id)$",
-                  lambda v: isinstance(v, (int, str)) and not is_number(v))
-    desc = pick(flat, r"desc|summary|scope|work",
-                lambda v: isinstance(v, str) and not looks_like_address(v) and len(v) > 3)
-    if address:
-        address = re.sub(r",?\s*(Grandview Heights|Columbus)?,?\s*OH(io)?\b.*$", "", address, flags=re.I).strip(" ,")
-    return {"number": number, "type": rtype, "status": status, "address": address,
-            "description": desc, "date": date,
-            "url": f"{PORTAL}/records/{rec_id}" if rec_id else f"{PORTAL}/search"}
+def record_details(entity_id, number):
+    """Open the record's portal page; return (address, date, sample_json)."""
+    page = _b["page"]
+    responses = []
+    handler = lambda r: responses.append(r) if "viewpointcloud.com" in r.url else None
+    page.on("response", handler)
+    try:
+        time.sleep(PAUSE_SECONDS)
+        page.goto(f"{PORTAL}/records/{entity_id}", wait_until="networkidle", timeout=60_000)
+        page.wait_for_timeout(1500)
+        text = page.inner_text("body")
+    finally:
+        page.remove_listener("response", handler)
+
+    address = date = sample = None
+    # 1. Structured data the page loaded
+    for r in responses:
+        try:
+            data = r.json()
+        except Exception:
+            continue
+        flat = flatten(data)
+        blob = json.dumps(data)
+        if number.split("-")[-1] not in blob and str(entity_id) not in blob:
+            continue
+        sample = sample or data
+        for k, v in flat.items():
+            leaf = k.rsplit(".", 1)[-1].lower()
+            if not address and isinstance(v, str) and re.search(r"address|location|street", leaf) \
+                    and ADDRESS_RE.search(v) and not CITY_HALL.search(v):
+                address = clean_address(ADDRESS_RE.search(v).group(0))
+            if not date and re.search(r"submit|creat|applied|dateopen|issued", leaf):
+                date = parse_date(v)
+        if not address:  # streetNo + streetName style
+            no = next((v for k, v in flat.items() if re.search(r"street(no|number)|houseno", k, re.I)), None)
+            name = next((v for k, v in flat.items() if re.search(r"streetname", k, re.I)), None)
+            if no and name:
+                address = clean_address(f"{no} {name}")
+    # 2. Fall back to the visible page text
+    if not address:
+        label = re.search(r"(Location|Address|Property)\s*:?\s*\n?", text, re.I)
+        region = text[label.end():label.end() + 300] if label else text
+        m = next((m for m in ADDRESS_RE.finditer(region) if not CITY_HALL.search(m.group(0))), None)
+        address = clean_address(m.group(0)) if m else None
+    if not date:
+        m = re.search(r"(Submitted|Applied|Created|Date)\D{0,20}(\d{1,2}/\d{1,2}/20\d\d)", text, re.I)
+        date = parse_date(m.group(2)) if m else None
+    return address, date, sample
 
 
-def lookup(number):
-    data = search(number)
-    rec = matching_record(data, number) if data else None
-    return (to_permit(number, rec), rec) if rec else (None, None)
+# ---------- main ----------
 
-
-# ---------- walking ----------
-
-def discover_prefixes(year, budget):
-    """Which prefixes have records this year? Try sequence 1-3 for each candidate."""
-    seed_prefix = norm_number(SEED).split("-")[0] if norm_number(SEED) else "R"
+def discover_prefixes(year, finder):
     found = []
-    for prefix in dict.fromkeys([seed_prefix] + EXTRA_PREFIXES + CANDIDATE_PREFIXES):
+    seed = norm_number(SEED)
+    for prefix in dict.fromkeys(([seed.split("-")[0]] if seed else []) + EXTRA_PREFIXES + CANDIDATE_PREFIXES):
+        if any(n.startswith(f"{prefix}-{year}-") for n in finder.pool):
+            found.append(prefix)  # already showed up as a neighbor in an earlier search
+            continue
         for seq in (1, 2, 3):
-            if budget[0] <= 0:
-                return found
-            budget[0] -= 1
-            if lookup(f"{prefix}-{year}-{seq}")[0]:
+            if finder.get(f"{prefix}-{year}-{seq}"):
                 found.append(prefix)
                 break
-    if seed_prefix not in found and SEED.split("-")[1:2] == [year]:
-        found.insert(0, seed_prefix)  # seed proves it exists even if 1-3 were withdrawn
-    print(f"Permit prefixes for 20{year}: {found or 'none found'}")
+    print(f"Permit series for 20{year}: {', '.join(found) or 'none found'}")
     return found
 
 
 def run(state, geocode, now):
     """Update docs/permits.json. geocode(address) -> [lat, lon] or None."""
-    ps = state.setdefault("permits", {"cursors": {}, "prefixes": {}})
-    existing = json.loads(PERMITS_FILE.read_text()) if PERMITS_FILE.exists() else {"permits": []}
-    permits = {p["number"]: p for p in existing.get("permits", [])}
-    first_run = not permits
-    budget = [MAX_LOOKUPS]
-    new, logged_sample = [], False
-
+    ps = state.setdefault("permits", {})
+    ps.setdefault("cursors", {})
+    ps.setdefault("prefixes", {})
     refused = ps.get("refused_runs", 0)
     if refused >= GIVE_UP_AFTER:
         print(f"Permits: skipped. The API refused the last {refused} runs, so the watcher turned "
               'itself off. To try again, set "refused_runs" to 0 in state.json.')
         return []
 
+    existing = json.loads(PERMITS_FILE.read_text()) if PERMITS_FILE.exists() else {"permits": []}
+    permits = {p["number"]: p for p in existing.get("permits", [])}
+    first_run = not permits
+    finder, new = Finder(MAX_SEARCHES), []
     today = datetime.now(timezone.utc)
     years = [today.strftime("%y")] + ([f"{(today.year - 1) % 100:02d}"] if today.month == 1 else [])
+
     try:
-        for year in years:
-            if year not in ps["prefixes"]:
-                ps["prefixes"][year] = discover_prefixes(year, budget)
-            for prefix in ps["prefixes"][year]:
-                series = f"{prefix}-{year}"
-                n = ps["cursors"].get(series, 0) + 1
-                misses = 0
-                while misses < LOOKAHEAD and budget[0] > 0:
-                    number = f"{series}-{n}"
-                    budget[0] -= 1
-                    permit, raw = lookup(number) if number not in permits else (permits[number], None)
-                    if permit:
-                        if raw and not logged_sample:
-                            print("Sample API record (for debugging field names):")
-                            print(json.dumps(raw, indent=1)[:1500])
-                            logged_sample = True
-                        if number not in permits:
-                            coords = geocode(permit["address"]) if permit["address"] else None
-                            permit.update(lat=coords[0] if coords else None,
-                                          lon=coords[1] if coords else None, first_seen=now)
-                            permits[number] = permit
-                            new.append(permit)
-                        ps["cursors"][series] = n
-                        misses = 0
-                    else:
-                        misses += 1
-                    n += 1
-                print(f"Permits {series}: up to #{ps['cursors'].get(series, 0)}")
+        # 1. find new record numbers
+        try:
+            for year in years:
+                if year not in ps["prefixes"]:
+                    ps["prefixes"][year] = discover_prefixes(year, finder)
+                for prefix in ps["prefixes"][year]:
+                    series = f"{prefix}-{year}"
+                    n, misses = ps["cursors"].get(series, 0) + 1, 0
+                    while misses < LOOKAHEAD:
+                        number = f"{series}-{n}"
+                        hit = permits.get(number) or finder.get(number)
+                        if hit:
+                            if number not in permits:
+                                permits[number] = {
+                                    "number": number, "type": hit["type"], "entity_id": hit["id"],
+                                    "url": f"{PORTAL}/records/{hit['id']}" if hit["id"] else f"{PORTAL}/search",
+                                    "address": None, "date": None, "lat": None, "lon": None,
+                                    "first_seen": now, "details": False}
+                                new.append(permits[number])
+                            ps["cursors"][series] = n
+                            misses = 0
+                        else:
+                            misses += 1
+                        n += 1
+                    print(f"Permits {series}: up to #{ps['cursors'].get(series, 0)}")
+        except StopIteration:
+            print(f"Hit {MAX_SEARCHES} searches; the next run picks up where this one stopped.")
+
+        # 2. fill in address and date, newest first, a limited number per run
+        todo = sorted((p for p in permits.values() if not p.get("details") and p.get("entity_id")),
+                      key=lambda p: p["entity_id"], reverse=True)[:MAX_DETAILS]
+        shown_sample = False
+        for p in todo:
+            try:
+                address, date, sample = record_details(p["entity_id"], p["number"])
+            except Exception as err:
+                print(f"  {p['number']}: record page failed ({err})")
+                continue
+            if sample and not shown_sample:
+                print(f"Sample record data for {p['number']} (for debugging field names):")
+                print(json.dumps(sample, indent=1)[:2000])
+                shown_sample = True
+            p.update(address=address, date=date or p["date"], details=True)
+            if address:
+                coords = geocode(address)
+                p.update(lat=coords[0] if coords else None, lon=coords[1] if coords else None)
+        left = sum(1 for p in permits.values() if not p.get("details"))
+        print(f"Permit details: {len(todo)} looked up, {left} still to do"
+              f"{', ' + str(sum(1 for p in todo if not p['address'])) + ' without an address' if todo else ''}")
         ps["refused_runs"] = 0
     except Blocked as err:
         ps["refused_runs"] = refused + 1
@@ -279,9 +329,8 @@ def run(state, geocode, now):
     finally:
         close_browser()
 
-    if budget[0] <= 0:
-        print("Hit PERMIT_MAX_LOOKUPS; the next run continues where this one stopped.")
-    ordered = sorted(permits.values(), key=lambda p: (p.get("date") or p["first_seen"][:10], p["number"]),
+    ordered = sorted(permits.values(),
+                     key=lambda p: (p.get("date") or p["first_seen"][:10], p.get("entity_id") or 0),
                      reverse=True)
     PERMITS_FILE.parent.mkdir(parents=True, exist_ok=True)
     PERMITS_FILE.write_text(json.dumps({"updated": now, "permits": ordered}, indent=2, sort_keys=True))
@@ -289,23 +338,18 @@ def run(state, geocode, now):
     return [] if first_run else new
 
 
-# ---------- probe ----------
-
 def probe():
-    """Print raw responses so we can see what the API returns."""
-    for label, key, criteria in [("seed record", SEED, "record"),
-                                 ("record prefix search", SEED.rsplit("-", 1)[0] + "-", "record"),
-                                 ("address search", "1st Ave", "location")]:
-        print("=" * 70, f"\n{label}: criteria={criteria} key={key}")
-        try:
-            data = search(key, criteria)
-            print(json.dumps(data, indent=1)[:3000])
-            if criteria == "record" and data:
-                rec = matching_record(data, norm_number(key) or "")
-                print("\nParsed:", to_permit(norm_number(key), rec) if rec else "no exact match")
-        except Exception as err:
-            print("error:", err)
-    close_browser()
+    try:
+        data = search(SEED)
+        print(json.dumps(data, indent=1)[:1500])
+        pool = {}
+        harvest(data, pool)
+        print(f"\nParsed {len(pool)} records from one search:", dict(list(pool.items())[:5]))
+        hit = pool.get(norm_number(SEED))
+        if hit:
+            print("\nRecord page:", record_details(hit["id"], norm_number(SEED))[:2])
+    finally:
+        close_browser()
 
 
 if __name__ == "__main__":
