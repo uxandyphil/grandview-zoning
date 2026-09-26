@@ -74,7 +74,7 @@ DATE_PATTERNS = [
 SUBFOLDER_HINT = re.compile(rf"20\d\d|{MONTHS}|\bcase|\bBZA\b|planning|agenda|\d{{2,5}}\s+\w", re.I)
 # Non-agenda documents worth opening to find the case address
 CASE_DOC_HINT = re.compile(r"staff|report|application|notice|memo", re.I)
-SKIP_DOC_HINT = re.compile(r"plan|drawing|elevation|survey|photo|render|site|minutes", re.I)
+SKIP_DOC_HINT = re.compile(r"plan|drawing|elevation|survey|photo|render|site|minutes|fillable|form\b", re.I)
 ADDRESS_LABEL_RE = re.compile(r"(address of request|property address|subject property|location)\s*:?", re.I)
 
 
@@ -126,14 +126,29 @@ def title_case(address):
 
 # ---------- parsing ----------
 
-def pdf_text(url):
+def pdf_pages(url, max_bytes=MAX_PDF_BYTES):
     resp = get(url)
-    if len(resp.content) > MAX_PDF_BYTES:
+    if len(resp.content) > max_bytes:
         raise ValueError("file too large")
     if not resp.content.startswith(b"%PDF"):
         raise ValueError("not a PDF")
-    reader = PdfReader(io.BytesIO(resp.content))
-    return "\n".join(page.extract_text() or "" for page in reader.pages)
+    return [page.extract_text() or "" for page in PdfReader(io.BytesIO(resp.content)).pages]
+
+
+def pdf_text(url):
+    return "\n".join(pdf_pages(url))
+
+
+def packet_agenda_text(url):
+    """A meeting packet starts with the agenda, then applications (which list
+    neighbors' addresses). Keep only the agenda pages: up to ADJOURNMENT."""
+    pages = pdf_pages(url, max_bytes=60_000_000)
+    kept = []
+    for page in pages[:6]:
+        kept.append(page)
+        if re.search(r"ADJOURN", page, re.I):
+            break
+    return "\n".join(kept)
 
 
 def find_addresses(text):
@@ -163,6 +178,7 @@ def extract_cases(text):
         end = hits[i + 1][0].start() if i + 1 < len(hits) else len(flat)
         desc = flat[m.end():min(end, m.end() + 700)]
         desc = re.sub(r"(B\.?Z\.?A\.?|P\.?C\.?)?\s*Case[\s#:\w.-]*$", "", desc, flags=re.I)
+        desc = re.split(r"\b(ADJOURN|OTHER BUSINESS|STAFF COMMUNICATIONS)", desc, flags=re.I)[0]
         cases.append((address, desc.strip(" .,:;-")))
     return cases
 
@@ -369,8 +385,9 @@ def run_archives(store, state, backfill):
 
 
 def run_document_center(store, state):
-    backfill = "doccenter" not in state["seen"]
-    seen = set(state["seen"].get("doccenter", []))
+    state["seen"].pop("doccenter", None)  # v1 key; v2 re-reads packets
+    backfill = "doccenter_v2" not in state["seen"]
+    seen = set(state["seen"].get("doccenter_v2", []))
     try:
         docs = crawl_document_center()
     except Exception as err:
@@ -383,15 +400,19 @@ def run_document_center(store, state):
         date = parse_date(name) or parse_date(folder)
         document = {"name": name, "url": url}
         try:
-            if re.search(r"agenda", name, re.I):
-                text = pdf_text(url)
+            if re.search(r"agenda|packet", name, re.I):
+                is_packet = re.search(r"packet", name, re.I)
+                text = packet_agenda_text(url) if is_packet else pdf_text(url)
                 date = date or parse_date(text)
                 for address, desc in extract_cases(text):
                     store.add(board, address, date, desc, agenda_url=url, notify=not backfill)
             else:
                 address = next((a for _, a in find_addresses(name)[1]), None) \
                     or next((a for _, a in find_addresses(folder)[1]), None)
-                if not address and CASE_DOC_HINT.search(name) and not SKIP_DOC_HINT.search(name):
+                if SKIP_DOC_HINT.search(name):
+                    seen.add(doc["doc_id"])
+                    continue  # blank forms, plans, photos
+                if not address and CASE_DOC_HINT.search(name):
                     text = pdf_text(url)
                     date = date or parse_date(text)
                     address = case_address_from_document(text)
@@ -403,7 +424,7 @@ def run_document_center(store, state):
             print(f"  skip '{name}': {err}")
             continue
         seen.add(doc["doc_id"])
-    state["seen"]["doccenter"] = sorted(seen, key=int)
+    state["seen"]["doccenter_v2"] = sorted(seen, key=int)
 
 
 def main():
