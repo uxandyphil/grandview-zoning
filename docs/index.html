@@ -114,6 +114,52 @@
   .btn { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .btn[disabled] { opacity: .5; cursor: default; }
 
+  /* permit rows open the drawer instead of expanding */
+  .prow { display: grid; grid-template-columns: 18px 1fr auto; gap: 4px 12px; align-items: center;
+          width: 100%; padding: 12px 18px; border: 0; border-bottom: 1px solid var(--line);
+          background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+  .prow:last-child { border-bottom: 0; }
+  .prow:hover { background: var(--hover); }
+  .prow.active { background: color-mix(in srgb, var(--permit) 12%, var(--surface)); }
+  .prow .pdot { width: 10px; height: 10px; border-radius: 2px; background: var(--permit); justify-self: center; }
+  .prow .teaser { white-space: nowrap; }
+
+  .scrim { position: fixed; inset: 0; z-index: 2000; background: rgba(15,21,18,.35);
+           opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+  .scrim.show { opacity: 1; pointer-events: auto; }
+  .drawer { position: fixed; z-index: 2001; top: 0; right: 0; bottom: 0; width: min(420px, 100%);
+            background: var(--surface); border-left: 1px solid var(--line);
+            box-shadow: -8px 0 32px rgba(21,32,27,.14); display: flex; flex-direction: column;
+            transform: translateX(100%); transition: transform .25s ease; visibility: hidden;
+            padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .drawer.show { transform: none; visibility: visible; }
+  .d-head { display: flex; align-items: center; gap: 8px; padding: 14px 16px 0 22px; }
+  .d-close { margin-left: auto; width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--line);
+             background: var(--bg); color: var(--ink); font-size: 1.3rem; line-height: 1; cursor: pointer; }
+  .d-body { overflow-y: auto; padding: 10px 22px 24px; }
+  .d-body h2 { margin: 4px 0 2px; font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.015em; }
+  .d-sub { margin: 0 0 18px; color: var(--muted); }
+  .d-facts { margin: 0 0 20px; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px;
+             padding: 14px 16px; background: var(--bg); border-radius: 10px; }
+  .d-facts dt { color: var(--muted); font-size: 0.9rem; }
+  .d-facts dd { margin: 0; font-weight: 600; }
+  .d-actions { display: grid; gap: 8px; margin-bottom: 24px; }
+  .d-actions .btn { text-align: center; padding: 10px 14px; font-size: 0.95rem; }
+  .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .d-note { margin: -14px 0 24px; font-size: 0.85rem; color: var(--muted); }
+  .d-body h3 { margin: 0 0 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .d-related { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .d-related button { width: 100%; display: flex; gap: 10px; align-items: center; text-align: left;
+    font: inherit; color: inherit; background: none; border: 1px solid var(--line); border-radius: 10px;
+    padding: 9px 12px; cursor: pointer; }
+  .d-related button:hover { background: var(--hover); }
+  .d-related .when { margin-left: auto; color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+  @media (max-width: 560px) {
+    .drawer { top: auto; left: 0; width: 100%; max-height: 88vh; border-left: 0; border-top: 1px solid var(--line);
+              border-radius: 18px 18px 0 0; transform: translateY(100%); box-shadow: 0 -8px 32px rgba(21,32,27,.18); }
+    .prow .chip { display: none; }
+  }
+
   .empty { padding: 36px 18px; text-align: center; color: var(--muted); }
   footer { margin-top: 40px; font-size: 0.85rem; color: var(--muted); max-width: 70ch; }
   footer a { color: inherit; }
@@ -122,7 +168,7 @@
     .case-body { padding-left: 18px; }
     details.case > summary .chip { display: none; }
   }
-  @media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .chev, .drawer, .scrim { transition: none; } }
 </style>
 </head>
 <body>
@@ -149,9 +195,18 @@
   <main class="meetings" id="list"></main>
 
   <footer>
-    Unofficial. Addresses are extracted automatically from city agenda PDFs, so a case can be missed or misplaced on the map. Check the agenda before relying on anything here. Building permits come from the city's <a href="https://grandviewheightsoh.portal.opengov.com/search">OpenGov portal</a> and show up the day after they're filed; open a permit there for plans and inspections. Comments on a case go through the city's <a href="https://www.grandviewheights.gov/330/Board-of-Zoning-Appeals">Board of Zoning Appeals page</a>.
+    Unofficial. Addresses are extracted automatically from city agenda PDFs, so a case can be missed or misplaced on the map. Check the agenda before relying on anything here. Building permits come from the city's <a href="https://grandviewheightsoh.portal.opengov.com/search">OpenGov portal</a> and are updated about weekly; each permit links to its full record there for plans, inspections, and status. Comments on a case go through the city's <a href="https://www.grandviewheights.gov/330/Board-of-Zoning-Appeals">Board of Zoning Appeals page</a>.
   </footer>
 </div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" aria-hidden="true">
+  <div class="d-head">
+    <span class="chip permit">Building permit</span>
+    <button class="d-close" id="d-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="d-body" id="d-body"></div>
+</aside>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -204,10 +259,15 @@
     return;
   }
 
-  // Year filter: newest year first, default to the most recent year with cases
+  // Period filter. "This month" also keeps upcoming meetings, so they're never hidden.
+  // Default: this month; if there's nothing this month, this year; then the newest year.
+  const thisMonth = today.slice(0, 7), thisYear = today.slice(0, 4);
+  const monthName = new Date().toLocaleDateString("en-US", { month: "long" });
+  const inMonth = (c) => (c.meeting_date || "").slice(0, 7) === thisMonth || (!isPermit(c) && c.meeting_date > today);
   const years = [...new Set(state.cases.map(yearOf))].sort().reverse();
-  state.year = years[0] || "all";
-  $("years").innerHTML = years.map((y) => `<button type="button" data-year="${esc(y)}">${esc(y)}</button>`).join("")
+  state.year = state.cases.some(inMonth) ? "month" : years.includes(thisYear) ? thisYear : years[0] || "all";
+  $("years").innerHTML = '<button type="button" data-year="month">This month</button>'
+    + years.map((y) => `<button type="button" data-year="${esc(y)}">${esc(y)}</button>`).join("")
     + '<button type="button" data-year="all">All</button>';
   const syncYears = () => $("years").querySelectorAll("button").forEach((b) =>
     b.setAttribute("aria-pressed", String(b.dataset.year === state.year)));
@@ -215,7 +275,7 @@
   function filtered() {
     const q = state.q.trim().toLowerCase();
     return state.cases.filter((c) =>
-      (q || state.year === "all" || yearOf(c) === state.year) &&   // search spans all years
+      (q || state.year === "all" || (state.year === "month" ? inMonth(c) : yearOf(c) === state.year)) &&   // search spans all years
       (state.board === "all" || c.board === state.board) &&
       (!q || (c.address + " " + c.description + " " + (c.permit ? c.permit.number : "")).toLowerCase().includes(q)));
   }
@@ -229,7 +289,8 @@
     const parts = [];
     if (caseList.length) parts.push(`${caseList.length} case${caseList.length === 1 ? "" : "s"} across ${meetingsCount} meeting${meetingsCount === 1 ? "" : "s"}`);
     if (nPermits) parts.push(`${nPermits} building permit${nPermits === 1 ? "" : "s"}`);
-    $("count").textContent = parts.length ? parts.join(", ") + (q ? " (all years)" : "") : "";
+    $("count").textContent = parts.length
+      ? parts.join(", ") + (q ? " (all years)" : state.year === "month" ? ` in ${monthName}` : "") : "";
 
     // map
     layer.clearLayers(); state.markers.clear();
@@ -241,10 +302,10 @@
         icon: L.divIcon({ className: "", html: `<div class="pin${pm ? " permit" : up ? " upcoming" : ""}"></div>`,
                           iconSize: pm ? [10, 10] : up ? [18, 18] : [14, 14] }),
         title: c.address, zIndexOffset: pm ? -100 : 0
-      }).bindPopup(`<strong>${esc(c.address)}</strong><br>${pm
-          ? esc([c.permit.type, c.permit.number].filter(Boolean).join(", "))
-          : esc(fmtDate(c.meeting_date))}`)
-        .on("click", () => reveal(c.id)).addTo(layer);
+      });
+      if (!pm) m.bindPopup(`<strong>${esc(c.address)}</strong><br>${esc(fmtDate(c.meeting_date))}`);
+      m
+        .on("click", () => pm ? openPermit(c.permit.number) : reveal(c.id)).addTo(layer);
       state.markers.set(c.id, m); bounds.push([c.lat, c.lon]);
     }
     if (bounds.length) map.fitBounds(bounds, { maxZoom: 16, padding: [30, 30] });
@@ -253,6 +314,7 @@
     if (!shown.length) {
       $("list").innerHTML = `<div class="card empty">${q
         ? `No cases mention “${esc(q)}”. Try just the street name, like “First Ave”.`
+        : state.year === "month" ? `Nothing here yet for ${monthName}. Try ${thisYear} or All.`
         : "No cases for this filter. Try another year or All."}</div>`;
       return;
     }
@@ -276,7 +338,13 @@
           <span class="m-count">${cs.length} ${pm ? "permit" : "case"}${cs.length === 1 ? "" : "s"}</span>
         </summary>
         <div class="cases">
-          ${cs.map((c) => `
+          ${cs.map((c) => isPermit(c) ? `
+          <button class="prow" type="button" data-permit="${esc(c.permit.number)}">
+            <span class="pdot" aria-hidden="true"></span>
+            <span class="addr">${esc(c.address)}</span>
+            <span class="chip permit">Permit</span>
+            <span class="teaser">${esc([c.permit.type, c.permit.number].filter(Boolean).join(" · "))}</span>
+          </button>` : `
           <details class="case" data-id="${esc(c.id)}">
             <summary>
               ${CHEV}
@@ -285,16 +353,9 @@
               <span class="teaser">${esc(c.description) || (isPermit(c) ? esc(c.permit.number) : docsLabel(c))}</span>
             </summary>
             <div class="case-body">
-              ${isPermit(c) ? `<p class="facts">
-                <span>Permit <b>${esc(c.permit.number)}</b></span>
-                ${c.permit.type ? `<span>Type <b>${esc(c.permit.type)}</b></span>` : ""}
-                ${c.permit.status ? `<span>Status <b>${esc(c.permit.status)}</b></span>` : ""}
-                ${c.permit.date ? `<span>Filed <b>${esc(fmtDate(c.permit.date))}</b></span>` : ""}
-              </p>${c.permit.description ? `<p>${esc(c.permit.description)}</p>` : ""}`
-              : `<p>${esc(c.description) || "No agenda description yet. See the case documents below."}</p>`}
+              <p>${esc(c.description) || "No agenda description yet. See the case documents below."}</p>
               <div class="actions">
                 <button class="btn" type="button" data-map="${esc(c.id)}" ${c.lat == null ? "disabled" : ""}>${c.lat == null ? "Not on map" : "Show on map"}</button>
-                ${c.permit ? `<a class="btn" href="${esc(c.permit.url)}" target="_blank" rel="noopener">Open in OpenGov</a>` : ""}
                 ${c.agenda_url ? `<a class="btn" href="${esc(c.agenda_url)}" target="_blank" rel="noopener">Open agenda PDF</a>` : ""}
                 ${(c.documents || []).map((d) => `<a class="btn" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a>`).join("")}
               </div>
@@ -314,13 +375,108 @@
     el.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }
 
+  // ---------- permit drawer ----------
+  const normAddr = (a) => String(a || "").toUpperCase().replace(/[.,#]/g, " ")
+    .replace(/\b(FIRST|SECOND|THIRD|FIFTH)\b/g, (w) => ({ FIRST: "1ST", SECOND: "2ND", THIRD: "3RD", FIFTH: "5TH" }[w]))
+    .replace(/\b(AVENUE|STREET|ROAD|DRIVE|BOULEVARD|COURT|PLACE|LANE|WEST|EAST|NORTH|SOUTH)\b/g, (w) =>
+      ({ AVENUE: "AVE", STREET: "ST", ROAD: "RD", DRIVE: "DR", BOULEVARD: "BLVD", COURT: "CT", PLACE: "PL",
+         LANE: "LN", WEST: "W", EAST: "E", NORTH: "N", SOUTH: "S" }[w]))
+    .replace(/\s+/g, " ").trim();
+  const byNumber = new Map(state.cases.filter(isPermit).map((c) => [c.permit.number, c]));
+  let lastFocus = null;
+
+  function openPermit(number) {
+    const c = byNumber.get(number);
+    if (!c) return;
+    const p = c.permit;
+    const here = p.address ? state.cases.filter((o) => o !== c && normAddr(o.address) === normAddr(p.address)) : [];
+    const fact = (k, v) => v ? `<dt>${k}</dt><dd>${esc(v)}</dd>` : "";
+    $("d-body").innerHTML = `
+      <h2 id="d-title">${esc(c.address)}</h2>
+      <p class="d-sub">${esc(p.type || "Building permit")}</p>
+      <dl class="d-facts">
+        ${fact("Permit", p.number)}
+        ${fact("Status", p.status)}
+        ${fact("Filed", p.date ? fmtDate(p.date) : "")}
+        ${!p.date && p.first_seen ? fact("First seen", fmtDate(p.first_seen.slice(0, 10))) : ""}
+      </dl>
+      ${p.description ? `<p>${esc(p.description)}</p>` : ""}
+      <div class="d-actions">
+        <a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">Full record on OpenGov &#8599;</a>
+        <button class="btn" type="button" data-drawer-map="${esc(c.id)}" ${c.lat == null ? "disabled" : ""}>${c.lat == null ? "Not on map" : "Show on map"}</button>
+      </div>
+      <p class="d-note">OpenGov has the plans, inspections, fees, and current status.</p>
+      ${here.length ? `<h3>Also at this address</h3><ul class="d-related">${here.map((o) => `
+        <li><button type="button" ${isPermit(o) ? `data-permit="${esc(o.permit.number)}"` : `data-case="${esc(o.id)}"`}>
+          <span class="chip ${boardClass(o.board)}">${boardShort(o.board)}</span>
+          <span>${esc(isPermit(o) ? (o.permit.type || o.permit.number) : (o.description || "Zoning case").slice(0, 60))}</span>
+          <span class="when">${esc(o.meeting_date ? new Date(o.meeting_date + "T12:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "")}</span>
+        </button></li>`).join("")}</ul>` : ""}`;
+    document.querySelectorAll(".prow.active").forEach((el) => el.classList.remove("active"));
+    document.querySelector(`.prow[data-permit="${CSS.escape(number)}"]`)?.classList.add("active");
+    if (!$("drawer").classList.contains("show")) lastFocus = document.activeElement;
+    $("drawer").classList.add("show"); $("scrim").classList.add("show");
+    $("drawer").setAttribute("aria-hidden", "false");
+    $("d-body").scrollTop = 0;
+    $("d-close").focus();
+    history.replaceState(null, "", "#permit=" + encodeURIComponent(number));
+  }
+
+  function closeDrawer() {
+    if (!$("drawer").classList.contains("show")) return;
+    $("drawer").classList.remove("show"); $("scrim").classList.remove("show");
+    $("drawer").setAttribute("aria-hidden", "true");
+    history.replaceState(null, "", location.pathname + location.search);
+    if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+  }
+
+  function showOnMap(id, popup) {
+    const m = state.markers.get(id);
+    if (!m) return;
+    map.setView(m.getLatLng(), 17);
+    if (popup) m.openPopup();
+    $("map").scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+
+  $("d-close").addEventListener("click", closeDrawer);
+  $("scrim").addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
+  $("drawer").addEventListener("keydown", (e) => {  // keep Tab inside the drawer
+    if (e.key !== "Tab") return;
+    const f = [...$("drawer").querySelectorAll("button:not([disabled]), a[href]")];
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  });
+  $("drawer").addEventListener("click", (e) => {
+    const pb = e.target.closest("[data-permit]");
+    if (pb) return openPermit(pb.dataset.permit);
+    const cb = e.target.closest("[data-case]");
+    if (cb) { closeDrawer(); ensureVisible(cb.dataset.case); return reveal(cb.dataset.case); }
+    const mb = e.target.closest("[data-drawer-map]");
+    if (mb) {
+      const id = mb.dataset.drawerMap;
+      closeDrawer(); ensureVisible(id);
+      const c = state.cases.find((x) => x.id === id);
+      document.querySelector(`.prow[data-permit="${CSS.escape(c.permit.number)}"]`)?.classList.add("active");
+      showOnMap(id, false);
+    }
+  });
+
+  // If the item is hidden by the current filters, widen them so it can be shown
+  function ensureVisible(id) {
+    if (state.markers.has(id) || document.querySelector(`[data-id="${CSS.escape(id)}"]`)) return;
+    state.year = "all"; state.board = "all"; state.q = "";
+    $("board").value = "all"; $("search").value = "";
+    render();
+  }
+
   $("list").addEventListener("click", (e) => {
+    const pr = e.target.closest("[data-permit]");
+    if (pr) return openPermit(pr.dataset.permit);
     const b = e.target.closest("[data-map]");
     if (!b) return;
-    const m = state.markers.get(b.dataset.map);
-    if (!m) return;
-    map.setView(m.getLatLng(), 17); m.openPopup();
-    $("map").scrollIntoView({ block: "nearest", behavior: "smooth" });
+    showOnMap(b.dataset.map, true);
   });
   $("years").addEventListener("click", (e) => {
     const b = e.target.closest("[data-year]");
@@ -330,6 +486,8 @@
   let t; $("search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
 
   render();
+  const linked = decodeURIComponent((location.hash.match(/^#permit=(.+)$/) || [])[1] || "");
+  if (linked && byNumber.has(linked)) openPermit(linked);
 })();
 </script>
 </body>
