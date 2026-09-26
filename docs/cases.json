@@ -1,6 +1,54 @@
 {
   "cases": [
     {
+      "address": "1068 Westwood Avenue",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13659/PC-Packet-2026-09-16",
+      "board": "Planning Commission",
+      "description": "Applicant: Rebecca Oberla Owner: James and Rebecca Oberla Zoning: RS-1 (Residential Single) a \u2013 The Applicant is seeking Lot Split and Lot Consolidation approval per Grandview Heights Zoning Code section 1141.03(h) to amend an existing subdivision plat for a lot split and lot consolidation that will extend the southern boundary of",
+      "documents": [],
+      "first_seen": "2026-09-26T01:23:19+00:00",
+      "id": "2026-09-16|1068 westwood ave",
+      "lat": 39.97802032086,
+      "lon": -83.053198016623,
+      "meeting_date": "2026-09-16"
+    },
+    {
+      "address": "1020 Westwood Avenue",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13659/PC-Packet-2026-09-16",
+      "board": "Planning Commission",
+      "description": "Applicant: The City of Grandview Heights Owner: Rebecca Oberla, Rachel Kuhar, Constance Lolli, and Christopher Walter Zoning: RS-1 GSOD (Residential Single within the Green Space Overlay District) a \u2013 The Applicant is seeking Lot Split approval per Grandview Heights Zoning Code section 1141.03(h) to amend an existing subdivision plat for the division of land as open space. 2. P.C. Case 15-2026 (030-002382-00) Address",
+      "documents": [],
+      "first_seen": "2026-09-26T01:23:19+00:00",
+      "id": "2026-09-16|1020 westwood ave",
+      "lat": 39.977296564608,
+      "lon": -83.053315092986,
+      "meeting_date": "2026-09-16"
+    },
+    {
+      "address": "827 Timberman Rd",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13631/BZA-Packet-2026-09-09",
+      "board": "Board of Zoning Appeals",
+      "description": "Applicant: Vincent Hanson Owner: James Hanson (Buckone, Ltd.) Zoning District: RS-2 (Residential Single) a - The applicant is requesting review and approval pursuant to Zoning Code section 1155.15(d) for a fence located in the rear or side yard adjacent to the street or alley of a corner lot. Case 2: B.Z.A. Case: 17-2026 (030-002092-00) Address",
+      "documents": [],
+      "first_seen": "2026-09-26T01:23:19+00:00",
+      "id": "2026-09-09|827 timberman rd",
+      "lat": 39.976075641598,
+      "lon": -83.030622206176,
+      "meeting_date": "2026-09-09"
+    },
+    {
+      "address": "1086 W Second Ave",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13631/BZA-Packet-2026-09-09",
+      "board": "Board of Zoning Appeals",
+      "description": "Applicant: Ryan and Cara Strom Owner: Ryan and Cara Strom Zoning District: RS-2 (Residential Single) a - The applicant is requesting review and approval pursuant to Zoning Code section 1155.15(d) for a fence located in the rear or side yard adjacent to the street or alley of a corner lot",
+      "documents": [],
+      "first_seen": "2026-09-26T01:23:19+00:00",
+      "id": "2026-09-09|1086 w 2nd ave",
+      "lat": 39.983309520486,
+      "lon": -83.034294523935,
+      "meeting_date": "2026-09-09"
+    },
+    {
       "address": "1661 W Goodale Blvd",
       "agenda_url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3714",
       "board": "Board of Zoning Appeals",
@@ -1057,5 +1105,5 @@
       "meeting_date": "2022-05-11"
     }
   ],
-  "updated": "2026-09-26T01:17:33+00:00"
+  "updated": "2026-09-26T01:23:19+00:00"
 }

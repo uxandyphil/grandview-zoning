@@ -4,6 +4,10 @@
       39.978148059434,
       -83.05188851695
     ],
+    "1020 Westwood Avenue, Grandview Heights, OH 43212": [
+      39.977296564608,
+      -83.053315092986
+    ],
     "1021 Avondale Avenue, Grandview Heights, OH 43212": [
       39.979235827041,
       -83.042258530444
@@ -32,9 +36,17 @@
       39.980507347187,
       -83.03765579351
     ],
+    "1068 Westwood Avenue, Grandview Heights, OH 43212": [
+      39.97802032086,
+      -83.053198016623
+    ],
     "1080 Wyandotte Road, Grandview Heights, OH 43212": [
       39.978978727976,
       -83.055196332909
+    ],
+    "1086 W Second Ave, Grandview Heights, OH 43212": [
+      39.983309520486,
+      -83.034294523935
     ],
     "1105 Ormsby Place, Grandview Heights, OH 43212": [
       39.979412405679,
@@ -262,6 +274,10 @@
       39.976182313421,
       -83.029156284046
     ],
+    "827 Timberman Rd, Grandview Heights, OH 43212": [
+      39.976075641598,
+      -83.030622206176
+    ],
     "844 Timberman Road, Grandview Heights, OH 43212": [
       39.97639890125,
       -83.03055433601
@@ -413,7 +429,7 @@
       "3710",
       "3714"
     ],
-    "doccenter": [
+    "doccenter_v2": [
       "13631",
       "13632",
       "13633",
