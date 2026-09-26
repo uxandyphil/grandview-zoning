@@ -28,6 +28,6 @@ jobs:
         run: |
           git config user.name "zoning-watch"
           git config user.email "zoning-watch@users.noreply.github.com"
-          git add docs/cases.json state.json
+          git add -A docs state.json
           git diff --cached --quiet || git commit -m "Daily update"
           git push
