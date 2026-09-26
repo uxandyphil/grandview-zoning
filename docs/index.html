@@ -61,6 +61,11 @@
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
           box-shadow: var(--shadow); overflow: hidden; }
   #map { height: 320px; }
+  /* Soften the standard OSM map so it looks like a clean, muted basemap */
+  .leaflet-tile-pane { filter: grayscale(0.9) contrast(0.92) brightness(1.04); }
+  @media (prefers-color-scheme: dark) {
+    .leaflet-tile-pane { filter: grayscale(1) invert(0.92) contrast(0.9) brightness(0.85); }
+  }
   .pin { width: 14px; height: 14px; border-radius: 50%; background: var(--sign);
          border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.35); }
   .pin.upcoming { width: 18px; height: 18px; box-shadow: 0 0 0 1px rgba(0,0,0,.35), 0 0 0 6px rgba(242,194,48,.35); }
@@ -148,8 +153,8 @@
   const state = { cases: [], year: null, board: "all", q: "", markers: new Map() };
 
   const map = L.map("map", { scrollWheelZoom: false }).setView([39.979, -83.043], 15);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    maxZoom: 19, attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19, attribution: "&copy; OpenStreetMap contributors"
   }).addTo(map);
   const layer = L.layerGroup().addTo(map);
 
