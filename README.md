@@ -6,7 +6,8 @@ checks the city's agenda archive every morning, extracts addresses from
 new agenda PDFs, geocodes them, and republishes the site.
 
     scrape.py                     finds agendas, extracts cases, writes docs/cases.json
-    permits.py                    walks OpenGov permit numbers, writes docs/permits.json
+    collect-permits.js            run in your browser on the OpenGov portal; downloads permits.json
+    permits.py                    daily: maps permits in docs/permits.json
     docs/index.html               the website (reads cases.json)
     .github/workflows/update.yml  daily job
     state.json                    created on first run; tracks what's been processed
@@ -38,16 +39,19 @@ To start over, delete `state.json` and reset `docs/cases.json` to
 
 ## Building permits
 
-`permits.py` reads permits from the city's OpenGov portal through a headless
-browser (the API refuses plain scripted requests). It walks each permit
-series (R-26, E-26, H-26, P-26, ZON-26, ...) forward from the last number
-found; each search also returns ~20 neighboring records, so few searches are
-needed. Then it opens each new record's page once for the address and filing
-date, up to 120 per run, so the first backfill takes a few days to fill in
-every address.
+The city's permit API blocks cloud servers, so permits are collected from
+your own browser:
 
-If the API refuses three runs in a row, the permit step turns itself off.
-Set `"refused_runs"` to 0 in state.json to turn it back on.
+1. Open https://grandviewheightsoh.portal.opengov.com/search
+2. Right-click > Inspect > Console. Paste all of `collect-permits.js`,
+   press Enter. (Chrome may ask you to type "allow pasting" first.)
+3. If the panel asks, search R-26-82 in the portal's search box once.
+4. When it says Done, click Download, then upload the file to `docs/`
+   here, replacing `permits.json`.
+
+It remembers progress in your browser, so later runs only fetch new
+permits. It reads up to 150 addresses per run; run it again for the rest.
+The daily Action adds map locations to any permit with an address.
 
 ## Known limits
 
