@@ -104,6 +104,7 @@
          border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer;
          text-decoration: none; }
   .btn:hover { border-color: var(--muted); }
+  .btn { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .btn[disabled] { opacity: .5; cursor: default; }
 
   .empty { padding: 36px 18px; text-align: center; color: var(--muted); }
@@ -164,6 +165,8 @@
     : "Date not listed";
   const yearOf = (c) => (c.meeting_date || "").slice(0, 4) || "Unknown";
   const boardClass = (b) => b.startsWith("Planning") ? "pc" : "bza";
+  const docsLabel = (c) => (c.documents || []).length
+    ? `${c.documents.length} case document${c.documents.length === 1 ? "" : "s"}` : "No description in the agenda";
   const boardShort = (b) => b.startsWith("Planning") ? "Planning" : "BZA";
 
   try {
@@ -252,13 +255,14 @@
               ${CHEV}
               <span class="addr">${esc(c.address)}</span>
               <span class="chip ${boardClass(c.board)}">${boardShort(c.board)}</span>
-              <span class="teaser">${esc(c.description) || "No description in the agenda"}</span>
+              <span class="teaser">${esc(c.description) || docsLabel(c)}</span>
             </summary>
             <div class="case-body">
-              <p>${esc(c.description) || "No description in the agenda."}</p>
+              <p>${esc(c.description) || "No agenda description yet. See the case documents below."}</p>
               <div class="actions">
                 <button class="btn" type="button" data-map="${esc(c.id)}" ${c.lat == null ? "disabled" : ""}>${c.lat == null ? "Not on map" : "Show on map"}</button>
-                <a class="btn" href="${esc(c.agenda_url)}" target="_blank" rel="noopener">Open agenda PDF</a>
+                ${c.agenda_url ? `<a class="btn" href="${esc(c.agenda_url)}" target="_blank" rel="noopener">Open agenda PDF</a>` : ""}
+                ${(c.documents || []).map((d) => `<a class="btn" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a>`).join("")}
               </div>
             </div>
           </details>`).join("")}
