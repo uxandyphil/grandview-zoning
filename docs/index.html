@@ -15,6 +15,8 @@
     --line: #E0E5E2; --hover: #F7F9F8; --sign: #F2C230; --sign-ink: #3D3000;
     --bza: #2563A8; --bza-bg: #E8F0FA; --pc: #4E7A2C; --pc-bg: #EDF4E6;
     --permit: #A4480C; --permit-bg: #FBECE0;
+    --t-bldg: #2F5D8A; --t-comm: #4F6D3A; --t-elec: #C98A0B; --t-hvac: #2E8A7A;
+    --t-plmb: #7A55A8; --t-zon: #B5541A; --t-other: #8C9690;
     --radius: 14px; --shadow: 0 1px 2px rgba(21,32,27,.06), 0 4px 16px rgba(21,32,27,.05);
     color-scheme: light dark;
     box-sizing: border-box;
@@ -26,6 +28,8 @@
       --bg: #0F1512; --surface: #18201C; --ink: #E8EDEA; --muted: #95A39B;
       --line: #28332D; --hover: #1E2823; --bza: #86B6EA; --bza-bg: #1B2A3B;
       --pc: #A5C97F; --pc-bg: #1F2B18; --permit: #F0A06A; --permit-bg: #36231A; --shadow: none;
+      --t-bldg: #79A7D6; --t-comm: #9CC47A; --t-elec: #E7B84A; --t-hvac: #62C2AE;
+      --t-plmb: #B394DB; --t-zon: #EE9A62; --t-other: #7E8A84;
     }
   }
   *, *::before, *::after { box-sizing: inherit; }
@@ -75,6 +79,7 @@
 
   .summary-line { margin: 20px 2px 10px; color: var(--muted); font-size: 0.9rem; }
   .meetings { display: grid; gap: 10px; }
+  .meetings > *, .prow > * { min-width: 0; }
 
   details.meeting > summary { list-style: none; cursor: pointer; display: flex; align-items: center;
     gap: 12px; padding: 16px 18px; }
@@ -115,13 +120,15 @@
   .btn[disabled] { opacity: .5; cursor: default; }
 
   /* permit rows open the drawer instead of expanding */
-  .prow { display: grid; grid-template-columns: 18px 1fr auto; gap: 4px 12px; align-items: center;
+  .prow { box-sizing: border-box; display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 4px 12px; align-items: center;
           width: 100%; padding: 12px 18px; border: 0; border-bottom: 1px solid var(--line);
           background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
   .prow:last-child { border-bottom: 0; }
   .prow:hover { background: var(--hover); }
   .prow.active { background: color-mix(in srgb, var(--permit) 12%, var(--surface)); }
   .prow .pdot { width: 10px; height: 10px; border-radius: 2px; background: var(--permit); justify-self: center; }
+  .prow .ptype { font-weight: 600; }
+  .prow .pdate { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
   .prow .teaser { white-space: nowrap; }
 
   .scrim { position: fixed; inset: 0; z-index: 2000; background: rgba(15,21,18,.35);
@@ -160,6 +167,66 @@
     .prow .chip { display: none; }
   }
 
+  /* views */
+  .tabs { display: inline-flex; gap: 2px; padding: 3px; background: var(--surface); border: 1px solid var(--line);
+          border-radius: 10px; }
+  .tabs button { font: 600 0.9rem "Instrument Sans", sans-serif; color: var(--muted); background: none; border: 0;
+                 border-radius: 7px; padding: 7px 16px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+  body.trends-view .browse-only { display: none; }
+  body:not(.trends-view) #trends { display: none; }
+
+  /* trends */
+  #trends { display: grid; gap: 14px; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .kpi { padding: 16px 18px; }
+  .kpi .k-label { color: var(--muted); font-size: 0.85rem; }
+  .kpi .k-value { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin: 4px 0 2px; }
+  .kpi .k-sub { color: var(--muted); font-size: 0.85rem; }
+  .kpi .up { color: #2E7D4F; } .kpi .down { color: #B3261E; }
+  @media (prefers-color-scheme: dark) { .kpi .up { color: #7FD19F; } .kpi .down { color: #F2A19A; } }
+  .panel { padding: 18px 18px 14px; position: relative; }
+  .panel h2 { margin: 0; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .panel .p-sub { margin: 2px 0 12px; color: var(--muted); font-size: 0.875rem; }
+  .row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+  .legend button { display: inline-flex; align-items: center; gap: 6px; font: 500 0.8rem "Instrument Sans", sans-serif;
+    color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px;
+    cursor: pointer; }
+  .legend button[aria-pressed="false"] { opacity: .45; }
+  .sw { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+  .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .chart .bar { cursor: pointer; }
+  .chart .hit:hover + g .bar, .chart g.col:hover .bar { opacity: .82; }
+  .axis { fill: var(--muted); font: 11px "Instrument Sans", system-ui, sans-serif; }
+  .grid { stroke: var(--line); }
+  .tip { position: absolute; pointer-events: none; z-index: 5; background: var(--ink); color: var(--bg);
+         border-radius: 8px; padding: 8px 10px; font-size: 0.8rem; line-height: 1.4; min-width: 140px;
+         opacity: 0; transition: opacity .1s; }
+  .tip b { font-weight: 700; }
+  .tip .t-row { display: flex; gap: 8px; align-items: center; }
+  .tip .t-row span:last-child { margin-left: auto; font-variant-numeric: tabular-nums; }
+  .hbars { display: grid; gap: 4px; }
+  .hbar { display: grid; grid-template-columns: minmax(90px, 38%) 1fr 44px; gap: 10px; align-items: center;
+          font: inherit; color: inherit; background: none; border: 0; border-radius: 8px; padding: 5px 6px;
+          text-align: left; cursor: pointer; }
+  .hbar:hover { background: var(--hover); }
+  .hbar .lbl { font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hbar .trk { height: 12px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+  .hbar .fill { display: block; height: 100%; border-radius: 3px; }
+  .hbar .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 0.85rem; }
+  .plist { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .plist button { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; text-align: left;
+    font: inherit; color: inherit; background: none; border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px 12px; cursor: pointer; }
+  .plist button:hover { background: var(--hover); }
+  .plist .pl-addr { font-weight: 600; }
+  .plist .pl-when { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+  .plist .pl-tags { grid-column: 1 / 3; display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag { display: inline-flex; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; color: var(--muted);
+         padding: 1px 8px 1px 6px; border: 1px solid var(--line); border-radius: 999px; }
+  .note { margin: 0; padding: 12px 16px; font-size: 0.875rem; color: var(--muted); }
+
   .empty { padding: 36px 18px; text-align: center; color: var(--muted); }
   footer { margin-top: 40px; font-size: 0.85rem; color: var(--muted); max-width: 70ch; }
   footer a { color: inherit; }
@@ -174,13 +241,21 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>Grandview zoning and permits</h1>
-    <p class="meta" id="updated">Loading…</p>
+    <div>
+      <h1>Grandview zoning and permits</h1>
+      <p class="meta" id="updated">Loading…</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="View">
+      <button type="button" role="tab" id="tab-browse" aria-selected="true">Browse</button>
+      <button type="button" role="tab" id="tab-trends" aria-selected="false">Trends</button>
+    </div>
   </header>
 
-  <div class="card"><div id="map" role="region" aria-label="Map of zoning cases and permits"></div></div>
+  <section id="trends" aria-label="Trends"></section>
 
-  <div class="toolbar">
+  <div class="card browse-only"><div id="map" role="region" aria-label="Map of zoning cases and permits"></div></div>
+
+  <div class="toolbar browse-only">
     <input class="search" id="search" type="search" placeholder="Search a street, address, or permit number" aria-label="Search cases and permits">
     <div class="seg" id="years" role="group" aria-label="Filter by year"></div>
     <select class="board" id="board" aria-label="Filter by type">
@@ -191,8 +266,8 @@
     </select>
   </div>
 
-  <p class="summary-line" id="count" aria-live="polite"></p>
-  <main class="meetings" id="list"></main>
+  <p class="summary-line browse-only" id="count" aria-live="polite"></p>
+  <main class="meetings browse-only" id="list"></main>
 
   <footer>
     Unofficial. Addresses are extracted automatically from city agenda PDFs, so a case can be missed or misplaced on the map. Check the agenda before relying on anything here. Building permits come from the city's <a href="https://grandviewheightsoh.portal.opengov.com/search">OpenGov portal</a> and are updated about weekly; each permit links to its full record there for plans, inspections, and status. Comments on a case go through the city's <a href="https://www.grandviewheights.gov/330/Board-of-Zoning-Appeals">Board of Zoning Appeals page</a>.
@@ -226,7 +301,7 @@
   const fmtDate = (iso) => iso
     ? new Date(iso + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric", year: "numeric" })
     : "Date not listed";
-  const yearOf = (c) => (c.meeting_date || "").slice(0, 4) || "Unknown";
+  const yearOf = (c) => (c.meeting_date || "").slice(0, 4) || c.pyear || "Unknown";
   const isPermit = (c) => c.board === "Building permit";
   const boardClass = (b) => b === "Building permit" ? "permit" : b.startsWith("Planning") ? "pc" : "bza";
   const fmtMonth = (iso) => iso
@@ -234,6 +309,16 @@
     : "Date not listed";
   const docsLabel = (c) => (c.documents || []).length
     ? `${c.documents.length} case document${c.documents.length === 1 ? "" : "s"}` : "No description in the agenda";
+  const CAT = {
+    bldg: ["Residential building", "--t-bldg"], comm: ["Commercial building", "--t-comm"],
+    elec: ["Electrical", "--t-elec"], hvac: ["HVAC", "--t-hvac"], plmb: ["Plumbing", "--t-plmb"],
+    zon: ["Zoning compliance", "--t-zon"], other: ["Other", "--t-other"] };
+  const catOf = (t) => /electric/i.test(t) ? "elec" : /hvac|mechanical|heating/i.test(t) ? "hvac"
+    : /plumb/i.test(t) ? "plmb" : /zoning/i.test(t) ? "zon"
+    : /building/i.test(t) ? (/commercial/i.test(t) ? "comm" : "bldg") : "other";
+  const typeLabel = (t) => { const k = catOf(t || ""); return k !== "other" ? CAT[k][0]
+    : (t || "Permit").replace(/\s*permit\s*/i, " ").replace(/\s+-\s+/, ": ").trim() || "Permit"; };
+  const catColor = (k) => `var(${CAT[k][1]})`;
   const boardShort = (b) => b === "Building permit" ? "Permit" : b.startsWith("Planning") ? "Planning" : "BZA";
 
   try {
@@ -243,12 +328,31 @@
     state.cases = data.cases || [];
     try {  // permits are optional; the site works without them
       const pr = await fetch("permits.json", { cache: "no-cache" });
-      if (pr.ok) state.cases = state.cases.concat(((await pr.json()).permits || []).map((p) => ({
-        id: "permit|" + p.number, board: "Building permit", permit: p,
-        address: p.address || (p.details ? "Address not listed" : "Address still being looked up"), lat: p.lat, lon: p.lon,
-        description: [p.type, p.description].filter(Boolean).join(". "),
-        meeting_date: p.date || (p.first_seen || "").slice(0, 10) || null
-      })));
+      if (pr.ok) {
+        const plist = (await pr.json()).permits || [];
+        // Permits missing a filed date get one estimated from their neighbors: OpenGov's
+        // internal ids go up in the order records are created.
+        const dated = plist.filter((p) => p.date && p.entity_id).sort((a, b) => a.entity_id - b.entity_id);
+        const nearest = (id) => {
+          let lo = 0, hi = dated.length - 1;
+          while (lo < hi) { const mid = (lo + hi) >> 1; if (dated[mid].entity_id < id) lo = mid + 1; else hi = mid; }
+          const a = dated[lo], b = dated[lo - 1];
+          return !a ? null : b && id - b.entity_id < a.entity_id - id ? b : a;
+        };
+        state.cases = state.cases.concat(plist.map((p) => {
+          const pyear = "20" + (p.number.split("-").slice(-2, -1)[0] || "");
+          let when = p.date, est = false;
+          if (!when && p.entity_id && dated.length) {
+            const n = nearest(p.entity_id);
+            if (n && n.date.slice(0, 4) === pyear) { when = n.date; est = true; }
+          }
+          const cat = catOf(p.type || "");
+          return { id: "permit|" + p.number, board: "Building permit", permit: p, cat, est, pyear,
+            address: p.address || (p.details ? "Address not listed" : "Address still being looked up"),
+            lat: p.lat, lon: p.lon, description: [typeLabel(p.type), p.type, p.description].filter(Boolean).join(". "),
+            meeting_date: when || null };
+        }));
+      }
     } catch (e) { /* no permits yet */ }
     state.cases.sort((a, b) => (b.meeting_date || "").localeCompare(a.meeting_date || ""));
     $("updated").textContent = data.updated
@@ -275,9 +379,12 @@
   function filtered() {
     const q = state.q.trim().toLowerCase();
     return state.cases.filter((c) =>
-      (q || state.year === "all" || (state.year === "month" ? inMonth(c) : yearOf(c) === state.year)) &&   // search spans all years
+      (q || state.year === "all" || (state.year === "month" ? inMonth(c)
+        : state.year.startsWith("m:") ? (c.meeting_date || "").slice(0, 7) === state.year.slice(2)
+        : yearOf(c) === state.year)) &&   // search spans all years
       (state.board === "all" || c.board === state.board) &&
-      (!q || (c.address + " " + c.description + " " + (c.permit ? c.permit.number : "")).toLowerCase().includes(q)));
+      (!q || (c.address + " " + c.description + " " + (c.permit ? c.permit.number : "")).toLowerCase().includes(q)
+          || normAddr(c.address).includes(normAddr(q))));
   }
 
   function render() {
@@ -290,7 +397,8 @@
     if (caseList.length) parts.push(`${caseList.length} case${caseList.length === 1 ? "" : "s"} across ${meetingsCount} meeting${meetingsCount === 1 ? "" : "s"}`);
     if (nPermits) parts.push(`${nPermits} building permit${nPermits === 1 ? "" : "s"}`);
     $("count").textContent = parts.length
-      ? parts.join(", ") + (q ? " (all years)" : state.year === "month" ? ` in ${monthName}` : "") : "";
+      ? parts.join(", ") + (q ? " (all years)" : state.year === "month" ? ` in ${monthName}`
+        : state.year.startsWith("m:") ? ` in ${fmtMonth(state.year.slice(2))}` : "") : "";
 
     // map
     layer.clearLayers(); state.markers.clear();
@@ -340,10 +448,10 @@
         <div class="cases">
           ${cs.map((c) => isPermit(c) ? `
           <button class="prow" type="button" data-permit="${esc(c.permit.number)}">
-            <span class="pdot" aria-hidden="true"></span>
-            <span class="addr">${esc(c.address)}</span>
-            <span class="chip permit">Permit</span>
-            <span class="teaser">${esc([c.permit.type, c.permit.number].filter(Boolean).join(" · "))}</span>
+            <span class="pdot" style="background:${catColor(c.cat)}" aria-hidden="true"></span>
+            <span class="ptype">${esc(typeLabel(c.permit.type))}</span>
+            <span class="pdate">${c.meeting_date ? (c.est ? "~" : "") + esc(new Date(c.meeting_date + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })) : ""}</span>
+            <span class="teaser">${esc(c.address)} · ${esc(c.permit.number)}</span>
           </button>` : `
           <details class="case" data-id="${esc(c.id)}">
             <summary>
@@ -392,13 +500,14 @@
     const here = p.address ? state.cases.filter((o) => o !== c && normAddr(o.address) === normAddr(p.address)) : [];
     const fact = (k, v) => v ? `<dt>${k}</dt><dd>${esc(v)}</dd>` : "";
     $("d-body").innerHTML = `
-      <h2 id="d-title">${esc(c.address)}</h2>
-      <p class="d-sub">${esc(p.type || "Building permit")}</p>
+      <h2 id="d-title">${esc(typeLabel(p.type))}</h2>
+      <p class="d-sub">${esc(c.address)}</p>
       <dl class="d-facts">
         ${fact("Permit", p.number)}
+        ${p.type && typeLabel(p.type) !== p.type ? fact("Type", p.type) : ""}
         ${fact("Status", p.status)}
         ${fact("Filed", p.date ? fmtDate(p.date) : "")}
-        ${!p.date && p.first_seen ? fact("First seen", fmtDate(p.first_seen.slice(0, 10))) : ""}
+        ${!p.date && c.est ? fact("Filed", "Around " + fmtMonth(c.meeting_date)) : ""}
       </dl>
       ${p.description ? `<p>${esc(p.description)}</p>` : ""}
       <div class="d-actions">
@@ -409,7 +518,7 @@
       ${here.length ? `<h3>Also at this address</h3><ul class="d-related">${here.map((o) => `
         <li><button type="button" ${isPermit(o) ? `data-permit="${esc(o.permit.number)}"` : `data-case="${esc(o.id)}"`}>
           <span class="chip ${boardClass(o.board)}">${boardShort(o.board)}</span>
-          <span>${esc(isPermit(o) ? (o.permit.type || o.permit.number) : (o.description || "Zoning case").slice(0, 60))}</span>
+          <span>${esc(isPermit(o) ? typeLabel(o.permit.type) : (o.description || "Zoning case").slice(0, 60))}</span>
           <span class="when">${esc(o.meeting_date ? new Date(o.meeting_date + "T12:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "")}</span>
         </button></li>`).join("")}</ul>` : ""}`;
     document.querySelectorAll(".prow.active").forEach((el) => el.classList.remove("active"));
@@ -484,6 +593,286 @@
   });
   $("board").addEventListener("change", (e) => { state.board = e.target.value; render(); });
   let t; $("search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
+
+  // ---------- trends ----------
+  const permitsAll = state.cases.filter(isPermit);
+  const casesAll = state.cases.filter((c) => !isPermit(c));
+  const ym = (d) => d.slice(0, 7);
+  const monthsBetween = (a, b) => { const out = []; let [y, m] = a.split("-").map(Number);
+    const [by, bm] = b.split("-").map(Number);
+    while (y < by || (y === by && m <= bm)) { out.push(`${y}-${String(m).padStart(2, "0")}`); if (++m > 12) { m = 1; y++; } }
+    return out; };
+  const shortMonth = (k) => new Date(k + "-15T12:00:00").toLocaleDateString("en-US", { month: "short" });
+  const pct = (a, b) => b ? Math.round((a - b) / b * 100) : null;
+  // axis top = 4 whole-number steps of 1, 2, 5, 10, 20, 50...
+  const niceMax = (v) => { const raw = Math.max(1, v) / 4, p = 10 ** Math.floor(Math.log10(raw)), n = raw / p;
+    return Math.max(1, (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * p) * 4; };
+  const catOrder = ["bldg", "comm", "elec", "hvac", "plmb", "zon", "other"];
+  const hiddenCats = new Set();
+
+  // Go to Browse with a filter applied (used by chart clicks)
+  function browseWith({ period, q = "", board = "all" }) {
+    state.year = period || "all"; state.board = board; state.q = q;
+    $("board").value = board; $("search").value = q;
+    setView("browse"); render();
+    $("count").scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+
+  function tip(panel) {
+    let el = panel.querySelector(".tip");
+    if (!el) { el = document.createElement("div"); el.className = "tip"; panel.appendChild(el); }
+    return {
+      show(html, evt) {
+        el.innerHTML = html; el.style.opacity = 1;
+        const r = panel.getBoundingClientRect(), w = el.offsetWidth;
+        let x = evt.clientX - r.left + 14; if (x + w > r.width - 8) x = evt.clientX - r.left - w - 14;
+        el.style.left = Math.max(8, x) + "px"; el.style.top = (evt.clientY - r.top - 10) + "px";
+      },
+      hide() { el.style.opacity = 0; }
+    };
+  }
+
+  // Stacked vertical bars. labels: [key], series: [{key, label, color, values}]
+  function stackedBars(host, labels, series, { fmt, title, onClick, height = 230 }) {
+    const W = Math.max(300, host.clientWidth || 700), H = height, L = 34, R = 6, T = 8, B = 30;
+    const pw = W - L - R, ph = H - T - B, n = labels.length, bw = Math.max(3, pw / n * 0.72);
+    const totals = labels.map((_, i) => series.reduce((s, se) => s + se.values[i], 0));
+    const max = niceMax(Math.max(1, ...totals));
+    const x = (i) => L + pw / n * (i + 0.5), y = (v) => T + ph - v / max * ph;
+    const every = n > 24 ? 3 : n > 13 ? 2 : 1;
+    let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title)}">`;
+    for (let g = 0; g <= 4; g++) { const v = max / 4 * g;
+      svg += `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/>
+        <text class="axis" x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${Math.round(v)}</text>`; }
+    labels.forEach((k, i) => {
+      let acc = 0;
+      svg += `<g class="col" data-i="${i}"><rect x="${L + pw / n * i}" y="${T}" width="${pw / n}" height="${ph}" fill="transparent"/>`;
+      series.forEach((se) => { const v = se.values[i]; if (!v) return;
+        svg += `<rect class="bar" x="${x(i) - bw / 2}" y="${y(acc + v)}" width="${bw}" height="${Math.max(0.5, y(acc) - y(acc + v))}" fill="${se.color}" rx="1.5"/>`;
+        acc += v; });
+      svg += `</g>`;
+      if (i % every === 0) svg += `<text class="axis" x="${x(i)}" y="${H - 12}" text-anchor="middle">${esc(fmt(k, i))}</text>`;
+    });
+    svg += `</svg>`;
+    host.innerHTML = svg;
+    const t = tip(host.closest(".panel"));
+    host.querySelectorAll("g.col").forEach((g) => {
+      const i = +g.dataset.i;
+      g.addEventListener("mousemove", (e) => t.show(`<b>${esc(title(labels[i]))}</b>` +
+        series.filter((se) => se.values[i]).map((se) => `<div class="t-row"><span class="sw" style="background:${se.color}"></span>
+          <span>${esc(se.label)}</span><span>${se.values[i]}</span></div>`).join("") +
+        `<div class="t-row" style="margin-top:4px"><span>Total</span><span><b>${totals[i]}</b></span></div>`, e));
+      g.addEventListener("mouseleave", t.hide);
+      if (onClick) g.addEventListener("click", () => onClick(labels[i]));
+    });
+  }
+
+  function hbars(host, rows, onClick) {
+    const max = Math.max(1, ...rows.map((r) => r.value));
+    host.innerHTML = `<div class="hbars">${rows.map((r, i) => `
+      <button class="hbar" type="button" data-i="${i}" title="${esc(r.label)}: ${r.value}">
+        <span class="lbl">${esc(r.label)}</span>
+        <span class="trk"><span class="fill" style="width:${r.value / max * 100}%;background:${r.color || "var(--permit)"}"></span></span>
+        <span class="num">${r.value}</span>
+      </button>`).join("")}</div>`;
+    host.querySelectorAll(".hbar").forEach((b) => b.addEventListener("click", () => onClick(rows[+b.dataset.i])));
+  }
+
+  function lines(host, series, { height = 220 }) {
+    const W = Math.max(300, host.clientWidth || 700), H = height, L = 34, R = 10, T = 10, B = 28;
+    const pw = W - L - R, ph = H - T - B;
+    const max = niceMax(Math.max(1, ...series.flatMap((s) => s.values.filter((v) => v != null))));
+    const x = (i) => L + pw / 11 * i, y = (v) => T + ph - v / max * ph;
+    const names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Permits per month by year">`;
+    for (let g = 0; g <= 4; g++) { const v = max / 4 * g;
+      svg += `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/>
+        <text class="axis" x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${Math.round(v)}</text>`; }
+    names.forEach((nm, i) => { svg += `<text class="axis" x="${x(i)}" y="${H - 10}" text-anchor="middle">${nm}</text>`; });
+    series.forEach((s) => {
+      const pts = s.values.map((v, i) => v == null ? null : [x(i), y(v)]);
+      const d = pts.reduce((acc, p, i) => p ? acc + (acc && pts[i - 1] ? "L" : "M") + p[0] + " " + p[1] : acc, "");
+      svg += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.strong ? 2.5 : 1.75}" stroke-linejoin="round" ${s.strong ? "" : 'stroke-dasharray="0"'}/>`;
+      pts.forEach((p, i) => { if (p) svg += `<circle cx="${p[0]}" cy="${p[1]}" r="${s.strong ? 3.5 : 2.5}" fill="${s.color}"><title>${esc(s.label)} ${names[i]}: ${s.values[i]}</title></circle>`; });
+    });
+    host.innerHTML = svg + "</svg>";
+  }
+
+  function renderTrends() {
+    const el = $("trends");
+    const dated = permitsAll.filter((c) => c.meeting_date);
+    if (!permitsAll.length) { el.innerHTML = `<div class="card note">No permit data yet.</div>`; return; }
+    const thisY = today.slice(0, 4), lastY = String(+thisY - 1);
+    const dayOfYear = today.slice(5);
+    const pYears = [...new Set(permitsAll.map((c) => c.pyear))].sort();
+    const hasLastYear = pYears.includes(lastY);
+    const ytd = (y) => permitsAll.filter((c) => c.pyear === y && (!c.meeting_date || c.meeting_date.slice(5) <= dayOfYear)).length;
+    const nThis = permitsAll.filter((c) => c.pyear === thisY).length;
+    const byMonth = {};
+    dated.forEach((c) => { const k = ym(c.meeting_date); byMonth[k] = (byMonth[k] || 0) + 1; });
+    const prevMonthKey = (() => { const d = new Date(thisMonth + "-15T12:00:00"); d.setMonth(d.getMonth() - 1);
+      return d.toISOString().slice(0, 7); })();
+    const busiest = Object.entries(byMonth).sort((a, b) => b[1] - a[1])[0];
+    const casesThis = casesAll.filter((c) => yearOf(c) === thisY && c.meeting_date <= today).length;
+    const casesLast = casesAll.filter((c) => yearOf(c) === lastY && c.meeting_date.slice(5) <= dayOfYear).length;
+    const delta = (a, b, what) => { const d = pct(a, b); return d == null ? "" : d === 0 ? `Same as ${what}` :
+      `<span class="${d >= 0 ? "up" : "down"}">${d >= 0 ? "▲" : "▼"} ${Math.abs(d)}%</span> vs ${what}`; };
+
+    // type counts
+    const typeCounts = {};
+    permitsAll.forEach((c) => { const k = typeLabel(c.permit.type); typeCounts[k] = typeCounts[k] || { n: 0, cat: c.cat }; typeCounts[k].n++; });
+    const typeRows = Object.entries(typeCounts).sort((a, b) => b[1].n - a[1].n)
+      .map(([label, v]) => ({ label, value: v.n, color: catColor(v.cat) }));
+
+    // streets and properties
+    const withAddr = permitsAll.filter((c) => c.permit.address);
+    const street = (a) => normAddr(a).replace(/^\d+[A-Z]?(-\d+)?\s+/, "");
+    const streetCounts = {};
+    withAddr.forEach((c) => { const s = street(c.permit.address); streetCounts[s] = (streetCounts[s] || 0) + 1; });
+    const streetRows = Object.entries(streetCounts).sort((a, b) => b[1] - a[1]).slice(0, 10)
+      .map(([label, value]) => ({ label: label.replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase()), value, q: label }));
+    const byAddr = new Map();
+    withAddr.forEach((c) => { const k = normAddr(c.permit.address); if (!byAddr.has(k)) byAddr.set(k, []); byAddr.get(k).push(c); });
+
+    // likely renovations: a building permit plus 2+ different trades within 6 months
+    const renos = [];
+    for (const list of byAddr.values()) {
+      const ds = list.filter((c) => c.meeting_date).sort((a, b) => a.meeting_date.localeCompare(b.meeting_date));
+      for (const b of ds.filter((c) => c.cat === "bldg" || c.cat === "comm")) {
+        const t0 = new Date(b.meeting_date) - 90 * 864e5, t1 = +new Date(b.meeting_date) + 180 * 864e5;
+        const win = ds.filter((c) => { const t = +new Date(c.meeting_date); return t >= t0 && t <= t1; });
+        const trades = new Set(win.map((c) => c.cat).filter((k) => ["elec", "hvac", "plmb"].includes(k)));
+        if (trades.size >= 2) { renos.push({ addr: list[0].address, win, latest: win[win.length - 1] }); break; }
+      }
+    }
+    renos.sort((a, b) => b.latest.meeting_date.localeCompare(a.latest.meeting_date));
+    const topProps = [...byAddr.values()].filter((l) => l.length >= 3).sort((a, b) => b.length - a.length).slice(0, 8);
+
+    const approx = permitsAll.filter((c) => c.est).length;
+    const tagsFor = (list) => {
+      const counts = {}; list.forEach((c) => { counts[c.cat] = (counts[c.cat] || 0) + 1; });
+      return catOrder.filter((k) => counts[k]).map((k) =>
+        `<span class="tag"><span class="sw" style="background:${catColor(k)}"></span>${esc(CAT[k][0])}${counts[k] > 1 ? " ×" + counts[k] : ""}</span>`).join("");
+    };
+    const span = (list) => { const d = list.map((c) => c.meeting_date).filter(Boolean).sort();
+      if (!d.length) return ""; const f = (x) => new Date(x + "T12:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" });
+      return f(d[0]) === f(d[d.length - 1]) ? f(d[0]) : `${f(d[0])} – ${f(d[d.length - 1])}`; };
+
+    el.innerHTML = `
+      <div class="kpis">
+        <div class="card kpi"><div class="k-label">Permits in ${thisY}</div><div class="k-value">${nThis}</div>
+          <div class="k-sub">${hasLastYear ? delta(nThis, ytd(lastY), `this point in ${lastY}`) : `So far this year`}</div></div>
+        <div class="card kpi"><div class="k-label">Permits in ${monthName}</div><div class="k-value">${byMonth[thisMonth] || 0}</div>
+          <div class="k-sub">${byMonth[prevMonthKey] ? `${byMonth[prevMonthKey]} in ${fmtMonth(prevMonthKey).split(" ")[0]} (month isn't over)` : "Month in progress"}</div></div>
+        <div class="card kpi"><div class="k-label">Busiest month</div><div class="k-value">${busiest ? esc(fmtMonth(busiest[0]).replace(/ \d+$/, "")) : "–"}</div>
+          <div class="k-sub">${busiest ? `${busiest[1]} permits, ${busiest[0].slice(0, 4)}` : ""}</div></div>
+        <div class="card kpi"><div class="k-label">Zoning cases in ${thisY}</div><div class="k-value">${casesThis}</div>
+          <div class="k-sub">${casesLast ? delta(casesThis, casesLast, `this point in ${lastY}`) : "Heard so far this year"}</div></div>
+      </div>
+
+      <div class="card panel">
+        <h2>Permits by month</h2>
+        <p class="p-sub">Click a month to see its permits. Click a type to hide or show it.</p>
+        <div class="legend" id="t-legend"></div>
+        <div class="chart" id="t-months"></div>
+      </div>
+
+      ${pYears.length > 1 ? `<div class="card panel">
+        <h2>Year over year</h2>
+        <p class="p-sub">Permits per month, each year as its own line.</p>
+        <div class="legend" id="t-years-legend"></div>
+        <div class="chart" id="t-years"></div>
+      </div>` : ""}
+
+      <div class="row2">
+        <div class="card panel"><h2>By type</h2><p class="p-sub">All permits${pYears.length > 1 ? `, ${pYears[0]} to ${pYears[pYears.length - 1]}` : ` in ${pYears[0]}`}. Click to list them.</p>
+          <div id="t-types"></div></div>
+        <div class="card panel"><h2>Busiest streets</h2><p class="p-sub">Permits per street. Click to list them.</p>
+          <div id="t-streets"></div></div>
+      </div>
+
+      <div class="row2">
+        <div class="card panel"><h2>Likely renovations</h2>
+          <p class="p-sub">A building permit plus two or more trades (electrical, HVAC, plumbing) within a few months. A guess, not an official label.</p>
+          ${renos.length ? `<ul class="plist">${renos.slice(0, 8).map((r) => `<li><button type="button" data-open="${esc(r.latest.permit.number)}">
+            <span class="pl-addr">${esc(r.addr)}</span><span class="pl-when">${esc(span(r.win))}</span>
+            <span class="pl-tags">${tagsFor(r.win)}</span></button></li>`).join("")}</ul>`
+            : `<p class="note">${permitsAll.some((c) => c.cat === "bldg" || c.cat === "comm") ? "None found yet." : "Shows up once building permits are collected."}</p>`}
+        </div>
+        <div class="card panel"><h2>Most permitted properties</h2>
+          <p class="p-sub">Addresses with three or more permits. Click to list them.</p>
+          ${topProps.length ? `<ul class="plist">${topProps.map((l) => `<li><button type="button" data-q="${esc(l[0].permit.address)}">
+            <span class="pl-addr">${esc(l[0].address)}</span><span class="pl-when">${l.length} permits</span>
+            <span class="pl-tags">${tagsFor(l)}</span></button></li>`).join("")}</ul>` : `<p class="note">None yet.</p>`}
+        </div>
+      </div>
+
+      <div class="card panel">
+        <h2>Zoning cases by year</h2>
+        <p class="p-sub">Board of Zoning Appeals and Planning Commission cases from agendas. Click a year to list them.</p>
+        <div class="legend">${[["Zoning appeals", "var(--bza)"], ["Planning", "var(--pc)"]].map(([l, c]) =>
+          `<span class="tag"><span class="sw" style="background:${c}"></span>${l}</span>`).join("")}</div>
+        <div class="chart" id="t-cases"></div>
+      </div>
+
+      <p class="note">${pYears.length === 1 ? `Permit data starts in ${pYears[0]}. Running the permit collector again also gathers earlier years, which turns on the year-over-year chart. ` : ""}${approx ? `${approx} permit${approx === 1 ? "" : "s"} don't have a filed date yet; their month is estimated from permits filed around the same time.` : ""}</p>`;
+
+    // permits by month (stacked by type)
+    const drawMonths = () => {
+      // start in January of the first permit year (a few permits carry an earlier application date)
+      const months = monthsBetween(pYears[0] + "-01", thisMonth);
+      const series = catOrder.filter((k) => permitsAll.some((c) => c.cat === k) && !hiddenCats.has(k)).map((k) => ({
+        key: k, label: CAT[k][0], color: catColor(k),
+        values: months.map((m) => dated.filter((c) => c.cat === k && ym(c.meeting_date) === m).length) }));
+      stackedBars($("t-months"), months, series, {
+        fmt: (k, i) => shortMonth(k) + (k.endsWith("-01") || i === 0 ? " " + k.slice(2, 4) : ""),
+        title: (k) => fmtMonth(k), onClick: (k) => browseWith({ period: "m:" + k, board: "Building permit" }) });
+    };
+    $("t-legend").innerHTML = catOrder.filter((k) => permitsAll.some((c) => c.cat === k)).map((k) =>
+      `<button type="button" data-cat="${k}" aria-pressed="${!hiddenCats.has(k)}"><span class="sw" style="background:${catColor(k)}"></span>${esc(CAT[k][0])}</button>`).join("");
+    $("t-legend").onclick = (e) => { const b = e.target.closest("[data-cat]"); if (!b) return;
+      hiddenCats.has(b.dataset.cat) ? hiddenCats.delete(b.dataset.cat) : hiddenCats.add(b.dataset.cat);
+      b.setAttribute("aria-pressed", String(!hiddenCats.has(b.dataset.cat))); drawMonths(); };
+    drawMonths();
+
+    if (pYears.length > 1) {
+      const palette = ["var(--muted)", "var(--t-plmb)", "var(--t-hvac)", "var(--t-bldg)", "var(--permit)"];
+      const ys = pYears.slice(-5);
+      const series = ys.map((y, idx) => ({ label: y, strong: y === thisY, color: y === thisY ? "var(--permit)" : palette[idx % 4],
+        values: Array.from({ length: 12 }, (_, i) => { const k = `${y}-${String(i + 1).padStart(2, "0")}`;
+          return k > thisMonth ? null : (byMonth[k] || 0); }) }));
+      $("t-years-legend").innerHTML = series.map((s) => `<span class="tag"><span class="sw" style="background:${s.color}"></span>${s.label}</span>`).join("");
+      lines($("t-years"), series, {});
+    }
+
+    hbars($("t-types"), typeRows, (r) => browseWith({ q: r.label, board: "Building permit" }));
+    hbars($("t-streets"), streetRows.map((r) => ({ ...r, color: "var(--permit)" })), (r) => browseWith({ q: r.q, board: "Building permit" }));
+    el.querySelectorAll("[data-open]").forEach((b) => b.addEventListener("click", () => openPermit(b.dataset.open)));
+    el.querySelectorAll(".plist [data-q]").forEach((b) => b.addEventListener("click", () => browseWith({ q: b.dataset.q })));
+
+    const cYears = [...new Set(casesAll.map(yearOf))].filter((y) => /^\d{4}$/.test(y)).sort();
+    stackedBars($("t-cases"), cYears, [
+      { label: "Zoning appeals", color: "var(--bza)", values: cYears.map((y) => casesAll.filter((c) => yearOf(c) === y && c.board.startsWith("Board")).length) },
+      { label: "Planning", color: "var(--pc)", values: cYears.map((y) => casesAll.filter((c) => yearOf(c) === y && c.board.startsWith("Planning")).length) }
+    ], { fmt: (k) => k, title: (k) => k, onClick: (y) => { $("board").value = "all"; browseWith({ period: y }); }, height: 200 });
+  }
+
+  // ---------- view switching ----------
+  let trendsDrawn = false;
+  function setView(v) {
+    const t = v === "trends";
+    document.body.classList.toggle("trends-view", t);
+    $("tab-browse").setAttribute("aria-selected", String(!t));
+    $("tab-trends").setAttribute("aria-selected", String(t));
+    if (t && !trendsDrawn) { renderTrends(); trendsDrawn = true; }
+    if (!t) setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
+    if (!location.hash.startsWith("#permit=")) history.replaceState(null, "", t ? "#trends" : location.pathname + location.search);
+  }
+  $("tab-browse").addEventListener("click", () => setView("browse"));
+  $("tab-trends").addEventListener("click", () => setView("trends"));
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
+    if (document.body.classList.contains("trends-view")) renderTrends(); else trendsDrawn = false; }, 200); });
+  if (location.hash === "#trends") setView("trends");
 
   render();
   const linked = decodeURIComponent((location.hash.match(/^#permit=(.+)$/) || [])[1] || "");
