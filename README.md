@@ -6,6 +6,7 @@ checks the city's agenda archive every morning, extracts addresses from
 new agenda PDFs, geocodes them, and republishes the site.
 
     scrape.py                     finds agendas, extracts cases, writes docs/cases.json
+    permits.py                    walks OpenGov permit numbers, writes docs/permits.json
     docs/index.html               the website (reads cases.json)
     .github/workflows/update.yml  daily job
     state.json                    created on first run; tracks what's been processed
@@ -34,6 +35,20 @@ to the site. Without these, no email is sent. The first run never emails.
 
 To start over, delete `state.json` and reset `docs/cases.json` to
 `{"updated": null, "cases": []}`.
+
+## Building permits
+
+`permits.py` looks up permit numbers (like `R-26-82`) one at a time on the
+city's OpenGov portal API, walking each series forward from the last number
+it found and stopping after 12 misses in a row. The first run of each year
+checks which prefixes exist (R, B, Z, and so on). It is capped at 450
+lookups per run with a pause between each, so the first backfill may take
+two days to catch up.
+
+If permits come out with blank addresses or types, run
+`python permits.py --probe` (or read the "Sample API record" in the Actions
+log) to see the raw field names. Optional repo variables: `PERMIT_PREFIXES`
+(extra prefixes, comma separated) and `PERMIT_SEED` (a known number).
 
 ## Known limits
 

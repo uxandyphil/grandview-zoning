@@ -9,6 +9,7 @@ places on the city's website:
      with JavaScript, so we open it in a headless browser)
 
 Each case address is geocoded and written to docs/cases.json for the site.
+Building permits from the OpenGov portal go to docs/permits.json (permits.py).
 Run daily by .github/workflows/update.yml. See README.md.
 """
 
@@ -439,6 +440,14 @@ def main():
 
     ordered = store.ordered()
     save_json(CASES_FILE, {"updated": now, "cases": ordered})
+
+    # Building permits live in their own file; a failure here never blocks the cases
+    try:
+        import permits
+        permits.run(state, lambda address: geocode(
+            address if re.search(r"\bOH\b", address) else address + CITY_SUFFIX, state["geocache"]), now)
+    except Exception as err:
+        print(f"Permits step failed: {err}")
     save_json(STATE_FILE, state)
     print(f"{len(store.new)} new case(s), {len(ordered)} total")
     email_digest(store.new)
