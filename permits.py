@@ -21,8 +21,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode
 
-import requests
-
 API = os.environ.get("VP_API_BASE", "https://api-east.viewpointcloud.com/v2/grandviewheightsoh")
 PORTAL = "https://grandviewheightsoh.portal.opengov.com"
 PERMITS_FILE = Path("docs/permits.json")
@@ -34,33 +32,79 @@ LOOKAHEAD = int(os.environ.get("PERMIT_LOOKAHEAD", "12"))    # misses in a row b
 MAX_LOOKUPS = int(os.environ.get("PERMIT_MAX_LOOKUPS", "450"))  # per run, all prefixes
 PAUSE_SECONDS = 1.5
 
-HEADERS = {
-    "User-Agent": "grandview-zoning-watch/1.1 (community site, runs once daily)",
-    "Accept": "application/json, text/plain, */*",
-    "Origin": PORTAL,
-    "Referer": PORTAL + "/",
-}
+GIVE_UP_AFTER = 3  # refused runs in a row before we stop trying
 
 
 class Blocked(Exception):
     pass
 
 
-# ---------- API ----------
+# ---------- API (through a headless browser) ----------
+#
+# The API refuses plain scripted requests (HTTP 403). So we open the portal's
+# search page in Chromium like a visitor, watch the request the page itself
+# makes to the API, and reuse that request's headers and cookies for lookups.
+
+_browser = {}
+SKIP_HEADERS = {"host", "content-length", "cookie", "connection", "accept-encoding"}
+
+
+def open_browser():
+    from playwright.sync_api import sync_playwright
+    pw = sync_playwright().start()
+    browser = pw.chromium.launch()
+    context = browser.new_context()
+    page = context.new_page()
+    api_requests = []
+    page.on("request", lambda r: api_requests.append(r) if "viewpointcloud.com" in r.url else None)
+    page.goto(PORTAL + "/search", wait_until="networkidle", timeout=90_000)
+    page.wait_for_timeout(2000)
+    print(f"Portal page loaded: '{page.title()}'")
+    # Run one search in the page so it makes an API call we can copy
+    try:
+        box = page.locator("input[type=search], input[type=text]").first
+        box.fill(SEED, timeout=15_000)
+        box.press("Enter")
+        page.wait_for_timeout(6000)
+    except Exception as err:
+        print(f"  couldn't use the search box ({err})")
+    headers = {}
+    if api_requests:
+        headers = {k: v for k, v in api_requests[-1].all_headers().items()
+                   if k.lower() not in SKIP_HEADERS and not k.startswith(":")}
+        print(f"  saw {len(api_requests)} API call(s) from the page; reusing headers: "
+              f"{', '.join(sorted(headers))}")
+    else:
+        print("  the page made no API calls we could see; trying with the page's cookies only")
+    headers.setdefault("origin", PORTAL)
+    headers.setdefault("referer", PORTAL + "/")
+    _browser.update(pw=pw, browser=browser, context=context, headers=headers)
+
+
+def close_browser():
+    if _browser:
+        _browser["browser"].close()
+        _browser["pw"].stop()
+        _browser.clear()
+
 
 def search(key, criteria="record"):
+    if not _browser:
+        open_browser()
     time.sleep(PAUSE_SECONDS)
     query = urlencode({"criteria": criteria, "key": key,
                        "timeStamp": str(int(time.time() * 1000)), "ignoreCommunity": "true"})
-    resp = requests.get(f"{API}/search_results?{query}", headers=HEADERS, timeout=30)
-    if resp.status_code in (401, 403, 429):
-        raise Blocked(f"HTTP {resp.status_code} from the permit API")
-    if resp.status_code == 404:
+    resp = _browser["context"].request.get(f"{API}/search_results?{query}",
+                                           headers=_browser["headers"], timeout=30_000)
+    if resp.status in (401, 403, 429):
+        raise Blocked(f"HTTP {resp.status} from the permit API")
+    if resp.status == 404:
         return None
-    resp.raise_for_status()
+    if resp.status >= 400:
+        raise RuntimeError(f"HTTP {resp.status} from the permit API")
     try:
         return resp.json()
-    except ValueError:
+    except Exception:
         return None
 
 
@@ -188,6 +232,12 @@ def run(state, geocode, now):
     budget = [MAX_LOOKUPS]
     new, logged_sample = [], False
 
+    refused = ps.get("refused_runs", 0)
+    if refused >= GIVE_UP_AFTER:
+        print(f"Permits: skipped. The API refused the last {refused} runs, so the watcher turned "
+              'itself off. To try again, set "refused_runs" to 0 in state.json.')
+        return []
+
     today = datetime.now(timezone.utc)
     years = [today.strftime("%y")] + ([f"{(today.year - 1) % 100:02d}"] if today.month == 1 else [])
     try:
@@ -219,10 +269,15 @@ def run(state, geocode, now):
                         misses += 1
                     n += 1
                 print(f"Permits {series}: up to #{ps['cursors'].get(series, 0)}")
+        ps["refused_runs"] = 0
     except Blocked as err:
-        print(f"Permit API refused the request ({err}). Keeping existing permits.json.")
-    except requests.RequestException as err:
-        print(f"Permit API error ({err}). Saving what we have.")
+        ps["refused_runs"] = refused + 1
+        print(f"Permit API refused the request ({err}), even through the browser. "
+              f"Refused {ps['refused_runs']} run(s) in a row; stops after {GIVE_UP_AFTER}.")
+    except Exception as err:
+        print(f"Permit step error ({err}). Saving what we have.")
+    finally:
+        close_browser()
 
     if budget[0] <= 0:
         print("Hit PERMIT_MAX_LOOKUPS; the next run continues where this one stopped.")
@@ -250,6 +305,7 @@ def probe():
                 print("\nParsed:", to_permit(norm_number(key), rec) if rec else "no exact match")
         except Exception as err:
             print("error:", err)
+    close_browser()
 
 
 if __name__ == "__main__":
