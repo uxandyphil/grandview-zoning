@@ -1,0 +1,32 @@
+name: update
+
+on:
+  schedule:
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scrape.py
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+      - name: Commit updates
+        run: |
+          git config user.name "zoning-watch"
+          git config user.email "zoning-watch@users.noreply.github.com"
+          git add docs/cases.json state.json
+          git diff --cached --quiet || git commit -m "Daily update"
+          git push
