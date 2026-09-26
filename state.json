@@ -309,7 +309,8 @@
   },
   "permits": {
     "cursors": {},
-    "prefixes": {}
+    "prefixes": {},
+    "refused_runs": 1
   },
   "seen": {
     "Board of Zoning Appeals": [
