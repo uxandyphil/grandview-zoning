@@ -65,7 +65,9 @@ def seq_of(number):
 # ---------- browser session ----------
 
 _b = {}
-SKIP_HEADERS = {"host", "content-length", "cookie", "connection", "accept-encoding"}
+# Headers a page script can't set (the browser adds its own) or shouldn't copy
+BROWSER_HEADERS = {"host", "content-length", "cookie", "connection", "accept-encoding", "user-agent",
+                   "origin", "referer", "priority", "if-none-match", "if-modified-since"}
 
 
 def open_browser():
@@ -74,8 +76,9 @@ def open_browser():
     browser = pw.chromium.launch()
     context = browser.new_context()
     page = context.new_page()
-    seen = []
+    seen, statuses = [], []
     page.on("request", lambda r: seen.append(r) if "viewpointcloud.com" in r.url else None)
+    page.on("response", lambda r: statuses.append(r.status) if "search_results" in r.url else None)
     page.goto(PORTAL + "/search", wait_until="networkidle", timeout=90_000)
     page.wait_for_timeout(2000)
     print(f"Portal page loaded: '{page.title()}'")
@@ -89,12 +92,11 @@ def open_browser():
     headers = {}
     if seen:
         headers = {k: v for k, v in seen[-1].all_headers().items()
-                   if k.lower() not in SKIP_HEADERS and not k.startswith(":")}
-        print(f"  page made {len(seen)} API call(s); reusing headers: {', '.join(sorted(headers))}")
+                   if k.lower() not in BROWSER_HEADERS and not k.startswith((":", "sec-"))}
+        print(f"  page made {len(seen)} API call(s); copying headers: {', '.join(sorted(headers)) or 'none'}")
     else:
-        print("  the page made no API calls we could see; trying with its cookies only")
-    headers.setdefault("origin", PORTAL)
-    headers.setdefault("referer", PORTAL + "/")
+        print("  the page made no API calls we could see")
+    print(f"  the page's own searches got HTTP {statuses or 'no response'}")
     _b.update(pw=pw, browser=browser, context=context, page=page, headers=headers)
 
 
@@ -111,15 +113,18 @@ def search(key, criteria="record"):
     time.sleep(PAUSE_SECONDS)
     query = urlencode({"criteria": criteria, "key": key,
                        "timeStamp": str(int(time.time() * 1000)), "ignoreCommunity": "true"})
-    resp = _b["context"].request.get(f"{API}/search_results?{query}", headers=_b["headers"],
-                                     timeout=30_000)
-    if resp.status in (401, 403, 429):
-        raise Blocked(f"HTTP {resp.status} from the permit API")
-    if resp.status >= 400:
-        raise RuntimeError(f"HTTP {resp.status} from the permit API")
+    # Run the request inside the portal page itself, exactly like the site's own search does
+    resp = _b["page"].evaluate("""async ([url, headers]) => {
+        const r = await fetch(url, { headers, credentials: "include", cache: "no-store" });
+        return { status: r.status, body: await r.text() };
+    }""", [f"{API}/search_results?{query}", _b["headers"]])
+    if resp["status"] in (401, 403, 429):
+        raise Blocked(f"HTTP {resp['status']} from the permit API")
+    if resp["status"] >= 400:
+        raise RuntimeError(f"HTTP {resp['status']} from the permit API")
     try:
-        return resp.json()
-    except Exception:
+        return json.loads(resp["body"])
+    except ValueError:
         return None
 
 
