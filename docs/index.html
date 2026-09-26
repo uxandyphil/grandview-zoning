@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Grandview zoning cases</title>
+<title>Grandview zoning and permits</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪧</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
@@ -14,6 +14,7 @@
     --bg: #F3F5F4; --surface: #FFFFFF; --ink: #15201B; --muted: #5E6B64;
     --line: #E0E5E2; --hover: #F7F9F8; --sign: #F2C230; --sign-ink: #3D3000;
     --bza: #2563A8; --bza-bg: #E8F0FA; --pc: #4E7A2C; --pc-bg: #EDF4E6;
+    --permit: #A4480C; --permit-bg: #FBECE0;
     --radius: 14px; --shadow: 0 1px 2px rgba(21,32,27,.06), 0 4px 16px rgba(21,32,27,.05);
     color-scheme: light dark;
     box-sizing: border-box;
@@ -24,7 +25,7 @@
     :root {
       --bg: #0F1512; --surface: #18201C; --ink: #E8EDEA; --muted: #95A39B;
       --line: #28332D; --hover: #1E2823; --bza: #86B6EA; --bza-bg: #1B2A3B;
-      --pc: #A5C97F; --pc-bg: #1F2B18; --shadow: none;
+      --pc: #A5C97F; --pc-bg: #1F2B18; --permit: #F0A06A; --permit-bg: #36231A; --shadow: none;
     }
   }
   *, *::before, *::after { box-sizing: inherit; }
@@ -68,6 +69,8 @@
   }
   .pin { width: 14px; height: 14px; border-radius: 50%; background: var(--sign);
          border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.35); }
+  .pin.permit { width: 10px; height: 10px; border-radius: 2px; background: var(--permit);
+                border-width: 1.5px; }
   .pin.upcoming { width: 18px; height: 18px; box-shadow: 0 0 0 1px rgba(0,0,0,.35), 0 0 0 6px rgba(242,194,48,.35); }
 
   .summary-line { margin: 20px 2px 10px; color: var(--muted); font-size: 0.9rem; }
@@ -83,6 +86,10 @@
   .chip.soon { background: var(--sign); color: var(--sign-ink); }
   .chip.bza { background: var(--bza-bg); color: var(--bza); }
   .chip.pc { background: var(--pc-bg); color: var(--pc); }
+  .chip.permit { background: var(--permit-bg); color: var(--permit); }
+  .facts { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 12px; color: var(--muted);
+           font-size: 0.9rem; }
+  .facts b { color: var(--ink); font-weight: 600; }
   .chev { width: 18px; height: 18px; flex: none; color: var(--muted); transition: transform .2s ease; }
   details[open] > summary .chev { transform: rotate(90deg); }
 
@@ -121,19 +128,20 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>Grandview zoning cases</h1>
+    <h1>Grandview zoning and permits</h1>
     <p class="meta" id="updated">Loading…</p>
   </header>
 
-  <div class="card"><div id="map" role="region" aria-label="Map of zoning cases"></div></div>
+  <div class="card"><div id="map" role="region" aria-label="Map of zoning cases and permits"></div></div>
 
   <div class="toolbar">
-    <input class="search" id="search" type="search" placeholder="Search a street or address" aria-label="Search cases">
+    <input class="search" id="search" type="search" placeholder="Search a street, address, or permit number" aria-label="Search cases and permits">
     <div class="seg" id="years" role="group" aria-label="Filter by year"></div>
-    <select class="board" id="board" aria-label="Filter by board">
-      <option value="all">All boards</option>
+    <select class="board" id="board" aria-label="Filter by type">
+      <option value="all">Cases and permits</option>
       <option value="Board of Zoning Appeals">Zoning appeals</option>
       <option value="Planning Commission">Planning</option>
+      <option value="Building permit">Building permits</option>
     </select>
   </div>
 
@@ -141,7 +149,7 @@
   <main class="meetings" id="list"></main>
 
   <footer>
-    Unofficial. Addresses are extracted automatically from city agenda PDFs, so a case can be missed or misplaced on the map. Check the agenda before relying on anything here. Comments on a case go through the city's <a href="https://www.grandviewheights.gov/330/Board-of-Zoning-Appeals">Board of Zoning Appeals page</a>.
+    Unofficial. Addresses are extracted automatically from city agenda PDFs, so a case can be missed or misplaced on the map. Check the agenda before relying on anything here. Building permits come from the city's <a href="https://grandviewheightsoh.portal.opengov.com/search">OpenGov portal</a> and show up the day after they're filed; open a permit there for plans and inspections. Comments on a case go through the city's <a href="https://www.grandviewheights.gov/330/Board-of-Zoning-Appeals">Board of Zoning Appeals page</a>.
   </footer>
 </div>
 
@@ -164,16 +172,30 @@
     ? new Date(iso + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric", year: "numeric" })
     : "Date not listed";
   const yearOf = (c) => (c.meeting_date || "").slice(0, 4) || "Unknown";
-  const boardClass = (b) => b.startsWith("Planning") ? "pc" : "bza";
+  const isPermit = (c) => c.board === "Building permit";
+  const boardClass = (b) => b === "Building permit" ? "permit" : b.startsWith("Planning") ? "pc" : "bza";
+  const fmtMonth = (iso) => iso
+    ? new Date(iso.slice(0, 7) + "-15T12:00:00").toLocaleDateString("en-US", { month: "long", year: "numeric" })
+    : "Date not listed";
   const docsLabel = (c) => (c.documents || []).length
     ? `${c.documents.length} case document${c.documents.length === 1 ? "" : "s"}` : "No description in the agenda";
-  const boardShort = (b) => b.startsWith("Planning") ? "Planning" : "BZA";
+  const boardShort = (b) => b === "Building permit" ? "Permit" : b.startsWith("Planning") ? "Planning" : "BZA";
 
   try {
     const res = await fetch("cases.json", { cache: "no-cache" });
     if (!res.ok) throw new Error(res.status);
     const data = await res.json();
     state.cases = data.cases || [];
+    try {  // permits are optional; the site works without them
+      const pr = await fetch("permits.json", { cache: "no-cache" });
+      if (pr.ok) state.cases = state.cases.concat(((await pr.json()).permits || []).map((p) => ({
+        id: "permit|" + p.number, board: "Building permit", permit: p,
+        address: p.address || "Address not listed", lat: p.lat, lon: p.lon,
+        description: [p.type, p.description].filter(Boolean).join(". "),
+        meeting_date: p.date || (p.first_seen || "").slice(0, 10) || null
+      })));
+    } catch (e) { /* no permits yet */ }
+    state.cases.sort((a, b) => (b.meeting_date || "").localeCompare(a.meeting_date || ""));
     $("updated").textContent = data.updated
       ? "Checked " + new Date(data.updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
       : "Not checked yet";
@@ -195,28 +217,33 @@
     return state.cases.filter((c) =>
       (q || state.year === "all" || yearOf(c) === state.year) &&   // search spans all years
       (state.board === "all" || c.board === state.board) &&
-      (!q || (c.address + " " + c.description).toLowerCase().includes(q)));
+      (!q || (c.address + " " + c.description + " " + (c.permit ? c.permit.number : "")).toLowerCase().includes(q)));
   }
 
   function render() {
     syncYears();
     const shown = filtered();
     const q = state.q.trim();
-    const meetingsCount = new Set(shown.map((c) => c.meeting_date + c.board)).size;
-    $("count").textContent = shown.length
-      ? `${shown.length} case${shown.length === 1 ? "" : "s"} across ${meetingsCount} meeting${meetingsCount === 1 ? "" : "s"}${q ? " (all years)" : ""}`
-      : "";
+    const caseList = shown.filter((c) => !isPermit(c)), nPermits = shown.length - caseList.length;
+    const meetingsCount = new Set(caseList.map((c) => c.meeting_date + c.board)).size;
+    const parts = [];
+    if (caseList.length) parts.push(`${caseList.length} case${caseList.length === 1 ? "" : "s"} across ${meetingsCount} meeting${meetingsCount === 1 ? "" : "s"}`);
+    if (nPermits) parts.push(`${nPermits} building permit${nPermits === 1 ? "" : "s"}`);
+    $("count").textContent = parts.length ? parts.join(", ") + (q ? " (all years)" : "") : "";
 
     // map
     layer.clearLayers(); state.markers.clear();
     const bounds = [];
     for (const c of shown) {
       if (c.lat == null) continue;
-      const up = c.meeting_date && c.meeting_date >= today;
+      const pm = isPermit(c), up = !pm && c.meeting_date && c.meeting_date >= today;
       const m = L.marker([c.lat, c.lon], {
-        icon: L.divIcon({ className: "", html: `<div class="pin${up ? " upcoming" : ""}"></div>`, iconSize: up ? [18, 18] : [14, 14] }),
-        title: c.address
-      }).bindPopup(`<strong>${esc(c.address)}</strong><br>${esc(fmtDate(c.meeting_date))}`)
+        icon: L.divIcon({ className: "", html: `<div class="pin${pm ? " permit" : up ? " upcoming" : ""}"></div>`,
+                          iconSize: pm ? [10, 10] : up ? [18, 18] : [14, 14] }),
+        title: c.address, zIndexOffset: pm ? -100 : 0
+      }).bindPopup(`<strong>${esc(c.address)}</strong><br>${pm
+          ? esc([c.permit.type, c.permit.number].filter(Boolean).join(", "))
+          : esc(fmtDate(c.meeting_date))}`)
         .on("click", () => reveal(c.id)).addTo(layer);
       state.markers.set(c.id, m); bounds.push([c.lat, c.lon]);
     }
@@ -231,22 +258,22 @@
     }
     const groups = new Map();
     for (const c of shown) {
-      const k = (c.meeting_date || "") + "|" + c.board;
+      const k = isPermit(c) ? (c.meeting_date || "").slice(0, 7) + "|permits" : (c.meeting_date || "") + "|" + c.board;
       if (!groups.has(k)) groups.set(k, []);
       groups.get(k).push(c);
     }
     let first = true;
     $("list").innerHTML = [...groups.values()].map((cs) => {
-      const d = cs[0].meeting_date, up = d && d >= today;
+      const d = cs[0].meeting_date, pm = isPermit(cs[0]), up = !pm && d && d >= today;
       const open = q || first || up; first = false;
       return `
       <details class="meeting card"${open ? " open" : ""}>
         <summary>
           ${CHEV}
-          <span class="m-date">${esc(fmtDate(d))}</span>
+          <span class="m-date">${esc(pm ? fmtMonth(d) : fmtDate(d))}</span>
           <span class="chip ${boardClass(cs[0].board)}">${boardShort(cs[0].board)}</span>
           ${up ? '<span class="chip soon">Upcoming</span>' : ""}
-          <span class="m-count">${cs.length} case${cs.length === 1 ? "" : "s"}</span>
+          <span class="m-count">${cs.length} ${pm ? "permit" : "case"}${cs.length === 1 ? "" : "s"}</span>
         </summary>
         <div class="cases">
           ${cs.map((c) => `
@@ -255,12 +282,19 @@
               ${CHEV}
               <span class="addr">${esc(c.address)}</span>
               <span class="chip ${boardClass(c.board)}">${boardShort(c.board)}</span>
-              <span class="teaser">${esc(c.description) || docsLabel(c)}</span>
+              <span class="teaser">${esc(c.description) || (isPermit(c) ? esc(c.permit.number) : docsLabel(c))}</span>
             </summary>
             <div class="case-body">
-              <p>${esc(c.description) || "No agenda description yet. See the case documents below."}</p>
+              ${isPermit(c) ? `<p class="facts">
+                <span>Permit <b>${esc(c.permit.number)}</b></span>
+                ${c.permit.type ? `<span>Type <b>${esc(c.permit.type)}</b></span>` : ""}
+                ${c.permit.status ? `<span>Status <b>${esc(c.permit.status)}</b></span>` : ""}
+                ${c.permit.date ? `<span>Filed <b>${esc(fmtDate(c.permit.date))}</b></span>` : ""}
+              </p>${c.permit.description ? `<p>${esc(c.permit.description)}</p>` : ""}`
+              : `<p>${esc(c.description) || "No agenda description yet. See the case documents below."}</p>`}
               <div class="actions">
                 <button class="btn" type="button" data-map="${esc(c.id)}" ${c.lat == null ? "disabled" : ""}>${c.lat == null ? "Not on map" : "Show on map"}</button>
+                ${c.permit ? `<a class="btn" href="${esc(c.permit.url)}" target="_blank" rel="noopener">Open in OpenGov</a>` : ""}
                 ${c.agenda_url ? `<a class="btn" href="${esc(c.agenda_url)}" target="_blank" rel="noopener">Open agenda PDF</a>` : ""}
                 ${(c.documents || []).map((d) => `<a class="btn" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a>`).join("")}
               </div>
