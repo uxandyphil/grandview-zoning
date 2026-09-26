@@ -190,7 +190,7 @@
       const pr = await fetch("permits.json", { cache: "no-cache" });
       if (pr.ok) state.cases = state.cases.concat(((await pr.json()).permits || []).map((p) => ({
         id: "permit|" + p.number, board: "Building permit", permit: p,
-        address: p.address || "Address not listed", lat: p.lat, lon: p.lon,
+        address: p.address || (p.details ? "Address not listed" : "Address still being looked up"), lat: p.lat, lon: p.lon,
         description: [p.type, p.description].filter(Boolean).join(". "),
         meeting_date: p.date || (p.first_seen || "").slice(0, 10) || null
       })));
