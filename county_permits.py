@@ -32,6 +32,7 @@ OUT = Path("docs/county-permits.json")
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
+IMPORT_VERSION = 2   # bump to force a re-import of the current month's file
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
 
@@ -59,7 +60,7 @@ def latest_appraisal_folder():
 def rows_from_tsv(stream):
     text = io.TextIOWrapper(stream, encoding="latin-1", newline="")
     reader = csv.reader(text, delimiter="\t")
-    header = [h.strip() for h in next(reader)]
+    header = [h.replace("\ufeff", "").replace("ï»¿", "").strip() for h in next(reader)]
     for row in reader:
         yield dict(zip(header, (v.strip() for v in row)))
 
@@ -68,7 +69,7 @@ def rows_from_xlsx(path):
     from openpyxl import load_workbook
     ws = load_workbook(path, read_only=True, data_only=True).active
     it = ws.iter_rows(values_only=True)
-    header = [str(h or "").strip() for h in next(it)]
+    header = [str(h or "").replace("\ufeff", "").strip() for h in next(it)]
     for row in it:
         yield {h: ("" if v is None else v) for h, v in zip(header, row)}
 
@@ -167,12 +168,13 @@ def load_parcels(tables):
             pc = find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"^pin$", r"parcel")
             addr = find_col(header, r"site.?addr", r"prop.*addr", r"^(site|location|property).?address$",
                             avoid=(r"mail", r"owner", r"contact"))
-            no = find_col(header, r"^adrno$", r"house.?(no|num)", r"street.?(no|num)", avoid=(r"mail",))
+            no = find_col(header, r"^adrno(low)?$", r"house.?(no|num)", r"street.?(no|num)", avoid=(r"mail", r"half", r"high"))
+            unit = find_col(header, r"^unit.?no$", r"^unit$")
             dr = find_col(header, r"^adrdir$", r"street.?dir", avoid=(r"mail",))
             st = find_col(header, r"^adrstr$", r"street.?name", avoid=(r"mail",))
             sf = find_col(header, r"^adrsuf$", r"street.?(suf|type)", avoid=(r"mail",))
             cls = find_col(header, r"^class$", r"prop.*class", r"^luc$", r"land.?use")
-            cols = dict(parcel=pc, address=addr, no=no, dir=dr, street=st, suffix=sf, cls=cls)
+            cols = dict(parcel=pc, address=addr, no=no, dir=dr, street=st, suffix=sf, unit=unit, cls=cls)
             print("  parcel columns:", header)
             print("  using:", cols)
         pid = parcel_id(row.get(cols["parcel"]))
@@ -180,7 +182,11 @@ def load_parcels(tables):
             continue
         address = title(row.get(cols["address"])) if cols["address"] else ""
         if not address and cols["street"]:
-            address = title(" ".join(str(row.get(cols[k]) or "") for k in ("no", "dir", "street", "suffix") if cols[k]))
+            parts = [str(row.get(cols[k]) or "").strip() for k in ("no", "dir", "street", "suffix") if cols[k]]
+            address = title(" ".join(p for p in parts if p and p != "0"))
+            u = str(row.get(cols["unit"]) or "").strip() if cols["unit"] else ""
+            if address and u and u != "0":
+                address += f" UNIT {u}"
         c = str(row.get(cols["cls"]) or "").strip().upper() if cols["cls"] else ""
         out[pid] = {"address": address, "commercial": c.startswith("C") or bool(re.match(r"^[4-6]\d\d$", c))}
     print(f"  {len(out)} Grandview parcels")
@@ -194,7 +200,9 @@ def load_permits(tables, parcels):
             header = list(row)
             cols = dict(
                 parcel=find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"^pin$", r"parcel"),
-                date=find_col(header, r"permit.?date", r"issue.?date", r"^date$", r"date", avoid=(r"entry", r"upd")),
+                date=find_col(header, r"^permdt$", r"permit.?(date|dt)", r"issue.?(date|dt)", r"^date$", r"date", r"dt$",
+                              avoid=(r"entry", r"upd")),
+                ptype=find_col(header, r"permit.?type", r"^type$"),
                 cost=find_col(header, r"est.*cost", r"cost", r"amount", r"^amt", r"value"),
                 desc=find_col(header, r"desc", r"note", r"remark", r"comment", r"purpose"),
                 number=find_col(header, r"permit.?(no|num|id)", r"^permit$", avoid=(r"date",)))
@@ -213,6 +221,7 @@ def load_permits(tables, parcels):
         rows.append({"parcel": pid, "date": date, "cost": money(row.get(cols["cost"])) if cols["cost"] else 0,
                      "description": title(row.get(cols["desc"]))[:240] if cols["desc"] else "",
                      "number": title(row.get(cols["number"])) if cols["number"] else "",
+                     "permit_type": title(row.get(cols["ptype"])) if cols["ptype"] else "",
                      "address": p.get("address") or "", "commercial": p.get("commercial", False)})
     return rows
 
@@ -247,7 +256,7 @@ def run(state, geocode, now):
     name = unquote(folder.rstrip("/").rsplit("/", 1)[-1])
     data = json.loads(OUT.read_text()) if OUT.exists() else None
 
-    if not data or cs.get("folder") != name:
+    if not data or cs.get("folder") != name or cs.get("version") != IMPORT_VERSION:
         print(f"County permits: importing {name}")
         with tempfile.TemporaryDirectory() as tmp:
             tables = Tables(folder, tmp)
@@ -259,8 +268,12 @@ def run(state, geocode, now):
             if o and o.get("lat") is not None:
                 r["lat"], r["lon"] = o["lat"], o["lon"]
         data = {"source": name, "updated": now, "permits": rows}
-        cs["folder"] = name
+        cs["folder"], cs["version"] = name, IMPORT_VERSION
         years = sorted({r["date"][:4] for r in rows if r["date"]})
+        types = {}
+        for r in rows:
+            types[r["permit_type"]] = types.get(r["permit_type"], 0) + 1
+        print("  permit types:", dict(sorted(types.items(), key=lambda kv: -kv[1])[:15]))
         print(f"  {len(rows)} Grandview permits"
               + (f", {years[0]} to {years[-1]}" if years else "")
               + f", {sum(1 for r in rows if r['cost'])} with a cost")
