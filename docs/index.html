@@ -199,6 +199,8 @@
             background: color-mix(in srgb, var(--sign) 22%, var(--surface)); color: var(--ink); }
   .x-ok { font-size: 0.85rem; color: var(--muted); margin: 0 0 12px; }
   @media (prefers-reduced-motion: reduce) { .x-bar span { transition: none; } }
+  .x-land-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 6px; }
+  .x-land-grid h3 { margin: 0 0 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); }
 
   /* trends */
   #trends { display: grid; gap: 14px; }
@@ -502,7 +504,7 @@
     state.houses = null;
     try {  // every Grandview property, to find houses with no permits
       const pr2 = await fetch("county-parcels.json", { cache: "no-cache" });
-      if (pr2.ok) state.houses = buildHouses((await pr2.json()).parcels || []);
+      if (pr2.ok) { state.parcels = (await pr2.json()).parcels || []; state.houses = buildHouses(state.parcels); }
     } catch (e) { /* optional */ }
     state.cases.sort((a, b) => (b.meeting_date || "").localeCompare(a.meeting_date || ""));
     $("updated").textContent = data.updated
@@ -551,7 +553,8 @@
     if (caseList.length) parts.push(`${caseList.length} case${caseList.length === 1 ? "" : "s"} across ${meetingsCount} meeting${meetingsCount === 1 ? "" : "s"}`);
     if (nPermits) parts.push(`${nPermits} building permit${nPermits === 1 ? "" : "s"}`);
     if (state.board === "xhouses") {
-      $("count").textContent = `${nHouses} house${nHouses === 1 ? "" : "s"} ${state.xlabel || ""}${q ? " matching your search" : ""}`;
+      const noun = state.xnoun || "house";
+      $("count").textContent = `${nHouses} ${noun}${nHouses === 1 ? "" : "s"} ${state.xlabel || ""}${q ? " matching your search" : ""}`;
     } else if (state.board === "nopermit") {
       $("count").textContent = `${nHouses} house${nHouses === 1 ? "" : "s"} with no permit since ${state.houses ? state.houses.first : ""}${q ? " matching your search" : ""}`;
     } else
@@ -594,7 +597,7 @@
     }
     const groups = new Map();
     for (const c of shown) {
-      const k = c.house ? "street|" + normAddr(c.address).replace(/^\d+[A-Z]?\s+/, "")
+      const k = c.house ? "street|" + normAddr(c.address).replace(/^\d+[A-Z]?\s+(R\s+)?/, "")
         : isPermit(c) ? (c.meeting_date || "").slice(0, 7) + "|permits" : (c.meeting_date || "") + "|" + c.board;
       if (!groups.has(k)) groups.set(k, []);
       groups.get(k).push(c);
@@ -602,17 +605,17 @@
     let first = true;
     $("list").innerHTML = [...groups.values()].map((cs) => {
       if (cs[0].house) {
-        const street = normAddr(cs[0].address).replace(/^\d+[A-Z]?\s+/, "").replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase());
+        const street = normAddr(cs[0].address).replace(/^\d+[A-Z]?\s+(R\s+)?/, "").replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase());
         return `
       <details class="meeting card"${q || first ? " open" : ""}>
         <summary>${CHEV}<span class="m-date">${esc(street)}</span>
-          <span class="m-count">${cs.length} house${cs.length === 1 ? "" : "s"}</span></summary>
+          <span class="m-count">${cs.length} ${cs[0].land ? "parcel" : "house"}${cs.length === 1 ? "" : "s"}</span></summary>
         <div class="cases">${cs.map((c) => `
           <a class="prow" href="${PARCEL_LINK + esc(c.house.parcel)}" target="_blank" rel="noopener" data-id="${esc(c.id)}">
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
-            <span class="pdate">${c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(houseKind(c.house.luc))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
+            <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
+            <span class="teaser">${esc(c.land ? landKind(c.house.luc) + (c.lat == null ? ", not on map" : "") : houseKind(c.house.luc))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1169,7 +1172,9 @@
           <p id="x-${k}-note"></p>
           <div class="chart" id="x-${k}-chart"></div>
           <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-${k}-show">Show these houses on the map</button></div>
-        </div>`).join("")}</div>`;
+        </div>`).join("")}</div>
+      <div class="card panel" id="x-land"></div>`;
+    renderLand();
 
     for (const k of Object.keys(EXP)) {
       const cfg = EXP[k];
@@ -1216,12 +1221,71 @@
           .map((h) => ({ id: "xhouse|" + h.parcel, board: "House", house: h, cat: "other", address: h.address || "Address not listed",
             lat: h.lat, lon: h.lon, meeting_date: null, popup: last(h),
             description: `${houseKind(h.luc)}${h.built ? ", built " + h.built : ""}, ${last(h)}` }));
-        state.xlabel = `with no ${cfg.noun} permit in the last ${n} year${n === 1 ? "" : "s"}`;
+        state.xlabel = `with no ${cfg.noun} permit in the last ${n} year${n === 1 ? "" : "s"}`; state.xnoun = "house";
         $("opt-x").textContent = `No ${cfg.noun} permit, ${n}+ yrs`;
         browseWith({ board: "xhouses" });
       });
       update();
     }
+  }
+
+  // ---------- vacant land ----------
+  // County land use codes for vacant land: 300 industrial, 400 commercial, 500 to 503 residential
+  const VACANT_LUC = /^(300|400|50[0-3])$/;
+  const landKind = (luc) => luc === "300" ? "Industrial land" : luc === "400" ? "Commercial land" : "Residential lot";
+  const LAND_COLOR = { "Residential lot": "var(--t-bldg)", "Commercial land": "var(--t-comm)", "Industrial land": "var(--t-other)" };
+  const fmtAcres = (a) => a >= 1 ? `${a.toFixed(1)} acres` : `${a.toFixed(2)} acre${a === 1 ? "" : "s"}`;
+  const streetOf = (a) => normAddr(a || "").replace(/^\d+[A-Z]?\s+(R\s+)?/, "").replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase());
+
+  function showLand(list, label) {
+    state.xitems = list.slice()
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
+      .map((p) => ({ id: "xland|" + p.parcel, board: "Land", house: p, land: true, cat: "other",
+        address: p.address || "Address not listed", lat: p.lat, lon: p.lon, meeting_date: null,
+        popup: [landKind(p.luc), p.acres ? fmtAcres(p.acres) : ""].filter(Boolean).join(", "),
+        description: `${landKind(p.luc)}${p.acres ? ", " + fmtAcres(p.acres) : ""}, parcel ${p.parcel}` }));
+    state.xlabel = label; state.xnoun = "vacant parcel";
+    $("opt-x").textContent = "Vacant land";
+    browseWith({ board: "xhouses" });
+  }
+
+  function renderLand() {
+    const el = $("x-land"), P = state.parcels || [];
+    const land = P.filter((p) => VACANT_LUC.test(p.luc || ""));
+    if (!land.length) { el.innerHTML = `<h2>Vacant land</h2><p class="note">No parcels are listed as vacant in the county file.</p>`; return; }
+    const withAcres = land.filter((p) => p.acres), acres = withAcres.reduce((s, p) => s + p.acres, 0);
+    const mapped = land.filter((p) => p.lat != null).length;
+    const kinds = ["Residential lot", "Commercial land", "Industrial land"].map((k) => ({ k, list: land.filter((p) => landKind(p.luc) === k) }))
+      .filter((r) => r.list.length);
+    const byStreet = {};
+    land.forEach((p) => { const s = streetOf(p.address); (byStreet[s] = byStreet[s] || []).push(p); });
+    el.innerHTML = `
+      <h2>Vacant land</h2>
+      <p class="p-sub">Parcels the county lists as vacant, meaning no building on the tax record. Many are slivers, side lots,
+        parking areas, or pieces of larger sites like Grandview Yard, so vacant doesn't always mean buildable.</p>
+      <div class="x-big">${land.length.toLocaleString()}</div>
+      <div class="x-of">of ${P.length.toLocaleString()} parcels in Grandview are vacant${withAcres.length ? `, about <b>${acres.toFixed(1)} acres</b> in all` : ""}</div>
+      <div class="x-land-grid">
+        <div><h3>By type</h3><div id="x-land-kind"></div></div>
+        <div><h3>${withAcres.length ? "Largest parcels" : "By street"}</h3><div id="x-land-top"></div></div>
+      </div>
+      <p class="${mapped < land.length ? "x-warn" : "x-ok"}" style="margin-top:14px">${mapped < land.length
+        ? `${land.length - mapped} of these have no street number, so they can't be pinned on the map. They're still listed, and each links to the county's parcel page, which has a map.`
+        : "Every parcel is on the map."}${withAcres.length ? "" : " Acreage arrives with the next county import."}</p>
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-land-show">Show vacant land on the map</button></div>`;
+    hbars($("x-land-kind"), kinds.map((r) => ({ label: r.k.split(" ")[0], value: r.list.length, color: LAND_COLOR[r.k], list: r.list,
+      num: r.list.length + (withAcres.length ? ` · ${r.list.reduce((s, p) => s + (p.acres || 0), 0).toFixed(1)} ac` : "") })),
+      (r) => showLand(r.list, `(${r.label.toLowerCase()} only)`));
+    if (withAcres.length) {
+      hbars($("x-land-top"), withAcres.sort((a, b) => b.acres - a.acres).slice(0, 8).map((p) => ({
+        label: p.address || "No address", value: p.acres, num: fmtAcres(p.acres), color: LAND_COLOR[landKind(p.luc)], p })),
+        (r) => window.open(PARCEL_LINK + r.p.parcel, "_blank", "noopener"));
+    } else {
+      hbars($("x-land-top"), Object.entries(byStreet).sort((a, b) => b[1].length - a[1].length).slice(0, 8)
+        .map(([s, list]) => ({ label: s || "No address", value: list.length, color: "var(--t-bldg)", list })),
+        (r) => showLand(r.list, `on ${r.label}`));
+    }
+    $("x-land-show").onclick = () => showLand(land, "");
   }
 
   // ---------- view switching ----------
