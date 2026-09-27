@@ -1,7 +1,7 @@
 {
   "county_permits": {
     "folder": "2026-09-15 Appraisal",
-    "version": 2
+    "version": 3
   },
   "geocache": {
     "0 GOODALE BL, Grandview Heights, OH 43212": null,
@@ -59,6 +59,10 @@
       39.980860403557,
       -83.031759456187
     ],
+    "1001 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.979510059164,
+      -83.031615810589
+    ],
     "1001 PARKWAY DR, Grandview Heights, OH 43212": [
       39.982024784846,
       -83.031879283399
@@ -78,6 +82,10 @@
     "1008 PALMER RD, Grandview Heights, OH 43212": [
       39.979237267857,
       -83.036352201747
+    ],
+    "1009 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.978232247814,
+      -83.045371587349
     ],
     "1010 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983282076176,
@@ -103,6 +111,10 @@
       39.978390048001,
       -83.045208287025
     ],
+    "1016 PALMER RD, Grandview Heights, OH 43212": [
+      39.979310686914,
+      -83.036277321383
+    ],
     "1018 PALMER RD, Grandview Heights, OH 43212": [
       39.979323588504,
       -83.03626241197
@@ -123,9 +135,17 @@
       39.978148059434,
       -83.05188851695
     ],
+    "1020 GOODALE BL, Grandview Heights, OH 43212": [
+      39.974490436653,
+      -83.030569410311
+    ],
     "1020 NORTHWEST BLVD, Grandview Heights, OH 43212": [
       39.979989673939,
       -83.031821986767
+    ],
+    "1020 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.977296564608,
+      -83.053315092986
     ],
     "1020 Westwood Avenue, Grandview Heights, OH 43212": [
       39.977296564608,
@@ -172,6 +192,10 @@
       39.983180984676,
       -83.032628174316
     ],
+    "1026 GOODALE BL, Grandview Heights, OH 43212": [
+      39.974497937092,
+      -83.030741952288
+    ],
     "1027 AVONDALE AVE, Grandview Heights, OH 43212": [
       39.979281766623,
       -83.042266600077
@@ -181,6 +205,10 @@
       -83.045340430265
     ],
     "1030 DUBLIN RD, Grandview Heights, OH 43212": null,
+    "1030 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.97825737431,
+      -83.05188241789
+    ],
     "1031 W 2ND AVE, Grandview Heights, OH 43212": [
       39.983186544061,
       -83.032775946175
@@ -197,10 +225,18 @@
       39.983301387726,
       -83.032778982096
     ],
+    "1033 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.978718144398,
+      -83.045329675413
+    ],
     "1034 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1034 GLENDALE AVE, Grandview Heights, OH 43212": [
       39.979004824443,
       -83.043640235307
+    ],
+    "1034 GOODALE BL, Grandview Heights, OH 43212": [
+      39.974507937678,
+      -83.030972008257
     ],
     "1035 AVONDALE AVE, Grandview Heights, OH 43212": [
       39.979343019399,
@@ -219,6 +255,10 @@
       39.983193956575,
       -83.03297297532
     ],
+    "1040 BURR AVE, Grandview Heights, OH 43212": [
+      39.976426263375,
+      -83.031562682606
+    ],
     "1040 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.978365768005,
       -83.051874316346
@@ -234,6 +274,10 @@
     "1041 BROADVIEW AVE, Grandview Heights, OH 43212": [
       39.978455998284,
       -83.047439282635
+    ],
+    "1041 GLENDALE AVE, Grandview Heights, OH 43212": [
+      39.979097847206,
+      -83.043781634419
     ],
     "1041 PARKWAY DR, Grandview Heights, OH 43212": [
       39.982043442999,
@@ -259,6 +303,14 @@
     "1044 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.978987006442,
       -83.04515668492
+    ],
+    "1045 AVONDALE AVE, Grandview Heights, OH 43212": [
+      39.979431491556,
+      -83.042276660962
+    ],
+    "1045 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.97968667228,
+      -83.032514926923
     ],
     "1046 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1046 GRANDVIEW AV, Grandview Heights, OH 43212": [
@@ -305,6 +357,14 @@
       39.974527938849,
       -83.031432120194
     ],
+    "1050 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.978368473745,
+      -83.056569258725
+    ],
+    "1050 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.980521796914,
+      -83.032240321244
+    ],
     "1050 PARKWAY DR, Grandview Heights, OH 43212": [
       39.982155573311,
       -83.032690990022
@@ -317,6 +377,10 @@
       39.982155190788,
       -83.032717580804
     ],
+    "1051 AVONDALE AVE, Grandview Heights, OH 43212": [
+      39.979477738268,
+      -83.042272549977
+    ],
     "1051 URLIN AVE, Grandview Heights, OH 43212": [
       39.978585178865,
       -83.050476660557
@@ -324,6 +388,10 @@
     "1051 VIRGINIA AVE, Grandview Heights, OH 43212": [
       39.98031039206,
       -83.037809729913
+    ],
+    "1051 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.979722049481,
+      -83.032699525043
     ],
     "1052 RIDGE ST, Grandview Heights, OH 43212": null,
     "1054 GLENDALE AVE, Grandview Heights, OH 43212": [
@@ -335,6 +403,10 @@
       -83.037641436276
     ],
     "1055 DUBLIN RD, Grandview Heights, OH 43212": null,
+    "1055 GLENDALE AVE, Grandview Heights, OH 43212": [
+      39.979296026401,
+      -83.043764406023
+    ],
     "1055 PARKWAY DR, Grandview Heights, OH 43212": [
       39.982040637829,
       -83.032713507421
@@ -354,6 +426,10 @@
     "1056 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.978540542818,
       -83.051861199846
+    ],
+    "1056 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.97920972052,
+      -83.045138335185
     ],
     "1056 MULFORD RD, Grandview Heights, OH 43212": [
       39.978895138212,
@@ -433,6 +509,10 @@
       39.979321077559,
       -83.045129160317
     ],
+    "1062 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978897943465,
+      -83.03317746994
+    ],
     "1062 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983316276076,
       -83.033612285834
@@ -441,9 +521,17 @@
       39.978722572188,
       -83.047398783912
     ],
+    "1063 URLIN AVE, Grandview Heights, OH 43212": [
+      39.978728274275,
+      -83.050374220784
+    ],
     "1064 EDGEHILL RD, Grandview Heights, OH 43212": [
       39.984149854119,
       -83.02933827625
+    ],
+    "1064 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.978628171279,
+      -83.051854952322
     ],
     "1065 BOBCAT AV, Grandview Heights, OH 43212": [
       39.981944646661,
@@ -454,6 +542,10 @@
       -83.029456271865
     ],
     "1065 DUBLIN RD, Grandview Heights, OH 43212": null,
+    "1065 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.978366745345,
+      -83.052024030899
+    ],
     "1065 MULFORD RD, Grandview Heights, OH 43212": [
       39.978782635677,
       -83.033165032967
@@ -473,6 +565,10 @@
     "1066 VIRGINIA AVE, Grandview Heights, OH 43212": [
       39.980466209755,
       -83.037516216579
+    ],
+    "1067 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.978763827794,
+      -83.047375833978
     ],
     "1067 VIRGINIA AVE, Grandview Heights, OH 43212": [
       39.980507347187,
@@ -498,6 +594,14 @@
       39.984156811758,
       -83.029338155514
     ],
+    "1068 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.979432434598,
+      -83.04511998545
+    ],
+    "1068 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978900748718,
+      -83.033242611972
+    ],
     "1068 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983316276083,
       -83.033760390975
@@ -514,9 +618,29 @@
       39.980536019607,
       -83.037641401189
     ],
+    "1070 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.978760148346,
+      -83.047215319454
+    ],
+    "1070 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.978693726281,
+      -83.051850373216
+    ],
     "1070 VIRGINIA AVE, Grandview Heights, OH 43212": [
       39.980523554596,
       -83.037487431936
+    ],
+    "1071 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978785269179,
+      -83.033226186712
+    ],
+    "1071 W GOODALE ST, Grandview Heights, OH 43212": [
+      39.974438122942,
+      -83.032029878992
+    ],
+    "1072 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978902618886,
+      -83.033286039993
     ],
     "1073 BOBCAT AVE, Grandview Heights, OH 43212": [
       39.982032751542,
@@ -539,6 +663,10 @@
       -83.033208146745
     ],
     "1075 DUBLIN RD, Grandview Heights, OH 43212": null,
+    "1075 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978787024848,
+      -83.033266955875
+    ],
     "1076 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.97958091065,
       -83.045107752293
@@ -550,6 +678,10 @@
     "1078 EDGEHILL RD, Grandview Heights, OH 43212": [
       39.984174205856,
       -83.029337853674
+    ],
+    "1078 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978905424139,
+      -83.033351182026
     ],
     "1079 BOBCAT AV, Grandview Heights, OH 43212": [
       39.982096338801,
@@ -571,6 +703,10 @@
       39.980819880566,
       -83.033284091792
     ],
+    "1080 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.978878913986,
+      -83.056523690166
+    ],
     "1080 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.978978727976,
       -83.055196332909
@@ -587,6 +723,10 @@
       39.979707736706,
       -83.04524714295
     ],
+    "1081 MULFORD RD, Grandview Heights, OH 43212": [
+      39.97878965835,
+      -83.033328109619
+    ],
     "1082 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.979021099565,
       -83.055190563899
@@ -598,6 +738,14 @@
     "1083 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.979032990498,
       -83.05533929876
+    ],
+    "1084 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.979729386702,
+      -83.045095519136
+    ],
+    "1084 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978908229392,
+      -83.033416324058
     ],
     "1084-1086 MULFORD RD, Grandview Heights, OH 43212": [
       39.978909164476,
@@ -615,6 +763,10 @@
       39.978928547364,
       -83.050188521856
     ],
+    "1085 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.978899251234,
+      -83.053205764131
+    ],
     "1086 BURR AVE, Grandview Heights, OH 43212": [
       39.976472403412,
       -83.032688527679
@@ -627,6 +779,14 @@
       39.979080284148,
       -83.051823676237
     ],
+    "1086 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.979080284148,
+      -83.051823676237
+    ],
+    "1086 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.978981099378,
+      -83.056513945255
+    ],
     "1086 W Second Ave, Grandview Heights, OH 43212": [
       39.983309520486,
       -83.034294523935
@@ -635,9 +795,17 @@
       39.978970091741,
       -83.047260234665
     ],
+    "1087 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.97894213413,
+      -83.051982948669
+    ],
     "1087 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.97983146675,
       -83.045236948653
+    ],
+    "1089 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978793169687,
+      -83.033409647945
     ],
     "1089 W FIRST AVE, Grandview Heights, OH 43212": [
       39.979773846444,
@@ -652,6 +820,10 @@
       39.979158023482,
       -83.051818317993
     ],
+    "1090 GOODALE BL, Grandview Heights, OH 43212": [
+      39.974588183224,
+      -83.032903218761
+    ],
     "1090 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.979840743741,
       -83.045086344269
@@ -660,9 +832,17 @@
       39.979840743741,
       -83.045086344269
     ],
+    "1090 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978911034644,
+      -83.03348146609
+    ],
     "1091 BOBCAT AVE, Grandview Heights, OH 43212": [
       39.982223513319,
       -83.029467236568
+    ],
+    "1091 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.979125148666,
+      -83.047154504691
     ],
     "1092 HILO LN, Grandview Heights, OH 43212": [
       39.980798983173,
@@ -707,6 +887,10 @@
     "1096 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983300333139,
       -83.034517425555
+    ],
+    "1096 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.979317700688,
+      -83.055150180826
     ],
     "1097 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.979329591621,
@@ -846,6 +1030,18 @@
       39.980225115422,
       -83.045054782705
     ],
+    "1106 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978929129496,
+      -83.033919337791
+    ],
+    "1107 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978810466588,
+      -83.03382360863
+    ],
+    "1108 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.979354856559,
+      -83.056473746058
+    ],
     "1109 BOBCAT AVE, Grandview Heights, OH 43212": [
       39.982416688498,
       -83.02946570506
@@ -866,6 +1062,18 @@
       39.979546494788,
       -83.051791204917
     ],
+    "1110 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978932758503,
+      -83.034008211993
+    ],
+    "1111 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.979563417057,
+      -83.046836759771
+    ],
+    "1111 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.980355627275,
+      -83.045193947056
+    ],
     "1111 W FIRST AVE, Grandview Heights, OH 43212": [
       39.979810130771,
       -83.034413954094
@@ -878,9 +1086,21 @@
       39.979585356608,
       -83.051788338452
     ],
+    "1112 URLIN AVE, Grandview Heights, OH 43212": [
+      39.979292495849,
+      -83.049968202272
+    ],
+    "1113 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978817119767,
+      -83.033986544668
+    ],
     "1113 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.979300667778,
       -83.053220246265
+    ],
+    "1114 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.979643130077,
+      -83.046662795887
     ],
     "1114 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.980387120357,
@@ -938,9 +1158,17 @@
       39.983281958445,
       -83.034963228795
     ],
+    "1117 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.979717487407,
+      -83.046795564214
+    ],
     "1117 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.980460562289,
       -83.045185365075
+    ],
+    "1117 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.979822575324,
+      -83.034585588088
     ],
     "1117 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.979826751021,
@@ -963,6 +1191,10 @@
       39.980507953154,
       -83.047979346396
     ],
+    "1122 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.979591049625,
+      -83.056438133457
+    ],
     "1122 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.979482782836,
       -83.05305764251
@@ -983,6 +1215,10 @@
       39.980565278096,
       -83.045177116348
     ],
+    "1123 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.980565278096,
+      -83.045177116348
+    ],
     "1123 W GOODALE BL, Grandview Heights, OH 43212": [
       39.97449341545,
       -83.033425605292
@@ -990,6 +1226,14 @@
     "1124 EDGEHILL RD, Grandview Heights, OH 43212": [
       39.984254218704,
       -83.02933646521
+    ],
+    "1124 GOODALE BL, Grandview Heights, OH 43212": [
+      39.974614597704,
+      -83.033594319512
+    ],
+    "1124 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978945460027,
+      -83.034319271702
     ],
     "1125 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.979752284785,
@@ -1023,6 +1267,10 @@
       39.979417637451,
       -83.057025006738
     ],
+    "1127 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.979970512229,
+      -83.046767951003
+    ],
     "1127 ORMSBY PL, Grandview Heights, OH 43212": [
       39.979486071869,
       -83.057144953853
@@ -1035,9 +1283,17 @@
       39.980670239117,
       -83.045169094232
     ],
+    "1129 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978834861579,
+      -83.034421040769
+    ],
     "1130 GLENN AVE, Grandview Heights, OH 43212": [
       39.979824232444,
       -83.054298344883
+    ],
+    "1130 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978950903537,
+      -83.034452583006
     ],
     "1130 SECOND AV, Grandview Heights, OH 43212": [
       39.983263046993,
@@ -1063,6 +1319,10 @@
       39.979880152708,
       -83.051916376326
     ],
+    "1131 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978837079305,
+      -83.034475352781
+    ],
     "1131 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.982093638024,
       -83.03429902131
@@ -1086,6 +1346,10 @@
     "1133 GOODALE BL, Grandview Heights, OH 43212": [
       39.97450377407,
       -83.033696625195
+    ],
+    "1134 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.980172274167,
+      -83.046600851147
     ],
     "1134 GLENN AVE, Grandview Heights, OH 43212": [
       39.979891561497,
@@ -1111,6 +1375,10 @@
       39.9807719887,
       -83.048110270488
     ],
+    "1137 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.980810187145,
+      -83.045158398078
+    ],
     "1138 EDGEHILL RD, Grandview Heights, OH 43212": [
       39.98427882529,
       -83.029336110142
@@ -1135,6 +1403,10 @@
       39.978849671009,
       -83.034787432042
     ],
+    "1140 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978964115764,
+      -83.034779869384
+    ],
     "1140-1142 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.982075938351,
       -83.033997862907
@@ -1143,6 +1415,22 @@
       39.982756551954,
       -83.029454326298
     ],
+    "1141 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.979880497679,
+      -83.035025161313
+    ],
+    "1143 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.980389005837,
+      -83.04673220167
+    ],
+    "1143 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.980994633472,
+      -83.045144194187
+    ],
+    "1143 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978853323153,
+      -83.034881554486
+    ],
     "1143 NORTON AVE, Grandview Heights, OH 43212": [
       39.982593014907,
       -83.032124979516
@@ -1150,6 +1438,10 @@
     "1143 OXLEY RD, Grandview Heights, OH 43212": [
       39.981915611684,
       -83.035156045688
+    ],
+    "1143 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.979881429343,
+      -83.053180077139
     ],
     "1144 EDGEHILL RD, Grandview Heights, OH 43212": [
       39.984289262261,
@@ -1187,9 +1479,25 @@
       39.97451998086,
       -83.034126647814
     ],
+    "1146 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.980486144373,
+      -83.046574039148
+    ],
+    "1146 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978971159186,
+      -83.03496139124
+    ],
     "1146 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983244085721,
       -83.035737817518
+    ],
+    "1147 GLENN AVE, Grandview Heights, OH 43212": [
+      39.980108686096,
+      -83.054428885303
+    ],
+    "1147 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.981063508913,
+      -83.045138801038
     ],
     "1147 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.9803026436,
@@ -1211,6 +1519,10 @@
       39.979895467732,
       -83.035128740185
     ],
+    "1149 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978855524834,
+      -83.035008414314
+    ],
     "1149 PARKWAY DR, Grandview Heights, OH 43212": [
       39.981460105191,
       -83.036137579392
@@ -1227,6 +1539,18 @@
       39.984299699233,
       -83.029335868823
     ],
+    "1150 GLENN AVE, Grandview Heights, OH 43212": [
+      39.980160877712,
+      -83.05427561905
+    ],
+    "1150 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.981146183815,
+      -83.044982511737
+    ],
+    "1150 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978961893554,
+      -83.035095739602
+    ],
     "1150 N PARKWAY AVE, Grandview Heights, OH 43212": [
       39.982645941931,
       -83.033068246214
@@ -1234,6 +1558,14 @@
     "1151 GRANDVIEW AV, Grandview Heights, OH 43212": [
       39.981132384354,
       -83.045133407889
+    ],
+    "1151 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.981132384354,
+      -83.045133407889
+    ],
+    "1151 OAKLAND AVE, Grandview Heights, OH 43212": [
+      39.981073622157,
+      -83.049359748123
     ],
     "1151 OXLEY RD, Grandview Heights, OH 43212": [
       39.981999560863,
@@ -1251,6 +1583,10 @@
       39.982886749321,
       -83.029440449805
     ],
+    "1153 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.980650564341,
+      -83.046709858338
+    ],
     "1153 FAIRVIEW AVE, Grandview Heights, OH 43212": [
       39.981066930539,
       -83.048089072754
@@ -1263,9 +1599,25 @@
       39.982308171991,
       -83.037428666013
     ],
+    "1153 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.980074911466,
+      -83.053167329367
+    ],
     "1153 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.980397822116,
       -83.055676932041
+    ],
+    "1154 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.980695391176,
+      -83.046556164482
+    ],
+    "1154 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.981208925577,
+      -83.044977108954
+    ],
+    "1155 GLENN AVE, Grandview Heights, OH 43212": [
+      39.980244947276,
+      -83.054419686751
     ],
     "1155 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.982541952383,
@@ -1308,17 +1660,37 @@
       39.982370872032,
       -83.037424570539
     ],
+    "1158 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.980496127754,
+      -83.051726064869
+    ],
+    "1158 OAKLAND AVE, Grandview Heights, OH 43212": [
+      39.981215809683,
+      -83.049198707621
+    ],
     "1158 VIRGINIA AVE, Grandview Heights, OH 43212": [
       39.982054702179,
       -83.037295487326
+    ],
+    "1159 ASHLAND AVE, Grandview Heights, OH 43212": [
+      39.980960441992,
+      -83.050619461169
     ],
     "1159 BOBCAT AVE, Grandview Heights, OH 43212": [
       39.982950104094,
       -83.029433053418
     ],
+    "1159 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.980474525871,
+      -83.051877300481
+    ],
     "1159 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.981270672971,
       -83.045121344629
+    ],
+    "1160 GLENN AVE, Grandview Heights, OH 43212": [
+      39.980329200346,
+      -83.054264256133
     ],
     "1160 GOODALE BL, Grandview Heights, OH 43212": [
       39.974652291412,
@@ -1331,6 +1703,10 @@
     "1160-1166 GOODALE BLVD, Grandview Heights, OH 43212": [
       39.974658361974,
       -83.034760916545
+    ],
+    "1161 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.979934553292,
+      -83.056970825018
     ],
     "1161 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.982637903384,
@@ -1345,6 +1721,10 @@
       39.984320573176,
       -83.029335627504
     ],
+    "1162 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978854099,
+      -83.035479047345
+    ],
     "1163 BOBCAT AVE, Grandview Heights, OH 43212": [
       39.982992340609,
       -83.029428122493
@@ -1353,17 +1733,33 @@
       39.980912122846,
       -83.046687515005
     ],
+    "1163 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.981339501333,
+      -83.045115009978
+    ],
     "1163 Grandview Avenue, Grandview Heights, OH 43212": [
       39.981339501333,
       -83.045115009978
+    ],
+    "1163 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.980556452976,
+      -83.05566674632
     ],
     "1163 Wyandotte Road, Grandview Heights, OH 43212": [
       39.980556452976,
       -83.05566674632
     ],
+    "1164 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.980094932535,
+      -83.056810163933
+    ],
     "1164 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.982282424426,
       -83.034396416669
+    ],
+    "1164 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.980286279899,
+      -83.053004231205
     ],
     "1165 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.980570658017,
@@ -1373,6 +1769,10 @@
       39.980415273751,
       -83.054408188561
     ],
+    "1165 OAKLAND AVE, Grandview Heights, OH 43212": [
+      39.981334554453,
+      -83.049339156605
+    ],
     "1165 W FIRST AVE, Grandview Heights, OH 43212": [
       39.979987445077,
       -83.035568334068
@@ -1381,9 +1781,21 @@
       39.981417361135,
       -83.050436842757
     ],
+    "1166 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.981009261382,
+      -83.046529352483
+    ],
     "1166 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.981398891858,
       -83.044959625318
+    ],
+    "1166 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978785331444,
+      -83.035560462485
+    ],
+    "1166 OAKLAND AVE, Grandview Heights, OH 43212": [
+      39.981364913853,
+      -83.04918694104
     ],
     "1166 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.980601956732,
@@ -1392,6 +1804,10 @@
     "1167 BOBCAT AVE, Grandview Heights, OH 43212": [
       39.983029481964,
       -83.029423776566
+    ],
+    "1167 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978767818724,
+      -83.035383408345
     ],
     "1167 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.982732550294,
@@ -1429,6 +1845,14 @@
       39.980651807365,
       -83.055660555623
     ],
+    "1170 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.980210095472,
+      -83.05680232711
+    ],
+    "1170 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978749557592,
+      -83.035616190299
+    ],
     "1170 WILLARD AVE, Grandview Heights, OH 43212": [
       39.981736099299,
       -83.038685714943
@@ -1444,6 +1868,10 @@
     "1171 VIRGINIA AVE, Grandview Heights, OH 43212": [
       39.982590322176,
       -83.03741023638
+    ],
+    "1171 W GOODALE BL, Grandview Heights, OH 43212": [
+      39.974547834027,
+      -83.034873511961
     ],
     "1171 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.980423531881,
@@ -1465,9 +1893,17 @@
       39.982827197205,
       -83.035983521191
     ],
+    "1173 OAKLAND AVE, Grandview Heights, OH 43212": [
+      39.981483658622,
+      -83.049327390024
+    ],
     "1173 W FIRST AVE, Grandview Heights, OH 43212": [
       39.980078527831,
       -83.03588649793
+    ],
+    "1174 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.981218280931,
+      -83.046511443629
     ],
     "1174 W FIRST AVE, Grandview Heights, OH 43212": [
       39.980549542768,
@@ -1497,6 +1933,10 @@
       39.981503256141,
       -83.047908523305
     ],
+    "1176 GLENN AVE, Grandview Heights, OH 43212": [
+      39.980598516561,
+      -83.054246075466
+    ],
     "1176 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.981557197092,
       -83.044945055622
@@ -1508,6 +1948,14 @@
     "1176 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.980515449364,
       -83.052989533813
+    ],
+    "1177 ASHLAND AVE, Grandview Heights, OH 43212": [
+      39.981199087655,
+      -83.050602306295
+    ],
+    "1177 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.981278512721,
+      -83.046655895169
     ],
     "1177 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.981580400602,
@@ -1533,6 +1981,14 @@
       39.980540056967,
       -83.053137555941
     ],
+    "1178 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.981322876624,
+      -83.046501969899
+    ],
+    "1178 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.980811043405,
+      -83.051704436434
+    ],
     "1178 HOPE AVE, Grandview Heights, OH 43212": [
       39.982344908889,
       -83.040038417513
@@ -1552,6 +2008,10 @@
     "1179 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.980794966357,
       -83.051855292599
+    ],
+    "1179 FAIRVIEW AVE, Grandview Heights, OH 43212": [
+      39.981545064322,
+      -83.048055849721
     ],
     "1179 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.982939550084,
@@ -1573,9 +2033,17 @@
       39.982224242379,
       -83.038795932234
     ],
+    "1180 ASHLAND AVE, Grandview Heights, OH 43212": [
+      39.981678328084,
+      -83.050416197162
+    ],
     "1180 DOVER AVE, Grandview Heights, OH 43212": [
       39.983536690268,
       -83.030876724905
+    ],
+    "1180 GOODALE BL, Grandview Heights, OH 43212": [
+      39.974681561142,
+      -83.035317564403
     ],
     "1180 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.98059192941,
@@ -1592,6 +2060,14 @@
     "1181 W First Avenue, Grandview Heights, OH 43212": [
       39.980188804576,
       -83.03618396561
+    ],
+    "1182 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.980874026535,
+      -83.051700110747
+    ],
+    "1182 OAKLAND AVE, Grandview Heights, OH 43212": [
+      39.981663122191,
+      -83.049163407877
     ],
     "1182 PARKWAY DR, Grandview Heights, OH 43212": [
       39.981599123019,
@@ -1621,6 +2097,10 @@
       39.98164957638,
       -83.04789855725
     ],
+    "1184 GLENN AVE, Grandview Heights, OH 43212": [
+      39.980733349818,
+      -83.054237320237
+    ],
     "1184 HOPE AV, Grandview Heights, OH 43212": [
       39.982395155757,
       -83.040034668156
@@ -1637,6 +2117,10 @@
       39.983021686919,
       -83.0365123224
     ],
+    "1188 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.980744889502,
+      -83.052973273575
+    ],
     "1189 ASHLAND AV, Grandview Heights, OH 43212": [
       39.981358184764,
       -83.050590869713
@@ -1644,6 +2128,10 @@
     "1189 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.981358184764,
       -83.050590869713
+    ],
+    "1189 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.980955186601,
+      -83.051844288659
     ],
     "1189 GLENN AVE, Grandview Heights, OH 43212": [
       39.980823921003,
@@ -1688,6 +2176,10 @@
     "1191 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.983062755337,
       -83.036626221183
+    ],
+    "1192 FAIRVIEW AVE, Grandview Heights, OH 43212": [
+      39.981796852396,
+      -83.047886785339
     ],
     "1192 GLENN AVE, Grandview Heights, OH 43212": [
       39.980868027076,
@@ -1745,6 +2237,10 @@
       39.982034310171,
       -83.038661510832
     ],
+    "1197 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.981083362796,
+      -83.051835485506
+    ],
     "1198 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.981125959056,
       -83.051682807999
@@ -1757,6 +2253,10 @@
       39.980994271701,
       -83.05437039558
     ],
+    "1199 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.980582877972,
+      -83.056926706612
+    ],
     "1199 PARKWAY DR, Grandview Heights, OH 43212": [
       39.981440727313,
       -83.037153679433
@@ -1764,6 +2264,10 @@
     "1200 CAMBRIDGE BL, Grandview Heights, OH 43212": [
       39.981497151357,
       -83.058141579887
+    ],
+    "1200 GLENN AVE, Grandview Heights, OH 43212": [
+      39.981002704333,
+      -83.054220132812
     ],
     "1200 GRANDVIEW AV, Grandview Heights, OH 43212": [
       39.982054872815,
@@ -1780,6 +2284,14 @@
     "1200 W FIRST AVE, Grandview Heights, OH 43212": [
       39.980811523035,
       -83.037035745098
+    ],
+    "1200 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.980974329639,
+      -83.052957013337
+    ],
+    "1200 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.981134697784,
+      -83.055477826797
     ],
     "1201 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.981517576754,
@@ -1813,13 +2325,25 @@
       39.982162414691,
       -83.050379546912
     ],
+    "1203 GLENN AVE, Grandview Heights, OH 43212": [
+      39.98106241198,
+      -83.054366047571
+    ],
     "1203 LINCOLN RD, Grandview Heights, OH 43212": [
       39.980651195463,
       -83.056921937326
     ],
+    "1203 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.981043469927,
+      -83.053101879469
+    ],
     "1204 HOPE AVE, Grandview Heights, OH 43212": [
       39.982783009913,
       -83.040005287445
+    ],
+    "1204 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.980862587284,
+      -83.056757416599
     ],
     "1204 LINCOLN ROAD, Grandview Heights, OH 43212": [
       39.980862587284,
@@ -1844,6 +2368,10 @@
     "1205 Dover Avenue, Grandview Heights, OH 43212": [
       39.98363592492,
       -83.031019860851
+    ],
+    "1205 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.98121153899,
+      -83.051826682353
     ],
     "1205 N PARKWAY AVE, Grandview Heights, OH 43212": [
       39.98334548479,
@@ -1881,6 +2409,14 @@
       39.983214080173,
       -83.036696327891
     ],
+    "1208 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.981127289731,
+      -83.052946173178
+    ],
+    "1209 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.982137060091,
+      -83.046580177892
+    ],
     "1209 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.981159642149,
       -83.053093646437
@@ -1898,6 +2434,14 @@
       39.979194448385,
       -83.036881205316
     ],
+    "1211 ASHLAND AVE, Grandview Heights, OH 43212": [
+      39.981650114267,
+      -83.050568257694
+    ],
+    "1211 ELMWOOD AVE, Grandview Heights, OH 43212": [
+      39.981307516327,
+      -83.051820283263
+    ],
     "1211 NORTON AVE, Grandview Heights, OH 43212": [
       39.983466200382,
       -83.032064293463
@@ -1905,6 +2449,10 @@
     "1211 PARKWAY AVE, Grandview Heights, OH 43212": [
       39.98136690916,
       -83.037492741956
+    ],
+    "1211 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.981317951455,
+      -83.055615062429
     ],
     "1213 GLENN AV, Grandview Heights, OH 43212": [
       39.98123288928,
@@ -1922,9 +2470,17 @@
       39.982969262513,
       -83.039990182445
     ],
+    "1214 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.9812420098,
+      -83.052938043059
+    ],
     "1215 OXLEY RD, Grandview Heights, OH 43212": [
       39.983564019862,
       -83.035175007497
+    ],
+    "1215 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.98127581437,
+      -83.053085413405
     ],
     "1216 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.983370696968,
@@ -1946,6 +2502,10 @@
       39.982522062913,
       -83.045039662638
     ],
+    "1217 W GOODALE BL, Grandview Heights, OH 43212": [
+      39.974608942352,
+      -83.036368740317
+    ],
     "1219 EASTVIEW AVE, Grandview Heights, OH 43212": [
       39.983475154132,
       -83.03621909826
@@ -1957,6 +2517,10 @@
     "1219 N PARKWAY AVE, Grandview Heights, OH 43212": [
       39.983455706451,
       -83.033106110436
+    ],
+    "1220 GLENN AVE, Grandview Heights, OH 43212": [
+      39.981339232394,
+      -83.054197977996
     ],
     "1220 GOODALE BL, Grandview Heights, OH 43212": [
       39.974730783862,
@@ -2018,6 +2582,10 @@
       39.981835529546,
       -83.050554016864
     ],
+    "1226 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.982493556138,
+      -83.046400358267
+    ],
     "1226 LINCOLN RD, Grandview Heights, OH 43212": [
       39.981285398192,
       -83.05672934137
@@ -2045,6 +2613,10 @@
     "1228 OXLEY RD, Grandview Heights, OH 43212": [
       39.983819256489,
       -83.035008368168
+    ],
+    "1228 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.981573695461,
+      -83.055448389001
     ],
     "1229 OXLEY RD, Grandview Heights, OH 43212": [
       39.983849922279,
@@ -2110,6 +2682,10 @@
       39.98139707544,
       -83.038131127181
     ],
+    "1235 GLENN AVE, Grandview Heights, OH 43212": [
+      39.981607615197,
+      -83.05432974344
+    ],
     "1235 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.983662808003,
       -83.037984347961
@@ -2118,6 +2694,10 @@
       39.982731704645,
       -83.050335301073
     ],
+    "1236 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.98269861328,
+      -83.046381961305
+    ],
     "1236 Eastview Ave, Grandview Heights, OH 43212": [
       39.983705224722,
       -83.036054665925
@@ -2125,6 +2705,14 @@
     "1236 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.981662650052,
       -83.052908232622
+    ],
+    "1237 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.982729907346,
+      -83.04652905652
+    ],
+    "1237 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.983097761116,
+      -83.044987927133
     ],
     "1237 W FIRST AV, Grandview Heights, OH 43212": [
       39.981194949109,
@@ -2150,6 +2738,10 @@
       39.98366004414,
       -83.037104401525
     ],
+    "1240 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.981761582763,
+      -83.055435506814
+    ],
     "1241 BROADVIEW AVE, Grandview Heights, OH 43212": [
       39.982814306313,
       -83.04652155113
@@ -2158,6 +2750,14 @@
       39.983033742802,
       -83.047936658159
     ],
+    "1241 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.983204016577,
+      -83.0449786779
+    ],
+    "1241 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.981299008514,
+      -83.05687824786
+    ],
     "1241 MULFORD RD, Grandview Heights, OH 43212": [
       39.979117860877,
       -83.037656938606
@@ -2165,6 +2765,10 @@
     "1242 LINCOLN RD, Grandview Heights, OH 43212": [
       39.98159261467,
       -83.05671156216
+    ],
+    "1243 GLENN AVE, Grandview Heights, OH 43212": [
+      39.981743879166,
+      -83.054320615334
     ],
     "1243 OAKLAND AVE, Grandview Heights, OH 43212": [
       39.982828437585,
@@ -2206,6 +2810,10 @@
       39.981506272884,
       -83.038472701987
     ],
+    "1247 BROADVIEW AVE, Grandview Heights, OH 43212": [
+      39.982941280698,
+      -83.046510832504
+    ],
     "1247 LINCOLN RD, Grandview Heights, OH 43212": [
       39.981401414007,
       -83.056872321457
@@ -2218,9 +2826,25 @@
       39.983866830147,
       -83.03604433926
     ],
+    "1249 GLENN AVE, Grandview Heights, OH 43212": [
+      39.981846077144,
+      -83.054313769255
+    ],
+    "1249 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979147734288,
+      -83.037873671742
+    ],
     "1250 MULFORD RD, Grandview Heights, OH 43212": [
       39.979285875125,
       -83.037955455652
+    ],
+    "1251 ASHLAND AVE, Grandview Heights, OH 43212": [
+      39.982357819404,
+      -83.050514696239
+    ],
+    "1252 ASHLAND AVE, Grandview Heights, OH 43212": [
+      39.982999675561,
+      -83.050314065847
     ],
     "1252 BROADVIEW AVE, Grandview Heights, OH 43212": [
       39.983026998656,
@@ -2306,6 +2930,10 @@
       39.982017952986,
       -83.058118476166
     ],
+    "1260 GOODALE BL, Grandview Heights, OH 43212": [
+      39.974765528998,
+      -83.037451662916
+    ],
     "1262 W FIRST AVE, Grandview Heights, OH 43212": [
       39.981544579899,
       -83.038627730563
@@ -2334,13 +2962,25 @@
       39.984048491668,
       -83.039903631971
     ],
+    "1264 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.982014422615,
+      -83.056684139485
+    ],
     "1264 MULFORD RD, Grandview Heights, OH 43212": [
       39.979589553714,
       -83.038378925824
     ],
+    "1264 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.983974885097,
+      -83.038267259539
+    ],
     "1265 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.982669221071,
       -83.050490077805
+    ],
+    "1265 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.98217479635,
+      -83.055553921738
     ],
     "1266 BROADVIEW AVE, Grandview Heights, OH 43212": [
       39.983313980729,
@@ -2418,6 +3058,10 @@
       39.979843918896,
       -83.038673177186
     ],
+    "1272 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.984074721528,
+      -83.038426253958
+    ],
     "1273 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.982847056315,
       -83.050475985337
@@ -2433,6 +3077,10 @@
     "1273 INGLIS AVE, Grandview Heights, OH 43212": [
       39.980605484654,
       -83.039761527172
+    ],
+    "1274 MORNING AVE, Grandview Heights, OH 43212": [
+      39.984255178888,
+      -83.042698248507
     ],
     "1274 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.982511864395,
@@ -2481,6 +3129,10 @@
     "1277 AVONDALE AVE, Grandview Heights, OH 43212": [
       39.98405225274,
       -83.041790030284
+    ],
+    "1277 BLUFF AVE, Grandview Heights, OH 43212": [
+      39.978689122698,
+      -83.039029086902
     ],
     "1277 Bluff Ave, Grandview Heights, OH 43212": [
       39.978689122698,
@@ -2610,9 +3262,17 @@
       39.982632839095,
       -83.055377653199
     ],
+    "1287 GLENN AVE, Grandview Heights, OH 43212": [
+      39.982696542355,
+      -83.054257575562
+    ],
     "1287 OAKLAND AVE, Grandview Heights, OH 43212": [
       39.983609865143,
       -83.049164204232
+    ],
+    "1287 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.982659885783,
+      -83.055525551534
     ],
     "1288 BROADVIEW AV, Grandview Heights, OH 43212": [
       39.98376569578,
@@ -2625,6 +3285,10 @@
     "1288 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.982857283246,
       -83.05156646097
+    ],
+    "1288 GLENN AVE, Grandview Heights, OH 43212": [
+      39.982684822619,
+      -83.054108597936
     ],
     "1288 HOLLYWOOD AVE, Grandview Heights, OH 43212": [
       39.984388663974,
@@ -2657,6 +3321,10 @@
     "1290 MORNING AVE, Grandview Heights, OH 43212": [
       39.984420824844,
       -83.042686368768
+    ],
+    "1291 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.982152721089,
+      -83.056824307095
     ],
     "1291 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979709487374,
@@ -2747,6 +3415,14 @@
       -83.039128546951
     ],
     "1297 SHERBOURNE LN, Grandview Heights, OH 43212": null,
+    "1297 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.98285184995,
+      -83.055511093578
+    ],
+    "1298 GLENN AVE, Grandview Heights, OH 43212": [
+      39.982927832372,
+      -83.054091396616
+    ],
     "1298 MORNING AVE, Grandview Heights, OH 43212": [
       39.984503647822,
       -83.042680428898
@@ -2754,6 +3430,10 @@
     "1298 MURRELL AVE, Grandview Heights, OH 43212": [
       39.984204638162,
       -83.040827013773
+    ],
+    "1298 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.982876836906,
+      -83.055359412427
     ],
     "1299 AVONDALE AVE, Grandview Heights, OH 43212": [
       39.984262185001,
@@ -2776,6 +3456,10 @@
       -83.039999402704
     ],
     "1299 MORNING AVE, Grandview Heights, OH 43212": [
+      39.984509935389,
+      -83.042829755749
+    ],
+    "1299 MORNING ST, Grandview Heights, OH 43212": [
       39.984509935389,
       -83.042829755749
     ],
@@ -2885,6 +3569,10 @@
       39.981674586748,
       -83.039741678054
     ],
+    "1307 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.984454445017,
+      -83.044877828996
+    ],
     "1307 INGLIS AVE, Grandview Heights, OH 43212": [
       39.98062139827,
       -83.040072595175
@@ -2892,6 +3580,10 @@
     "1307 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983280936036,
       -83.040278481867
+    ],
+    "1307 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.983043536416,
+      -83.055497014631
     ],
     "1308 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.983938134309,
@@ -2978,6 +3670,10 @@
       39.984095973661,
       -83.040963548222
     ],
+    "1316 GLENN AVE, Grandview Heights, OH 43212": [
+      39.983365799796,
+      -83.054060137068
+    ],
     "1316 LINCOLN RD, Grandview Heights, OH 43212": [
       39.983158330214,
       -83.056599228243
@@ -2997,6 +3693,10 @@
     "1317 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.983529504422,
       -83.052932238645
+    ],
+    "1317 WYANDOTTE AVE, Grandview Heights, OH 43212": [
+      39.983235554769,
+      -83.055483839054
     ],
     "1317 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.983235554769,
@@ -3102,6 +3802,10 @@
       39.984099555631,
       -83.041043420861
     ],
+    "1325 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981589278876,
+      -83.040358476539
+    ],
     "1325 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.98371341014,
       -83.052919684954
@@ -3150,6 +3854,10 @@
       39.983304142987,
       -83.040824041663
     ],
+    "1327 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.983427392912,
+      -83.055471000142
+    ],
     "1328 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978853460694,
       -83.039951976911
@@ -3165,6 +3873,10 @@
     "1329 MURRELL AVE, Grandview Heights, OH 43212": [
       39.984100988418,
       -83.041075369917
+    ],
+    "1329 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.983465803169,
+      -83.055468533919
     ],
     "1330 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979860496382,
@@ -3190,6 +3902,10 @@
       39.983496666679,
       -83.056574364633
     ],
+    "1332 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981710007934,
+      -83.040495004949
+    ],
     "1332 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983424556057,
       -83.040949695145
@@ -3210,6 +3926,10 @@
       39.982486272027,
       -83.040922424754
     ],
+    "1333 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980648135103,
+      -83.040590101482
+    ],
     "1333 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979743232384,
       -83.040196507564
@@ -3226,6 +3946,10 @@
       39.984426847475,
       -83.049104735856
     ],
+    "1333 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981598489645,
+      -83.04057456836
+    ],
     "1334 ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.983544269069,
       -83.059583315343
@@ -3237,6 +3961,10 @@
     "1334 GLENN AVE, Grandview Heights, OH 43212": [
       39.983803993258,
       -83.054030326222
+    ],
+    "1334 WESTWOOD AVE, Grandview Heights, OH 43212": [
+      39.983891330391,
+      -83.052757784619
     ],
     "1335 CAMBRIDGE BLVD, Grandview Heights, OH 43212": [
       39.983281359232,
@@ -3263,6 +3991,10 @@
       -83.041055119191
     ],
     "1337 INGLIS AV, Grandview Heights, OH 43212": [
+      39.980652609897,
+      -83.040676245623
+    ],
+    "1337 INGLIS AVE, Grandview Heights, OH 43212": [
       39.980652609897,
       -83.040676245623
     ],
@@ -3294,6 +4026,10 @@
       39.982492374406,
       -83.04106091559
     ],
+    "1339 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.983345174586,
+      -83.056735285636
+    ],
     "1339 LINCOLN ROAD, Grandview Heights, OH 43212": [
       39.983345174586,
       -83.056735285636
@@ -3306,6 +4042,10 @@
       39.981605095402,
       -83.040737070884
     ],
+    "1339 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981605095402,
+      -83.040737070884
+    ],
     "1339 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.98365785445,
       -83.055456202805
@@ -3313,6 +4053,10 @@
     "1340 GLENN AVE, Grandview Heights, OH 43212": [
       39.983949886656,
       -83.05402028548
+    ],
+    "1340 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980771413742,
+      -83.040752275124
     ],
     "1340 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979878674616,
@@ -3329,6 +4073,10 @@
     "1340 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.983734739496,
       -83.055301447238
+    ],
+    "1341 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980657084691,
+      -83.040762389764
     ],
     "1341 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979759380819,
@@ -3378,9 +4126,17 @@
       39.984106719569,
       -83.04120316614
     ],
+    "1345 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981611701159,
+      -83.040899573408
+    ],
     "1346 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.984248780918,
       -83.051470198754
+    ],
+    "1346 GLENN AVE, Grandview Heights, OH 43212": [
+      39.984095883466,
+      -83.054010050117
     ],
     "1346 INGLIS AVE, Grandview Heights, OH 43212": [
       39.980778125933,
@@ -3393,6 +4149,10 @@
     "1346 MURRELL AVE, Grandview Heights, OH 43212": [
       39.984221761848,
       -83.041211106794
+    ],
+    "1346 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981724426952,
+      -83.040849714759
     ],
     "1346 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983442550923,
@@ -3409,6 +4169,14 @@
     "1347 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978742122707,
       -83.040018123177
+    ],
+    "1347 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980663796882,
+      -83.040891605975
+    ],
+    "1347 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.979767855203,
+      -83.040676553733
     ],
     "1347 OAKLAND AV, Grandview Heights, OH 43212": [
       39.984638877995,
@@ -3470,6 +4238,10 @@
       39.981618306916,
       -83.041062075932
     ],
+    "1351 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981618306916,
+      -83.041062075932
+    ],
     "1351 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.983888430809,
       -83.055440853366
@@ -3510,9 +4282,21 @@
       39.984738558359,
       -83.050183583558
     ],
+    "1354 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.98402059431,
+      -83.055282205526
+    ],
     "1355 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978747842598,
       -83.040125269448
+    ],
+    "1355 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.983741446801,
+      -83.056707362616
+    ],
+    "1355 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.979779154381,
+      -83.040894056915
     ],
     "1355 W 2ND AVE, Grandview Heights, OH 43212": [
       39.983340867102,
@@ -3554,6 +4338,10 @@
       39.982508375084,
       -83.0414759674
     ],
+    "1357 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981624912672,
+      -83.041224578456
+    ],
     "1358 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.98477188446,
       -83.050180838626
@@ -3574,6 +4362,14 @@
       39.980791550316,
       -83.041139923758
     ],
+    "1358 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.98173678611,
+      -83.04115375174
+    ],
+    "1358 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.984102267115,
+      -83.055276707894
+    ],
     "1359 BLUFF AV, Grandview Heights, OH 43212": [
       39.978750702544,
       -83.040178842583
@@ -3581,6 +4377,14 @@
     "1359 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978750702544,
       -83.040178842583
+    ],
+    "1359 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980677221264,
+      -83.041150038397
+    ],
+    "1359 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.97978480397,
+      -83.041002808506
     ],
     "1360 HAINES AVE, Grandview Heights, OH 43212": [
       39.982626343268,
@@ -3593,6 +4397,10 @@
     "1361 HAINES AVE, Grandview Heights, OH 43212": [
       39.982511893182,
       -83.041568333148
+    ],
+    "1361 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.983890167035,
+      -83.056697335913
     ],
     "1362 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.984699109056,
@@ -3642,6 +4450,10 @@
       39.980798262507,
       -83.041269139969
     ],
+    "1364 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981742965689,
+      -83.04130577023
+    ],
     "1364 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.984580712704,
       -83.052708957515
@@ -3681,6 +4493,10 @@
     "1366 Haines Avenue, Grandview Heights, OH 43212": [
       39.982631620415,
       -83.041699456996
+    ],
+    "1366 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.979913171349,
+      -83.041262924567
     ],
     "1366 MULFORD RD, Grandview Heights, OH 43212": [
       39.979913171349,
@@ -3738,6 +4554,10 @@
       39.981638124186,
       -83.041549583504
     ],
+    "1369 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981638124186,
+      -83.041549583504
+    ],
     "1369 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983341458873,
       -83.042013222299
@@ -3749,6 +4569,10 @@
     "1370 CAMBRIDGE BLVD, Grandview Heights, OH 43212": [
       39.984043317013,
       -83.057981091766
+    ],
+    "1370 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980804974698,
+      -83.04139835618
     ],
     "1370 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979918478539,
@@ -3766,6 +4590,18 @@
       39.984137286772,
       -83.056683224204
     ],
+    "1371 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.979801752737,
+      -83.041329063279
+    ],
+    "1372 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980807212095,
+      -83.041441428251
+    ],
+    "1372 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981751205128,
+      -83.04150846155
+    ],
     "1373 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978766112305,
       -83.040372145947
@@ -3773,6 +4609,18 @@
     "1373 CAMBRIDGE BLVD, Grandview Heights, OH 43212": [
       39.98414003131,
       -83.058123929048
+    ],
+    "1373 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981642528024,
+      -83.04165791852
+    ],
+    "1374 GLENN AVE, Grandview Heights, OH 43212": [
+      39.984777242031,
+      -83.053965362043
+    ],
+    "1374 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.984385401143,
+      -83.056518447497
     ],
     "1374 WESTWOOD AVE, Grandview Heights, OH 43212": [
       39.984879344658,
@@ -3794,13 +4642,25 @@
       39.983346966342,
       -83.042137953309
     ],
+    "1376 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980811686889,
+      -83.041527572392
+    ],
     "1376 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.984469794733,
       -83.05525196855
     ],
+    "1377 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981647682177,
+      -83.04176688531
+    ],
     "1378 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978904698003,
       -83.040557798831
+    ],
+    "1378 GLENN AVE, Grandview Heights, OH 43212": [
+      39.984874565792,
+      -83.05395835983
     ],
     "1378 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979929092918,
@@ -3821,6 +4681,10 @@
     "1379 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979813051915,
       -83.041546566461
+    ],
+    "1379 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.984426110103,
+      -83.055404660622
     ],
     "1380 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983468711256,
@@ -3886,6 +4750,10 @@
       39.985020551434,
       -83.053947856511
     ],
+    "1384 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980820636477,
+      -83.041699860673
+    ],
     "1384 LINCOLN RD, Grandview Heights, OH 43212": [
       39.984596910565,
       -83.056504091461
@@ -3926,15 +4794,27 @@
       39.985069213315,
       -83.053944355405
     ],
+    "1387 GLENN AVE, Grandview Heights, OH 43212": [
+      39.98516828257,
+      -83.054087009716
+    ],
     "1387 MULFORD AVE, Grandview Heights, OH 43212": [
       39.979824351093,
       -83.041764069643
+    ],
+    "1388 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.979942360892,
+      -83.041824807787
     ],
     "1389 ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.98468801451,
       -83.059841265954
     ],
     "1389 GLENN AV, Grandview Heights, OH 43212": [
+      39.985217704793,
+      -83.054083453905
+    ],
+    "1389 GLENN AVE, Grandview Heights, OH 43212": [
       39.985217704793,
       -83.054083453905
     ],
@@ -3950,9 +4830,17 @@
       39.983359817103,
       -83.042428992331
     ],
+    "1389 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.984618199642,
+      -83.055391545751
+    ],
     "1390 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978922461652,
       -83.040703967526
+    ],
+    "1390 GLENN AVE, Grandview Heights, OH 43212": [
+      39.985166537076,
+      -83.053937353192
     ],
     "1390 W 1ST AVE, Grandview Heights, OH 43212": [
       39.981780895724,
@@ -3986,6 +4874,10 @@
       39.983482173959,
       -83.042600555538
     ],
+    "1392 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.984796398408,
+      -83.055229508255
+    ],
     "1393 LINCOLN RD, Grandview Heights, OH 43212": [
       39.984683500006,
       -83.056647970263
@@ -4005,6 +4897,10 @@
     "1394 LINCOLN RD, Grandview Heights, OH 43212": [
       39.984808419988,
       -83.056489735425
+    ],
+    "1394 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.979949923377,
+      -83.041978599111
     ],
     "1395 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.984733409424,
@@ -4070,9 +4966,21 @@
       39.980843917165,
       -83.042150765177
     ],
+    "1400 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.984935456633,
+      -83.056481206448
+    ],
     "1400 W FIRST AVE, Grandview Heights, OH 43212": [
       39.981791461311,
       -83.042430356168
+    ],
+    "1400 W GOODALE BL, Grandview Heights, OH 43212": [
+      39.976298815081,
+      -83.04147062368
+    ],
+    "1400 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.984959733796,
+      -83.055218257221
     ],
     "1401 HAINES AVE, Grandview Heights, OH 43212": [
       39.982558045396,
@@ -4082,9 +4990,17 @@
       39.984881790089,
       -83.05663451148
     ],
+    "1405 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980735111185,
+      -83.042271241371
+    ],
     "1405 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.984925425727,
       -83.055370383093
+    ],
+    "1406 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980852229881,
+      -83.042316859188
     ],
     "1407 MULFORD RD, Grandview Heights, OH 43212": [
       39.979854386324,
@@ -4142,6 +5058,10 @@
       39.985146990008,
       -83.056467464572
     ],
+    "1410 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.985170889307,
+      -83.055216354838
+    ],
     "1411 CAMBRIDGE BL, Grandview Heights, OH 43212": [
       39.984999108064,
       -83.058061143207
@@ -4149,6 +5069,10 @@
     "1411 HAINES AVE, Grandview Heights, OH 43212": [
       39.982568708049,
       -83.042889693508
+    ],
+    "1411 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981690186775,
+      -83.04276671912
     ],
     "1411 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983385465434,
@@ -4162,9 +5086,25 @@
       39.983503206756,
       -83.043082263531
     ],
+    "1413 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.985179128489,
+      -83.056615117274
+    ],
+    "1413 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.98507903877,
+      -83.055359801764
+    ],
     "1414 BROADVIEW AVE, Grandview Heights, OH 43212": [
       39.986290873238,
       -83.046086308465
+    ],
+    "1414 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980863313502,
+      -83.042538317869
+    ],
+    "1414 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.985231603358,
+      -83.056461967821
     ],
     "1414 MULFORD RD, Grandview Heights, OH 43212": [
       39.979976908708,
@@ -4178,6 +5118,22 @@
       39.979863628595,
       -83.042569814332
     ],
+    "1415 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981693846415,
+      -83.042858082261
+    ],
+    "1416 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980866084407,
+      -83.042593682539
+    ],
+    "1417 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980751736617,
+      -83.042603429393
+    ],
+    "1418 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979981221767,
+      -83.042626370682
+    ],
     "1418 W FIRST AVE, Grandview Heights, OH 43212": [
       39.981809829887,
       -83.042888928855
@@ -4186,11 +5142,23 @@
       39.98257827119,
       -83.043087491589
     ],
+    "1419 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979868249731,
+      -83.042664227419
+    ],
     "1420 HAINES AV, Grandview Heights, OH 43212": [
       39.982693032549,
       -83.043086285525
     ],
+    "1420 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980871626218,
+      -83.04270441188
+    ],
     "1421 DUBLIN RD, Grandview Heights, OH 43212": null,
+    "1421 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980757278428,
+      -83.042714158733
+    ],
     "1421 W FIRST AVE, Grandview Heights, OH 43212": [
       39.981699335874,
       -83.042995126972
@@ -4210,6 +5178,10 @@
     "1423 CAMBRIDGE BLVD, Grandview Heights, OH 43212": [
       39.985270196355,
       -83.058041325023
+    ],
+    "1423 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979872870866,
+      -83.042758640506
     ],
     "1423 W GOODALE BL, Grandview Heights, OH 43212": [
       39.976466386485,
@@ -4231,6 +5203,10 @@
       39.979987691357,
       -83.042758549004
     ],
+    "1425 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980762820238,
+      -83.042824888073
+    ],
     "1425 MONTCALM RD, Grandview Heights, OH 43212": null,
     "1427 ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.985266281638,
@@ -4248,6 +5224,10 @@
       39.981704825334,
       -83.043132171683
     ],
+    "1428 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980882709839,
+      -83.042925870561
+    ],
     "1428 W SECOND AVE, Grandview Heights, OH 43212": [
       39.9835203743,
       -83.043478528934
@@ -4260,9 +5240,17 @@
       39.985399623434,
       -83.057882380462
     ],
+    "1430 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979994160947,
+      -83.042890727326
+    ],
     "1431 MULFORD RD, Grandview Heights, OH 43212": [
       39.979882113137,
       -83.04294746668
+    ],
+    "1431 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981708484974,
+      -83.043223534824
     ],
     "1432 W FIRST AVE, Grandview Heights, OH 43212": [
       39.981824116557,
@@ -4288,6 +5276,10 @@
       39.980776674764,
       -83.043101711425
     ],
+    "1435 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979886734273,
+      -83.043041879767
+    ],
     "1435 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983414726585,
       -83.043688365957
@@ -4304,6 +5296,10 @@
       39.985767622473,
       -83.055414596693
     ],
+    "1440 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980899335271,
+      -83.043258058582
+    ],
     "1440 MULFORD RD, Grandview Heights, OH 43212": [
       39.980004943596,
       -83.043111024529
@@ -4316,6 +5312,10 @@
       39.982606130479,
       -83.043687774025
     ],
+    "1441 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.98078498748,
+      -83.043267805435
+    ],
     "1441 MULFORD RD, Grandview Heights, OH 43212": [
       39.979893665976,
       -83.043183499398
@@ -4324,9 +5324,17 @@
       39.985645437653,
       -83.055573402404
     ],
+    "1443 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979895976544,
+      -83.043230705941
+    ],
     "1444 LINCOLN RD, Grandview Heights, OH 43212": [
       39.985848997412,
       -83.056481333963
+    ],
+    "1444 MULFORD RD, Grandview Heights, OH 43212": [
+      39.980009256656,
+      -83.04319914341
     ],
     "1444 W FIRST AV, Grandview Heights, OH 43212": [
       39.981839870163,
@@ -4339,6 +5347,10 @@
     "1445 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983428536292,
       -83.044001836928
+    ],
+    "1445 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.98573554639,
+      -83.055566757484
     ],
     "1446 HAINES AVE, Grandview Heights, OH 43212": [
       39.98272453074,
@@ -4380,6 +5392,10 @@
       39.981845426717,
       -83.04378372756
     ],
+    "1451 HAINES AVE, Grandview Heights, OH 43212": [
+      39.982615168003,
+      -83.043892573818
+    ],
     "1451 MULFORD RD, Grandview Heights, OH 43212": [
       39.979905218815,
       -83.043419532115
@@ -4396,9 +5412,21 @@
       39.983549372466,
       -83.044135716236
     ],
+    "1452 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.9860676838,
+      -83.055392174145
+    ],
+    "1453 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.985915763862,
+      -83.055553467645
+    ],
     "1454 CAMBRIDGE BLVD, Grandview Heights, OH 43212": [
       39.986109871035,
       -83.057831710316
+    ],
+    "1454 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980923472908,
+      -83.043742639833
     ],
     "1454 LINCOLN RD, Grandview Heights, OH 43212": [
       39.985982652134,
@@ -4424,6 +5452,10 @@
       39.981734689852,
       -83.043885720422
     ],
+    "1455 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981734689852,
+      -83.043885720422
+    ],
     "1456 HAINES AVE, Grandview Heights, OH 43212": [
       39.982733842128,
       -83.043980789732
@@ -4437,6 +5469,10 @@
       -83.043925236486
     ],
     "1458 INGLIS AV, Grandview Heights, OH 43212": [
+      39.980929146149,
+      -83.043856132868
+    ],
+    "1458 INGLIS AVE, Grandview Heights, OH 43212": [
       39.980929146149,
       -83.043856132868
     ],
@@ -4461,9 +5497,17 @@
       39.986043589534,
       -83.057985974244
     ],
+    "1461 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980817834896,
+      -83.043923325724
+    ],
     "1461 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.986096073327,
       -83.055539823222
+    ],
+    "1462 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.986282076075,
+      -83.05537583765
     ],
     "1463 LINCOLN RD, Grandview Heights, OH 43212": [
       39.986118882864,
@@ -4477,6 +5521,14 @@
       39.98174209859,
       -83.044074398991
     ],
+    "1464 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980938171125,
+      -83.04402682887
+    ],
+    "1465 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981743950775,
+      -83.044121568633
+    ],
     "1466 HAINES AV, Grandview Heights, OH 43212": [
       39.982743153516,
       -83.044191795579
@@ -4484,6 +5536,10 @@
     "1466 LINCOLN RD, Grandview Heights, OH 43212": [
       39.9861419058,
       -83.056462145099
+    ],
+    "1466 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.980040968988,
+      -83.04385255641
     ],
     "1466 W 1ST AVE, Grandview Heights, OH 43212": [
       39.981860244192,
@@ -4504,6 +5560,14 @@
     "1467 INGLIS AVE, Grandview Heights, OH 43212": [
       39.980826859872,
       -83.044094021726
+    ],
+    "1467 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979932390168,
+      -83.043983117512
+    ],
+    "1469 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.986198405081,
+      -83.05660754209
     ],
     "1469 ROXBURY RD, Grandview Heights, OH 43212": [
       39.985527431658,
@@ -4537,6 +5601,18 @@
       39.986716699816,
       -83.057789812113
     ],
+    "1472 MULFORD RD, Grandview Heights, OH 43212": [
+      39.980051826536,
+      -83.04407991777
+    ],
+    "1473 INGLIS AVE, Grandview Heights, OH 43212": [
+      39.980835693669,
+      -83.044264505394
+    ],
+    "1473 MULFORD RD, Grandview Heights, OH 43212": [
+      39.979942220826,
+      -83.044188218135
+    ],
     "1474 HAINES AV, Grandview Heights, OH 43212": [
       39.982750377513,
       -83.044360751454
@@ -4561,10 +5637,18 @@
       39.98084431858,
       -83.044435236698
     ],
+    "1479 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.986330942109,
+      -83.056597148917
+    ],
     "1480 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1480 LINCOLN RD, Grandview Heights, OH 43212": [
       39.986328852766,
       -83.056447485256
+    ],
+    "1480 MULFORD AVE, Grandview Heights, OH 43212": [
+      39.980067319203,
+      -83.044382499047
     ],
     "1481 MULFORD RD, Grandview Heights, OH 43212": [
       39.979956590016,
@@ -4577,6 +5661,14 @@
     "1485 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.986636667519,
       -83.05549863044
+    ],
+    "1486 MULFORD RD, Grandview Heights, OH 43212": [
+      39.980079293528,
+      -83.044609765016
+    ],
+    "1486 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.986797010504,
+      -83.055337428197
     ],
     "1487 LINCOLN RD, Grandview Heights, OH 43212": [
       39.986436971732,
@@ -4593,6 +5685,10 @@
     "1490 ARLINGTON AV, Grandview Heights, OH 43212": [
       39.986433228737,
       -83.059827532697
+    ],
+    "1493 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.986516493949,
+      -83.056582598475
     ],
     "1494 LINCOLN RD, Grandview Heights, OH 43212": [
       39.986515799732,
@@ -4622,6 +5718,10 @@
     "1500 Wyandotte Rd, Grandview Heights, OH 43212": [
       39.987097263487,
       -83.055317009116
+    ],
+    "1503 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.986648672975,
+      -83.056572723999
     ],
     "1504 CAMBRIDGE BL, Grandview Heights, OH 43212": [
       39.987370217352,
@@ -4663,6 +5763,14 @@
       39.987312263178,
       -83.055452149974
     ],
+    "1516 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.986810037172,
+      -83.056411698795
+    ],
+    "1516 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981920508388,
+      -83.045527953646
+    ],
     "1517 LINCOLN RD, Grandview Heights, OH 43212": [
       39.986834294659,
       -83.056559779568
@@ -4674,6 +5782,10 @@
     "1520 ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.987208071708,
       -83.059886293799
+    ],
+    "1520 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.987525561062,
+      -83.055286267603
     ],
     "1521 W 1ST AVE, Grandview Heights, OH 43212": [
       39.981811846853,
@@ -4707,9 +5819,17 @@
       39.986970337746,
       -83.056400520145
     ],
+    "1528 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.98769703757,
+      -83.055272389163
+    ],
     "1529 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.98762815929,
       -83.05542781194
+    ],
+    "1530 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.986997054508,
+      -83.056398657037
     ],
     "1530 W FIRST AV, Grandview Heights, OH 43212": [
       39.98193713788,
@@ -4739,6 +5859,10 @@
       39.987484543012,
       -83.060056857961
     ],
+    "1536 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.987868514078,
+      -83.055258510724
+    ],
     "1538 ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.987571739483,
       -83.059913329676
@@ -4750,6 +5874,14 @@
     "1539 ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.98756544746,
       -83.060062664693
+    ],
+    "1542 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.987157158368,
+      -83.056387144305
+    ],
+    "1542 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.987998010409,
+      -83.055248352535
     ],
     "1543 LINCOLN RD, Grandview Heights, OH 43212": [
       39.987179185409,
@@ -4768,6 +5900,14 @@
       39.987210582534,
       -83.056383196095
     ],
+    "1546 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.98808382001,
+      -83.055243127262
+    ],
+    "1547 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.987232210888,
+      -83.056531397382
+    ],
     "1549 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.988077755452,
       -83.055393221351
@@ -4780,9 +5920,17 @@
       39.987290718784,
       -83.05637727378
     ],
+    "1552 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.988212534412,
+      -83.055235289353
+    ],
     "1553 LINCOLN RD, Grandview Heights, OH 43212": [
       39.987311749106,
       -83.056525519264
+    ],
+    "1553 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.988167909844,
+      -83.055387731507
     ],
     "1555 W ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.987888779666,
@@ -4803,6 +5951,10 @@
     "1558 BROADVIEW TE, Grandview Heights, OH 43212": [
       39.978974567616,
       -83.046673159501
+    ],
+    "1558 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.987370855034,
+      -83.056371351465
     ],
     "1559 ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.987969662834,
@@ -4868,6 +6020,10 @@
       39.978865484796,
       -83.046891154502
     ],
+    "1569 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.98752385102,
+      -83.056509844281
+    ],
     "1570 ROXBURY RD, Grandview Heights, OH 43212": [
       39.987463454232,
       -83.061210168854
@@ -4875,6 +6031,10 @@
     "1572 W FIRST AV, Grandview Heights, OH 43212": [
       39.981992537395,
       -83.047148389512
+    ],
+    "1574 GOODALE BL, Grandview Heights, OH 43212": [
+      39.976889175071,
+      -83.046558126848
     ],
     "1574 GOODALE BLVD, Grandview Heights, OH 43212": [
       39.976889175071,
@@ -4891,6 +6051,10 @@
     "1576 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.988726655222,
       -83.055199186486
+    ],
+    "1577 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.987629901977,
+      -83.056502006789
     ],
     "1580 LINCOLN RD, Grandview Heights, OH 43212": [
       39.987664687949,
@@ -4911,6 +6075,10 @@
     "1581 TERRACE DR, Grandview Heights, OH 43212": [
       39.978287962437,
       -83.045988317066
+    ],
+    "1581 WYANDOTTE RD, Grandview Heights, OH 43212": [
+      39.988799317249,
+      -83.055343650423
     ],
     "1582 CAMBRIDGE BLVD, Grandview Heights, OH 43212": [
       39.988963862683,
@@ -4952,6 +6120,10 @@
       39.988657711573,
       -83.060144482151
     ],
+    "1597 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.98789467204,
+      -83.056483058299
+    ],
     "1600 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1600 ROXBURY RD, Grandview Heights, OH 43212": [
       39.988239521483,
@@ -4970,6 +6142,10 @@
       -83.048018510125
     ],
     "1620 E BROAD ST, Grandview Heights, OH 43212": null,
+    "1620 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982044811897,
+      -83.048402186826
+    ],
     "1621 W FIRST AVE, Grandview Heights, OH 43212": [
       39.98193229221,
       -83.048454792414
@@ -4978,6 +6154,10 @@
     "1627 W FIRST AVE, Grandview Heights, OH 43212": [
       39.981937783673,
       -83.048583176541
+    ],
+    "1628 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982051376405,
+      -83.048555657506
     ],
     "1631 ROXBURY RD, Grandview Heights, OH 43212": [
       39.989143419332,
@@ -4991,6 +6171,10 @@
       39.976873282417,
       -83.048061496016
     ],
+    "1639 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.981948766601,
+      -83.048839944794
+    ],
     "1640 RIDGEWAY PL, Grandview Heights, OH 43212": [
       39.97914846823,
       -83.049039155147
@@ -4998,6 +6182,10 @@
     "1645 MERRICK RD, Grandview Heights, OH 43212": [
       39.979992695662,
       -83.048683895445
+    ],
+    "1645 RIDGEWAY PL, Grandview Heights, OH 43212": [
+      39.979036708441,
+      -83.049111761943
     ],
     "1645 RIDGWAY PL, Grandview Heights, OH 43212": [
       39.979036708441,
@@ -5018,6 +6206,10 @@
     "1659 RIDGWAY PL, Grandview Heights, OH 43212": [
       39.979046038191,
       -83.049337724605
+    ],
+    "1660 MERRICK RD, Grandview Heights, OH 43212": [
+      39.980134616646,
+      -83.049281776436
     ],
     "1660 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982082352361,
@@ -5051,6 +6243,10 @@
       39.981999768235,
       -83.05003993203
     ],
+    "1690 MERRICK RD, Grandview Heights, OH 43212": [
+      39.980158293339,
+      -83.049870596175
+    ],
     "1696 MERRICK RD, Grandview Heights, OH 43212": [
       39.980174520352,
       -83.050287281728
@@ -5064,6 +6260,10 @@
       -83.050596906834
     ],
     "1714 W 1ST AVE, Grandview Heights, OH 43212": [
+      39.982152807426,
+      -83.050909115393
+    ],
+    "1714 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982152807426,
       -83.050909115393
     ],
@@ -5092,6 +6292,14 @@
       39.982177402511,
       -83.051448991633
     ],
+    "1735 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982065213699,
+      -83.05150617208
+    ],
+    "1741 MERRICK RD, Grandview Heights, OH 43212": [
+      39.980098928614,
+      -83.051117318469
+    ],
     "1747 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982082115993,
       -83.051907366086
@@ -5099,6 +6307,14 @@
     "1750 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982198683174,
       -83.051954072635
+    ],
+    "1753 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982087545876,
+      -83.052046208074
+    ],
+    "1756 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982204349139,
+      -83.052098951231
     ],
     "1757 MERRICK RD, Grandview Heights, OH 43212": [
       39.980106667728,
@@ -5116,6 +6332,14 @@
       39.982208126449,
       -83.052195536962
     ],
+    "1763 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982096595681,
+      -83.052277611387
+    ],
+    "1766 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982213792414,
+      -83.052340415558
+    ],
     "1771 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982103835525,
       -83.052462734038
@@ -5123,6 +6347,10 @@
     "1772 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982219458379,
       -83.052485294154
+    ],
+    "1777 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982109265408,
+      -83.052601576026
     ],
     "1780 W 1ST AVE, Grandview Heights, OH 43212": [
       39.982227109749,
@@ -5132,12 +6360,28 @@
       39.985437986593,
       -83.053456965687
     ],
+    "1784 BLUFF AVE, Grandview Heights, OH 43212": [
+      39.978956703,
+      -83.052610406
+    ],
+    "1784 W THIRD AVE, Grandview Heights, OH 43212": [
+      39.985552386531,
+      -83.053448324123
+    ],
     "1787 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978902734974,
       -83.052930801573
     ],
+    "1788 W THIRD AVE, Grandview Heights, OH 43212": [
+      39.985557383155,
+      -83.053560996557
+    ],
     "179 W DUBLIN GRANVILLE RD, Grandview Heights, OH 43212": null,
     "1790 W 1ST AVE, Grandview Heights, OH 43212": [
+      39.98224153133,
+      -83.053021727875
+    ],
+    "1790 W FIRST AVE, Grandview Heights, OH 43212": [
       39.98224153133,
       -83.053021727875
     ],
@@ -5153,6 +6397,14 @@
       39.982246599064,
       -83.053165845537
     ],
+    "1796 W THIRD AVE, Grandview Heights, OH 43212": [
+      39.985571489961,
+      -83.05387932573
+    ],
+    "1799 W FIFTH AVE, Grandview Heights, OH 43212": [
+      39.989184336566,
+      -83.054784068584
+    ],
     "1799 W FIRST AV, Grandview Heights, OH 43212": [
       39.982132536245,
       -83.053182449511
@@ -5160,6 +6412,10 @@
     "1799 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982132536245,
       -83.053182449511
+    ],
+    "1800 GOODALE BL, Grandview Heights, OH 43212": [
+      39.976889911094,
+      -83.052590281967
     ],
     "1800 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982250701639,
@@ -5169,9 +6425,21 @@
       39.985583678433,
       -83.054141331224
     ],
+    "1806 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982256855503,
+      -83.053407833816
+    ],
+    "1807 BLUFF AVE, Grandview Heights, OH 43212": [
+      39.978986020687,
+      -83.05335445135
+    ],
     "1807 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982139043779,
       -83.053335986902
+    ],
+    "1809 W THIRD AVE, Grandview Heights, OH 43212": [
+      39.985469312107,
+      -83.054150700008
     ],
     "1812 W 1st Ave, Grandview Heights, OH 43212": [
       39.982263009366,
@@ -5193,9 +6461,21 @@
       39.982265504218,
       -83.053600272757
     ],
+    "1815 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982145551313,
+      -83.053489524293
+    ],
     "1819 W THIRD AV, Grandview Heights, OH 43212": [
       39.985479960104,
       -83.054380805046
+    ],
+    "1819 W THIRD AVE, Grandview Heights, OH 43212": [
+      39.985479960104,
+      -83.054380805046
+    ],
+    "1822 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982275916685,
+      -83.053793682596
     ],
     "1823 W 1ST AVE, Grandview Heights, OH 43212": [
       39.982152989861,
@@ -5213,6 +6493,14 @@
       39.989228894372,
       -83.055876116353
     ],
+    "1826 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982281122919,
+      -83.053890387516
+    ],
+    "1826 W THIRD AVE, Grandview Heights, OH 43212": [
+      39.985604085047,
+      -83.054601143574
+    ],
     "1827 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982157118943,
       -83.053720797791
@@ -5225,13 +6513,33 @@
       39.982300957957,
       -83.054283111402
     ],
+    "1842 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982303856285,
+      -83.05436246952
+    ],
+    "1845 BLUFF AVE, Grandview Heights, OH 43212": [
+      39.979112833644,
+      -83.053970421457
+    ],
+    "1847 W FIFTH AVE, Grandview Heights, OH 43212": [
+      39.989241561872,
+      -83.056229112378
+    ],
     "1850 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982309652941,
       -83.054521185758
     ],
+    "1852 BLUFF AVE, Grandview Heights, OH 43212": [
+      39.979181289177,
+      -83.053727320839
+    ],
     "1857 BLUFF AVE, Grandview Heights, OH 43212": [
       39.979153266819,
       -83.054165086412
+    ],
+    "1858 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982315449597,
+      -83.054679901995
     ],
     "1859 W FIRST AVE, Grandview Heights, OH 43212": [
       39.98219808982,
@@ -5248,6 +6556,10 @@
     "1867 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982210341776,
       -83.054925821878
+    ],
+    "1868 BLUFF AVE, Grandview Heights, OH 43212": [
+      39.979334787103,
+      -83.05446471318
     ],
     "1869 W 5TH AVE, Grandview Heights, OH 43212": [
       39.989253757387,
@@ -5306,6 +6618,18 @@
       39.982352423678,
       -83.055542493909
     ],
+    "1897 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982259265897,
+      -83.056044426774
+    ],
+    "1899 W THIRD AVE, Grandview Heights, OH 43212": [
+      39.985594904238,
+      -83.057050053104
+    ],
+    "1900 W THIRD ST, Grandview Heights, OH 43212": [
+      39.985694078992,
+      -83.056643945439
+    ],
     "1905 W 1ST AVE, Grandview Heights, OH 43212": [
       39.982269892446,
       -83.056291197522
@@ -5314,9 +6638,17 @@
       39.982269892446,
       -83.056291197522
     ],
+    "1906 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982362819216,
+      -83.055783900075
+    ],
     "1910 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982366977431,
       -83.055880462542
+    ],
+    "1935 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982293393706,
+      -83.056907310113
     ],
     "1941 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982294996568,
@@ -5485,9 +6817,25 @@
       -83.029195041502
     ],
     "7630 RED BAY CT, Grandview Heights, OH 43212": null,
+    "766 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.975392867531,
+      -83.029051547446
+    ],
+    "772 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.97548041933,
+      -83.029053907326
+    ],
+    "775 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975425687493,
+      -83.030547513579
+    ],
     "775 YARD ST, Grandview Heights, OH 43212": [
       39.975446646493,
       -83.025654962021
+    ],
+    "776 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975438661529,
+      -83.030398143751
     ],
     "776-778 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.97546369905,
@@ -5498,9 +6846,41 @@
       39.974119261083,
       -83.02433406397
     ],
+    "778 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.975567971129,
+      -83.029056267206
+    ],
+    "779 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975476477892,
+      -83.030548190697
+    ],
+    "781 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.975605315422,
+      -83.029207808771
+    ],
     "784 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975285228576,
       -83.031495359293
+    ],
+    "784 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975538811613,
+      -83.030399478913
+    ],
+    "785 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.975603060569,
+      -83.031623071881
+    ],
+    "785 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975552663492,
+      -83.030549206373
+    ],
+    "786 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.975303134944,
+      -83.031494120046
+    ],
+    "786 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.975690341055,
+      -83.029071612293
     ],
     "787 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975628380595,
@@ -5518,9 +6898,25 @@
       39.975722751281,
       -83.029228020272
     ],
+    "789 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975600075955,
+      -83.030550248879
+    ],
+    "790 COPELAND RD, Grandview Heights, OH 43212": [
+      39.975601746731,
+      -83.032602083565
+    ],
+    "792 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975642227144,
+      -83.030404155651
+    ],
     "793 COPELAND RD, Grandview Heights, OH 43212": [
       39.975592134032,
       -83.032752549932
+    ],
+    "794 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.975374760416,
+      -83.031489163055
     ],
     "794 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.975806099259,
@@ -5534,9 +6930,17 @@
       39.975758749057,
       -83.025743761523
     ],
+    "796 COPELAND RD, Grandview Heights, OH 43212": [
+      39.975669916908,
+      -83.032597124722
+    ],
     "796 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975392666784,
       -83.031487923808
+    ],
+    "797 COPELAND RD, Grandview Heights, OH 43212": [
+      39.975635897602,
+      -83.032749366477
     ],
     "797 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975754980727,
@@ -5550,9 +6954,21 @@
       39.975717165188,
       -83.030410908096
     ],
+    "800 AVONDALE AVE, Grandview Heights, OH 43212": [
+      39.975269982912,
+      -83.042469125482
+    ],
     "800 GOODALE BL, Grandview Heights, OH 43212": [
       39.97423827546,
       -83.024496669874
+    ],
+    "800 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.975892917912,
+      -83.029106477132
+    ],
+    "800 THOMAS RD, Grandview Heights, OH 43212": [
+      39.975680207847,
+      -83.033725068083
     ],
     "800 YARD ST, Grandview Heights, OH 43212": [
       39.975939211653,
@@ -5566,6 +6982,10 @@
       39.975748348485,
       -83.030565603531
     ],
+    "802 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975770495295,
+      -83.030418590096
+    ],
     "804 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975464292256,
       -83.031482966817
@@ -5574,6 +6994,10 @@
     "804 Gladden Road, Grandview Heights, OH 43212": [
       39.975464292256,
       -83.031482966817
+    ],
+    "805 COPELAND RD, Grandview Heights, OH 43212": [
+      39.975723424743,
+      -83.032742999567
     ],
     "805 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975856260832,
@@ -5591,6 +7015,10 @@
       39.97578353387,
       -83.032588859983
     ],
+    "806 THOMAS RD, Grandview Heights, OH 43212": [
+      39.975743687545,
+      -83.033720510873
+    ],
     "806 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.975820138887,
       -83.030427175545
@@ -5599,21 +7027,61 @@
       39.975820138887,
       -83.030427175545
     ],
+    "807 THOMAS RD, Grandview Heights, OH 43212": [
+      39.97574998216,
+      -83.033869820057
+    ],
+    "808 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.976008676115,
+      -83.029126399898
+    ],
+    "808 OXLEY RD, Grandview Heights, OH 43212": [
+      39.974847318328,
+      -83.034910771864
+    ],
     "810 BURR AVE, Grandview Heights, OH 43212": [
       39.976738834083,
       -83.026893241586
+    ],
+    "810 COPELAND RD, Grandview Heights, OH 43212": [
+      39.975828980655,
+      -83.032585554087
     ],
     "811 COPELAND RD, Grandview Heights, OH 43212": [
       39.975789070099,
       -83.032738224385
     ],
+    "811 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.976045699893,
+      -83.0292836019
+    ],
+    "811 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975874230451,
+      -83.030587373779
+    ],
     "812 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975535917728,
       -83.031478009827
     ],
+    "812 THOMAS RD, Grandview Heights, OH 43212": [
+      39.975807167243,
+      -83.033715953662
+    ],
+    "812 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975894604276,
+      -83.03044005372
+    ],
     "813 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975957540938,
       -83.031596967605
+    ],
+    "813 OXLEY RD, Grandview Heights, OH 43212": [
+      39.974952162032,
+      -83.035053284133
+    ],
+    "814 COPELAND RD, Grandview Heights, OH 43212": [
+      39.975874427439,
+      -83.032582248192
     ],
     "814 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975553824096,
@@ -5630,6 +7098,22 @@
     "815 COPELAND RD, Grandview Heights, OH 43212": [
       39.975832833669,
       -83.03273504093
+    ],
+    "815 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.975982860964,
+      -83.031595103014
+    ],
+    "815 OXLEY RD, Grandview Heights, OH 43212": [
+      39.974999150919,
+      -83.03505004416
+    ],
+    "815 THOMAS RD, Grandview Heights, OH 43212": [
+      39.975834621758,
+      -83.033863743777
+    ],
+    "817 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.975949759631,
+      -83.030600435928
     ],
     "818 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.97615337387,
@@ -5659,13 +7143,25 @@
       39.975607346003,
       -83.0314729834
     ],
+    "820 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.975156059287,
+      -83.036021172249
+    ],
     "820 Northwest Blvd, Grandview Heights, OH 43212": [
       39.976182313421,
       -83.029156284046
     ],
+    "820 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975122022591,
+      -83.034891830484
+    ],
     "821 GLADDEN RD, Grandview Heights, OH 43212": [
       39.976058821043,
       -83.031589509241
+    ],
+    "821 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.976192494717,
+      -83.029308866277
     ],
     "822 WILLIAMS AV, Grandview Heights, OH 43212": [
       39.979119191104,
@@ -5679,9 +7175,29 @@
       39.97592036081,
       -83.03272867402
     ],
+    "823 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975187106467,
+      -83.035037084268
+    ],
     "823 THOMAS RD, Grandview Heights, OH 43212": [
       39.975919261355,
       -83.033857667496
+    ],
+    "823 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.976025288811,
+      -83.030613498077
+    ],
+    "824 COPELAND RD, Grandview Heights, OH 43212": [
+      39.975988044401,
+      -83.032573983453
+    ],
+    "824 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.975643152101,
+      -83.031470346604
+    ],
+    "824 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.976043535053,
+      -83.03046581007
     ],
     "825 BURR AVE, Grandview Heights, OH 43212": [
       39.976735466792,
@@ -5703,9 +7219,17 @@
       39.975289529751,
       -83.036011833163
     ],
+    "826 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.976269132074,
+      -83.02917122612
+    ],
     "827 COPELAND RD, Grandview Heights, OH 43212": [
       39.975964124381,
       -83.032725490565
+    ],
+    "827 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.976280571611,
+      -83.029324024903
     ],
     "827 Timberman Rd, Grandview Heights, OH 43212": [
       39.976075641598,
@@ -5723,6 +7247,10 @@
       39.976351795042,
       -83.027528371766
     ],
+    "828 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.975678958199,
+      -83.031467709809
+    ],
     "829 GLADDEN RD, Grandview Heights, OH 43212": [
       39.976160101148,
       -83.031582050876
@@ -5735,9 +7263,21 @@
       39.975982741053,
       -83.033853110286
     ],
+    "830 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.975378510061,
+      -83.036005607105
+    ],
     "831 W Goodale Blvd, Grandview Heights, OH 43212": [
       39.974193752137,
       -83.026244268188
+    ],
+    "832 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975396726853,
+      -83.034872889104
+    ],
+    "832 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976018766237,
+      -83.033700762961
     ],
     "833 COPELAND RD, Grandview Heights, OH 43212": [
       39.976029769737,
@@ -5755,9 +7295,21 @@
       39.975513433033,
       -83.036145914135
     ],
+    "835 PALMER RD, Grandview Heights, OH 43212": [
+      39.975379762079,
+      -83.037283762326
+    ],
+    "836 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.975511980526,
+      -83.035996268019
+    ],
     "836 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.976413829829,
       -83.029196129577
+    ],
+    "836 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975488294941,
+      -83.03486657531
     ],
     "837 Goodale Blvd, Grandview Heights, OH 43212": [
       39.974198365201,
@@ -5767,28 +7319,80 @@
       39.975516028676,
       -83.035014404458
     ],
+    "838 COPELAND RD, Grandview Heights, OH 43212": [
+      39.976147108148,
+      -83.032562412819
+    ],
+    "839 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.97628670128,
+      -83.031572727921
+    ],
+    "839 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.975607157809,
+      -83.036139309246
+    ],
     "839 PALMER RD, Grandview Heights, OH 43212": [
       39.975452525368,
       -83.03727871377
     ],
+    "840 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.975786376492,
+      -83.031459799422
+    ],
     "840 GRANDVIEW AVE, Grandview Heights, OH 43212": null,
+    "840 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975579863028,
+      -83.034860261517
+    ],
+    "840 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976103405834,
+      -83.03369468668
+    ],
+    "840 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.97624416511,
+      -83.030512055485
+    ],
     "841 COPELAND RD, Grandview Heights, OH 43212": [
       39.976117296878,
       -83.032714348473
     ],
+    "841 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976109700449,
+      -83.033843995865
+    ],
     "842 N 4TH ST, Grandview Heights, OH 43212": null,
+    "843 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.975700815682,
+      -83.03613262025
+    ],
     "843 OXLEY RD, Grandview Heights, OH 43212": [
       39.975656995337,
       -83.03500468454
     ],
+    "843 PALMER RD, Grandview Heights, OH 43212": [
+      39.975525288657,
+      -83.037273665215
+    ],
     "844 GRANDVIEW AVE, Grandview Heights, OH 43212": null,
+    "844 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.97639890125,
+      -83.03055433601
+    ],
     "844 Timberman Road, Grandview Heights, OH 43212": [
       39.97639890125,
       -83.03055433601
     ],
+    "845 COPELAND RD, Grandview Heights, OH 43212": [
+      39.976161060448,
+      -83.032711165018
+    ],
     "845 PULLMAN WY, Grandview Heights, OH 43212": [
       39.977457884286,
       -83.028459651377
+    ],
+    "845 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976152020248,
+      -83.033840957724
     ],
     "845 W Goodale Blvd, Grandview Heights, OH 43212": [
       39.974204370905,
@@ -5802,6 +7406,10 @@
       39.976238001718,
       -83.032555801028
     ],
+    "847 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975750973111,
+      -83.034998204594
+    ],
     "847 PALMER RD, Grandview Heights, OH 43212": [
       39.975598189031,
       -83.037268514254
@@ -5813,6 +7421,10 @@
     "847-849 PALMER RD, Grandview Heights, OH 43212": [
       39.975634565799,
       -83.037265872966
+    ],
+    "848 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975762999203,
+      -83.03484763393
     ],
     "848 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.976477673831,
@@ -5826,6 +7438,10 @@
       39.976486572788,
       -83.030734905832
     ],
+    "850 BOBCAT AVE, Grandview Heights, OH 43212": [
+      39.977925615767,
+      -83.02800048057
+    ],
     "850 GOODALE AV, Grandview Heights, OH 43212": [
       39.974312890676,
       -83.026355298922
@@ -5834,17 +7450,37 @@
       39.974312890676,
       -83.026355298922
     ],
+    "850 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.976733799669,
+      -83.029286078856
+    ],
     "850 PULLMAN WAY, Grandview Heights, OH 43212": [
       39.977589397859,
       -83.028351812813
+    ],
+    "850 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976209205331,
+      -83.033687091329
+    ],
+    "851 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.975888131427,
+      -83.036119242257
     ],
     "852 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.975867820525,
       -83.035970934126
     ],
+    "852 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975854567291,
+      -83.034841320137
+    ],
     "852 PULLMAN WY, Grandview Heights, OH 43212": [
       39.977626125689,
       -83.028366322601
+    ],
+    "852 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.976556446412,
+      -83.030602751678
     ],
     "853 OXLEY RD, Grandview Heights, OH 43212": [
       39.975891939772,
@@ -5857,6 +7493,10 @@
     "854 PALMER RD, Grandview Heights, OH 43212": [
       39.975779124465,
       -83.037105610449
+    ],
+    "854 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976251525129,
+      -83.033684053189
     ],
     "855 GRANDVIEW AV, Grandview Heights, OH 43212": null,
     "855 GRANDVIEW AVE, Grandview Heights, OH 43212": null,
@@ -5877,6 +7517,10 @@
       39.97581704918,
       -83.037102856766
     ],
+    "857 OXLEY RD, Grandview Heights, OH 43212": [
+      39.975985917546,
+      -83.034982004729
+    ],
     "857 PULLMAN WAY, Grandview Heights, OH 43212": [
       39.977655279506,
       -83.028537305934
@@ -5884,6 +7528,14 @@
     "857 PULLMAN WY, Grandview Heights, OH 43212": [
       39.977655279506,
       -83.028537305934
+    ],
+    "857 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976278979644,
+      -83.033831843304
+    ],
+    "858 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976001282994,
+      -83.035961402306
     ],
     "858 OXLEY RD, Grandview Heights, OH 43212": [
       39.975991919422,
@@ -5900,6 +7552,10 @@
     "860 PALMER RD, Grandview Heights, OH 43212": [
       39.97589289861,
       -83.037097349399
+    ],
+    "861 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976122276109,
+      -83.036102519766
     ],
     "862 COPELAND RD, Grandview Heights, OH 43212": [
       39.976558796084,
@@ -5925,9 +7581,17 @@
       39.976129271553,
       -83.034822378757
     ],
+    "865 COPELAND RD, Grandview Heights, OH 43212": [
+      39.976472203521,
+      -83.032688818123
+    ],
     "865 GLADDEN RD, Grandview Heights, OH 43212": [
       39.976840894161,
       -83.031538394169
+    ],
+    "865 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.977046812472,
+      -83.029549459917
     ],
     "865 Yard Street, Grandview Heights, OH 43212": [
       39.977714051611,
@@ -5937,9 +7601,21 @@
       39.976651329459,
       -83.032526945174
     ],
+    "866 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.977019278687,
+      -83.029384590281
+    ],
+    "866 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.976832414562,
+      -83.030713871672
+    ],
     "867 GLADDEN RD, Grandview Heights, OH 43212": [
       39.976878624431,
       -83.031536133438
+    ],
+    "867 OXLEY RD, Grandview Heights, OH 43212": [
+      39.976220861981,
+      -83.034965804865
     ],
     "867 W Goodale Blvd, Grandview Heights, OH 43212": [
       39.974220886593,
@@ -5948,6 +7624,14 @@
     "868 PALMER RD, Grandview Heights, OH 43212": [
       39.976044597471,
       -83.037086334665
+    ],
+    "869 COPELAND RD, Grandview Heights, OH 43212": [
+      39.976537114993,
+      -83.032684420724
+    ],
+    "869 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.977125867969,
+      -83.029589058608
     ],
     "869 PALMER RD, Grandview Heights, OH 43212": [
       39.975998333475,
@@ -5961,6 +7645,22 @@
       39.976268207931,
       -83.035942338666
     ],
+    "870 THOMAS RD, Grandview Heights, OH 43212": [
+      39.97651425896,
+      -83.033665434634
+    ],
+    "871 COPELAND RD, Grandview Heights, OH 43212": [
+      39.976569570729,
+      -83.032682222025
+    ],
+    "871 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.976954084973,
+      -83.031531611977
+    ],
+    "871 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976356420791,
+      -83.036085797275
+    ],
     "871 PULLMAN WAY, Grandview Heights, OH 43212": [
       39.977864585584,
       -83.028679406351
@@ -5969,14 +7669,42 @@
       39.977864585584,
       -83.028679406351
     ],
+    "871 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976520181115,
+      -83.033814771687
+    ],
     "871 W Goodale Blvd, Grandview Heights, OH 43212": [
       39.974223889446,
       -83.027022301614
     ],
+    "872 COPELAND RD, Grandview Heights, OH 43212": [
+      39.976790129521,
+      -83.032517542227
+    ],
+    "872 PALMER RD, Grandview Heights, OH 43212": [
+      39.976120446902,
+      -83.037080827298
+    ],
     "872 PIPESTONE DR, Grandview Heights, OH 43212": null,
+    "872 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.976947087834,
+      -83.03076583885
+    ],
+    "873 PALMER RD, Grandview Heights, OH 43212": [
+      39.97607108701,
+      -83.037234177507
+    ],
+    "873 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.976927242784,
+      -83.030915143178
+    ],
     "873 WILLIAMS AVE, Grandview Heights, OH 43212": [
       39.97872175619,
       -83.027507554072
+    ],
+    "874 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.976985312258,
+      -83.030783161242
     ],
     "875 GLADDEN RD, Grandview Heights, OH 43212": [
       39.977029545514,
@@ -5989,6 +7717,10 @@
     "875 Junction Way, Grandview Heights, OH 43212": [
       39.983138304843,
       -83.027234351863
+    ],
+    "875 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.977244451214,
+      -83.029648456644
     ],
     "875 W FIRST AVE, Grandview Heights, OH 43212": null,
     "876 NORTHWEST BL, Grandview Heights, OH 43212": [
@@ -6003,6 +7735,10 @@
       39.976621299896,
       -83.033658206024
     ],
+    "877 PALMER RD, Grandview Heights, OH 43212": [
+      39.976143840546,
+      -83.03722889493
+    ],
     "877 PULLMAN WAY, Grandview Heights, OH 43212": [
       39.977960279605,
       -83.028740716608
@@ -6011,9 +7747,21 @@
       39.976627222051,
       -83.033807543077
     ],
+    "878 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.977067166666,
+      -83.030825037105
+    ],
     "879 OXLEY RD, Grandview Heights, OH 43212": [
       39.976570185317,
       -83.034941793256
+    ],
+    "879 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.977029385291,
+      -83.030967467727
+    ],
+    "880 OXLEY RD, Grandview Heights, OH 43212": [
+      39.976564250282,
+      -83.034792456965
     ],
     "880 PALMER RD, Grandview Heights, OH 43212": [
       39.976272145762,
@@ -6022,6 +7770,14 @@
     "880 YARD ST, Grandview Heights, OH 43212": [
       39.976636166307,
       -83.025838703983
+    ],
+    "881 COPELAND RD, Grandview Heights, OH 43212": [
+      39.976731849409,
+      -83.03267122853
+    ],
+    "881 GLADDEN RD, Grandview Heights, OH 43212": [
+      39.977158053766,
+      -83.031514309288
     ],
     "881 OXLEY RD, Grandview Heights, OH 43212": [
       39.976623198322,
@@ -6035,17 +7791,53 @@
       39.976605176144,
       -83.035918408962
     ],
+    "883 COPELAND RD, Grandview Heights, OH 43212": [
+      39.976764305145,
+      -83.032669029831
+    ],
+    "883 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.977402562207,
+      -83.029727654026
+    ],
+    "883 PALMER RD, Grandview Heights, OH 43212": [
+      39.976252970848,
+      -83.037220971066
+    ],
     "883 THOMAS RD, Grandview Heights, OH 43212": [
       39.976734262987,
       -83.033800314467
+    ],
+    "885 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976713583669,
+      -83.03606067285
     ],
     "886 BURR AVE, Grandview Heights, OH 43212": [
       39.976727451589,
       -83.027814609662
     ],
+    "886 COPELAND RD, Grandview Heights, OH 43212": [
+      39.977113996333,
+      -83.032495602016
+    ],
+    "886 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976675765975,
+      -83.035913536909
+    ],
+    "886 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976799701457,
+      -83.03364615834
+    ],
+    "887 OXLEY RD, Grandview Heights, OH 43212": [
+      39.976782237339,
+      -83.034927441874
+    ],
     "888 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.977406125041,
       -83.029569262843
+    ],
+    "888 OXLEY RD, Grandview Heights, OH 43212": [
+      39.976718796671,
+      -83.034781997483
     ],
     "888 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.977248571645,
@@ -6059,13 +7851,73 @@
       39.976781820505,
       -83.036055963199
     ],
+    "889 WILLIAMS AVE, Grandview Heights, OH 43212": [
+      39.978666896841,
+      -83.027703005792
+    ],
+    "890 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976746355806,
+      -83.035908664856
+    ],
+    "891 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.9775606732,
+      -83.029806851408
+    ],
+    "892 COPELAND RD, Grandview Heights, OH 43212": [
+      39.977252796396,
+      -83.032486199069
+    ],
+    "892 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.977321133636,
+      -83.030988700868
+    ],
+    "893 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976850057342,
+      -83.036051253548
+    ],
+    "893 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976912664547,
+      -83.033788266783
+    ],
+    "894 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976942422705,
+      -83.033636520194
+    ],
+    "895 COPELAND RD, Grandview Heights, OH 43212": [
+      39.97695903956,
+      -83.032655837636
+    ],
     "895 OXLEY RD, Grandview Heights, OH 43212": [
       39.976994289361,
       -83.034913090493
     ],
+    "895 THOMAS RD, Grandview Heights, OH 43212": [
+      39.976948344859,
+      -83.033785857247
+    ],
+    "896 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976852240552,
+      -83.035901356776
+    ],
+    "896 PALMER RD, Grandview Heights, OH 43212": [
+      39.97665236801,
+      -83.037042621132
+    ],
+    "897 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.976918294178,
+      -83.036046543896
+    ],
     "897 OXLEY RD, Grandview Heights, OH 43212": [
       39.977047302366,
       -83.034909502647
+    ],
+    "898 OXLEY RD, Grandview Heights, OH 43212": [
+      39.976911979657,
+      -83.034768923131
+    ],
+    "898 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977013783329,
+      -83.03363170112
     ],
     "899 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.977711022711,
@@ -6079,11 +7931,31 @@
       39.978499588465,
       -83.053379276858
     ],
+    "900 COPELAND RD, Grandview Heights, OH 43212": [
+      39.977437863145,
+      -83.032473661806
+    ],
     "900 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.976922830383,
       -83.035896484723
     ],
     "900 Michigan Ave, Grandview Heights, OH 43212": null,
+    "900 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.977612885571,
+      -83.02967282865
+    ],
+    "901 COPELAND RD, Grandview Heights, OH 43212": [
+      39.977056406768,
+      -83.032649241539
+    ],
+    "901 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977153328377,
+      -83.034902326956
+    ],
+    "901 PALMER RD, Grandview Heights, OH 43212": [
+      39.976658098169,
+      -83.037191971239
+    ],
     "901 W THIRD AVE, Grandview Heights, OH 43212": [
       39.98438713126,
       -83.029488016904
@@ -6092,6 +7964,14 @@
       39.977206341382,
       -83.034898739111
     ],
+    "902 PALMER RD, Grandview Heights, OH 43212": [
+      39.976797993106,
+      -83.037033106503
+    ],
+    "903 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.977020649433,
+      -83.036039479419
+    ],
     "903 Oxley Road, Grandview Heights, OH 43212": [
       39.977206341382,
       -83.034898739111
@@ -6099,6 +7979,10 @@
     "904 OXLEY RD, Grandview Heights, OH 43212": [
       39.977027889448,
       -83.03476107852
+    ],
+    "904 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.977588778166,
+      -83.031175801852
     ],
     "905 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.977525393363,
@@ -6112,6 +7996,14 @@
     "906 THOMAS RD, Grandview Heights, OH 43212": [
       39.977156504577,
       -83.033622062974
+    ],
+    "907 COPELAND RD, Grandview Heights, OH 43212": [
+      39.977153773976,
+      -83.032642645442
+    ],
+    "907 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977312367393,
+      -83.03489156342
     ],
     "907 PALMER RD, Grandview Heights, OH 43212": [
       39.976809667147,
@@ -6133,25 +8025,61 @@
       39.977123004688,
       -83.036032414943
     ],
+    "910 COPELAND RD, Grandview Heights, OH 43212": [
+      39.977669196582,
+      -83.032457990228
+    ],
     "910 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.977783985874,
       -83.029776067977
+    ],
+    "910 OXLEY RD, Grandview Heights, OH 43212": [
+      39.97714379924,
+      -83.034753233909
     ],
     "910 QUAY AVE, Grandview Heights, OH 43212": [
       39.975776040227,
       -83.039636246614
     ],
+    "911 COPELAND RD, Grandview Heights, OH 43212": [
+      39.977218685448,
+      -83.032638248043
+    ],
+    "911 PALMER RD, Grandview Heights, OH 43212": [
+      39.976910713131,
+      -83.03717546627
+    ],
+    "911 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977233787356,
+      -83.033766580953
+    ],
+    "912 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.977134599876,
+      -83.035881868564
+    ],
     "912 THOMAS RD, Grandview Heights, OH 43212": [
       39.977263545514,
       -83.033614834363
+    ],
+    "912 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.977689767011,
+      -83.031263303789
     ],
     "913 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.977191241524,
       -83.036027705291
     ],
+    "913 OXLEY RD, Grandview Heights, OH 43212": [
+      39.97747140641,
+      -83.034880799884
+    ],
     "913 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.977626382208,
       -83.03138788352
+    ],
+    "914 PALMER RD, Grandview Heights, OH 43212": [
+      39.977089243298,
+      -83.037014077245
     ],
     "915 WILLIAMS AVE, Grandview Heights, OH 43212": [
       39.978577750398,
@@ -6164,6 +8092,14 @@
     "916 Oxley Road, Grandview Heights, OH 43212": [
       39.977259709032,
       -83.034745389298
+    ],
+    "917 PALMER RD, Grandview Heights, OH 43212": [
+      39.977062282109,
+      -83.037165563289
+    ],
+    "917 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977340828292,
+      -83.033759352343
     ],
     "918 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.977240484622,
@@ -6201,9 +8137,33 @@
       39.977327715197,
       -83.036018285989
     ],
+    "921 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.978148747102,
+      -83.030258606119
+    ],
+    "921 PALMER RD, Grandview Heights, OH 43212": [
+      39.977163328093,
+      -83.037158961301
+    ],
+    "921 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977412188916,
+      -83.03375453327
+    ],
+    "922 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.977311074453,
+      -83.035869688432
+    ],
     "922 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.978049991782,
       -83.029981148616
+    ],
+    "922 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977375618823,
+      -83.034737544686
+    ],
+    "922 PALMER RD, Grandview Heights, OH 43212": [
+      39.977283410092,
+      -83.037001391073
     ],
     "923 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.977361833615,
@@ -6217,6 +8177,14 @@
       39.977844057847,
       -83.031400758104
     ],
+    "925 COPELAND RD, Grandview Heights, OH 43212": [
+      39.9774458756,
+      -83.03262285715
+    ],
+    "925 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977789484443,
+      -83.034859272811
+    ],
     "925 PALMER RD, Grandview Heights, OH 43212": [
       39.977264374078,
       -83.037152359314
@@ -6224,6 +8192,10 @@
     "925 QUAY AVE, Grandview Heights, OH 43212": [
       39.976083223694,
       -83.039461481809
+    ],
+    "925 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.977772483246,
+      -83.031517539676
     ],
     "925-927 PALMER RD, Grandview Heights, OH 43212": [
       39.977314897071,
@@ -6233,6 +8205,10 @@
       39.977381664284,
       -83.035864816379
     ],
+    "926 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977452892018,
+      -83.034732314946
+    ],
     "926 PALMER RD, Grandview Heights, OH 43212": [
       39.977380493489,
       -83.036995047987
@@ -6241,6 +8217,10 @@
       39.977519229853,
       -83.03374730466
     ],
+    "928 THOMAS RD, Grandview Heights, OH 43212": [
+      39.97754898801,
+      -83.03359555807
+    ],
     "928 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.977891391363,
       -83.031450162208
@@ -6248,6 +8228,10 @@
     "929 COPELAND RD, Grandview Heights, OH 43212": [
       39.977510787072,
       -83.032618459751
+    ],
+    "929 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.97746418887,
+      -83.036008866686
     ],
     "929 PALMER RD, Grandview Heights, OH 43212": [
       39.977365420063,
@@ -6274,13 +8258,41 @@
       39.97622389469,
       -83.039601446405
     ],
+    "931 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.978314571696,
+      -83.030414812558
+    ],
+    "931 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977948523459,
+      -83.034848509275
+    ],
+    "931 PALMER RD, Grandview Heights, OH 43212": [
+      39.977415943055,
+      -83.037142456332
+    ],
+    "931 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977590590477,
+      -83.033742485586
+    ],
+    "932 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.97748754903,
+      -83.035857508299
+    ],
     "932 W FIRST AV, Grandview Heights, OH 43212": [
       39.982219941379,
       -83.026871271202
     ],
+    "933 COPELAND RD, Grandview Heights, OH 43212": [
+      39.977575698544,
+      -83.032614062353
+    ],
     "933 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.977532425707,
       -83.036004157035
+    ],
+    "933 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.977867150279,
+      -83.031616347884
     ],
     "934 HUDSON CROSSING, Grandview Heights, OH 43212": null,
     "934 KRAMER AVE, Grandview Heights, OH 43212": [
@@ -6338,6 +8350,10 @@
       39.974279510913,
       -83.02838783436
     ],
+    "939 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.978447231371,
+      -83.030539777709
+    ],
     "939 OXLEY RD, Grandview Heights, OH 43212": [
       39.978160575481,
       -83.034834157894
@@ -6357,6 +8373,14 @@
     "939-941 OXLEY RD, Grandview Heights, OH 43212": [
       39.978213588487,
       -83.034830570048
+    ],
+    "940 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.977628728692,
+      -83.035847764193
+    ],
+    "940 PALMER RD, Grandview Heights, OH 43212": [
+      39.977720285379,
+      -83.036972847186
     ],
     "940 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.978035269553,
@@ -6379,6 +8403,10 @@
       -83.033730437903
     ],
     "941 W FIRST AVE, Grandview Heights, OH 43212": null,
+    "942 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.977664023607,
+      -83.035845328166
+    ],
     "942 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.978434006631,
       -83.030342889842
@@ -6400,14 +8428,26 @@
       -83.031739257151
     ],
     "944 HUDSON CROSSING, Grandview Heights, OH 43212": null,
+    "944 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977800621393,
+      -83.034708781112
+    ],
     "945 HUDSON CROSSING, Grandview Heights, OH 43212": null,
     "945 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.977737136216,
       -83.035990028081
     ],
+    "945 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.978546726128,
+      -83.030633501572
+    ],
     "945 QUAY AVE, Grandview Heights, OH 43212": [
       39.976529898775,
       -83.03942103926
+    ],
+    "945 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977840352661,
+      -83.033725618829
     ],
     "946 HUDSON CROSSING, Grandview Heights, OH 43212": null,
     "946 PALMER RD, Grandview Heights, OH 43212": [
@@ -6418,6 +8458,10 @@
       39.977870110819,
       -83.03357387224
     ],
+    "946 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.97810359293,
+      -83.031679061402
+    ],
     "947 PALMER RD, Grandview Heights, OH 43212": [
       39.977820126995,
       -83.037116048383
@@ -6426,21 +8470,45 @@
       39.977820126995,
       -83.037116048383
     ],
+    "947 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977876032973,
+      -83.033723209293
+    ],
     "948 HUDSON CROSSING, Grandview Heights, OH 43212": null,
+    "948 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.977769908354,
+      -83.035838020087
+    ],
     "948 OXLEY RD, Grandview Heights, OH 43212": [
       39.977877894587,
       -83.034703551371
+    ],
+    "949 OXLEY RD, Grandview Heights, OH 43212": [
+      39.978425640509,
+      -83.034816218666
     ],
     "950 HUDSON CROSSING, Grandview Heights, OH 43212": null,
     "950 PALMER RD, Grandview Heights, OH 43212": [
       39.977962993872,
       -83.036956989471
     ],
+    "951 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.977839491471,
+      -83.035982963604
+    ],
+    "951 PALMER RD, Grandview Heights, OH 43212": [
+      39.977921172979,
+      -83.037109446395
+    ],
     "951 PULLMAN PL, Grandview Heights, OH 43212": null,
     "952 HUDSON CROSSING, Grandview Heights, OH 43212": null,
     "952 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.977840498185,
       -83.035833148034
+    ],
+    "952 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977955167782,
+      -83.034698321631
     ],
     "953 COPELAND RD, Grandview Heights, OH 43212": [
       39.977900255903,
@@ -6451,6 +8519,10 @@
     "954 THOMAS RD, Grandview Heights, OH 43212": [
       39.978012832067,
       -83.033564234093
+    ],
+    "954 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.978194690766,
+      -83.031783427776
     ],
     "954 Thomas Road, Grandview Heights, OH 43212": [
       39.978012832067,
@@ -6467,6 +8539,10 @@
     "955 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.978712550722,
       -83.03078970801
+    ],
+    "955 OXLEY RD, Grandview Heights, OH 43212": [
+      39.978584679525,
+      -83.03480545513
     ],
     "955 PULLMAN PL, Grandview Heights, OH 43212": null,
     "955 THOMAS RD, Grandview Heights, OH 43212": [
@@ -6502,6 +8578,10 @@
       39.978217465225,
       -83.031809519369
     ],
+    "957 PALMER RD, Grandview Heights, OH 43212": [
+      39.978077076792,
+      -83.037093861217
+    ],
     "957 PULLMAN PL, Grandview Heights, OH 43212": null,
     "958 HUDSON CROSSING, Grandview Heights, OH 43212": null,
     "958 TIMBERMAN RD, Grandview Heights, OH 43212": [
@@ -6514,10 +8594,30 @@
     ],
     "959 PULLMAN PL, Grandview Heights, OH 43212": null,
     "960 HUDSON CROSSING, Grandview Heights, OH 43212": null,
+    "960 OXLEY RD, Grandview Heights, OH 43212": [
+      39.978109714171,
+      -83.034687862149
+    ],
+    "960 PALMER RD, Grandview Heights, OH 43212": [
+      39.978199609602,
+      -83.036921720642
+    ],
+    "960 WOODHILL DR, Grandview Heights, OH 43212": [
+      39.978326718595,
+      -83.037967837518
+    ],
     "9606 IRELAND COURT, Grandview Heights, OH 43212": null,
     "961 Grandview Ave, Grandview Heights, OH 43212": [
       39.977539899116,
       -83.045429094248
+    ],
+    "961 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.978013066728,
+      -83.035962061579
+    ],
+    "961 OXLEY RD, Grandview Heights, OH 43212": [
+      39.978743718542,
+      -83.034794691594
     ],
     "961 PALMER RD, Grandview Heights, OH 43212": [
       39.978177365039,
@@ -6535,6 +8635,14 @@
       -83.030142063905
     ],
     "964 HUDSON CROSSING, Grandview Heights, OH 43212": null,
+    "964 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.97804790655,
+      -83.035806277695
+    ],
+    "964 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.978308563061,
+      -83.031913885743
+    ],
     "966 HUDSON CROSSING, Grandview Heights, OH 43212": null,
     "966 Northwest Blvd, Grandview Heights, OH 43212": [
       39.978893913165,
@@ -6544,9 +8652,21 @@
       39.978338115184,
       -83.036887625057
     ],
+    "967 BURR AVE, Grandview Heights, OH 43212": [
+      39.976329462867,
+      -83.030135861293
+    ],
     "967 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.97811488842,
       -83.035946717718
+    ],
+    "967 THOMAS RD, Grandview Heights, OH 43212": [
+      39.978232836094,
+      -83.033699113926
+    ],
+    "967 W GOODALE ST, Grandview Heights, OH 43212": [
+      39.974301844269,
+      -83.02888199513
     ],
     "967-969 THOMAS RD, Grandview Heights, OH 43212": [
       39.978268516406,
@@ -6561,9 +8681,21 @@
       39.978502940867,
       -83.037951185441
     ],
+    "969 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.978933344429,
+      -83.031020540114
+    ],
+    "969 PALMER RD, Grandview Heights, OH 43212": [
+      39.978380992448,
+      -83.037028466829
+    ],
     "969 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983108663404,
       -83.03086327586
+    ],
+    "969 WOODHILL DR, Grandview Heights, OH 43212": [
+      39.978644196856,
+      -83.038087202101
     ],
     "970 HILO LN, Grandview Heights, OH 43212": [
       39.980970127942,
@@ -6573,9 +8705,25 @@
       39.978967344655,
       -83.030863794134
     ],
+    "970 PALMER RD, Grandview Heights, OH 43212": [
+      39.978433078817,
+      -83.036860541449
+    ],
+    "970 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982202090919,
+      -83.026980228742
+    ],
+    "971 MCCLAIN RD, Grandview Heights, OH 43212": [
+      39.97819423366,
+      -83.035931681945
+    ],
     "973 KRAMER AVE, Grandview Heights, OH 43212": [
       39.977485833069,
       -83.040043715691
+    ],
+    "973 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.978996762534,
+      -83.031087975563
     ],
     "973 PALMER RD, Grandview Heights, OH 43212": [
       39.978479832148,
@@ -6589,6 +8737,10 @@
       39.983109869871,
       -83.030890233031
     ],
+    "974 PALMER RD, Grandview Heights, OH 43212": [
+      39.978518213998,
+      -83.036831579564
+    ],
     "974 WOODHILL DR, Grandview Heights, OH 43212": [
       39.978635548427,
       -83.037938087515
@@ -6596,6 +8748,10 @@
     "977 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.978291378064,
       -83.035889017076
+    ],
+    "977 PALMER RD, Grandview Heights, OH 43212": [
+      39.978584838711,
+      -83.036958168023
     ],
     "977 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983116982118,
@@ -6614,9 +8770,25 @@
       -83.031634286742
     ],
     "978 PULLMAN PL, Grandview Heights, OH 43212": null,
+    "979 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.979091889692,
+      -83.031189128737
+    ],
     "980 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.977710070132,
       -83.051917669288
+    ],
+    "980 WOODHILL DR, Grandview Heights, OH 43212": [
+      39.978763411207,
+      -83.037925650428
+    ],
+    "981 PALMER RD, Grandview Heights, OH 43212": [
+      39.978679082269,
+      -83.036910147607
+    ],
+    "982 PALMER RD, Grandview Heights, OH 43212": [
+      39.978699309462,
+      -83.036739305039
     ],
     "982 PARKWAY DR, Grandview Heights, OH 43212": [
       39.982119160098,
@@ -6638,9 +8810,17 @@
       39.974329472672,
       -83.029506378825
     ],
+    "986 GOODALE BL, Grandview Heights, OH 43212": [
+      39.974418190281,
+      -83.028916412808
+    ],
     "986 HILO LN, Grandview Heights, OH 43212": [
       39.980954672042,
       -83.032011527273
+    ],
+    "986 W SECOND AVE, Grandview Heights, OH 43212": [
+      39.983263776309,
+      -83.03180532993
     ],
     "987 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.97792934369,
@@ -6650,6 +8830,10 @@
       39.97792934369,
       -83.045396627988
     ],
+    "987 NORTHWEST BL, Grandview Heights, OH 43212": [
+      39.979218742283,
+      -83.031324015926
+    ],
     "987 WOODHILL DR, Grandview Heights, OH 43212": [
       39.978998175491,
       -83.038051440341
@@ -6657,6 +8841,14 @@
     "988 PALMER RD, Grandview Heights, OH 43212": [
       39.978835131059,
       -83.036670099146
+    ],
+    "988 PARKWAY DR, Grandview Heights, OH 43212": [
+      39.98212709366,
+      -83.031755822892
+    ],
+    "989 PALMER RD, Grandview Heights, OH 43212": [
+      39.978867569384,
+      -83.036814106776
     ],
     "991 PARKWAY DR, Grandview Heights, OH 43212": [
       39.982012034478,
@@ -6674,9 +8866,21 @@
       39.979371225728,
       -83.031293196768
     ],
+    "992 PALMER RD, Grandview Heights, OH 43212": [
+      39.978915280207,
+      -83.03661738393
+    ],
+    "995 HILO LN, Grandview Heights, OH 43212": [
+      39.980864208987,
+      -83.031713773759
+    ],
     "995 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.979345615163,
       -83.03145882876
+    ],
+    "995 PALMER RD, Grandview Heights, OH 43212": [
+      39.979009365207,
+      -83.036720730729
     ],
     "995 W SECOND AVE, Grandview Heights, OH 43212": [
       39.983145219728,
@@ -6693,6 +8897,10 @@
     "995 Yard Street, Grandview Heights, OH 43212": [
       39.981319089058,
       -83.027263565496
+    ],
+    "996 PALMER RD, Grandview Heights, OH 43212": [
+      39.979000599733,
+      -83.036556601028
     ],
     "999 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.978094564121,
@@ -6720,8 +8928,10 @@
     "GOODALE AVE, Grandview Heights, OH 43212": null,
     "GOODALE BL, Grandview Heights, OH 43212": null,
     "GOODALE BLVD, Grandview Heights, OH 43212": null,
+    "GOODALE ST, Grandview Heights, OH 43212": null,
     "GRANDVIEW AVE, Grandview Heights, OH 43212": null,
     "GRANDVIEW BL, Grandview Heights, OH 43212": null,
+    "GRANDVIEW TE, Grandview Heights, OH 43212": null,
     "HAINES AVE, Grandview Heights, OH 43212": null,
     "HILO LN, Grandview Heights, OH 43212": null,
     "HOLLY AVE, Grandview Heights, OH 43212": null,
