@@ -53,6 +53,18 @@ It remembers progress in your browser, so later runs only fetch new
 permits. It reads up to 150 addresses per run; run it again for the rest.
 The daily Action adds map locations to any permit with an address.
 
+## County permits (history and costs)
+
+`county_permits.py` reads the Franklin County Auditor's monthly public data
+files (Outside User Files, Appraisal set), keeps Grandview Heights parcels
+(tax districts 030 and 035), adds site addresses from the parcel table, and
+writes `docs/county-permits.json`. It only downloads when a new monthly
+file appears, and maps up to 1,200 new addresses per run. The site merges
+these with OpenGov permits: a county record at the same address within
+three weeks of an OpenGov permit is treated as the same permit and adds its
+estimated cost. Per-year trend charts count county records only, so every
+year is measured the same way.
+
 ## Known limits
 
 - Addresses come from a regex, so an unusual format can be missed. Adjust

@@ -448,6 +448,14 @@ def main():
             address if re.search(r"\bOH\b", address) else address + CITY_SUFFIX, state["geocache"]), now)
     except Exception as err:
         print(f"Permits step failed: {err}")
+
+    # County auditor permits: monthly public file, long history and estimated costs
+    try:
+        import county_permits
+        county_permits.run(state, lambda address: geocode(
+            address if re.search(r"\bOH\b", address) else address + CITY_SUFFIX, state["geocache"]), now)
+    except Exception as err:
+        print(f"County permits step failed: {err}")
     save_json(STATE_FILE, state)
     print(f"{len(store.new)} new case(s), {len(ordered)} total")
     email_digest(store.new)
