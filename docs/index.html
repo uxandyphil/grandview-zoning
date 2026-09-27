@@ -382,6 +382,7 @@
     const byAddr = new Map(houses.map((h) => [normAddr(h.address), h]));
     houses.forEach((h) => { h.years = new Set(); h.roof = null; h.hvac = null; });
     let first = null, start = null;
+    const roofYears = {}, hvacYears = {};
     const text = (c) => [c.permit.description, c.permit.county_description, c.permit.type].filter(Boolean).join(" ");
     const isRoof = (c) => /\broof(?!top)|re-?roof|shingle/i.test(text(c));
     const isHvac = (c) => c.cat === "hvac" || /furnace|air.?cond|\ba\/?c\b|heat.?pump|hvac|boiler|mini.?split/i.test(text(c));
@@ -391,6 +392,8 @@
       if (c.permit.source === "county" && (!first || y < first)) first = y;
       if (c.permit.source === "county" && (!start || c.meeting_date < start)) start = c.meeting_date;
       const h = (c.permit.parcel && byParcel.get(c.permit.parcel)) || byAddr.get(normAddr(c.address));
+      if (isRoof(c)) roofYears[y] = (roofYears[y] || 0) + 1;
+      if (isHvac(c)) hvacYears[y] = (hvacYears[y] || 0) + 1;
       if (h) {
         h.years.add(y);
         if (isRoof(c) && (!h.roof || c.meeting_date > h.roof)) h.roof = c.meeting_date;
@@ -406,7 +409,12 @@
         address: h.address || "Address not listed", lat: h.lat, lon: h.lon, meeting_date: null,
         description: `${houseKind(h.luc)}${h.built ? ", built " + h.built : ""}` });
     }
-    return { houses, none, condos, first, start: start || today };
+    // Roof and HVAC work only shows up in the records from about 2021 (the county used to record only
+    // work that changes a property's value), so each measure starts at its first year with a real volume
+    const since = (byYear) => { const max = Math.max(0, ...Object.values(byYear));
+      const y = Object.keys(byYear).map(Number).sort().find((k) => byYear[k] >= max * 0.25);
+      return y ? `${y}-01-01` : start || today; };
+    return { houses, none, condos, first, start: start || today, roofStart: since(roofYears), hvacStart: since(hvacYears) };
   }
   const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
   const CAT = {
@@ -956,7 +964,7 @@
 
       ${pYears.length > 2 ? `<div class="row2">
         <div class="card panel"><h2>Permits per year</h2>
-          <p class="p-sub">County records, ${esc(pYears[0])} to ${esc(thisY)}, counted the same way every year. The county lags a few months, so ${esc(thisY)} runs low. Click a year to list it.</p>
+          <p class="p-sub">County records, ${esc(pYears[0])} to ${esc(thisY)}. Before about 2021 the county only recorded work that changes a property's value, so trade permits (roofs, HVAC, electrical) are missing from earlier years and those years read low. The county also lags a few months. Click a year to list it.</p>
           <div class="chart" id="t-peryear"></div></div>
         <div class="card panel"><h2>Estimated investment per year</h2>
           <p class="p-sub">Sum of estimated project costs from county records, in thousands of dollars. Many permits list $0, so read this as a floor.</p>
@@ -997,7 +1005,7 @@
             <p class="p-sub">Streets with the most houses with no permits (streets with 8+ houses).</p><div id="t-houses-street"></div></div>
         </div>
         <div class="d-actions" style="margin:16px 0 8px;max-width:320px"><button class="btn primary" type="button" id="t-houses-show">See these ${state.houses.none.length.toLocaleString()} houses on the map</button></div>
-        <p class="p-sub" style="margin:0">No permit doesn't mean anything's wrong: painting, most repairs, and plenty of upkeep don't need one. It mostly shows which houses haven't had major work, or had it before ${state.houses.first}. The county's records only go back to ${state.houses.first}, so that's as far as "never" reaches for now.</p>
+        <p class="p-sub" style="margin:0">No permit doesn't mean anything's wrong: painting, most repairs, and plenty of upkeep don't need one. It mostly shows which houses haven't had major work, or had it before ${state.houses.first}. Before about 2021 the records only include work that changes a property's value (additions, remodels, new homes), so a house with only a new roof or furnace in those years counts as "no permit."</p>
       </div>` : ""}
 
       <div class="row2">
@@ -1136,13 +1144,14 @@
   function renderExp() {
     const el = $("exp"), H = state.houses;
     if (!H || !H.houses.length) { el.innerHTML = `<div class="card note">Needs the county property list, which arrives with the next county import.</div>`; return; }
-    const startLabel = new Date(H.start + "T12:00:00").toLocaleDateString("en-US", { month: "long", year: "numeric" });
-    const cover = (new Date(today) - new Date(H.start)) / (365.25 * 864e5);
+    const monthYear = (d) => new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    const roofLabel = monthYear(H.roofStart), hvacLabel = monthYear(H.hvacStart);
     el.innerHTML = `
-      <div class="card exp-intro"><b>Experimental.</b> Rough analyses built on messy public records. Roof permits are found by
-        looking for "roof" in the county's permit descriptions, so some will be missed. Permit records start in <b>${esc(startLabel)}</b>,
-        about ${cover.toFixed(1)} years ago, so for longer spans the numbers are an upper bound: a house that got a new roof before
-        ${esc(startLabel)} still counts as "no roof permit."</div>
+      <div class="card exp-intro"><b>Experimental.</b> Rough analyses built on messy public records. Until about 2021 the county only
+        recorded work that changes a property's value (additions, remodels, new homes), so roof and HVAC replacements only appear from
+        <b>${esc(roofLabel)}</b> for roofs and <b>${esc(hvacLabel)}</b> for HVAC. For longer spans the numbers are an upper bound:
+        a house that got a new roof before then still counts as "no roof permit." Roofs are found by looking for "roof" or
+        "shingle" in permit descriptions and titles, so some will be missed.</div>
       <div class="row2">${Object.keys(EXP).map((k) => `
         <div class="card panel" id="x-${k}">
           <h2>${esc(EXP[k].title)}</h2>
@@ -1163,6 +1172,8 @@
 
     for (const k of Object.keys(EXP)) {
       const cfg = EXP[k];
+      const kStart = k === "roof" ? H.roofStart : H.hvacStart, startLabel = monthYear(kStart);
+      const cover = (new Date(today) - new Date(kStart)) / (365.25 * 864e5);
       const counts = STOPS.map((n) => { const cut = yearsAgo(n); return H.houses.filter((h) => !h[cfg.key] || h[cfg.key] < cut).length; });
       const known = STOPS.map((n) => n <= cover + 0.01);
       const update = () => {
@@ -1177,7 +1188,7 @@
         note.className = known[i] ? "x-ok" : "x-warn";
         note.textContent = known[i]
           ? `${(H.houses.length - c).toLocaleString()} houses had ${/^[AEIOUH]/.test(cfg.noun) ? "an" : "a"} ${cfg.noun} permit since ${yearsAgo(n).slice(0, 4)}.`
-          : `Upper bound. Records only reach back to ${startLabel}, so this is the same group as the last ${Math.floor(cover)} to ${Math.ceil(cover)} years. The real number for ${yrs} is lower by however many of these houses had work done before then.`;
+          : `Upper bound. ${cfg.noun[0].toUpperCase() + cfg.noun.slice(1)} permits only appear in the records from ${startLabel}, so this is nearly the same group as the last ${Math.max(1, Math.floor(cover))} to ${Math.ceil(cover)} years. The real number for ${yrs} is lower by however many of these houses had work done before then.`;
         stackedBars($(`x-${k}-chart`), STOPS.map(String), [
           { label: "Within the records", color: cfg.color, values: counts.map((v, j) => known[j] ? v : 0) },
           { label: "Upper bound (records too short)", color: "var(--t-other)", values: counts.map((v, j) => known[j] ? 0 : v) }],
