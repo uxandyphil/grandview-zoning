@@ -29,10 +29,11 @@ import requests
 
 BASE = "https://apps.franklincountyauditor.com/Outside_User_Files/"
 OUT = Path("docs/county-permits.json")
+PARCELS_OUT = Path("docs/county-parcels.json")   # every Grandview property, for "houses without permits"
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 2   # bump to force a re-import of the current month's file
+IMPORT_VERSION = 3   # bump to force a re-import of the current month's file
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
 
@@ -174,7 +175,8 @@ def load_parcels(tables):
             st = find_col(header, r"^adrstr$", r"street.?name", avoid=(r"mail",))
             sf = find_col(header, r"^adrsuf$", r"street.?(suf|type)", avoid=(r"mail",))
             cls = find_col(header, r"^class$", r"prop.*class", r"^luc$", r"land.?use")
-            cols = dict(parcel=pc, address=addr, no=no, dir=dr, street=st, suffix=sf, unit=unit, cls=cls)
+            luc = find_col(header, r"^luc$", r"land.?use")
+            cols = dict(parcel=pc, address=addr, no=no, dir=dr, street=st, suffix=sf, unit=unit, cls=cls, luc=luc)
             print("  parcel columns:", header)
             print("  using:", cols)
         pid = parcel_id(row.get(cols["parcel"]))
@@ -188,9 +190,33 @@ def load_parcels(tables):
             if address and u and u != "0":
                 address += f" UNIT {u}"
         c = str(row.get(cols["cls"]) or "").strip().upper() if cols["cls"] else ""
-        out[pid] = {"address": address, "commercial": c.startswith("C") or bool(re.match(r"^[4-6]\d\d$", c))}
+        out[pid] = {"address": address, "commercial": c.startswith("C") or bool(re.match(r"^[4-6]\d\d$", c)),
+                    "cls": c, "luc": str(row.get(cols["luc"]) or "").strip() if cols["luc"] else ""}
     print(f"  {len(out)} Grandview parcels")
     return out
+
+
+def load_year_built(tables, parcels):
+    """Adds year built from the Dwelling table (residential buildings)."""
+    header, col_p, col_y, n = None, None, None, 0
+    try:
+        for row in tables.rows("dwelling"):
+            if header is None:
+                header = list(row)
+                col_p = find_col(header, r"^parcel.?(id|num|no)?$", r"parcel")
+                col_y = find_col(header, r"^yrblt$", r"year.?built", r"yr.?blt")
+                print("  dwelling columns (year built):", col_y)
+                if not col_y:
+                    return
+            pid = parcel_id(row.get(col_p))
+            if pid in parcels and "built" not in parcels[pid]:
+                y = re.sub(r"\D", "", str(row.get(col_y) or ""))[:4]
+                if y and 1800 < int(y) <= datetime.now().year:
+                    parcels[pid]["built"] = int(y)
+                    n += 1
+    except RuntimeError as err:
+        print(f"  no year built ({err})")
+    print(f"  year built for {n} properties")
 
 
 def load_permits(tables, parcels):
@@ -261,7 +287,21 @@ def run(state, geocode, now):
         with tempfile.TemporaryDirectory() as tmp:
             tables = Tables(folder, tmp)
             parcels = load_parcels(tables)
+            load_year_built(tables, parcels)
             rows = dedupe(load_permits(tables, parcels))
+        old_parcels = {p["parcel"]: p for p in (json.loads(PARCELS_OUT.read_text())["parcels"]
+                                                if PARCELS_OUT.exists() else [])}
+        plist = []
+        for pid, p in sorted(parcels.items()):
+            o = old_parcels.get(pid, {})
+            plist.append({"parcel": pid, "address": p["address"], "luc": p["luc"], "cls": p["cls"],
+                          "built": p.get("built"), "lat": o.get("lat"), "lon": o.get("lon")})
+        lucs = {}
+        for p in plist:
+            lucs[p["luc"]] = lucs.get(p["luc"], 0) + 1
+        print("  land use codes:", dict(sorted(lucs.items(), key=lambda kv: -kv[1])[:12]))
+        PARCELS_OUT.parent.mkdir(parents=True, exist_ok=True)
+        PARCELS_OUT.write_text(json.dumps({"source": name, "updated": now, "parcels": plist}, separators=(",", ":")))
         old = {(p["parcel"], p["date"], p["description"][:80]): p for p in (data or {}).get("permits", [])}
         for r in rows:  # carry map locations over from the last import
             o = old.get((r["parcel"], r["date"], r["description"][:80]))
@@ -282,7 +322,8 @@ def run(state, geocode, now):
 
     # geocode a batch; addresses repeat a lot, so this goes fast after the first runs
     pending = lambda r: r.get("address") and r.get("lat") is None and not r.get("nomap")
-    todo = [r for r in data["permits"] if pending(r)]
+    pdata = json.loads(PARCELS_OUT.read_text()) if PARCELS_OUT.exists() else {"parcels": []}
+    todo = [r for r in data["permits"] + pdata["parcels"] if pending(r)]
     cache, lookups = {}, 0
     for r in todo:
         a = re.sub(r"\s+(UNIT|APT|STE|SUITE|#)\s*\S+$", "", r["address"], flags=re.I)  # map the building
@@ -296,7 +337,9 @@ def run(state, geocode, now):
             r["lat"], r["lon"] = c[0], c[1]
         else:
             r["nomap"] = True
-    left = sum(1 for r in data["permits"] if pending(r))
+    left = sum(1 for r in data["permits"] + pdata["parcels"] if pending(r))
+    if pdata["parcels"]:
+        PARCELS_OUT.write_text(json.dumps(pdata, separators=(",", ":")))
     mapped = sum(1 for r in todo if r.get("lat") is not None)
     unmappable = sum(1 for r in data["permits"] if r.get("nomap"))
     print(f"  mapped {mapped} this run, {left} still to map, {unmappable} couldn't be placed")
