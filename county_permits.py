@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 3   # bump to force a re-import of the current month's file
+IMPORT_VERSION = 4   # bump to force a re-import of the current month's file
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
 
@@ -189,6 +189,14 @@ def title(s):
     return re.sub(r"\s+", " ", str(s or "")).strip()
 
 
+def acre_value(v):
+    try:
+        a = float(re.sub(r"[^\d.]", "", str(v or "")) or 0)
+    except ValueError:
+        return None
+    return round(a, 3) if a > 0 else None
+
+
 def load_parcels(tables):
     """{parcel: {address, commercial}} for Grandview parcels."""
     out, header, cols = {}, None, None
@@ -205,7 +213,8 @@ def load_parcels(tables):
             sf = find_col(header, r"^adrsuf$", r"street.?(suf|type)", avoid=(r"mail",))
             cls = find_col(header, r"^class$", r"prop.*class", r"^luc$", r"land.?use")
             luc = find_col(header, r"^luc$", r"land.?use")
-            cols = dict(parcel=pc, address=addr, no=no, dir=dr, street=st, suffix=sf, unit=unit, cls=cls, luc=luc)
+            acres = find_col(header, r"^acres?$", r"^(calc|legal|deeded|total).?acre", r"acre", avoid=(r"flag", r"code"))
+            cols = dict(parcel=pc, address=addr, no=no, dir=dr, street=st, suffix=sf, unit=unit, cls=cls, luc=luc, acres=acres)
             print("  parcel columns:", header)
             print("  using:", cols)
         pid = parcel_id(row.get(cols["parcel"]))
@@ -220,7 +229,8 @@ def load_parcels(tables):
                 address += f" UNIT {u}"
         c = str(row.get(cols["cls"]) or "").strip().upper() if cols["cls"] else ""
         out[pid] = {"address": address, "commercial": c.startswith("C") or bool(re.match(r"^[4-6]\d\d$", c)),
-                    "cls": c, "luc": str(row.get(cols["luc"]) or "").strip() if cols["luc"] else ""}
+                    "cls": c, "luc": str(row.get(cols["luc"]) or "").strip() if cols["luc"] else "",
+                    "acres": acre_value(row.get(cols["acres"])) if cols["acres"] else None}
     print(f"  {len(out)} Grandview parcels")
     return out
 
@@ -364,11 +374,13 @@ def run(state, geocode, now):
         for pid, p in sorted(parcels.items()):
             o = old_parcels.get(pid, {})
             plist.append({"parcel": pid, "address": p["address"], "luc": p["luc"], "cls": p["cls"],
-                          "built": p.get("built"), "lat": o.get("lat"), "lon": o.get("lon")})
+                          "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon")})
         lucs = {}
         for p in plist:
             lucs[p["luc"]] = lucs.get(p["luc"], 0) + 1
         print("  land use codes:", dict(sorted(lucs.items(), key=lambda kv: -kv[1])[:12]))
+        vacant = [p for p in plist if re.match(r"^(300|400|50[0-3])$", p["luc"] or "")]
+        print(f"  vacant parcels: {len(vacant)}, acreage found for {sum(1 for p in vacant if p['acres'])}")
         PARCELS_OUT.parent.mkdir(parents=True, exist_ok=True)
         PARCELS_OUT.write_text(json.dumps({"source": name, "updated": now, "parcels": plist}, separators=(",", ":")))
         old = {(p["parcel"], p["date"], p["description"][:80]): p for p in (data or {}).get("permits", [])}
