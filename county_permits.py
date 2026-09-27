@@ -29,7 +29,10 @@ import requests
 
 BASE = "https://apps.franklincountyauditor.com/Outside_User_Files/"
 OUT = Path("docs/county-permits.json")
-PARCELS_OUT = Path("docs/county-parcels.json")   # every Grandview property, for "houses without permits"
+PARCELS_OUT = Path("docs/county-parcels.json")
+HISTORY = Path("docs/county-history.json")   # permits from older monthly archives (kept in docs so the workflow commits it)
+ARCHIVE_FROM = 2014                      # oldest archive year the county keeps
+ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
@@ -56,12 +59,27 @@ def latest_appraisal_folder():
     return None
 
 
+def archive_folders(first_year=2014):
+    """The last appraisal folder of each past year, newest year first."""
+    out = []
+    for year in sorted((u for u in links(BASE) if re.search(r"/(20\d\d)/$", u)), reverse=True):
+        y = int(year.rstrip("/")[-4:])
+        if y < first_year or y >= datetime.now().year:
+            continue
+        folders = sorted(u for u in links(year) if re.search(r"appraisal/?$", unquote(u), re.I))
+        if folders:
+            out.append(folders[-1])
+    return out
+
+
 # ---------- reading tables ----------
 
 def rows_from_tsv(stream):
     text = io.TextIOWrapper(stream, encoding="latin-1", newline="")
-    reader = csv.reader(text, delimiter="\t")
-    header = [h.replace("\ufeff", "").replace("ï»¿", "").strip() for h in next(reader)]
+    first = text.readline()
+    delim = "\t" if "\t" in first else "|" if first.count("|") > first.count(",") else ","
+    reader = csv.reader(text, delimiter=delim)
+    header = [h.replace("\ufeff", "").replace("ï»¿", "").strip().strip('"') for h in next(csv.reader([first], delimiter=delim))]
     for row in reader:
         yield dict(zip(header, (v.strip() for v in row)))
 
@@ -92,28 +110,39 @@ class Tables:
     def __init__(self, folder, tmp):
         files = links(folder)
         self.zip = self.xlsx = None
+        self.tmp = tmp
+        # Newer months have a tab-delimited zip; older archives may only have Excel files, zipped or not
+        loose = {Path(unquote(u)).stem.lower(): u for u in files if re.search(r"\.(xlsx|txt|csv)$", u, re.I)}
         tsv = next((u for u in files if re.search(r"tab.?delim.*\.zip$", u, re.I)), None)
-        if tsv:
-            self.zip = zipfile.ZipFile(download(tsv, tmp))
+        anyzip = next((u for u in files if u.lower().endswith(".zip")), None)
+        if tsv or (anyzip and not any(re.fullmatch(r"permits?", k) for k in loose)):
+            self.zip = zipfile.ZipFile(download(tsv or anyzip, tmp))
             print("  zip contains:", ", ".join(self.zip.namelist()))
         else:
-            self.xlsx = {Path(unquote(u)).stem.lower(): u for u in files if u.lower().endswith(".xlsx")}
-            print("  xlsx files:", ", ".join(self.xlsx))
-        self.tmp = tmp
+            self.xlsx = loose
+            print("  files:", ", ".join(self.xlsx))
 
     def rows(self, name):
         if self.zip:
             member = next((m for m in self.zip.namelist()
-                           if re.fullmatch(name + r"s?\.(txt|tsv|csv)", Path(m).name, re.I)), None)
+                           if re.fullmatch(name + r"s?\.(txt|tsv|csv|xlsx)", Path(m).name, re.I)), None)
             if not member:
                 raise RuntimeError(f"no {name} table in the zip")
-            with self.zip.open(member) as f:
-                yield from rows_from_tsv(f)
+            if member.lower().endswith(".xlsx"):
+                yield from rows_from_xlsx(self.zip.extract(member, self.tmp))
+            else:
+                with self.zip.open(member) as f:
+                    yield from rows_from_tsv(f)
         else:
             url = next((u for k, u in self.xlsx.items() if re.fullmatch(name + "s?", k)), None)
             if not url:
-                raise RuntimeError(f"no {name}.xlsx")
-            yield from rows_from_xlsx(download(url, self.tmp))
+                raise RuntimeError(f"no {name} file")
+            path = download(url, self.tmp)
+            if str(path).lower().endswith(".xlsx"):
+                yield from rows_from_xlsx(path)
+            else:
+                with open(path, "rb") as f:
+                    yield from rows_from_tsv(f)
 
 
 # ---------- columns (names are guessed from the header, then logged) ----------
@@ -258,7 +287,7 @@ def dedupe(rows):
     seen = {}
     for r in rows:
         base = re.sub(r"\s+(UNIT|APT|STE|SUITE|#)\s*\S+$", "", r["address"].upper())
-        key = (base or r["parcel"], r["date"], r["description"][:80].upper())
+        key = (base or r["parcel"], r["date"], (r.get("number") or r["description"][:80]).upper())
         if key in seen:
             seen[key]["cost"] = max(seen[key]["cost"], r["cost"])
             seen[key]["units"] = seen[key].get("units", 1) + 1
@@ -273,8 +302,48 @@ def dedupe(rows):
 
 # ---------- main ----------
 
+def backfill(history, current_parcels, max_archives):
+    """Reads permits from older monthly archives (each holds about five years) to extend the history."""
+    new = []
+    try:
+        folders = archive_folders(ARCHIVE_FROM)
+    except requests.RequestException as err:
+        print(f"County archives: couldn't list them ({err})")
+        return new
+    todo = [f for f in folders if unquote(f.rstrip("/").rsplit("/", 1)[-1]) not in history["done"]]
+    if not todo:
+        return new
+    print(f"County archives: {len(todo)} to go ({ARCHIVES_PER_RUN} per run)")
+    for folder in todo[:max_archives]:
+        name = unquote(folder.rstrip("/").rsplit("/", 1)[-1])
+        print(f"County archive: {name}")
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                tables = Tables(folder, tmp)
+                try:
+                    old = load_parcels(tables)   # addresses as of then, for parcels that no longer exist
+                except Exception as err:
+                    print(f"  no parcel table ({err})")
+                    old = {}
+                rows = load_permits(tables, {**old, **current_parcels})
+            years = sorted({r["date"][:4] for r in rows if r["date"]})
+            print(f"  {len(rows)} Grandview permits" + (f", {years[0]} to {years[-1]}" if years else ""))
+            new += rows
+            history["done"].append(name)
+        except Exception as err:
+            fails = history.setdefault("failed", {})
+            fails[name] = fails.get(name, 0) + 1
+            print(f"  skipped this time ({err})")
+            if fails[name] >= 3:
+                history["done"].append(name)   # give up on this one after three tries
+    if new:
+        history["permits"] = dedupe(history["permits"] + new)
+    return new
+
+
 def run(state, geocode, now):
     cs = state.setdefault("county_permits", {})
+    history = json.loads(HISTORY.read_text()) if HISTORY.exists() else {"done": [], "permits": []}
     folder = latest_appraisal_folder()
     if not folder:
         print("County permits: couldn't find the auditor's appraisal files")
@@ -288,7 +357,7 @@ def run(state, geocode, now):
             tables = Tables(folder, tmp)
             parcels = load_parcels(tables)
             load_year_built(tables, parcels)
-            rows = dedupe(load_permits(tables, parcels))
+            rows = dedupe(load_permits(tables, parcels) + history["permits"])
         old_parcels = {p["parcel"]: p for p in (json.loads(PARCELS_OUT.read_text())["parcels"]
                                                 if PARCELS_OUT.exists() else [])}
         plist = []
@@ -319,6 +388,18 @@ def run(state, geocode, now):
               + f", {sum(1 for r in rows if r['cost'])} with a cost")
     else:
         print(f"County permits: {name} already imported")
+
+    # extend the history from older archives, a few per run
+    pdata0 = json.loads(PARCELS_OUT.read_text()) if PARCELS_OUT.exists() else {"parcels": []}
+    current = {p["parcel"]: {"address": p["address"], "commercial": p.get("cls", "").startswith("C")}
+               for p in pdata0["parcels"]}
+    added = backfill(history, current, ARCHIVES_PER_RUN)
+    if added:
+        before = len(data["permits"])
+        data["permits"] = dedupe(data["permits"] + added)
+        years = sorted({r["date"][:4] for r in data["permits"] if r["date"]})
+        print(f"  history now {years[0]} to {years[-1]}: {len(data['permits']) - before} permits added")
+    HISTORY.write_text(json.dumps(history, separators=(",", ":")))
 
     # geocode a batch; addresses repeat a lot, so this goes fast after the first runs
     pending = lambda r: r.get("address") and r.get("lat") is None and not r.get("nomap")
