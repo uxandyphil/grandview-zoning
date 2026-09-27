@@ -130,6 +130,8 @@
   .prow .ptype { font-weight: 600; }
   .prow .pdate { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
   .prow .teaser { white-space: nowrap; }
+  .biz { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--t-comm);
+         border: 1px solid currentColor; border-radius: 4px; padding: 0 4px; margin-right: 2px; }
 
   .scrim { position: fixed; inset: 0; z-index: 2000; background: rgba(15,21,18,.35);
            opacity: 0; pointer-events: none; transition: opacity .2s ease; }
@@ -263,6 +265,7 @@
       <option value="Board of Zoning Appeals">Zoning appeals</option>
       <option value="Planning Commission">Planning</option>
       <option value="Building permit">Building permits</option>
+      <option value="business">Business properties</option>
     </select>
   </div>
 
@@ -303,12 +306,34 @@
     : "Date not listed";
   const yearOf = (c) => (c.meeting_date || "").slice(0, 4) || c.pyear || "Unknown";
   const isPermit = (c) => c.board === "Building permit";
+  const isBiz = (c) => c.cat === "comm" || state.bizAddrs.has(normAddr(c.address));
   const boardClass = (b) => b === "Building permit" ? "permit" : b.startsWith("Planning") ? "pc" : "bza";
   const fmtMonth = (iso) => iso
     ? new Date(iso.slice(0, 7) + "-15T12:00:00").toLocaleDateString("en-US", { month: "long", year: "numeric" })
     : "Date not listed";
   const docsLabel = (c) => (c.documents || []).length
     ? `${c.documents.length} case document${c.documents.length === 1 ? "" : "s"}` : "No description in the agenda";
+  function normAddr(a) {
+    return String(a || "").toUpperCase().replace(/[.,#]/g, " ")
+      .replace(/\b(FIRST|SECOND|THIRD|FIFTH)\b/g, (w) => ({ FIRST: "1ST", SECOND: "2ND", THIRD: "3RD", FIFTH: "5TH" }[w]))
+      .replace(/\b(AVENUE|STREET|ROAD|DRIVE|BOULEVARD|COURT|PLACE|LANE|WEST|EAST|NORTH|SOUTH)\b/g, (w) =>
+        ({ AVENUE: "AVE", STREET: "ST", ROAD: "RD", DRIVE: "DR", BOULEVARD: "BLVD", COURT: "CT", PLACE: "PL",
+           LANE: "LN", WEST: "W", EAST: "E", NORTH: "N", SOUTH: "S" }[w]))
+      .replace(/\s+(UNIT|APT|STE|SUITE)\s*\S+$/, "")
+      .replace(/\s+/g, " ").trim();
+  }
+  // County records are free text, so their type comes from keywords in the description
+  const COUNTY_TYPES = [
+    [/demol|raze|wreck/i, "Demolition", "other"], [/new (sfr|single|dwelling|house|home|residence|building|construction)|new sf\b/i, "New construction", "bldg"],
+    [/addition/i, "Addition", "bldg"], [/roof/i, "Roof", "bldg"], [/window|door/i, "Windows and doors", "bldg"],
+    [/garage/i, "Garage", "bldg"], [/deck|porch|patio/i, "Deck or porch", "bldg"], [/fence/i, "Fence", "other"],
+    [/pool/i, "Pool", "other"], [/solar/i, "Solar", "elec"], [/sign/i, "Sign", "other"],
+    [/hvac|furnace|air.?cond|a\/c|heat.?pump|mechanical|boiler|rtu/i, "HVAC", "hvac"],
+    [/elec|wir|panel|service|meter/i, "Electrical", "elec"], [/plumb|water heater|sewer|backflow|gas line/i, "Plumbing", "plmb"],
+    [/remodel|alter|renovat|interior|kitchen|bath|basement|finish/i, "Remodel", "bldg"],
+    [/repair|fire damage/i, "Repair", "bldg"]];
+  const countyType = (d) => { const m = COUNTY_TYPES.find(([re]) => re.test(d || "")); return m ? [m[1], m[2]] : ["Building work", "bldg"]; };
+  const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
   const CAT = {
     bldg: ["Residential building", "--t-bldg"], comm: ["Commercial building", "--t-comm"],
     elec: ["Electrical", "--t-elec"], hvac: ["HVAC", "--t-hvac"], plmb: ["Plumbing", "--t-plmb"],
@@ -316,7 +341,7 @@
   const catOf = (t) => /electric/i.test(t) ? "elec" : /hvac|mechanical|heating/i.test(t) ? "hvac"
     : /plumb/i.test(t) ? "plmb" : /zoning/i.test(t) ? "zon"
     : /building/i.test(t) ? (/commercial/i.test(t) ? "comm" : "bldg") : "other";
-  const typeLabel = (t) => { const k = catOf(t || ""); return k !== "other" ? CAT[k][0]
+  const typeLabel = (t) => { if (/^county:/.test(t || "")) return t.slice(7); const k = catOf(t || ""); return k !== "other" ? CAT[k][0]
     : (t || "Permit").replace(/\s*permit\s*/i, " ").replace(/\s+-\s+/, ": ").trim() || "Permit"; };
   const catColor = (k) => `var(${CAT[k][1]})`;
   const boardShort = (b) => b === "Building permit" ? "Permit" : b.startsWith("Planning") ? "Planning" : "BZA";
@@ -354,6 +379,38 @@
         }));
       }
     } catch (e) { /* no permits yet */ }
+    try {  // county auditor permits (history and costs); merged with OpenGov where they overlap
+      const cr = await fetch("county-permits.json", { cache: "no-cache" });
+      if (cr.ok) {
+        const rows = (await cr.json()).permits || [];
+        const og = state.cases.filter((c) => c.board === "Building permit");
+        const ogByAddr = new Map();
+        og.forEach((c) => { const k = normAddr(c.permit.address); if (k) { if (!ogByAddr.has(k)) ogByAddr.set(k, []); ogByAddr.get(k).push(c); } });
+        state.bizAddrs = new Set(rows.filter((r) => r.commercial).map((r) => normAddr(r.address)));
+        let merged = 0;
+        for (const r of rows) {
+          const [label, cat0] = countyType(r.description);
+          const cat = r.commercial && cat0 === "bldg" ? "comm" : cat0;
+          // Same address and filed within three weeks of an OpenGov permit: treat as the same permit
+          const k = normAddr(r.address), t = r.date ? +new Date(r.date) : null;
+          const twin = t && (ogByAddr.get(k) || []).find((c) => c.meeting_date && Math.abs(+new Date(c.meeting_date) - t) < 21 * 864e5
+            && (c.cat === cat || c.cat === "zon" || cat === "bldg" || cat === "other"));
+          if (twin) {
+            if (r.cost > (twin.permit.cost || 0)) twin.permit.cost = r.cost;
+            twin.permit.county_description = twin.permit.county_description || r.description;
+            twin.permit.parcel_url = r.url; twin.permit.in_county = true; merged++;
+            continue;
+          }
+          const p = { number: r.id, type: "county:" + label, address: r.address, date: r.date, url: r.url,
+            description: r.description, cost: r.cost, units: r.units, source: "county", details: true };
+          state.cases.push({ id: "permit|" + r.id, board: "Building permit", permit: p, cat, est: false,
+            pyear: (r.date || "").slice(0, 4), address: r.address || "Address not listed", lat: r.lat, lon: r.lon,
+            description: [label, r.description].filter(Boolean).join(". "), meeting_date: r.date || null });
+        }
+        console.log(`County permits: ${rows.length} loaded, ${merged} matched to OpenGov permits`);
+      }
+    } catch (e) { /* no county data yet */ }
+    state.bizAddrs = state.bizAddrs || new Set();
     state.cases.sort((a, b) => (b.meeting_date || "").localeCompare(a.meeting_date || ""));
     $("updated").textContent = data.updated
       ? "Checked " + new Date(data.updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
@@ -382,7 +439,7 @@
       (q || state.year === "all" || (state.year === "month" ? inMonth(c)
         : state.year.startsWith("m:") ? (c.meeting_date || "").slice(0, 7) === state.year.slice(2)
         : yearOf(c) === state.year)) &&   // search spans all years
-      (state.board === "all" || c.board === state.board) &&
+      (state.board === "all" || (state.board === "business" ? isBiz(c) : c.board === state.board)) &&
       (!q || (c.address + " " + c.description + " " + (c.permit ? c.permit.number : "")).toLowerCase().includes(q)
           || normAddr(c.address).includes(normAddr(q))));
   }
@@ -451,7 +508,8 @@
             <span class="pdot" style="background:${catColor(c.cat)}" aria-hidden="true"></span>
             <span class="ptype">${esc(typeLabel(c.permit.type))}</span>
             <span class="pdate">${c.meeting_date ? (c.est ? "~" : "") + esc(new Date(c.meeting_date + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })) : ""}</span>
-            <span class="teaser">${esc(c.address)} · ${esc(c.permit.number)}</span>
+            <span class="teaser">${isBiz(c) ? '<span class="biz">Business</span> ' : ""}${esc(c.address)} · ${
+              c.permit.cost ? esc(money(c.permit.cost)) : c.permit.source === "county" ? "County record" : esc(c.permit.number)}</span>
           </button>` : `
           <details class="case" data-id="${esc(c.id)}">
             <summary>
@@ -484,12 +542,6 @@
   }
 
   // ---------- permit drawer ----------
-  const normAddr = (a) => String(a || "").toUpperCase().replace(/[.,#]/g, " ")
-    .replace(/\b(FIRST|SECOND|THIRD|FIFTH)\b/g, (w) => ({ FIRST: "1ST", SECOND: "2ND", THIRD: "3RD", FIFTH: "5TH" }[w]))
-    .replace(/\b(AVENUE|STREET|ROAD|DRIVE|BOULEVARD|COURT|PLACE|LANE|WEST|EAST|NORTH|SOUTH)\b/g, (w) =>
-      ({ AVENUE: "AVE", STREET: "ST", ROAD: "RD", DRIVE: "DR", BOULEVARD: "BLVD", COURT: "CT", PLACE: "PL",
-         LANE: "LN", WEST: "W", EAST: "E", NORTH: "N", SOUTH: "S" }[w]))
-    .replace(/\s+/g, " ").trim();
   const byNumber = new Map(state.cases.filter(isPermit).map((c) => [c.permit.number, c]));
   let lastFocus = null;
 
@@ -503,18 +555,26 @@
       <h2 id="d-title">${esc(typeLabel(p.type))}</h2>
       <p class="d-sub">${esc(c.address)}</p>
       <dl class="d-facts">
-        ${fact("Permit", p.number)}
-        ${p.type && typeLabel(p.type) !== p.type ? fact("Type", p.type) : ""}
+        ${p.source === "county" ? fact("Source", "Franklin County Auditor") : fact("Permit", p.number)}
+        ${p.type && p.source !== "county" && typeLabel(p.type) !== p.type ? fact("Type", p.type) : ""}
         ${fact("Status", p.status)}
         ${fact("Filed", p.date ? fmtDate(p.date) : "")}
+        ${p.cost ? fact("Est. cost", money(p.cost)) : ""}
+        ${p.units > 1 ? fact("Units", `Listed for ${p.units} units`) : ""}
+        ${isBiz(c) ? fact("Property", "Business / commercial") : ""}
         ${!p.date && c.est ? fact("Filed", "Around " + fmtMonth(c.meeting_date)) : ""}
       </dl>
-      ${p.description ? `<p>${esc(p.description)}</p>` : ""}
+      ${p.description || p.county_description ? `<p>${esc(p.description || p.county_description)}</p>` : ""}
       <div class="d-actions">
-        <a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">Full record on OpenGov &#8599;</a>
+        ${p.source === "county"
+          ? `<a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">Parcel record on the county auditor &#8599;</a>`
+          : `<a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">Full record on OpenGov &#8599;</a>
+             ${p.parcel_url ? `<a class="btn" href="${esc(p.parcel_url)}" target="_blank" rel="noopener">Parcel record on the county auditor &#8599;</a>` : ""}`}
         <button class="btn" type="button" data-drawer-map="${esc(c.id)}" ${c.lat == null ? "disabled" : ""}>${c.lat == null ? "Not on map" : "Show on map"}</button>
       </div>
-      <p class="d-note">OpenGov has the plans, inspections, fees, and current status.</p>
+      <p class="d-note">${p.source === "county"
+        ? "From the county's property records, which list permits for valuation. It can lag the city by weeks or months, and costs are the owner's estimate (often $0)."
+        : "OpenGov has the plans, inspections, fees, and current status."}</p>
       ${here.length ? `<h3>Also at this address</h3><ul class="d-related">${here.map((o) => `
         <li><button type="button" ${isPermit(o) ? `data-permit="${esc(o.permit.number)}"` : `data-case="${esc(o.id)}"`}>
           <span class="chip ${boardClass(o.board)}">${boardShort(o.board)}</span>
@@ -704,7 +764,7 @@
     if (!permitsAll.length) { el.innerHTML = `<div class="card note">No permit data yet.</div>`; return; }
     const thisY = today.slice(0, 4), lastY = String(+thisY - 1);
     const dayOfYear = today.slice(5);
-    const pYears = [...new Set(permitsAll.map((c) => c.pyear))].sort();
+    const pYears = [...new Set(permitsAll.map((c) => c.pyear))].filter((y) => /^\d{4}$/.test(y)).sort();
     const hasLastYear = pYears.includes(lastY);
     const ytd = (y) => permitsAll.filter((c) => c.pyear === y && (!c.meeting_date || c.meeting_date.slice(5) <= dayOfYear)).length;
     const nThis = permitsAll.filter((c) => c.pyear === thisY).length;
@@ -772,10 +832,19 @@
 
       <div class="card panel">
         <h2>Permits by month</h2>
-        <p class="p-sub">Click a month to see its permits. Click a type to hide or show it.</p>
+        <p class="p-sub">The last two years. Click a month to see its permits. Click a type to hide or show it.</p>
         <div class="legend" id="t-legend"></div>
         <div class="chart" id="t-months"></div>
       </div>
+
+      ${pYears.length > 2 ? `<div class="row2">
+        <div class="card panel"><h2>Permits per year</h2>
+          <p class="p-sub">County records, ${esc(pYears[0])} to ${esc(thisY)}, counted the same way every year. The county lags a few months, so ${esc(thisY)} runs low. Click a year to list it.</p>
+          <div class="chart" id="t-peryear"></div></div>
+        <div class="card panel"><h2>Estimated investment per year</h2>
+          <p class="p-sub">Sum of estimated project costs from county records, in thousands of dollars. Many permits list $0, so read this as a floor.</p>
+          <div class="chart" id="t-invest"></div></div>
+      </div>` : ""}
 
       ${pYears.length > 1 ? `<div class="card panel">
         <h2>Year over year</h2>
@@ -787,7 +856,7 @@
       <div class="row2">
         <div class="card panel"><h2>By type</h2><p class="p-sub">All permits${pYears.length > 1 ? `, ${pYears[0]} to ${pYears[pYears.length - 1]}` : ` in ${pYears[0]}`}. Click to list them.</p>
           <div id="t-types"></div></div>
-        <div class="card panel"><h2>Busiest streets</h2><p class="p-sub">Permits per street. Click to list them.</p>
+        <div class="card panel"><h2>Busiest streets</h2><p class="p-sub">Permits per street, all years. Click to list them.</p>
           <div id="t-streets"></div></div>
       </div>
 
@@ -819,8 +888,10 @@
 
     // permits by month (stacked by type)
     const drawMonths = () => {
-      // start in January of the first permit year (a few permits carry an earlier application date)
-      const months = monthsBetween(pYears[0] + "-01", thisMonth);
+      // the last 24 months (the per-year chart below covers the full history)
+      const d24 = new Date(thisMonth + "-15T12:00:00"); d24.setMonth(d24.getMonth() - 23);
+      const start = [pYears[0] + "-01", d24.toISOString().slice(0, 7)].sort()[1];
+      const months = monthsBetween(start, thisMonth);
       const series = catOrder.filter((k) => permitsAll.some((c) => c.cat === k) && !hiddenCats.has(k)).map((k) => ({
         key: k, label: CAT[k][0], color: catColor(k),
         values: months.map((m) => dated.filter((c) => c.cat === k && ym(c.meeting_date) === m).length) }));
@@ -837,7 +908,9 @@
 
     if (pYears.length > 1) {
       const palette = ["var(--muted)", "var(--t-plmb)", "var(--t-hvac)", "var(--t-bldg)", "var(--permit)"];
-      const ys = pYears.slice(-5);
+      // only years with OpenGov data, so every line is counted the same way
+      const ogFirst = permitsAll.filter((c) => c.permit.source !== "county").map((c) => c.pyear).filter(Boolean).sort()[0] || pYears[0];
+      const ys = pYears.filter((y) => y >= ogFirst).slice(-5);
       const series = ys.map((y, idx) => ({ label: y, strong: y === thisY, color: y === thisY ? "var(--permit)" : palette[idx % 4],
         values: Array.from({ length: 12 }, (_, i) => { const k = `${y}-${String(i + 1).padStart(2, "0")}`;
           return k > thisMonth ? null : (byMonth[k] || 0); }) }));
@@ -845,6 +918,19 @@
       lines($("t-years"), series, {});
     }
 
+    if ($("t-peryear")) {
+      // County records only, so every year is counted the same way (OpenGov only starts in 2023)
+      const yrs = pYears.filter((y) => y <= thisY);
+      const inY = (c, y) => c.pyear === y && (c.permit.source === "county" || c.permit.in_county);
+      stackedBars($("t-peryear"), yrs, catOrder.filter((k) => permitsAll.some((c) => c.cat === k)).map((k) => ({
+        label: CAT[k][0], color: catColor(k), values: yrs.map((y) => permitsAll.filter((c) => c.cat === k && inY(c, y)).length) })),
+        { fmt: (y, i) => yrs.length > 12 && i % 2 ? "" : "'" + y.slice(2), title: (y) => y, height: 210,
+          onClick: (y) => browseWith({ period: y, board: "Building permit" }) });
+      const inv = yrs.map((y) => permitsAll.filter((c) => inY(c, y)).reduce((sum, c) => sum + (c.permit.cost || 0), 0));
+      stackedBars($("t-invest"), yrs, [{ label: "Estimated cost", color: "var(--t-comm)", values: inv.map((v) => Math.round(v / 1000)) }],
+        { fmt: (y, i) => yrs.length > 12 && i % 2 ? "" : "'" + y.slice(2), title: (y) => `${y} (in $ thousands)`, height: 210,
+          onClick: (y) => browseWith({ period: y, board: "Building permit" }) });
+    }
     hbars($("t-types"), typeRows, (r) => browseWith({ q: r.label, board: "Building permit" }));
     hbars($("t-streets"), streetRows.map((r) => ({ ...r, color: "var(--permit)" })), (r) => browseWith({ q: r.q, board: "Building permit" }));
     el.querySelectorAll("[data-open]").forEach((b) => b.addEventListener("click", () => openPermit(b.dataset.open)));
