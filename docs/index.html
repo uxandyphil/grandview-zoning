@@ -75,6 +75,7 @@
          border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.35); }
   .pin.permit { width: 10px; height: 10px; border-radius: 2px; background: var(--permit);
                 border-width: 1.5px; }
+  .pin.house { width: 8px; height: 8px; background: var(--muted); border-width: 1px; }
   .pin.upcoming { width: 18px; height: 18px; box-shadow: 0 0 0 1px rgba(0,0,0,.35), 0 0 0 6px rgba(242,194,48,.35); }
 
   .summary-line { margin: 20px 2px 10px; color: var(--muted); font-size: 0.9rem; }
@@ -124,6 +125,7 @@
           width: 100%; padding: 12px 18px; border: 0; border-bottom: 1px solid var(--line);
           background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
   .prow:last-child { border-bottom: 0; }
+  a.prow { text-decoration: none; }
   .prow:hover { background: var(--hover); }
   .prow.active { background: color-mix(in srgb, var(--permit) 12%, var(--surface)); }
   .prow .pdot { width: 10px; height: 10px; border-radius: 2px; background: var(--permit); justify-self: center; }
@@ -209,7 +211,7 @@
   .tip .t-row { display: flex; gap: 8px; align-items: center; }
   .tip .t-row span:last-child { margin-left: auto; font-variant-numeric: tabular-nums; }
   .hbars { display: grid; gap: 4px; }
-  .hbar { display: grid; grid-template-columns: minmax(90px, 38%) 1fr 44px; gap: 10px; align-items: center;
+  .hbar { display: grid; grid-template-columns: minmax(90px, 38%) 1fr minmax(44px, auto); gap: 10px; align-items: center;
           font: inherit; color: inherit; background: none; border: 0; border-radius: 8px; padding: 5px 6px;
           text-align: left; cursor: pointer; }
   .hbar:hover { background: var(--hover); }
@@ -266,6 +268,7 @@
       <option value="Planning Commission">Planning</option>
       <option value="Building permit">Building permits</option>
       <option value="business">Business properties</option>
+      <option value="nopermit">Houses with no permits</option>
     </select>
   </div>
 
@@ -345,6 +348,35 @@
     if (/BLD|BUILD/.test(t) || p === "B" || p === "R" || p === "C") return "bldg";
     return null;
   };
+  const PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/";
+  const HOUSE_LUC = /^5[1-3]\d$/, CONDO_LUC = /^55\d$/;
+  const houseKind = (luc) => ({ 510: "Single-family", 520: "Two-family", 530: "Three-family" }[luc] || "House");
+  // Links every house to its permits: county permits by parcel, OpenGov permits by address
+  function buildHouses(parcels) {
+    const houses = parcels.filter((p) => HOUSE_LUC.test(p.luc || ""));
+    const condos = parcels.filter((p) => CONDO_LUC.test(p.luc || "")).length;
+    const byParcel = new Map(houses.map((h) => [h.parcel, h]));
+    const byAddr = new Map(houses.map((h) => [normAddr(h.address), h]));
+    houses.forEach((h) => { h.years = new Set(); });
+    let first = null;
+    for (const c of state.cases) {
+      if (c.board !== "Building permit" || !c.meeting_date) continue;
+      const y = +c.meeting_date.slice(0, 4);
+      if (c.permit.source === "county" && (!first || y < first)) first = y;
+      const h = (c.permit.parcel && byParcel.get(c.permit.parcel)) || byAddr.get(normAddr(c.address));
+      if (h) h.years.add(y);
+    }
+    first = first || +today.slice(0, 4);
+    const none = houses.filter((h) => ![...h.years].some((y) => y >= first))
+      .sort((a, b) => normAddr(a.address).replace(/^\d+\s+/, "").localeCompare(normAddr(b.address).replace(/^\d+\s+/, ""))
+        || parseInt(a.address) - parseInt(b.address));
+    for (const h of none) {
+      state.cases.push({ id: "house|" + h.parcel, board: "House without permits", house: h, cat: "other",
+        address: h.address || "Address not listed", lat: h.lat, lon: h.lon, meeting_date: null,
+        description: `${houseKind(h.luc)}${h.built ? ", built " + h.built : ""}` });
+    }
+    return { houses, none, condos, first };
+  }
   const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
   const CAT = {
     bldg: ["Residential building", "--t-bldg"], comm: ["Commercial building", "--t-comm"],
@@ -415,10 +447,10 @@
           if (twin) {
             if (r.cost > (twin.permit.cost || 0)) twin.permit.cost = r.cost;
             twin.permit.county_description = twin.permit.county_description || r.description;
-            twin.permit.parcel_url = r.url; twin.permit.in_county = true; merged++;
+            twin.permit.parcel_url = r.url; twin.permit.in_county = true; twin.permit.parcel = r.parcel; merged++;
             continue;
           }
-          const p = { number: r.id, permit_no: r.number, type: "county:" + label, address: r.address, date: r.date, url: r.url,
+          const p = { number: r.id, permit_no: r.number, parcel: r.parcel, type: "county:" + label, address: r.address, date: r.date, url: r.url,
             description: r.description, cost: r.cost, units: r.units, source: "county", details: true };
           state.cases.push({ id: "permit|" + r.id, board: "Building permit", permit: p, cat, est: false,
             pyear: (r.date || "").slice(0, 4), address: r.address || "Address not listed", lat: r.lat, lon: r.lon,
@@ -428,6 +460,11 @@
       }
     } catch (e) { /* no county data yet */ }
     state.bizAddrs = state.bizAddrs || new Set();
+    state.houses = null;
+    try {  // every Grandview property, to find houses with no permits
+      const pr2 = await fetch("county-parcels.json", { cache: "no-cache" });
+      if (pr2.ok) state.houses = buildHouses((await pr2.json()).parcels || []);
+    } catch (e) { /* optional */ }
     state.cases.sort((a, b) => (b.meeting_date || "").localeCompare(a.meeting_date || ""));
     $("updated").textContent = data.updated
       ? "Checked " + new Date(data.updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
@@ -442,7 +479,7 @@
   const thisMonth = today.slice(0, 7), thisYear = today.slice(0, 4);
   const monthName = new Date().toLocaleDateString("en-US", { month: "long" });
   const inMonth = (c) => (c.meeting_date || "").slice(0, 7) === thisMonth || (!isPermit(c) && c.meeting_date > today);
-  const years = [...new Set(state.cases.map(yearOf))].sort().reverse();
+  const years = [...new Set(state.cases.filter((c) => !c.house).map(yearOf))].sort().reverse();
   state.year = state.cases.some(inMonth) ? "month" : years.includes(thisYear) ? thisYear : years[0] || "all";
   $("years").innerHTML = '<button type="button" data-year="month">This month</button>'
     + years.map((y) => `<button type="button" data-year="${esc(y)}">${esc(y)}</button>`).join("")
@@ -452,24 +489,29 @@
 
   function filtered() {
     const q = state.q.trim().toLowerCase();
-    return state.cases.filter((c) =>
+    return state.cases.filter((c) => (state.board === "nopermit") === !!c.house && (
+      c.house ? (!q || (c.address + " " + c.description).toLowerCase().includes(q) || normAddr(c.address).includes(normAddr(q))) :
       (q || state.year === "all" || (state.year === "month" ? inMonth(c)
         : state.year.startsWith("m:") ? (c.meeting_date || "").slice(0, 7) === state.year.slice(2)
         : yearOf(c) === state.year)) &&   // search spans all years
       (state.board === "all" || (state.board === "business" ? isBiz(c) : c.board === state.board)) &&
       (!q || (c.address + " " + c.description + " " + (c.permit ? c.permit.number : "")).toLowerCase().includes(q)
-          || normAddr(c.address).includes(normAddr(q))));
+          || normAddr(c.address).includes(normAddr(q)))));
   }
 
   function render() {
     syncYears();
     const shown = filtered();
     const q = state.q.trim();
-    const caseList = shown.filter((c) => !isPermit(c)), nPermits = shown.length - caseList.length;
+    const caseList = shown.filter((c) => !isPermit(c) && !c.house), nPermits = shown.filter(isPermit).length;
+    const nHouses = shown.filter((c) => c.house).length;
     const meetingsCount = new Set(caseList.map((c) => c.meeting_date + c.board)).size;
     const parts = [];
     if (caseList.length) parts.push(`${caseList.length} case${caseList.length === 1 ? "" : "s"} across ${meetingsCount} meeting${meetingsCount === 1 ? "" : "s"}`);
     if (nPermits) parts.push(`${nPermits} building permit${nPermits === 1 ? "" : "s"}`);
+    if (state.board === "nopermit") {
+      $("count").textContent = `${nHouses} house${nHouses === 1 ? "" : "s"} with no permit since ${state.houses ? state.houses.first : ""}${q ? " matching your search" : ""}`;
+    } else
     $("count").textContent = parts.length
       ? parts.join(", ") + (q ? " (all years)" : state.year === "month" ? ` in ${monthName}`
         : state.year.startsWith("m:") ? ` in ${fmtMonth(state.year.slice(2))}` : "") : "";
@@ -479,6 +521,13 @@
     const bounds = [];
     for (const c of shown) {
       if (c.lat == null) continue;
+      if (c.house) {
+        const m = L.marker([c.lat, c.lon], { icon: L.divIcon({ className: "", html: '<div class="pin house"></div>', iconSize: [8, 8] }),
+          title: c.address });
+        m.bindPopup(`<strong>${esc(c.address)}</strong><br>${esc(c.description)}<br>No permits since ${state.houses.first}`);
+        m.addTo(layer); state.markers.set(c.id, m); bounds.push([c.lat, c.lon]);
+        continue;
+      }
       const pm = isPermit(c), up = !pm && c.meeting_date && c.meeting_date >= today;
       const m = L.marker([c.lat, c.lon], {
         icon: L.divIcon({ className: "", html: `<div class="pin${pm ? " permit" : up ? " upcoming" : ""}"></div>`,
@@ -502,12 +551,28 @@
     }
     const groups = new Map();
     for (const c of shown) {
-      const k = isPermit(c) ? (c.meeting_date || "").slice(0, 7) + "|permits" : (c.meeting_date || "") + "|" + c.board;
+      const k = c.house ? "street|" + normAddr(c.address).replace(/^\d+[A-Z]?\s+/, "")
+        : isPermit(c) ? (c.meeting_date || "").slice(0, 7) + "|permits" : (c.meeting_date || "") + "|" + c.board;
       if (!groups.has(k)) groups.set(k, []);
       groups.get(k).push(c);
     }
     let first = true;
     $("list").innerHTML = [...groups.values()].map((cs) => {
+      if (cs[0].house) {
+        const street = normAddr(cs[0].address).replace(/^\d+[A-Z]?\s+/, "").replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase());
+        return `
+      <details class="meeting card"${q || first ? " open" : ""}>
+        <summary>${CHEV}<span class="m-date">${esc(street)}</span>
+          <span class="m-count">${cs.length} house${cs.length === 1 ? "" : "s"}</span></summary>
+        <div class="cases">${cs.map((c) => `
+          <a class="prow" href="${PARCEL_LINK + esc(c.house.parcel)}" target="_blank" rel="noopener" data-id="${esc(c.id)}">
+            <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
+            <span class="ptype">${esc(c.address)}</span>
+            <span class="pdate">${c.house.built ? "Built " + c.house.built : ""}</span>
+            <span class="teaser">${esc(houseKind(c.house.luc))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
+          </a>`).join("")}</div>
+      </details>${(first = false) || ""}`;
+      }
       const d = cs[0].meeting_date, pm = isPermit(cs[0]), up = !pm && d && d >= today;
       const open = q || first || up; first = false;
       return `
@@ -673,7 +738,7 @@
 
   // ---------- trends ----------
   const permitsAll = state.cases.filter(isPermit);
-  const casesAll = state.cases.filter((c) => !isPermit(c));
+  const casesAll = state.cases.filter((c) => !isPermit(c) && !c.house);
   const ym = (d) => d.slice(0, 7);
   const monthsBetween = (a, b) => { const out = []; let [y, m] = a.split("-").map(Number);
     const [by, bm] = b.split("-").map(Number);
@@ -750,7 +815,7 @@
       <button class="hbar" type="button" data-i="${i}" title="${esc(r.label)}: ${r.value}">
         <span class="lbl">${esc(r.label)}</span>
         <span class="trk"><span class="fill" style="width:${r.value / max * 100}%;background:${r.color || "var(--permit)"}"></span></span>
-        <span class="num">${r.value}</span>
+        <span class="num">${esc(r.num ?? r.value)}</span>
       </button>`).join("")}</div>`;
     host.querySelectorAll(".hbar").forEach((b) => b.addEventListener("click", () => onClick(rows[+b.dataset.i])));
   }
@@ -870,6 +935,36 @@
         <div class="chart" id="t-years"></div>
       </div>` : ""}
 
+      ${state.houses && state.houses.houses.length ? `
+      <div class="card panel" id="t-houses-panel">
+        <h2>Houses and permits</h2>
+        <p class="p-sub">Every single, two, and three-family house in Grandview Heights, checked against both permit sources since ${state.houses.first}.</p>
+        <div class="kpis" style="margin:4px 0 16px">
+          <div class="kpi" style="padding:0"><div class="k-label">Houses</div><div class="k-value">${state.houses.houses.length.toLocaleString()}</div>
+            <div class="k-sub">Plus ${state.houses.condos.toLocaleString()} condo units, not counted</div></div>
+          <div class="kpi" style="padding:0"><div class="k-label">Had a permit since ${state.houses.first}</div>
+            <div class="k-value">${(state.houses.houses.length - state.houses.none.length).toLocaleString()}</div>
+            <div class="k-sub">${Math.round((1 - state.houses.none.length / state.houses.houses.length) * 100)}% of houses</div></div>
+          <div class="kpi" style="padding:0"><div class="k-label">No permit since ${state.houses.first}</div>
+            <div class="k-value">${state.houses.none.length.toLocaleString()}</div>
+            <div class="k-sub">${Math.round(state.houses.none.length / state.houses.houses.length * 100)}% of houses</div></div>
+        </div>
+        <h2 style="font-size:.95rem">How the "no permit" group shrinks</h2>
+        <p class="p-sub">Each year, houses that have had at least one permit so far, and houses that haven't yet.</p>
+        <div class="chart" id="t-houses"></div>
+        <h2 style="font-size:.95rem;margin-top:16px">Share of houses with a permit each year</h2>
+        <p class="p-sub">Each house counts once per year, however many permits it pulled. A steadier gauge of reinvestment than raw permit counts. ${esc(String(state.houses.first))} and ${esc(today.slice(0, 4))} are partial years.</p>
+        <div class="chart" id="t-houses-share"></div>
+        <div class="row2" style="margin-top:16px">
+          <div><h2 style="font-size:.95rem">By when the house was built</h2>
+            <p class="p-sub">Houses with no permits, and their share of all houses from that decade.</p><div id="t-houses-age"></div></div>
+          <div><h2 style="font-size:.95rem">By street</h2>
+            <p class="p-sub">Streets with the most houses with no permits (streets with 8+ houses).</p><div id="t-houses-street"></div></div>
+        </div>
+        <div class="d-actions" style="margin:16px 0 8px;max-width:320px"><button class="btn primary" type="button" id="t-houses-show">See these ${state.houses.none.length.toLocaleString()} houses on the map</button></div>
+        <p class="p-sub" style="margin:0">No permit doesn't mean anything's wrong: painting, most repairs, and plenty of upkeep don't need one. It mostly shows which houses haven't had major work, or had it before ${state.houses.first}. The county's records only go back to ${state.houses.first}, so that's as far as "never" reaches for now.</p>
+      </div>` : ""}
+
       <div class="row2">
         <div class="card panel"><h2>By type</h2><p class="p-sub">All permits${pYears.length > 1 ? `, ${pYears[0]} to ${pYears[pYears.length - 1]}` : ` in ${pYears[0]}`}. Click to list them.</p>
           <div id="t-types"></div></div>
@@ -947,6 +1042,38 @@
       stackedBars($("t-invest"), yrs, [{ label: "Estimated cost", color: "var(--t-comm)", values: inv.map((v) => Math.round(v / 1000)) }],
         { fmt: (y, i) => yrs.length > 12 && i % 2 ? "" : "'" + y.slice(2), title: (y) => `${y} (in $ thousands)`, height: 210,
           onClick: (y) => browseWith({ period: y, board: "Building permit" }) });
+    }
+    if ($("t-houses")) {
+      const H = state.houses, yrs = [];
+      for (let y = H.first; y <= +thisY; y++) yrs.push(String(y));
+      const firstYear = (h) => Math.min(...[...h.years].filter((y) => y >= H.first));
+      const firsts = H.houses.map((h) => h.years.size ? firstYear(h) : Infinity);
+      const had = yrs.map((y) => firsts.filter((f) => f <= +y).length);
+      stackedBars($("t-houses"), yrs, [
+        { label: "Had a permit by then", color: "var(--permit)", values: had },
+        { label: "No permit yet", color: "var(--t-other)", values: had.map((n) => H.houses.length - n) }],
+        { fmt: (y) => y, title: (y) => `Through ${y}`, height: 200 });
+      const share = yrs.map((y) => H.houses.filter((h) => h.years.has(+y)).length);
+      stackedBars($("t-houses-share"), yrs, [{ label: "Houses with a permit (%)", color: "var(--t-bldg)",
+        values: share.map((n) => Math.round(n / H.houses.length * 1000) / 10) }],
+        { fmt: (y) => y, title: (y) => `${y}: ${share[yrs.indexOf(y)].toLocaleString()} of ${H.houses.length.toLocaleString()} houses`,
+          height: 180, onClick: (y) => browseWith({ period: y, board: "Building permit" }) });
+      const decade = (b) => b ? Math.floor(b / 10) * 10 : null;
+      const byDec = {};
+      H.houses.forEach((h) => { const d = decade(h.built); if (!d) return; byDec[d] = byDec[d] || { all: 0, none: 0 }; byDec[d].all++; });
+      H.none.forEach((h) => { const d = decade(h.built); if (d && byDec[d]) byDec[d].none++; });
+      const decRows = Object.entries(byDec).filter(([, v]) => v.all >= 5).sort((a, b) => a[0] - b[0])
+        .map(([d, v]) => ({ label: `${d}s`, num: `${v.none} (${Math.round(v.none / v.all * 100)}%)`, value: v.none, color: "var(--t-other)" }));
+      if (decRows.length) hbars($("t-houses-age"), decRows, () => browseWith({ board: "nopermit" }));
+      else $("t-houses-age").innerHTML = '<p class="note">Year built isn\'t available.</p>';
+      const st = (a) => normAddr(a).replace(/^\d+[A-Z]?\s+/, "");
+      const byStreet = {};
+      H.houses.forEach((h) => { const k = st(h.address); byStreet[k] = byStreet[k] || { all: 0, none: 0 }; byStreet[k].all++; });
+      H.none.forEach((h) => { byStreet[st(h.address)].none++; });
+      hbars($("t-houses-street"), Object.entries(byStreet).filter(([, v]) => v.all >= 8 && v.none).sort((a, b) => b[1].none - a[1].none).slice(0, 10)
+        .map(([k, v]) => ({ label: k.replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase()), num: `${v.none} of ${v.all}`, value: v.none, color: "var(--t-other)", q: k })),
+        (r) => browseWith({ q: r.q, board: "nopermit" }));
+      $("t-houses-show").onclick = () => browseWith({ board: "nopermit" });
     }
     hbars($("t-types"), typeRows, (r) => browseWith({ q: r.label, board: "Building permit" }));
     hbars($("t-streets"), streetRows.map((r) => ({ ...r, color: "var(--permit)" })), (r) => browseWith({ q: r.q, board: "Building permit" }));
