@@ -333,6 +333,18 @@
     [/remodel|alter|renovat|interior|kitchen|bath|basement|finish/i, "Remodel", "bldg"],
     [/repair|fire damage/i, "Repair", "bldg"]];
   const countyType = (d) => { const m = COUNTY_TYPES.find(([re]) => re.test(d || "")); return m ? [m[1], m[2]] : ["Building work", "bldg"]; };
+  // County permit numbers look like B20210184 or R20260082; the letters give the trade
+  const countyNumber = (n) => { const m = /^([A-Z]+)-?(\d{4}|\d{2})-?0*(\d+)$/i.exec(String(n || "").trim());
+    return m ? `${m[1].toUpperCase()}-${m[2].slice(-2)}-${+m[3]}` : null; };
+  const prefixCat = (num, ptype) => {
+    const p = (/^[A-Z]+/i.exec(num || "") || [""])[0].toUpperCase(), t = String(ptype || "").toUpperCase();
+    if (/ELEC/.test(t) || p === "E") return "elec";
+    if (/HVAC|MECH/.test(t) || p === "H" || p === "M") return "hvac";
+    if (/PLUM/.test(t) || p === "P") return "plmb";
+    if (/ZON/.test(t) || p === "Z" || p === "ZON") return "zon";
+    if (/BLD|BUILD/.test(t) || p === "B" || p === "R" || p === "C") return "bldg";
+    return null;
+  };
   const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
   const CAT = {
     bldg: ["Residential building", "--t-bldg"], comm: ["Commercial building", "--t-comm"],
@@ -388,12 +400,17 @@
         og.forEach((c) => { const k = normAddr(c.permit.address); if (k) { if (!ogByAddr.has(k)) ogByAddr.set(k, []); ogByAddr.get(k).push(c); } });
         state.bizAddrs = new Set(rows.filter((r) => r.commercial).map((r) => normAddr(r.address)));
         let merged = 0;
+        const byNum = new Map(og.map((c) => [c.permit.number, c]));
         for (const r of rows) {
-          const [label, cat0] = countyType(r.description);
+          const [labelD, catD] = countyType(r.description);
+          const catP = prefixCat(r.number, r.permit_type);
+          let label = labelD, cat0 = catD;
+          if (catP && catP !== "bldg") { cat0 = catP; label = catD === catP ? labelD : CAT[catP][0]; }
+          else if (catP === "bldg" && catD !== "other") { cat0 = "bldg"; label = catD === "bldg" ? labelD : "Building work"; }
           const cat = r.commercial && cat0 === "bldg" ? "comm" : cat0;
           // Same address and filed within three weeks of an OpenGov permit: treat as the same permit
           const k = normAddr(r.address), t = r.date ? +new Date(r.date) : null;
-          const twin = t && (ogByAddr.get(k) || []).find((c) => c.meeting_date && Math.abs(+new Date(c.meeting_date) - t) < 21 * 864e5
+          const twin = byNum.get(countyNumber(r.number)) || t && (ogByAddr.get(k) || []).find((c) => c.meeting_date && Math.abs(+new Date(c.meeting_date) - t) < 21 * 864e5
             && (c.cat === cat || c.cat === "zon" || cat === "bldg" || cat === "other"));
           if (twin) {
             if (r.cost > (twin.permit.cost || 0)) twin.permit.cost = r.cost;
@@ -401,7 +418,7 @@
             twin.permit.parcel_url = r.url; twin.permit.in_county = true; merged++;
             continue;
           }
-          const p = { number: r.id, type: "county:" + label, address: r.address, date: r.date, url: r.url,
+          const p = { number: r.id, permit_no: r.number, type: "county:" + label, address: r.address, date: r.date, url: r.url,
             description: r.description, cost: r.cost, units: r.units, source: "county", details: true };
           state.cases.push({ id: "permit|" + r.id, board: "Building permit", permit: p, cat, est: false,
             pyear: (r.date || "").slice(0, 4), address: r.address || "Address not listed", lat: r.lat, lon: r.lon,
@@ -555,7 +572,7 @@
       <h2 id="d-title">${esc(typeLabel(p.type))}</h2>
       <p class="d-sub">${esc(c.address)}</p>
       <dl class="d-facts">
-        ${p.source === "county" ? fact("Source", "Franklin County Auditor") : fact("Permit", p.number)}
+        ${p.source === "county" ? fact("Source", "Franklin County Auditor") + fact("Permit", p.permit_no) : fact("Permit", p.number)}
         ${p.type && p.source !== "county" && typeLabel(p.type) !== p.type ? fact("Type", p.type) : ""}
         ${fact("Status", p.status)}
         ${fact("Filed", p.date ? fmtDate(p.date) : "")}
