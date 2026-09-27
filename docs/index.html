@@ -177,8 +177,28 @@
   .tabs button { font: 600 0.9rem "Instrument Sans", sans-serif; color: var(--muted); background: none; border: 0;
                  border-radius: 7px; padding: 7px 16px; cursor: pointer; }
   .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
-  body.trends-view .browse-only { display: none; }
-  body:not(.trends-view) #trends { display: none; }
+  body[data-view="trends"] .browse-only, body[data-view="exp"] .browse-only { display: none; }
+  body:not([data-view="trends"]) #trends { display: none; }
+  body:not([data-view="exp"]) #exp { display: none; }
+  .tabs .exp-tab { font-style: italic; }
+
+  /* experimental */
+  #exp { display: grid; gap: 14px; }
+  .exp-intro { padding: 14px 18px; font-size: 0.9rem; color: var(--muted); }
+  .exp-intro b { color: var(--ink); }
+  .x-slider { margin: 6px 0 14px; }
+  .x-slider .x-label { display: flex; align-items: baseline; gap: 8px; font-size: 0.95rem; margin-bottom: 6px; }
+  .x-slider output { font-weight: 700; font-size: 1.05rem; }
+  .x-slider input[type=range] { width: 100%; accent-color: var(--ink); margin: 0; }
+  .x-ticks { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); padding: 0 2px; }
+  .x-big { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+  .x-of { color: var(--muted); margin: 2px 0 10px; }
+  .x-bar { height: 12px; border-radius: 6px; background: var(--bg); overflow: hidden; margin-bottom: 12px; }
+  .x-bar span { display: block; height: 100%; border-radius: 6px; transition: width .2s ease; }
+  .x-warn { font-size: 0.85rem; padding: 8px 10px; border-radius: 8px; margin: 0 0 12px;
+            background: color-mix(in srgb, var(--sign) 22%, var(--surface)); color: var(--ink); }
+  .x-ok { font-size: 0.85rem; color: var(--muted); margin: 0 0 12px; }
+  @media (prefers-reduced-motion: reduce) { .x-bar span { transition: none; } }
 
   /* trends */
   #trends { display: grid; gap: 14px; }
@@ -252,10 +272,12 @@
     <div class="tabs" role="tablist" aria-label="View">
       <button type="button" role="tab" id="tab-browse" aria-selected="true">Browse</button>
       <button type="button" role="tab" id="tab-trends" aria-selected="false">Trends</button>
+      <button type="button" role="tab" id="tab-exp" class="exp-tab" aria-selected="false">Experimental</button>
     </div>
   </header>
 
   <section id="trends" aria-label="Trends"></section>
+  <section id="exp" aria-label="Experimental"></section>
 
   <div class="card browse-only"><div id="map" role="region" aria-label="Map of zoning cases and permits"></div></div>
 
@@ -269,6 +291,7 @@
       <option value="Building permit">Building permits</option>
       <option value="business">Business properties</option>
       <option value="nopermit">Houses with no permits</option>
+      <option value="xhouses" id="opt-x" hidden>From Experimental</option>
     </select>
   </div>
 
@@ -357,14 +380,22 @@
     const condos = parcels.filter((p) => CONDO_LUC.test(p.luc || "")).length;
     const byParcel = new Map(houses.map((h) => [h.parcel, h]));
     const byAddr = new Map(houses.map((h) => [normAddr(h.address), h]));
-    houses.forEach((h) => { h.years = new Set(); });
-    let first = null;
+    houses.forEach((h) => { h.years = new Set(); h.roof = null; h.hvac = null; });
+    let first = null, start = null;
+    const text = (c) => [c.permit.description, c.permit.county_description, c.permit.type].filter(Boolean).join(" ");
+    const isRoof = (c) => /\broof(?!top)|re-?roof|shingle/i.test(text(c));
+    const isHvac = (c) => c.cat === "hvac" || /furnace|air.?cond|\ba\/?c\b|heat.?pump|hvac|boiler|mini.?split/i.test(text(c));
     for (const c of state.cases) {
       if (c.board !== "Building permit" || !c.meeting_date) continue;
       const y = +c.meeting_date.slice(0, 4);
       if (c.permit.source === "county" && (!first || y < first)) first = y;
+      if (c.permit.source === "county" && (!start || c.meeting_date < start)) start = c.meeting_date;
       const h = (c.permit.parcel && byParcel.get(c.permit.parcel)) || byAddr.get(normAddr(c.address));
-      if (h) h.years.add(y);
+      if (h) {
+        h.years.add(y);
+        if (isRoof(c) && (!h.roof || c.meeting_date > h.roof)) h.roof = c.meeting_date;
+        if (isHvac(c) && (!h.hvac || c.meeting_date > h.hvac)) h.hvac = c.meeting_date;
+      }
     }
     first = first || +today.slice(0, 4);
     const none = houses.filter((h) => ![...h.years].some((y) => y >= first))
@@ -375,7 +406,7 @@
         address: h.address || "Address not listed", lat: h.lat, lon: h.lon, meeting_date: null,
         description: `${houseKind(h.luc)}${h.built ? ", built " + h.built : ""}` });
     }
-    return { houses, none, condos, first };
+    return { houses, none, condos, first, start: start || today };
   }
   const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
   const CAT = {
@@ -489,6 +520,8 @@
 
   function filtered() {
     const q = state.q.trim().toLowerCase();
+    if (state.board === "xhouses") return (state.xitems || []).filter((c) => !q
+      || (c.address + " " + c.description).toLowerCase().includes(q) || normAddr(c.address).includes(normAddr(q)));
     return state.cases.filter((c) => (state.board === "nopermit") === !!c.house && (
       c.house ? (!q || (c.address + " " + c.description).toLowerCase().includes(q) || normAddr(c.address).includes(normAddr(q))) :
       (q || state.year === "all" || (state.year === "month" ? inMonth(c)
@@ -509,7 +542,9 @@
     const parts = [];
     if (caseList.length) parts.push(`${caseList.length} case${caseList.length === 1 ? "" : "s"} across ${meetingsCount} meeting${meetingsCount === 1 ? "" : "s"}`);
     if (nPermits) parts.push(`${nPermits} building permit${nPermits === 1 ? "" : "s"}`);
-    if (state.board === "nopermit") {
+    if (state.board === "xhouses") {
+      $("count").textContent = `${nHouses} house${nHouses === 1 ? "" : "s"} ${state.xlabel || ""}${q ? " matching your search" : ""}`;
+    } else if (state.board === "nopermit") {
       $("count").textContent = `${nHouses} house${nHouses === 1 ? "" : "s"} with no permit since ${state.houses ? state.houses.first : ""}${q ? " matching your search" : ""}`;
     } else
     $("count").textContent = parts.length
@@ -524,7 +559,7 @@
       if (c.house) {
         const m = L.marker([c.lat, c.lon], { icon: L.divIcon({ className: "", html: '<div class="pin house"></div>', iconSize: [8, 8] }),
           title: c.address });
-        m.bindPopup(`<strong>${esc(c.address)}</strong><br>${esc(c.description)}<br>No permits since ${state.houses.first}`);
+        m.bindPopup(`<strong>${esc(c.address)}</strong><br>${esc(c.description)}<br>${esc(c.popup || "No permits since " + state.houses.first)}`);
         m.addTo(layer); state.markers.set(c.id, m); bounds.push([c.lat, c.lon]);
         continue;
       }
@@ -1087,22 +1122,108 @@
     ], { fmt: (k) => k, title: (k) => k, onClick: (y) => { $("board").value = "all"; browseWith({ period: y }); }, height: 200 });
   }
 
+  // ---------- experimental ----------
+  const STOPS = [1, 5, 10, 15, 20, 25, 30, 35];
+  const EXP = {
+    roof: { title: "Roofs", noun: "roof", key: "roof", color: "var(--t-bldg)",
+      context: "Asphalt shingle roofs usually last about 20 to 30 years, so a long stretch with no roof permit can point to an older roof." },
+    hvac: { title: "Heating and cooling (HVAC)", noun: "HVAC", key: "hvac", color: "var(--t-hvac)",
+      context: "Furnaces often last about 15 to 20 years and central AC about 10 to 15. Any HVAC permit counts here, since most are replacements." } };
+  const expPos = { roof: 1, hvac: 1 };  // default: 5 years, the longest span the records fully cover
+
+  function yearsAgo(n) { const d = new Date(today + "T12:00:00"); d.setFullYear(d.getFullYear() - n); return d.toISOString().slice(0, 10); }
+
+  function renderExp() {
+    const el = $("exp"), H = state.houses;
+    if (!H || !H.houses.length) { el.innerHTML = `<div class="card note">Needs the county property list, which arrives with the next county import.</div>`; return; }
+    const startLabel = new Date(H.start + "T12:00:00").toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    const cover = (new Date(today) - new Date(H.start)) / (365.25 * 864e5);
+    el.innerHTML = `
+      <div class="card exp-intro"><b>Experimental.</b> Rough analyses built on messy public records. Roof permits are found by
+        looking for "roof" in the county's permit descriptions, so some will be missed. Permit records start in <b>${esc(startLabel)}</b>,
+        about ${cover.toFixed(1)} years ago, so for longer spans the numbers are an upper bound: a house that got a new roof before
+        ${esc(startLabel)} still counts as "no roof permit."</div>
+      <div class="row2">${Object.keys(EXP).map((k) => `
+        <div class="card panel" id="x-${k}">
+          <h2>${esc(EXP[k].title)}</h2>
+          <p class="p-sub">${esc(EXP[k].context)}</p>
+          <div class="x-slider">
+            <label class="x-label" for="x-${k}-range">No ${esc(EXP[k].noun)} permit in the last <output id="x-${k}-out"></output></label>
+            <input type="range" id="x-${k}-range" min="0" max="${STOPS.length - 1}" step="1" value="${expPos[k]}"
+              aria-valuetext="">
+            <div class="x-ticks" aria-hidden="true">${STOPS.map((n) => `<span>${n}</span>`).join("")}</div>
+          </div>
+          <div class="x-big" id="x-${k}-n"></div>
+          <div class="x-of" id="x-${k}-of"></div>
+          <div class="x-bar"><span id="x-${k}-bar" style="background:${EXP[k].color}"></span></div>
+          <p id="x-${k}-note"></p>
+          <div class="chart" id="x-${k}-chart"></div>
+          <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-${k}-show">Show these houses on the map</button></div>
+        </div>`).join("")}</div>`;
+
+    for (const k of Object.keys(EXP)) {
+      const cfg = EXP[k];
+      const counts = STOPS.map((n) => { const cut = yearsAgo(n); return H.houses.filter((h) => !h[cfg.key] || h[cfg.key] < cut).length; });
+      const known = STOPS.map((n) => n <= cover + 0.01);
+      const update = () => {
+        const i = expPos[k], n = STOPS[i], c = counts[i], pct = c / H.houses.length * 100;
+        const yrs = `${n} year${n === 1 ? "" : "s"}`;
+        $(`x-${k}-out`).textContent = yrs;
+        $(`x-${k}-range`).setAttribute("aria-valuetext", yrs);
+        $(`x-${k}-n`).textContent = (known[i] ? "" : "Up to ") + c.toLocaleString();
+        $(`x-${k}-of`).textContent = `of ${H.houses.length.toLocaleString()} houses (${Math.round(pct)}%) have no ${cfg.noun} permit in the last ${yrs}`;
+        $(`x-${k}-bar`).style.width = pct + "%";
+        const note = $(`x-${k}-note`);
+        note.className = known[i] ? "x-ok" : "x-warn";
+        note.textContent = known[i]
+          ? `${(H.houses.length - c).toLocaleString()} houses had ${/^[AEIOUH]/.test(cfg.noun) ? "an" : "a"} ${cfg.noun} permit since ${yearsAgo(n).slice(0, 4)}.`
+          : `Upper bound. Records only reach back to ${startLabel}, so this is the same group as the last ${Math.floor(cover)} to ${Math.ceil(cover)} years. The real number for ${yrs} is lower by however many of these houses had work done before then.`;
+        stackedBars($(`x-${k}-chart`), STOPS.map(String), [
+          { label: "Within the records", color: cfg.color, values: counts.map((v, j) => known[j] ? v : 0) },
+          { label: "Upper bound (records too short)", color: "var(--t-other)", values: counts.map((v, j) => known[j] ? 0 : v) }],
+          { fmt: (s, j) => (j === i ? "▲ " : "") + s + "y", title: (s) => `No ${cfg.noun} permit in ${s} years`, height: 170,
+            onClick: (s) => { expPos[k] = STOPS.indexOf(+s); $(`x-${k}-range`).value = expPos[k]; update(); } });
+      };
+      $(`x-${k}-range`).addEventListener("input", (e) => { expPos[k] = +e.target.value; update(); });
+      $(`x-${k}-show`).addEventListener("click", () => {
+        const n = STOPS[expPos[k]], cut = yearsAgo(n);
+        const last = (h) => h[cfg.key] ? `last ${cfg.noun} permit ${new Date(h[cfg.key] + "T12:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" })}` : `no ${cfg.noun} permit on record`;
+        state.xitems = H.houses.filter((h) => !h[cfg.key] || h[cfg.key] < cut)
+          .sort((a, b) => normAddr(a.address).replace(/^\d+\s+/, "").localeCompare(normAddr(b.address).replace(/^\d+\s+/, "")) || parseInt(a.address) - parseInt(b.address))
+          .map((h) => ({ id: "xhouse|" + h.parcel, board: "House", house: h, cat: "other", address: h.address || "Address not listed",
+            lat: h.lat, lon: h.lon, meeting_date: null, popup: last(h),
+            description: `${houseKind(h.luc)}${h.built ? ", built " + h.built : ""}, ${last(h)}` }));
+        state.xlabel = `with no ${cfg.noun} permit in the last ${n} year${n === 1 ? "" : "s"}${known[expPos[k]] ? "" : " (upper bound)"}`;
+        $("opt-x").textContent = `No ${cfg.noun} permit, ${n}+ yrs`;
+        browseWith({ board: "xhouses" });
+      });
+      update();
+    }
+  }
+
   // ---------- view switching ----------
   let trendsDrawn = false;
+  let expDrawn = false;
   function setView(v) {
-    const t = v === "trends";
-    document.body.classList.toggle("trends-view", t);
-    $("tab-browse").setAttribute("aria-selected", String(!t));
-    $("tab-trends").setAttribute("aria-selected", String(t));
-    if (t && !trendsDrawn) { renderTrends(); trendsDrawn = true; }
-    if (!t) setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
-    if (!location.hash.startsWith("#permit=")) history.replaceState(null, "", t ? "#trends" : location.pathname + location.search);
+    document.body.dataset.view = v;
+    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-exp", "exp"]])
+      $(id).setAttribute("aria-selected", String(v === name));
+    if (v === "trends" && !trendsDrawn) { renderTrends(); trendsDrawn = true; }
+    if (v === "exp" && !expDrawn) { renderExp(); expDrawn = true; }
+    if (v === "browse") setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
+    if (!location.hash.startsWith("#permit="))
+      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : location.pathname + location.search);
   }
   $("tab-browse").addEventListener("click", () => setView("browse"));
   $("tab-trends").addEventListener("click", () => setView("trends"));
+  $("tab-exp").addEventListener("click", () => setView("exp"));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
-    if (document.body.classList.contains("trends-view")) renderTrends(); else trendsDrawn = false; }, 200); });
+    const v = document.body.dataset.view;
+    if (v === "trends") renderTrends(); else trendsDrawn = false;
+    if (v === "exp") renderExp(); else expDrawn = false; }, 200); });
+  document.body.dataset.view = "browse";
   if (location.hash === "#trends") setView("trends");
+  if (location.hash === "#experimental") setView("exp");
 
   render();
   const linked = decodeURIComponent((location.hash.match(/^#permit=(.+)$/) || [])[1] || "");
