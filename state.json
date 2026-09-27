@@ -1,7 +1,7 @@
 {
   "county_permits": {
     "folder": "2026-09-15 Appraisal",
-    "version": 3
+    "version": 4
   },
   "geocache": {
     "0 GOODALE BL, Grandview Heights, OH 43212": null,
@@ -272,6 +272,7 @@
       39.982047049646,
       -83.032267795263
     ],
+    "1024 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1025 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1025 URLIN AV, Grandview Heights, OH 43212": [
       39.97828200019,
@@ -285,6 +286,7 @@
       39.983180984676,
       -83.032628174316
     ],
+    "1026 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1026 GOODALE BL, Grandview Heights, OH 43212": [
       39.974497937092,
       -83.030741952288
@@ -8114,6 +8116,10 @@
       39.987629901977,
       -83.056502006789
     ],
+    "1578 W FIRST AV, Grandview Heights, OH 43212": [
+      39.981999429849,
+      -83.047315070304
+    ],
     "1580 LINCOLN RD, Grandview Heights, OH 43212": [
       39.987664687949,
       -83.056349636309
@@ -9526,6 +9532,10 @@
       39.974223889446,
       -83.027022301614
     ],
+    "828 BOBCAT AV, Grandview Heights, OH 43212": [
+      39.976351795042,
+      -83.027528371766
+    ],
     "828 BOBCAT AVE, Grandview Heights, OH 43212": [
       39.976351795042,
       -83.027528371766
@@ -9698,6 +9708,10 @@
     "841 COPELAND RD, Grandview Heights, OH 43212": [
       39.976117296878,
       -83.032714348473
+    ],
+    "841 PULLMAN LN, Grandview Heights, OH 43212": [
+      39.977390493605,
+      -83.028435430419
     ],
     "841 PULLMAN WY, Grandview Heights, OH 43212": [
       39.977390493605,
@@ -10552,6 +10566,10 @@
       39.977206341382,
       -83.034898739111
     ],
+    "902 BOBCAT AV, Grandview Heights, OH 43212": [
+      39.978679429561,
+      -83.02827808346
+    ],
     "902 PALMER RD, Grandview Heights, OH 43212": [
       39.976797993106,
       -83.037033106503
@@ -10621,6 +10639,10 @@
       39.977162426732,
       -83.033771400026
     ],
+    "907 WILLIAMS AV, Grandview Heights, OH 43212": [
+      39.978605180073,
+      -83.027922888976
+    ],
     "907 WILLIAMS AVE, Grandview Heights, OH 43212": [
       39.978605180073,
       -83.027922888976
@@ -10632,6 +10654,10 @@
     "908 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.977639272589,
       -83.031219552821
+    ],
+    "908 WILLIAMS AV, Grandview Heights, OH 43212": [
+      39.978824784699,
+      -83.027575275271
     ],
     "908 WILLIAMS AVE, Grandview Heights, OH 43212": [
       39.978824784699,
@@ -10720,6 +10746,10 @@
     "914 PALMER RD, Grandview Heights, OH 43212": [
       39.977089243298,
       -83.037014077245
+    ],
+    "914 WILLIAMS AV, Grandview Heights, OH 43212": [
+      39.97879564067,
+      -83.027679108997
     ],
     "914 WILLIAMS AVE, Grandview Heights, OH 43212": [
       39.97879564067,
@@ -10959,6 +10989,10 @@
     "930 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982220880877,
       -83.026865536594
+    ],
+    "930 WILLIAMS AV, Grandview Heights, OH 43212": [
+      39.978717923259,
+      -83.027955998934
     ],
     "931 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.978314571696,
@@ -11938,9 +11972,11 @@
     "GOODALE BL, Grandview Heights, OH 43212": null,
     "GOODALE BLVD, Grandview Heights, OH 43212": null,
     "GOODALE ST, Grandview Heights, OH 43212": null,
+    "GRANDVIEW AV, Grandview Heights, OH 43212": null,
     "GRANDVIEW AVE, Grandview Heights, OH 43212": null,
     "GRANDVIEW BL, Grandview Heights, OH 43212": null,
     "GRANDVIEW TE, Grandview Heights, OH 43212": null,
+    "GRANDVIEW YARD, Grandview Heights, OH 43212": null,
     "HAINES AVE, Grandview Heights, OH 43212": null,
     "HIGGS AVE, Grandview Heights, OH 43212": null,
     "HILO LN, Grandview Heights, OH 43212": null,
