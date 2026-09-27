@@ -380,7 +380,7 @@
     const condos = parcels.filter((p) => CONDO_LUC.test(p.luc || "")).length;
     const byParcel = new Map(houses.map((h) => [h.parcel, h]));
     const byAddr = new Map(houses.map((h) => [normAddr(h.address), h]));
-    houses.forEach((h) => { h.years = new Set(); h.roof = null; h.hvac = null; });
+    houses.forEach((h) => { h.years = new Set(); h.roof = null; h.hvac = null; h.roofYears = new Set(); h.hvacYears = new Set(); });
     let first = null, start = null;
     const roofYears = {}, hvacYears = {};
     const text = (c) => [c.permit.description, c.permit.county_description, c.permit.type].filter(Boolean).join(" ");
@@ -396,8 +396,8 @@
       if (isHvac(c)) hvacYears[y] = (hvacYears[y] || 0) + 1;
       if (h) {
         h.years.add(y);
-        if (isRoof(c) && (!h.roof || c.meeting_date > h.roof)) h.roof = c.meeting_date;
-        if (isHvac(c) && (!h.hvac || c.meeting_date > h.hvac)) h.hvac = c.meeting_date;
+        if (isRoof(c)) { h.roofYears.add(y); if (!h.roof || c.meeting_date > h.roof) h.roof = c.meeting_date; }
+        if (isHvac(c)) { h.hvacYears.add(y); if (!h.hvac || c.meeting_date > h.hvac) h.hvac = c.meeting_date; }
       }
     }
     first = first || +today.slice(0, 4);
@@ -1149,8 +1149,9 @@
     el.innerHTML = `
       <div class="card exp-intro"><b>Experimental.</b> Rough analyses built on messy public records. Until about 2021 the county only
         recorded work that changes a property's value (additions, remodels, new homes), so roof and HVAC replacements only appear from
-        <b>${esc(roofLabel)}</b> for roofs and <b>${esc(hvacLabel)}</b> for HVAC. For longer spans the numbers are an upper bound:
-        a house that got a new roof before then still counts as "no roof permit." Roofs are found by looking for "roof" or
+        <b>${esc(roofLabel)}</b> for roofs and <b>${esc(hvacLabel)}</b> for HVAC. Spans the records cover are
+        real counts. Longer spans are <b>estimates</b>: they assume the number of houses getting a roof (or HVAC) permit each year
+        stayed at the pace seen since then, and that no house needed two. Roofs are found by looking for "roof" or
         "shingle" in permit descriptions and titles, so some will be missed.</div>
       <div class="row2">${Object.keys(EXP).map((k) => `
         <div class="card panel" id="x-${k}">
@@ -1174,24 +1175,35 @@
       const cfg = EXP[k];
       const kStart = k === "roof" ? H.roofStart : H.hvacStart, startLabel = monthYear(kStart);
       const cover = (new Date(today) - new Date(kStart)) / (365.25 * 864e5);
-      const counts = STOPS.map((n) => { const cut = yearsAgo(n); return H.houses.filter((h) => !h[cfg.key] || h[cfg.key] < cut).length; });
       const known = STOPS.map((n) => n <= cover + 0.01);
+      const exact = (n) => { const cut = yearsAgo(n); return H.houses.filter((h) => !h[cfg.key] || h[cfg.key] < cut).length; };
+      // average houses per full year with a permit of this kind, over the years the records fully cover
+      const y0 = +kStart.slice(0, 4), yEnd = +today.slice(0, 4) - 1, setKey = k + "Years";
+      const fullYears = []; for (let y = y0; y <= yEnd; y++) fullYears.push(y);
+      const perYear = fullYears.map((y) => H.houses.filter((h) => h[setKey].has(y)).length);
+      const pace = perYear.length ? perYear.reduce((a, b) => a + b, 0) / perYear.length : 0;
+      const withinRecords = exact(cover);  // houses with no permit since the records began
+      const counts = STOPS.map((n, j) => known[j] ? exact(n)
+        : Math.max(0, Math.round(withinRecords - pace * (n - cover))));
       const update = () => {
         const i = expPos[k], n = STOPS[i], c = counts[i], pct = c / H.houses.length * 100;
         const yrs = `${n} year${n === 1 ? "" : "s"}`;
         $(`x-${k}-out`).textContent = yrs;
         $(`x-${k}-range`).setAttribute("aria-valuetext", yrs);
-        $(`x-${k}-n`).textContent = (known[i] ? "" : "Up to ") + c.toLocaleString();
+        $(`x-${k}-n`).textContent = (known[i] ? "" : "About ") + c.toLocaleString();
         $(`x-${k}-of`).textContent = `of ${H.houses.length.toLocaleString()} houses (${Math.round(pct)}%) have no ${cfg.noun} permit in the last ${yrs}`;
         $(`x-${k}-bar`).style.width = pct + "%";
         const note = $(`x-${k}-note`);
         note.className = known[i] ? "x-ok" : "x-warn";
         note.textContent = known[i]
           ? `${(H.houses.length - c).toLocaleString()} houses had ${/^[AEIOUH]/.test(cfg.noun) ? "an" : "a"} ${cfg.noun} permit since ${yearsAgo(n).slice(0, 4)}.`
-          : `Upper bound. ${cfg.noun[0].toUpperCase() + cfg.noun.slice(1)} permits only appear in the records from ${startLabel}, so this is nearly the same group as the last ${Math.max(1, Math.floor(cover))} to ${Math.ceil(cover)} years. The real number for ${yrs} is lower by however many of these houses had work done before then.`;
+          : `Estimate. ${cfg.noun[0].toUpperCase() + cfg.noun.slice(1)} permits only appear in the records from ${startLabel}. Since then about ${Math.round(pace)} houses a year have gotten one (${perYear.map((v, j) => fullYears[j] + ": " + v).join(", ")}). This assumes that pace held for the full ${yrs} and no house needed two. Work done without a permit isn't counted, so the real number may be lower.`;
+        const btn = $(`x-${k}-show`);
+        btn.disabled = !known[i];
+        btn.textContent = known[i] ? "Show these houses on the map" : "Map only for spans the records cover";
         stackedBars($(`x-${k}-chart`), STOPS.map(String), [
           { label: "Within the records", color: cfg.color, values: counts.map((v, j) => known[j] ? v : 0) },
-          { label: "Upper bound (records too short)", color: "var(--t-other)", values: counts.map((v, j) => known[j] ? 0 : v) }],
+          { label: "Estimate", color: `color-mix(in srgb, ${cfg.color} 35%, var(--surface))`, values: counts.map((v, j) => known[j] ? 0 : v) }],
           { fmt: (s, j) => (j === i ? "▲ " : "") + s + "y", title: (s) => `No ${cfg.noun} permit in ${s} years`, height: 170,
             onClick: (s) => { expPos[k] = STOPS.indexOf(+s); $(`x-${k}-range`).value = expPos[k]; update(); } });
       };
@@ -1204,7 +1216,7 @@
           .map((h) => ({ id: "xhouse|" + h.parcel, board: "House", house: h, cat: "other", address: h.address || "Address not listed",
             lat: h.lat, lon: h.lon, meeting_date: null, popup: last(h),
             description: `${houseKind(h.luc)}${h.built ? ", built " + h.built : ""}, ${last(h)}` }));
-        state.xlabel = `with no ${cfg.noun} permit in the last ${n} year${n === 1 ? "" : "s"}${known[expPos[k]] ? "" : " (upper bound)"}`;
+        state.xlabel = `with no ${cfg.noun} permit in the last ${n} year${n === 1 ? "" : "s"}`;
         $("opt-x").textContent = `No ${cfg.noun} permit, ${n}+ yrs`;
         browseWith({ board: "xhouses" });
       });
