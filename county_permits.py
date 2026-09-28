@@ -303,12 +303,17 @@ def load_land_details(tables, parcels):
     print(f"  land details for {len(want)} vacant parcels: {got}")
 
 
-def load_owners(folder, parcels, tmp):
+def load_owners(folder, parcels):
     """Owner names for vacant parcels only, from the Parcel table in the Tax Accounting files.
     The column name is guessed from the header and logged, like the others. Returns the header."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
+    with tempfile.TemporaryDirectory() as tmp:   # own folder: its zip has the same name as the appraisal zip
+        return _read_owners(Tables(folder, tmp), want, parcels)
+
+
+def _read_owners(tables, want, parcels):
     header, pc, own, own2, n = None, None, None, None, 0
-    for row in Tables(folder, tmp).rows("parcel"):
+    for row in tables.rows("parcel"):
         if header is None:
             header = list(row)
             pc = find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"^pin$", r"parcel")
@@ -503,7 +508,7 @@ def run(state, geocode, now):
                 tf = tax_folder(folder)
                 if tf:
                     print(f"  owners from {unquote(tf.rstrip('/').rsplit('/', 1)[-1])}")
-                    tax_header = load_owners(tf, parcels, tmp)
+                    tax_header = load_owners(tf, parcels)
             except Exception as err:   # owners are extra; don't let them stop the import
                 print(f"  no owner names ({err})")
             dump_columns(tables, parcels, now, tax_header)
