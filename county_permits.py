@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 7   # bump to force a re-import of the current month's file
+IMPORT_VERSION = 8   # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -58,6 +58,13 @@ def latest_appraisal_folder():
         if folders:
             return folders[-1]
     return None
+
+
+def tax_folder(appraisal_folder):
+    """The latest Tax Accounting folder in the same year as the appraisal files (it has owner names)."""
+    year = appraisal_folder.rstrip("/").rsplit("/", 1)[0] + "/"
+    folders = sorted(u for u in links(year) if re.search(r"tax.?accounting/?$", unquote(u), re.I))
+    return folders[-1] if folders else None
 
 
 def archive_folders(first_year=2014):
@@ -296,11 +303,41 @@ def load_land_details(tables, parcels):
     print(f"  land details for {len(want)} vacant parcels: {got}")
 
 
-def dump_columns(tables, parcels, now):
+def load_owners(folder, parcels, tmp):
+    """Owner names for vacant parcels only, from the Parcel table in the Tax Accounting files.
+    The column name is guessed from the header and logged, like the others. Returns the header."""
+    want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
+    header, pc, own, own2, n = None, None, None, None, 0
+    for row in Tables(folder, tmp).rows("parcel"):
+        if header is None:
+            header = list(row)
+            pc = find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"^pin$", r"parcel")
+            skip = (r"addr", r"mail", r"city", r"state", r"zip", r"phone", r"2$")
+            own = find_col(header, r"^owner.?name.?1?$", r"^owner.?1$", r"^owner$", r"owner.?name", r"owner", avoid=skip)
+            own2 = find_col(header, r"^owner.?name.?2$", r"^owner.?2$", avoid=(r"addr", r"mail"))
+            print("  tax parcel columns:", header)
+            print("  using owner columns:", own, own2)
+            if not pc or not own:
+                return header
+        pid = parcel_id(row.get(pc))
+        if pid not in want:
+            continue
+        names = [title(row.get(c)) for c in (own, own2) if c]
+        owner = " & ".join(dict.fromkeys(x for x in names if x))
+        if owner:
+            parcels[pid]["owner"] = owner
+            n += 1
+    print(f"  owners for {n} of {len(want)} vacant parcels")
+    return header
+
+
+def dump_columns(tables, parcels, now, tax_header=None):
     """Writes each table's column names and a few rows for vacant parcels, so column guesses can be checked."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
     names = tables.names()
     out = {"updated": now, "tables": {}}
+    if tax_header:
+        out["tax_parcel_columns"] = tax_header
     for name in names:
         try:
             header, pc, samples = None, None, []
@@ -461,7 +498,15 @@ def run(state, geocode, now):
             parcels = load_parcels(tables)
             load_year_built(tables, parcels)
             load_land_details(tables, parcels)
-            dump_columns(tables, parcels, now)
+            tax_header = None
+            try:
+                tf = tax_folder(folder)
+                if tf:
+                    print(f"  owners from {unquote(tf.rstrip('/').rsplit('/', 1)[-1])}")
+                    tax_header = load_owners(tf, parcels, tmp)
+            except Exception as err:   # owners are extra; don't let them stop the import
+                print(f"  no owner names ({err})")
+            dump_columns(tables, parcels, now, tax_header)
             rows = dedupe(load_permits(tables, parcels) + history["permits"])
         old_parcels = {p["parcel"]: p for p in (json.loads(PARCELS_OUT.read_text())["parcels"]
                                                 if PARCELS_OUT.exists() else [])}
@@ -470,6 +515,8 @@ def run(state, geocode, now):
             o = old_parcels.get(pid, {})
             plist.append({"parcel": pid, "address": p["address"], "luc": p["luc"], "cls": p["cls"],
                           "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon"),
+                          **({"owner": p.get("owner") or o.get("owner")}
+                             if VACANT_LUC.match(p["luc"] or "") and (p.get("owner") or o.get("owner")) else {}),
                           **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner")
                              if p.get(k) is not None}})
         lucs = {}
