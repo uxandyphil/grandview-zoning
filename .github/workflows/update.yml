@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: "0 11 * * *"
   workflow_dispatch:
+  push:
+    paths:
+      - "*.py"
+      - "docs/index.html"
+      - "requirements.txt"
+
+concurrency:
+  group: update-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
