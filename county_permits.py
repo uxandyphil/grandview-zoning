@@ -36,7 +36,8 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 5   # bump to force a re-import of the current month's file
+IMPORT_VERSION = 6   # bump to force a re-import of the current month's file
+COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
 
@@ -256,7 +257,7 @@ def load_land_details(tables, parcels):
                     header = list(row)
                     pc = find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"^pin$", r"parcel")
                     cand = dict(
-                        owner=find_col(header, r"^owner.?n(a)?me?1?$", r"^own.?nm1?$", r"owner.?name", r"^owner1?$",
+                        owner=find_col(header, r"^owner.?n(a)?me?1?$", r"^own(er)?.?1$", r"^own.?nm1?$", r"owner.?name", r"^owner1?$",
                                        avoid=(r"addr", r"city", r"state", r"zip", r"mail", r"2$", r"care")),
                         land_value=find_col(header, r"^apr.?land$", r"^appr.?land$", r"^mkt.?land$", r"land.?(val|appr|mkt|market)",
                                             r"(mkt|market|appr|apr).*land", avoid=no_prior + (r"use", r"acre", r"code")),
@@ -264,8 +265,9 @@ def load_land_details(tables, parcels):
                                              r"(mkt|market|appr|apr).*tot", avoid=no_prior),
                         sale_date=find_col(header, r"^sale.?d(a)?te?$", r"sale.?date", r"^saledt$", r"transfer.?date",
                                            r"conv.*date", r"^deed.?date$", avoid=(r"prior", r"^prev")),
-                        sale_price=find_col(header, r"^sale.?pr(ice)?$", r"sale.?(price|amt|amount)", r"^price$",
-                                            r"conv.*(amt|price)", avoid=(r"prior", r"^prev", r"adj")))
+                        sale_price=find_col(header, r"^sale.?pr(ice)?$", r"sale.?(price|amt|amount)", r"conv.*(amt|price)", avoid=(r"prior", r"^prev", r"adj")))
+                    if not cand["sale_date"]:
+                        cand["sale_price"] = None
                     cols = {k: v for k, v in cand.items() if v and k in need}
                     if name != "parcel":
                         print(f"  {name} columns:", header)
@@ -288,8 +290,6 @@ def load_land_details(tables, parcels):
                     if d and d > (p.get("sale_date") or ""):
                         p["sale_date"] = d
                         p["sale_price"] = money(row.get(cols["sale_price"])) if "sale_price" in cols else None
-                elif "sale_price" in cols and p.get("sale_price") is None:
-                    p["sale_price"] = money(row.get(cols["sale_price"]))
             if pc and cols:
                 need -= set(cols)
         except RuntimeError:
@@ -297,6 +297,31 @@ def load_land_details(tables, parcels):
     got = {k: sum(1 for pid in want if parcels[pid].get(k) is not None) for k in
            ("owner", "land_value", "total_value", "sale_date", "sale_price")}
     print(f"  land details for {len(want)} vacant parcels: {got}" + (f", still missing {sorted(need)}" if need else ""))
+
+
+def dump_columns(tables, parcels, now):
+    """Writes each table's column names and a few rows for vacant parcels, so column guesses can be checked."""
+    want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
+    names = ([Path(m).stem for m in tables.zip.namelist()] if tables.zip else list(tables.xlsx or {}))
+    out = {"updated": now, "tables": {}}
+    for name in names:
+        try:
+            header, pc, samples = None, None, []
+            for row in tables.rows(re.escape(name)):
+                if header is None:
+                    header = list(row)
+                    pc = find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"^pin$", r"parcel")
+                    if not pc:
+                        break
+                if parcel_id(row.get(pc)) in want:
+                    samples.append({k: str(v)[:60] for k, v in row.items()})
+                    if len(samples) >= 3:
+                        break
+            out["tables"][name] = {"columns": header or [], "samples": samples}
+        except Exception as err:   # a table we can't read shouldn't stop the import
+            out["tables"][name] = {"error": str(err)[:200]}
+    COLUMNS_OUT.write_text(json.dumps(out, indent=1))
+    print(f"  wrote {COLUMNS_OUT} ({len(out['tables'])} tables)")
 
 
 def load_year_built(tables, parcels):
@@ -432,6 +457,7 @@ def run(state, geocode, now):
             parcels = load_parcels(tables)
             load_year_built(tables, parcels)
             load_land_details(tables, parcels)
+            dump_columns(tables, parcels, now)
             rows = dedupe(load_permits(tables, parcels) + history["permits"])
         old_parcels = {p["parcel"]: p for p in (json.loads(PARCELS_OUT.read_text())["parcels"]
                                                 if PARCELS_OUT.exists() else [])}
