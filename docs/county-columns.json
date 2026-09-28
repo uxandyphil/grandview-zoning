@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-28T00:15:04+00:00",
+ "updated": "2026-09-28T00:22:04+00:00",
  "tables": {
   "Build": {
    "columns": [
@@ -588,5 +588,121 @@
    ],
    "samples": []
   }
+ },
+ "other_folders": {
+  "2026-05-15 Appraisal": [
+   "Build.xlsx",
+   "Dwelling.xlsx",
+   "Excel.zip",
+   "Improvement.xlsx",
+   "Land.xlsx",
+   "Parcel.xlsx",
+   "Permit.xlsx",
+   "Sales010.xlsx",
+   "Sales020-277.xlsx",
+   "Sales410-610.xlsx",
+   "Tab-Delimited.zip"
+  ],
+  "2026-06-15 Appraisal": [
+   "Build.xlsx",
+   "Dwelling.xlsx",
+   "Excel.zip",
+   "Improvement.xlsx",
+   "Land.xlsx",
+   "Parcel.xlsx",
+   "Permit.xlsx",
+   "Sales010.xlsx",
+   "Sales020-277.xlsx",
+   "Sales410-610.xlsx",
+   "Tab-Delimited.zip"
+  ],
+  "2026-07-15 Appraisal": [
+   "Build.xlsx",
+   "Dwelling.xlsx",
+   "Excel.zip",
+   "Improvement.xlsx",
+   "Land.xlsx",
+   "Parcel.xlsx",
+   "Permit.xlsx",
+   "Sales010.xlsx",
+   "Sales020-277.xlsx",
+   "Sales410-610.xlsx",
+   "Tab-Delimited.zip"
+  ],
+  "2026-07-15 Tax Accounting": [
+   "Excel.zip",
+   "Parcel.xlsx",
+   "Payment2023.xlsx",
+   "Payment2024.xlsx",
+   "Payment2025.xlsx",
+   "RentalContact.xlsx",
+   "Sa.xlsx",
+   "Tab-Delimited.zip",
+   "TaxDetail.xlsx",
+   "TaxDistribution.xlsx",
+   "Transfer010.xlsx",
+   "Transfer020-277.xlsx",
+   "Transfer410-610.xlsx",
+   "Value.txt",
+   "Value.xlsx"
+  ],
+  "2026-08-15 Appraisal": [
+   "Build.xlsx",
+   "Dwelling.xlsx",
+   "Excel.zip",
+   "Improvement.xlsx",
+   "Land.xlsx",
+   "Parcel.xlsx",
+   "Permit.xlsx",
+   "Sales010.xlsx",
+   "Sales020-277.xlsx",
+   "Sales410-610.xlsx",
+   "Tab-Delimited.zip"
+  ],
+  "2026-08-15 Tax Accounting": [
+   "Excel.zip",
+   "Parcel.xlsx",
+   "Payment2023.xlsx",
+   "Payment2024.xlsx",
+   "Payment2025.xlsx",
+   "RentalContact.xlsx",
+   "Sa.xlsx",
+   "Tab-Delimited.zip",
+   "TaxDetail.xlsx",
+   "TaxDistribution.xlsx",
+   "Transfer010.xlsx",
+   "Transfer020-277.xlsx",
+   "Transfer410-610.xlsx",
+   "Value.xlsx"
+  ],
+  "2026-09-15 Appraisal": [
+   "Build.xlsx",
+   "Dwelling.xlsx",
+   "Excel.zip",
+   "Improvement.xlsx",
+   "Land.xlsx",
+   "Parcel.xlsx",
+   "Permit.xlsx",
+   "Sales010.xlsx",
+   "Sales020-277.xlsx",
+   "Sales410-610.xlsx",
+   "Tab-Delimited.zip"
+  ],
+  "2026-09-15 Tax Accounting": [
+   "Excel.zip",
+   "Parcel.xlsx",
+   "Payment2023.xlsx",
+   "Payment2024.xlsx",
+   "Payment2025.xlsx",
+   "RentalContact.xlsx",
+   "Sa.xlsx",
+   "Tab-Delimited.zip",
+   "TaxDetail.xlsx",
+   "TaxDistribution.xlsx",
+   "Transfer010.xlsx",
+   "Transfer020-277.xlsx",
+   "Transfer410-610.xlsx",
+   "Value.xlsx"
+  ]
  }
 }
