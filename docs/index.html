@@ -1247,8 +1247,13 @@
     const out = [];
     if (p.owner) out.push(`owned by ${ownerName(p.owner)}`);
     if (p.land_value) out.push(`land appraised at ${money$(p.land_value)}`);
-    if (p.sale_date) out.push(p.sale_price ? `last sold ${monYr(p.sale_date)} for ${money$(p.sale_price)}`
-      : `last transferred ${monYr(p.sale_date)} (no sale price)`);
+    if (p.associated) out.push("side lot, valued with a neighboring property");
+    if (p.corner) out.push("corner lot");
+    if (p.sale_date) {
+      const deed = p.sales && p.sales[0] && p.sales[0].deed ? ` by ${p.sales[0].deed.replace(/^\(General\)\s*/, "").toLowerCase()}` : "";
+      out.push(p.sale_price ? `last sold ${monYr(p.sale_date)} for ${money$(p.sale_price)}${deed}`
+        : `last transferred ${monYr(p.sale_date)}${deed} (no sale price)`);
+    }
     return out;
   }
   const streetCase = (a) => normAddr(a).replace(/\b([A-Z])([A-Z]+)\b/g, (m, x, y) => x + y.toLowerCase())
@@ -1260,7 +1265,8 @@
       .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
       .map((p) => ({ id: "xland|" + p.parcel, board: "Land", house: p, land: true, cat: "other",
         address: p.address || "Address not listed", lat: p.lat, lon: p.lon, meeting_date: null,
-        popup: [landKind(p.luc), p.acres ? fmtAcres(p.acres) : "", ...landFacts(p)].filter(Boolean).join(", "),
+        popup: [landKind(p.luc), p.acres ? fmtAcres(p.acres) : "", ...landFacts(p)].filter(Boolean).join(", ")
+          + (p.sales && p.sales.length > 1 ? ". Earlier: " + p.sales.slice(1, 4).map((x) => `${monYr(x.date)} ${x.price ? money$(x.price) : "no price"}`).join(", ") : ""),
         description: [landKind(p.luc), p.acres ? fmtAcres(p.acres) : "", ownerName(p.owner), `parcel ${p.parcel}`].filter(Boolean).join(", ") }));
     state.xlabel = label; state.xnoun = "vacant parcel";
     $("opt-x").textContent = "Vacant land";
@@ -1276,7 +1282,8 @@
     const owners = {};
     land.forEach((p) => { if (p.owner) (owners[p.owner] = owners[p.owner] || []).push(p); });
     const sales = land.filter((p) => p.sale_date).sort((a, b) => b.sale_date.localeCompare(a.sale_date)).slice(0, 8);
-    const hasDetails = Object.keys(owners).length || sales.length;
+    const hasDetails = Object.keys(owners).length || sales.length || landValue;
+    const side = land.filter((p) => p.associated);
     const mapped = land.filter((p) => p.lat != null).length;
     const kinds = ["Residential lot", "Commercial land", "Industrial land"].map((k) => ({ k, list: land.filter((p) => landKind(p.luc) === k) }))
       .filter((r) => r.list.length);
@@ -1296,10 +1303,13 @@
       ${sales.length ? `<h3 class="x-land-h">Most recent sales</h3><div class="x-sales" id="x-land-sales"></div>` : ""}
       <p class="${mapped < land.length ? "x-warn" : "x-ok"}" style="margin-top:14px">${mapped < land.length
         ? `${land.length - mapped} of these have no street number, so they can't be pinned on the map. They're still listed, and each links to the county's parcel page, which has a map.`
-        : "Every parcel is on the map."}${withAcres.length && hasDetails ? "" : " Acreage, owners, values, and sales arrive with the next county import."}</p>
+        : "Every parcel is on the map."}${withAcres.length && hasDetails ? "" : " Acreage, values, and sales arrive with the next county import."}</p>
       <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-land-show">Show vacant land on the map</button></div>`;
-    hbars($("x-land-kind"), kinds.map((r) => ({ label: r.k.split(" ")[0], value: r.list.length, color: LAND_COLOR[r.k], list: r.list,
-      num: r.list.length + (withAcres.length ? ` · ${r.list.reduce((s, p) => s + (p.acres || 0), 0).toFixed(1)} ac` : "") })),
+    const kindRows = kinds.map((r) => ({ label: r.k.split(" ")[0], value: r.list.length, color: LAND_COLOR[r.k], list: r.list,
+      num: r.list.length + (withAcres.length ? ` · ${r.list.reduce((s, p) => s + (p.acres || 0), 0).toFixed(1)} ac` : "") }));
+    if (side.length) kindRows.push({ label: "Side lots", value: side.length, color: "var(--muted)", list: side,
+      num: side.length + (withAcres.length ? ` · ${side.reduce((s, p) => s + (p.acres || 0), 0).toFixed(1)} ac` : "") });
+    hbars($("x-land-kind"), kindRows,
       (r) => showLand(r.list, `(${r.label.toLowerCase()} only)`));
     if (withAcres.length) {
       hbars($("x-land-top"), withAcres.sort((a, b) => b.acres - a.acres).slice(0, 8).map((p) => ({
@@ -1322,7 +1332,8 @@
           <span class="pdot" style="background:${LAND_COLOR[landKind(p.luc)]};border-radius:50%" aria-hidden="true"></span>
           <span class="ptype">${esc(p.address ? streetCase(p.address) : "No address")}</span>
           <span class="pdate">${esc(monYr(p.sale_date))}</span>
-          <span class="teaser">${esc([p.sale_price ? money$(p.sale_price) : "No sale price", p.owner ? "now " + ownerName(p.owner) : ""].filter(Boolean).join(" · "))} &#8599;</span>
+          <span class="teaser">${esc([p.sale_price ? money$(p.sale_price) : "No sale price", p.sales && p.sales[0].deed ? p.sales[0].deed.replace(/^\(General\)\s*/, "") : "",
+            p.owner ? "now " + ownerName(p.owner) : "", p.acres ? fmtAcres(p.acres) : ""].filter(Boolean).join(" · "))} &#8599;</span>
         </a>`).join("");
     }
     $("x-land-show").onclick = () => showLand(land, "");
