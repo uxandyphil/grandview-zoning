@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 6   # bump to force a re-import of the current month's file
+IMPORT_VERSION = 7   # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -122,6 +122,9 @@ class Tables:
         else:
             self.xlsx = loose
             print("  files:", ", ".join(self.xlsx))
+
+    def names(self):
+        return [Path(m).stem for m in self.zip.namelist()] if self.zip else list(self.xlsx or {})
 
     def rows(self, name):
         if self.zip:
@@ -214,7 +217,7 @@ def load_parcels(tables):
             sf = find_col(header, r"^adrsuf$", r"street.?(suf|type)", avoid=(r"mail",))
             cls = find_col(header, r"^class$", r"prop.*class", r"^luc$", r"land.?use")
             luc = find_col(header, r"^luc$", r"land.?use")
-            acres = find_col(header, r"^acres?$", r"^(calc|legal|deeded|total).?acre", r"acre", avoid=(r"flag", r"code"))
+            acres = find_col(header, r"^calc.?acres$", r"^acres?$", r"acre", avoid=(r"flag", r"code"))
             cols = dict(parcel=pc, address=addr, no=no, dir=dr, street=st, suffix=sf, unit=unit, cls=cls, luc=luc, acres=acres)
             print("  parcel columns:", header)
             print("  using:", cols)
@@ -241,68 +244,62 @@ DETAIL_TABLES = ("parcel", "owner", "owners", "value", "values", "sales", "sale"
 
 
 def load_land_details(tables, parcels):
-    """Owner, appraised values and last sale for vacant parcels only. Column names are guessed and logged."""
+    """Values, lot flags and sale history for vacant parcels, from the Parcel, Land and Sales tables.
+    Column names come from docs/county-columns.json. The appraisal files have no owner names."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
     if not want:
         return
-    need = {"owner", "land_value", "total_value", "sale_date", "sale_price"}
-    no_prior = (r"prior", r"^prev", r"last.?yr", r"assess", r"tax")
-    for name in DETAIL_TABLES:
-        if not need:
-            break
-        try:
-            header, pc, cols = None, None, {}
-            for row in tables.rows(name):
-                if header is None:
-                    header = list(row)
-                    pc = find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"^pin$", r"parcel")
-                    cand = dict(
-                        owner=find_col(header, r"^owner.?n(a)?me?1?$", r"^own(er)?.?1$", r"^own.?nm1?$", r"owner.?name", r"^owner1?$",
-                                       avoid=(r"addr", r"city", r"state", r"zip", r"mail", r"2$", r"care")),
-                        land_value=find_col(header, r"^apr.?land$", r"^appr.?land$", r"^mkt.?land$", r"land.?(val|appr|mkt|market)",
-                                            r"(mkt|market|appr|apr).*land", avoid=no_prior + (r"use", r"acre", r"code")),
-                        total_value=find_col(header, r"^apr.?tot(al)?$", r"^appr.?tot", r"^mkt.?tot", r"tot(al)?.?(val|appr|mkt|market)",
-                                             r"(mkt|market|appr|apr).*tot", avoid=no_prior),
-                        sale_date=find_col(header, r"^sale.?d(a)?te?$", r"sale.?date", r"^saledt$", r"transfer.?date",
-                                           r"conv.*date", r"^deed.?date$", avoid=(r"prior", r"^prev")),
-                        sale_price=find_col(header, r"^sale.?pr(ice)?$", r"sale.?(price|amt|amount)", r"conv.*(amt|price)", avoid=(r"prior", r"^prev", r"adj")))
-                    if not cand["sale_date"]:
-                        cand["sale_price"] = None
-                    cols = {k: v for k, v in cand.items() if v and k in need}
-                    if name != "parcel":
-                        print(f"  {name} columns:", header)
-                    print(f"  land details from {name}: {cols or 'nothing new'}")
-                    if not pc or not cols:
-                        break
-                pid = parcel_id(row.get(pc))
-                if pid not in want:
-                    continue
-                p = parcels[pid]
-                if "owner" in cols:
-                    o = title(row.get(cols["owner"]))
-                    if o and not p.get("owner"):
-                        p["owner"] = o
-                for k in ("land_value", "total_value"):
-                    if k in cols and money(row.get(cols[k])) and not p.get(k):
-                        p[k] = money(row.get(cols[k]))
-                if "sale_date" in cols:   # sales tables have a row per sale: keep the newest
-                    d = parse_date(row.get(cols["sale_date"]))
-                    if d and d > (p.get("sale_date") or ""):
-                        p["sale_date"] = d
-                        p["sale_price"] = money(row.get(cols["sale_price"])) if "sale_price" in cols else None
-            if pc and cols:
-                need -= set(cols)
-        except RuntimeError:
+    first = lambda row, *cols: next((row.get(c) for c in cols if str(row.get(c) or "").strip()), None)
+
+    for row in tables.rows("parcel"):
+        pid = parcel_id(row.get("PARCEL ID"))
+        if pid not in want:
             continue
-    got = {k: sum(1 for pid in want if parcels[pid].get(k) is not None) for k in
-           ("owner", "land_value", "total_value", "sale_date", "sale_price")}
-    print(f"  land details for {len(want)} vacant parcels: {got}" + (f", still missing {sorted(need)}" if need else ""))
+        p = parcels[pid]
+        p["land_value"] = money(first(row, "APRLAND", "COSTLAND")) or None
+        p["total_value"] = money(first(row, "APRTOT", "COSTTOT")) or None
+        a = acre_value(first(row, "CALCACRES", "ACRES"))
+        if a:
+            p["acres"] = a
+        loc = [re.sub(r"^\d+\s*-\s*", "", str(row.get(c) or "")).strip() for c in ("LOCATION1", "LOCATION2")]
+        if any("corner" in l.lower() for l in loc):
+            p["corner"] = True
+
+    try:   # "S - ASSOCIATED PARCEL" in the land table: valued together with a neighboring parcel (a side lot)
+        for row in tables.rows("land"):
+            pid = parcel_id(row.get("PARCEL ID"))
+            if pid in want and any(str(row.get(f"INFLUADJCODE{i}") or "").upper().startswith("S - ASSOC") for i in (1, 2, 3)):
+                parcels[pid]["associated"] = True
+    except RuntimeError as err:
+        print(f"  no land table ({err})")
+
+    sales = {}
+    for name in [n for n in tables.names() if re.match(r"sales", n, re.I)]:
+        for row in tables.rows(re.escape(name)):
+            pid = parcel_id(row.get("PARCEL ID"))
+            if pid not in want:
+                continue
+            d = parse_date(row.get("SALEDT"))
+            if not d:
+                continue
+            kind = re.sub(r"^\S+\s*-\s*", "", str(row.get("INSTRUMENT") or "")).strip()
+            sales.setdefault(pid, {})[(d, money(row.get("PRICE")))] = kind
+    for pid, rows in sales.items():
+        hist = sorted(({"date": d, "price": pr, "deed": k} for (d, pr), k in rows.items()),
+                      key=lambda r: r["date"], reverse=True)[:6]
+        p = parcels[pid]
+        p["sales"] = hist
+        p["sale_date"], p["sale_price"] = hist[0]["date"], hist[0]["price"]
+
+    got = {k: sum(1 for pid in want if parcels[pid].get(k)) for k in
+           ("acres", "land_value", "total_value", "sale_date", "associated", "corner")}
+    print(f"  land details for {len(want)} vacant parcels: {got}")
 
 
 def dump_columns(tables, parcels, now):
     """Writes each table's column names and a few rows for vacant parcels, so column guesses can be checked."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
-    names = ([Path(m).stem for m in tables.zip.namelist()] if tables.zip else list(tables.xlsx or {}))
+    names = tables.names()
     out = {"updated": now, "tables": {}}
     for name in names:
         try:
@@ -320,6 +317,13 @@ def dump_columns(tables, parcels, now):
             out["tables"][name] = {"columns": header or [], "samples": samples}
         except Exception as err:   # a table we can't read shouldn't stop the import
             out["tables"][name] = {"error": str(err)[:200]}
+    try:   # other monthly data sets next to the appraisal files (owner names may live in one of them)
+        folder = latest_appraisal_folder()
+        year = folder.rstrip("/").rsplit("/", 1)[0] + "/"
+        out["other_folders"] = {unquote(u.rstrip("/").rsplit("/", 1)[-1]): [unquote(f.rsplit("/", 1)[-1]) for f in links(u)
+                                if not f.endswith("/")][:30] for u in links(year) if u.endswith("/") and u.startswith(year) and u != year}
+    except Exception as err:
+        out["other_folders"] = {"error": str(err)[:200]}
     COLUMNS_OUT.write_text(json.dumps(out, indent=1))
     print(f"  wrote {COLUMNS_OUT} ({len(out['tables'])} tables)")
 
@@ -466,7 +470,8 @@ def run(state, geocode, now):
             o = old_parcels.get(pid, {})
             plist.append({"parcel": pid, "address": p["address"], "luc": p["luc"], "cls": p["cls"],
                           "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon"),
-                          **{k: p[k] for k in ("owner", "land_value", "total_value", "sale_date", "sale_price") if p.get(k) is not None}})
+                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner")
+                             if p.get(k) is not None}})
         lucs = {}
         for p in plist:
             lucs[p["luc"]] = lucs.get(p["luc"], 0) + 1
