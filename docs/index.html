@@ -1271,7 +1271,7 @@
     const el = $("x-land"), P = state.parcels || [];
     const land = P.filter((p) => VACANT_LUC.test(p.luc || ""));
     if (!land.length) { el.innerHTML = `<h2>Vacant land</h2><p class="note">No parcels are listed as vacant in the county file.</p>`; return; }
-    const withAcres = land.filter((p) => p.acres), acres = withAcres.reduce((s, p) => s + p.acres, 0);
+    const withAcres = land.filter((p) => p.acres).length >= land.length / 2 ? land.filter((p) => p.acres) : [], acres = withAcres.reduce((s, p) => s + p.acres, 0);
     const landValue = land.reduce((s, p) => s + (p.land_value || 0), 0);
     const owners = {};
     land.forEach((p) => { if (p.owner) (owners[p.owner] = owners[p.owner] || []).push(p); });
