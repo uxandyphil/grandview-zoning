@@ -1,7 +1,7 @@
 {
   "county_permits": {
     "folder": "2026-09-15 Appraisal",
-    "version": 4
+    "version": 5
   },
   "geocache": {
     "0 GOODALE BL, Grandview Heights, OH 43212": null,
@@ -394,6 +394,7 @@
       39.978365768005,
       -83.051874316346
     ],
+    "1040 HIGGS AV, Grandview Heights, OH 43212": null,
     "1040 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.980367748704,
       -83.032117851034
@@ -8120,6 +8121,10 @@
       39.981999429849,
       -83.047315070304
     ],
+    "1578 W FIRST ST, Grandview Heights, OH 43212": [
+      39.981999429849,
+      -83.047315070304
+    ],
     "1580 LINCOLN RD, Grandview Heights, OH 43212": [
       39.987664687949,
       -83.056349636309
@@ -9871,6 +9876,10 @@
       39.976209205331,
       -83.033687091329
     ],
+    "850 WILLIAMS AV, Grandview Heights, OH 43212": [
+      39.97903057086,
+      -83.026638811516
+    ],
     "851 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.975888131427,
       -83.036119242257
@@ -10546,6 +10555,10 @@
       39.977612885571,
       -83.02967282865
     ],
+    "900 WILLIAMS AV, Grandview Heights, OH 43212": [
+      39.978863643405,
+      -83.027436830303
+    ],
     "901 COPELAND RD, Grandview Heights, OH 43212": [
       39.977056406768,
       -83.032649241539
@@ -10880,6 +10893,10 @@
       39.977844057847,
       -83.031400758104
     ],
+    "925 BURRELL AV, Grandview Heights, OH 43212": [
+      39.981161924541,
+      -83.028854581975
+    ],
     "925 COPELAND RD, Grandview Heights, OH 43212": [
       39.9774458756,
       -83.03262285715
@@ -11104,6 +11121,10 @@
       39.982218062384,
       -83.026882740416
     ],
+    "937 BURRELL AV, Grandview Heights, OH 43212": [
+      39.981143427814,
+      -83.029223499585
+    ],
     "937 PALMER RD, Grandview Heights, OH 43212": [
       39.977567512033,
       -83.037132553351
@@ -11239,6 +11260,10 @@
     "944 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982214304392,
       -83.026905678846
+    ],
+    "945 BURRELL AV, Grandview Heights, OH 43212": [
+      39.981099953889,
+      -83.029376681155
     ],
     "945 HUDSON CROSSING, Grandview Heights, OH 43212": null,
     "945 MCCLAIN RD, Grandview Heights, OH 43212": [
@@ -11611,6 +11636,10 @@
       39.976329462867,
       -83.030135861293
     ],
+    "967 BURRELL AV, Grandview Heights, OH 43212": [
+      39.980943375055,
+      -83.029727480104
+    ],
     "967 FIRST AVE, Grandview Heights, OH 43212": null,
     "967 MCCLAIN RD, Grandview Heights, OH 43212": [
       39.97811488842,
@@ -11637,6 +11666,10 @@
     "968 WOODHILL DR, Grandview Heights, OH 43212": [
       39.978502940867,
       -83.037951185441
+    ],
+    "969 BURRELL AV, Grandview Heights, OH 43212": [
+      39.980929140615,
+      -83.029759370918
     ],
     "969 FIRST AVE, Grandview Heights, OH 43212": null,
     "969 NORTHWEST BL, Grandview Heights, OH 43212": [
