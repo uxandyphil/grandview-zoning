@@ -200,6 +200,10 @@
   .x-ok { font-size: 0.85rem; color: var(--muted); margin: 0 0 12px; }
   @media (prefers-reduced-motion: reduce) { .x-bar span { transition: none; } }
   .x-land-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 6px; }
+  .prow.land .teaser { white-space: normal; }
+  .x-land-h { margin: 18px 0 4px; font-size: 0.9rem; font-weight: 600; color: var(--muted); }
+  .x-sales { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); column-gap: 18px; }
+  .x-sales .prow:last-child { border-bottom: 1px solid var(--line); }
   .x-land-grid h3 { margin: 0 0 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); }
 
   /* trends */
@@ -611,11 +615,11 @@
         <summary>${CHEV}<span class="m-date">${esc(street)}</span>
           <span class="m-count">${cs.length} ${cs[0].land ? "parcel" : "house"}${cs.length === 1 ? "" : "s"}</span></summary>
         <div class="cases">${cs.map((c) => `
-          <a class="prow" href="${PARCEL_LINK + esc(c.house.parcel)}" target="_blank" rel="noopener" data-id="${esc(c.id)}">
+          <a class="prow${c.land ? " land" : ""}" href="${PARCEL_LINK + esc(c.house.parcel)}" target="_blank" rel="noopener" data-id="${esc(c.id)}">
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? landKind(c.house.luc) + (c.lat == null ? ", not on map" : "") : houseKind(c.house.luc))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : houseKind(c.house.luc))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1235,6 +1239,20 @@
   const landKind = (luc) => luc === "300" ? "Industrial land" : luc === "400" ? "Commercial land" : "Residential lot";
   const LAND_COLOR = { "Residential lot": "var(--t-bldg)", "Commercial land": "var(--t-comm)", "Industrial land": "var(--t-other)" };
   const fmtAcres = (a) => a >= 1 ? `${a.toFixed(1)} acres` : `${a.toFixed(2)} acre${a === 1 ? "" : "s"}`;
+  const money$ = (n) => n >= 1e6 ? `$${(n / 1e6).toFixed(n >= 1e7 ? 0 : 1)}M` : n >= 1e3 ? `$${Math.round(n / 1e3)}K` : `$${n}`;
+  const ownerName = (o) => (o || "").toLowerCase().replace(/\b(\w)/g, (m) => m.toUpperCase())
+    .replace(/\b(Llc|Lp|Llp|Inc|Nri|Ii|Iii|Usa|Oh)\b/g, (m) => m.toUpperCase()).replace(/\bOf\b/g, "of");
+  const monYr = (d) => new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" });
+  function landFacts(p) {
+    const out = [];
+    if (p.owner) out.push(`owned by ${ownerName(p.owner)}`);
+    if (p.land_value) out.push(`land appraised at ${money$(p.land_value)}`);
+    if (p.sale_date) out.push(p.sale_price ? `last sold ${monYr(p.sale_date)} for ${money$(p.sale_price)}`
+      : `last transferred ${monYr(p.sale_date)} (no sale price)`);
+    return out;
+  }
+  const streetCase = (a) => normAddr(a).replace(/\b([A-Z])([A-Z]+)\b/g, (m, x, y) => x + y.toLowerCase())
+    .replace(/\b(\d+)(ST|ND|RD|TH)\b/g, (m, d, x) => d + x.toLowerCase());
   const streetOf = (a) => normAddr(a || "").replace(/^\d+[A-Z]?\s+(R\s+)?/, "").replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase());
 
   function showLand(list, label) {
@@ -1242,8 +1260,8 @@
       .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
       .map((p) => ({ id: "xland|" + p.parcel, board: "Land", house: p, land: true, cat: "other",
         address: p.address || "Address not listed", lat: p.lat, lon: p.lon, meeting_date: null,
-        popup: [landKind(p.luc), p.acres ? fmtAcres(p.acres) : ""].filter(Boolean).join(", "),
-        description: `${landKind(p.luc)}${p.acres ? ", " + fmtAcres(p.acres) : ""}, parcel ${p.parcel}` }));
+        popup: [landKind(p.luc), p.acres ? fmtAcres(p.acres) : "", ...landFacts(p)].filter(Boolean).join(", "),
+        description: [landKind(p.luc), p.acres ? fmtAcres(p.acres) : "", ownerName(p.owner), `parcel ${p.parcel}`].filter(Boolean).join(", ") }));
     state.xlabel = label; state.xnoun = "vacant parcel";
     $("opt-x").textContent = "Vacant land";
     browseWith({ board: "xhouses" });
@@ -1254,6 +1272,11 @@
     const land = P.filter((p) => VACANT_LUC.test(p.luc || ""));
     if (!land.length) { el.innerHTML = `<h2>Vacant land</h2><p class="note">No parcels are listed as vacant in the county file.</p>`; return; }
     const withAcres = land.filter((p) => p.acres), acres = withAcres.reduce((s, p) => s + p.acres, 0);
+    const landValue = land.reduce((s, p) => s + (p.land_value || 0), 0);
+    const owners = {};
+    land.forEach((p) => { if (p.owner) (owners[p.owner] = owners[p.owner] || []).push(p); });
+    const sales = land.filter((p) => p.sale_date).sort((a, b) => b.sale_date.localeCompare(a.sale_date)).slice(0, 8);
+    const hasDetails = Object.keys(owners).length || sales.length;
     const mapped = land.filter((p) => p.lat != null).length;
     const kinds = ["Residential lot", "Commercial land", "Industrial land"].map((k) => ({ k, list: land.filter((p) => landKind(p.luc) === k) }))
       .filter((r) => r.list.length);
@@ -1264,26 +1287,43 @@
       <p class="p-sub">Parcels the county lists as vacant, meaning no building on the tax record. Many are slivers, side lots,
         parking areas, or pieces of larger sites like Grandview Yard, so vacant doesn't always mean buildable.</p>
       <div class="x-big">${land.length.toLocaleString()}</div>
-      <div class="x-of">of ${P.length.toLocaleString()} parcels in Grandview are vacant${withAcres.length ? `, about <b>${acres.toFixed(1)} acres</b> in all` : ""}</div>
+      <div class="x-of">of ${P.length.toLocaleString()} parcels in Grandview are vacant${withAcres.length ? `, about <b>${acres.toFixed(1)} acres</b> in all` : ""}${landValue ? `, with land appraised at <b>${money$(landValue)}</b>` : ""}</div>
       <div class="x-land-grid">
         <div><h3>By type</h3><div id="x-land-kind"></div></div>
         <div><h3>${withAcres.length ? "Largest parcels" : "By street"}</h3><div id="x-land-top"></div></div>
+        ${Object.keys(owners).length ? `<div><h3>Biggest owners</h3><div id="x-land-owners"></div></div>` : ""}
       </div>
+      ${sales.length ? `<h3 class="x-land-h">Most recent sales</h3><div class="x-sales" id="x-land-sales"></div>` : ""}
       <p class="${mapped < land.length ? "x-warn" : "x-ok"}" style="margin-top:14px">${mapped < land.length
         ? `${land.length - mapped} of these have no street number, so they can't be pinned on the map. They're still listed, and each links to the county's parcel page, which has a map.`
-        : "Every parcel is on the map."}${withAcres.length ? "" : " Acreage arrives with the next county import."}</p>
+        : "Every parcel is on the map."}${withAcres.length && hasDetails ? "" : " Acreage, owners, values, and sales arrive with the next county import."}</p>
       <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-land-show">Show vacant land on the map</button></div>`;
     hbars($("x-land-kind"), kinds.map((r) => ({ label: r.k.split(" ")[0], value: r.list.length, color: LAND_COLOR[r.k], list: r.list,
       num: r.list.length + (withAcres.length ? ` · ${r.list.reduce((s, p) => s + (p.acres || 0), 0).toFixed(1)} ac` : "") })),
       (r) => showLand(r.list, `(${r.label.toLowerCase()} only)`));
     if (withAcres.length) {
       hbars($("x-land-top"), withAcres.sort((a, b) => b.acres - a.acres).slice(0, 8).map((p) => ({
-        label: p.address || "No address", value: p.acres, num: fmtAcres(p.acres), color: LAND_COLOR[landKind(p.luc)], p })),
+        label: p.address ? streetCase(p.address) : "No address", value: p.acres, num: fmtAcres(p.acres), color: LAND_COLOR[landKind(p.luc)], p })),
         (r) => window.open(PARCEL_LINK + r.p.parcel, "_blank", "noopener"));
     } else {
       hbars($("x-land-top"), Object.entries(byStreet).sort((a, b) => b[1].length - a[1].length).slice(0, 8)
         .map(([s, list]) => ({ label: s || "No address", value: list.length, color: "var(--t-bldg)", list })),
         (r) => showLand(r.list, `on ${r.label}`));
+    }
+    if ($("x-land-owners")) {
+      const byOwner = Object.entries(owners).map(([o, list]) => ({ o, list, ac: list.reduce((s, p) => s + (p.acres || 0), 0) }))
+        .sort((a, b) => b.list.length - a.list.length || b.ac - a.ac).slice(0, 8);
+      hbars($("x-land-owners"), byOwner.map((r) => ({ label: ownerName(r.o), value: r.list.length, list: r.list, color: "var(--t-comm)",
+        num: r.list.length + (r.ac ? ` · ${r.ac.toFixed(1)} ac` : "") })), (r) => showLand(r.list, `owned by ${r.label}`));
+    }
+    if ($("x-land-sales")) {
+      $("x-land-sales").innerHTML = sales.map((p) => `
+        <a class="prow land" href="${PARCEL_LINK + esc(p.parcel)}" target="_blank" rel="noopener">
+          <span class="pdot" style="background:${LAND_COLOR[landKind(p.luc)]};border-radius:50%" aria-hidden="true"></span>
+          <span class="ptype">${esc(p.address ? streetCase(p.address) : "No address")}</span>
+          <span class="pdate">${esc(monYr(p.sale_date))}</span>
+          <span class="teaser">${esc([p.sale_price ? money$(p.sale_price) : "No sale price", p.owner ? "now " + ownerName(p.owner) : ""].filter(Boolean).join(" · "))} &#8599;</span>
+        </a>`).join("");
     }
     $("x-land-show").onclick = () => showLand(land, "");
   }
