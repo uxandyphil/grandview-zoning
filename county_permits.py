@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 13  # bump to force a re-import of the current month's file
+IMPORT_VERSION = 14  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -337,21 +337,48 @@ def load_owners(folder, parcels, luc_names):
         return header
 
 
+def signed(v):
+    """A dollar amount that keeps its sign (money() drops it)."""
+    try:
+        return round(float(re.sub(r"[^\d.-]", "", str(v or "")) or 0))
+    except ValueError:
+        return 0
+
+
 def load_occupancy(tables, parcels):
-    """Who lives there. The owner-occupancy tax credit (IsHomesite in the Parcel table, AnnualOwnOcc in
-    TaxDetail) means the owner lives in the home; RentalContact is the county's rental registration."""
-    owner, rental = set(), {}
+    """Who lives there, and unpaid taxes. The owner-occupancy tax credit (IsHomesite in the Parcel table,
+    AnnualOwnOcc in TaxDetail) means the owner lives in the home; RentalContact is the county's rental
+    registration. TaxDetail balances (TotTotal owed now, TotPrior from earlier years) and the Parcel table's
+    CDQ (year certified delinquent) give tax delinquency."""
+    owner, rental, tax = set(), {}, {}
     for row in tables.rows("parcel"):
         pid = parcel_id(row.get("PARCEL ID"))
-        if pid in parcels and str(row.get("IsHomesite") or "").strip().upper() in ("YES", "Y"):
+        if pid not in parcels:
+            continue
+        if str(row.get("IsHomesite") or "").strip().upper() in ("YES", "Y"):
             owner.add(pid)
+        cdq = re.sub(r"\D", "", str(row.get("CDQ") or ""))
+        if cdq and int(cdq) > 1900:
+            tax.setdefault(pid, {})["certified"] = int(cdq)
     try:
         for row in tables.rows("taxdetail"):
             pid = parcel_id(row.get("Parcel Id") or row.get("PARCEL ID"))
-            if pid in parcels and money(row.get("AnnualOwnOcc")) > 0:   # a credit, stored as a negative amount
+            if pid not in parcels:
+                continue
+            if money(row.get("AnnualOwnOcc")) > 0:   # a credit, stored as a negative amount
                 owner.add(pid)
+            t = tax.setdefault(pid, {})
+            for key, col in (("owed", "TotTotal"), ("prior", "TotPrior"), ("penalty", "AnnualPenalty")):
+                t[key] = t.get(key, 0) + signed(row.get(col))
     except RuntimeError as err:
         print(f"  no tax detail table ({err})")
+    for pid, t in tax.items():
+        t = {k: v for k, v in t.items() if v > 0}
+        if t.get("owed") or t.get("certified") or t.get("prior"):
+            parcels[pid]["tax"] = t
+    late = [p["tax"] for p in parcels.values() if p.get("tax")]
+    print(f"  unpaid taxes: {sum(1 for t in late if t.get('owed'))} properties owe ${sum(t.get('owed', 0) for t in late):,},"
+          f" {sum(1 for t in late if t.get('prior'))} from earlier years, {sum(1 for t in late if t.get('certified'))} certified delinquent")
     try:
         for row in tables.rows("rentalcontact"):
             pid = parcel_id(row.get("PARCEL ID") or row.get("Parcel Id"))
@@ -585,7 +612,7 @@ def run(state, geocode, now):
                           "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon"),
                           **({"owner": p.get("owner") or o.get("owner")}
                              if VACANT_LUC.match(p["luc"] or "") and (p.get("owner") or o.get("owner")) else {}),
-                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units")
+                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units", "tax")
                              if p.get(k) is not None}})
         lucs = {}
         for p in plist:
