@@ -1486,7 +1486,10 @@
 
   // ---------- liens (special assessments) ----------
   // City charges added to a property's tax bill (sidewalk repair, sewer, and the like), which makes them a lien
-  const saName = (w) => (w || "Unnamed").toLowerCase().replace(/\b[a-z]/g, (m) => m.toUpperCase())
+  const SA_SHORT = [[/esid|pace/i, "Clean energy (PACE)"], [/\bcda\b/i, "CDA charge"], [/sidewalk/i, "Sidewalk repair"],
+    [/sewer/i, "Columbus sewer"], [/^rr no response$/i, "RR no response"]];
+  const saFinancing = (a) => /esid|pace|\bcda\b/i.test(a.what || "");
+  const saName = (w) => (SA_SHORT.find(([re]) => re.test(w || "")) || [])[1] || (w || "Unnamed").toLowerCase().replace(/\b[a-z]/g, (m) => m.toUpperCase())
     .replace(/\b(Esid|Pace|Cd|Rr)\b/g, (m) => m.toUpperCase());
   const saText = (list) => list.map((a) => [saName(a.what), a.payoff ? `${money$(a.payoff)} left` : "", a.unpaid ? `${money$(a.unpaid)} unpaid` : ""]
     .filter(Boolean).join(" ")).join("; ");
@@ -1511,12 +1514,13 @@
       el.innerHTML = `<h2>Liens</h2><p class="note">${P.some((p) => p.occ) ? "No special assessments in the county's latest file." : "Arrives with the next county import."}</p>`;
       return;
     }
-    const all = props.flatMap((p) => p.assessments.map((a) => ({ ...a, p })));
+    const everything = props.flatMap((p) => p.assessments.map((a) => ({ ...a, p })));
+    const all = everything.filter((a) => !saFinancing(a)), fin = everything.filter(saFinancing);
     const sum = (k, list = all) => list.reduce((s, a) => s + (a[k] || 0), 0);
     const byWhat = {};
-    all.forEach((a) => { const k = saName(a.what); (byWhat[k] = byWhat[k] || []).push(a); });
+    everything.forEach((a) => { const k = saName(a.what); (byWhat[k] = byWhat[k] || []).push(a); });
     const unpaid = props.filter((p) => p.assessments.some((a) => a.unpaid));
-    const payoff = (p) => sum("payoff", p.assessments);
+    const payoff = (p) => sum("payoff", p.assessments.filter((a) => !saFinancing(a)));
     el.innerHTML = `
       <h2>Liens</h2>
       <p class="p-sub">A lien is a claim against a property for money owed; it has to be paid before the property can change hands
@@ -1524,13 +1528,16 @@
         the property tax bill as a <b>special assessment</b>, which makes it a lien. Unpaid property taxes are a lien too (see
         Unpaid property taxes above).</p>
       <div class="x-big">${props.length.toLocaleString()}</div>
-      <div class="x-of">properties carry a special assessment, <b>${money$(sum("annual"))}</b> a year in all${sum("payoff") ? `, with
-        <b>${money$(sum("payoff"))}</b> left to pay off` : ""}${unpaid.length ? `. <b>${unpaid.length.toLocaleString()}</b> have an unpaid balance` : ""}</div>
+      <div class="x-of">properties carry a special assessment${unpaid.length ? `, and <b>${unpaid.length.toLocaleString()}</b> have an unpaid balance` : ""}.
+        City charges come to <b>${money$(sum("annual"))}</b> a year${sum("payoff") ? `, with ${money$(sum("payoff"))} left to pay off` : ""}.</div>
       <div class="x-land-grid">
-        <div><h3>What they're for</h3><div id="x-lien-what"></div></div>
-        ${props.some(payoff) ? `<div><h3>Most left to pay off</h3><div id="x-lien-top"></div></div>` : ""}
+        <div><h3>What they're for (properties)</h3><div id="x-lien-what"></div></div>
+        ${props.some(payoff) ? `<div><h3>City charges left to pay off</h3><div id="x-lien-top"></div></div>` : ""}
       </div>
-      <p class="x-ok" style="margin-top:14px">${other}</p>
+      <p class="x-ok" style="margin-top:14px">${fin.length ? `Not every assessment is a penalty. Clean energy (PACE) and CDA (community
+        development authority) charges are financing an owner or developer agreed to, repaid through the tax bill, so they're counted apart:
+        ${fin.length} of them, ${money$(sum("annual", fin))} a year${sum("payoff", fin) ? ` with ${money$(sum("payoff", fin))} left to pay off` : ""}.` : ""}
+        "RR no response" is the county's own label. ${other}</p>
       <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-lien-show">Show these properties on the map</button></div>`;
     hbars($("x-lien-what"), Object.entries(byWhat).sort((a, b) => b[1].length - a[1].length).slice(0, 8).map(([k, list]) => ({
       label: k, value: list.length, color: "var(--t-zon)", list: [...new Set(list.map((a) => a.p))], k })),
