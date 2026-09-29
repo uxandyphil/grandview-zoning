@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 10  # bump to force a re-import of the current month's file
+IMPORT_VERSION = 11  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -251,9 +251,9 @@ DETAIL_TABLES = ("parcel", "owner", "owners", "value", "values", "sales", "sale"
 
 
 def foreclosure_kind(deed, row):
-    """'sheriff' for a sheriff's (foreclosure auction) deed, 'in lieu' for a deed in lieu of foreclosure,
+    """'sheriff' for a foreclosure auction deed (sheriff's or special master's), 'in lieu' for a deed in lieu of foreclosure,
     'bank' when the seller was the mortgage lender (usually a bank reselling a foreclosed home), else None."""
-    if re.search(r"sheriff", deed, re.I):
+    if re.search(r"sheriff|special master", deed, re.I):
         return "sheriff"
     if re.search(r"in lieu", deed, re.I):
         return "in lieu"

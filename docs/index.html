@@ -631,7 +631,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : houseKind(c.house.luc))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : [])].join(" · "))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1286,15 +1286,15 @@
   // ---------- foreclosures ----------
   // From county sale records: sheriff's deeds (foreclosure auctions), deeds in lieu, and resales by the lender
   const FC_KIND = {
-    sheriff: { label: "Sheriff's sale", color: "var(--t-zon)" },
-    "in lieu": { label: "Deed in lieu", color: "var(--t-elec)" },
-    bank: { label: "Lender resale", color: "var(--t-bldg)" } };
+    sheriff: { label: "Foreclosure auction", color: "var(--t-zon)", about: "A <b>foreclosure auction</b> is a court-ordered sale, recorded as a sheriff's or special master's deed." },
+    "in lieu": { label: "Deed in lieu", color: "var(--t-elec)", about: "A <b>deed in lieu</b> is an owner handing the property to the lender to avoid foreclosure." },
+    bank: { label: "Lender resale", color: "var(--t-bldg)", about: "A <b>lender resale</b> is the bank selling a property it took back." } };
   const fcText = (r) => `${FC_KIND[r.kind].label} ${monYr(r.date)}${r.price ? " for " + money$(r.price) : ""}`;
 
   function showForeclosures(list, label) {
     state.xitems = list.slice()
       .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
-      .map((p) => ({ id: "xfc|" + p.parcel, board: "House", house: p, cat: "other", address: p.address || "Address not listed",
+      .map((p) => ({ id: "xfc|" + p.parcel, board: "House", house: p, fc: true, noun: "property", cat: "other", address: p.address || "Address not listed",
         lat: p.lat, lon: p.lon, meeting_date: null, popup: p.foreclosures.map(fcText).join("; "),
         description: [houseKind(p.luc), ...p.foreclosures.map(fcText), `parcel ${p.parcel}`].join(", ") }));
     state.xlabel = label; state.xnoun = "property";
@@ -1316,11 +1316,10 @@
     const kinds = Object.keys(FC_KIND).filter((k) => events.some((e) => e.kind === k));
     el.innerHTML = `
       <h2>Foreclosures</h2>
-      <p class="p-sub">From the county's sale records. A <b>sheriff's sale</b> is the foreclosure auction itself. A <b>deed in lieu</b>
-        is an owner handing the property to the lender to avoid foreclosure. A <b>lender resale</b> is the bank selling a property it took back.
+      <p class="p-sub">From the county's sale records since ${esc(first)}. ${kinds.map((k) => FC_KIND[k].about).join(" ")}
         Cases filed in court that haven't reached a sale yet aren't in these records.</p>
       <div class="x-big">${props.length.toLocaleString()}</div>
-      <div class="x-of">properties with a foreclosure-related sale since ${esc(first)}, including <b>${sheriff.length.toLocaleString()}</b> sheriff's sale${sheriff.length === 1 ? "" : "s"}</div>
+      <div class="x-of">properties with a foreclosure-related sale since ${esc(first)}, including <b>${sheriff.length.toLocaleString()}</b> foreclosure auction${sheriff.length === 1 ? "" : "s"}</div>
       <h3 class="x-land-h">By year</h3>
       <div class="legend">${kinds.map((k) => `<span class="tag"><span class="sw" style="background:${FC_KIND[k].color}"></span>${esc(FC_KIND[k].label)}</span>`).join("")}</div>
       <div class="chart" id="x-fc-chart"></div>
