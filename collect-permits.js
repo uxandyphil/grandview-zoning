@@ -10,6 +10,12 @@
   const OLD_PREFIXES = ["R", "E", "H", "P", "ZON", "B", "C", "D", "F", "M", "S", "Z", "ROW", "SIGN", "DEMO"];
   // ROOF, WIND (windows), SIDE (siding), GAS, TAP and SWR series show up in the county's records from 2024 on
   const PREFIXES = OLD_PREFIXES.concat(["ROOF", "WIND", "SIDE", "GAS", "TAP", "SWR", "FENC", "POOL", "SOL"]);
+  // Code enforcement (violations), if the city makes those records public. Common series names are tried,
+  // and a few keyword searches reveal any other series whose record type looks like enforcement.
+  const ENFORCE_PREFIXES = ["CE", "CODE", "ENF", "VIOL", "COMP", "PM", "NOV", "SWO", "NUIS"];
+  const ENFORCE_TYPE = /violat|enforce|complaint|nuisance|property maint|stop work|citation/i;
+  const ENFORCE_WORDS = ["violation", "code enforcement", "complaint", "property maintenance", "nuisance"];
+  PREFIXES.push(...ENFORCE_PREFIXES);
   const LOOKAHEAD = 12;      // misses in a row before a series stops
   const MAX_DETAILS = 300;   // record pages per click; run again to continue
   const YEARS_BACK = 3;      // also collect this many past years (finished years are only walked once)
@@ -117,7 +123,8 @@
   let searches = 0;
   const harvest = (data) => {
     for (const it of Array.isArray(data) ? data : ((data && (data.results || data.value)) || [])) {
-      const n = norm(it.resultText);
+      // enforcement records keep their own number even if it isn't shaped like a permit number
+      const n = norm(it.resultText) || (ENFORCE_TYPE.test(it.secondaryText || "") && String(it.resultText || "").trim()) || null;
       if (n && (it.entityType || "record") === "record" && !pool[n])
         pool[n] = { type: (it.secondaryText || "").trim() || null, id: it.entityID };
     }
@@ -145,6 +152,16 @@
     return pool[number];
   }
 
+  // Keyword searches for code enforcement records; any series they turn up gets walked like the others
+  for (const word of ENFORCE_WORDS) {
+    if (stopped) break;
+    status(`Looking for code enforcement records… (${word})`);
+    try { await sleep(PAUSE); harvest(await search(word)); searches++; } catch (e) { log(`"${word}" search: ${e.message}`); }
+  }
+  const enforce = Object.entries(pool).filter(([, v]) => ENFORCE_TYPE.test(v.type || ""));
+  for (const [n] of enforce) { const m = numRe.exec(n); if (m && !PREFIXES.includes(m[1].toUpperCase())) PREFIXES.push(m[1].toUpperCase()); }
+  log(enforce.length ? `Code enforcement: found ${enforce.length} record(s), types: ${[...new Set(enforce.map(([, v]) => v.type))].join(", ")}`
+    : "Code enforcement: none found by keyword search");
   const thisYY = new Date().getFullYear() % 100;
   const YEARS = Array.from({ length: YEARS_BACK + 1 }, (_, i) => String(thisYY - i).padStart(2, "0"));
   const now = new Date().toISOString().slice(0, 19) + "+00:00";
@@ -203,6 +220,16 @@
     }
    }
   } catch (e) { save(); log(`Search stopped: ${e.message}. Progress is saved; run the script again later to continue.`); }
+  // keep enforcement records the keyword searches found outside the walked series (added after the walk,
+  // since a series resumes after the highest number already saved)
+  for (const [number, hit] of Object.entries(pool)) {
+    if (ENFORCE_TYPE.test(hit.type || "") && !permits[number]) {
+      permits[number] = { number, type: hit.type, entity_id: hit.id, url: `${location.origin}/records/${hit.id}`,
+        address: null, date: null, lat: null, lon: null, first_seen: now, details: false };
+      added++;
+    }
+  }
+  save();
   log(`${added} new permits from ${searches} searches`);
 
   // ---------- addresses (from each record's page) ----------

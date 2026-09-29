@@ -439,6 +439,7 @@
     bldg: ["Residential building", "--t-bldg"], comm: ["Commercial building", "--t-comm"],
     elec: ["Electrical", "--t-elec"], hvac: ["HVAC", "--t-hvac"], plmb: ["Plumbing", "--t-plmb"],
     zon: ["Zoning compliance", "--t-zon"], other: ["Other", "--t-other"] };
+  const VIOL_TYPE = /violat|enforce|complaint|nuisance|property maint|stop work|citation/i;
   const catOf = (t) => /electric/i.test(t) ? "elec" : /hvac|mechanical|heating/i.test(t) ? "hvac"
     : /plumb/i.test(t) ? "plmb" : /zoning/i.test(t) ? "zon"
     : /building/i.test(t) ? (/commercial/i.test(t) ? "comm" : "bldg") : "other";
@@ -455,7 +456,10 @@
     try {  // permits are optional; the site works without them
       const pr = await fetch("permits.json", { cache: "no-cache" });
       if (pr.ok) {
-        const plist = (await pr.json()).permits || [];
+        // Code enforcement records (violations) come through the same collector; keep them out of the permit counts
+        const all = (await pr.json()).permits || [];
+        state.violations = all.filter((p) => VIOL_TYPE.test(p.type || ""));
+        const plist = all.filter((p) => !VIOL_TYPE.test(p.type || ""));
         // Permits missing a filed date get one estimated from their neighbors: OpenGov's
         // internal ids go up in the order records are created.
         const dated = plist.filter((p) => p.date && p.entity_id).sort((a, b) => a.entity_id - b.entity_id);
@@ -627,11 +631,11 @@
         <summary>${CHEV}<span class="m-date">${esc(street)}</span>
           <span class="m-count">${cs.length} ${((w) => cs.length === 1 ? w : w.replace(/y$/, "ie") + "s")(cs[0].land ? "parcel" : cs[0].noun || "house")}</span></summary>
         <div class="cases">${cs.map((c) => `
-          <a class="prow${c.land ? " land" : ""}" href="${PARCEL_LINK + esc(c.house.parcel)}" target="_blank" rel="noopener" data-id="${esc(c.id)}">
+          <a class="prow${c.land ? " land" : ""}" href="${esc(c.href || PARCEL_LINK + c.house.parcel)}" target="_blank" rel="noopener" data-id="${esc(c.id)}">
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : [])].join(" · "))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1192,10 +1196,12 @@
       <div class="card panel" id="x-homes"></div>
       <div class="card panel" id="x-occ"></div>
       <div class="card panel" id="x-fc"></div>
+      <div class="card panel" id="x-viol"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
     renderOccupancy();
     renderForeclosures();
+    renderViolations();
     renderLand();
 
     for (const k of Object.keys(EXP)) {
@@ -1340,6 +1346,76 @@
       return { label: t.label, value: all.length ? Math.round(out.length / all.length * 100) : 0, color: t.color, list: out, t,
         num: `${all.length ? Math.round(out.length / all.length * 100) : 0}% · ${out.length.toLocaleString()} of ${all.length.toLocaleString()}` };
     }).filter((r) => r.num !== "0% · 0 of 0"), (r) => showOccupancy(r.list, `(${r.t.one.toLowerCase()}, owner lives elsewhere)`));
+  }
+
+  // ---------- code violations ----------
+  // Code enforcement records from the city's OpenGov portal, gathered by collect-permits.js when the city makes them public
+  const violYear = (v) => (v.date || "").slice(0, 4) || "20" + (v.number.split("-").slice(-2, -1)[0] || "").slice(-2);
+  function violHouse(v) {
+    const k = normAddr(v.address || "");
+    return (k && (state.parcels || []).find((p) => normAddr(p.address) === k)) || { parcel: "", luc: "", address: v.address };
+  }
+
+  function showViolations(list, label) {
+    state.xitems = list.slice()
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
+      .map((v) => ({ id: "xviol|" + v.number, board: "House", house: violHouse(v), viol: v, href: v.url, noun: "record", cat: "other",
+        address: v.address || "Address not listed", lat: v.lat, lon: v.lon, meeting_date: null,
+        popup: [v.type, v.number, v.date ? "opened " + monYr(v.date) : ""].filter(Boolean).join(", "),
+        description: [v.type, v.number, v.date ? "opened " + monYr(v.date) : ""].filter(Boolean).join(", ") }));
+    state.xlabel = label; state.xnoun = "record";
+    $("opt-x").textContent = "Code violations";
+    browseWith({ board: "xhouses" });
+  }
+
+  function renderViolations() {
+    const el = $("x-viol"), V = state.violations || [];
+    if (!V.length) {
+      el.innerHTML = `<h2>Code violations</h2>
+        <p class="p-sub">None collected yet. Grandview tracks permits and code enforcement in the same OpenGov system. The permit
+          collector now also looks for code enforcement records there (work without a permit, property maintenance, nuisance
+          complaints). If the city makes them public, they'll show up here after the next time you run the collector.</p>`;
+      return;
+    }
+    const types = [...new Set(V.map((v) => v.type))].sort((a, b) => V.filter((v) => v.type === b).length - V.filter((v) => v.type === a).length);
+    const colors = ["var(--t-zon)", "var(--t-elec)", "var(--t-plmb)", "var(--t-hvac)", "var(--t-bldg)", "var(--t-other)"];
+    const color = (t) => colors[Math.min(types.indexOf(t), colors.length - 1)];
+    const yrs = [...new Set(V.map(violYear))].filter((y) => /^\d{4}$/.test(y)).sort();
+    const byAddr = {};
+    V.forEach((v) => { const k = normAddr(v.address || ""); if (k) (byAddr[k] = byAddr[k] || []).push(v); });
+    const repeat = Object.values(byAddr).filter((l) => l.length > 1).sort((a, b) => b.length - a.length);
+    const recent = V.filter((v) => v.date).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 8);
+    el.innerHTML = `
+      <h2>Code violations</h2>
+      <p class="p-sub">Code enforcement records from the city's OpenGov portal, gathered by the permit collector. A record means
+        the city opened a case, not that a violation was confirmed. Many close once the owner fixes the problem or gets the permit.</p>
+      <div class="x-big">${V.length.toLocaleString()}</div>
+      <div class="x-of">code enforcement records at <b>${Object.keys(byAddr).length.toLocaleString()}</b> addresses${yrs.length ? `, ${esc(yrs[0])} to ${esc(yrs[yrs.length - 1])}` : ""}</div>
+      ${yrs.length > 1 ? `<h3 class="x-land-h">By year</h3>
+        <div class="legend">${types.slice(0, 6).map((t) => `<span class="tag"><span class="sw" style="background:${color(t)}"></span>${esc(t)}</span>`).join("")}</div>
+        <div class="chart" id="x-viol-chart"></div>` : ""}
+      <div class="x-land-grid">
+        <div><h3>By type</h3><div id="x-viol-type"></div></div>
+        ${repeat.length ? `<div><h3>Addresses with more than one</h3><div id="x-viol-repeat"></div></div>` : ""}
+      </div>
+      ${recent.length ? `<h3 class="x-land-h">Most recent</h3><div class="x-sales" id="x-viol-recent"></div>` : ""}
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-viol-show">Show these on the map</button></div>`;
+    if ($("x-viol-chart")) stackedBars($("x-viol-chart"), yrs, types.map((t) => ({ label: t, color: color(t),
+      values: yrs.map((y) => V.filter((v) => v.type === t && violYear(v) === y).length) })),
+      { fmt: (y) => y, title: (y) => `Code enforcement records in ${y}`, height: 180,
+        onClick: (y) => showViolations(V.filter((v) => violYear(v) === y), `from ${y}`) });
+    hbars($("x-viol-type"), types.map((t) => ({ label: t, value: V.filter((v) => v.type === t).length, color: color(t), t })),
+      (r) => showViolations(V.filter((v) => v.type === r.t), `(${r.t.toLowerCase()})`));
+    if ($("x-viol-repeat")) hbars($("x-viol-repeat"), repeat.slice(0, 8).map((l) => ({ label: streetCase(l[0].address), value: l.length,
+      color: "var(--t-zon)", l })), (r) => showViolations(r.l, `at ${r.label}`));
+    if ($("x-viol-recent")) $("x-viol-recent").innerHTML = recent.map((v) => `
+      <a class="prow land" href="${esc(v.url)}" target="_blank" rel="noopener">
+        <span class="pdot" style="background:${color(v.type)};border-radius:50%" aria-hidden="true"></span>
+        <span class="ptype">${esc(v.address ? streetCase(v.address) : "No address")}</span>
+        <span class="pdate">${esc(monYr(v.date))}</span>
+        <span class="teaser">${esc([v.type, v.number].join(" · "))} &#8599;</span>
+      </a>`).join("");
+    $("x-viol-show").onclick = () => showViolations(V, "");
   }
 
   // ---------- foreclosures ----------
