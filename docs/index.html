@@ -640,7 +640,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1203,6 +1203,7 @@
       <div class="card panel" id="x-fc"></div>
       <div class="card panel" id="x-viol"></div>
       <div class="card panel" id="x-tax"></div>
+      <div class="card panel" id="x-lien"></div>
       <div class="card panel" id="x-biz"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
@@ -1210,6 +1211,7 @@
     renderForeclosures();
     renderViolations();
     renderTaxes();
+    renderLiens();
     renderFilings();
     renderLand();
 
@@ -1480,6 +1482,63 @@
       label: p.address ? streetCase(p.address) : "No address", value: p.tax.owed, num: money$(p.tax.owed), color: TAX_KIND[taxKind(p.tax)].color, p })),
       (r) => window.open(PARCEL_LINK + r.p.parcel, "_blank", "noopener"));
     $("x-tax-show").onclick = () => showTaxes(owing, "with unpaid property taxes");
+  }
+
+  // ---------- liens (special assessments) ----------
+  // City charges added to a property's tax bill (sidewalk repair, sewer, and the like), which makes them a lien
+  const saName = (w) => (w || "Unnamed").toLowerCase().replace(/\b[a-z]/g, (m) => m.toUpperCase())
+    .replace(/\b(Esid|Pace|Cd|Rr)\b/g, (m) => m.toUpperCase());
+  const saText = (list) => list.map((a) => [saName(a.what), a.payoff ? `${money$(a.payoff)} left` : "", a.unpaid ? `${money$(a.unpaid)} unpaid` : ""]
+    .filter(Boolean).join(" ")).join("; ");
+
+  function showLiens(list, label) {
+    state.xitems = list.slice()
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
+      .map((p) => ({ id: "xlien|" + p.parcel, board: "House", house: p, noun: "property", liens: true, cat: "other",
+        address: p.address || "Address not listed", lat: p.lat, lon: p.lon, meeting_date: null, popup: saText(p.assessments),
+        description: [houseKind(p.luc), saText(p.assessments), `parcel ${p.parcel}`].join(", ") }));
+    state.xlabel = label; state.xnoun = "property";
+    $("opt-x").textContent = "Liens";
+    browseWith({ board: "xhouses" });
+  }
+
+  function renderLiens() {
+    const el = $("x-lien"), P = state.parcels || [];
+    const props = P.filter((p) => p.assessments && p.assessments.length);
+    const other = `Not included: liens filed with the county recorder (contractors' mechanic's liens, IRS and state tax liens,
+      court judgments), which can only be looked up one at a time, and the treasurer's yearly tax lien sale list, which is sent by email on request.`;
+    if (!props.length) {
+      el.innerHTML = `<h2>Liens</h2><p class="note">${P.some((p) => p.occ) ? "No special assessments in the county's latest file." : "Arrives with the next county import."}</p>`;
+      return;
+    }
+    const all = props.flatMap((p) => p.assessments.map((a) => ({ ...a, p })));
+    const sum = (k, list = all) => list.reduce((s, a) => s + (a[k] || 0), 0);
+    const byWhat = {};
+    all.forEach((a) => { const k = saName(a.what); (byWhat[k] = byWhat[k] || []).push(a); });
+    const unpaid = props.filter((p) => p.assessments.some((a) => a.unpaid));
+    const payoff = (p) => sum("payoff", p.assessments);
+    el.innerHTML = `
+      <h2>Liens</h2>
+      <p class="p-sub">A lien is a claim against a property for money owed; it has to be paid before the property can change hands
+        cleanly. When a Grandview owner owes the city for work like a sidewalk repair, or for sewer service, the charge is added to
+        the property tax bill as a <b>special assessment</b>, which makes it a lien. Unpaid property taxes are a lien too (see
+        Unpaid property taxes above).</p>
+      <div class="x-big">${props.length.toLocaleString()}</div>
+      <div class="x-of">properties carry a special assessment, <b>${money$(sum("annual"))}</b> a year in all${sum("payoff") ? `, with
+        <b>${money$(sum("payoff"))}</b> left to pay off` : ""}${unpaid.length ? `. <b>${unpaid.length.toLocaleString()}</b> have an unpaid balance` : ""}</div>
+      <div class="x-land-grid">
+        <div><h3>What they're for</h3><div id="x-lien-what"></div></div>
+        ${props.some(payoff) ? `<div><h3>Most left to pay off</h3><div id="x-lien-top"></div></div>` : ""}
+      </div>
+      <p class="x-ok" style="margin-top:14px">${other}</p>
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-lien-show">Show these properties on the map</button></div>`;
+    hbars($("x-lien-what"), Object.entries(byWhat).sort((a, b) => b[1].length - a[1].length).slice(0, 8).map(([k, list]) => ({
+      label: k, value: list.length, color: "var(--t-zon)", list: [...new Set(list.map((a) => a.p))], k })),
+      (r) => showLiens(r.list, `(${r.k.toLowerCase()})`));
+    if ($("x-lien-top")) hbars($("x-lien-top"), props.filter(payoff).sort((a, b) => payoff(b) - payoff(a)).slice(0, 8).map((p) => ({
+      label: p.address ? streetCase(p.address) : "No address", value: payoff(p), num: money$(payoff(p)), color: "var(--t-elec)", p })),
+      (r) => window.open(PARCEL_LINK + r.p.parcel, "_blank", "noopener"));
+    $("x-lien-show").onclick = () => showLiens(props, "with a special assessment");
   }
 
   // ---------- new business filings ----------
