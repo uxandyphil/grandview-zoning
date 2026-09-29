@@ -631,7 +631,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : houseKind(c.house.luc))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : [])].join(" · "))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1190,8 +1190,10 @@
           <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-${k}-show">Show these houses on the map</button></div>
         </div>`).join("")}</div>
       <div class="card panel" id="x-homes"></div>
+      <div class="card panel" id="x-fc"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
+    renderForeclosures();
     renderLand();
 
     for (const k of Object.keys(EXP)) {
@@ -1279,6 +1281,64 @@
     state.xlabel = `(${t.one.toLowerCase()})`; state.xnoun = "property";
     $("opt-x").textContent = t.label;
     browseWith({ board: "xhouses" });
+  }
+
+  // ---------- foreclosures ----------
+  // From county sale records: sheriff's deeds (foreclosure auctions), deeds in lieu, and resales by the lender
+  const FC_KIND = {
+    sheriff: { label: "Foreclosure auction", color: "var(--t-zon)", about: "A <b>foreclosure auction</b> is a court-ordered sale, recorded as a sheriff's or special master's deed." },
+    "in lieu": { label: "Deed in lieu", color: "var(--t-elec)", about: "A <b>deed in lieu</b> is an owner handing the property to the lender to avoid foreclosure." },
+    bank: { label: "Lender resale", color: "var(--t-bldg)", about: "A <b>lender resale</b> is the bank selling a property it took back." } };
+  const fcText = (r) => `${FC_KIND[r.kind].label} ${monYr(r.date)}${r.price ? " for " + money$(r.price) : ""}`;
+
+  function showForeclosures(list, label) {
+    state.xitems = list.slice()
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
+      .map((p) => ({ id: "xfc|" + p.parcel, board: "House", house: p, fc: true, noun: "property", cat: "other", address: p.address || "Address not listed",
+        lat: p.lat, lon: p.lon, meeting_date: null, popup: p.foreclosures.map(fcText).join("; "),
+        description: [houseKind(p.luc), ...p.foreclosures.map(fcText), `parcel ${p.parcel}`].join(", ") }));
+    state.xlabel = label; state.xnoun = "property";
+    $("opt-x").textContent = "Foreclosures";
+    browseWith({ board: "xhouses" });
+  }
+
+  function renderForeclosures() {
+    const el = $("x-fc"), P = state.parcels || [];
+    const props = P.filter((p) => p.foreclosures && p.foreclosures.length);
+    if (!props.length) {
+      el.innerHTML = `<h2>Foreclosures</h2><p class="note">${P.some((p) => p.sales) ? "No foreclosure sales found in the county records." : "Arrives with the next county import."}</p>`;
+      return;
+    }
+    const events = props.flatMap((p) => p.foreclosures.map((r) => ({ ...r, p }))).sort((a, b) => b.date.localeCompare(a.date));
+    const sheriff = events.filter((e) => e.kind === "sheriff");
+    const first = events[events.length - 1].date.slice(0, 4), last = today.slice(0, 4);
+    const yrs = []; for (let y = +first; y <= +last; y++) yrs.push(String(y));
+    const kinds = Object.keys(FC_KIND).filter((k) => events.some((e) => e.kind === k));
+    el.innerHTML = `
+      <h2>Foreclosures</h2>
+      <p class="p-sub">From the county's sale records since ${esc(first)}. ${kinds.map((k) => FC_KIND[k].about).join(" ")}
+        Cases filed in court that haven't reached a sale yet aren't in these records.</p>
+      <div class="x-big">${props.length.toLocaleString()}</div>
+      <div class="x-of">properties with a foreclosure-related sale since ${esc(first)}, including <b>${sheriff.length.toLocaleString()}</b> foreclosure auction${sheriff.length === 1 ? "" : "s"}</div>
+      <h3 class="x-land-h">By year</h3>
+      <div class="legend">${kinds.map((k) => `<span class="tag"><span class="sw" style="background:${FC_KIND[k].color}"></span>${esc(FC_KIND[k].label)}</span>`).join("")}</div>
+      <div class="chart" id="x-fc-chart"></div>
+      <h3 class="x-land-h">Most recent</h3>
+      <div class="x-sales" id="x-fc-recent"></div>
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-fc-show">Show these properties on the map</button></div>`;
+    stackedBars($("x-fc-chart"), yrs, kinds.map((k) => ({ label: FC_KIND[k].label, color: FC_KIND[k].color,
+      values: yrs.map((y) => events.filter((e) => e.kind === k && e.date.startsWith(y)).length) })),
+      { fmt: (y) => "'" + y.slice(2), title: (y) => `Foreclosure-related sales in ${y}`, height: 180,
+        onClick: (y) => { const list = props.filter((p) => p.foreclosures.some((r) => r.date.startsWith(y)));
+          if (list.length) showForeclosures(list, `with a foreclosure-related sale in ${y}`); } });
+    $("x-fc-recent").innerHTML = events.slice(0, 8).map((e) => `
+      <a class="prow land" href="${PARCEL_LINK + esc(e.p.parcel)}" target="_blank" rel="noopener">
+        <span class="pdot" style="background:${FC_KIND[e.kind].color};border-radius:50%" aria-hidden="true"></span>
+        <span class="ptype">${esc(e.p.address ? streetCase(e.p.address) : "No address")}</span>
+        <span class="pdate">${esc(monYr(e.date))}</span>
+        <span class="teaser">${esc([FC_KIND[e.kind].label, e.price ? money$(e.price) : "", houseKind(e.p.luc)].filter(Boolean).join(" · "))} &#8599;</span>
+      </a>`).join("");
+    $("x-fc-show").onclick = () => showForeclosures(props, `with a foreclosure-related sale since ${first}`);
   }
 
   // ---------- vacant land ----------

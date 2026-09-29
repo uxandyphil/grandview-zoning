@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 9   # bump to force a re-import of the current month's file
+IMPORT_VERSION = 11  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -250,12 +250,23 @@ VACANT_LUC = re.compile(r"^(300|400|50[0-3])$")   # county codes for vacant indu
 DETAIL_TABLES = ("parcel", "owner", "owners", "value", "values", "sales", "sale", "transfer", "transfers", "land")
 
 
+def foreclosure_kind(deed, row):
+    """'sheriff' for a foreclosure auction deed (sheriff's or special master's), 'in lieu' for a deed in lieu of foreclosure,
+    'bank' when the seller was the mortgage lender (usually a bank reselling a foreclosed home), else None."""
+    if re.search(r"sheriff|special master", deed, re.I):
+        return "sheriff"
+    if re.search(r"in lieu", deed, re.I):
+        return "in lieu"
+    if str(row.get("CONDSALE_GRANTORMORTGAGEE") or "").strip().upper() == "Y":
+        return "bank"
+    return None
+
+
 def load_land_details(tables, parcels):
-    """Values, lot flags and sale history for vacant parcels, from the Parcel, Land and Sales tables.
+    """Values, lot flags and sale history for vacant parcels, from the Parcel, Land and Sales tables,
+    plus foreclosure-related sales for every Grandview parcel.
     Column names come from docs/county-columns.json. The appraisal files have no owner names."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
-    if not want:
-        return
     first = lambda row, *cols: next((row.get(c) for c in cols if str(row.get(c) or "").strip()), None)
 
     for row in tables.rows("parcel"):
@@ -280,17 +291,29 @@ def load_land_details(tables, parcels):
     except RuntimeError as err:
         print(f"  no land table ({err})")
 
-    sales = {}
+    sales, deeds = {}, {}
     for name in [n for n in tables.names() if re.match(r"sales", n, re.I)]:
         for row in tables.rows(re.escape(name)):
             pid = parcel_id(row.get("PARCEL ID"))
-            if pid not in want:
+            if pid not in parcels:
                 continue
             d = parse_date(row.get("SALEDT"))
             if not d:
                 continue
             kind = re.sub(r"^\S+\s*-\s*", "", str(row.get("INSTRUMENT") or "")).strip()
-            sales.setdefault(pid, {})[(d, money(row.get("PRICE")))] = kind
+            deeds[kind] = deeds.get(kind, 0) + 1
+            fc = foreclosure_kind(kind, row)
+            if fc and int(d[:4]) >= EARLIEST_YEAR:
+                parcels[pid].setdefault("foreclosures", {})[(d, fc)] = {"date": d, "price": money(row.get("PRICE")), "deed": kind, "kind": fc}
+            if pid in want:
+                sales.setdefault(pid, {})[(d, money(row.get("PRICE")))] = kind
+    print("  deed types on Grandview sales:", dict(sorted(deeds.items(), key=lambda kv: -kv[1])))
+    for p in parcels.values():
+        if "foreclosures" in p:
+            p["foreclosures"] = sorted(p["foreclosures"].values(), key=lambda r: r["date"], reverse=True)
+    print(f"  foreclosure-related sales since {EARLIEST_YEAR}:",
+          sum(len(p.get("foreclosures", [])) for p in parcels.values()), "on",
+          sum(1 for p in parcels.values() if p.get("foreclosures")), "properties")
     for pid, rows in sales.items():
         hist = sorted(({"date": d, "price": pr, "deed": k} for (d, pr), k in rows.items()),
                       key=lambda r: r["date"], reverse=True)[:6]
@@ -528,7 +551,7 @@ def run(state, geocode, now):
                           "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon"),
                           **({"owner": p.get("owner") or o.get("owner")}
                              if VACANT_LUC.match(p["luc"] or "") and (p.get("owner") or o.get("owner")) else {}),
-                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner")
+                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures")
                              if p.get(k) is not None}})
         lucs = {}
         for p in plist:
