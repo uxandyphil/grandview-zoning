@@ -1288,10 +1288,10 @@
   // ---------- rentals vs homeowners ----------
   // From the county tax files: the owner-occupancy credit means the owner lives there; rentals are from the rental registration
   const OCC = {
-    owner: { label: "Owner lives there", color: "var(--t-bldg)" },
-    both: { label: "Owner lives there, rents a unit", color: "var(--t-hvac)" },
-    rental: { label: "Registered rental", color: "var(--t-zon)" },
-    none: { label: "Owner lives elsewhere, not registered", short: "Owner elsewhere, unregistered", color: "var(--t-other)" } };
+    owner: { label: "Owner lives there", short: "Owner", color: "var(--t-bldg)" },
+    both: { label: "Owner lives there, rents a unit", short: "Both", color: "var(--t-hvac)" },
+    rental: { label: "Registered rental", short: "Rental", color: "var(--t-zon)" },
+    none: { label: "Owner lives elsewhere, not registered", short: "Unregistered", color: "var(--t-other)" } };
   const occOf = (p) => p.occ || "none";
   const occText = (p) => OCC[occOf(p)].label + (p.rental_units ? ` (${p.rental_units} rental unit${p.rental_units === 1 ? "" : "s"} registered)` : "");
 
@@ -1317,8 +1317,8 @@
     el.innerHTML = `
       <h2>Rentals vs. homeowners</h2>
       <p class="p-sub">For every house, duplex, and condo, from the county tax records. When the owner lives in the home, they get the
-        owner-occupancy tax credit. Landlords are required to register rentals with the county. "Owner lives elsewhere, not registered"
-        is mostly rentals that aren't registered, plus second homes, homes held by estates or companies, and homes sitting empty.
+        owner-occupancy tax credit. Landlords are required to register rentals with the county. "Unregistered"
+        homes are mostly rentals that aren't registered, plus second homes, homes held by estates or companies, and homes sitting empty.
         The credit can lag a sale by a year, so recent buyers may still show as living elsewhere.</p>
       <div class="x-big">${Math.round(lives / homes.length * 100)}%</div>
       <div class="x-of">of ${homes.length.toLocaleString()} houses, duplexes, and condos have the owner living there.
@@ -1327,10 +1327,13 @@
         <div><h3>Who lives there</h3><div id="x-occ-kind"></div></div>
         <div><h3>Share not owner-occupied, by type</h3><div id="x-occ-type"></div></div>
       </div>
-      ${apts.length ? `<p class="x-ok" style="margin-top:14px">Not counted above: ${apts.length.toLocaleString()} apartment and rental condo properties, which are all rentals.
+      <p class="x-ok" style="margin-top:14px"><b>Owner</b>: the owner lives there. <b>Both</b>: the owner lives there and has also
+        registered a rental unit, usually the other half of a duplex. <b>Rental</b>: registered as a rental with the county. <b>Unregistered</b>: the owner lives
+        elsewhere and it isn't registered.</p>
+      ${apts.length ? `<p class="x-ok">Not counted above: ${apts.length.toLocaleString()} apartment and rental condo properties, which are all rentals.
         ${aptUnits ? `The ${apts.filter((p) => p.rental_units).length.toLocaleString()} that are registered list ${aptUnits.toLocaleString()} rental units.` : ""}</p>` : ""}`;
     hbars($("x-occ-kind"), Object.keys(OCC).map((k) => ({ label: OCC[k].short || OCC[k].label, value: by(k).length, color: OCC[k].color, list: by(k), k,
-      num: `${by(k).length.toLocaleString()} · ${Math.round(by(k).length / homes.length * 100)}%` })),
+      num: by(k).length.toLocaleString() })),
       (r) => showOccupancy(r.list, `(${OCC[r.k].label.toLowerCase()})`));
     hbars($("x-occ-type"), types.map((t) => {
       const all = homes.filter((p) => t.codes.includes(p.luc)), out = all.filter((p) => !["owner", "both"].includes(occOf(p)));
