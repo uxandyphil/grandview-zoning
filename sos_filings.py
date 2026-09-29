@@ -32,7 +32,7 @@ def fetch(url):
         r = requests.get(url, headers=HEADERS, timeout=60)
         if r.status_code < 400:
             return r.status_code, r.url, r.text
-        status = r.status_code
+        status = f"{r.status_code} ({r.headers.get('server', '?')}): " + re.sub(r"<[^>]+>|\s+", " ", r.text)[:300]
     except requests.RequestException as err:
         status = f"error: {err}"[:120]
     try:
@@ -40,8 +40,11 @@ def fetch(url):
         with sync_playwright() as p:
             b = p.chromium.launch()
             page = b.new_page(user_agent=HEADERS["User-Agent"])
-            resp = page.goto(url, wait_until="networkidle", timeout=60000)
+            resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            page.wait_for_timeout(15000)   # give a bot check time to finish
             html, final = page.content(), page.url
+            if not links(final, html):
+                status = f"{status}; browser {resp.status if resp else '?'}: " + re.sub(r"<[^>]+>|\s+", " ", html)[:300]
             b.close()
             return (resp.status if resp else status), final, html
     except Exception as err:
