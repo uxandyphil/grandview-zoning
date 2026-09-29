@@ -1,34 +1,34 @@
 {
- "updated": "2026-09-29T23:24:01+00:00",
+ "updated": "2026-09-29T23:32:40+00:00",
  "pages": {
   "https://www.ohiosos.gov/businesses/business-reports/": {
-   "status": "403; browser: Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://www.ohiosos.gov/businesses/business-reports/\", waiting until \"networkidle\"\n",
+   "status": "403 (cloudflare):              Ohio Secretary of State's Office Website Maintenance   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRd; browser 403:            Just a moment...   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRdPk8C4NCAAE2AiQDhwAEIAWFFAcgG/tPM6N2o/V",
    "final_url": "https://www.ohiosos.gov/businesses/business-reports/",
-   "title": null,
+   "title": "Just a moment...",
    "links": []
   },
   "https://www.ohiosos.gov/businesses/": {
-   "status": "403; browser: Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://www.ohiosos.gov/businesses/\", waiting until \"networkidle\"\n",
+   "status": "403 (cloudflare):              Ohio Secretary of State's Office Website Maintenance   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRd; browser 403:            Just a moment...   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRdPk8C4NCAAE2AiQDhwAEIAWFFAcgG/tPM6N2o/V",
    "final_url": "https://www.ohiosos.gov/businesses/",
-   "title": null,
+   "title": "Just a moment...",
    "links": []
   },
   "https://www.ohiosos.gov/media-center/": {
-   "status": "403; browser: Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://www.ohiosos.gov/media-center/\", waiting until \"networkidle\"\n",
+   "status": "403 (cloudflare):              Ohio Secretary of State's Office Website Maintenance   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRd; browser 403:            Just a moment...   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRdPk8C4NCAAE2AiQDhwAEIAWFFAcgG/tPM6N2o/V",
    "final_url": "https://www.ohiosos.gov/media-center/",
-   "title": null,
+   "title": "Just a moment...",
    "links": []
   },
   "https://businesssearch.ohiosos.gov/": {
-   "status": "403; browser: Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://businesssearch.ohiosos.gov/\", waiting until \"networkidle\"\n",
+   "status": "403 (cloudflare):              Ohio Secretary of State's Office Website Maintenance   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRd; browser 403:            Just a moment...   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRdPk8C4NCAAE2AiQDhwAEIAWFFAcgG/tPM6N2o/V",
    "final_url": "https://businesssearch.ohiosos.gov/",
-   "title": null,
+   "title": "Just a moment...",
    "links": []
   },
   "https://publicfiles.ohiosos.gov/free/": {
-   "status": "403; browser: Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://publicfiles.ohiosos.gov/free/\", waiting until \"networkidle\"\n",
+   "status": "403 (cloudflare):              Ohio Secretary of State's Office Website Maintenance   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRd; browser 403:            Just a moment...   /* cyrillic-ext */ @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url(data:font/woff2;base64,d09GMgABAAAAAC/EAA8AAAAAXvwAAC9nAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoFAG5JSHDQGYD9TVEFUXgCDAhEMCoGRdPk8C4NCAAE2AiQDhwAEIAWFFAcgG/tPM6N2o/V",
    "final_url": "https://publicfiles.ohiosos.gov/free/",
-   "title": null,
+   "title": "Just a moment...",
    "links": []
   }
  }
