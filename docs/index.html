@@ -340,6 +340,7 @@
   const isPermit = (c) => c.board === "Building permit";
   const isBiz = (c) => c.cat === "comm" || state.bizAddrs.has(normAddr(c.address));
   const boardClass = (b) => b === "Building permit" ? "permit" : b.startsWith("Planning") ? "pc" : "bza";
+  const plural = (w, n) => n === 1 ? w : /s$/.test(w) ? w + "es" : /[^aeiou]y$/.test(w) ? w.slice(0, -1) + "ies" : w + "s";
   const fmtMonth = (iso) => iso
     ? new Date(iso.slice(0, 7) + "-15T12:00:00").toLocaleDateString("en-US", { month: "long", year: "numeric" })
     : "Date not listed";
@@ -526,6 +527,10 @@
       const pr2 = await fetch("county-parcels.json", { cache: "no-cache" });
       if (pr2.ok) { const pj = await pr2.json(); state.parcels = pj.parcels || []; state.parcelsSource = pj.source || ""; state.houses = buildHouses(state.parcels); }
     } catch (e) { /* optional */ }
+    try {  // new business filings from uploaded Secretary of State reports
+      const br = await fetch("business-filings.json", { cache: "no-cache" });
+      if (br.ok) state.filings = (await br.json()).filings || [];
+    } catch (e) { /* optional */ }
     state.cases.sort((a, b) => (b.meeting_date || "").localeCompare(a.meeting_date || ""));
     $("updated").textContent = data.updated
       ? "Checked " + new Date(data.updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
@@ -574,7 +579,7 @@
     if (nPermits) parts.push(`${nPermits} building permit${nPermits === 1 ? "" : "s"}`);
     if (state.board === "xhouses") {
       const noun = state.xnoun || "house";
-      $("count").textContent = `${nHouses} ${nHouses === 1 ? noun : noun.replace(/y$/, "ie") + "s"} ${state.xlabel || ""}${q ? " matching your search" : ""}`;
+      $("count").textContent = `${nHouses} ${plural(noun, nHouses)} ${state.xlabel || ""}${q ? " matching your search" : ""}`;
     } else if (state.board === "nopermit") {
       $("count").textContent = `${nHouses} house${nHouses === 1 ? "" : "s"} with no permit since ${state.houses ? state.houses.first : ""}${q ? " matching your search" : ""}`;
     } else
@@ -629,13 +634,13 @@
         return `
       <details class="meeting card"${q || first ? " open" : ""}>
         <summary>${CHEV}<span class="m-date">${esc(street)}</span>
-          <span class="m-count">${cs.length} ${((w) => cs.length === 1 ? w : w.replace(/y$/, "ie") + "s")(cs[0].land ? "parcel" : cs[0].noun || "house")}</span></summary>
+          <span class="m-count">${cs.length} ${plural(cs[0].land ? "parcel" : cs[0].noun || "house", cs.length)}</span></summary>
         <div class="cases">${cs.map((c) => `
           <a class="prow${c.land ? " land" : ""}" href="${esc(c.href || PARCEL_LINK + c.house.parcel)}" target="_blank" rel="noopener" data-id="${esc(c.id)}">
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1198,12 +1203,14 @@
       <div class="card panel" id="x-fc"></div>
       <div class="card panel" id="x-viol"></div>
       <div class="card panel" id="x-tax"></div>
+      <div class="card panel" id="x-biz"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
     renderOccupancy();
     renderForeclosures();
     renderViolations();
     renderTaxes();
+    renderFilings();
     renderLand();
 
     for (const k of Object.keys(EXP)) {
@@ -1473,6 +1480,69 @@
       label: p.address ? streetCase(p.address) : "No address", value: p.tax.owed, num: money$(p.tax.owed), color: TAX_KIND[taxKind(p.tax)].color, p })),
       (r) => window.open(PARCEL_LINK + r.p.parcel, "_blank", "noopener"));
     $("x-tax-show").onclick = () => showTaxes(owing, "with unpaid property taxes");
+  }
+
+  // ---------- new business filings ----------
+  // From Ohio Secretary of State reports uploaded to sos-uploads/ (the site turns away automated downloads)
+  const bizKind = (t) => /limited liability|llc/i.test(t) ? "LLC" : /nonprofit|non-profit/i.test(t) ? "Nonprofit"
+    : /trade name|fictitious/i.test(t) ? "Trade name" : /corporation|corp\b|inc\b/i.test(t) ? "Corporation"
+    : /partnership/i.test(t) ? "Partnership" : "Other";
+  const BIZ_COLOR = { LLC: "var(--t-comm)", Corporation: "var(--t-bldg)", Nonprofit: "var(--t-plmb)", "Trade name": "var(--t-elec)",
+    Partnership: "var(--t-hvac)", Other: "var(--t-other)" };
+
+  function showFilings(list, label) {
+    state.xitems = list.slice()
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
+      .map((f) => ({ id: "xbiz|" + (f.number || f.name), board: "House", house: { parcel: "", luc: "", address: f.address }, biz: true,
+        href: "https://businesssearch.ohiosos.gov/", noun: "business", cat: "other", address: f.address || "Address not listed",
+        lat: f.lat, lon: f.lon, meeting_date: null, popup: [f.name, f.type, f.date ? "filed " + monYr(f.date) : ""].filter(Boolean).join(", "),
+        description: [f.name, f.type, f.date ? "filed " + monYr(f.date) : "", f.number ? "charter " + f.number : ""].filter(Boolean).join(" · ") }));
+    state.xlabel = label; state.xnoun = "business";
+    $("opt-x").textContent = "New businesses";
+    browseWith({ board: "xhouses" });
+  }
+
+  function renderFilings() {
+    const el = $("x-biz"), F = state.filings || [];
+    if (!F.length) {
+      el.innerHTML = `<h2>New businesses</h2>
+        <p class="p-sub">None loaded yet. New business filings come from the Ohio Secretary of State, whose site doesn't allow
+          automated downloads. To add them, download a new business filings report from ohiosos.gov (Businesses, then Business Reports)
+          and upload it to the <b>sos-uploads</b> folder in the repo. The next update keeps only Grandview Heights businesses.</p>`;
+      return;
+    }
+    const months = [...new Set(F.filter((f) => f.date).map((f) => f.date.slice(0, 7)))].sort();
+    const kinds = Object.keys(BIZ_COLOR).filter((k) => F.some((f) => bizKind(f.type) === k));
+    const recent = F.filter((f) => f.date).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 10);
+    el.innerHTML = `
+      <h2>New businesses</h2>
+      <p class="p-sub">New business filings with a Grandview Heights address, from Ohio Secretary of State reports. A filing
+        is registered on paper; plenty are home-based, holding companies, or never open a storefront.</p>
+      <div class="x-big">${F.length.toLocaleString()}</div>
+      <div class="x-of">new business filings${months.length ? `, ${esc(fmtMonth(months[0]))} to ${esc(fmtMonth(months[months.length - 1]))}` : ""}</div>
+      ${months.length > 1 ? `<h3 class="x-land-h">By month</h3>
+        <div class="legend">${kinds.map((k) => `<span class="tag"><span class="sw" style="background:${BIZ_COLOR[k]}"></span>${esc(k)}</span>`).join("")}</div>
+        <div class="chart" id="x-biz-chart"></div>` : ""}
+      <div class="x-land-grid">
+        <div><h3>By type</h3><div id="x-biz-kind"></div></div>
+      </div>
+      <h3 class="x-land-h">Most recent</h3>
+      <div class="x-sales" id="x-biz-recent"></div>
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-biz-show">Show these on the map</button></div>`;
+    if ($("x-biz-chart")) stackedBars($("x-biz-chart"), months, kinds.map((k) => ({ label: k, color: BIZ_COLOR[k],
+      values: months.map((m) => F.filter((f) => bizKind(f.type) === k && (f.date || "").startsWith(m)).length) })),
+      { fmt: (m) => fmtMonth(m).replace(/\s+20(\d\d)$/, " '$1"), title: (m) => `New business filings, ${fmtMonth(m)}`, height: 180,
+        onClick: (m) => showFilings(F.filter((f) => (f.date || "").startsWith(m)), `filed in ${fmtMonth(m)}`) });
+    hbars($("x-biz-kind"), kinds.map((k) => ({ label: k, value: F.filter((f) => bizKind(f.type) === k).length, color: BIZ_COLOR[k], k })),
+      (r) => showFilings(F.filter((f) => bizKind(f.type) === r.k), `(${r.k.toLowerCase()})`));
+    $("x-biz-recent").innerHTML = recent.map((f) => `
+      <div class="prow land">
+        <span class="pdot" style="background:${BIZ_COLOR[bizKind(f.type)]};border-radius:50%" aria-hidden="true"></span>
+        <span class="ptype">${esc(f.name)}</span>
+        <span class="pdate">${esc(monYr(f.date))}</span>
+        <span class="teaser">${esc([f.type, f.address ? streetCase(f.address) : ""].filter(Boolean).join(" · "))}</span>
+      </div>`).join("");
+    $("x-biz-show").onclick = () => showFilings(F, "");
   }
 
   // ---------- foreclosures ----------

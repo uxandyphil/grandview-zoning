@@ -1,81 +1,106 @@
 """
-Ohio Secretary of State business filings.
+New business filings from the Ohio Secretary of State.
 
-First step: find where the Secretary of State publishes its business filing reports.
-Visits the business pages, keeps every link that looks like a report or a download,
-and writes them to docs/sos-sources.json so the import can be built on the real files.
+The Secretary of State's site turns away automated downloads, so its new business filing
+reports are downloaded by hand (ohiosos.gov > Businesses > Business Reports) and uploaded
+to sos-uploads/. Each run keeps the Grandview filings from any uploaded report (business
+name, filing type, date, business address; no agent or contact names), adds them to
+docs/business-filings.json, and deletes the statewide file so it isn't kept in the repo.
+Column names are guessed from each report's header and logged, like the county files.
 Runs from scrape.py.
 """
 
+import csv
+import io
 import json
 import re
 from pathlib import Path
-from urllib.parse import urljoin
 
-import requests
+from county_permits import find_col, parse_date, title
 
-SOURCES_OUT = Path("docs/sos-sources.json")
-PAGES = [
-    "https://www.ohiosos.gov/businesses/business-reports/",
-    "https://www.ohiosos.gov/businesses/",
-    "https://www.ohiosos.gov/media-center/",
-    "https://businesssearch.ohiosos.gov/",
-    "https://publicfiles.ohiosos.gov/free/",
-]
-KEEP = re.compile(r"report|filing|new.?business|download|\.(xlsx?|csv|zip|txt|pdf)\b|business.?search|data", re.I)
-HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"}
+UPLOADS = Path("sos-uploads")
+OUT = Path("docs/business-filings.json")
+GRANDVIEW = re.compile(r"^grandview\s*(heights|hts\.?|hgts)?$", re.I)
+AGENT = (r"agent", r"contact", r"incorporator", r"registrant", r"filer", r"mail", r"principal")
 
 
-def fetch(url):
-    """(status, final url, html). Falls back to a real browser if the site turns away plain requests."""
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=60)
-        if r.status_code < 400:
-            return r.status_code, r.url, r.text
-        status = f"{r.status_code} ({r.headers.get('server', '?')}): " + re.sub(r"<[^>]+>|\s+", " ", r.text)[:300]
-    except requests.RequestException as err:
-        status = f"error: {err}"[:120]
-    try:
-        from playwright.sync_api import sync_playwright
-        with sync_playwright() as p:
-            b = p.chromium.launch()
-            page = b.new_page(user_agent=HEADERS["User-Agent"])
-            resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
-            page.wait_for_timeout(15000)   # give a bot check time to finish
-            html, final = page.content(), page.url
-            b.close()
-            if not links(final, html):   # still refused: keep what the site said
-                return f"{status}; browser {resp.status if resp else '?'}: " + re.sub(r"<[^>]+>|\s+", " ", html)[:300], final, html
-            return (resp.status if resp else status), final, html
-    except Exception as err:
-        return f"{status}; browser: {err}"[:200], url, ""
+def rows_from(path):
+    """Header list and row dicts from a .csv/.txt/.xlsx/.xls report."""
+    ext = path.suffix.lower()
+    if ext == ".xlsx":
+        from openpyxl import load_workbook
+        grid = list(load_workbook(path, read_only=True, data_only=True).active.iter_rows(values_only=True))
+    elif ext == ".xls":
+        import xlrd
+        sh = xlrd.open_workbook(path).sheet_by_index(0)
+        grid = [sh.row_values(i) for i in range(sh.nrows)]
+    else:
+        text = path.read_bytes().decode("utf-8-sig", errors="replace")
+        first = text.split("\n", 1)[0]
+        delim = "\t" if "\t" in first else "|" if first.count("|") > first.count(",") else ","
+        grid = list(csv.reader(io.StringIO(text), delimiter=delim))
+    # the header is the first row with several filled cells (reports sometimes start with a title line)
+    start = next((i for i, r in enumerate(grid[:15]) if sum(1 for v in r if str(v or "").strip()) >= 3), 0)
+    header = [str(h or "").strip() for h in grid[start]]
+    return header, [dict(zip(header, r)) for r in grid[start + 1:] if any(str(v or "").strip() for v in r)]
 
 
-def links(base, html):
-    out = []
-    for href, text in re.findall(r'<a\b[^>]*href="([^"#]+)"[^>]*>(.*?)</a>', html, re.I | re.S):
-        text = re.sub(r"<[^>]+>|\s+", " ", text).strip()[:120]
-        url = urljoin(base, href)
-        if KEEP.search(url) or KEEP.search(text):
-            out.append({"text": text, "url": url})
-    return list({l["url"]: l for l in out}.values())
+def columns(header):
+    """Which columns hold what, preferring the business's own address over an agent's."""
+    biz = [h for h in header if not any(re.search(a, h, re.I) for a in AGENT)]
+    pick = lambda *pats: find_col(biz, *pats) or find_col(header, *pats)
+    return dict(
+        name=find_col(biz, r"business.?name", r"entity.?name", r"company", r"^name$", r"name"),
+        number=find_col(header, r"charter", r"entity.?(no|num|id)", r"document.?(no|num)", r"filing.?(no|num)", r"^id$"),
+        type=find_col(header, r"filing.?type", r"entity.?type", r"business.?type", r"transaction", r"^type$", r"type"),
+        date=find_col(header, r"effective", r"filing.?date", r"filed", r"^date$", r"date"),
+        address=pick(r"address.?1", r"street", r"address"),
+        city=pick(r"city"),
+        zip=pick(r"zip", r"postal"),
+        county=pick(r"county"))
 
 
-def run(state, now):
-    report, seen = {"updated": now, "pages": {}}, set()
-    todo = list(PAGES)
-    while todo and len(seen) < 25:
-        url = todo.pop(0)
-        if url in seen:
+def run(state, geocode, now):
+    data = json.loads(OUT.read_text()) if OUT.exists() else {"filings": [], "files": []}
+    files = [f for f in sorted(UPLOADS.glob("*")) if f.suffix.lower() in (".csv", ".txt", ".xlsx", ".xls")] if UPLOADS.exists() else []
+    known = {f["number"] or (f["name"], f["date"]): f for f in data["filings"]}
+    for path in files:
+        try:
+            header, rows = rows_from(path)
+        except Exception as err:
+            print(f"Business filings: couldn't read {path.name} ({err})")
             continue
-        seen.add(url)
-        status, final, html = fetch(url)
-        title = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
-        found = links(final, html)
-        report["pages"][url] = {"status": status, "final_url": final, "title": title and title[1].strip()[:120], "links": found}
-        print(f"SOS: {url} -> {status}, {len(found)} links")
-        if url == PAGES[0]:   # one level into the report pages
-            todo += [l["url"] for l in found if "ohiosos.gov" in l["url"] and re.search(r"report|filing", l["url"], re.I)
-                     and not re.search(r"\.(xlsx?|csv|zip|pdf|txt)$", l["url"], re.I)][:15]
-    SOURCES_OUT.write_text(json.dumps(report, indent=1))
-    print(f"SOS: wrote {SOURCES_OUT} ({len(report['pages'])} pages)")
+        cols = columns(header)
+        print(f"Business filings: {path.name}, {len(rows)} rows, columns {header}")
+        print(f"  using: {cols}")
+        if not cols["name"] or not cols["city"]:
+            print("  no business name or city column; leaving the file for a fix")
+            continue
+        found = 0
+        for r in rows:
+            if not GRANDVIEW.match(title(r.get(cols["city"]))):
+                continue
+            f = {"name": title(r.get(cols["name"])), "number": title(r.get(cols["number"])) if cols["number"] else "",
+                 "type": title(r.get(cols["type"])) if cols["type"] else "", "date": parse_date(r.get(cols["date"])) if cols["date"] else None,
+                 "address": title(r.get(cols["address"])) if cols["address"] else ""}
+            key = f["number"] or (f["name"], f["date"])
+            old = known.get(key, {})
+            known[key] = {**f, "lat": old.get("lat"), "lon": old.get("lon")}
+            found += 1
+        print(f"  {found} Grandview filings")
+        data["files"].append({"name": path.name, "rows": len(rows), "grandview": found, "added": now, "columns": header})
+        path.unlink()   # the statewide report isn't kept; only the Grandview rows above
+    data["filings"] = sorted(known.values(), key=lambda f: f["date"] or "", reverse=True)
+    mapped = 0
+    for f in data["filings"]:
+        if f["address"] and f.get("lat") is None and not f.get("nomap"):
+            c = geocode(f["address"] + ", Grandview Heights, OH")
+            if c:
+                f["lat"], f["lon"] = c[0], c[1]
+                mapped += 1
+            else:
+                f["nomap"] = True
+    if files or mapped or not OUT.exists():
+        data["updated"] = now
+        OUT.write_text(json.dumps(data, indent=1))
+    print(f"Business filings: {len(data['filings'])} Grandview filings, {mapped} newly mapped")

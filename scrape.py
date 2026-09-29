@@ -457,10 +457,10 @@ def main():
     except Exception as err:
         print(f"County permits step failed: {err}")
 
-    # Ohio Secretary of State business filings
+    # New business filings from Ohio Secretary of State reports uploaded to sos-uploads/
     try:
         import sos_filings
-        sos_filings.run(state, now)
+        sos_filings.run(state, lambda address: geocode(address, state["geocache"]), now)
     except Exception as err:
         print(f"Business filings step failed: {err}")
     save_json(STATE_FILE, state)
