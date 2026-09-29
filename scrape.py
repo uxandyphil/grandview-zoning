@@ -456,6 +456,13 @@ def main():
             address if re.search(r"\bOH\b", address) else address + CITY_SUFFIX, state["geocache"]), now)
     except Exception as err:
         print(f"County permits step failed: {err}")
+
+    # Ohio Secretary of State business filings
+    try:
+        import sos_filings
+        sos_filings.run(state, now)
+    except Exception as err:
+        print(f"Business filings step failed: {err}")
     save_json(STATE_FILE, state)
     print(f"{len(store.new)} new case(s), {len(ordered)} total")
     email_digest(store.new)
