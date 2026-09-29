@@ -524,7 +524,7 @@
     state.houses = null;
     try {  // every Grandview property, to find houses with no permits
       const pr2 = await fetch("county-parcels.json", { cache: "no-cache" });
-      if (pr2.ok) { state.parcels = (await pr2.json()).parcels || []; state.houses = buildHouses(state.parcels); }
+      if (pr2.ok) { const pj = await pr2.json(); state.parcels = pj.parcels || []; state.parcelsSource = pj.source || ""; state.houses = buildHouses(state.parcels); }
     } catch (e) { /* optional */ }
     state.cases.sort((a, b) => (b.meeting_date || "").localeCompare(a.meeting_date || ""));
     $("updated").textContent = data.updated
@@ -635,7 +635,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1197,11 +1197,13 @@
       <div class="card panel" id="x-occ"></div>
       <div class="card panel" id="x-fc"></div>
       <div class="card panel" id="x-viol"></div>
+      <div class="card panel" id="x-tax"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
     renderOccupancy();
     renderForeclosures();
     renderViolations();
+    renderTaxes();
     renderLand();
 
     for (const k of Object.keys(EXP)) {
@@ -1416,6 +1418,61 @@
         <span class="teaser">${esc([v.type, v.number].join(" · "))} &#8599;</span>
       </a>`).join("");
     $("x-viol-show").onclick = () => showViolations(V, "");
+  }
+
+  // ---------- unpaid property taxes ----------
+  // From the county tax files: balances owed, amounts left from earlier years, and certification to the delinquent list
+  const TAX_KIND = {
+    certified: { label: "Certified delinquent", color: "var(--t-zon)" },
+    prior: { label: "Behind from earlier years", short: "Earlier years", color: "var(--t-elec)" },
+    current: { label: "Unpaid this year only", short: "This year only", color: "var(--t-other)" } };
+  const taxKind = (t) => t.certified ? "certified" : t.prior ? "prior" : "current";
+  const taxText = (t) => [t.owed ? `owes ${money$(t.owed)}` : "", t.prior ? `${money$(t.prior)} from earlier years` : "",
+    t.certified ? `certified delinquent ${t.certified}` : ""].filter(Boolean).join(", ");
+
+  function showTaxes(list, label) {
+    state.xitems = list.slice()
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
+      .map((p) => ({ id: "xtax|" + p.parcel, board: "House", house: p, noun: "property", taxed: true, cat: "other",
+        address: p.address || "Address not listed", lat: p.lat, lon: p.lon, meeting_date: null, popup: taxText(p.tax),
+        description: [houseKind(p.luc), taxText(p.tax), `parcel ${p.parcel}`].join(", ") }));
+    state.xlabel = label; state.xnoun = "property";
+    $("opt-x").textContent = "Unpaid taxes";
+    browseWith({ board: "xhouses" });
+  }
+
+  function renderTaxes() {
+    const el = $("x-tax"), P = state.parcels || [];
+    const owing = P.filter((p) => p.tax);
+    if (!owing.length) {
+      el.innerHTML = `<h2>Unpaid property taxes</h2><p class="note">${P.some((p) => p.occ) ? "No unpaid property taxes in the county's latest file." : "Arrives with the next county import."}</p>`;
+      return;
+    }
+    const total = owing.reduce((s, p) => s + (p.tax.owed || 0), 0);
+    const of = (k) => owing.filter((p) => taxKind(p.tax) === k);
+    const asOf = (/^(\d{4})-(\d{2})/.exec(state.parcelsSource || "") || []).slice(1);
+    const asOfText = asOf.length ? new Date(+asOf[0], +asOf[1] - 1, 15).toLocaleDateString("en-US", { month: "long", year: "numeric" }) : "";
+    el.innerHTML = `
+      <h2>Unpaid property taxes</h2>
+      <p class="p-sub">From the county treasurer's records${asOfText ? ` as of ${esc(asOfText)}` : ""}. When taxes stay unpaid past a
+        deadline, the property is <b>certified delinquent</b>, which adds it to the county's published delinquent list and can eventually lead to a
+        tax foreclosure. Smaller balances are often a payment that's a bit late or still posting, and many are paid off by the next file.</p>
+      <div class="x-big">${owing.length.toLocaleString()}</div>
+      <div class="x-of">of ${P.length.toLocaleString()} properties have unpaid property taxes${total ? `, <b>${money$(total)}</b> in all` : ""}</div>
+      <div class="x-land-grid">
+        <div><h3>How far behind</h3><div id="x-tax-kind"></div></div>
+        <div><h3>Largest balances</h3><div id="x-tax-top"></div></div>
+      </div>
+      <p class="x-ok" style="margin-top:14px"><b>Earlier years</b>: some of the balance is left over from past tax years.
+        <b>This year only</b>: only this year's bill is unpaid.</p>
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-tax-show">Show these properties on the map</button></div>`;
+    hbars($("x-tax-kind"), Object.keys(TAX_KIND).map((k) => ({ label: TAX_KIND[k].short || TAX_KIND[k].label, value: of(k).length,
+      color: TAX_KIND[k].color, list: of(k), k })).filter((r) => r.value),
+      (r) => showTaxes(r.list, `(${TAX_KIND[r.k].label.toLowerCase()})`));
+    hbars($("x-tax-top"), owing.filter((p) => p.tax.owed).sort((a, b) => b.tax.owed - a.tax.owed).slice(0, 8).map((p) => ({
+      label: p.address ? streetCase(p.address) : "No address", value: p.tax.owed, num: money$(p.tax.owed), color: TAX_KIND[taxKind(p.tax)].color, p })),
+      (r) => window.open(PARCEL_LINK + r.p.parcel, "_blank", "noopener"));
+    $("x-tax-show").onclick = () => showTaxes(owing, "with unpaid property taxes");
   }
 
   // ---------- foreclosures ----------
