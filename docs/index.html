@@ -631,7 +631,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : [])].join(" · "))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : [])].join(" · "))} · county parcel ${esc(c.house.parcel)} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1190,9 +1190,11 @@
           <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-${k}-show">Show these houses on the map</button></div>
         </div>`).join("")}</div>
       <div class="card panel" id="x-homes"></div>
+      <div class="card panel" id="x-occ"></div>
       <div class="card panel" id="x-fc"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
+    renderOccupancy();
     renderForeclosures();
     renderLand();
 
@@ -1281,6 +1283,60 @@
     state.xlabel = `(${t.one.toLowerCase()})`; state.xnoun = "property";
     $("opt-x").textContent = t.label;
     browseWith({ board: "xhouses" });
+  }
+
+  // ---------- rentals vs homeowners ----------
+  // From the county tax files: the owner-occupancy credit means the owner lives there; rentals are from the rental registration
+  const OCC = {
+    owner: { label: "Owner lives there", color: "var(--t-bldg)" },
+    both: { label: "Owner lives there, rents a unit", color: "var(--t-hvac)" },
+    rental: { label: "Registered rental", color: "var(--t-zon)" },
+    none: { label: "Owner lives elsewhere, not registered", short: "Owner elsewhere, unregistered", color: "var(--t-other)" } };
+  const occOf = (p) => p.occ || "none";
+  const occText = (p) => OCC[occOf(p)].label + (p.rental_units ? ` (${p.rental_units} rental unit${p.rental_units === 1 ? "" : "s"} registered)` : "");
+
+  function showOccupancy(list, label) {
+    state.xitems = list.slice()
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0))
+      .map((p) => ({ id: "xocc|" + p.parcel, board: "House", house: p, noun: "property", occ: true, cat: "other",
+        address: p.address || "Address not listed", lat: p.lat, lon: p.lon, meeting_date: null, popup: occText(p),
+        description: [houseKind(p.luc), occText(p), `parcel ${p.parcel}`].join(", ") }));
+    state.xlabel = label; state.xnoun = "property";
+    $("opt-x").textContent = "Rentals vs owners";
+    browseWith({ board: "xhouses" });
+  }
+
+  function renderOccupancy() {
+    const el = $("x-occ"), P = state.parcels || [];
+    const types = HOME_TYPES.filter((t) => t.per), homes = P.filter((p) => types.some((t) => t.codes.includes(p.luc)));
+    if (!homes.some((p) => p.occ)) { el.innerHTML = `<h2>Rentals vs. homeowners</h2><p class="note">Arrives with the next county import.</p>`; return; }
+    const by = (k) => homes.filter((p) => occOf(p) === k);
+    const lives = by("owner").length + by("both").length;
+    const apts = P.filter((p) => HOME_TYPES.some((t) => !t.per && t.codes.includes(p.luc)));
+    const aptUnits = apts.reduce((s, p) => s + (p.rental_units || 0), 0);
+    el.innerHTML = `
+      <h2>Rentals vs. homeowners</h2>
+      <p class="p-sub">For every house, duplex, and condo, from the county tax records. When the owner lives in the home, they get the
+        owner-occupancy tax credit. Landlords are required to register rentals with the county. "Owner lives elsewhere, not registered"
+        is mostly rentals that aren't registered, plus second homes, homes held by estates or companies, and homes sitting empty.
+        The credit can lag a sale by a year, so recent buyers may still show as living elsewhere.</p>
+      <div class="x-big">${Math.round(lives / homes.length * 100)}%</div>
+      <div class="x-of">of ${homes.length.toLocaleString()} houses, duplexes, and condos have the owner living there.
+        <b>${(homes.length - lives).toLocaleString()}</b> don't.</div>
+      <div class="x-land-grid">
+        <div><h3>Who lives there</h3><div id="x-occ-kind"></div></div>
+        <div><h3>Share not owner-occupied, by type</h3><div id="x-occ-type"></div></div>
+      </div>
+      ${apts.length ? `<p class="x-ok" style="margin-top:14px">Not counted above: ${apts.length.toLocaleString()} apartment and rental condo properties, which are all rentals.
+        ${aptUnits ? `The ${apts.filter((p) => p.rental_units).length.toLocaleString()} that are registered list ${aptUnits.toLocaleString()} rental units.` : ""}</p>` : ""}`;
+    hbars($("x-occ-kind"), Object.keys(OCC).map((k) => ({ label: OCC[k].short || OCC[k].label, value: by(k).length, color: OCC[k].color, list: by(k), k,
+      num: `${by(k).length.toLocaleString()} · ${Math.round(by(k).length / homes.length * 100)}%` })),
+      (r) => showOccupancy(r.list, `(${OCC[r.k].label.toLowerCase()})`));
+    hbars($("x-occ-type"), types.map((t) => {
+      const all = homes.filter((p) => t.codes.includes(p.luc)), out = all.filter((p) => !["owner", "both"].includes(occOf(p)));
+      return { label: t.label, value: all.length ? Math.round(out.length / all.length * 100) : 0, color: t.color, list: out, t,
+        num: `${all.length ? Math.round(out.length / all.length * 100) : 0}% · ${out.length.toLocaleString()} of ${all.length.toLocaleString()}` };
+    }).filter((r) => r.num !== "0% · 0 of 0"), (r) => showOccupancy(r.list, `(${r.t.one.toLowerCase()}, owner lives elsewhere)`));
   }
 
   // ---------- foreclosures ----------
