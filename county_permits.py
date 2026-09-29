@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 11  # bump to force a re-import of the current month's file
+IMPORT_VERSION = 12  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -331,7 +331,46 @@ def load_owners(folder, parcels, luc_names):
     county's name for each land use code (fills luc_names). Column names are guessed and logged. Returns the header."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
     with tempfile.TemporaryDirectory() as tmp:   # own folder: its zip has the same name as the appraisal zip
-        return _read_owners(Tables(folder, tmp), want, parcels, luc_names)
+        tables = Tables(folder, tmp)
+        header = _read_owners(tables, want, parcels, luc_names)
+        profiles = {}
+        for name in tables.names():
+            if re.match(r"(parcel|rental|taxdetail|sa|value)", name, re.I):
+                try:
+                    profiles[name] = profile_table(tables, name, parcels)
+                except Exception as err:
+                    profiles[name] = {"error": str(err)[:200]}
+        return header, profiles
+
+
+PERSONAL = re.compile(r"name|addr|phone|mail|contact|zip|city|legal", re.I)
+
+
+def profile_table(tables, name, parcels):
+    """Column values in a tax table for Grandview parcels, to see which columns are flags. Personal
+    columns (names, addresses, phones) only get a count of filled rows, since this file is published."""
+    header, pc, rows, ids, counts = None, None, 0, set(), {}
+    for row in tables.rows(re.escape(name)):
+        if header is None:
+            header = list(row)
+            pc = find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"parcel")
+            if not pc:
+                return {"columns": header, "note": "no parcel column"}
+        pid = parcel_id(row.get(pc))
+        if pid not in parcels:
+            continue
+        rows += 1
+        ids.add(pid)
+        for k, v in row.items():
+            v = str(v).strip()
+            c = counts.setdefault(k, {})
+            key = ("filled" if v else "") if PERSONAL.search(k) else v[:40]
+            if key in c or len(c) < 40:
+                c[key] = c.get(key, 0) + 1
+    cols = {k: (dict(sorted(c.items(), key=lambda kv: -kv[1])[:15]) if len(c) <= 15 else f"{len(c)}+ values, e.g. {list(c)[:3]}")
+            for k, c in counts.items()}
+    print(f"  {name}: {rows} Grandview rows on {len(ids)} parcels")
+    return {"columns": header, "grandview_rows": rows, "grandview_parcels": len(ids), "values": cols}
 
 
 def _read_owners(tables, want, parcels, luc_names):
@@ -365,13 +404,15 @@ def _read_owners(tables, want, parcels, luc_names):
     return header
 
 
-def dump_columns(tables, parcels, now, tax_header=None):
+def dump_columns(tables, parcels, now, tax_header=None, tax_profiles=None):
     """Writes each table's column names and a few rows for vacant parcels, so column guesses can be checked."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
     names = tables.names()
     out = {"updated": now, "tables": {}}
     if tax_header:
         out["tax_parcel_columns"] = tax_header
+    if tax_profiles:
+        out["tax_tables"] = tax_profiles
     for name in names:
         try:
             header, pc, samples = None, None, []
@@ -532,15 +573,15 @@ def run(state, geocode, now):
             parcels = load_parcels(tables)
             load_year_built(tables, parcels)
             load_land_details(tables, parcels)
-            tax_header, luc_names = None, {}
+            tax_header, tax_profiles, luc_names = None, None, {}
             try:
                 tf = tax_folder(folder)
                 if tf:
                     print(f"  owners from {unquote(tf.rstrip('/').rsplit('/', 1)[-1])}")
-                    tax_header = load_owners(tf, parcels, luc_names)
+                    tax_header, tax_profiles = load_owners(tf, parcels, luc_names)
             except Exception as err:   # owners are extra; don't let them stop the import
                 print(f"  no owner names ({err})")
-            dump_columns(tables, parcels, now, tax_header)
+            dump_columns(tables, parcels, now, tax_header, tax_profiles)
             rows = dedupe(load_permits(tables, parcels) + history["permits"])
         old_parcels = {p["parcel"]: p for p in (json.loads(PARCELS_OUT.read_text())["parcels"]
                                                 if PARCELS_OUT.exists() else [])}
