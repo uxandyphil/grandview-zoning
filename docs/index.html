@@ -1423,7 +1423,7 @@
   // ---------- unpaid property taxes ----------
   // From the county tax files: balances owed, amounts left from earlier years, and certification to the delinquent list
   const TAX_KIND = {
-    certified: { label: "Certified delinquent", color: "var(--t-zon)" },
+    certified: { label: "Certified delinquent", short: "Certified", color: "var(--t-zon)" },
     prior: { label: "Behind from earlier years", short: "Earlier years", color: "var(--t-elec)" },
     current: { label: "Unpaid this year only", short: "This year only", color: "var(--t-other)" } };
   const taxKind = (t) => t.certified ? "certified" : t.prior ? "prior" : "current";
@@ -1443,7 +1443,7 @@
 
   function renderTaxes() {
     const el = $("x-tax"), P = state.parcels || [];
-    const owing = P.filter((p) => p.tax);
+    const owing = P.filter((p) => p.tax && (p.tax.certified || (p.tax.owed || 0) >= 50));   // skip leftover cents and rounding
     if (!owing.length) {
       el.innerHTML = `<h2>Unpaid property taxes</h2><p class="note">${P.some((p) => p.occ) ? "No unpaid property taxes in the county's latest file." : "Arrives with the next county import."}</p>`;
       return;
@@ -1463,7 +1463,7 @@
         <div><h3>How far behind</h3><div id="x-tax-kind"></div></div>
         <div><h3>Largest balances</h3><div id="x-tax-top"></div></div>
       </div>
-      <p class="x-ok" style="margin-top:14px"><b>Earlier years</b>: some of the balance is left over from past tax years.
+      <p class="x-ok" style="margin-top:14px"><b>Certified</b>: on the county's delinquent list. <b>Earlier years</b>: some of the balance is left over from past tax years.
         <b>This year only</b>: only this year's bill is unpaid.</p>
       <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-tax-show">Show these properties on the map</button></div>`;
     hbars($("x-tax-kind"), Object.keys(TAX_KIND).map((k) => ({ label: TAX_KIND[k].short || TAX_KIND[k].label, value: of(k).length,
