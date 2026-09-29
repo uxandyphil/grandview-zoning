@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 12  # bump to force a re-import of the current month's file
+IMPORT_VERSION = 13  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -333,44 +333,39 @@ def load_owners(folder, parcels, luc_names):
     with tempfile.TemporaryDirectory() as tmp:   # own folder: its zip has the same name as the appraisal zip
         tables = Tables(folder, tmp)
         header = _read_owners(tables, want, parcels, luc_names)
-        profiles = {}
-        for name in tables.names():
-            if re.match(r"(parcel|rental|taxdetail|sa|value)", name, re.I):
-                try:
-                    profiles[name] = profile_table(tables, name, parcels)
-                except Exception as err:
-                    profiles[name] = {"error": str(err)[:200]}
-        return header, profiles
+        load_occupancy(tables, parcels)
+        return header
 
 
-PERSONAL = re.compile(r"name|addr|phone|mail|contact|zip|city|legal", re.I)
-
-
-def profile_table(tables, name, parcels):
-    """Column values in a tax table for Grandview parcels, to see which columns are flags. Personal
-    columns (names, addresses, phones) only get a count of filled rows, since this file is published."""
-    header, pc, rows, ids, counts = None, None, 0, set(), {}
-    for row in tables.rows(re.escape(name)):
-        if header is None:
-            header = list(row)
-            pc = find_col(header, r"^parcel.?(id|num|no)?$", r"^par.?id$", r"parcel")
-            if not pc:
-                return {"columns": header, "note": "no parcel column"}
-        pid = parcel_id(row.get(pc))
-        if pid not in parcels:
-            continue
-        rows += 1
-        ids.add(pid)
-        for k, v in row.items():
-            v = str(v).strip()
-            c = counts.setdefault(k, {})
-            key = ("filled" if v else "") if PERSONAL.search(k) else v[:40]
-            if key in c or len(c) < 40:
-                c[key] = c.get(key, 0) + 1
-    cols = {k: (dict(sorted(c.items(), key=lambda kv: -kv[1])[:15]) if len(c) <= 15 else f"{len(c)}+ values, e.g. {list(c)[:3]}")
-            for k, c in counts.items()}
-    print(f"  {name}: {rows} Grandview rows on {len(ids)} parcels")
-    return {"columns": header, "grandview_rows": rows, "grandview_parcels": len(ids), "values": cols}
+def load_occupancy(tables, parcels):
+    """Who lives there. The owner-occupancy tax credit (IsHomesite in the Parcel table, AnnualOwnOcc in
+    TaxDetail) means the owner lives in the home; RentalContact is the county's rental registration."""
+    owner, rental = set(), {}
+    for row in tables.rows("parcel"):
+        pid = parcel_id(row.get("PARCEL ID"))
+        if pid in parcels and str(row.get("IsHomesite") or "").strip().upper() in ("YES", "Y"):
+            owner.add(pid)
+    try:
+        for row in tables.rows("taxdetail"):
+            pid = parcel_id(row.get("Parcel Id") or row.get("PARCEL ID"))
+            if pid in parcels and money(row.get("AnnualOwnOcc")) > 0:   # a credit, stored as a negative amount
+                owner.add(pid)
+    except RuntimeError as err:
+        print(f"  no tax detail table ({err})")
+    try:
+        for row in tables.rows("rentalcontact"):
+            pid = parcel_id(row.get("PARCEL ID") or row.get("Parcel Id"))
+            if pid in parcels:
+                n = int(re.sub(r"\D", "", str(row.get("NumUnits") or "")) or 0)
+                rental[pid] = max(rental.get(pid, 0), n)
+    except RuntimeError as err:
+        print(f"  no rental registration table ({err})")
+    for pid in owner | set(rental):
+        p = parcels[pid]
+        p["occ"] = "both" if pid in owner and pid in rental else "owner" if pid in owner else "rental"
+        if rental.get(pid):
+            p["rental_units"] = rental[pid]
+    print(f"  owner lives there: {len(owner)}, registered rentals: {len(rental)} ({sum(rental.values())} units), both: {len(owner & set(rental))}")
 
 
 def _read_owners(tables, want, parcels, luc_names):
@@ -404,15 +399,13 @@ def _read_owners(tables, want, parcels, luc_names):
     return header
 
 
-def dump_columns(tables, parcels, now, tax_header=None, tax_profiles=None):
+def dump_columns(tables, parcels, now, tax_header=None):
     """Writes each table's column names and a few rows for vacant parcels, so column guesses can be checked."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
     names = tables.names()
     out = {"updated": now, "tables": {}}
     if tax_header:
         out["tax_parcel_columns"] = tax_header
-    if tax_profiles:
-        out["tax_tables"] = tax_profiles
     for name in names:
         try:
             header, pc, samples = None, None, []
@@ -573,15 +566,15 @@ def run(state, geocode, now):
             parcels = load_parcels(tables)
             load_year_built(tables, parcels)
             load_land_details(tables, parcels)
-            tax_header, tax_profiles, luc_names = None, None, {}
+            tax_header, luc_names = None, {}
             try:
                 tf = tax_folder(folder)
                 if tf:
                     print(f"  owners from {unquote(tf.rstrip('/').rsplit('/', 1)[-1])}")
-                    tax_header, tax_profiles = load_owners(tf, parcels, luc_names)
+                    tax_header = load_owners(tf, parcels, luc_names)
             except Exception as err:   # owners are extra; don't let them stop the import
                 print(f"  no owner names ({err})")
-            dump_columns(tables, parcels, now, tax_header, tax_profiles)
+            dump_columns(tables, parcels, now, tax_header)
             rows = dedupe(load_permits(tables, parcels) + history["permits"])
         old_parcels = {p["parcel"]: p for p in (json.loads(PARCELS_OUT.read_text())["parcels"]
                                                 if PARCELS_OUT.exists() else [])}
@@ -592,7 +585,7 @@ def run(state, geocode, now):
                           "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon"),
                           **({"owner": p.get("owner") or o.get("owner")}
                              if VACANT_LUC.match(p["luc"] or "") and (p.get("owner") or o.get("owner")) else {}),
-                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures")
+                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units")
                              if p.get(k) is not None}})
         lucs = {}
         for p in plist:
