@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 11  # bump to force a re-import of the current month's file
+IMPORT_VERSION = 13  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -331,7 +331,41 @@ def load_owners(folder, parcels, luc_names):
     county's name for each land use code (fills luc_names). Column names are guessed and logged. Returns the header."""
     want = {pid for pid, p in parcels.items() if VACANT_LUC.match(p.get("luc") or "")}
     with tempfile.TemporaryDirectory() as tmp:   # own folder: its zip has the same name as the appraisal zip
-        return _read_owners(Tables(folder, tmp), want, parcels, luc_names)
+        tables = Tables(folder, tmp)
+        header = _read_owners(tables, want, parcels, luc_names)
+        load_occupancy(tables, parcels)
+        return header
+
+
+def load_occupancy(tables, parcels):
+    """Who lives there. The owner-occupancy tax credit (IsHomesite in the Parcel table, AnnualOwnOcc in
+    TaxDetail) means the owner lives in the home; RentalContact is the county's rental registration."""
+    owner, rental = set(), {}
+    for row in tables.rows("parcel"):
+        pid = parcel_id(row.get("PARCEL ID"))
+        if pid in parcels and str(row.get("IsHomesite") or "").strip().upper() in ("YES", "Y"):
+            owner.add(pid)
+    try:
+        for row in tables.rows("taxdetail"):
+            pid = parcel_id(row.get("Parcel Id") or row.get("PARCEL ID"))
+            if pid in parcels and money(row.get("AnnualOwnOcc")) > 0:   # a credit, stored as a negative amount
+                owner.add(pid)
+    except RuntimeError as err:
+        print(f"  no tax detail table ({err})")
+    try:
+        for row in tables.rows("rentalcontact"):
+            pid = parcel_id(row.get("PARCEL ID") or row.get("Parcel Id"))
+            if pid in parcels:
+                n = int(re.sub(r"\D", "", str(row.get("NumUnits") or "")) or 0)
+                rental[pid] = max(rental.get(pid, 0), n)
+    except RuntimeError as err:
+        print(f"  no rental registration table ({err})")
+    for pid in owner | set(rental):
+        p = parcels[pid]
+        p["occ"] = "both" if pid in owner and pid in rental else "owner" if pid in owner else "rental"
+        if rental.get(pid):
+            p["rental_units"] = rental[pid]
+    print(f"  owner lives there: {len(owner)}, registered rentals: {len(rental)} ({sum(rental.values())} units), both: {len(owner & set(rental))}")
 
 
 def _read_owners(tables, want, parcels, luc_names):
@@ -551,7 +585,7 @@ def run(state, geocode, now):
                           "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon"),
                           **({"owner": p.get("owner") or o.get("owner")}
                              if VACANT_LUC.match(p["luc"] or "") and (p.get("owner") or o.get("owner")) else {}),
-                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures")
+                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units")
                              if p.get(k) is not None}})
         lucs = {}
         for p in plist:
