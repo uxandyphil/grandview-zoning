@@ -43,9 +43,9 @@ def fetch(url):
             resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
             page.wait_for_timeout(15000)   # give a bot check time to finish
             html, final = page.content(), page.url
-            if not links(final, html):
-                status = f"{status}; browser {resp.status if resp else '?'}: " + re.sub(r"<[^>]+>|\s+", " ", html)[:300]
             b.close()
+            if not links(final, html):   # still refused: keep what the site said
+                return f"{status}; browser {resp.status if resp else '?'}: " + re.sub(r"<[^>]+>|\s+", " ", html)[:300], final, html
             return (resp.status if resp else status), final, html
     except Exception as err:
         return f"{status}; browser: {err}"[:200], url, ""
