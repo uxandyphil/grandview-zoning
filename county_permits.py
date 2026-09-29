@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 14  # bump to force a re-import of the current month's file
+IMPORT_VERSION = 15  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -334,6 +334,7 @@ def load_owners(folder, parcels, luc_names):
         tables = Tables(folder, tmp)
         header = _read_owners(tables, want, parcels, luc_names)
         load_occupancy(tables, parcels)
+        load_assessments(tables, parcels)
         return header
 
 
@@ -343,6 +344,30 @@ def signed(v):
         return round(float(re.sub(r"[^\d.-]", "", str(v or "")) or 0))
     except ValueError:
         return 0
+
+
+def load_assessments(tables, parcels):
+    """Special assessments: city charges (sidewalk repair, sewer, and the like) added to a property's tax
+    bill, which make them a lien on the property. From the Sa table in the Tax Accounting files."""
+    try:
+        rows = list(tables.rows("sa"))
+    except RuntimeError as err:
+        print(f"  no special assessment table ({err})")
+        return
+    n = 0
+    for row in rows:
+        pid = parcel_id(row.get("Parcel Id") or row.get("PARCEL ID"))
+        if pid not in parcels:
+            continue
+        a = {"what": title(row.get("Description")), "project": title(row.get("ProjectNumber")),
+             "annual": signed(row.get("AnnualCharge")), "unpaid": signed(row.get("TotTotal")), "payoff": signed(row.get("Payoff"))}
+        parcels[pid].setdefault("assessments", []).append({k: v for k, v in a.items() if v})
+        n += 1
+    kinds = {}
+    for p in parcels.values():
+        for a in p.get("assessments", []):
+            kinds[a.get("what", "")] = kinds.get(a.get("what", ""), 0) + 1
+    print(f"  special assessments: {n} on {sum(1 for p in parcels.values() if p.get('assessments'))} properties: {kinds}")
 
 
 def load_occupancy(tables, parcels):
@@ -612,7 +637,7 @@ def run(state, geocode, now):
                           "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon"),
                           **({"owner": p.get("owner") or o.get("owner")}
                              if VACANT_LUC.match(p["luc"] or "") and (p.get("owner") or o.get("owner")) else {}),
-                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units", "tax")
+                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units", "tax", "assessments")
                              if p.get(k) is not None}})
         lucs = {}
         for p in plist:
