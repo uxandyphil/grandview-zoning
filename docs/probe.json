@@ -1,16 +1,33 @@
 {
- "updated": "2026-09-30T00:10:47+00:00",
+ "updated": "2026-09-30T00:13:41+00:00",
  "pages": {
-  "https://www.grandviewheights.gov/Archive.aspx": {
+  "https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34": {
    "via": "requests",
    "status": 200,
-   "final": "https://www.grandviewheights.gov/Archive.aspx",
-   "title": "Archive Center \u2022 Grandview Heights \u2022 CivicEngage",
-   "text": "Archive Center \u2022 Grandview Heights \u2022 CivicEngage Skip to Main Content Create a Website Account - Manage notification subscriptions, save form progress and more. &nbsp;&nbsp; Website Sign In Your Government Departments Public Documents Doing Business Our Community How Do I... Search Home Archive Center &nbsp; The Archive Center is the repository of the city\u2019s historical documents. Please make your selection with the drop down arrow button below in the desired category box or scroll down to the bottom of this page to utilize the full search fields. Note: This site contains many documents in Port",
+   "final": "https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34",
+   "type": "text/html; charset=utf-8",
+   "title": "Calendar \u2022 Grandview Heights \u2022 CivicEngage",
+   "text": "Calendar \u2022 Grandview Heights \u2022 CivicEngage Skip to Main Content Create a Website Account - Manage notification subscriptions, save form progress and more. &nbsp;&nbsp; Website Sign In Your Government Departments Public Documents Doing Business Our Community How Do I... Search Home Calendar Calendar View all calendars is the default. Choose Select a Calendar to view a specific calendar. Select the arrows on either side of the current month to change the month. List Week Month Find a Facility Notify Me Print Subscribe to iCalendar Search Calendars by: Start Date End Date Enter Search Terms Show Past Events Select a Calendar Select Calendar/Calendars to filter Main City Calendar Search September January February March April May June July August September October November December 2026 2021 2022 2023 2024 2025 2026 2027 2028 2029 2030 Su M Tu W Th F Sa 30 31 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 1 2 3 Facility Submit Event Print Email Event Subscription View RSS Feeds Select on Calendar Expand Collapse Previous Next Down Up Map Share Show more Agenda Live Edit Agendas &amp; Minutes GH311 Parks &amp; Recreation Building &amp; Zoning Trash &amp; Recycling Job Opportunities --> Helpful Links Employment Opportunities Report a Concern Events Text & Email Alert Sign-up Bids & RFPs /QuickLinks.aspx Site Links Site Map Accessibility Privacy Copyright Notices /QuickLinks.aspx Contact Us City of Grandview Heights&nbsp; 1525 Goodale Blvd. Grandview Heights, Ohio 43212 Phone : &nbsp;614.488.3159 Contact Us Government Websites by CivicPlus&reg; Loading Loading Do Not Show Again Close Arrow Left Arrow Right [] Slideshow Left Arrow Slideshow Right Arrow",
    "links": [
     {
      "text": "",
      "url": "https://www.grandviewheights.gov/Search/Results"
+    },
+    {
+     "text": "List",
+     "url": "https://www.grandviewheights.gov/calendar.aspx?view=list&CID=26,14,27,34"
+    },
+    {
+     "text": "Week",
+     "url": "https://www.grandviewheights.gov/calendar.aspx?view=week&CID=26,14,27,34"
+    },
+    {
+     "text": "Month",
+     "url": "https://www.grandviewheights.gov/calendar.aspx?view=month&CID=26,14,27,34"
+    },
+    {
+     "text": "Subscribe to iCalendar",
+     "url": "https://www.grandviewheights.gov/iCalendar.aspx"
     },
     {
      "text": "Agendas &amp; Minutes",
@@ -22,8 +39,9 @@
    "via": "requests",
    "status": 200,
    "final": "https://www.grandviewheights.gov/AgendaCenter",
+   "type": "text/html; charset=utf-8",
    "title": "Agenda Center \u2022 Grandview Heights \u2022 CivicEngage",
-   "text": "Agenda Center \u2022 Grandview Heights \u2022 CivicEngage Skip to Main Content Create a Website Account - Manage notification subscriptions, save form progress and more. &nbsp;&nbsp; Website Sign In Your Government Departments Public Documents Doing Business Our Community How Do I... Search Home Agenda Center Agenda Center Tools RSS Notify Me Search Agendas by: Time Period Time Period Time Period Last Week Last Month Last 6 Months Last Year Start Date End Date Enter Search Terms &nbsp; Select a Category All Categories Search Codified Ordinances Agendas &amp; Minutes GH311 Parks &amp; Recreation Building",
+   "text": "Agenda Center \u2022 Grandview Heights \u2022 CivicEngage Skip to Main Content Create a Website Account - Manage notification subscriptions, save form progress and more. &nbsp;&nbsp; Website Sign In Your Government Departments Public Documents Doing Business Our Community How Do I... Search Home Agenda Center Agenda Center Tools RSS Notify Me Search Agendas by: Time Period Time Period Time Period Last Week Last Month Last 6 Months Last Year Start Date End Date Enter Search Terms &nbsp; Select a Category All Categories Search Codified Ordinances Agendas &amp; Minutes GH311 Parks &amp; Recreation Building &amp; Zoning Trash &amp; Recycling Job Opportunities --> Helpful Links Employment Opportunities Report a Concern Events Text & Email Alert Sign-up Bids & RFPs /QuickLinks.aspx Site Links Site Map Accessibility Privacy Copyright Notices /QuickLinks.aspx Contact Us City of Grandview Heights&nbsp; 1525 Goodale Blvd. Grandview Heights, Ohio 43212 Phone : &nbsp;614.488.3159 Contact Us Government Websites by CivicPlus&reg; Loading Loading Do Not Show Again Close Arrow Left Arrow Right [] Slideshow Left Arrow Slideshow Right Arrow",
    "links": [
     {
      "text": "",
@@ -35,318 +53,37 @@
     }
    ]
   },
-  "https://sheriff.franklincountyohio.gov/Services/Real-Estate-Sales": {
+  "https://www.grandviewheights.gov/DocumentCenter": {
    "via": "browser",
    "status": 200,
-   "final": "https://sheriff.franklincountyohio.gov/Services/Real-Estate-Sales",
-   "note": "requests 403 (?)",
-   "title": "Real Estate Sales | Franklin County Sheriff\u2019s Office",
-   "text": "Real Estate Sales | Franklin County Sheriff\u2019s Office --> tag to avoid performance warnings from Google. Dynamically creates the Skip to main content opens in new tab or window Quick Links: Quick Links Contact Us Facebook Instagram LinkedIn X YouTube English (United States) Select this as your preferred language Spanish Select this as your preferred language Somali Select this as your preferred language English (United States) is your current preferred language. Spanish Select this as your preferred language Somali Select this as your preferred language Open Search Menu About Us Sheriff Dallas ",
+   "final": "https://www.grandviewheights.gov/DocumentCenter",
+   "note": "browser first",
+   "body": "Skip To Main Content\n\nThis website is AudioEye enabled and is being optimized for accessibility. To open the AudioEye Toolbar, press \"shift + =\". Some assistive technologies may require the use of a passthrough function before this keystroke. For more information, activate the button labeled \"Explore your accessibility options\".\n\nSkip to Main Content\n\nCreate a Website Account - Manage notification subscriptions, save form progress and more. \u00a0\u00a0\n\nWebsite Sign In\nYOUR GOVERNMENT\nDEPARTMENTS\nPUBLIC DOCUMENTS\nDOING BUSINESS\nOUR COMMUNITY\nHOW DO I...\nSearch\nHomeDocument Center\n2024 - Redesign\n2024 - Redesign\n2024 - Redesign\nCity Newsletter\nGIS\nOther Docs\nPublic Documents (Forms and Permits)\nDisplay Name\n\t\nLast Uploaded\n\t\nSize (KB)\n\n\nNo records to display.\n\nRows per page:\n\n25\n\n0-0 of 0\n\nCodified Ordinances\nAgendas & Minutes\nGH311\nParks & Recreation\nBuilding & Zoning\n\nTrash & Recycling\nJob Opportunities\nHelpful Links\nEmployment Opportunities\nReport a Concern\nEvents\nText & Email Alert Sign-up\nBids & RFPs\nSite Links\nSite Map\nAccessibility\nPrivacy\nCopyright Notices\nContact Us\n\nCity of Grandview Heights\u00a0\n1525 Goodale Blvd.\nGrandview Heights, Ohio 43212\n\nPhone:\u00a0614.488.3159\n\nContact Us\n\n Government Websites by CivicPlus\u00ae\nSelect Language\nAbkhaz\nAcehnese\nAcholi\nAfar\nAfrikaans\nAlbanian\nAlur\nAmharic\nArabic\nArmenian\nAssamese\nAvar\nAwadhi\nAymara\nAzerbaijani\nBalinese\nBaluchi\nBambara\nBaoul\u00e9\nBashkir\nBasque\nBatak Karo\nBatak Simalungun\nBatak Toba\nBelarusian\nBemba\nBengali\nBetawi\nBhojpuri\nBikol\nBosnian\nBreton\nBulgarian\nBuryat\nCantonese\nCatalan\nCebuano\nChamorro\nChechen\nChichewa\nChinese (Simplified)\nChinese (Traditional)\nChuukese\nChuvash\nCorsican\nCrimean Tatar (Cyrillic)\nCrimean Tatar (Latin)\nCroatian\nCzech\nDanish\nDari\nDhivehi\nDinka\nDogri\nDombe\nDutch\nDyula\nDzongkha\nEsperanto\nEstonian\nEwe\nFaroese\nFijian\nFilipino\nFinnish\nFon\nFrench\nFrench (Canada)\nFrisian\nFriulian\nFulani\nGa\nGalician\nGeorgian\nGerman\nGreek\nGuarani\nGujarati\nHaitian Creole\nHakha Chin\nHausa\nHawaiian\nHebrew\nHiligaynon\nHindi\nHmong\nHungarian\nHunsrik\nIban\nIcelandic\nIgbo\nIlocano\nIndonesian\nInuktut (Latin)\nInuktut (Syllabics)\nIrish\nItalian\nJamaican Patois\nJapanese\nJavanese\nJingpo\nKalaallisut\nKannada\nKanuri\nKapampangan\nKazakh\nKhasi\nKhmer\nKiga\nKikongo\nKinyarwanda\nKituba\nKokborok\nKomi\nKonkani\nKorean\nKrio\nKurdish (Kurmanji)\nKurdish (Sorani)\nKyrgyz\nLao\nLatgalian\nLatin\nLatvian\nLigurian\nLimburgish\nLingala\nLithuanian\nLombard\nLuganda\nLuo\nLuxembourgish\nMacedonian\nMadurese\nMaithili\nMakassar\nMalagasy\nMalay\nMalay (Jawi)\nMalayalam\nMaltese\nMam\nManx\nMaori\nMarathi\nMarshallese\nMarwadi\nMauritian Creole\nMeadow Mari\nMeiteilon (Manipuri)\nMinang\nMizo\nMongolian\nMyanmar (Burmese)\nNahuatl (Eastern Huasteca)\nNdau\nNdebele (South)\nNepalbhasa (Newari)\nNepali\nNKo\nNorwegian\nNuer\nOccitan\nOdia (Oriya)\nOromo\nOssetian\nPangasinan\nPapiamento\nPashto\nPersian\nPolish\nPortuguese (Brazil)\nPortuguese (Portugal)\nPunjabi (Gurmukhi)\nPunjabi (Shahmukhi)\nQuechua\nQ\u02bceqchi\u02bc\nRomani\nRomanian\nRundi\nRussian\nSami (North)\nSamoan\nSango\nSanskrit\nSantali (Latin)\nSantali (Ol Chiki)\nScots Gaelic\nSepedi\nSerbian\nSesotho\nSeychellois Creole\nShan\nShona\nSicilian\nSilesian\nSindhi\nSinhala\nSlovak\nSlovenian\nSomali\nSpanish\nSundanese\nSusu\nSwahili\nSwati\nSwedish\nTahitian\nTajik\nTamazight\nTamazight (Tifinagh)\nTamil\nTatar\nTelugu\nTetum\nThai\nTibetan\nTigrinya\nTiv\nTok Pisin\nTongan\nTshiluba\nTsonga\nTswana\nTulu\nTumbuka\nTurkish\nTurkmen\nTuvan\nTwi\nUdmurt\nUkrainian\nUrdu\nUyghur\nUzbek\nVenda\nVenetian\nVietnamese\nWaray\nWelsh\nWolof\nXhosa\nYakut\nYiddish\nYoruba\nYucatec Maya\nZapotec\nZulu\nPowered by Translate",
+   "title": "Document Center \u2022 Grandview Heights \u2022 CivicEngage",
+   "text": "Document Center \u2022 Grandview Heights \u2022 CivicEngage Skip To Main Content This website is AudioEye enabled and is being optimized for accessibility. To open the AudioEye Toolbar, press \"shift + =\". Some assistive technologies may require the use of a passthrough function before this keystroke. For more information, activate the button labeled \"Explore your accessibility options\". Loading Skip to Main Content Create a Website Account - Manage notification subscriptions, save form progress and more. &nbsp;&nbsp; Website Sign In Your Government Departments Public Documents Doing Business Our Community How Do I... Search Home Document Center Filter Documents by: From Start Date September 2026 Calendar Sun Mon Tue Wed Thu Fri Sat 30 31 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 1 2 3 4 5 6 7 8 9 10 Today Clear Close Start Time 12:00 AM 12:01 AM 12:02 AM 12:03 AM 12:04 AM 12:05 AM 12:06 AM 12:07 AM 12:08 AM 12:09 AM 12:10 AM 12:11 AM 12:12 AM 12:13 AM 12:14 AM 12:15 AM 12:16 AM 12:17 AM 12:18 AM 12:19 AM 12:20 AM 12:21 AM 12:22 AM 12:23 AM 12:24 AM 12:25 AM 12:26 AM 12:27 AM 12:28 AM 12:29 AM 12:30 AM 12:31 AM 12:32 AM 12:33 AM 12:34 AM 12:35 AM 12:36 AM 12:37 AM 12:38 AM 12:39 AM 12:40 AM 12:41 AM 12:42 AM 12:43 AM 12:44 AM 12:45 AM 12:46 AM 12:47 AM 12:48 AM 12:49 AM 12:50 AM 12:51 AM 12:52 AM 12:53 AM 12:54 AM 12:55 AM 12:56 AM 12:57 AM 12:58 AM 12:59 AM 1:00 AM 1:01 AM 1:02 AM 1:03 AM 1:04 AM 1:05 AM 1:06 AM 1:07 AM 1:08 AM 1:09 AM 1:10 AM 1:11 AM 1:12 AM 1:13 AM 1:14 AM 1:15 AM 1:16 AM 1:17 AM 1:18 AM 1:19 AM 1:20 AM 1:21 AM 1:22 AM 1:23 AM 1:24 AM 1:25 AM 1:26 AM 1:27 AM 1:28 AM 1:29 AM 1:30 AM 1:31 AM 1:32 AM 1:33 AM 1:34 AM 1:35 AM 1:36 AM 1:37 AM 1:38 AM 1:39 AM 1:40 AM 1:41 AM 1:42 AM 1:43 AM 1:44 AM 1:45 AM 1:46 AM 1:47 AM 1:48 AM 1:49 AM 1:50 AM 1:51 AM 1:52 AM 1:53 AM 1:54 AM 1:55 AM 1:56 AM 1:57 AM 1:58 AM 1:59 AM 2:00 AM 2:01 AM 2:02 AM 2:03 AM 2:04 AM 2:05 AM 2:06 AM 2:07 AM 2:08 AM 2:09 AM 2:10 AM 2:11 AM 2:12 AM 2:13 AM 2:14 AM 2:15 AM 2:16 AM 2:17 AM 2:18 AM 2:19 AM 2:20 AM 2:21 AM 2:22 AM 2:23 AM 2:24 AM 2:25 AM 2:26 AM 2:27 AM 2:28 AM 2:29 AM 2:30 AM 2:31 AM 2:32 AM 2:33 AM 2:34 AM 2:35 AM 2:36 AM 2:37 AM 2:38 AM 2:39 AM 2:40 AM 2:41 AM 2:42 AM 2:43 AM 2:44 AM 2:45 AM 2:46 AM 2:47 AM 2:48 AM 2:49 AM 2:50 AM 2:51 AM 2:52 AM 2:53 AM 2:54 AM 2:55 AM 2:56 AM 2:57 AM 2:58 AM 2:59 AM 3:00 AM 3:01 AM 3:02 AM 3:03 AM 3:04 AM 3:05 AM 3:06 AM 3:07 AM 3:08 AM 3:09 AM 3:10 AM 3:11 AM 3:12 AM 3:13 AM 3:14 AM 3:15 AM 3:16 AM 3:17 AM 3:18 AM 3:19 AM 3:20 AM 3:21 AM 3:22 AM 3:23 AM 3:24 AM 3:25 AM 3:26 AM 3:27 AM 3:28 AM 3:29 AM 3:30 AM 3:31 AM 3:32 AM 3:33 AM 3:34 AM 3:35 AM 3:36 AM 3:37 AM 3:38 AM 3:39 AM 3:40 AM 3:41 AM 3:42 AM 3:43 AM 3:44 AM 3:45 AM 3:46 AM 3:47 AM 3:48 AM 3:49 AM 3:50 AM 3:51 AM 3:52 AM 3:53 AM 3:54 AM 3:55 AM 3:56 AM 3:57 AM 3:58 AM 3:59 AM 4:00 AM 4:01 AM 4:02 AM 4:03 AM 4:04 AM 4:05 AM 4:06 AM 4:07 AM 4:08 AM 4:09 AM 4:10 AM 4:11 AM 4:12 AM 4:13 AM 4:14 AM 4:15 AM 4:16 AM 4:17 AM 4:18 AM",
    "links": [
     {
-     "text": "Front Office",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Front-Office"
-    },
-    {
-     "text": "English (United States) Select this as your preferred language",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Real-Estate-Sales?oc_lang=en-US"
-    },
-    {
-     "text": "Spanish Select this as your preferred language",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Real-Estate-Sales?oc_lang=es"
-    },
-    {
-     "text": "Somali Select this as your preferred language",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Real-Estate-Sales?oc_lang=so"
-    },
-    {
-     "text": "Privacy Statement",
-     "url": "https://sheriff.franklincountyohio.gov/Home"
-    },
-    {
-     "text": "About Us",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us"
-    },
-    {
-     "text": "Sheriff Dallas Baldwin",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Sheriff-Dallas-Baldwin"
-    },
-    {
-     "text": "Public Records Request",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Public-Records"
-    },
-    {
-     "text": "Employment &amp; Management Services",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Employment-Management-Services"
-    },
-    {
-     "text": "News and Media",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Public-Affairs-Media-Relations"
-    },
-    {
-     "text": "Wall of Honor",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Wall-of-Honor"
-    },
-    {
-     "text": "Annual Report",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Annual-Report"
-    },
-    {
-     "text": "Divisions",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Divisions"
-    },
-    {
-     "text": "Administration",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Divisions/Administration"
-    },
-    {
-     "text": "Corrections",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Divisions/Corrections"
-    },
-    {
-     "text": "Investigations",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Divisions/Investigations"
-    },
-    {
-     "text": "Patrol",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Divisions/Patrol"
-    },
-    {
-     "text": "Recruitment, Community Engagement &amp; Professional Development",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Divisions/Recruitment-Community-Engagement-Professional-Development"
-    },
-    {
-     "text": "Security Operations",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Divisions/Security-Operations"
-    },
-    {
-     "text": "Support Services",
-     "url": "https://sheriff.franklincountyohio.gov/About-Us/Divisions/Support-Services"
-    },
-    {
-     "text": "Services",
-     "url": "https://sheriff.franklincountyohio.gov/Services"
-    },
-    {
-     "text": "Civil Services Bureau",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Civil-Services-Bureau"
-    },
-    {
-     "text": "Compliment / Complaint Form",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Compliment-Complaint-Form"
-    },
-    {
-     "text": "Concealed Carry Permit",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Concealed-Carry-Permit"
-    },
-    {
-     "text": "File a Crash Report",
-     "url": "https://sheriff.franklincountyohio.gov/Services/File-a-Crash-Report"
-    },
-    {
-     "text": "Fingerprinting",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Fingerprinting"
-    },
-    {
-     "text": "&nbsp;",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Real-Estate-Sales"
-    },
-    {
-     "text": "Frequently Asked Questions",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Real-Estate-Sales/Real-Estate-Sale-FAQ"
-    },
-    {
-     "text": "Inmate Information",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Inmate-Information"
-    },
-    {
-     "text": "Community Event Request",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Community-Event-Request"
-    },
-    {
-     "text": "Offender Compliance Unit",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Offender-Compliance-Unit"
-    },
-    {
-     "text": "About e-SCORN/Offender Classification",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Offender-Compliance-Unit/About-e-SCORNOffender-Classification"
-    },
-    {
-     "text": "Snow Level Emergency",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Snow-Level-Emergency"
-    },
-    {
-     "text": "Wanted Persons",
-     "url": "https://sheriff.franklincountyohio.gov/Services/Wanted-Persons"
-    },
-    {
-     "text": "Programs",
-     "url": "https://sheriff.franklincountyohio.gov/Programs"
-    },
-    {
-     "text": "Business and Home Security Assessment",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Business-and-Home-Security-Assessment"
-    },
-    {
-     "text": "Citizens Academy",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Citizens-Academy"
-    },
-    {
-     "text": "Civilian Response to Active Shooter Events (CRASE)",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Civilian-Response-to-Active-Shooter-Events-CRASE"
-    },
-    {
-     "text": "Drug Abuse Resistance Education (D.A.R.E.)",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Drug-Abuse-Resistance-Education-DARE"
-    },
-    {
-     "text": "DUI Task Force",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/DUI-Task-Force"
-    },
-    {
-     "text": "HOPE Task Force",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/HOPE-Task-Force"
-    },
-    {
-     "text": "Internet Crimes Against Children Task Force",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Internet-Crimes-Against-Children-Task-Force"
-    },
-    {
-     "text": "Neighborhood Watch",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Neighborhood-Watch"
-    },
-    {
-     "text": "Operation Street Smart Drug Education",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Operation-Street-Smart-Drug-Education"
-    },
-    {
-     "text": "Project Lifesaver",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Project-Lifesaver"
-    },
-    {
-     "text": "Rape Aggression Defense System (RAD)",
-     "url": "https://sheriff.franklincountyohio.gov/Programs/Rape-Aggression-Defense-System-RAD"
-    },
-    {
-     "text": "Safety",
-     "url": "https://sheriff.franklincountyohio.gov/Safety"
-    },
-    {
-     "text": "Family Resources",
-     "url": "https://sheriff.franklincountyohio.gov/Safety/Family-Resources"
-    },
-    {
-     "text": "Victim of a Crime",
-     "url": "https://sheriff.franklincountyohio.gov/Safety/Victim-of-a-Crime"
-    },
-    {
-     "text": "See Something Say Something",
-     "url": "https://sheriff.franklincountyohio.gov/Safety/See-Something-Say-Something"
-    },
-    {
-     "text": "Internet Safety",
-     "url": "https://sheriff.franklincountyohio.gov/Safety/Internet-Safety"
-    },
-    {
-     "text": "Submit a Tip / Express a Concern",
-     "url": "https://sheriff.franklincountyohio.gov/Safety/Submit-a-Tip-Express-a-Concern"
-    },
-    {
-     "text": "Child Safety",
-     "url": "https://sheriff.franklincountyohio.gov/Safety/Child-Safety"
-    },
-    {
-     "text": "Report Criminal Activity",
-     "url": "https://sheriff.franklincountyohio.gov/Safety/Report-Criminal-Activity"
-    },
-    {
-     "text": "Disaster Guide",
-     "url": "https://sheriff.franklincountyohio.gov/Safety/Disaster-Guide"
-    },
-    {
-     "text": "Information",
-     "url": "https://sheriff.franklincountyohio.gov/Information"
-    },
-    {
-     "text": "Pursuit Policy",
-     "url": "https://sheriff.franklincountyohio.gov/Information/Pursuit-Policy"
-    },
-    {
-     "text": "Body Worn Camera Policy",
-     "url": "https://sheriff.franklincountyohio.gov/Information/Body-Worn-Camera-Policy"
-    },
-    {
-     "text": "https://franklin.sheriffsaleauction.ohio.gov/",
-     "url": "https://franklin.sheriffsaleauction.ohio.gov/"
-    },
-    {
-     "text": "www.sheriff.franklincountyohio.gov",
-     "url": "https://sheriff.franklincountyohio.gov/"
-    },
-    {
-     "text": "https://franklin.sheriffsaleauction.ohio.gov",
-     "url": "https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffranklin.sheriffsaleauction.ohio.gov%2F&data=05%7C02%7Ctltruax%40franklincountyohio.gov%7C49f1d243388f445e1aac08dea164a641%7C93c52ce10d7542639ab99c287e289e18%7C0%7C0%7C639125650820032868%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=tCqZfNxNBDf3Xb0%2BmzfkZqU0wjqt3FG%2FYqwiFkNjgYY%3D&reserved=0"
-    },
-    {
-     "text": "https://www.realauction.com/training",
-     "url": "https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.realauction.com%2Ftraining&data=05%7C02%7Ctltruax%40franklincountyohio.gov%7C49f1d243388f445e1aac08dea164a641%7C93c52ce10d7542639ab99c287e289e18%7C0%7C0%7C639125650820077760%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=ts8SMFobr8DhQDrlhN047Bo%2FFS3%2Fh6hSHiRVPkv8XCw%3D&reserved=0"
-    },
-    {
-     "text": "customerservice@realauction.com",
-     "url": "mailto:customerservice@realauction.com"
+     "text": "",
+     "url": "https://www.grandviewheights.gov/Search/Results"
     },
     {
      "text": "",
-     "url": "https://sheriff.franklincountyohio.gov/SHRF-website/media/images/Affidavit-Del-Taxes.pdf"
+     "url": "https://www.grandviewheights.gov/DocumentCenter"
     },
     {
-     "text": "Affidavit In Which Delinquent Taxes Have Been Assessed (PDF,&nbsp;96KB)",
-     "url": "https://sheriff.franklincountyohio.gov/files/assets/sheriff/v/1/documents/real-estate-sales/affidavit-delinquent-taxes.pdf"
-    },
-    {
-     "text": "",
-     "url": "https://sheriff.franklincountyohio.gov/SHRF-website/media/images/Real-Estate-1.pdf"
-    },
-    {
-     "text": "Affidavit Of Non Ownership Tax Sales (PDF,&nbsp;109KB)",
-     "url": "https://sheriff.franklincountyohio.gov/files/assets/sheriff/v/1/documents/real-estate-sales/affidavit-nonownership-tax-sales.pdf"
-    },
-    {
-     "text": "",
-     "url": "https://sheriff.franklincountyohio.gov/SHRF-website/media/docs/realestate/short-form-deed.docx"
-    },
-    {
-     "text": "Short Form Deed (DOCX,&nbsp;16KB)",
-     "url": "https://sheriff.franklincountyohio.gov/files/assets/sheriff/v/1/documents/real-estate-sales/short-form-deed.docx"
-    },
-    {
-     "text": "",
-     "url": "https://sheriff.franklincountyohio.gov/SHRF-website/media/docs/realestate/short-form-deed-instructions.doc"
-    },
-    {
-     "text": "Short Form Deed Instructions (DOC,&nbsp;24KB)",
-     "url": "https://sheriff.franklincountyohio.gov/files/assets/sheriff/v/1/documents/real-estate-sales/short-form-deed-instructions.doc"
-    },
-    {
-     "text": "",
-     "url": "https://sheriff.franklincountyohio.gov/SHRF-website/media/docs/realestate/purchase-information-form.pdf"
-    },
-    {
-     "text": "Purchase Information Form (PDF,&nbsp;74KB)",
-     "url": "https://sheriff.franklincountyohio.gov/files/assets/sheriff/v/1/documents/real-estate-sales/purchase-information-form.pdf"
-    },
-    {
-     "text": "Sitemap",
-     "url": "https://sheriff.franklincountyohio.gov/Sitemap"
+     "text": "Agendas &amp; Minutes",
+     "url": "https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34"
     }
    ]
   },
-  "https://franklin.sheriffsaleauction.ohio.gov/": {
-   "via": "requests",
+  "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=USER&zmethod=CALENDAR": {
+   "via": "browser",
    "status": 200,
-   "final": "https://franklin.sheriffsaleauction.ohio.gov/",
+   "final": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=USER&zmethod=CALENDAR",
+   "note": "browser first",
+   "body": "Home\nAbout Us\nFAQ\nContact Us\nUser Name\u00a0\u00a0\nUser Password\u00a0\u00a0\nSubmit\n\nForgot your username?\nForgot your password?\n\n\u00a0\nTraining\nLinks\nTraining\nForeclosure Process\nExternal\nLinks\nClerk of Courts Search\nAuditor Search\nRecorder Search\nTreasurer Search\nPurchaser Information Form\nAffidavit - Delinquent Taxes\nAffidavit - No Delinquent Taxes\nJump\nTo\nSelect web site\nAdams\nAllen\nAshland\nAshtabula\nAthens\nAuglaize\nBelmont\nBrown\nButler\nCarroll\nChampaign\nClark\nClermont\nClinton\nColumbiana\nCoshocton\nCrawford\nCuyahoga\nDarke\nDefiance\nDelaware\nErie\nFairfield\nFayette\nFulton\nGallia\nGeauga\nGreene\nGuernsey\nHamilton\nHancock\nHardin\nHarrison\nHenry\nHighland\nHocking\nHolmes\nHuron\nJackson\nJefferson\nKnox\nLake\nLawrence\nLicking\nLogan\nLorain\nLucas\nMadison\nMahoning\nMarion\nMedina\nMeigs\nMercer\nMiami\nMonroe\nMontgomery\nMorgan\nMorrow\nMuskingum\nNoble\nOttawa\nPaulding\nPerry\nPickaway\nPike\nPortage\nPreble\nPutnam\nRichland\nRoss\nSandusky\nScioto\nSeneca\nShelby\nStark\nSummit\nTrumbull\nTuscarawas\nUnion\nVan Wert\nVinton\nWarren\nWashington\nWayne\nWilliams\nWood\nWyandot\n\u00a0\n\t\nAuction Calendar\n<< August\nSeptember 2026\nOctober> >\nSunday\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\n1\n2\n3\n4\nForeclosure\n0 / 14 FC\n09:00 AM ET\n5\n6\n7\n8\n9\n10\n11\nForeclosure\n0 / 10 FC\n09:00 AM ET\n12\n13\n14\n15\n16\n17\n18\nForeclosure\n0 / 13 FC\n09:00 AM ET\n19\n20\n21\n22\n23\n24\n25\nForeclosure\n0 / 19 FC\n09:00 AM ET\n26\n27\n28\n29\n30\n(Active / Scheduled) , FC = Foreclosure\n<< August\nToday\nSelect a month for Auction Calendar\n\nSeptember 2026\nOctober 2026\nNovember 2026\nDecember 2026\nJanuary 2027\nFebruary 2027\nMarch 2027\nApril 2027\nMay 2027\nJune 2027\nJuly 2027\nAugust 2027\nSeptember 2027\nOctober > >\nConnection\nI:28 W:1\nAbout Us | Site Map | Privacy Policy | User Agreement | Bidder Letter | Contact Us\n\u00a9 2026 Realauction.com LLC\nVisit Realaction.com",
    "title": "RealForeclose- Franklin County Sheriff",
-   "text": "RealForeclose- Franklin County Sheriff --> Home About Us FAQ Contact Us User Name or Password is Invalid User Name&nbsp;&nbsp; User Password&nbsp;&nbsp; Submit Forgot your username? Forgot your password? &nbsp; Training Links Training Foreclosure Process External Links Clerk of Courts Search Auditor Search Recorder Search Treasurer Search Purchaser Information Form Affidavit - Delinquent Taxes Affidavit - No Delinquent Taxes Jump To Select web site Adams Allen Ashland Ashtabula Athens Auglaize Belmont Brown Butler Carroll Champaign Clark Clermont Clinton Columbiana Coshocton Crawford Cuyahoga ",
+   "text": "RealForeclose- Franklin County Sheriff --> Home About Us FAQ Contact Us User Name or Password is Invalid User Name&nbsp;&nbsp; User Password&nbsp;&nbsp; Submit Forgot your username? Forgot your password? &nbsp; Training Links Training Foreclosure Process External Links Clerk of Courts Search Auditor Search Recorder Search Treasurer Search Purchaser Information Form Affidavit - Delinquent Taxes Affidavit - No Delinquent Taxes Jump To Select web site Adams Allen Ashland Ashtabula Athens Auglaize Belmont Brown Butler Carroll Champaign Clark Clermont Clinton Columbiana Coshocton Crawford Cuyahoga Darke Defiance Delaware Erie Fairfield Fayette Fulton Gallia Geauga Greene Guernsey Hamilton Hancock Hardin Harrison Henry Highland Hocking Holmes Huron Jackson Jefferson Knox Lake Lawrence Licking Logan Lorain Lucas Madison Mahoning Marion Medina Meigs Mercer Miami Monroe Montgomery Morgan Morrow Muskingum Noble Ottawa Paulding Perry Pickaway Pike Portage Preble Putnam Richland Ross Sandusky Scioto Seneca Shelby Stark Summit Trumbull Tuscarawas Union Van Wert Vinton Warren Washington Wayne Williams Wood Wyandot &nbsp; Auction Calendar &lt;&lt; August September 2026 October&gt; &gt; Sunday Monday Tuesday Wednesday Thursday Friday Saturday 1 2 3 4 Foreclosure 0 / 14 FC 09:00 AM ET 5 6 7 8 9 10 11 Foreclosure 0 / 10 FC 09:00 AM ET 12 13 14 15 16 17 18 Foreclosure 0 / 13 FC 09:00 AM ET 19 20 21 22 23 24 25 Foreclosure 0 / 19 FC 09:00 AM ET 26 27 28 29 30 ( Active / Scheduled ) , FC = Foreclosure &lt;&lt; August Today Select a month for Auction Calendar September 2026 October 2026 November 2026 December 2026 January 2027 February 2027 March 2027 April 2027 May 2027 June 2027 July 2027 August 2027 September 2027 October &gt; &gt; Account Locked Out Your account has been locked out. Please contact Realauction Customer Service at&nbsp; customerservice@realauction.com . Connection I:28 W:1 About Us | Site Map | Privacy Policy | User Agreement | Bidder Letter | Contact Us \u00a9 2026 Realauction.com LLC Visit Realaction.com",
    "links": [
     {
      "text": "Home",
@@ -363,6 +100,62 @@
     {
      "text": "Contact Us",
      "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=ContactUS&zmethod=START"
+    },
+    {
+     "text": "Forgot your username?",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=HOME&Zmethod=FORGOTUN"
+    },
+    {
+     "text": "Forgot your password?",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=HOME&Zmethod=FORGOT"
+    },
+    {
+     "text": "Training",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=TRAINING"
+    },
+    {
+     "text": "Foreclosure Process",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=FORECLOSE"
+    },
+    {
+     "text": "Clerk of Courts Search",
+     "url": "http://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline/"
+    },
+    {
+     "text": "Auditor Search",
+     "url": "http://property.franklincountyauditor.com/_web/search/commonsearch.aspx?mode=owner"
+    },
+    {
+     "text": "Recorder Search",
+     "url": "https://recorder.franklincountyohio.gov/Services/Public-Records-Search"
+    },
+    {
+     "text": "Treasurer Search",
+     "url": "http://treapropsearch.franklincountyohio.gov/"
+    },
+    {
+     "text": "Purchaser Information Form",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/purchaser_info_form.pdf"
+    },
+    {
+     "text": "Affidavit - Delinquent Taxes",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/Affidavit-in-which-deliquent-taxes-have-been-assessed-Franklin_OH.pdf"
+    },
+    {
+     "text": "Affidavit - No Delinquent Taxes",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/Affidavit-of-Non-Ownership-Tax-Sale-Franklin-OH-2025.pdf"
+    },
+    {
+     "text": "&lt;&lt; August",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=user&zmethod=calendar&selCalDate=%7Bts%20%272026%2D08%2D01%2000%3A00%3A00%27%7D"
+    },
+    {
+     "text": "October &gt; &gt;",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=user&zmethod=calendar&selCalDate=%7Bts%20%272026%2D10%2D01%2000%3A00%3A00%27%7D"
+    },
+    {
+     "text": "Today",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=user&zmethod=calendar&selCalDate=09%2F29%2F2026"
     },
     {
      "text": "customerservice@realauction.com",
@@ -394,305 +187,125 @@
     }
    ]
   },
-  "https://recorder.franklincountyohio.gov/": {
+  "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/02/2026": {
    "via": "browser",
    "status": 200,
-   "final": "https://www.franklincountyohio.gov/Agency-Directory/Recorder",
-   "note": "requests 403 (?)",
-   "title": "Recorder - Franklin County, Ohio",
-   "text": "Recorder - Franklin County, Ohio --> tag to avoid performance warnings from Google. Dynamically creates the Skip to main content opens in new tab or window Quick Links: Quick Links Agency Directory News Public Meetings Contact Us English Select this as your preferred language Spanish Select this as your preferred language Arabic Select this as your preferred language Chinese (Simplified) Select this as your preferred language French Select this as your preferred language Haitian Creole Select this as your preferred language Hindi Select this as your preferred language Korean Select this as you",
+   "final": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/02/2026",
+   "note": "browser first",
+   "body": "Home\nAbout Us\nFAQ\nContact Us\nUser Name\u00a0\u00a0\nUser Password\u00a0\u00a0\nSubmit\n\nForgot your username?\nForgot your password?\n\n\u00a0\nTraining\nLinks\nTraining\nForeclosure Process\nExternal\nLinks\nClerk of Courts Search\nAuditor Search\nRecorder Search\nTreasurer Search\nPurchaser Information Form\nAffidavit - Delinquent Taxes\nAffidavit - No Delinquent Taxes\nJump\nTo\nSelect web site\nAdams\nAllen\nAshland\nAshtabula\nAthens\nAuglaize\nBelmont\nBrown\nButler\nCarroll\nChampaign\nClark\nClermont\nClinton\nColumbiana\nCoshocton\nCrawford\nCuyahoga\nDarke\nDefiance\nDelaware\nErie\nFairfield\nFayette\nFulton\nGallia\nGeauga\nGreene\nGuernsey\nHamilton\nHancock\nHardin\nHarrison\nHenry\nHighland\nHocking\nHolmes\nHuron\nJackson\nJefferson\nKnox\nLake\nLawrence\nLicking\nLogan\nLorain\nLucas\nMadison\nMahoning\nMarion\nMedina\nMeigs\nMercer\nMiami\nMonroe\nMontgomery\nMorgan\nMorrow\nMuskingum\nNoble\nOttawa\nPaulding\nPerry\nPickaway\nPike\nPortage\nPreble\nPutnam\nRichland\nRoss\nSandusky\nScioto\nSeneca\nShelby\nStark\nSummit\nTrumbull\nTuscarawas\nUnion\nVan Wert\nVinton\nWarren\nWashington\nWayne\nWilliams\nWood\nWyandot\n\u00a0\n\t\nPreview Items For Sale\nFriday October 2, 2026\n< < Previous Auction\nNext Auction > >\nCurrent\n\n\n\n\nNote: High bids may appear in dollars and cents, either as the opening bid amount or the bid entered by the Plaintiff/Judgment Creditor\u00a0(Pre-Sale Only). Once\u00a0the auction begins, all bids MUST be in whole $100 increments. Bids placed in dollars and cents will NOT be accepted.\n\nAs a Bidder, you are subject to the applicable state statutes on foreclosures and foreclosure sales as set forth in Ohio Revised Code (ORC) 2329.\u00a0If bidding on a tax foreclosure case, you are also subject to ORC 5721.19 and must adhere to the rules set forth.\u00a0To access all case information, including any special notes, you must register and view case details while logged into the auction website. It is the sole responsibility of the bidder to perform any and all research necessary regarding the condition, marketability, use of, and current state of the title to any foreclosed property offered at foreclosure sale.\n\nRunning Auctions\n\t\t\n\t\n\n\nThere are no cases currently being auctioned.\n\n\n\t\n\t\t\nAuctions Waiting\n page  of 1 \nAuction Starts\n10/02/2026 09:00 AM ET\nCase Status:\tACTIVE\nCase #:\t25CV10364 (19851)\nParcel ID:\t010009224\nProperty Address:\t2218 SUMMIT STREET\n\tCOLUMBUS , 432010000\nAppraised Value:\t$612,000.00\nOpening Bid:\t$408,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Starts\n10/02/2026 09:00 AM ET\nCase Status:\tACTIVE\nCase #:\t25CV205 (19852)\nParcel ID:\t010080792\nProperty Address:\t1095 BERKELEY ROAD\n\tCOLUMBUS , 432060000\nAppraised Value:\t$240,000.00\nOpening Bid:\t$160,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\n page  of 1 \nAuctions Closed or Canceled\n page  of 1 \nAuction Status\nWithdrawn\nCase Status:\tACTIVE\nCase #:\t25CV10076 (19782)\nParcel ID:\t010002904\nProperty Address:\t516 FREBIS AVE\n\tCOLUMBUS , 432060000\nAppraised Value:\t$180,000.00\nOpening Bid:\t$120,000.00\nDeposit Requirement:\t$5,000.00\n\u00a0\nAuction Status\nWithdrawn\nCase Status:\tACTIVE\nCase #:\t25CV3152 (19850)\nParcel ID:\t495271559\nProperty Address:\t4673 KENROSS DRIVE\n\tCOLUMBUS , 432070000\nAppraised Value:\t$321,000.00\nOpening Bid:\t$214,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Status\nRescheduled\nCase Status:\tACTIVE\nCase #:\t25CV518 (19849)\nParcel ID:\t010006944\nProperty Address:\t1042 MCALLISTER AVE\n\tCOLUMBUS , 432050000\nAppraised Value:\t$426,000.00\nOpening Bid:\t$284,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\n page  of 1 \n\u00a0\nConnection\nI:31 W:2\nAbout Us | Site Map | Privacy Policy | User Agreement | Bidder Letter | Contact Us\n\u00a9 2026 Realauction.com LLC\nVisit Realaction.com",
+   "title": "RealForeclose- Franklin County Sheriff",
+   "text": "RealForeclose- Franklin County Sheriff --> Home About Us FAQ Contact Us User Name or Password is Invalid User Name&nbsp;&nbsp; User Password&nbsp;&nbsp; Submit Forgot your username? Forgot your password? &nbsp; Training Links Training Foreclosure Process External Links Clerk of Courts Search Auditor Search Recorder Search Treasurer Search Purchaser Information Form Affidavit - Delinquent Taxes Affidavit - No Delinquent Taxes Jump To Select web site Adams Allen Ashland Ashtabula Athens Auglaize Belmont Brown Butler Carroll Champaign Clark Clermont Clinton Columbiana Coshocton Crawford Cuyahoga Darke Defiance Delaware Erie Fairfield Fayette Fulton Gallia Geauga Greene Guernsey Hamilton Hancock Hardin Harrison Henry Highland Hocking Holmes Huron Jackson Jefferson Knox Lake Lawrence Licking Logan Lorain Lucas Madison Mahoning Marion Medina Meigs Mercer Miami Monroe Montgomery Morgan Morrow Muskingum Noble Ottawa Paulding Perry Pickaway Pike Portage Preble Putnam Richland Ross Sandusky Scioto Seneca Shelby Stark Summit Trumbull Tuscarawas Union Van Wert Vinton Warren Washington Wayne Williams Wood Wyandot &nbsp; Preview Items For Sale Friday October 2, 2026 Search &lt; &lt; Previous Auction Next Auction &gt; &gt; Current Note: High bids may appear in dollars and cents, either as the opening bid amount or the bid entered by the Plaintiff/Judgment Creditor&nbsp;(Pre-Sale Only). Once&nbsp;the auction begins, all bids MUST be in whole $100 increments. Bids placed in dollars and cents will NOT be accepted. As a Bidder, you are subject to the applicable state statutes on foreclosures and foreclosure sales as set forth in Ohio Revised Code (ORC) 2329.&nbsp;If bidding on a tax foreclosure case, you are also subject to ORC 5721.19 and must adhere to the rules set forth.&nbsp;To access all case information, including any special notes, you must register and view case details while logged into the auction website. It is the sole responsibility of the bidder to perform any and all research necessary regarding the condition, marketability, use of, and current state of the title to any foreclosed property offered at foreclosure sale. Running Auctions There are no cases currently being auctioned. Auctions Waiting page of 1 Auction Starts 10/02/2026 09:00 AM ET Case Status: ACTIVE Case #: 25CV10364 (19851) Parcel ID: 010009224 Property Address: 2218 SUMMIT STREET COLUMBUS , 432010000 Appraised Value: $612,000.00 Opening Bid: $408,000.00 Deposit Requirement: $10,000.00 &nbsp; Auction Starts 10/02/2026 09:00 AM ET Case Status: ACTIVE Case #: 25CV205 (19852) Parcel ID: 010080792 Property Address: 1095 BERKELEY ROAD COLUMBUS , 432060000 Appraised Value: $240,000.00 Opening Bid: $160,000.00 Deposit Requirement: $10,000.00 &nbsp; page of 1 Auctions Closed or Canceled page of 1 Auction Status Withdrawn Case Status: ACTIVE Case #: 25CV10076 (19782) Parcel ID: 010002904 Property Address: 516 FREBIS AVE COLUMBUS , 432060000 Appraised Value: $180,000.00 Opening Bid: $120,000.00",
    "links": [
     {
-     "text": "Public Meetings &amp; Agendas",
-     "url": "https://www.franklincountyohio.gov/County-Government/About-Our-Community/Public-Meetings-and-Agendas"
+     "text": "Home",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm"
     },
     {
-     "text": "English Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=en-US"
+     "text": "About Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=aboutus"
     },
     {
-     "text": "Spanish Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=es"
+     "text": "FAQ",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=faq"
     },
     {
-     "text": "Arabic Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=ar"
+     "text": "Contact Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=ContactUS&zmethod=START"
     },
     {
-     "text": "Chinese (Simplified) Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=zh-CN"
+     "text": "Forgot your username?",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=HOME&Zmethod=FORGOTUN"
     },
     {
-     "text": "French Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=fr"
+     "text": "Forgot your password?",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=HOME&Zmethod=FORGOT"
     },
     {
-     "text": "Haitian Creole Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=ht"
+     "text": "Training",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=TRAINING"
     },
     {
-     "text": "Hindi Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=hi"
+     "text": "Foreclosure Process",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=FORECLOSE"
     },
     {
-     "text": "Korean Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=ko"
+     "text": "Clerk of Courts Search",
+     "url": "http://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline/"
     },
     {
-     "text": "Nepali Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=ne"
+     "text": "Auditor Search",
+     "url": "http://property.franklincountyauditor.com/_web/search/commonsearch.aspx?mode=owner"
     },
     {
-     "text": "Russian Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=ru"
+     "text": "Recorder Search",
+     "url": "https://recorder.franklincountyohio.gov/Services/Public-Records-Search"
     },
     {
-     "text": "Somali Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=so"
+     "text": "Treasurer Search",
+     "url": "http://treapropsearch.franklincountyohio.gov/"
     },
     {
-     "text": "Ukrainian Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=uk"
+     "text": "Purchaser Information Form",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/purchaser_info_form.pdf"
     },
     {
-     "text": "Vietnamese Select this as your preferred language",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder?oc_lang=vi"
+     "text": "Affidavit - Delinquent Taxes",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/Affidavit-in-which-deliquent-taxes-have-been-assessed-Franklin_OH.pdf"
     },
     {
-     "text": "Property Search",
-     "url": "https://www.franklincountyohio.gov/Resident-Services/Property/Property-Search"
+     "text": "Affidavit - No Delinquent Taxes",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/Affidavit-of-Non-Ownership-Tax-Sale-Franklin-OH-2025.pdf"
     },
     {
-     "text": "Real Estate Filings",
-     "url": "https://www.franklincountyohio.gov/Resident-Services/Property/Real-Estate-Filings"
+     "text": "&lt; &lt; Previous Auction",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=09/25/2026"
     },
     {
-     "text": "Public Records Search",
-     "url": "https://www.franklincountyohio.gov/Resident-Services/Property/Public-Records-Search"
+     "text": "Next Auction &gt; &gt;",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/09/2026"
     },
     {
-     "text": "Mobile Unit Calendar &amp; Locations",
-     "url": "https://www.franklincountyohio.gov/Resident-Services/Support-Assistance/Mobile-Unit-Calendar"
+     "text": "Current",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/02/26"
     },
     {
-     "text": "Calendar of Events",
-     "url": "https://www.franklincountyohio.gov/County-Government/Office-of-Economic-Engagement-and-Community-Development/EECD-Events"
+     "text": "customerservice@realauction.com",
+     "url": "mailto:customerservice@realauction.com"
     },
     {
-     "text": "Sheriff",
-     "url": "https://www.franklincountyohio.gov/Safety-Justice/Sheriff"
+     "text": "About Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=aboutUs"
     },
     {
-     "text": "Inmate Information Search",
-     "url": "https://www.franklincountyohio.gov/Safety-Justice/Corrections/Inmate-Information"
+     "text": "Site Map",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=siteMap"
     },
     {
-     "text": "Sheriff's Office: Division of Corrections",
-     "url": "https://www.franklincountyohio.gov/Safety-Justice/Corrections/Corrections"
+     "text": "Privacy Policy",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=privpol"
     },
     {
-     "text": "Recorder",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder"
+     "text": "User Agreement",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=agreement"
     },
     {
-     "text": "Real Estate",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate"
+     "text": "Bidder Letter",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=welcome"
     },
     {
-     "text": "Real Estate Recording",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Real-Estate-Recording"
-    },
-    {
-     "text": "Recording Standards",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Real-Estate-Recording/Recording-Standards"
-    },
-    {
-     "text": "Public Records Search",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search"
-    },
-    {
-     "text": "Property Alert",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Property-Alert"
-    },
-    {
-     "text": "Calculate Recording Fees",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Recording-Fees"
-    },
-    {
-     "text": "Recording FAQs",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Recording-FAQs"
-    },
-    {
-     "text": "Living Wills",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Living-Wills"
-    },
-    {
-     "text": "Veterans",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Veterans"
-    },
-    {
-     "text": "Veteran Grave Search",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Veterans/Veteran-Grave-Search"
-    },
-    {
-     "text": "Recorder's Outreach",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach"
-    },
-    {
-     "text": "Good Deeds",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Good-Deeds"
-    },
-    {
-     "text": "Veteran Resources",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Veteran-Resources"
-    },
-    {
-     "text": "Housing Resources",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Housing-Resources"
-    },
-    {
-     "text": "Recorder News",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Press-Releases"
-    },
-    {
-     "text": "See more events&nbsp;&nbsp;",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Upcoming-Events"
-    },
-    {
-     "text": "Document Imaging Center",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Document-Imaging-Center"
-    },
-    {
-     "text": "DIC Project Services",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Document-Imaging-Center/DIC-Project-Services"
-    },
-    {
-     "text": "About the Recorder's Office",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office"
-    },
-    {
-     "text": "Meet The Recorder",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office/Meet-The-Recorder"
-    },
-    {
-     "text": "Employment",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office/Employment"
-    },
-    {
-     "text": "Data Entry Clerk",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office/Employment/Data-Entry-Clerk"
-    },
-    {
-     "text": "Recording Statistics",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office/Recording-Statistics"
-    },
-    {
-     "text": "From Filing Cabinet To Frontline",
-     "url": "https://neumo.com/resources/how-franklin-county-created-a-high-speed-document-processing-system/"
-    },
-    {
-     "text": "Blazing A Digital Trail",
-     "url": "https://neumo.com/resources/how-franklin-county-transformed-records-management/"
-    },
-    {
-     "text": "recorder@franklincountyohio.gov",
-     "url": "mailto:recorder@franklincountyohio.gov"
-    },
-    {
-     "text": "Search Our Records",
-     "url": "https://franklin.oh.publicsearch.us/"
-    },
-    {
-     "text": "Facebook",
-     "url": "https://www.facebook.com/RecorderDannyO/"
-    },
-    {
-     "text": "X",
-     "url": "https://x.com/RecorderDannyO"
-    },
-    {
-     "text": "Commissioners' Public Records Requests",
-     "url": "https://www.franklincountyohio.gov/Agency-Directory/Board-of-Commissioners/Contact-Board-of-Commissioners/Commissioners-Public-Records-Request"
+     "text": "Visit Realaction.com",
+     "url": "http://www.realauction.com"
     }
    ]
   },
-  "https://clerk.franklincountyohio.gov/": {
-   "via": "browser",
-   "status": 200,
-   "final": "https://clerk.franklincountyohio.gov/Home",
-   "note": "requests 403 (?)",
-   "title": "Home | Franklin County Clerk of Courts",
-   "text": "Home | Franklin County Clerk of Courts --> tag to avoid performance warnings from Google. Dynamically creates the Skip to main content opens in new tab or window Quick Links: Quick Links Contact Us English (United States) Select this as your preferred language English (United States) is your current preferred language. Menu Search Public Records Search Public Records Public Financial Records Public Records Request Form Service By Publication New Unapproved Civil Filings e-File e-File Login e-Filing Resources Legal Divisions Appeals Domestic Relations General - Civil / Criminal Juvenile Protect",
-   "links": [
-    {
-     "text": "Public Records",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records"
-    },
-    {
-     "text": "Search Public Records",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/Search-Public-Records"
-    },
-    {
-     "text": "Public Financial Records",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/Public-Financial-Records"
-    },
-    {
-     "text": "Public Records Request",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/Public-Records-Request-Form"
-    },
-    {
-     "text": "Service By Publication",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/Service-By-Publication"
-    },
-    {
-     "text": "New Unapproved Civil Filings",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/New-Unapproved-Civil-Filings"
-    },
-    {
-     "text": "e-Filing Resources",
-     "url": "https://clerk.franklincountyohio.gov/e-File/e-Filing-Resources"
-    },
-    {
-     "text": "New Resident To-Do List",
-     "url": "https://clerk.franklincountyohio.gov/Auto-Title/Welcome-to-Ohio/New-Resident-To-Do-List"
-    },
-    {
-     "text": "Dealer Sales Report Request Form",
-     "url": "https://clerk.franklincountyohio.gov/Auto-Title/Business-Services/Dealer-Sales-Report-Request-Form"
-    },
-    {
-     "text": "Auto Title Public Records",
-     "url": "https://clerk.franklincountyohio.gov/Auto-Title/Transparency/Auto-Title-Public-Records"
-    },
-    {
-     "text": "Foreclosure - Excess Fund Process",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process"
-    },
-    {
-     "text": "Case Information Online",
-     "url": "https://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline"
-    },
-    {
-     "text": "Careers",
-     "url": "https://secure4.saashr.com/ta/6113135.careers?careerssearch=&lang=en-US"
-    }
-   ]
-  },
-  "https://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline/": {
-   "via": "requests",
-   "status": 200,
-   "final": "https://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline/",
-   "title": "Case Information Online",
-   "text": "Case Information Online Skip to Main Content Appeals: 373 S. High St., 23rd Fl. (614) 525 - 3624 Civil: 369 S. High St., 3rd Fl. (614) 525 - 3621 Criminal: 369 S. High St., 3rd Fl. (614) 525 - 3650 Domestic: 373 S. High St., 4th Fl. (614) 525 - 4410 Juvenile: 373 S. High St., 4th Fl. (614) 525 - 4411 Juvenile Traffic: 399 S. Front St., 1st Fl. (614) 525 - 5279 --> Case Information Online Case Information Online (CIO) Notice for Domestic Relations Cases : &#8220;ADM TOLL TIME BEGIN&#8221; and &#8220;ADM TOLL TIME END&#8221; that appear on all active cases will prevent statistical case-time from",
-   "links": []
-  },
-  "https://clerk.franklincountyohio.gov/Public-Records/New-Unapproved-Civil-Filings": {
+  "https://clerknewfiling.franklincountyohio.gov/": {
    "via": "browser",
    "status": 200,
    "final": "https://clerknewfiling.franklincountyohio.gov/",
-   "note": "requests 403 (?)",
+   "note": "browser first",
+   "body": "Refresh\nNew Unapproved Civil Filings\nPlease Read\nLegal Disclaimer\nIn order to provide the public with immediate access to newly eFiled, non-confidential, civil complaints, these complaints will be made available through this link immediately upon receipt. Please be advised that these complaints have not been subjected to the Clerk of Court\u2019s quality assurance procedure. As soon as the review process has been completed and the complaint is found to be in compliance, it will be posted on the Clerk\u2019s Case Information Online system as filed. Until that posting, the complaint should be used subject to this limitation.\u00a0 The Clerk is not responsible for any unapproved filing that is subsequently rejected. \u00a0\n\nI Have Read And Understand These Terms\n\nSubmission ID\tCase Style\tDate Created\tCase Category\tStatus\n28316423\tMELLISA CORRY -VS- CORONA PLAZA LLC ET AL\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28316388\tLVNV FUNDING LLC -VS- BRIAN MITCHELL\t9/29/26\tH-Other Civil\tAwaiting Approval\n28316369\tPNC BANK NATIONAL ASSOCIATION -VS- MARK R REASON SR ET AL\t9/29/26\tE-Foreclosures\tAwaiting Approval\n28316363\tROCKET MORTGAGE LLC -VS- MARILYN PENA ET AL\t9/29/26\tE-Foreclosures\tAwaiting Approval\n28316316\tMAGIDAH HAMIDA -VS- WREF III LOAN 2 LLC ET AL\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28316085\tNEW AMERICAN FUNDING LLC -VS- ERNEST W JACKSON ET AL\t9/29/26\tE-Foreclosures\tAwaiting Approval\n28316051\tROCKET MORTGAGE LLC -VS- AMANDA NOLAND ET AL\t9/29/26\tE-Foreclosures\tAwaiting Approval\n28316026\tUNIQUE FINANCIAL CORPORATION -VS- SYLVIA S GARLAND ET AL\t9/29/26\tE-Foreclosures\tAwaiting Approval\n28315989\tCECILIA GEORGE -VS- VICTORIAS SECRET & CO ET AL\t9/29/26\tD-Workers Compensation Board\tAwaiting Approval\n28315951\tWANDA THOMAS -VS- LAUREN SEFTON\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28315814\tSARA RODERICK -VS- BENDIX COMMERCIAL VEHICLE SYSTEMS LLC\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28315753\tARI INVESTMENTS II LLC -VS- CITY OF COLUMBUS OHIO ET AL\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315692\tJOSEPH T SMITH -VS- UNITED PARCEL SERVICE INC ET AL\t9/29/26\tD-Workers Compensation Board\tAwaiting Approval\n28315646\tTRANSPORT NATIONAL LLC -VS- STAR LINE TRANSPORT LLC ET AL\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315541\tIDENTITY ATELIER LLC -VS- JULIA GARWICK\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315491\tIDENTITY ATELIER LLC -VS- LINDSEY WORBOY\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315485\tYUSUF YUSUF ET AL -VS- MOHAMED A MOHAMED\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28315428\tHERBERT ANDERSON -VS- ED BANKS ET AL\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315415\tLENA CURTIS -VS- JOSEPH J PETTIS ET AL\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28315394\tNATIONWIDE INSURANCE COMPANY OF AMERICA -VS- SHAWN A DRAUGHN\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315307\tMICHAEL BERRY -VS- MARIE E JOSLIN ET AL\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28315271\tTHOMAS L DICKENS -VS- MEBRAHTU T WOLDEMICHAEL ET AL\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28315257\tDAVID COX ET AL -VS- PAMELA CONNELLY ET AL\t9/29/26\tC-Personal Injury (Other Torts)\tAwaiting Approval\n28315218\tAMERICAN EXPRESS NATIONAL BANK -VS- MARK CARLYLE\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315160\tSLM PRIVATE CREDIT STUDENT LOAN TRUST 20 -VS- NIKITA C BLAND\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315128\tLVNV FUNDING LLC -VS- HUMBERTO FERREIRA\t9/29/26\tH-Other Civil\tAwaiting Approval\n28315119\tMETROPOLITAN TOWNHOME CONDOMINIUM AT -VS- JENNIFER J PERRY ET AL\t9/29/26\tE-Foreclosures\tAwaiting Approval\n28315109\tLVNV FUNDING LLC -VS- DANIEL BASURTO ROMERO\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314881\tLVNV FUNDING LLC -VS- JOHN PALMER\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314880\tSAGE INTEGRATION HOLDINGS LLC ET AL -VS- KRYPTECH LLC ET AL\t9/29/26\tH-Other Civil\tFiling Complete\n28314857\tVELOCITY INVESTMENTS LLC -VS- SAMANTHA CARTER\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314848\tDAVID C PEPPERS SR -VS- GENERAL MOTORS LLC\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314828\tLVNV FUNDING LLC -VS- JOSHUA SPARKS\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314789\tODK CAPITAL -VS- SHAZIER TRUCKING ET AL\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314721\tARMSTRONG STEEL MANAGEMENT LLC -VS- CHARLES J MAHAN ET AL\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314532\tFIFTH THIRD BANK NATIONAL ASSOCIATION -VS- UNKNOWN HEIRS CAROLE D EBERSOLE ET AL\t9/29/26\tE-Foreclosures\tAwaiting Approval\n28314486\tHARI KHALSA -VS- APPLICATION FOR RELIEF FROM DISABILITY\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314445\tROBERT L NICHOLS -VS- OHIO BUREAU OF MOTOR VEHICLES\t9/29/26\tH-Other Civil\tFiling Complete\n28314356\tHEADWAY CAPITAL -VS- 2TEERS PROPERTIES ET AL\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314321\tJPMORGAN CHASE BANK NA -VS- HERBERT FRALEY\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314292\tJPMORGAN CHASE BANK NA -VS- MICHELLE R HUGHES\t9/29/26\tH-Other Civil\tAwaiting Approval\n28314209",
    "title": "New Unapproved Civil Filings",
-   "text": "New Unapproved Civil Filings Refresh New Unapproved Civil Filings Please Read Legal Disclaimer In order to provide the public with immediate access to newly eFiled, non-confidential, civil complaints, these complaints will be made available through this link immediately upon receipt. Please be advised that these complaints have not been subjected to the Clerk of Court\u2019s quality assurance procedure. As soon as the review process has been completed and the complaint is found to be in compliance, it will be posted on the Clerk\u2019s Case Information Online system as filed. Until that posting, the com",
+   "text": "New Unapproved Civil Filings Refresh New Unapproved Civil Filings Please Read Legal Disclaimer In order to provide the public with immediate access to newly eFiled, non-confidential, civil complaints, these complaints will be made available through this link immediately upon receipt. Please be advised that these complaints have not been subjected to the Clerk of Court\u2019s quality assurance procedure. As soon as the review process has been completed and the complaint is found to be in compliance, it will be posted on the Clerk\u2019s Case Information Online system as filed. Until that posting, the complaint should be used subject to this limitation.&nbsp; The Clerk is not responsible for any unapproved filing that is subsequently rejected. &nbsp; I Have Read And Understand These Terms Submission ID Case Style Date Created Case Category Status 28316423 MELLISA CORRY -VS- CORONA PLAZA LLC ET AL 9/29/26 C-Personal Injury (Other Torts) Awaiting Approval 28316388 LVNV FUNDING LLC -VS- BRIAN MITCHELL 9/29/26 H-Other Civil Awaiting Approval 28316369 PNC BANK NATIONAL ASSOCIATION -VS- MARK R REASON SR ET AL 9/29/26 E-Foreclosures Awaiting Approval 28316363 ROCKET MORTGAGE LLC -VS- MARILYN PENA ET AL 9/29/26 E-Foreclosures Awaiting Approval 28316316 MAGIDAH HAMIDA -VS- WREF III LOAN 2 LLC ET AL 9/29/26 C-Personal Injury (Other Torts) Awaiting Approval 28316085 NEW AMERICAN FUNDING LLC -VS- ERNEST W JACKSON ET AL 9/29/26 E-Foreclosures Awaiting Approval 28316051 ROCKET MORTGAGE LLC -VS- AMANDA NOLAND ET AL 9/29/26 E-Foreclosures Awaiting Approval 28316026 UNIQUE FINANCIAL CORPORATION -VS- SYLVIA S GARLAND ET AL 9/29/26 E-Foreclosures Awaiting Approval 28315989 CECILIA GEORGE -VS- VICTORIAS SECRET &amp; CO ET AL 9/29/26 D-Workers Compensation Board Awaiting Approval 28315951 WANDA THOMAS -VS- LAUREN SEFTON 9/29/26 C-Personal Injury (Other Torts) Awaiting Approval 28315814 SARA RODERICK -VS- BENDIX COMMERCIAL VEHICLE SYSTEMS LLC 9/29/26 C-Personal Injury (Other Torts) Awaiting Approval 28315753 ARI INVESTMENTS II LLC -VS- CITY OF COLUMBUS OHIO ET AL 9/29/26 H-Other Civil Awaiting Approval 28315692 JOSEPH T SMITH -VS- UNITED PARCEL SERVICE INC ET AL 9/29/26 D-Workers Compensation Board Awaiting Approval 28315646 TRANSPORT NATIONAL LLC -VS- STAR LINE TRANSPORT LLC ET AL 9/29/26 H-Other Civil Awaiting Approval 28315541 IDENTITY ATELIER LLC -VS- JULIA GARWICK 9/29/26 H-Other Civil Awaiting Approval 28315491 IDENTITY ATELIER LLC -VS- LINDSEY WORBOY 9/29/26 H-Other Civil Awaiting Approval 28315485 YUSUF YUSUF ET AL -VS- MOHAMED A MOHAMED 9/29/26 C-Personal Injury (Other Torts) Awaiting Approval 28315428 HERBERT ANDERSON -VS- ED BANKS ET AL 9/29/26 H-Other Civil Awaiting Approval 28315415 LENA CURTIS -VS- JOSEPH J PETTIS ET AL 9/29/26 C-Personal Injury (Other Torts) Awaiting Approval 28315394 NATIONWIDE INSURANCE COMPANY OF AMERICA -VS- SHAWN A DRAUGHN 9/29/26 H-Other Civil Awaiting Approval 28315307 MICHAEL BERRY -VS- MARIE E JOSLIN ET AL 9/29/26 C-Personal Injury (Other ",
    "links": [
     {
      "text": "",
@@ -1176,131 +789,526 @@
     }
    ]
   },
-  "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process": {
+  "https://clerknewfiling.franklincountyohio.gov/api/submissions": {
+   "via": "requests",
+   "status": 200,
+   "final": "https://clerknewfiling.franklincountyohio.gov/api/submissions",
+   "type": "application/json; charset=utf-8",
+   "title": null,
+   "text": "[{\"submissionId\":28316423,\"caseStyle\":\"MELLISA CORRY -VS- CORONA PLAZA LLC ET AL\",\"createDate\":\"2026-09-29T19:37:16.147\",\"externalReference\":\"\",\"caseCategoryDescription\":\"C-Personal Injury (Other Torts)\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28316423/documents\"},{\"submissionId\":28316388,\"caseStyle\":\"LVNV FUNDING LLC -VS- BRIAN MITCHELL\",\"createDate\":\"2026-09-29T17:52:45.54\",\"externalReference\":\"\",\"caseCategoryDescription\":\"H-Other Civil\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28316388/documents\"},{\"submissionId\":28316369,\"caseStyle\":\"PNC BANK NATIONAL ASSOCIATION -VS- MARK R REASON SR ET AL\",\"createDate\":\"2026-09-29T17:22:11.027\",\"externalReference\":\"\",\"caseCategoryDescription\":\"E-Foreclosures\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28316369/documents\"},{\"submissionId\":28316363,\"caseStyle\":\"ROCKET MORTGAGE LLC -VS- MARILYN PENA ET AL\",\"createDate\":\"2026-09-29T17:17:35\",\"externalReference\":\"\",\"caseCategoryDescription\":\"E-Foreclosures\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28316363/documents\"},{\"submissionId\":28316316,\"caseStyle\":\"MAGIDAH HAMIDA -VS- WREF III LOAN 2 LLC ET AL\",\"createDate\":\"2026-09-29T16:53:43.627\",\"externalReference\":\"\",\"caseCategoryDescription\":\"C-Personal Injury (Other Torts)\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28316316/documents\"},{\"submissionId\":28316085,\"caseStyle\":\"NEW AMERICAN FUNDING LLC -VS- ERNEST W JACKSON ET AL\",\"createDate\":\"2026-09-29T16:03:08.563\",\"externalReference\":\"\",\"caseCategoryDescription\":\"E-Foreclosures\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28316085/documents\"},{\"submissionId\":28316051,\"caseStyle\":\"ROCKET MORTGAGE LLC -VS- AMANDA NOLAND ET AL\",\"createDate\":\"2026-09-29T15:59:04.51\",\"externalReference\":\"\",\"caseCategoryDescription\":\"E-Foreclosures\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28316051/documents\"},{\"submissionId\":28316026,\"caseStyle\":\"UNIQUE FINANCIAL CORPORATION -VS- SYLVIA S GARLAND ET AL\",\"createDate\":\"2026-09-29T15:56:03.207\",\"externalReference\":\"\",\"caseCategoryDescription\":\"E-Foreclosures\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28316026/documents\"},{\"submissionId\":28315989,\"caseStyle\":\"CECILIA GEORGE -VS- VICTORIAS SECRET & CO ET AL\",\"createDate\":\"2026-09-29T15:50:41.583\",\"externalReference\":\"\",\"caseCategoryDescription\":\"D-Workers Compensation Board\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28315989/documents\"},{\"submissionId\":28315951,\"caseStyle\":\"WANDA THOMAS -VS- LAUREN SEFTON\",\"createDate\":\"2026-09-29T15:44:28.873\",\"externalReference\":\"\",\"caseCategoryDescription\":\"C-Personal Injury (Other Torts)\",\"submissionStatusId\":35,\"status\":\"Awaiting Approval\",\"url\":\"/api/submissions/28315951/documents\"},{\"submissionId\":28315814,\"caseStyle\":\"SARA RODERICK -VS- BE",
+   "links": []
+  },
+  "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search": {
    "via": "browser",
    "status": 200,
-   "final": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process",
-   "note": "requests 403 (?)",
-   "title": "Foreclosure - Excess Fund Process | Franklin County Clerk of Courts",
-   "text": "Foreclosure - Excess Fund Process | Franklin County Clerk of Courts --> tag to avoid performance warnings from Google. Dynamically creates the Skip to main content opens in new tab or window Quick Links: Quick Links Contact Us English (United States) Select this as your preferred language Arabic Select this as your preferred language Chinese (Simplified) Select this as your preferred language French Select this as your preferred language Haitian Creole Select this as your preferred language Hindi Select this as your preferred language Korean Select this as your preferred language Nepali Select",
+   "final": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search",
+   "note": "requests 403 (?) <HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;www&#46;franklincountyohio&#46;gov&#47;Agency&#45;Directory&#47",
+   "body": "Skip to main content\nQuick Links:\nAgency DirectoryNewsPublic MeetingsContact Us\nEnglish\nis your current preferred language.\nSearch\nResident Services\nCounty Government\nSafety & Justice\nBusiness & Development\n\nSelect the Escape key to close the menu. Focus will then be set to the first menu item.\n\nHome / Recorder/ Real Estate / Public Records Search\nRecorder\nMenu\nPublic Records Search\n\nA majority of our records are related to real estate. Some of the documents our office stores include: deeds, mortgages, releases, liens, assignments, plats, leases and partnerships. There are two documents that we are charged with safekeeping that are not real estate related and are not viewable by the public. These two documents are Living Wills/Healthcare Powers of Attorney and Veteran Discharges (DD-214). If you would like to search our records online, feel free to use the link below to our Cloud Search platform to get started. Contact our office if you need assistance with searching our records and one of our Customer Service team members can walk you through how to use our website. Disclaimer: our employees cannot perform a title search for you. If you need an extensive title search done on a property we recommend reaching out to a title company or attorney for that service.\n\nCloud Search Website\n\nSearch Our Records\n\nUsing the Cloud Search website does not require account registration, but does offer additional functionality if you choose to create an account. You can watch the below training video to get you started, plus there is a knowledgebase and product tour available under the Help menu on the search website if you need further guidance.\n\nCloud Search Training Video\n\n\u00a0\nAdditional Property Information\n\nIf you are needing more information about a property, we recommend visiting the Auditor's property search.\n\nVisit the Auditor's Property Search\u00a0 \u00a0 \u00a0\n\n\u00a0\n\nIf you are needing more information about taxes on a property, we recommend visiting the Treasurer's property search.\n\nVisit the Treasurer's Property Search\u00a0\u00a0\u00a0\u00a0\n\n\u00a0\n\nLegacy Search Website\n\nBelow is a link to our\u00a0Legacy Search website. This website is older and is not as fast as the newer Cloud Search platform. All of the records we keep can be found on both websites.\n\nSearch Using Our Legacy Site\n\nUsing this search site also does not require registration or an account. However, if registered, additional functionality such as the ability to save specific searches and administering your escrow account will be available to you. There is a Search Guide located within the search site for reference in case you are unsure how to utilize the site as well as the training video below which goes more in depth.\n\nLegacy Search Training Video\n\nPublic Record Search Brochure(PDF,\u00a0655KB)\n\n\u00a0\n\nWas this page helpful?\nHelp us improve this site\nBack to top\nSite Footer\nContact Us\n\nFranklin County Government Tower\n373 S. High Street, Columbus, OH 43215\n\nWhere do I park?\n\nSite Footer\nGet Involved\nCareers\nVolunteering\nPublic Meetings & Agendas\nGet in Touch\nSite Footer\nQuick Links\nResident Services\nBusiness & Development\nUpcoming Events\nCommissioners' Public Records Requests\nAccessibility Statement\u00a0| Privacy Statement\u00a0| Sitemap\n\u00a9 2026 Franklin County, Ohio\u00a0|\u00a0Powered by Granicus\nESCAPE\u00a0\u2794",
+   "title": "Public Records Search - Franklin County, Ohio",
+   "text": "Public Records Search - Franklin County, Ohio --> tag to avoid performance warnings from Google. Dynamically creates the Skip to main content opens in new tab or window Quick Links: Quick Links Agency Directory News Public Meetings Contact Us English Select this as your preferred language Spanish Select this as your preferred language Arabic Select this as your preferred language Chinese (Simplified) Select this as your preferred language French Select this as your preferred language Haitian Creole Select this as your preferred language Hindi Select this as your preferred language Korean Select this as your preferred language Nepali Select this as your preferred language Russian Select this as your preferred language Somali Select this as your preferred language Ukrainian Select this as your preferred language Vietnamese Select this as your preferred language English is your current preferred language. Spanish Select this as your preferred language Arabic Select this as your preferred language Chinese (Simplified) Select this as your preferred language French Select this as your preferred language Haitian Creole Select this as your preferred language Hindi Select this as your preferred language Korean Select this as your preferred language Nepali Select this as your preferred language Russian Select this as your preferred language Somali Select this as your preferred language Ukrainian Select this as your preferred language Vietnamese Select this as your preferred language Menu Search Resident Services Auto Title Property Property Search Pay Property Taxes Real Estate Filings Public Records Search About Your Taxes Mortgage Lien Release Request Dogs Adopt a Dog View Available Dogs Dog Shelter Services Contact the Dog Shelter Volunteer with the Dog Shelter License Your Dog Ohio Dog Laws Lost &amp; Found Dogs Dog Education Donate to the Dog Shelter Support &amp; Assistance Food Assistance Resources Cash Assistance Medical Assistance &amp; Support Emergency Assistance Child Care Assistance Work &amp; Unemployment Reentry Resources Child Support Information Mobile Unit Calendar &amp; Locations Veterans Seniors Adult Protective Services Caregiver and Kinship Support Senior Meal Deliveries Minor Home Repair Program Senior Housing Senior Options Programs Tools and Resources for Seniors Senior Services Professionals &amp; Service Providers Children &amp; Youths Family Stabilization Unit Children Services Child Support Child Care Assistance Summer Programs Parents and Children Together (PACT) Program Volunteer with Children (CASA) Women &amp; Infants Additional Community Resources One Door County Government About Our Community Public Meetings and Agendas Boards and Commissions Budget and Reporting Cities, Townships &amp; Villages in Franklin County The Franklin County Commissioners' Mobile Unit About One Franklin County Projects &amp; Initiatives State of the County Reports RISE Early Learning Initiative Rise Together Blueprint Housing Action Plan Sanitary",
    "links": [
     {
-     "text": "English (United States) Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=en-US"
+     "text": "Public Meetings &amp; Agendas",
+     "url": "https://www.franklincountyohio.gov/County-Government/About-Our-Community/Public-Meetings-and-Agendas"
     },
     {
-     "text": "Arabic Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=ar"
-    },
-    {
-     "text": "Chinese (Simplified) Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=zh-CN"
-    },
-    {
-     "text": "French Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=fr"
-    },
-    {
-     "text": "Haitian Creole Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=ht"
-    },
-    {
-     "text": "Hindi Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=hi"
-    },
-    {
-     "text": "Korean Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=ko"
-    },
-    {
-     "text": "Nepali Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=ne"
-    },
-    {
-     "text": "Russian Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=ru"
-    },
-    {
-     "text": "Somali Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=so"
+     "text": "English Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=en-US"
     },
     {
      "text": "Spanish Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=es"
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=es"
+    },
+    {
+     "text": "Arabic Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=ar"
+    },
+    {
+     "text": "Chinese (Simplified) Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=zh-CN"
+    },
+    {
+     "text": "French Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=fr"
+    },
+    {
+     "text": "Haitian Creole Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=ht"
+    },
+    {
+     "text": "Hindi Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=hi"
+    },
+    {
+     "text": "Korean Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=ko"
+    },
+    {
+     "text": "Nepali Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=ne"
+    },
+    {
+     "text": "Russian Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=ru"
+    },
+    {
+     "text": "Somali Select this as your preferred language",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=so"
     },
     {
      "text": "Ukrainian Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=uk"
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=uk"
     },
     {
      "text": "Vietnamese Select this as your preferred language",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process?oc_lang=vi"
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search?oc_lang=vi"
     },
     {
-     "text": "Public Records",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records"
+     "text": "Property Search",
+     "url": "https://www.franklincountyohio.gov/Resident-Services/Property/Property-Search"
     },
     {
-     "text": "Search Public Records",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/Search-Public-Records"
+     "text": "Real Estate Filings",
+     "url": "https://www.franklincountyohio.gov/Resident-Services/Property/Real-Estate-Filings"
     },
     {
-     "text": "Public Financial Records",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/Public-Financial-Records"
+     "text": "Public Records Search",
+     "url": "https://www.franklincountyohio.gov/Resident-Services/Property/Public-Records-Search"
     },
     {
-     "text": "Public Records Request Form",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/Public-Records-Request-Form"
+     "text": "Mobile Unit Calendar &amp; Locations",
+     "url": "https://www.franklincountyohio.gov/Resident-Services/Support-Assistance/Mobile-Unit-Calendar"
     },
     {
-     "text": "Service By Publication",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/Service-By-Publication"
+     "text": "Calendar of Events",
+     "url": "https://www.franklincountyohio.gov/County-Government/Office-of-Economic-Engagement-and-Community-Development/EECD-Events"
     },
     {
-     "text": "New Unapproved Civil Filings",
-     "url": "https://clerk.franklincountyohio.gov/Public-Records/New-Unapproved-Civil-Filings"
+     "text": "Sheriff",
+     "url": "https://www.franklincountyohio.gov/Safety-Justice/Sheriff"
     },
     {
-     "text": "e-Filing Resources",
-     "url": "https://clerk.franklincountyohio.gov/e-File/e-Filing-Resources"
+     "text": "Inmate Information Search",
+     "url": "https://www.franklincountyohio.gov/Safety-Justice/Corrections/Inmate-Information"
     },
     {
-     "text": "New Resident To-Do List",
-     "url": "https://clerk.franklincountyohio.gov/Auto-Title/Welcome-to-Ohio/New-Resident-To-Do-List"
+     "text": "Sheriff's Office: Division of Corrections",
+     "url": "https://www.franklincountyohio.gov/Safety-Justice/Corrections/Corrections"
     },
     {
-     "text": "Dealer Sales Report Request Form",
-     "url": "https://clerk.franklincountyohio.gov/Auto-Title/Business-Services/Dealer-Sales-Report-Request-Form"
+     "text": "Recorder",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder"
     },
     {
-     "text": "Auto Title Public Records",
-     "url": "https://clerk.franklincountyohio.gov/Auto-Title/Transparency/Auto-Title-Public-Records"
+     "text": "Real Estate",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate"
     },
     {
-     "text": "Foreclosure - Excess Fund Process",
-     "url": "https://clerk.franklincountyohio.gov/Resources/Foreclosure-Excess-Fund-Process"
+     "text": "Real Estate Recording",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Real-Estate-Recording"
     },
     {
-     "text": "Motion - Distribute Excess Funds after Foreclosure",
-     "url": "https://fclawlib.libguides.com/c.php?g=211776&quot;"
+     "text": "Recording Standards",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Real-Estate-Recording/Recording-Standards"
     },
     {
-     "text": "eFile",
-     "url": "https://efiling.franklincountyohio.gov/"
+     "text": "Public Records Search",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search"
     },
     {
-     "text": "Civil Amended Administrative Order",
-     "url": "https://www.fccourts.org/DocumentCenter/View/1148/Civil===Ninth-Amended-Administrative-E-Filing-Order"
+     "text": "Property Alert",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Property-Alert"
     },
     {
-     "text": "Civil Amended Administrative e-Filing Order",
-     "url": "https://www.fccourts.org/178/eFiling-Orders"
+     "text": "Recording Fees",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Recording-Fees"
     },
     {
-     "text": "Careers",
-     "url": "https://secure4.saashr.com/ta/6113135.careers?careerssearch=&lang=en-US"
+     "text": "Recording FAQs",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Recording-FAQs"
+    },
+    {
+     "text": "Living Wills",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Living-Wills"
+    },
+    {
+     "text": "Veterans",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Veterans"
+    },
+    {
+     "text": "Veteran Grave Search",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Veterans/Veteran-Grave-Search"
+    },
+    {
+     "text": "Recorder's Outreach",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach"
+    },
+    {
+     "text": "Good Deeds",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Good-Deeds"
+    },
+    {
+     "text": "Veteran Resources",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Veteran-Resources"
+    },
+    {
+     "text": "Housing Resources",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Housing-Resources"
+    },
+    {
+     "text": "Recorder News",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Press-Releases"
+    },
+    {
+     "text": "Recorder Events",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Recorders-Outreach/Upcoming-Events"
+    },
+    {
+     "text": "Document Imaging Center",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Document-Imaging-Center"
+    },
+    {
+     "text": "DIC Project Services",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Document-Imaging-Center/DIC-Project-Services"
+    },
+    {
+     "text": "About the Recorder's Office",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office"
+    },
+    {
+     "text": "Meet The Recorder",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office/Meet-The-Recorder"
+    },
+    {
+     "text": "Employment",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office/Employment"
+    },
+    {
+     "text": "Data Entry Clerk",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office/Employment/Data-Entry-Clerk"
+    },
+    {
+     "text": "Recording Statistics",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Recorder/About-the-Recorders-Office/Recording-Statistics"
+    },
+    {
+     "text": "Search Our Records",
+     "url": "https://franklin.oh.publicsearch.us/"
+    },
+    {
+     "text": "Franklin OH Cloud Search Webinar",
+     "url": "https://youtu.be/VQ16wGex90w"
+    },
+    {
+     "text": "Visit the Auditor's Property Search",
+     "url": "https://property.franklincountyauditor.com/"
+    },
+    {
+     "text": "Visit the Treasurer's Property Search",
+     "url": "https://treapropsearch.franklincountyohio.gov/"
+    },
+    {
+     "text": "Search Using Our Legacy Site",
+     "url": "https://countyfusion5.kofiletech.us/countyweb/login.do?countyname=Franklin"
+    },
+    {
+     "text": "CountyFusion Search Training",
+     "url": "https://youtu.be/5pM3Ne_huPY"
+    },
+    {
+     "text": "Public Record Search Brochure (PDF,&nbsp;655KB)",
+     "url": "https://www.franklincountyohio.gov/files/assets/public/v/1/recorder/documents/public-records-search-4-19-2017.pdf"
+    },
+    {
+     "text": "Commissioners' Public Records Requests",
+     "url": "https://www.franklincountyohio.gov/Agency-Directory/Board-of-Commissioners/Contact-Board-of-Commissioners/Commissioners-Public-Records-Request"
     }
    ]
+  },
+  "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=FORECLOSE": {
+   "via": "requests",
+   "status": 200,
+   "final": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=FORECLOSE",
+   "type": "text/html;charset=UTF-8",
+   "title": "RealForeclose- Franklin County Sheriff",
+   "text": "RealForeclose- Franklin County Sheriff --> Home About Us FAQ Contact Us User Name or Password is Invalid User Name&nbsp;&nbsp; User Password&nbsp;&nbsp; Submit Forgot your username? Forgot your password? &nbsp; Training Links Training Foreclosure Process External Links Clerk of Courts Search Auditor Search Recorder Search Treasurer Search Purchaser Information Form Affidavit - Delinquent Taxes Affidavit - No Delinquent Taxes Jump To Select web site Adams Allen Ashland Ashtabula Athens Auglaize Belmont Brown Butler Carroll Champaign Clark Clermont Clinton Columbiana Coshocton Crawford Cuyahoga Darke Defiance Delaware Erie Fairfield Fayette Fulton Gallia Geauga Greene Guernsey Hamilton Hancock Hardin Harrison Henry Highland Hocking Holmes Huron Jackson Jefferson Knox Lake Lawrence Licking Logan Lorain Lucas Madison Mahoning Marion Medina Meigs Mercer Miami Monroe Montgomery Morgan Morrow Muskingum Noble Ottawa Paulding Perry Pickaway Pike Portage Preble Putnam Richland Ross Sandusky Scioto Seneca Shelby Stark Summit Trumbull Tuscarawas Union Van Wert Vinton Warren Washington Wayne Williams Wood Wyandot &nbsp; Foreclosure Process BASIC INFORMATION All sales are pursuant to the provisions of the&nbsp; Ohio Revised Code . Properties are generally advertised in the local newspaper for three consecutive weeks beginning four to five weeks prior to sale depending on the county. This is your legal source of information. The information provided on our website is a courtesy and should be verified for accuracy by the official advertisement. (Please check with the Franklin County Sheriff's Office to find out what newspaper they are using for their advertisements.) A court order is required to withdraw a property from sale.&nbsp;Withdrawal orders received by the Sheriff&rsquo;s office prior to the week of any scheduled sale are noted on the website and&nbsp;updated each day. Public notices are hereby given that all such Real Property to be sold at Public Auction may be subject to any liens that may not be extinguished by the sale, and purchasers are urged to research prior to bidding. &nbsp; OHIO SHERIFF&rsquo;S OFFICE FORECLOSURE PROCEDURES HOUSE BILL 390 Any Praecipe Order of Sale filed on/after September 28, 2016 will be subject to the following procedures and policies of the Franklin County Sheriff&rsquo;s Office to effectively and efficiently meet the requirements outlined in recent changes in the law. Due to the requirements of House Bill 390, the following changes in the Sheriff&rsquo;s Policies and Procedures Foreclosure Sales will be implemented. These guidelines may be changed or modified as necessary to expedite the weekly sales. 2329.211 In every action of Judicial Sale or Execution of residential property, if the Judgment Creditor is the purchaser they shall not be required to make a deposit on the sale. All other purchasers shall make sale deposit as follows: If the appraised value of the property is less than or equal to $10,000.00 the deposit i",
+   "links": [
+    {
+     "text": "Home",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm"
+    },
+    {
+     "text": "About Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=aboutus"
+    },
+    {
+     "text": "FAQ",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=faq"
+    },
+    {
+     "text": "Contact Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=ContactUS&zmethod=START"
+    },
+    {
+     "text": "customerservice@realauction.com",
+     "url": "mailto:customerservice@realauction.com"
+    },
+    {
+     "text": "About Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=aboutUs"
+    },
+    {
+     "text": "Site Map",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=siteMap"
+    },
+    {
+     "text": "Privacy Policy",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=privpol"
+    },
+    {
+     "text": "User Agreement",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=agreement"
+    },
+    {
+     "text": "Bidder Letter",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=welcome"
+    },
+    {
+     "text": "Visit Realaction.com",
+     "url": "http://www.realauction.com"
+    }
+   ]
+  },
+  "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=09/25/2026": {
+   "via": "browser",
+   "status": 200,
+   "final": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=09/25/2026",
+   "note": "browser first",
+   "body": "Home\nAbout Us\nFAQ\nContact Us\nUser Name\u00a0\u00a0\nUser Password\u00a0\u00a0\nSubmit\n\nForgot your username?\nForgot your password?\n\n\u00a0\nTraining\nLinks\nTraining\nForeclosure Process\nExternal\nLinks\nClerk of Courts Search\nAuditor Search\nRecorder Search\nTreasurer Search\nPurchaser Information Form\nAffidavit - Delinquent Taxes\nAffidavit - No Delinquent Taxes\nJump\nTo\nSelect web site\nAdams\nAllen\nAshland\nAshtabula\nAthens\nAuglaize\nBelmont\nBrown\nButler\nCarroll\nChampaign\nClark\nClermont\nClinton\nColumbiana\nCoshocton\nCrawford\nCuyahoga\nDarke\nDefiance\nDelaware\nErie\nFairfield\nFayette\nFulton\nGallia\nGeauga\nGreene\nGuernsey\nHamilton\nHancock\nHardin\nHarrison\nHenry\nHighland\nHocking\nHolmes\nHuron\nJackson\nJefferson\nKnox\nLake\nLawrence\nLicking\nLogan\nLorain\nLucas\nMadison\nMahoning\nMarion\nMedina\nMeigs\nMercer\nMiami\nMonroe\nMontgomery\nMorgan\nMorrow\nMuskingum\nNoble\nOttawa\nPaulding\nPerry\nPickaway\nPike\nPortage\nPreble\nPutnam\nRichland\nRoss\nSandusky\nScioto\nSeneca\nShelby\nStark\nSummit\nTrumbull\nTuscarawas\nUnion\nVan Wert\nVinton\nWarren\nWashington\nWayne\nWilliams\nWood\nWyandot\n\u00a0\n\t\nPreview Items For Sale\nFriday September 25, 2026\n< < Previous Auction\nNext Auction > >\nCurrent\n\n\n\n\nNote: High bids may appear in dollars and cents, either as the opening bid amount or the bid entered by the Plaintiff/Judgment Creditor\u00a0(Pre-Sale Only). Once\u00a0the auction begins, all bids MUST be in whole $100 increments. Bids placed in dollars and cents will NOT be accepted.\n\nAs a Bidder, you are subject to the applicable state statutes on foreclosures and foreclosure sales as set forth in Ohio Revised Code (ORC) 2329.\u00a0If bidding on a tax foreclosure case, you are also subject to ORC 5721.19 and must adhere to the rules set forth.\u00a0To access all case information, including any special notes, you must register and view case details while logged into the auction website. It is the sole responsibility of the bidder to perform any and all research necessary regarding the condition, marketability, use of, and current state of the title to any foreclosed property offered at foreclosure sale.\n\nRunning Auctions\n\t\t\n\t\n\n\nThere are no cases currently being auctioned.\n\n\n\t\n\t\t\nAuctions Closed or Canceled\n page  of 2 \nAuction Status\nWithdrawn\nCase Status:\tACTIVE\nCase #:\t22CV3315 (19840)\nParcel ID:\t080010387\nProperty Address:\t693 WINSHOLEN COURT\n\tWESTERVILLE , 430810000\nAppraised Value:\t$450,000.00\nOpening Bid:\t$300,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Status\nWithdrawn\nCase Status:\tACTIVE\nCase #:\t25CV10169 (19835)\nParcel ID:\t010103976\nProperty Address:\t1199 MILLER AVE\n\tCOLUMBUS , 432060000\nAppraised Value:\t$237,000.00\nOpening Bid:\t$158,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Sold\n09/25/2026 09:12 AM ET\nAmount\n$309,300.00\nSold To\n3rd Party Bidder\nCase Status:\tACTIVE\nCase #:\t25CV10325 (19827)\nParcel ID:\t040005360\nProperty Address:\t2748-2754 INDEPENDENCE WAY\n\tGROVE CITY , 431230000\nAppraised Value:\t$345,000.00\nOpening Bid:\t$230,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Status\nRescheduled\nCase Status:\tACTIVE\nCase #:\t25CV1114 (19831)\nParcel ID:\t070013007\nProperty Address:\t1514 LAFAYETTE DRIVE\n\tCOLUMBUS , 432200000\nAppraised Value:\t$234,000.00\nOpening Bid:\t$156,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Status\nWithdrawn - Order of the Court\nCase Status:\tACTIVE\nCase #:\t25CV5180 (19833)\nParcel ID:\t040015346\nProperty Address:\t2337 ENGLISH TURN DRIVE\n\tGROVE CITY , 431230000\nAppraised Value:\t$441,000.00\nOpening Bid:\t$294,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Sold\n09/25/2026 09:13 AM ET\nAmount\n$12,600.00\nSold To\n3rd Party Bidder\nCase Status:\tACTIVE\nCase #:\t25CV5986 (19842)\nParcel ID:\t010233501\nProperty Address:\tVACANT LOT NEAR THE END OF CL\n\tCOLUMBUS , 432300000\nAppraised Value:\t$12,426.52\nOpening Bid:\t$12,426.52\nDeposit Requirement:\t$12,426.52\n\u00a0\nAuction Sold\n09/25/2026 09:14 AM ET\nAmount\n$4,280,000.00\nUnsold\nCase Status:\tACTIVE\nCase #:\t25CV6289 (19829)\nParcel ID:\tMULTIPLE\nProperty Address:\t3530 ,3483-3487, 3551-3561, 35\n\tCOLUMBUS , 432270000\nAppraised Value:\t$6,420,000.00\nOpening Bid:\t$4,280,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Status\nWithdrawn\nCase Status:\tACTIVE\nCase #:\t25CV6564 (19841)\nParcel ID:\t010268219\nProperty Address:\t5524 OLD COBLE STREET\n\tCANAL WINCHESTER , 431100000\nAppraised Value:\t$321,000.00\nOpening Bid:\t$214,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Sold\n09/25/2026 09:15 AM ET\nAmount\n$220,800.00\nSold To\nPlaintiff\nCase Status:\tACTIVE\nCase #:\t25CV7005 (19839)\nParcel ID:\t010002834\nProperty Address:\t761 GILBERT ST\n\tCOLUMBUS , 432060000\nAppraised Value:\t$231,000.00\nOpening Bid:\t$154,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Sold\n09/25/2026 09:16 AM ET\nAmount\n$138,000.00\nUnsold\nCase Status:\tACTIVE\nCase #:\t25CV7760 (19784)\nParcel ID:\t010100245\nProperty Address:\t1180 SIMPSON DRIVE\n\tCOLUMBUS , 432270000\nAppraised Value:\t$207,000.00\nOpening Bid:\t$138,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\n page  of 2 \n\u00a0\nConnection\nI:25 W:1\nAbout Us | Site Map | Privacy Policy | User Agreement | Bidder Letter | Contact Us\n\u00a9 2026 Realauction.com LLC\nVisit Realaction.com",
+   "title": "RealForeclose- Franklin County Sheriff",
+   "text": "RealForeclose- Franklin County Sheriff --> Home About Us FAQ Contact Us User Name or Password is Invalid User Name&nbsp;&nbsp; User Password&nbsp;&nbsp; Submit Forgot your username? Forgot your password? &nbsp; Training Links Training Foreclosure Process External Links Clerk of Courts Search Auditor Search Recorder Search Treasurer Search Purchaser Information Form Affidavit - Delinquent Taxes Affidavit - No Delinquent Taxes Jump To Select web site Adams Allen Ashland Ashtabula Athens Auglaize Belmont Brown Butler Carroll Champaign Clark Clermont Clinton Columbiana Coshocton Crawford Cuyahoga Darke Defiance Delaware Erie Fairfield Fayette Fulton Gallia Geauga Greene Guernsey Hamilton Hancock Hardin Harrison Henry Highland Hocking Holmes Huron Jackson Jefferson Knox Lake Lawrence Licking Logan Lorain Lucas Madison Mahoning Marion Medina Meigs Mercer Miami Monroe Montgomery Morgan Morrow Muskingum Noble Ottawa Paulding Perry Pickaway Pike Portage Preble Putnam Richland Ross Sandusky Scioto Seneca Shelby Stark Summit Trumbull Tuscarawas Union Van Wert Vinton Warren Washington Wayne Williams Wood Wyandot &nbsp; Preview Items For Sale Friday September 25, 2026 Search &lt; &lt; Previous Auction Next Auction &gt; &gt; Current Note: High bids may appear in dollars and cents, either as the opening bid amount or the bid entered by the Plaintiff/Judgment Creditor&nbsp;(Pre-Sale Only). Once&nbsp;the auction begins, all bids MUST be in whole $100 increments. Bids placed in dollars and cents will NOT be accepted. As a Bidder, you are subject to the applicable state statutes on foreclosures and foreclosure sales as set forth in Ohio Revised Code (ORC) 2329.&nbsp;If bidding on a tax foreclosure case, you are also subject to ORC 5721.19 and must adhere to the rules set forth.&nbsp;To access all case information, including any special notes, you must register and view case details while logged into the auction website. It is the sole responsibility of the bidder to perform any and all research necessary regarding the condition, marketability, use of, and current state of the title to any foreclosed property offered at foreclosure sale. Running Auctions There are no cases currently being auctioned. Auctions Waiting page of 1 page of 1 Auctions Closed or Canceled page of 2 Auction Status Withdrawn Case Status: ACTIVE Case #: 22CV3315 (19840) Parcel ID: 080010387 Property Address: 693 WINSHOLEN COURT WESTERVILLE , 430810000 Appraised Value: $450,000.00 Opening Bid: $300,000.00 Deposit Requirement: $10,000.00 &nbsp; Auction Status Withdrawn Case Status: ACTIVE Case #: 25CV10169 (19835) Parcel ID: 010103976 Property Address: 1199 MILLER AVE COLUMBUS , 432060000 Appraised Value: $237,000.00 Opening Bid: $158,000.00 Deposit Requirement: $10,000.00 &nbsp; Auction Sold 09/25/2026 09:12 AM ET Amount $309,300.00 Sold To 3rd Party Bidder Case Status: ACTIVE Case #: 25CV10325 (19827) Parcel ID: 040005360 Property Address: 2748-2754 INDEPENDENCE WAY GROVE CITY , 431230000 Appra",
+   "links": [
+    {
+     "text": "Home",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm"
+    },
+    {
+     "text": "About Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=aboutus"
+    },
+    {
+     "text": "FAQ",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=faq"
+    },
+    {
+     "text": "Contact Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=ContactUS&zmethod=START"
+    },
+    {
+     "text": "Forgot your username?",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=HOME&Zmethod=FORGOTUN"
+    },
+    {
+     "text": "Forgot your password?",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=HOME&Zmethod=FORGOT"
+    },
+    {
+     "text": "Training",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=TRAINING"
+    },
+    {
+     "text": "Foreclosure Process",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=FORECLOSE"
+    },
+    {
+     "text": "Clerk of Courts Search",
+     "url": "http://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline/"
+    },
+    {
+     "text": "Auditor Search",
+     "url": "http://property.franklincountyauditor.com/_web/search/commonsearch.aspx?mode=owner"
+    },
+    {
+     "text": "Recorder Search",
+     "url": "https://recorder.franklincountyohio.gov/Services/Public-Records-Search"
+    },
+    {
+     "text": "Treasurer Search",
+     "url": "http://treapropsearch.franklincountyohio.gov/"
+    },
+    {
+     "text": "Purchaser Information Form",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/purchaser_info_form.pdf"
+    },
+    {
+     "text": "Affidavit - Delinquent Taxes",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/Affidavit-in-which-deliquent-taxes-have-been-assessed-Franklin_OH.pdf"
+    },
+    {
+     "text": "Affidavit - No Delinquent Taxes",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/Affidavit-of-Non-Ownership-Tax-Sale-Franklin-OH-2025.pdf"
+    },
+    {
+     "text": "&lt; &lt; Previous Auction",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=09/18/2026"
+    },
+    {
+     "text": "Next Auction &gt; &gt;",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/02/2026"
+    },
+    {
+     "text": "Current",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/02/26"
+    },
+    {
+     "text": "customerservice@realauction.com",
+     "url": "mailto:customerservice@realauction.com"
+    },
+    {
+     "text": "About Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=aboutUs"
+    },
+    {
+     "text": "Site Map",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=siteMap"
+    },
+    {
+     "text": "Privacy Policy",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=privpol"
+    },
+    {
+     "text": "User Agreement",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=agreement"
+    },
+    {
+     "text": "Bidder Letter",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=welcome"
+    },
+    {
+     "text": "Visit Realaction.com",
+     "url": "http://www.realauction.com"
+    }
+   ]
+  },
+  "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/09/2026": {
+   "via": "browser",
+   "status": 200,
+   "final": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/09/2026",
+   "note": "browser first",
+   "body": "Home\nAbout Us\nFAQ\nContact Us\nUser Name\u00a0\u00a0\nUser Password\u00a0\u00a0\nSubmit\n\nForgot your username?\nForgot your password?\n\n\u00a0\nTraining\nLinks\nTraining\nForeclosure Process\nExternal\nLinks\nClerk of Courts Search\nAuditor Search\nRecorder Search\nTreasurer Search\nPurchaser Information Form\nAffidavit - Delinquent Taxes\nAffidavit - No Delinquent Taxes\nJump\nTo\nSelect web site\nAdams\nAllen\nAshland\nAshtabula\nAthens\nAuglaize\nBelmont\nBrown\nButler\nCarroll\nChampaign\nClark\nClermont\nClinton\nColumbiana\nCoshocton\nCrawford\nCuyahoga\nDarke\nDefiance\nDelaware\nErie\nFairfield\nFayette\nFulton\nGallia\nGeauga\nGreene\nGuernsey\nHamilton\nHancock\nHardin\nHarrison\nHenry\nHighland\nHocking\nHolmes\nHuron\nJackson\nJefferson\nKnox\nLake\nLawrence\nLicking\nLogan\nLorain\nLucas\nMadison\nMahoning\nMarion\nMedina\nMeigs\nMercer\nMiami\nMonroe\nMontgomery\nMorgan\nMorrow\nMuskingum\nNoble\nOttawa\nPaulding\nPerry\nPickaway\nPike\nPortage\nPreble\nPutnam\nRichland\nRoss\nSandusky\nScioto\nSeneca\nShelby\nStark\nSummit\nTrumbull\nTuscarawas\nUnion\nVan Wert\nVinton\nWarren\nWashington\nWayne\nWilliams\nWood\nWyandot\n\u00a0\n\t\nPreview Items For Sale\nFriday October 9, 2026\n< < Previous Auction\nNext Auction > >\nCurrent\n\n\n\n\nNote: High bids may appear in dollars and cents, either as the opening bid amount or the bid entered by the Plaintiff/Judgment Creditor\u00a0(Pre-Sale Only). Once\u00a0the auction begins, all bids MUST be in whole $100 increments. Bids placed in dollars and cents will NOT be accepted.\n\nAs a Bidder, you are subject to the applicable state statutes on foreclosures and foreclosure sales as set forth in Ohio Revised Code (ORC) 2329.\u00a0If bidding on a tax foreclosure case, you are also subject to ORC 5721.19 and must adhere to the rules set forth.\u00a0To access all case information, including any special notes, you must register and view case details while logged into the auction website. It is the sole responsibility of the bidder to perform any and all research necessary regarding the condition, marketability, use of, and current state of the title to any foreclosed property offered at foreclosure sale.\n\nRunning Auctions\n\t\t\n\t\n\n\nThere are no cases currently being auctioned.\n\n\n\t\n\t\t\nAuctions Waiting\n page  of 1 \nAuction Starts\n10/09/2026 09:00 AM ET\nCase Status:\tACTIVE\nCase #:\t23CV8161 (19880)\nParcel ID:\tMULTIPLE\nProperty Address:\t101 ROCKWELL RD\n\tCOLUMBUS , 432070000\nAppraised Value:\t$270,000.00\nOpening Bid:\t$180,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\nAuction Starts\n10/09/2026 09:00 AM ET\nCase Status:\tACTIVE\nCase #:\t25CV7658 (19796)\nParcel ID:\t010075440\nProperty Address:\t2260 HOMESTEAD DRIVE\n\tCOLUMBUS , 432110000\nAppraised Value:\t$90,000.00\nOpening Bid:\t$60,000.00\nDeposit Requirement:\t$5,000.00\n\u00a0\nAuction Starts\n10/09/2026 09:00 AM ET\nCase Status:\tACTIVE\nCase #:\t26CV3787 (19879)\nParcel ID:\t600176969\nProperty Address:\t5337 TRILLIUM COURT\n\tCOLUMBUS , 432300000\nAppraised Value:\t$333,000.00\nOpening Bid:\t$222,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\n page  of 1 \nAuctions Closed or Canceled\n page  of 1 \nAuction Status\nRescheduled\nCase Status:\tACTIVE\nCase #:\t25CV10248 (19881)\nParcel ID:\t570224680\nProperty Address:\t2251 GROVE OAKS COURT\n\tGROVE CITY , 431230000\nAppraised Value:\t$312,000.00\nOpening Bid:\t$208,000.00\nDeposit Requirement:\t$10,000.00\n\u00a0\n page  of 1 \n\u00a0\nConnection\nI:29 W:3\nAbout Us | Site Map | Privacy Policy | User Agreement | Bidder Letter | Contact Us\n\u00a9 2026 Realauction.com LLC\nVisit Realaction.com",
+   "title": "RealForeclose- Franklin County Sheriff",
+   "text": "RealForeclose- Franklin County Sheriff --> Home About Us FAQ Contact Us User Name or Password is Invalid User Name&nbsp;&nbsp; User Password&nbsp;&nbsp; Submit Forgot your username? Forgot your password? &nbsp; Training Links Training Foreclosure Process External Links Clerk of Courts Search Auditor Search Recorder Search Treasurer Search Purchaser Information Form Affidavit - Delinquent Taxes Affidavit - No Delinquent Taxes Jump To Select web site Adams Allen Ashland Ashtabula Athens Auglaize Belmont Brown Butler Carroll Champaign Clark Clermont Clinton Columbiana Coshocton Crawford Cuyahoga Darke Defiance Delaware Erie Fairfield Fayette Fulton Gallia Geauga Greene Guernsey Hamilton Hancock Hardin Harrison Henry Highland Hocking Holmes Huron Jackson Jefferson Knox Lake Lawrence Licking Logan Lorain Lucas Madison Mahoning Marion Medina Meigs Mercer Miami Monroe Montgomery Morgan Morrow Muskingum Noble Ottawa Paulding Perry Pickaway Pike Portage Preble Putnam Richland Ross Sandusky Scioto Seneca Shelby Stark Summit Trumbull Tuscarawas Union Van Wert Vinton Warren Washington Wayne Williams Wood Wyandot &nbsp; Preview Items For Sale Friday October 9, 2026 Search &lt; &lt; Previous Auction Next Auction &gt; &gt; Current Note: High bids may appear in dollars and cents, either as the opening bid amount or the bid entered by the Plaintiff/Judgment Creditor&nbsp;(Pre-Sale Only). Once&nbsp;the auction begins, all bids MUST be in whole $100 increments. Bids placed in dollars and cents will NOT be accepted. As a Bidder, you are subject to the applicable state statutes on foreclosures and foreclosure sales as set forth in Ohio Revised Code (ORC) 2329.&nbsp;If bidding on a tax foreclosure case, you are also subject to ORC 5721.19 and must adhere to the rules set forth.&nbsp;To access all case information, including any special notes, you must register and view case details while logged into the auction website. It is the sole responsibility of the bidder to perform any and all research necessary regarding the condition, marketability, use of, and current state of the title to any foreclosed property offered at foreclosure sale. Running Auctions There are no cases currently being auctioned. Auctions Waiting page of 1 Auction Starts 10/09/2026 09:00 AM ET Case Status: ACTIVE Case #: 23CV8161 (19880) Parcel ID: MULTIPLE Property Address: 101 ROCKWELL RD COLUMBUS , 432070000 Appraised Value: $270,000.00 Opening Bid: $180,000.00 Deposit Requirement: $10,000.00 &nbsp; Auction Starts 10/09/2026 09:00 AM ET Case Status: ACTIVE Case #: 25CV7658 (19796) Parcel ID: 010075440 Property Address: 2260 HOMESTEAD DRIVE COLUMBUS , 432110000 Appraised Value: $90,000.00 Opening Bid: $60,000.00 Deposit Requirement: $5,000.00 &nbsp; Auction Starts 10/09/2026 09:00 AM ET Case Status: ACTIVE Case #: 26CV3787 (19879) Parcel ID: 600176969 Property Address: 5337 TRILLIUM COURT COLUMBUS , 432300000 Appraised Value: $333,000.00 Opening Bid: $222,000.00 Deposit Requirement: $10,000.00 &nb",
+   "links": [
+    {
+     "text": "Home",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm"
+    },
+    {
+     "text": "About Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=aboutus"
+    },
+    {
+     "text": "FAQ",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=faq"
+    },
+    {
+     "text": "Contact Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=ContactUS&zmethod=START"
+    },
+    {
+     "text": "Forgot your username?",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=HOME&Zmethod=FORGOTUN"
+    },
+    {
+     "text": "Forgot your password?",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=HOME&Zmethod=FORGOT"
+    },
+    {
+     "text": "Training",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=TRAINING"
+    },
+    {
+     "text": "Foreclosure Process",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?ZACTION=HOME&ZMETHOD=FORECLOSE"
+    },
+    {
+     "text": "Clerk of Courts Search",
+     "url": "http://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline/"
+    },
+    {
+     "text": "Auditor Search",
+     "url": "http://property.franklincountyauditor.com/_web/search/commonsearch.aspx?mode=owner"
+    },
+    {
+     "text": "Recorder Search",
+     "url": "https://recorder.franklincountyohio.gov/Services/Public-Records-Search"
+    },
+    {
+     "text": "Treasurer Search",
+     "url": "http://treapropsearch.franklincountyohio.gov/"
+    },
+    {
+     "text": "Purchaser Information Form",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/purchaser_info_form.pdf"
+    },
+    {
+     "text": "Affidavit - Delinquent Taxes",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/Affidavit-in-which-deliquent-taxes-have-been-assessed-Franklin_OH.pdf"
+    },
+    {
+     "text": "Affidavit - No Delinquent Taxes",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/CORE/Public/documents/Affidavit-of-Non-Ownership-Tax-Sale-Franklin-OH-2025.pdf"
+    },
+    {
+     "text": "&lt; &lt; Previous Auction",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/02/2026"
+    },
+    {
+     "text": "Next Auction &gt; &gt;",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/16/2026"
+    },
+    {
+     "text": "Current",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/02/26"
+    },
+    {
+     "text": "customerservice@realauction.com",
+     "url": "mailto:customerservice@realauction.com"
+    },
+    {
+     "text": "About Us",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=aboutUs"
+    },
+    {
+     "text": "Site Map",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=siteMap"
+    },
+    {
+     "text": "Privacy Policy",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=privpol"
+    },
+    {
+     "text": "User Agreement",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=agreement"
+    },
+    {
+     "text": "Bidder Letter",
+     "url": "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=home&zmethod=welcome"
+    },
+    {
+     "text": "Visit Realaction.com",
+     "url": "http://www.realauction.com"
+    }
+   ]
+  },
+  "https://youtu.be/VQ16wGex90w": {
+   "via": "requests",
+   "status": 200,
+   "final": "https://www.youtube.com/watch?v=VQ16wGex90w&feature=youtu.be",
+   "type": "text/html; charset=utf-8",
+   "title": "- YouTube",
+   "text": "- YouTube About Press Copyright Contact us Creators Advertise Developers Terms Privacy Policy &amp; Safety How YouTube works Test new features NFL Sunday Ticket &copy; 2026 Google LLC",
+   "links": []
   }
  }
 }
