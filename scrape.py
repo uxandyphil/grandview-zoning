@@ -457,6 +457,12 @@ def main():
     except Exception as err:
         print(f"County permits step failed: {err}")
 
+    try:  # temporary: see what the council, recorder, sheriff and court sites return
+        import probe_sources
+        probe_sources.run(state, now)
+    except Exception as err:
+        print(f"Probe failed: {err}")
+
     # New business filings from Ohio Secretary of State reports uploaded to sos-uploads/
     try:
         import sos_filings
