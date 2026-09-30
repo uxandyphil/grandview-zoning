@@ -179,7 +179,8 @@ def run_sales(data, state):
             try:
                 page.goto(AUCTION + d.strftime("%m/%d/%Y"), wait_until="domcontentloaded", timeout=60000)
                 try:   # the sale list loads after the page; a week with no sale never shows one
-                    page.wait_for_function("document.body.innerText.includes('Case Status') || document.body.innerText.includes('no cases')", timeout=20000)
+                    # (the "running now" box always says "no cases", so wait for an actual sale)
+                    page.wait_for_function("document.body.innerText.includes('Case Status')", timeout=20000)
                 except Exception:
                     page.wait_for_timeout(3000)
                 items = parse_sale_text(page.evaluate("document.body.innerText"))
