@@ -1,16 +1,25 @@
 {
  "meetings": [
   {
-   "id": "3236",
+   "id": "cal-3236",
    "name": "Regular Council Meeting",
    "date": "2026-10-12",
    "time": "07:00 PM",
    "url": "https://www.grandviewheights.gov/Calendar.aspx?EID=3236",
-   "event_url": "https://www.grandviewheights.gov/Calendar.aspx?EID=3236",
    "items": [],
    "counts": {},
    "has_agenda": false
+  },
+  {
+   "id": "doc-5777",
+   "name": "City Council City Charter ()",
+   "date": "2018-11-06",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/DocumentCenter/View/5777/City-Charter-11062018",
+   "items": [],
+   "counts": {},
+   "has_agenda": true
   }
  ],
- "updated": "2026-09-30T00:32:44+00:00"
+ "updated": "2026-09-30T00:40:27+00:00"
 }

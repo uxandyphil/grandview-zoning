@@ -1,6 +1,2722 @@
 {
  "documents": [
   {
+   "inst": "202609280118371",
+   "type": "Mortgage",
+   "date": "2026-09-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FORTUNA BANK"
+   ],
+   "parcels": [
+    "030-003107-00"
+   ],
+   "legal": "Un 20-888 GRANDVIEW YARD CONDO EAST Pcl# 030-003107-00 Plt CB 250 PG 76"
+  },
+  {
+   "inst": "202609280118370",
+   "type": "Deed",
+   "date": "2026-09-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003107-00"
+   ],
+   "legal": "Un 20-888 GRANDVIEW YARD CONDO EAST Pcl# 030-003107-00 Plt CB 250 PG 76"
+  },
+  {
+   "inst": "202609280118369",
+   "type": "Affidavit",
+   "date": "2026-09-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 100 NORTHWEST BOULEVARD ADDN PLAT NO 5 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202609280118368",
+   "type": "Affidavit",
+   "date": "2026-09-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002127-00"
+   ],
+   "legal": "Lt/Un 100 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 030-002127-00 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202609280118329",
+   "type": "Deed",
+   "date": "2026-09-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000678-00"
+   ],
+   "legal": "Lt/Un 61~62 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-000678-00 Plt PB 4 PG 332 PT 61-62"
+  },
+  {
+   "inst": "202609280118291",
+   "type": "Deed",
+   "date": "2026-09-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002676-00"
+   ],
+   "legal": "Un 920 SUMMIT CHASE CONDO Pcl# 030-002676-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202609250117908",
+   "type": "Deed",
+   "date": "2026-09-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002360-00"
+   ],
+   "legal": "Lt/Un 127~128 RICKETTS AND ADYS FAIRDAY ADDN Pcl# 030-002360-00 Plt PB 4 PG 278 PT 127"
+  },
+  {
+   "inst": "202609250117646",
+   "type": "Release Of Mortgage",
+   "date": "2026-09-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "DISCOVER HOME LOANS INC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 20 NORTHWEST BOULEVARD ADDN Plt PB 10 PG 246-247"
+  },
+  {
+   "inst": "202609250117644",
+   "type": "Release Of Mortgage",
+   "date": "2026-09-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 525 GLADDINGTON HEIGHTS SUBD Plt PB 4 PG 334-335 PT 525"
+  },
+  {
+   "inst": "202609250117609",
+   "type": "Mortgage",
+   "date": "2026-09-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 226~227 TS WAGENHALS ET ALS AMENDED SUBD Pcl# 030-000522 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202609250117608",
+   "type": "Deed",
+   "date": "2026-09-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 226~227 TS WAGENHALS AND OTHERS AMEND Pcl# 030-000522 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202609240116665",
+   "type": "Mortgage",
+   "date": "2026-09-24",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HUNTINGTON NATIONAL BANK"
+   ],
+   "parcels": [
+    "030-003293-00"
+   ],
+   "legal": "Lt/Un 49 GRANDVIEW YARD PHASE 6 Pcl# 030-003293-00 Plt PB 124 PG 56"
+  },
+  {
+   "inst": "202609240116664",
+   "type": "Deed",
+   "date": "2026-09-24",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003293-00"
+   ],
+   "legal": "Lt/Un 49 GRANDVIEW YARD PHASE 6 Pcl# 030-003293-00 Plt PB 124 PG 56"
+  },
+  {
+   "inst": "202609240116661",
+   "type": "Affidavit",
+   "date": "2026-09-24",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002299-00"
+   ],
+   "legal": "Lt/Un 34 CROUGHTON AND DENMEADS SUBD Pcl# 030-002299-00 Plt PB 4 PG 318 PT 34"
+  },
+  {
+   "inst": "202609230116629",
+   "type": "Contin Of Fs Real Estate",
+   "date": "2026-09-23",
+   "from": [
+    "1114 DUBLIN ROAD LLC"
+   ],
+   "to": [
+    "FIRST MERCHANTS BANK"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 187~188 CROUGHTON & DENMEADS AMENDED GRANDVIEW SUBD Plt PB 4 PG 444 PT 187"
+  },
+  {
+   "inst": "202609220115590",
+   "type": "Affidavit",
+   "date": "2026-09-22",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000678-00"
+   ],
+   "legal": "Lt/Un 61~62 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-000678-00 Plt PB 4 PG 332 PT 61-62"
+  },
+  {
+   "inst": "202609220115445",
+   "type": "Release Of Mortgage",
+   "date": "2026-09-22",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "MORTGAGE ELECTRONIC REGISTRATION SYSTEMS INC"
+   ],
+   "parcels": [
+    "030-002104-00"
+   ],
+   "legal": "Lt/Un 65 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 03000210400 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202609180114054",
+   "type": "Mortgage",
+   "date": "2026-09-18",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HUNTINGTON NATIONAL BANK"
+   ],
+   "parcels": [
+    "030-001706-00"
+   ],
+   "legal": "Lt/Un 183 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001706-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202609180113920",
+   "type": "Affidavit",
+   "date": "2026-09-18",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002618-00"
+   ],
+   "legal": "Un 212 SUMMIT CHASE CONDO Pcl# 030-002618-00 Plt CB 895 PG 1020"
+  },
+  {
+   "inst": "202609160113350",
+   "type": "Mortgage",
+   "date": "2026-09-16",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "OHIO HEALTHCARE FCU"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 88 NORTHWEST BOULEVARD PLAT NO 5 Pcl# 030-002121 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202609160113322",
+   "type": "Mortgage",
+   "date": "2026-09-16",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "CORNERSTONE FIRST MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-003021-00"
+   ],
+   "legal": "Un 945E GRANDIEW PASSAGE CONDO Pcl# 030-003021-00 Plt CB 217 PG 14 BLDG 1"
+  },
+  {
+   "inst": "202609160113084",
+   "type": "Trust",
+   "date": "2026-09-16",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001233-00"
+   ],
+   "legal": "Lt/Un 523~524 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001233-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202609160113008",
+   "type": "Notice Of Commencement",
+   "date": "2026-09-16",
+   "from": [
+    "845 YARD STREET LLC"
+   ],
+   "to": [
+    "CAPITAL CONTRACTING SERVICES LLC"
+   ],
+   "parcels": [],
+   "legal": "Acreage 4.215 REFUGEE LANDS"
+  },
+  {
+   "inst": "202609150112271",
+   "type": "Affidavit",
+   "date": "2026-09-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 22 NORTHWEST BOULEVARD ADDN PLAT NO 2 Pcl# 030-000565 Plt PB 10 PG 246"
+  },
+  {
+   "inst": "202609150112054",
+   "type": "Deed",
+   "date": "2026-09-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002642-00"
+   ],
+   "legal": "Un 521 SUMMIT CHASE CONDO Pcl# 030-002642-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202609140111694",
+   "type": "Affidavit",
+   "date": "2026-09-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002707-00"
+   ],
+   "legal": "Un 1415 SUMMIT CHASE CONDO Pcl# 030-002707-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202609140111655",
+   "type": "Deed",
+   "date": "2026-09-14",
+   "from": [
+    "BOO ENTERPRISES LLC"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002964-00"
+   ],
+   "legal": "Un 828 GRANDVIEW COMMONS CONDO Pcl# 030-002964-00 BLDG 1"
+  },
+  {
+   "inst": "202609110111130",
+   "type": "Mortgage",
+   "date": "2026-09-11",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "ROCKET MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-002643-00"
+   ],
+   "legal": "Un 522 SUMMIT CHASE CONDO Pcl# 030-002643-00 Plt CB 3PG 895"
+  },
+  {
+   "inst": "202609110110974",
+   "type": "Mortgage",
+   "date": "2026-09-11",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST BANK OF CENTRAL OHIO"
+   ],
+   "parcels": [
+    "030-001681-00"
+   ],
+   "legal": "Lt/Un 153 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001681-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202609110110973",
+   "type": "Deed",
+   "date": "2026-09-11",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001681-00"
+   ],
+   "legal": "Lt/Un 153 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001681-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202609100110112",
+   "type": "Release Of Mortgage",
+   "date": "2026-09-10",
+   "from": [
+    "DRAGON 827 NORTHWEST LLC"
+   ],
+   "to": [
+    "MUTUAL FEDERAL"
+   ],
+   "parcels": [
+    "030-001259-00"
+   ],
+   "legal": "Lt/Un 549~550 NORTHWEST BOULEVARD ADDN NO 4 Pcl# 030-001259-00 Plt PB 14 PG 6 PT 549-550"
+  },
+  {
+   "inst": "202609090110067",
+   "type": "Mortgage",
+   "date": "2026-09-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST FINANCIAL BANK"
+   ],
+   "parcels": [
+    "030-000870-00"
+   ],
+   "legal": "Lt/Un 160 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000870-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202609090110066",
+   "type": "Deed",
+   "date": "2026-09-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000870-00"
+   ],
+   "legal": "Lt/Un 160 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000870-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202609090109707",
+   "type": "Release Of Mortgage",
+   "date": "2026-09-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "MORTGAGE ELECTRONIC REGISTRATION SYSTEMS INC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 433~434 NORTHWEST BOULEVARD ADDN PLAT NO 4 Plt PB 14 PG 6 PT 433-434"
+  },
+  {
+   "inst": "202609090109435",
+   "type": "Mortgage",
+   "date": "2026-09-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "PNC BANK NA"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 241 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-0017459-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202609090109376",
+   "type": "Mortgage",
+   "date": "2026-09-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "GUARANTEED RATE INC"
+   ],
+   "parcels": [
+    "030-001143-00"
+   ],
+   "legal": "Lt/Un 433~434 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001143-00 Plt PB 14 PG 6 PT 434"
+  },
+  {
+   "inst": "202609090109375",
+   "type": "Deed",
+   "date": "2026-09-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001143-00"
+   ],
+   "legal": "Lt/Un 433~434 NORTHWEST BOULEVARD ADDN Pcl# 030-001143-00 Plt PB 14 PG 6 PT 433-434"
+  },
+  {
+   "inst": "202609090109368",
+   "type": "Lease",
+   "date": "2026-09-09",
+   "from": [
+    "GRANDVIEW HEIGHTS CITY SCHOOL DISTRICT BOARD OF EDUCATION"
+   ],
+   "to": [
+    "TOWERCO VI LLC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 203~208 URLIN GRANDVIEW HEIGHTS Plt PB 17 PG 148"
+  },
+  {
+   "inst": "202609080109137",
+   "type": "Assign Of Fs Real Estate",
+   "date": "2026-09-08",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "PGIM REAL ESTATE US DEBT FUND SELLER IV LLC"
+   ],
+   "parcels": [
+    "030-002498-00"
+   ],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM PARTITION Pcl# 030-002498-00 Acreage 0.711 Plt PB 8 PG 24A PT 9"
+  },
+  {
+   "inst": "202609080109136",
+   "type": "Assign Of Mortgage",
+   "date": "2026-09-08",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "PGIM REAL ESTATE US DEBT FUND SELLER IV LLC"
+   ],
+   "parcels": [
+    "030-002498-00"
+   ],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM SUBD PARTITION Pcl# 030-002498-00 Plt PB 8 PG 2A PT 9"
+  },
+  {
+   "inst": "202609080108913",
+   "type": "Release",
+   "date": "2026-09-08",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002753-00"
+   ],
+   "legal": "Un 2004 SUMMIT CHASE CONDO Pcl# 030-002753-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202609080108912",
+   "type": "Affidavit",
+   "date": "2026-09-08",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002753-00"
+   ],
+   "legal": "Lt/Un 2004 SUMMIT CHASE CONDO Pcl# 030-002753-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202609030108294",
+   "type": "Mortgage",
+   "date": "2026-09-03",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "KEYBANK NA"
+   ],
+   "parcels": [
+    "030-001995-00"
+   ],
+   "legal": "Lt/Un 365 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-001995-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202609030108293",
+   "type": "Deed",
+   "date": "2026-09-03",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001995-00"
+   ],
+   "legal": "Lt/Un 365 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-001995-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202609030108108",
+   "type": "Mortgage",
+   "date": "2026-09-03",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [
+    "030-002224-00"
+   ],
+   "legal": "Lt/Un 117 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-002224-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202609030108107",
+   "type": "Trust",
+   "date": "2026-09-03",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002224-00"
+   ],
+   "legal": "Lt/Un 117 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-002224-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202609030108106",
+   "type": "Deed",
+   "date": "2026-09-03",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002224-00"
+   ],
+   "legal": "Lt/Un 117 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-002224-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202609020107497",
+   "type": "Release Of Mortgage",
+   "date": "2026-09-02",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "MORTGAGE ELECTRONIC REGISTRATION SYSTEMS INC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 117 URLINS GRANDVIEW HEIGHTS SUBD Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202609020107359",
+   "type": "Easement",
+   "date": "2026-09-02",
+   "from": [
+    "BOARD OF EDUCATION OF THE GRANDVIEW HEIGHTS CITY SCHOOL DISTRICT"
+   ],
+   "to": [
+    "OHIO POWER CO"
+   ],
+   "parcels": [
+    "030-001652-00"
+   ],
+   "legal": "Lt/Un 123~135 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001652-00 Plt PB 13 PG 13 PT 123-135"
+  },
+  {
+   "inst": "202609010106870",
+   "type": "Affidavit",
+   "date": "2026-09-01",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001368-00"
+   ],
+   "legal": "Lt/Un 57 ALLENS SUBD Pcl# 030-001368-00 Plt PB 10 PG 302"
+  },
+  {
+   "inst": "202609010106796",
+   "type": "Affidavit",
+   "date": "2026-09-01",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 12 URLIN TERRACE SUBD Plt PB 5 PG 299 PT 12"
+  },
+  {
+   "inst": "202609010106696",
+   "type": "Mortgage",
+   "date": "2026-09-01",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "LOANDEPOT.COM LLC"
+   ],
+   "parcels": [
+    "030-000064-00"
+   ],
+   "legal": "Lt/Un 431 JR TILTONS GLADDINGTON HEIGHTS SUBD Pcl# 030-000064-00 Plt PB 4 PG 334 PT 431"
+  },
+  {
+   "inst": "202609010106573",
+   "type": "Release Of Mortgage",
+   "date": "2026-09-01",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "BUCKEYE STATE BANK"
+   ],
+   "parcels": [
+    "030-000773-00"
+   ],
+   "legal": "Lt/Un 63 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000773-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202608310106337",
+   "type": "Deed",
+   "date": "2026-08-31",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "TFV PROPERTIES LLC"
+   ],
+   "parcels": [
+    "030-002414-00"
+   ],
+   "legal": "Lt/Un 17 CHACKERES LAND COMPANYS KRAMER HEIGHTS SUBD Pcl# 030-002414-00 Plt PB 23 PG 2"
+  },
+  {
+   "inst": "202608280105897",
+   "type": "Deed",
+   "date": "2026-08-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002751-00"
+   ],
+   "legal": "Un 1822 SUMMIT CHASE CONDO Pcl# 030-002751-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202608280105579",
+   "type": "Mortgage",
+   "date": "2026-08-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST BANK OF CENTRAL OHIO"
+   ],
+   "parcels": [
+    "030-000678-00"
+   ],
+   "legal": "Lt/Un 61~62 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-000678-00 Plt PB 4 PG 332 PT 61-62"
+  },
+  {
+   "inst": "202608280105489",
+   "type": "Mortgage",
+   "date": "2026-08-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "THIRD FEDERAL SAVINGS AND LOAN ASSN OF CLEVELAND"
+   ],
+   "parcels": [
+    "030-003359-00"
+   ],
+   "legal": "Un 26-974 GRANDVIEW YARD CONDO EAST Pcl# 030-003359-00 Plt CB 281 PG 77"
+  },
+  {
+   "inst": "202608280105488",
+   "type": "Deed",
+   "date": "2026-08-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003359-00"
+   ],
+   "legal": "Un 26-974 GRANDVIEW YARD CONDO EAST Pcl# 030-003359-00 Plt CB 281 PG 77"
+  },
+  {
+   "inst": "202608280105487",
+   "type": "Trust",
+   "date": "2026-08-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003359-00"
+   ],
+   "legal": "Un 26-974 GRANDVIEW YARD CONDO EAST Pcl# 030-003359-00 Plt CB 281 PG 77"
+  },
+  {
+   "inst": "202608280105451",
+   "type": "Release Of Lien",
+   "date": "2026-08-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JAMESTOWN OF GRANDVIEW CONDOMINIUM ASSN"
+   ],
+   "parcels": [
+    "030-002939-00"
+   ],
+   "legal": "Un 11-1353 B JAMESTOWN OF GRANDVIEW CONDO Pcl# 030-002939-00 Plt CB 192 PG 49-54"
+  },
+  {
+   "inst": "202608260104767",
+   "type": "Mortgage",
+   "date": "2026-08-26",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "NFM LENDING LLC"
+   ],
+   "parcels": [
+    "030-003230-00"
+   ],
+   "legal": "Un 14-867 GRANDVIEW YARD CONDO WEST Pcl# 030-003230-00 Plt CB 266 PB 32"
+  },
+  {
+   "inst": "202608260104284",
+   "type": "Mortgage",
+   "date": "2026-08-26",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "WEST CAPITAL LENDING INC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 59 ALLENS SUBD Pcl# 030-001370 Plt PB 10 PG 302"
+  },
+  {
+   "inst": "202608260104126",
+   "type": "Deed",
+   "date": "2026-08-26",
+   "from": [
+    "DRAGON BURR LLC"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001256-00"
+   ],
+   "legal": "Lt/Un 549~550 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001256-00 Plt PB 14 PG 6 PT 549-550"
+  },
+  {
+   "inst": "202608250104088",
+   "type": "Deed",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002615-00"
+   ],
+   "legal": "Un 209 SUMMIT CHASE CONDO Pcl# 030-002615-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202608250103915",
+   "type": "Release Of Mortgage",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION SAVINGS BANK"
+   ],
+   "parcels": [
+    "030-003024-00"
+   ],
+   "legal": "Un 945H GRANDVIEW PASSAGE CONDO Pcl# 030-003024-00 Plt CB 217 PG 14 BLDG 4"
+  },
+  {
+   "inst": "202608250103857",
+   "type": "Affidavit",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001526-00"
+   ],
+   "legal": "Lt/Un 126 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-001526-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202608250103831",
+   "type": "Deed",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "900 NORTHWEST LLC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 585~586 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001292 Plt PB 14 PG 6 PT 585-586"
+  },
+  {
+   "inst": "202608250103830",
+   "type": "Affidavit",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 585~586 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001292 Plt PB 14 PG 6 PT 585-586"
+  },
+  {
+   "inst": "202608250103829",
+   "type": "Affidavit",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 585~586 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001292 Plt PB 14 PG 6 PT 585-586"
+  },
+  {
+   "inst": "202608250103827",
+   "type": "Mortgage",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST MERCHANTS BANK"
+   ],
+   "parcels": [
+    "030-001551-00"
+   ],
+   "legal": "Lt/Un 127 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-001551-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202608250103826",
+   "type": "Deed",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001551-00"
+   ],
+   "legal": "Lt/Un 127 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-001551-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202608250103690",
+   "type": "Mortgage",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "GUARANTEED RATE INC"
+   ],
+   "parcels": [
+    "030-001954-00"
+   ],
+   "legal": "Lt/Un 335 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-001954-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202608250103689",
+   "type": "Deed",
+   "date": "2026-08-25",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001954-00"
+   ],
+   "legal": "Lt/Un 335 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-001954-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202608240103247",
+   "type": "Deed",
+   "date": "2026-08-24",
+   "from": [
+    "DRAGON 827 NORTHWEST LLC"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001259-00"
+   ],
+   "legal": "Lt/Un 549~550 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001259-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202608210102843",
+   "type": "Release Of Mortgage",
+   "date": "2026-08-21",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION SAVINGS BANK"
+   ],
+   "parcels": [
+    "030-003024-00"
+   ],
+   "legal": "Un 945H GRANDVIEW PASSAGE CONDO Pcl# 030-003024-00 Plt CB 217 PG 14 BLDG 4"
+  },
+  {
+   "inst": "202608210102599",
+   "type": "Affidavit",
+   "date": "2026-08-21",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000958-00"
+   ],
+   "legal": "Lt/Un 248~249 NORTHWEST BOULEVARD ADDN Pcl# 030-000958-00 Plt PB 14 PG 6 PT 249"
+  },
+  {
+   "inst": "202608210102537",
+   "type": "Deed",
+   "date": "2026-08-21",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002760-00"
+   ],
+   "legal": "Un 2011 SUMMIT CHASE CONDO Pcl# 030-002760-00 Plt CB 3 PG 895"
+  },
+  {
+   "inst": "202608210102535",
+   "type": "Affidavit",
+   "date": "2026-08-21",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001803-00"
+   ],
+   "legal": "Lt/Un 16 CHESTER HEIGHTS SUBD Pcl# 030-001803-00 Plt PB 7 PG 12-13 PT 16"
+  },
+  {
+   "inst": "202608200102163",
+   "type": "Mortgage",
+   "date": "2026-08-20",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "BANK OF AMERICA NA"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 23 NORTHWEST BOULEVARD ADDN PLAT NO 1 Pcl# 030-000119 Plt PB 10 PG 242"
+  },
+  {
+   "inst": "202608180100727",
+   "type": "Release Of Mortgage",
+   "date": "2026-08-18",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 327 FS WAGENHALS ET AL AMENDED SUBD Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202608170099903",
+   "type": "Release Of Mortgage",
+   "date": "2026-08-17",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 189 NORTHWEST BOULEVARD ADDN PLAT NO 4 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202608170099775",
+   "type": "Mortgage",
+   "date": "2026-08-17",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST NATIONAL BANK OF PENNSYLVANIA"
+   ],
+   "parcels": [
+    "030-002104-00"
+   ],
+   "legal": "Lt/Un 65 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 030-002104-00 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202608170099774",
+   "type": "Deed",
+   "date": "2026-08-17",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002104-00"
+   ],
+   "legal": "Lt/Un 65 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 030-002104-00 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202608140099343",
+   "type": "Mortgage",
+   "date": "2026-08-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "NFM LENDING LLC"
+   ],
+   "parcels": [
+    "030-000899-00"
+   ],
+   "legal": "Lt/Un 189 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000899-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202608140099342",
+   "type": "Deed",
+   "date": "2026-08-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000899-00"
+   ],
+   "legal": "Lt/Un 189 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000899-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202608140099216",
+   "type": "Deed",
+   "date": "2026-08-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003246-00"
+   ],
+   "legal": "Lt/Un 2 GRANDVIEW YARD PHASE 6 Pcl# 030-003246-00 Plt PB 124 PG 56"
+  },
+  {
+   "inst": "202608130098988",
+   "type": "Release Of Mortgage",
+   "date": "2026-08-13",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "STATE BANK AND TRUST CO"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 62 CROUGHTON AND DENMEADS SUBURBAN SUBD Plt PB 4 PG 318 PT 62"
+  },
+  {
+   "inst": "202608130098811",
+   "type": "Mortgage",
+   "date": "2026-08-13",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "INNOVATIVE MORTGAGE SERVICES INC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 23 ALLENS SUBD Pcl# 030-001334 Plt PB 10 PG 302"
+  },
+  {
+   "inst": "202608130098810",
+   "type": "Deed",
+   "date": "2026-08-13",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 23 ALLENS SUBD Pcl# 030-001334 Plt PB 10 PG 302"
+  },
+  {
+   "inst": "202608130098809",
+   "type": "Trust",
+   "date": "2026-08-13",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001334-00"
+   ],
+   "legal": "Lt/Un 23 ALLENS SUBD Pcl# 030-001334-00 Plt PB 10 PG 302"
+  },
+  {
+   "inst": "202608130098663",
+   "type": "Affidavit",
+   "date": "2026-08-13",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001592-00"
+   ],
+   "legal": "Lt/Un 42 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001592-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202608120098050",
+   "type": "Deed",
+   "date": "2026-08-12",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000262-00"
+   ],
+   "legal": "Lt/Un 144~145 WAGENHALS ET AL AMENDED SUBD Pcl# 030-000262-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202608110097630",
+   "type": "Mortgage",
+   "date": "2026-08-11",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HIGHLANDS RESIDENTIAL MORTGAGE LTD"
+   ],
+   "parcels": [
+    "030-002227-00"
+   ],
+   "legal": "Lt/Un 327 FS WAGENTHALS ET AL AMENDED SUBD Pcl# 030-002227-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202608110097629",
+   "type": "Deed",
+   "date": "2026-08-11",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002227-00"
+   ],
+   "legal": "Lt/Un 327 FS WAGENTHALS ET AL AMENDED SUBD Pcl# 030-002227-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202608110097440",
+   "type": "Mod Of Mortgage",
+   "date": "2026-08-11",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNITED WHOLESALE MORTGAGE LLC"
+   ],
+   "parcels": [],
+   "legal": "Un 32-922 GRANDVIEW YARD CONDO EAST Pcl# 030-003453 Plt CB 299 PG 58"
+  },
+  {
+   "inst": "202608070096794",
+   "type": "Mortgage",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "GUARANTEED RATE INC"
+   ],
+   "parcels": [
+    "030-002929-00"
+   ],
+   "legal": "Un 10 1375 B JAMESTOWN OF GRANDVIEW CONDO Pcl# 030-002929-00 Plt CB 192 PG 49-54"
+  },
+  {
+   "inst": "202608070096793",
+   "type": "Deed",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002929-00"
+   ],
+   "legal": "Un 10-1375-B JAMESTOWN OF GRANDVIEW CONDO Pcl# 030-002929-00 Plt CB 192 PG 49-54"
+  },
+  {
+   "inst": "202608070096440",
+   "type": "Deed",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000514-00"
+   ],
+   "legal": "Lt/Un 251~252 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-000514-00 Plt PB 4 PG 412 PT 251"
+  },
+  {
+   "inst": "202608070096426",
+   "type": "Mortgage",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001701-00"
+   ],
+   "legal": "Lt/Un 177 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001701-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202608070096425",
+   "type": "Deed",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001701-00"
+   ],
+   "legal": "Lt/Un 177 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001701-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202608070096405",
+   "type": "Deed",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003361-00"
+   ],
+   "legal": "Un 26 978 GRANDVIEW YARD CONDO EAST Pcl# 030-003361-00 Plt CB 28 PG77"
+  },
+  {
+   "inst": "202608070096404",
+   "type": "Deed",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003361-00"
+   ],
+   "legal": "Un 26-978 GRANDVIEW YARD CONDO EAST Pcl# 030-003361-00 Plt CB 281 PG 77"
+  },
+  {
+   "inst": "202608070096403",
+   "type": "Deed",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003361-00"
+   ],
+   "legal": "Un 26-978 GRANDVIEW YARD CONDO EAST Pcl# 030-003361-00 Plt CB 281 PG 77"
+  },
+  {
+   "inst": "202608070096290",
+   "type": "Mortgage",
+   "date": "2026-08-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "NORTHWEST BANK"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 173 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001699 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202608060096085",
+   "type": "Mortgage",
+   "date": "2026-08-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "STATE BANK AND TRUST CO"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 62 CROUGHTON AND DENMEADS SUBURBAN SUBD Plt PB 4 PG 318"
+  },
+  {
+   "inst": "202608060095900",
+   "type": "Easement",
+   "date": "2026-08-06",
+   "from": [
+    "BOARD OF EDUCATION OF THE GRANDVIEW HEIGHTS CITY SCHOOL DISTRICT"
+   ],
+   "to": [
+    "OHIO POWER CO"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 203~208 URLIN GRANDVIEW HEIGHTS Plt PB 17 PG 148"
+  },
+  {
+   "inst": "202608060095592",
+   "type": "Mortgage",
+   "date": "2026-08-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNITED WHOLESALE MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-000073-00"
+   ],
+   "legal": "Lt/Un 33~34 LINCOLN PLACE Pcl# 030-000073-00 Plt PB 12 PG 22 PT 33-34"
+  },
+  {
+   "inst": "202608060095591",
+   "type": "Deed",
+   "date": "2026-08-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000073-00"
+   ],
+   "legal": "Lt/Un 33~34 LINCOLN PLACE Pcl# 030-000073-00 Plt PB 12 PG 22 PT 33-34"
+  },
+  {
+   "inst": "202608060095192",
+   "type": "Affidavit",
+   "date": "2026-08-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002700-00"
+   ],
+   "legal": "Un 1215 SUMMIT CHASE CONDO Pcl# 030-002700-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202608060095005",
+   "type": "Release Of Mortgage",
+   "date": "2026-08-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST FINANCIAL BANK"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 196 NORTHWEST BOULEVARD ADDN PLAT NO 3 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202608050094548",
+   "type": "Mortgage",
+   "date": "2026-08-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "NFM LENDING LLC"
+   ],
+   "parcels": [
+    "030-000419-00"
+   ],
+   "legal": "Lt/Un 257~260 JR TILTONS GLADDINGTON HEIGHTS SUBD Pcl# 030-000419-00 Plt PB 4 PG 334 PT 257-260"
+  },
+  {
+   "inst": "202608050094547",
+   "type": "Power Of Atty",
+   "date": "2026-08-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 257~260 JR TILTONS GLADDINGTON HEIGHTS SUBD Plt PB 4 PG 334 PT 257-260"
+  },
+  {
+   "inst": "202608050094546",
+   "type": "Deed",
+   "date": "2026-08-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000419-00"
+   ],
+   "legal": "Lt/Un 257~260 JR TILTONS GLADDINGTON HEIGHTS SUBD Pcl# 030-000419-00 Plt PB 4 PG 334 PT 257-260"
+  },
+  {
+   "inst": "202608050094506",
+   "type": "Mortgage",
+   "date": "2026-08-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "BMI FEDERAL CREDIT UNION"
+   ],
+   "parcels": [
+    "030-001709-00"
+   ],
+   "legal": "Lt/Un 186 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001709-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202608050094430",
+   "type": "Mortgage",
+   "date": "2026-08-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "GERMAN AMERICAN BANK"
+   ],
+   "parcels": [
+    "030-002338-00"
+   ],
+   "legal": "Lt/Un 27 CHESTER HEIGHTS SUBD Pcl# 030-002338-00 Plt PB 7 PG 12 PT 27"
+  },
+  {
+   "inst": "202608050094429",
+   "type": "Deed",
+   "date": "2026-08-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002338-00"
+   ],
+   "legal": "Lt/Un 27 CHESTER HEIGHTS SUBD Pcl# 030-002338-00 Plt PB 7 PG 12 PT27"
+  },
+  {
+   "inst": "202608050094162",
+   "type": "Mortgage",
+   "date": "2026-08-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "GERMAN AMERICAN BANK"
+   ],
+   "parcels": [
+    "030-003265-00"
+   ],
+   "legal": "Lt/Un 21 GRANDVIEW YARD PHASE 6 Pcl# 030-003265-00 Plt PB 124 PG 56"
+  },
+  {
+   "inst": "202608040093913",
+   "type": "Release Of Mortgage",
+   "date": "2026-08-04",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 257~260 JR TILTONS GLADDINGTON HEIGHTS SUBD Plt PB 4 PG 334 PT 257-260"
+  },
+  {
+   "inst": "202608040093795",
+   "type": "Mortgage",
+   "date": "2026-08-04",
+   "from": [
+    "COGS ULTD LLC"
+   ],
+   "to": [
+    "CONVENTUS LLC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 542~543 GLADDINGTON HEIGHTS SUBD Pcl# 030-000232 Plt PB 4 PG 335-336"
+  },
+  {
+   "inst": "202608040093532",
+   "type": "Affidavit",
+   "date": "2026-08-04",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000083-00"
+   ],
+   "legal": "Lt/Un 29 NORTHWEST BOULEVARD ADDN PLAT NO 1 Pcl# 030-000083-00 Plt PB 10 PG 242"
+  },
+  {
+   "inst": "202607310092886",
+   "type": "Easement",
+   "date": "2026-07-31",
+   "from": [
+    "BOARD OF EDUCATION GRANDVIEW HEIGHTS CITY SCHOOL DISTRICT"
+   ],
+   "to": [
+    "GRANDVIEW HEIGHTS CITY OF"
+   ],
+   "parcels": [
+    "030-001652-00"
+   ],
+   "legal": "Lt/Un 128~133 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001652-00 Plt PB 13 PG 13 PT 128-133"
+  },
+  {
+   "inst": "202607310092750",
+   "type": "Release Of Mortgage",
+   "date": "2026-07-31",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 112 URLINS GRANDVIEW HEIGHTS SUBD Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202607310092586",
+   "type": "Affidavit",
+   "date": "2026-07-31",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 186 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 010-063264-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202607300092513",
+   "type": "Affidavit",
+   "date": "2026-07-30",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 109 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-001480 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202607300092225",
+   "type": "Release Of Mortgage",
+   "date": "2026-07-30",
+   "from": [
+    "SBR ENTERPRISES LLC"
+   ],
+   "to": [
+    "ARCH INSURANCE CO"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 57~58 URLINS GRANDVIEW HEIGHTS SUBD Plt PB 4 PG 332 PT 57-58"
+  },
+  {
+   "inst": "202607290091732",
+   "type": "Mortgage",
+   "date": "2026-07-29",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HOMEBRIDGE FINANCIAL SERVICES INC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 335 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-001954 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202607280091133",
+   "type": "Agreement",
+   "date": "2026-07-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "MID OHIO REGINAL PLANNING COMMISSION"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 4~5 NORTHWEST BOULEVARD CO SUBD PLAT NO 6 Plt PB 13 PG 22 PT 4-5"
+  },
+  {
+   "inst": "202607280091091",
+   "type": "Mortgage",
+   "date": "2026-07-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "CFBANK NA"
+   ],
+   "parcels": [
+    "030-000773-00"
+   ],
+   "legal": "Lt/Un 63 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000773-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202607280091090",
+   "type": "Deed",
+   "date": "2026-07-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000773-00"
+   ],
+   "legal": "Lt/Un 63 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000773-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202607280090943",
+   "type": "Deed",
+   "date": "2026-07-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003024-00"
+   ],
+   "legal": "Un 945H GRANDVIEW PASSAGE CONDO Pcl# 030-003024-00 Plt CB 217 PG 14 BLDG 4"
+  },
+  {
+   "inst": "202607280090894",
+   "type": "Mortgage",
+   "date": "2026-07-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION HOME MORTGAGE CORP"
+   ],
+   "parcels": [
+    "030-001718-00"
+   ],
+   "legal": "Lt/Un 196 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001718-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607280090893",
+   "type": "Deed",
+   "date": "2026-07-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001718-00"
+   ],
+   "legal": "Lt/Un 196 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001718-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607270090402",
+   "type": "Deed",
+   "date": "2026-07-27",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002721-00"
+   ],
+   "legal": "Un 1607 SUMMIT CHASE CONDO Pcl# 030-002721-00 Plt CB 3 PG 895"
+  },
+  {
+   "inst": "202607270090389",
+   "type": "Release Of Mechanics Lien",
+   "date": "2026-07-27",
+   "from": [
+    "1055 YARD STREET LLC"
+   ],
+   "to": [
+    "INSULATION DISTRIBUTORS INC"
+   ],
+   "parcels": [
+    "030-003492-00"
+   ],
+   "legal": "Lt/Un 15 GRANDVIEW YARD PHASE 4B Pcl# 030-003492-00 Acreage 3.240 Plt PB 118 PG 47"
+  },
+  {
+   "inst": "202607270090368",
+   "type": "Mortgage",
+   "date": "2026-07-27",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "TOMO MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-002400-00"
+   ],
+   "legal": "Lt/Un 1 CHAKERES LAND COMPANYS KRAMER HEIGHTS SUBD Pcl# 030-002400-00 Plt PB 23 PG 2"
+  },
+  {
+   "inst": "202607270090367",
+   "type": "Deed",
+   "date": "2026-07-27",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002400-00"
+   ],
+   "legal": "Lt/Un 1 CHAKERES LAND CO KRAMERS HEIGHTS SUBD Pcl# 030-002400-00 Plt PB 23 PG 2"
+  },
+  {
+   "inst": "202607270090291",
+   "type": "Affidavit",
+   "date": "2026-07-27",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001629-00"
+   ],
+   "legal": "Lt/Un 87 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001629-00 Plt PB 13 PG"
+  },
+  {
+   "inst": "202607270090289",
+   "type": "Affidavit",
+   "date": "2026-07-27",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Un 201 1200 GRANDVIEW AVENUE CONDO Plt CB 221 PG 53-63"
+  },
+  {
+   "inst": "202607270090119",
+   "type": "Release Of Mortgage",
+   "date": "2026-07-27",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION SAVINGS BANK"
+   ],
+   "parcels": [
+    "030-000459-00"
+   ],
+   "legal": "Lt/Un 178~179 WAGENHALS ET AL AMENDED SUBD Pcl# 030-000459-00 Plt PB 4 PG 412 PT 179"
+  },
+  {
+   "inst": "202607270090108",
+   "type": "Mortgage",
+   "date": "2026-07-27",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "ROCKET MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-000376-00"
+   ],
+   "legal": "Lt/Un 13 NORTHWEST BOULEVARD ADDN PLAT NO 2 Pcl# 030-000376-00 Plt PB 10 PG 246"
+  },
+  {
+   "inst": "202607240089976",
+   "type": "Mortgage",
+   "date": "2026-07-24",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "PNC BANK NA"
+   ],
+   "parcels": [
+    "030-001342-00"
+   ],
+   "legal": "Lt/Un 31 ALLENS SUBD Pcl# 030-001342-00 Plt PB 10 PG 302"
+  },
+  {
+   "inst": "202607240089738",
+   "type": "Mortgage",
+   "date": "2026-07-24",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "NEWREZ LLC"
+   ],
+   "parcels": [
+    "030-001654-00"
+   ],
+   "legal": "Lt/Un 155~156 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001654-00 Plt PB 13 PG 13 PT 155-156"
+  },
+  {
+   "inst": "202607240089707",
+   "type": "Amend To Lease",
+   "date": "2026-07-24",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "CRE GSI SELF STORAGE OPCO LLC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM SUBD Acreage 0.711 Plt PB 8 PG 2A PT 9"
+  },
+  {
+   "inst": "202607240089565",
+   "type": "Deed",
+   "date": "2026-07-24",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003042-00"
+   ],
+   "legal": "Un 201 1200 GRANDVIEW AVENUE CONDO Pcl# 030-003042-00 Plt CB 221 PG 53-63"
+  },
+  {
+   "inst": "202607240089513",
+   "type": "Release Of Mortgage",
+   "date": "2026-07-24",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION SAVINGS BANK"
+   ],
+   "parcels": [
+    "030-000704-00"
+   ],
+   "legal": "Lt/Un 122 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-000704-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607240089459",
+   "type": "Mortgage",
+   "date": "2026-07-24",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HOMEBRIDGE FINANCIAL SERVICES INC"
+   ],
+   "parcels": [
+    "030-000713-00"
+   ],
+   "legal": "Lt/Un 3 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000713-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202607220088579",
+   "type": "Deed",
+   "date": "2026-07-22",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Un 205 SUMMIT CHASE CONDO Pcl# 030-002611 Plt CB 3 PG 895"
+  },
+  {
+   "inst": "202607220088357",
+   "type": "Notice Of Commencement",
+   "date": "2026-07-22",
+   "from": [
+    "800 YARD STREET LLC"
+   ],
+   "to": [
+    "NRI BUILDERS LLC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 2 GRANDVIEW YARD SOUTHEAST Plt PB 116 PG 77-78"
+  },
+  {
+   "inst": "202607220088355",
+   "type": "Finan Statement Real Estate",
+   "date": "2026-07-22",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "PGIM REAL ESTATE US DEBT FUND REIT LLC"
+   ],
+   "parcels": [
+    "030-002498-00"
+   ],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM PARTITION Pcl# 030-002498-00 Acreage 0.711 Plt PB 8 PG 538 PT 9"
+  },
+  {
+   "inst": "202607220088354",
+   "type": "Assign Of Rents",
+   "date": "2026-07-22",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "PGIM REAL ESTATE US DEBT FUND REIT LLC"
+   ],
+   "parcels": [
+    "030-002498-00"
+   ],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM Pcl# 030-002498-00 Plt PB 8 PG 2A PT 9"
+  },
+  {
+   "inst": "202607220088353",
+   "type": "Mortgage",
+   "date": "2026-07-22",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "PGIM REAL ESTATE US DEBT FUND REIT LLC"
+   ],
+   "parcels": [
+    "030-002498-00"
+   ],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM SUBD Pcl# 030-002498-00 Acreage 0.711 Plt PB 8 PG 2A PT 9"
+  },
+  {
+   "inst": "202607220088227",
+   "type": "Term Of Fs Real Estate",
+   "date": "2026-07-22",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "PCRED II LENDING II LLC"
+   ],
+   "parcels": [
+    "030-002498-00"
+   ],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM SUBD Pcl# 030-002498-00 Acreage 0.711 Plt PB 8 PG 2A PT 9"
+  },
+  {
+   "inst": "202607220088226",
+   "type": "Release Of Mortgage",
+   "date": "2026-07-22",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "PCRED II LENDING II LLC"
+   ],
+   "parcels": [
+    "030-002498-00"
+   ],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM SUBD Pcl# 030-002498-00 Plt PB 8 PG 2A PT 9"
+  },
+  {
+   "inst": "202607220088225",
+   "type": "Release Of Assign Of Rents",
+   "date": "2026-07-22",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "PCRED II LENDING II LLC"
+   ],
+   "parcels": [
+    "030-002498-00"
+   ],
+   "legal": "Lt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM Pcl# 030-002498-00 Plt PB 8 PG 2A PT 9"
+  },
+  {
+   "inst": "202607220088224",
+   "type": "Term Of Fs Real Estate",
+   "date": "2026-07-22",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "READYCAP WAREHOUSE FINANCING III LLC"
+   ],
+   "parcels": [],
+   "legal": "Pcl# 010-297282-00 Acreage 1.470 VMS"
+  },
+  {
+   "inst": "202607220088223",
+   "type": "Release Of Mortgage",
+   "date": "2026-07-22",
+   "from": [
+    "GSI GRANDVIEW HEIGHTS COLUMBUS LLC"
+   ],
+   "to": [
+    "READY CAPITAL MORTGAGE FINANCING 2022 FL9 LLC"
+   ],
+   "parcels": [],
+   "legal": "Pcl# 010-297282-00 Acreage 1.470 VMS"
+  },
+  {
+   "inst": "202607200087297",
+   "type": "Release Of Mortgage",
+   "date": "2026-07-20",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "CAPITAL ONE NA"
+   ],
+   "parcels": [
+    "030-001431-00"
+   ],
+   "legal": "Lt/Un 354 FRANK S WAGENHALS ET AL AMENDED SUBD Pcl# 030-001431-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202607200086904",
+   "type": "Mortgage",
+   "date": "2026-07-20",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "WRIGHT PATT CREDIT UNION INC"
+   ],
+   "parcels": [
+    "030-001603-00"
+   ],
+   "legal": "Lt/Un 58 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001603-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607150085388",
+   "type": "Mortgage",
+   "date": "2026-07-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "NATIONS DIRECT MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-000133-00"
+   ],
+   "legal": "Lt/Un 9 ENGLESIDE ADDN Pcl# 030-000133-00 Plt PB 10 PG 294"
+  },
+  {
+   "inst": "202607150085387",
+   "type": "Deed",
+   "date": "2026-07-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000133-00"
+   ],
+   "legal": "Lt/Un 9 ENGLESIDE ADDN Pcl# 030-000133-00 Plt PB 10 PG 294"
+  },
+  {
+   "inst": "202607150085345",
+   "type": "Mortgage",
+   "date": "2026-07-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST COMMONWEALTH BANK"
+   ],
+   "parcels": [
+    "030-001492-00"
+   ],
+   "legal": "Lt/Un 346 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-001492-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202607150085069",
+   "type": "Mortgage",
+   "date": "2026-07-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HUNTINGTON NATIONAL BANK"
+   ],
+   "parcels": [
+    "030-000259-00"
+   ],
+   "legal": "Lt/Un 209~211 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-000259-00 Plt PB 4 PG 412-413 PT 209-211"
+  },
+  {
+   "inst": "202607150084945",
+   "type": "Deed",
+   "date": "2026-07-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002617-00"
+   ],
+   "legal": "Un 211 SUMMIT CHASE CONDO Pcl# 030-002617-00 Plt CB 3 PG 895"
+  },
+  {
+   "inst": "202607140084794",
+   "type": "Mortgage",
+   "date": "2026-07-14",
+   "from": [
+    "LCW VENTURES LLC"
+   ],
+   "to": [
+    "HUNTINGTON NATIONAL BANK"
+   ],
+   "parcels": [
+    "030-003363-00"
+   ],
+   "legal": "Un 27-950 GRANDVIEW YARD CONDO EAST Pcl# 030-003363-00 Plt CB 281 PG 77"
+  },
+  {
+   "inst": "202607140084793",
+   "type": "Deed",
+   "date": "2026-07-14",
+   "from": [
+    "950 PULLMAN PLACE LLC"
+   ],
+   "to": [
+    "LCW VENTURES LLC"
+   ],
+   "parcels": [
+    "030-003363-00"
+   ],
+   "legal": "Un 27-950 GRANDVIEW YARD CONDO EAST Pcl# 030-003363-00 Plt CB 281 PG 77"
+  },
+  {
+   "inst": "202607140084602",
+   "type": "Release Of Mortgage",
+   "date": "2026-07-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [
+    "030-000363-00"
+   ],
+   "legal": "Lt/Un 78~79 NORTHWEST BOULEVARD ADDN PLAT NO 1 Pcl# 030-000363-00 Plt PB 10 PG 242 PT 79"
+  },
+  {
+   "inst": "202607130083766",
+   "type": "Affidavit",
+   "date": "2026-07-13",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003369-00"
+   ],
+   "legal": "Lt/Un 21 URLINS SECOND GRANDVIEW HEIGHTS SUBD Pcl# 030-003369-00 Plt PB 5 PG 230"
+  },
+  {
+   "inst": "202607100083447",
+   "type": "Deed",
+   "date": "2026-07-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002005-00"
+   ],
+   "legal": "Lt/Un 215 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-002005-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607100083272",
+   "type": "Mortgage",
+   "date": "2026-07-10",
+   "from": [
+    "COGS ULTD LLC"
+   ],
+   "to": [
+    "CONVENTUS LLC"
+   ],
+   "parcels": [
+    "030-000363-00"
+   ],
+   "legal": "Lt/Un 78~79 NORTHWEST BOULEVARD ADDN PLAT NO 1 Pcl# 030-000363-00 Plt PB 10 PG 242 PT 79"
+  },
+  {
+   "inst": "202607100083271",
+   "type": "Deed",
+   "date": "2026-07-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "COGS ULTD LLC"
+   ],
+   "parcels": [
+    "030-000363-00"
+   ],
+   "legal": "Lt/Un 78~79 NORTHWEST BOULEVARD ADDN PLAT NO 1 Pcl# 030-000363-00 Plt PB 10 PG 242 PT 79"
+  },
+  {
+   "inst": "202607100082952",
+   "type": "Deed",
+   "date": "2026-07-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001409-00"
+   ],
+   "legal": "Lt/Un 53 NORTHWEST BOULEVARD NO 3 Pcl# 030-001409-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607100082788",
+   "type": "Mechanics Lien",
+   "date": "2026-07-10",
+   "from": [
+    "1055 YARD STREET LLC"
+   ],
+   "to": [
+    "INSULATION DISTRIBUTORS INC"
+   ],
+   "parcels": [
+    "030-003492-00"
+   ],
+   "legal": "Lt/Un 15 GRANDVIEW YARD PHASE 4B Pcl# 030-003492-00 Acreage 3.240 Plt PB 118 PG 47 PT 15"
+  },
+  {
+   "inst": "202607100082712",
+   "type": "Assign Of Rents",
+   "date": "2026-07-10",
+   "from": [
+    "1114 DUBLIN ROAD LLC"
+   ],
+   "to": [
+    "FIRST MERCHANTS BANK"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 187~202 CROUGHTON & DENMEAD AMENDED GRANVIEW SUBD Plt PB 4 PG 444 PT 187 AND 202"
+  },
+  {
+   "inst": "202607100082596",
+   "type": "Mortgage",
+   "date": "2026-07-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "OHIO STATE BANK"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 270~271 JR TILTONS SUBD Plt PB 4 PG 334"
+  },
+  {
+   "inst": "202607090082259",
+   "type": "Deed",
+   "date": "2026-07-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-003292-00"
+   ],
+   "legal": "Lt/Un 48 GRANDVIEW YARD PHASE 6 Pcl# 030-003292-00 Plt PB 124 PG 56"
+  },
+  {
+   "inst": "202607090081988",
+   "type": "Mortgage",
+   "date": "2026-07-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIGURE LENDING LLC"
+   ],
+   "parcels": [],
+   "legal": "Un 1220 SEVILLE CONDO Pcl# 030-002436 Plt CB 4 PG 136-138"
+  },
+  {
+   "inst": "202607090081970",
+   "type": "Deed",
+   "date": "2026-07-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000459-00"
+   ],
+   "legal": "Lt/Un 178~179 WAGEHALS ET AL AMENDED SUBD Pcl# 030-000459-00 Plt PB 4 PG 412 PT 179"
+  },
+  {
+   "inst": "202607080081719",
+   "type": "Rr Mortgage",
+   "date": "2026-07-08",
+   "from": [
+    "917 923 PALMER LLC"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000728-00"
+   ],
+   "legal": "Lt/Un 18~19 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000728-00 Plt PB 14 PG 6 PT 18-19"
+  },
+  {
+   "inst": "202607080081612",
+   "type": "Deed",
+   "date": "2026-07-08",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001593-00"
+   ],
+   "legal": "Lt/Un 43 NORTHWEST BOULEVARD ADDN NO 3 Pcl# 030-001593-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607080081575",
+   "type": "Mortgage",
+   "date": "2026-07-08",
+   "from": [
+    "EDGEHILL FLATS II LLC"
+   ],
+   "to": [
+    "GERMAN AMERICAN BANK"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 163~165 NORTHWEST BOULEVARD ADDN PLAT NO 5 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202607080081574",
+   "type": "Deed",
+   "date": "2026-07-08",
+   "from": [
+    "EDGEHILL FLATS LLC"
+   ],
+   "to": [
+    "EDGEHILL FLATS II LLC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 163~165 NORTHWEST BOULEVARD ADDN PLAT NO 5 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202607070080974",
+   "type": "Mechanics Lien",
+   "date": "2026-07-07",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 39 CROUGHTON AND DENMEADS SUBURBAN SUBD Pcl# 030-001967 Plt PB 4 PG 318"
+  },
+  {
+   "inst": "202607060080405",
+   "type": "Mortgage",
+   "date": "2026-07-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "WRIGHT PATT CREDIT UNION INC"
+   ],
+   "parcels": [
+    "030-001779-00"
+   ],
+   "legal": "Lt/Un 262 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001779-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607060080404",
+   "type": "Deed",
+   "date": "2026-07-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001779-00"
+   ],
+   "legal": "Lt/Un 262 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001779-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202607060080261",
+   "type": "Mortgage",
+   "date": "2026-07-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "GERMAN AMERICAN BANK"
+   ],
+   "parcels": [
+    "030-000261-00"
+   ],
+   "legal": "Lt/Un 30 WYANDOTTE PLACE Pcl# 030-000261-00 Plt PB 7 PG 366"
+  },
+  {
+   "inst": "202607060080260",
+   "type": "Deed",
+   "date": "2026-07-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000261-00"
+   ],
+   "legal": "Lt/Un 30 WYANDOTTE PLACE Pcl# 030-000261-00 Plt PB 7 PG 366"
+  },
+  {
+   "inst": "202607060079658",
+   "type": "Deed",
+   "date": "2026-07-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 230 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000940 Plt PB 14 PG 8"
+  },
+  {
+   "inst": "202607060079657",
+   "type": "Trust",
+   "date": "2026-07-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 230 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-000940 Plt PB 14 PG 8"
+  },
+  {
    "inst": "202607010079036",
    "type": "Mortgage",
    "date": "2026-07-01",
@@ -966,5 +3682,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-09-30T00:32:44+00:00"
+ "updated": "2026-09-30T00:40:27+00:00"
 }
