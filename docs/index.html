@@ -546,6 +546,10 @@
       const pr2 = await fetch("county-parcels.json", { cache: "no-cache" });
       if (pr2.ok) { const pj = await pr2.json(); state.parcels = pj.parcels || []; state.parcelsSource = pj.source || ""; state.houses = buildHouses(state.parcels); }
     } catch (e) { /* optional */ }
+    try {  // county recorder documents mentioning Grandview Heights
+      const rr = await fetch("recorder.json", { cache: "no-cache" });
+      if (rr.ok) state.recorder = (await rr.json()).documents || [];
+    } catch (e) { /* optional */ }
     try {  // foreclosure filings and sheriff sales
       const cf = await fetch("court-filings.json", { cache: "no-cache" });
       if (cf.ok) state.court = await cf.json();
@@ -663,7 +667,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz || c.court ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz || c.court || c.recd ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1228,6 +1232,7 @@
       <div class="card panel" id="x-viol"></div>
       <div class="card panel" id="x-tax"></div>
       <div class="card panel" id="x-lien"></div>
+      <div class="card panel" id="x-rec"></div>
       <div class="card panel" id="x-biz"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
@@ -1237,6 +1242,7 @@
     renderViolations();
     renderTaxes();
     renderLiens();
+    renderRecorder();
     renderFilings();
     renderLand();
 
@@ -1573,6 +1579,60 @@
     $("x-lien-show").onclick = () => showLiens(props, "with a special assessment");
   }
 
+  // ---------- county recorder filings ----------
+  // Documents recorded with the county that mention Grandview Heights (recorder.py, from the Recorder's Cloud Search)
+  const REC_SEARCH = "https://franklin.oh.publicsearch.us/results?department=RP&searchType=quickSearch&searchValue=";
+  const recKind = (t) => /mortgage|^mtg/i.test(t) ? "Mortgages" : /release|satisf|cancel/i.test(t) ? "Releases"
+    : /deed|conveyance|affidavit.*transfer|transfer on death/i.test(t) ? "Deeds" : /assign/i.test(t) ? "Assignments"
+    : /lien|judgment|lis pendens|notice of (commencement|action)/i.test(t) ? "Liens and notices" : /easement|plat|lease|declar/i.test(t) ? "Easements, plats, leases" : "Other";
+  const REC_COLOR = { Deeds: "var(--t-bldg)", Mortgages: "var(--t-comm)", Releases: "var(--t-hvac)", Assignments: "var(--t-other)",
+    "Liens and notices": "var(--t-zon)", "Easements, plats, leases": "var(--t-plmb)", Other: "var(--t-elec)" };
+  const recHouse = (d) => (state.parcels || []).find((p) => d.parcels && d.parcels.includes(p.parcel));
+  const recText = (d) => [d.type, d.from && d.from.length ? "from " + d.from.slice(0, 2).join(", ") : "", d.to && d.to.length ? "to " + d.to.slice(0, 2).join(", ") : ""]
+    .filter(Boolean).join(" ");
+  function showRecorder(list, label) {
+    state.xitems = list.map((d) => { const h = recHouse(d) || { parcel: (d.parcels || [])[0] || "", luc: "", address: "" };
+      return { id: "xrec|" + d.inst, board: "House", house: h, href: REC_SEARCH + encodeURIComponent(d.inst), noun: "document", recd: true, cat: "other",
+        address: h.address || "Address not listed", lat: h.lat, lon: h.lon, meeting_date: null,
+        popup: `${recText(d)}, recorded ${fmtDate(d.date)}`, description: [recText(d), `recorded ${fmtDate(d.date)}`, `instrument ${d.inst}`].join(" · ") }; })
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0));
+    state.xlabel = label; state.xnoun = "document";
+    $("opt-x").textContent = "Recorder filings";
+    browseWith({ board: "xhouses" });
+  }
+  function renderRecorder() {
+    const el = $("x-rec"), D = state.recorder || [];
+    if (!D.length) {
+      el.innerHTML = `<h2>County Recorder filings</h2><p class="note">None loaded yet. Documents recorded with the county that mention
+        Grandview Heights are read from the Recorder's search each day.</p>`;
+      return;
+    }
+    const byKind = {};
+    D.forEach((d) => { const k = recKind(d.type); (byKind[k] = byKind[k] || []).push(d); });
+    const oldest = D.map((d) => d.date).filter(Boolean).sort()[0];
+    const recent = D.filter((d) => d.date).slice(0, 10);
+    el.innerHTML = `
+      <h2>County Recorder filings</h2>
+      <p class="p-sub">Documents recorded with the Franklin County Recorder that mention Grandview Heights: deeds, mortgages, releases,
+        liens and more, from the Recorder's search. Only documents whose text names Grandview Heights are found, so some Grandview
+        filings are missed. People's names are shown as "Individual"; organizations are named.</p>
+      <div class="x-big">${D.length.toLocaleString()}</div>
+      <div class="x-of">documents recorded${oldest ? ` since ${esc(fmtDate(oldest))}` : ""}</div>
+      <div class="x-land-grid"><div><h3>By type</h3><div id="x-rec-kind"></div></div></div>
+      <h3 class="x-land-h">Most recent</h3>
+      <div class="x-sales">${recent.map((d) => { const h = recHouse(d); return `
+        <a class="prow land" href="${REC_SEARCH + encodeURIComponent(d.inst)}" target="_blank" rel="noopener">
+          <span class="pdot" style="background:${REC_COLOR[recKind(d.type)]};border-radius:50%" aria-hidden="true"></span>
+          <span class="ptype">${esc(h && h.address ? streetCase(h.address) : (d.parcels || [])[0] ? "Parcel " + d.parcels[0] : d.type)}</span>
+          <span class="pdate">${esc(monYr(d.date))}</span>
+          <span class="teaser">${esc(recText(d))} &#8599;</span>
+        </a>`; }).join("")}</div>
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-rec-show">Show these on the map</button></div>`;
+    hbars($("x-rec-kind"), Object.entries(byKind).sort((a, b) => b[1].length - a[1].length).map(([k, l]) => ({ label: k, value: l.length,
+      color: REC_COLOR[k], l })), (r) => showRecorder(r.l, `(${r.label.toLowerCase()})`));
+    $("x-rec-show").onclick = () => showRecorder(D, "recorded with the county");
+  }
+
   // ---------- new business filings ----------
   // From Ohio Secretary of State reports uploaded to sos-uploads/ (the site turns away automated downloads)
   const bizKind = (t) => /limited liability|llc/i.test(t) ? "LLC" : /nonprofit|non-profit/i.test(t) ? "Nonprofit"
@@ -1860,7 +1920,7 @@
   }
 
   // ---------- city council ----------
-  // Agendas from CivicClerk, summarized by item type (council.py builds council.json from the agendas' own wording)
+  // Agendas from the city calendar, summarized by item type (council.py builds council.json from the agendas' own wording)
   const COUNCIL_KINDS = ["Ordinance", "Resolution", "Public hearing", "Appointment", "Proclamation", "Presentation", "Other"];
   const councilPlural = { Ordinance: "Ordinances", Resolution: "Resolutions", "Public hearing": "Public hearings",
     Appointment: "Appointments", Proclamation: "Proclamations", Presentation: "Presentations", Other: "Other items" };
@@ -1880,7 +1940,7 @@
     }
     const M = state.council;
     if (!M.length) {
-      el.innerHTML = `<div class="card note">No City Council agendas yet. They're read from the city's CivicClerk portal each day.</div>`;
+      el.innerHTML = `<div class="card note">No City Council agendas yet. They're read from the city's website calendar each day.</div>`;
       return;
     }
     const year = today.slice(0, 4), thisYear = M.filter((m) => m.date.startsWith(year));
@@ -1889,8 +1949,8 @@
     const q = (state.councilQ || "").trim().toLowerCase();
     const shown = M.filter((m) => !q || (m.name + " " + (m.items || []).map((i) => i.title).join(" ")).toLowerCase().includes(q));
     el.innerHTML = `
-      <div class="card exp-intro"><b>City Council agendas</b>, read each day from the city's
-        <a href="https://grandviewheightsoh.portal.civicclerk.com/" target="_blank" rel="noopener">CivicClerk portal</a>.
+      <div class="card exp-intro"><b>City Council agendas</b>, read each day from meetings on the city's
+        <a href="https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34" target="_blank" rel="noopener">website calendar</a>.
         Each meeting is summarized by pulling the ordinances, resolutions, hearings, and other items from its agenda, in the agenda's own
         words. Agendas list what council will take up, not what it decided; check the minutes for votes.</div>
       <div class="kpis">
