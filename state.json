@@ -3,6 +3,7 @@
     "folder": "2026-09-15 Appraisal",
     "version": 15
   },
+  "court_seen": [],
   "geocache": {
     "0 GOODALE BL, Grandview Heights, OH 43212": null,
     "0 NO STREET, Grandview Heights, OH 43212": null,
@@ -12203,5 +12204,15 @@
       "13633",
       "13659"
     ]
-  }
+  },
+  "sheriff_weeks_done": [
+    "2026-07-17",
+    "2026-07-24",
+    "2026-07-31",
+    "2026-08-07",
+    "2026-08-14",
+    "2026-08-21",
+    "2026-08-28",
+    "2026-09-04"
+  ]
 }
