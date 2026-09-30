@@ -21,6 +21,7 @@ SITE = "https://franklin.oh.publicsearch.us/"
 SEARCH = "GRANDVIEW HEIGHTS"
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
 FIRST_DAYS, OVERLAP_DAYS, PAGE = 120, 7, 100
+VERSION = 2   # bump to search the whole first window again
 ORG = re.compile(r"\b(LLC|L L C|INC|CORP\w*|COMPANY|CO|BANK|TRUST\w*|MORTGAGE|FEDERAL|CREDIT UNION|ASSOC\w*|LP|LTD|LLP|PLL?C|CITY|COUNTY|"
                  r"STATE|OHIO|UNITED STATES|FUND|HOLDINGS?|PARTNERS\w*|GROUP|SERVICES?|FINANCIAL|NATIONAL|CHURCH|UNIVERSITY|"
                  r"SCHOOLS?|AUTHORITY|DEPARTMENT|TREASURER|SECRETARY|N ?A|FSB|LENDING|LOANS?|REALTY|PROPERTIES|INVESTMENTS?|"
@@ -86,6 +87,9 @@ def read_window(page, start, end):
 def run(state, now):
     data = json.loads(OUT.read_text()) if OUT.exists() else {"documents": []}
     today = date.today()
+    if state.get("recorder_version") != VERSION:
+        state.pop("recorder_through", None)
+        state["recorder_version"] = VERSION
     through = state.get("recorder_through")
     start = (date.fromisoformat(through) - timedelta(days=OVERLAP_DAYS)) if through else today - timedelta(days=FIRST_DAYS)
     windows, s = [], start
