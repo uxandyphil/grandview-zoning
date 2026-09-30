@@ -13,17 +13,19 @@ import requests
 
 OUT = Path("docs/probe.json")
 PAGES = [
-    "https://www.grandviewheights.gov/Archive.aspx",
+    "https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34",
     "https://www.grandviewheights.gov/AgendaCenter",
-    "https://sheriff.franklincountyohio.gov/Services/Real-Estate-Sales",
-    "https://franklin.sheriffsaleauction.ohio.gov/",
-    "https://recorder.franklincountyohio.gov/",
-    "https://clerk.franklincountyohio.gov/",
-    "https://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline/",
+    "https://www.grandviewheights.gov/DocumentCenter",
+    "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=USER&zmethod=CALENDAR",
+    "https://franklin.sheriffsaleauction.ohio.gov/index.cfm?zaction=AUCTION&zmethod=PREVIEW&AuctionDate=10/02/2026",
+    "https://clerknewfiling.franklincountyohio.gov/",
+    "https://clerknewfiling.franklincountyohio.gov/api/submissions",
+    "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search",
 ]
-KEEP = re.compile(r"agenda|council|minutes|sale|sheriff|foreclos|filing|record|search|case|auction|calendar|list|"
+BROWSER_ALWAYS = ("DocumentCenter", "PREVIEW", "CALENDAR", "clerknewfiling.franklincountyohio.gov/")
+KEEP = re.compile(r"agenda|council|DocumentCenter|Calendar|EID=|minutes|sale|sheriff|foreclos|filing|record|search|case|auction|calendar|list|"
                   r"ViewFile|ADID|AMID|\.(pdf|xlsx?|csv|txt)\b", re.I)
-FOLLOW = re.compile(r"council|new.*filings|unapproved|search records|official records|sheriff sale|real estate sale|"
+FOLLOW = re.compile(r"cloud|search records|recordsearch|EID=|new.*filings|unapproved|search records|official records|sheriff sale|real estate sale|"
                     r"auction calendar|preview|foreclos", re.I)
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
 
@@ -44,12 +46,16 @@ def links(base, html):
 
 def fetch(url):
     note = ""
-    try:
+    if url.endswith(BROWSER_ALWAYS) or any(b in url for b in BROWSER_ALWAYS[:3]):
+        note = "browser first"
+    else:
+      try:
         r = requests.get(url, headers={"User-Agent": UA}, timeout=45)
-        if r.status_code < 400 and len(r.text) > 500:
-            return {"via": "requests", "status": r.status_code, "final": r.url, "html": r.text}
-        note = f"requests {r.status_code} ({r.headers.get('server', '?')})"
-    except requests.RequestException as err:
+        if r.status_code < 400 and len(r.text) > 300:
+            return {"via": "requests", "status": r.status_code, "final": r.url, "html": r.text,
+                    "type": r.headers.get("content-type", "")}
+        note = f"requests {r.status_code} ({r.headers.get('server', '?')}) {r.text[:200]}"
+      except requests.RequestException as err:
         note = f"requests error {err}"[:150]
     try:
         from playwright.sync_api import sync_playwright
@@ -57,8 +63,10 @@ def fetch(url):
             b = p.chromium.launch()
             page = b.new_page(user_agent=UA)
             resp = page.goto(url, wait_until="domcontentloaded", timeout=45000)
-            page.wait_for_timeout(8000)
-            out = {"via": "browser", "status": resp.status if resp else None, "final": page.url, "html": page.content(), "note": note}
+            page.wait_for_timeout(10000)
+            body = page.evaluate("document.body ? document.body.innerText : ''")
+            out = {"via": "browser", "status": resp.status if resp else None, "final": page.url, "html": page.content(),
+                   "note": note, "body": body[:5000]}
             b.close()
             return out
     except Exception as err:
@@ -76,8 +84,8 @@ def run(state, now):
         html = r.pop("html")
         title = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
         found = links(r["final"], html)
-        report["pages"][url] = {**r, "title": title and text_of(title[1])[:120], "text": text_of(html)[:600], "links": found}
+        report["pages"][url] = {**r, "title": title and text_of(title[1])[:120], "text": text_of(html)[:3000], "links": found}
         print(f"Probe: {url} -> {r['via']} {r['status']}, {len(found)} links")
         if url in PAGES:
-            todo += [l["url"] for l in found if FOLLOW.search(l["text"]) and l["url"] not in seen][:4]
+            todo += [l["url"] for l in found if FOLLOW.search(l["text"] + " " + l["url"]) and l["url"] not in seen][:3]
     OUT.write_text(json.dumps(report, indent=1))
