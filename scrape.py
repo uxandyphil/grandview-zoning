@@ -457,6 +457,27 @@ def main():
     except Exception as err:
         print(f"County permits step failed: {err}")
 
+    # County Recorder documents mentioning Grandview Heights (PublicSearch)
+    try:
+        import recorder
+        recorder.run(state, now)
+    except Exception as err:
+        print(f"Recorder step failed: {err}")
+
+    # City Council agendas from the meeting packets in the Document Center, summarized by item
+    try:
+        import council
+        council.run(state, now, parse_date, packet_agenda_text)
+    except Exception as err:
+        print(f"Council step failed: {err}")
+
+    # Foreclosure filings (Clerk of Courts) and sheriff sales for Grandview properties
+    try:
+        import court_filings
+        court_filings.run(state, lambda address: geocode(address, state["geocache"]), now, ADDRESS_RE)
+    except Exception as err:
+        print(f"Court filings step failed: {err}")
+
     # New business filings from Ohio Secretary of State reports uploaded to sos-uploads/
     try:
         import sos_filings

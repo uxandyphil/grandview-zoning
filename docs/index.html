@@ -177,10 +177,28 @@
   .tabs button { font: 600 0.9rem "Instrument Sans", sans-serif; color: var(--muted); background: none; border: 0;
                  border-radius: 7px; padding: 7px 16px; cursor: pointer; }
   .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
-  body[data-view="trends"] .browse-only, body[data-view="exp"] .browse-only { display: none; }
+  body[data-view="trends"] .browse-only, body[data-view="exp"] .browse-only, body[data-view="council"] .browse-only { display: none; }
   body:not([data-view="trends"]) #trends { display: none; }
+  body:not([data-view="council"]) #council { display: none; }
   body:not([data-view="exp"]) #exp { display: none; }
   .tabs .exp-tab { font-style: italic; }
+  @media (max-width: 440px) { .tabs button { padding: 7px 9px; font-size: 0.85rem; } }
+
+  /* city council */
+  #council { display: grid; gap: 14px; }
+  .cm { padding: 16px 18px; }
+  .cm-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+  .cm-head h2 { margin: 0; font-size: 1.05rem; }
+  .cm-head .cm-date { color: var(--muted); font-size: 0.9rem; }
+  .cm-head a { margin-left: auto; font-size: 0.85rem; color: var(--muted); }
+  .cm-sum { margin: 6px 0 0; color: var(--muted); font-size: 0.9rem; }
+  .cm h3 { margin: 12px 0 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .cm ul { margin: 0; padding-left: 18px; }
+  .cm li { margin: 3px 0; font-size: 0.92rem; }
+  .cm li .num { color: var(--muted); font-size: 0.82rem; margin-right: 4px; }
+  .cm details summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; margin-top: 10px; }
+  .cm-search { width: 100%; box-sizing: border-box; font: inherit; padding: 9px 12px; border: 1px solid var(--line);
+               border-radius: 8px; background: var(--surface); color: var(--ink); }
 
   /* experimental */
   #exp { display: grid; gap: 14px; }
@@ -278,11 +296,13 @@
     <div class="tabs" role="tablist" aria-label="View">
       <button type="button" role="tab" id="tab-browse" aria-selected="true">Browse</button>
       <button type="button" role="tab" id="tab-trends" aria-selected="false">Trends</button>
+      <button type="button" role="tab" id="tab-council" aria-selected="false">Council</button>
       <button type="button" role="tab" id="tab-exp" class="exp-tab" aria-selected="false">Experimental</button>
     </div>
   </header>
 
   <section id="trends" aria-label="Trends"></section>
+  <section id="council" aria-label="City Council"></section>
   <section id="exp" aria-label="Experimental"></section>
 
   <div class="card browse-only"><div id="map" role="region" aria-label="Map of zoning cases and permits"></div></div>
@@ -527,6 +547,14 @@
       const pr2 = await fetch("county-parcels.json", { cache: "no-cache" });
       if (pr2.ok) { const pj = await pr2.json(); state.parcels = pj.parcels || []; state.parcelsSource = pj.source || ""; state.houses = buildHouses(state.parcels); }
     } catch (e) { /* optional */ }
+    try {  // county recorder documents mentioning Grandview Heights
+      const rr = await fetch("recorder.json", { cache: "no-cache" });
+      if (rr.ok) state.recorder = (await rr.json()).documents || [];
+    } catch (e) { /* optional */ }
+    try {  // foreclosure filings and sheriff sales
+      const cf = await fetch("court-filings.json", { cache: "no-cache" });
+      if (cf.ok) state.court = await cf.json();
+    } catch (e) { /* optional */ }
     try {  // new business filings from uploaded Secretary of State reports
       const br = await fetch("business-filings.json", { cache: "no-cache" });
       if (br.ok) state.filings = (await br.json()).filings || [];
@@ -640,7 +668,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz || c.court || c.recd ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -1201,17 +1229,21 @@
       <div class="card panel" id="x-homes"></div>
       <div class="card panel" id="x-occ"></div>
       <div class="card panel" id="x-fc"></div>
+      <div class="card panel" id="x-sheriff"></div>
       <div class="card panel" id="x-viol"></div>
       <div class="card panel" id="x-tax"></div>
       <div class="card panel" id="x-lien"></div>
+      <div class="card panel" id="x-rec"></div>
       <div class="card panel" id="x-biz"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
     renderOccupancy();
     renderForeclosures();
+    renderSheriff();
     renderViolations();
     renderTaxes();
     renderLiens();
+    renderRecorder();
     renderFilings();
     renderLand();
 
@@ -1548,6 +1580,60 @@
     $("x-lien-show").onclick = () => showLiens(props, "with a special assessment");
   }
 
+  // ---------- county recorder filings ----------
+  // Documents recorded with the county that mention Grandview Heights (recorder.py, from the Recorder's Cloud Search)
+  const REC_SEARCH = "https://franklin.oh.publicsearch.us/results?department=RP&searchType=quickSearch&searchValue=";
+  const recKind = (t) => /mortgage|^mtg/i.test(t) ? "Mortgages" : /release|satisf|cancel/i.test(t) ? "Releases"
+    : /deed|conveyance|affidavit.*transfer|transfer on death/i.test(t) ? "Deeds" : /assign/i.test(t) ? "Assignments"
+    : /lien|judgment|lis pendens|notice of (commencement|action)/i.test(t) ? "Liens and notices" : /easement|plat|lease|declar/i.test(t) ? "Easements, plats, leases" : "Other";
+  const REC_COLOR = { Deeds: "var(--t-bldg)", Mortgages: "var(--t-comm)", Releases: "var(--t-hvac)", Assignments: "var(--t-other)",
+    "Liens and notices": "var(--t-zon)", "Easements, plats, leases": "var(--t-plmb)", Other: "var(--t-elec)" };
+  const recHouse = (d) => (state.parcels || []).find((p) => d.parcels && d.parcels.includes(p.parcel));
+  const recText = (d) => [d.type, d.from && d.from.length ? "from " + d.from.slice(0, 2).join(", ") : "", d.to && d.to.length ? "to " + d.to.slice(0, 2).join(", ") : ""]
+    .filter(Boolean).join(" ");
+  function showRecorder(list, label) {
+    state.xitems = list.map((d) => { const h = recHouse(d) || { parcel: (d.parcels || [])[0] || "", luc: "", address: "" };
+      return { id: "xrec|" + d.inst, board: "House", house: h, href: REC_SEARCH + encodeURIComponent(d.inst), noun: "document", recd: true, cat: "other",
+        address: h.address || "Address not listed", lat: h.lat, lon: h.lon, meeting_date: null,
+        popup: `${recText(d)}, recorded ${fmtDate(d.date)}`, description: [recText(d), `recorded ${fmtDate(d.date)}`, `instrument ${d.inst}`].join(" · ") }; })
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0));
+    state.xlabel = label; state.xnoun = "document";
+    $("opt-x").textContent = "Recorder filings";
+    browseWith({ board: "xhouses" });
+  }
+  function renderRecorder() {
+    const el = $("x-rec"), D = state.recorder || [];
+    if (!D.length) {
+      el.innerHTML = `<h2>County Recorder filings</h2><p class="note">None loaded yet. Documents recorded with the county that mention
+        Grandview Heights are read from the Recorder's search each day.</p>`;
+      return;
+    }
+    const byKind = {};
+    D.forEach((d) => { const k = recKind(d.type); (byKind[k] = byKind[k] || []).push(d); });
+    const oldest = D.map((d) => d.date).filter(Boolean).sort()[0];
+    const recent = D.filter((d) => d.date).slice(0, 10);
+    el.innerHTML = `
+      <h2>County Recorder filings</h2>
+      <p class="p-sub">Documents recorded with the Franklin County Recorder that mention Grandview Heights: deeds, mortgages, releases,
+        liens and more, from the Recorder's search. Only documents whose text names Grandview Heights are found, so some Grandview
+        filings are missed. People's names are shown as "Individual"; organizations are named.</p>
+      <div class="x-big">${D.length.toLocaleString()}</div>
+      <div class="x-of">documents recorded${oldest ? ` since ${esc(fmtDate(oldest))}` : ""}</div>
+      <div class="x-land-grid"><div><h3>By type</h3><div id="x-rec-kind"></div></div></div>
+      <h3 class="x-land-h">Most recent</h3>
+      <div class="x-sales">${recent.map((d) => { const h = recHouse(d); return `
+        <a class="prow land" href="${REC_SEARCH + encodeURIComponent(d.inst)}" target="_blank" rel="noopener">
+          <span class="pdot" style="background:${REC_COLOR[recKind(d.type)]};border-radius:50%" aria-hidden="true"></span>
+          <span class="ptype">${esc(h && h.address ? streetCase(h.address) : (d.parcels || [])[0] ? "Parcel " + d.parcels[0] : d.type)}</span>
+          <span class="pdate">${esc(monYr(d.date))}</span>
+          <span class="teaser">${esc(recText(d))} &#8599;</span>
+        </a>`; }).join("")}</div>
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-rec-show">Show these on the map</button></div>`;
+    hbars($("x-rec-kind"), Object.entries(byKind).sort((a, b) => b[1].length - a[1].length).map(([k, l]) => ({ label: k, value: l.length,
+      color: REC_COLOR[k], l })), (r) => showRecorder(r.l, `(${r.label.toLowerCase()})`));
+    $("x-rec-show").onclick = () => showRecorder(D, "recorded with the county");
+  }
+
   // ---------- new business filings ----------
   // From Ohio Secretary of State reports uploaded to sos-uploads/ (the site turns away automated downloads)
   const bizKind = (t) => /limited liability|llc/i.test(t) ? "LLC" : /nonprofit|non-profit/i.test(t) ? "Nonprofit"
@@ -1609,6 +1695,65 @@
         <span class="teaser">${esc([f.type, f.address ? streetCase(f.address) : ""].filter(Boolean).join(" · "))}</span>
       </div>`).join("");
     $("x-biz-show").onclick = () => showFilings(F, "");
+  }
+
+  // ---------- sheriff sales and new foreclosure cases ----------
+  // Sheriff's weekly online auction (RealForeclose) and newly e-filed foreclosure complaints (Clerk of Courts)
+  const SALE_COLOR = { Scheduled: "var(--t-bldg)", Sold: "var(--t-zon)", Withdrawn: "var(--t-other)", Rescheduled: "var(--t-elec)",
+    Canceled: "var(--t-other)", Cancelled: "var(--t-other)" };
+  const saleText = (x) => [`Sheriff sale ${fmtDate(x.date)}`, x.status !== "Scheduled" ? x.status.toLowerCase() : "",
+    x.sold_for ? `for ${money$(x.sold_for)}${x.sold_to ? " to " + (x.sold_to === "Plaintiff" ? "the lender" : "a third-party bidder") : ""}` : "",
+    x.appraised ? `appraised ${money$(x.appraised)}` : "", x.opening_bid && x.status === "Scheduled" ? `opening bid ${money$(x.opening_bid)}` : ""]
+    .filter(Boolean).join(", ");
+  const filingText = (f) => `Foreclosure filed ${fmtDate(f.date)}${f.plaintiff ? " by " + f.plaintiff : ""}`;
+  function courtHouse(x) {
+    return (x.parcel && (state.parcels || []).find((p) => p.parcel === x.parcel))
+      || (state.parcels || []).find((p) => x.address && normAddr(p.address) === normAddr(x.address))
+      || { parcel: x.parcel || "", luc: "", address: x.address };
+  }
+  function showCourt(list, label) {
+    state.xitems = list.map((x) => { const h = courtHouse(x);
+      return { id: "xcourt|" + (x.case || x.id) + "|" + x.date, board: "House", house: h, noun: "property", court: true, cat: "other",
+        address: x.address || h.address || "Address not listed", lat: x.lat ?? h.lat, lon: x.lon ?? h.lon, meeting_date: null,
+        popup: x.plaintiff !== undefined ? filingText(x) : saleText(x),
+        description: [x.plaintiff !== undefined ? filingText(x) : saleText(x), x.case ? "case " + x.case : ""].filter(Boolean).join(" · ") }; })
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0));
+    state.xlabel = label; state.xnoun = "property";
+    $("opt-x").textContent = "Sheriff sales";
+    browseWith({ board: "xhouses" });
+  }
+  function renderSheriff() {
+    const el = $("x-sheriff"), C = state.court || { filings: [], sales: [] };
+    const sales = C.sales || [], filings = (C.filings || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+    const upcoming = sales.filter((x) => x.date >= today && x.status === "Scheduled").sort((a, b) => a.date.localeCompare(b.date));
+    const past = sales.filter((x) => !(x.date >= today && x.status === "Scheduled"));
+    const byStatus = {};
+    past.forEach((x) => { (byStatus[x.status] = byStatus[x.status] || []).push(x); });
+    const row = (x, text) => `
+      <a class="prow land" href="${x.parcel ? PARCEL_LINK + esc(x.parcel) : "#"}" target="_blank" rel="noopener">
+        <span class="pdot" style="background:${SALE_COLOR[x.status] || "var(--t-zon)"};border-radius:50%" aria-hidden="true"></span>
+        <span class="ptype">${esc(x.address ? streetCase(x.address) : "Address not listed")}</span>
+        <span class="pdate">${esc(monYr(x.date))}</span>
+        <span class="teaser">${esc(text)}${x.parcel ? " &#8599;" : ""}</span>
+      </a>`;
+    const since = (list) => list.length ? list.map((x) => x.date).sort()[0] : null;
+    el.innerHTML = `
+      <h2>Sheriff sales and new foreclosure cases</h2>
+      <p class="p-sub">Grandview properties in the Sheriff's weekly online foreclosure auction, and foreclosure cases as they're filed
+        with the Clerk of Courts. A case can take a year or more to reach a sale, and many end without one (the loan is brought current,
+        the house is sold, or the case is dismissed). The completed auctions going back to 2005 are in Foreclosures above. Defendants'
+        names aren't shown.</p>
+      <div class="x-land-grid">
+        <div><h3>Upcoming sheriff sales</h3>${upcoming.length ? `<div class="x-sales">${upcoming.map((x) => row(x, saleText(x))).join("")}</div>`
+          : `<p class="note" style="padding:0">None scheduled for a Grandview property right now.</p>`}</div>
+        <div><h3>New foreclosure cases</h3>${filings.length ? `<div class="x-sales">${filings.slice(0, 8).map((f) => row({ ...f, status: "Filed" }, filingText(f))).join("")}</div>`
+          : `<p class="note" style="padding:0">None found yet${C.updated ? "" : " (the first check runs with the next update)"}. New filings are checked every day.</p>`}</div>
+      </div>
+      ${past.length ? `<h3 class="x-land-h">Past sheriff sales${since(past) ? ` since ${esc(monYr(since(past)))}` : ""}</h3><div id="x-sheriff-status"></div>` : ""}
+      ${sales.length || filings.length ? `<div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-sheriff-show">Show these on the map</button></div>` : ""}`;
+    if ($("x-sheriff-status")) hbars($("x-sheriff-status"), Object.entries(byStatus).sort((a, b) => b[1].length - a[1].length)
+      .map(([k, l]) => ({ label: k, value: l.length, color: SALE_COLOR[k] || "var(--t-other)", l })), (r) => showCourt(r.l, `(sheriff sale ${r.label.toLowerCase()})`));
+    if ($("x-sheriff-show")) $("x-sheriff-show").onclick = () => showCourt([...sales, ...filings], "in a sheriff sale or foreclosure case");
   }
 
   // ---------- foreclosures ----------
@@ -1775,22 +1920,92 @@
     $("x-land-show").onclick = () => showLand(land, "");
   }
 
+  // ---------- city council ----------
+  // Agendas from the city calendar, summarized by item type (council.py builds council.json from the agendas' own wording)
+  const COUNCIL_KINDS = ["Ordinance", "Resolution", "Public hearing", "Appointment", "Proclamation", "Presentation", "Other"];
+  const councilPlural = { Ordinance: "Ordinances", Resolution: "Resolutions", "Public hearing": "Public hearings",
+    Appointment: "Appointments", Proclamation: "Proclamations", Presentation: "Presentations", Other: "Other items" };
+  const sentenceCase = (t) => /[a-z]/.test(t) ? t : t.toLowerCase().replace(/(^|[.!?]\s+)([a-z])/g, (m, a, b) => a + b.toUpperCase())
+    .replace(/\b(ohio|grandview heights|columbus|franklin county)\b/g, (m) => m.replace(/\b\w/g, (c) => c.toUpperCase()));
+  function councilSummary(counts) {
+    const parts = COUNCIL_KINDS.filter((k) => k !== "Other" && counts[k])
+      .map((k) => `${counts[k]} ${counts[k] === 1 ? k.toLowerCase() : councilPlural[k].toLowerCase()}`);
+    return parts.length ? parts.join(", ") : "";
+  }
+  async function renderCouncil() {
+    const el = $("council");
+    if (!state.council) {
+      el.innerHTML = `<div class="card note">Loading agendas…</div>`;
+      try { const r = await fetch("council.json", { cache: "no-cache" }); state.council = r.ok ? (await r.json()).meetings || [] : []; }
+      catch (e) { state.council = []; }
+    }
+    const M = state.council;
+    if (!M.length) {
+      el.innerHTML = `<div class="card note">No City Council agendas yet. They're read from the city's website calendar each day.</div>`;
+      return;
+    }
+    const year = today.slice(0, 4), thisYear = M.filter((m) => m.date.startsWith(year));
+    const tally = {};
+    thisYear.forEach((m) => Object.entries(m.counts || {}).forEach(([k, n]) => { tally[k] = (tally[k] || 0) + n; }));
+    const q = (state.councilQ || "").trim().toLowerCase();
+    const shown = M.filter((m) => !q || (m.name + " " + (m.items || []).map((i) => i.title).join(" ")).toLowerCase().includes(q));
+    el.innerHTML = `
+      <div class="card exp-intro"><b>City Council agendas</b>, read each day from meetings on the city's
+        <a href="https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34" target="_blank" rel="noopener">website calendar</a>.
+        Each meeting is summarized by pulling the ordinances, resolutions, hearings, and other items from its agenda, in the agenda's own
+        words. Agendas list what council will take up, not what it decided; check the minutes for votes.</div>
+      <div class="kpis">
+        <div class="card kpi"><div class="k-label">Meetings in ${esc(year)}</div><div class="k-value">${thisYear.length}</div></div>
+        <div class="card kpi"><div class="k-label">Ordinances on agendas</div><div class="k-value">${tally.Ordinance || 0}</div></div>
+        <div class="card kpi"><div class="k-label">Resolutions on agendas</div><div class="k-value">${tally.Resolution || 0}</div></div>
+        <div class="card kpi"><div class="k-label">Public hearings</div><div class="k-value">${tally["Public hearing"] || 0}</div></div>
+      </div>
+      <input class="cm-search" id="cm-q" type="search" placeholder="Search agendas, like “zoning” or “budget”" value="${esc(state.councilQ || "")}">
+      ${shown.length ? shown.slice(0, 40).map((m) => {
+        const items = (m.items || []).filter((i) => !q || i.title.toLowerCase().includes(q) || m.name.toLowerCase().includes(q));
+        const up = m.date >= today;
+        const groups = COUNCIL_KINDS.map((k) => [k, items.filter((i) => i.kind === k)]).filter(([, l]) => l.length);
+        const list = (l) => `<ul>${l.map((i) => `<li>${i.number && !/^[IVX\d]+\.?$|^[A-Z]\.$/.test(i.number)
+          ? `<span class="num">${esc(i.number)}</span>` : ""}${esc(sentenceCase(i.title))}</li>`).join("")}</ul>`;
+        const main = groups.filter(([k]) => k !== "Other"), other = groups.find(([k]) => k === "Other");
+        return `
+        <div class="card cm">
+          <div class="cm-head"><h2>${esc(m.name || "City Council")}</h2>
+            <span class="cm-date">${esc(fmtDate(m.date))}${m.time ? " · " + esc(m.time.replace(/^0/, "")) : ""}</span>
+            ${up ? '<span class="chip soon">Upcoming</span>' : ""}
+            <a href="${esc(m.url)}" target="_blank" rel="noopener">Full agenda &#8599;</a></div>
+          <p class="cm-sum">${!m.has_agenda ? "No agenda posted yet." : !(m.items || []).length ? "Agenda posted; its items couldn't be read automatically, so open the full agenda."
+            : esc(councilSummary(m.counts || {}) || "No ordinances or resolutions on this agenda.")}</p>
+          ${main.map(([k, l]) => `<h3>${esc(l.length === 1 ? k : councilPlural[k])}</h3>${list(l)}`).join("")}
+          ${other ? (main.length ? `<details${q ? " open" : ""}><summary>${other[1].length} other item${other[1].length === 1 ? "" : "s"}</summary>${list(other[1])}</details>`
+            : `<h3>Items</h3>${list(other[1])}`) : ""}
+        </div>`;
+      }).join("") : `<div class="card note">No agendas mention “${esc(q)}”.</div>`}`;
+    const input = $("cm-q");
+    input.addEventListener("input", () => { state.councilQ = input.value; clearTimeout(input._t);
+      input._t = setTimeout(() => { renderCouncil().then(() => { const i = $("cm-q"); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }); }, 250); });
+  }
+
   // ---------- view switching ----------
   let trendsDrawn = false;
   let expDrawn = false;
+  let councilDrawn = false;
   function setView(v) {
     document.body.dataset.view = v;
-    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-exp", "exp"]])
+    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-exp", "exp"]])
       $(id).setAttribute("aria-selected", String(v === name));
     if (v === "trends" && !trendsDrawn) { renderTrends(); trendsDrawn = true; }
     if (v === "exp" && !expDrawn) { renderExp(); expDrawn = true; }
+    if (v === "council" && !councilDrawn) { renderCouncil(); councilDrawn = true; }
     if (v === "browse") setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
     if (!location.hash.startsWith("#permit="))
-      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : location.pathname + location.search);
+      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council"
+        : location.pathname + location.search);
   }
   $("tab-browse").addEventListener("click", () => setView("browse"));
   $("tab-trends").addEventListener("click", () => setView("trends"));
   $("tab-exp").addEventListener("click", () => setView("exp"));
+  $("tab-council").addEventListener("click", () => setView("council"));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
     const v = document.body.dataset.view;
     if (v === "trends") renderTrends(); else trendsDrawn = false;
@@ -1798,6 +2013,7 @@
   document.body.dataset.view = "browse";
   if (location.hash === "#trends") setView("trends");
   if (location.hash === "#experimental") setView("exp");
+  if (location.hash === "#council") setView("council");
 
   render();
   const linked = decodeURIComponent((location.hash.match(/^#permit=(.+)$/) || [])[1] || "");
