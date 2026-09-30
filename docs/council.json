@@ -20,7 +20,7 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026 -15: An Ordinance to notify parties doing business with the City of Grandview Heights of unacceptable contractual provisions. 2 nd reading. Previous reading 9/14/2026 Assigned to the Finance Committee \u2022 New Business",
+     "title": "Ord. 2026 -15: An Ordinance to notify parties doing business with the City of Grandview Heights of unacceptable contractual provisions. 2 nd reading. Previous reading 9/14/2026 Assigned to the Finance Committee",
      "kind": "Ordinance"
     },
     {
@@ -30,7 +30,7 @@
     },
     {
      "number": "2.",
-     "title": "Res. 28-2026: A Resolution recognizing the Month of October as Fire Prevention Month and the week of October 4-10, 2026 as Fire Prevention Week in Grandview Heights, Ohio A G E N D A CITY OF GRANDVIEW HEIGHTS, OHIO CITY COUNCIL MEETING Monday, September 28, 2026 09282026 City Council Page 2 09242026",
+     "title": "Res. 28-2026: A Resolution recognizing the Month of October as Fire Prevention Month and the week of October 4-10, 2026 as Fire Prevention Week in Grandview Heights, Ohio",
      "kind": "Resolution"
     },
     {
@@ -55,12 +55,12 @@
     },
     {
      "number": "7.",
-     "title": "Ord. 2026-17: An Ordinance to make appropriations to various departments within the City of improvements in 2027 \u2022 Other Business",
+     "title": "Ord. 2026-17: An Ordinance to make appropriations to various departments within the City of Grandview Heights municipal government to purchase equipment and make capital improvements in 2027",
      "kind": "Ordinance"
     },
     {
      "number": "1.",
-     "title": "New Liquor Permit: Request for D -5I Liquor Permit #10020481- 1 Macias G Group LLC, Fronteras Mexican Cuisine at GVX, 1064 Dublin Road, Grandview Heights OH 43215 \u2022 Comments from Council Members \u2022 Adjournment",
+     "title": "New Liquor Permit: Request for D -5I Liquor Permit #10020481- 1 Macias G Group LLC, Fronteras Mexican Cuisine at GVX, 1064 Dublin Road, Grandview Heights OH 43215",
      "kind": "Other"
     }
    ],
@@ -69,7 +69,8 @@
     "Resolution": 5,
     "Other": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3782",
@@ -101,7 +102,7 @@
     },
     {
      "number": "5.",
-     "title": "Ord. 2026 -15: An Ordinance to notify parties doing business with the City of Grandview Heights of unacceptable contractual provisions \u2022 Other Business \u2022 Comments from Council Members \u2022 Adjournment",
+     "title": "Ord. 2026 -15: An Ordinance to notify parties doing business with the City of Grandview Heights of unacceptable contractual provisions",
      "kind": "Ordinance"
     }
    ],
@@ -109,7 +110,8 @@
     "Resolution": 4,
     "Ordinance": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3775",
@@ -120,7 +122,8 @@
    "title": "August 18, 2026 Council Retreat Agenda",
    "items": [],
    "counts": {},
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3774",
@@ -142,19 +145,20 @@
     },
     {
      "number": "3.",
-     "title": "Res. 21-2026: A Resolution authorizing the City of Grandview Heights to issue The Ohio Bell Company, doing business as AT&T Ohio, a Telecommunications and Utility Permit to operate and maintain a telecommunications system or utility within t he public right s-of-way within the City of Grandview Heights, Ohio",
+     "title": "Res. 21-2026: A Resolution authorizing the City of Grandview Heights to issue The Ohio Bell Company, doing business as AT&T Ohio, a Telecommunications and Utility Permit to operate and maintain a telecommunications system or utility within t he public right s-of-way within the",
      "kind": "Resolution"
     },
     {
      "number": "4.",
-     "title": "Res. 22-2026: A Resolution recognizing September as National Suicide Prevention and Action Month in the City of Grandview Heights \u2022 Other Business Community Partners Grant Applications \u2013 Finance Committee Recommendations Tri-Village Packers Wright\u2019s Way Foundation \u2022 Comments from Council Members \u2022 Adjournment",
+     "title": "Res. 22-2026: A Resolution recognizing September as National Suicide Prevention and Action Month in the City of Grandview Heights",
      "kind": "Resolution"
     }
    ],
    "counts": {
     "Resolution": 4
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3770",
@@ -165,7 +169,8 @@
    "title": "July 27, 2026 Council Meeting Agenda",
    "items": [],
    "counts": {},
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3771",
@@ -177,14 +182,15 @@
    "items": [
     {
      "number": "1.",
-     "title": "Review community grant applications Tri-Village Packers Wright\u2019s Way Foundation Adjournment Chris Smith Chris Smith, Chair Finance Committee",
+     "title": "Review community grant applications Tri-Village Packers Wright\u2019s Way Foundation Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
      "kind": "Other"
     }
    ],
    "counts": {
     "Other": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3761",
@@ -196,7 +202,7 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026-13: An Ordinance amending Ordinance 2026- 01 to additionally allow vehicle and equipment trade-ins when appropriate. 3rd reading. Previous readings 5/26/2026 and 6/8/2026 \u2022 New Business",
+     "title": "Ord. 2026-13: An Ordinance amending Ordinance 2026- 01 to additionally allow vehicle and equipment trade-ins when appropriate. 3rd reading. Previous readings 5/26/2026 and 6/8/2026",
      "kind": "Ordinance"
     },
     {
@@ -211,7 +217,7 @@
     },
     {
      "number": "3.",
-     "title": "Ord. 2026-14: An Ordinance to approve emergency purchases and supplemental appropriations for the repair of the sinkhole at Fairview Avenue and Merrick Road, for the fiscal year ending December 31, 2026, and declaring an emergency \u2022 Other Business Community Partners Grant Applications Tri-Village Packers Wright\u2019s Way Foundation Notice to Legislative Authority from Ohio Division of Liquor Control: Transfer of Ownership",
+     "title": "Ord. 2026-14: An Ordinance to approve emergency purchases and supplemental appropriations for the repair of the sinkhole at Fairview Avenue and Merrick Road, for the fiscal year ending December 31, 2026, and declaring an emergency",
      "kind": "Ordinance"
     }
    ],
@@ -219,7 +225,8 @@
     "Ordinance": 2,
     "Resolution": 2
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3760",
@@ -238,7 +245,8 @@
    "counts": {
     "Ordinance": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3734",
@@ -255,7 +263,7 @@
     },
     {
      "number": "2.",
-     "title": "Ord. 2026-13: An Ordinance amending Ordinance 2026- 01 to additionally allow vehicle and equipment trade-ins when appropriate. 2nd reading. Previous reading 5/26/2026 \u2022 New Business",
+     "title": "Ord. 2026-13: An Ordinance amending Ordinance 2026- 01 to additionally allow vehicle and equipment trade-ins when appropriate. 2nd reading. Previous reading 5/26/2026",
      "kind": "Ordinance"
     },
     {
@@ -275,7 +283,7 @@
     },
     {
      "number": "4.",
-     "title": "Res. 16-2026: A Resolution in support of LGBTQ+ Pride Month in Grandview Heights, Ohio \u2022 Other Business \u2022 Comments from Council Members \u2022 Adjournment",
+     "title": "Res. 16-2026: A Resolution in support of LGBTQ+ Pride Month in Grandview Heights, Ohio",
      "kind": "Resolution"
     }
    ],
@@ -283,7 +291,8 @@
     "Ordinance": 2,
     "Resolution": 4
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3733",
@@ -295,14 +304,15 @@
    "items": [
     {
      "number": "1.",
-     "title": "Review grant program process documents Program overview and process with selection criteria Application Rubric Adjournment Denise Walker Chair Grants Ad Hoc Committee",
+     "title": "Review grant program process documents Program overview and process with selection criteria Application Rubric Adjournment Denise Walker Chair Grants Ad Hoc Committee Grandview Heights City Council",
      "kind": "Other"
     }
    ],
    "counts": {
     "Other": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3728",
@@ -324,22 +334,22 @@
     },
     {
      "number": "3.",
-     "title": "Ord. 2026-11: An Ordinance to accept an easement for 0.046 acres of real property, so as to create a continuous sidewalk, and declaring it an emergency. 3rd reading. Previous readings 4/27/2026 and 5/11/2026. Assigned to the Planning & Administration Committee A G E N D A CITY OF GRANDVIEW HEIGHTS, OHIO CITY COUNCIL MEETING Tuesday, May 26, 2026 05262026 City Council Page 2 05212026",
+     "title": "Ord. 2026-11: An Ordinance to accept an easement for 0.046 acres of real property, so as to create a continuous sidewalk, and declaring it an emergency. 3rd reading. Previous readings 4/27/2026 and 5/11/2026. Assigned to the Planning & Administration Committee",
      "kind": "Ordinance"
     },
     {
      "number": "4.",
-     "title": "Ord. 2026- 12: An Ordinance to amend the Fire Prevention Code of the City of Grandview Heights, and declaring an emergency. 2 nd reading. Previous reading 5/11/2026. Assigned to the Safety Committee \u2022 New Business",
+     "title": "Ord. 2026- 12: An Ordinance to amend the Fire Prevention Code of the City of Grandview Heights, and declaring an emergency. 2 nd reading. Previous reading 5/11/2026. Assigned to the Safety Committee",
      "kind": "Ordinance"
     },
     {
      "number": "1.",
-     "title": "Ord. 2026-13: An Ordinance amending Ordinance 2026- 01 to additionally allow vehicle and equipment trade-ins when appropriate \u2022 Other Business",
+     "title": "Ord. 2026-13: An Ordinance amending Ordinance 2026- 01 to additionally allow vehicle and equipment trade-ins when appropriate",
      "kind": "Ordinance"
     },
     {
      "number": "1.",
-     "title": "Notice to Legislative Authority from Ohio Division of Liquor Control: Transfer of Ownership and Location (TFOL) from AV Findlay LLC, 401 & 403 S. Main St, Findlay, OH 45840 to Rarmar LLC, 827 Goodale Blvd, Grandview Heights, OH 43212. New TFOL Permit #10014133-1 \u2022 Comments from Council Members \u2022 Executive Session: Pursuant to R.C. 121.22(G)(2), to consider the purchase of property for public purposes",
+     "title": "Notice to Legislative Authority from Ohio Division of Liquor Control: Transfer of Ownership and Location (TFOL) from AV Findlay LLC, 401 & 403 S. Main St, Findlay, OH 45840 to Rarmar LLC, 827 Goodale Blvd, Grandview Heights, OH 43212. New TFOL Permit #10014133-1",
      "kind": "Other"
     }
    ],
@@ -347,7 +357,8 @@
     "Ordinance": 5,
     "Other": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3727",
@@ -359,14 +370,15 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 202 6-12: An Ordinance to amend the F ire Preven tion Code of the City of 5/11/2026. Assigned to the Safety Committee Adjournment Melanie Houston Chair Safety Committee",
+     "title": "Ord. 202 6-12: An Ordinance to amend the F ire Preven tion Code of the City of Grandview Heights , and declaring an emergency. 2nd reading. Previous reading 5/11/2026. Assigned to the Safety Committee Adjournment Melanie Houston Chair Safety Committee Grandview Heights City Council",
      "kind": "Ordinance"
     }
    ],
    "counts": {
     "Ordinance": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3718",
@@ -378,7 +390,7 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026 -08: An Ordinance to approve supplemental appropriations for the City of readings 04/13/2026 and 4/27/2026",
+     "title": "Ord. 2026 -08: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. 3rd reading. Previous readings 04/13/2026 and 4/27/2026",
      "kind": "Ordinance"
     },
     {
@@ -388,12 +400,12 @@
     },
     {
      "number": "3.",
-     "title": "Ord. 2026-10: An Ordinance to amend the means of notices required to be sent by the City of Grandview Heights, Ohio. 2nd reading. Previous reading 4/27/2026. Assigned to the Planning & Administration Committee",
+     "title": "Ord. 2026-10: An Ordinance to amend the means of notices required to be sent by the the Planning & Administration Committee",
      "kind": "Ordinance"
     },
     {
      "number": "4.",
-     "title": "Ord. 2026-11: An Ordinance to accept an easement for 0.046 acres of real property, so as to create a continuous sidewalk, and declaring it an emergency. 2nd reading. Previous reading 4/27/2026. Assigned to the Planning & Administration Committee \u2022 New Business",
+     "title": "Ord. 2026-11: An Ordinance to accept an easement for 0.046 acres of real property, so as to create a continuous sidewalk, and declaring it an emergency. 2nd reading. Previous reading 4/27/2026. Assigned to the Planning & Administration Committee",
      "kind": "Ordinance"
     },
     {
@@ -408,7 +420,7 @@
     },
     {
      "number": "3.",
-     "title": "Ord. 2026- 12: An Ordinance to Amend the Fire Prevention Code of the City of \u2022 Other Business \u2022 Comments from Council Members \u2022 Adjournment",
+     "title": "Ord. 2026- 12: An Ordinance to Amend the Fire Prevention Code of the City of Grandview Heights, and declaring an emergency",
      "kind": "Ordinance"
     }
    ],
@@ -416,7 +428,8 @@
     "Ordinance": 5,
     "Resolution": 2
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3721",
@@ -443,7 +456,7 @@
     },
     {
      "number": "4.",
-     "title": "Ord. 2026-11: An Ordinance to accept an easement for 0.046 acres of real property, so as to create a continuous sidewalk, and declaring it an emergency. 2nd reading. Previous reading 4/27/2026. Assigned to the Planning & Administration Committee Adjournment Rebekah Weiss Chair Planning & Administration Committee",
+     "title": "Ord. 2026-11: An Ordinance to accept an easement for 0.046 acres of real property, so as to create a continuous sidewalk, and declaring it an emergency. 2nd reading. Previous reading 4/27/2026. Assigned to the Planning & Administration Committee Adjournment Rebekah Weiss Chair Planning & Administration Committee Grandview Heights City Council",
      "kind": "Ordinance"
     }
    ],
@@ -451,7 +464,8 @@
     "Other": 1,
     "Ordinance": 3
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3713",
@@ -463,12 +477,12 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026 -08: An Ordinance to approve supplemental appropriations for the City of reading 4/13/2026. Assigned to Finance Committee \u2022 New Business",
+     "title": "Ord. 2026 -08: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. 2nd reading. Previous reading 4/13/2026. Assigned to Finance Committee",
      "kind": "Ordinance"
     },
     {
      "number": "1.",
-     "title": "Res. 10-2026: A Resolution recognizing May 4 -8, 2026 as National Air Quality Awareness Week in Grandview Heights, Ohio A G E N D A CITY OF GRANDVIEW HEIGHTS, OHIO REGULAR CITY COUNCIL MEETING Monday, April 27, 2026 04272026 City Council Page 2 4/24/2026",
+     "title": "Res. 10-2026: A Resolution recognizing May 4 -8, 2026 as National Air Quality Awareness Week in Grandview Heights, Ohio REGULAR CITY COUNCIL MEETING",
      "kind": "Resolution"
     },
     {
@@ -483,7 +497,7 @@
     },
     {
      "number": "4.",
-     "title": "Ord. 2026-11: An Ordinance to accept an easement for 0.046 acres of real property, so as to create a continuous sidewalk, and declaring it an emergency \u2022 Other Business \u2022 Comments from Council Members \u2022 Executive Session: Pursuant to R.C. 121.22(G)(2), to consider the purchase of property for public purposes \u2022 Adjournment",
+     "title": "Ord. 2026-11: An Ordinance to accept an easement for 0.046 acres of real property, so as to create a continuous sidewalk, and declaring it an emergency",
      "kind": "Ordinance"
     }
    ],
@@ -491,7 +505,8 @@
     "Ordinance": 4,
     "Resolution": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3712",
@@ -503,14 +518,15 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026-08: An Ordinance to approve supplemental appropriations for the City of Previous reading 04/13/2026. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee",
+     "title": "Ord. 2026-08: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. 2nd Reading Previous reading 04/13/2026. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
      "kind": "Ordinance"
     }
    ],
    "counts": {
     "Ordinance": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3711",
@@ -522,14 +538,15 @@
    "items": [
     {
      "number": "1.",
-     "title": "Review draft grant program process documents Adjournment Denise Walker Chair Grants Ad Hoc Committee",
+     "title": "Review draft grant program process documents Adjournment Denise Walker Chair Grants Ad Hoc Committee Grandview Heights City Council",
      "kind": "Other"
     }
    ],
    "counts": {
     "Other": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3697",
@@ -541,7 +558,7 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026-07: An Ordinance to amend Grandview Heights Codified Ordinance 521.11 , Yard Care. 3rd reading. Previous readings 02/23/2026 and 3/9/2026 \u2022 New Business",
+     "title": "Ord. 2026-07: An Ordinance to amend Grandview Heights Codified Ordinance 521.11 , Yard Care. 3rd reading. Previous readings 02/23/2026 and 3/9/2026",
      "kind": "Ordinance"
     },
     {
@@ -556,7 +573,7 @@
     },
     {
      "number": "3.",
-     "title": "Ord. 2026 -08: An Ordinance to approve s upplemental appropriations for the City of \u2022 Other Business \u2022 Comments from Council Members \u2022 Adjournment",
+     "title": "Ord. 2026 -08: An Ordinance to approve s upplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026",
      "kind": "Ordinance"
     }
    ],
@@ -564,7 +581,8 @@
     "Ordinance": 2,
     "Resolution": 2
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3689",
@@ -576,14 +594,15 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026 -07: An Ordinance to amend Grandview Heights Codified Ordinance 521.1, Yard Care. Readings 02/23/2026 and 03/09/2026. No votes will be taken \u2022 Adjournment A G E N D A CITY OF GRANDVIEW HEIGHTS, OHIO COUNCIL WORK SESSION Monday, March 30, 2026",
+     "title": "Ord. 2026 -07: An Ordinance to amend Grandview Heights Codified Ordinance 521.1, Yard Care. Readings 02/23/2026 and 03/09/2026. No votes will be taken",
      "kind": "Ordinance"
     }
    ],
    "counts": {
     "Ordinance": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3687",
@@ -595,14 +614,15 @@
    "items": [
     {
      "number": "1.",
-     "title": "Res. 07-2026: A Resolution requesting an advance of funds derived from taxes and other sources being held by the Franklin County Treasurer; and declaring it an emergency \u2022 Other Business Economic Development Transfer Form (TREX) Liquor Permit from Another City to Grandview Heights: AV Findlay LLC to Rarmar LLC, 827 Goodale Blvd. Permit Holder #00312836-1 \u2022 Adjournment A G E N D A CITY OF GRANDVIEW HEIGHTS, OHIO",
+     "title": "Res. 07-2026: A Resolution requesting an advance of funds derived from taxes and other sources being held by the Franklin County Treasurer; and declaring it an emergency",
      "kind": "Resolution"
     }
    ],
    "counts": {
     "Resolution": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3674",
@@ -619,14 +639,15 @@
     },
     {
      "number": "2.",
-     "title": "Ord. 2026 -07: An Ordinance to amend Grandview Heights Codified Ordinance 521.1, Yard Care. 2nd reading. Previous reading 02/23/2026 \u2022 New Business \u2022 Other Business \u2022 Comments from Council Members \u2022 Adjournment",
+     "title": "Ord. 2026 -07: An Ordinance to amend Grandview Heights Codified Ordinance 521.1, Yard Care. 2nd reading. Previous reading 02/23/2026",
      "kind": "Ordinance"
     }
    ],
    "counts": {
     "Ordinance": 2
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3671",
@@ -638,14 +659,15 @@
    "items": [
     {
      "number": "1.",
-     "title": "Initial Committee meeting to provide a comprehensive review of the Council Community Grant and policies/procedures Adjournment Denise Walker Chair Grants Ad Hoc Committee",
+     "title": "Initial Committee meeting to provide a comprehensive review of the Council Community Grant and policies/procedures Adjournment Denise Walker Chair Grants Ad Hoc Committee Grandview Heights City Council",
      "kind": "Other"
     }
    ],
    "counts": {
     "Other": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3675",
@@ -656,7 +678,8 @@
    "title": "March 7, 2026 Council Retreat",
    "items": [],
    "counts": {},
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3663",
@@ -668,7 +691,7 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026-05: An Ordinance to amend Chapter 13 of the Codified Ordinances of the City of Grandview Heights, to modernize the building and zoning requirements and to align with state code provisions that apply to building and zoning. 3rd reading. Previous readings 02/02/2026 and 2/09/2026. Assigned to the Safety Committee A G E N D A CITY OF GRANDVIEW HEIGHTS, OHIO CITY COUNCIL MEETING MONDAY, FEBRUARY 23, 2026",
+     "title": "Ord. 2026-05: An Ordinance to amend Chapter 13 of the Codified Ordinances of the City of Grandview Heights, to modernize the building and zoning requirements and to align with state code provisions that apply to building and zoning. 3rd reading. Previous readings 02/02/2026 and 2/09/2026. Assigned to the Safety Committee",
      "kind": "Ordinance"
     },
     {
@@ -683,7 +706,7 @@
     },
     {
      "number": "3.",
-     "title": "Ord. 2026-07: An Ordinance to amend Grandview Heights Cod ified Ordinance 521.11, Yard Care \u2022 Other Business \u2022 Comments from Council Members \u2022 Adjournment",
+     "title": "Ord. 2026-07: An Ordinance to amend Grandview Heights Cod ified Ordinance 521.11, Yard Care",
      "kind": "Ordinance"
     }
    ],
@@ -691,7 +714,8 @@
     "Ordinance": 2,
     "Resolution": 2
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3662",
@@ -703,15 +727,538 @@
    "items": [
     {
      "number": "1.",
-     "title": "Ord. 2026-05: An Ordinance to amend Chapter 13 of he Codified Ordinances of the City of Grandview Heights, to modernize the building and zoning requirements and to align with state code provisions that apply to building and zoning. 3rd reading Previous readings 02/02/2026 and 02/09/2026. Assigned to the Safety Committee Adjournment Melanie Houston Chair Safety Committee",
+     "title": "Ord. 2026-05: An Ordinance to amend Chapter 13 of he Codified Ordinances of the to align with state code provisions that apply to building and zoning. 3rd reading Previous readings 02/02/2026 and 02/09/2026. Assigned to the Safety Committee Adjournment Melanie Houston Chair Safety Committee Grandview Heights City Council",
      "kind": "Ordinance"
     }
    ],
    "counts": {
     "Ordinance": 1
    },
-   "has_agenda": true
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3652",
+   "name": "City Council",
+   "date": "2026-02-09",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3652",
+   "title": "February 9, 2026 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026-01: An Ordinance authorizing the disposal of City surplus personal property by internet auction or other permissible means and allowing vehicle and equipment trade-ins when appropriate. 3rd Reading. Previous readings 01/12/2026 and 02/02/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2026 -02: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. 3rd Reading. Previous readings 01/12/2026 and 02/02/2026. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2026-03: An Ordinance authorizing the Mayor and Director of Finance of the City of Electric Aggregation Program for electric customers within Grandview Heights\u2019 geographic boundaries and declaring it an emergency. 2nd reading. Previous reading 01/12/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "4.",
+     "title": "Ord. 2026- 04: An Ordinance Releasing Any Reserved I nterest for Public Utility Easements on Franklin County Parcel Number 030- 002387, More Commonly Known as 1105 Ormsby Place. 2nd reading. Previous reading 02/02/2026. Assigned to the Planning & Administration Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "5.",
+     "title": "Ord. 2026-05: An Ordinance to amend Chapter 13 of the Codified Ordinances of the City of Grandview Heights, to modernize the building and zoning requirements and to align with state code provisions that apply to building and zoning. 2nd reading. Previous reading 02/02/2026. Assigned to the Safety Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "6.",
+     "title": "Ord. 2026-06: An Ordinance to a mend Grandview Heights Codified Ordinance 161.02, to provide clarity and expand the City\u2019s ability to use cooperative purchasing and declaring it an emergency. 2nd reading. Previous reading 02/02/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "7.",
+     "title": "Res. 04-2026: A Resolution authorizing a revision to the Fifth Amendment to the Joint Economic Development Zone (\u201cJEDZ\u201d) Contract by and between the City of Grandview Heights, Ohio and the Clinton Township Board of Trustees",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 6,
+    "Resolution": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3651",
+   "name": "Council Committees",
+   "date": "2026-02-09",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3651",
+   "title": "February 9, 2026 Planning & Administration Committee Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 202 6-04: An Ordinance Releasing Any Reserved Interest for Public Utility Easements on Franklin County Parcel Number 030-002387, More Commonly Known as 1105 Ormsby Place. Previous reading 02/02/2026. Assigned to the Planning & Administration Committee Adjournment Rebekah Weiss Chair Planning & Administration Committee Grandview Heights City Council",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3645",
+   "name": "City Council",
+   "date": "2026-02-02",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3645",
+   "title": "February 2, 2026 Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026-01: An Ordinance authorizing the disposal of City surplus personal property by internet auction or other permissible means and allowing vehicle and equipment trade-ins when appropriate. 2nd Reading. Previous reading 01/12/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2026 -02: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. 2 nd Reading. Previous reading 01/12/2026. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 03-2026: A Resolution Reaffirming Support for an Environment that is Welcoming to all people and expressing support for the Immigrant Community",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2026- 04: An Ordinance Releasing Any Reserved I nterest for Public Utility Easements on Franklin County Parcel Number 030- 002387, More Commonly Known as 1105 Ormsby Place",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2026-05: An Ordinance to amend Chapter 13 of the Codified Ordinances of the City of Grandview Heights, to modernize the building and zoning requirements and to align with state code provisions that apply to building and zoning",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "4.",
+     "title": "Ord. 2026-06: An Ordinance to a mend Grandview Heights Codified Ordinance 161.02, to provide clarity and expand the City\u2019s ability to use cooperative purchasing",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 5,
+    "Resolution": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3643",
+   "name": "Council Committees",
+   "date": "2026-02-02",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3643",
+   "title": "February 2, 2026 Finance Committee Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026-02: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. 2nd Reading Previous reading 01/12/2026. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3638",
+   "name": "City Council",
+   "date": "2026-01-26",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3638",
+   "title": "January 26, 2026 Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026-01: An Ordinance authorizing the disposal of City surplus personal property by internet auction or other permissible means and allowing vehicle and equipment trade-ins when appropriate. 2nd Reading. Previous reading 01/12/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2026 -02: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. 2 nd Reading. Previous reading 01/12/2026. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 03-2026: A Resolution Reaffirming Support for an Environment that is Welcoming to all people and expressing support for the Immigrant Community",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2026- 04: An Ordinance Releasing Any Reserved I nterest for Public Utility Easements on Franklin County Parcel Number 030- 002387, More Commonly Known as 1105 Ormsby Place",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2026-05: An Ordinance to amend Chapter 13 of the Codified Ordinances of the City of Grandview Heights, to modernize the building and zoning requirements and to align with state code provisions that apply to building and zoning",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "4.",
+     "title": "Ord. 2026-06: An Ordinance to a mend Grandview Heights Codified Ordinance 161.02, to provide clarity and expand the City\u2019s ability to use cooperative purchasing",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 5,
+    "Resolution": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3637",
+   "name": "Council Committees",
+   "date": "2026-01-26",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3637",
+   "title": "January 26, 2026 Finance Committee Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026-02: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. 2nd Reading Previous reading 01/12/2026. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3626",
+   "name": "City Council",
+   "date": "2026-01-12",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3626",
+   "title": "January 12, 2026 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Res. 01-2026:. A Resolution to certify to the Franklin County Auditor and Treasurer property to be assessed for the cost of improvements advanced by the City of",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 02-2026: A Resolution Self -Certifying $50,000 Micro -Purchase Threshold for Use of Federal Funds",
+     "kind": "Resolution"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2026-01: An Ordinance authorizing the disposal of City surplus personal property by internet auction or other permissible means and allowing vehicle and equipment trade-ins when appropriate",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "4.",
+     "title": "Ord. 2026 -02: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "5.",
+     "title": "Ord. 2026-03: An Ordinance authorizing the Mayor and Director of Finance of the City of Grandview Heights, Ohio to enter into a contract with an E lectric Supplier to continue an Electric Aggregation Program for electric customers within Grandview Heights\u2019 geographic boundaries",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Resolution": 2,
+    "Ordinance": 3
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3609",
+   "name": "City Council",
+   "date": "2025-12-01",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3609",
+   "title": "December 1, 2025 Regular Council Meeting",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-10: An Ordinance to make annual appropriations for current expenses and other expenditures of the City of Grandview Heights, State of Ohio, during the fiscal year ending December 31, 2026. 3rd Reading. Previous readings 11/10/2025 and 11/24/2025 Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2025-11: An Ordinance to make appropriations to various departments within the capital improvements in 2026. 3rd Reading. Previous readings 11/10/2025 and 11/24/2025. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2025-12: An Ordinance to update the terms and conditions of employment for employees of the City of Grandview Heights not covered by collective bargaining for",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2026.",
+     "title": "3rd Reading. Previous readings 11/10/2025 and 11/24/2025. Assigned to the Finance Committee",
+     "kind": "Other"
+    },
+    {
+     "number": "1.",
+     "title": "Ord. 2025-13: An Ordinance authorizing the Mayor and Director of Finance to enter into an Agreement for Salaries and Benefits with the Capital City Lodge #9 of the Fraternal Order of Police, and declaring it an emergency",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 38-2025: A Resolution adopting a Cybersecurity Program for the City of Grandview Heights",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 4,
+    "Other": 1,
+    "Resolution": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3610",
+   "name": "Council Committees",
+   "date": "2025-12-01",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3610",
+   "title": "December 1, 2025 Finance Committee Meeting",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-10: An Ordinance to make annual appropriations for current expenses and other expenditures of the City of Grandview Heights, State of Ohio, during the fiscal year ending December 31, 2026. 3rd Reading. Previous readings 11/10/2025 and 11/24/2025. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2025-11: An Ordinance to make appropriations to various departments within the City of Grandview Heights municipal government to purchase equipment and make capital improvements in 2026. 3rd Reading. Previous readings 11/10/2025 and 11/24/2025. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 2
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3607",
+   "name": "City Council",
+   "date": "2025-11-24",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3607",
+   "title": "November 24, 2025 Special Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-10: An Ordinance to make annual appropriations for current expenses and other expenditures of the City of Grandview Heights, State of Ohio, during the fiscal year ending December 31, 2026. Previous reading 11/10/2025. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2025-11: An Ordinance to make appropriations to various departments within the capital improvements in 2026. Previous reading 11/10/2025. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2025-12: An Ordinance to update the terms and conditions of employment for employees of the City of Grandview Heights not covered by collective bargaining for",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2026.",
+     "title": "Previous reading 11/10/2025. Assigned to the Finance Committee",
+     "kind": "Other"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 37-2025: A Resolution to proclaim the City of Grandview Heights, Ohio City Council meetings for 2025",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 3,
+    "Other": 1,
+    "Resolution": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3608",
+   "name": "Council Committees",
+   "date": "2025-11-24",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3608",
+   "title": "November 24, 2025 Finance Committee Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-10: An Ordinance to make annual appropriations for current expenses and other expenditures of the City of Grandview Heights, State of Ohio, during the fiscal year ending December 31, 2026. Previous reading 11/10/2025. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2025-11: An Ordinance to make appropriations to various departments within the City of Grandview Heights municipal government to purchase equipment and make capital improvements in 2026. Previous reading 11/10/2025. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2025-12: An Ordinance to update the terms and conditions of employment for employees of the City of Grandview Heights not covered by collective bargaining for",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2026.",
+     "title": "Previous reading 11/10/2025. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
+     "kind": "Other"
+    }
+   ],
+   "counts": {
+    "Ordinance": 3,
+    "Other": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3601",
+   "name": "City Council",
+   "date": "2025-11-10",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3601",
+   "title": "November 10, 2025 Regular City Council Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Res. 33-2025: A Resolution accepting a donated ballistic K9 vest from Vested Interests in K9s",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 34-2025: A Resolution accepting program funding from the America 250 Ohio Commission for the \u201cOhio Goes to the Movies\u201d project",
+     "kind": "Resolution"
+    },
+    {
+     "number": "3.",
+     "title": "Res. 35-2025: A Resolution authorizing an amendment to the Fourth Amendment to Joint Economic Development Zone (\u201cJEDZ\u201d) Income Tax Agreement by and between the City of Grandview Heights, Ohio and the Board of Directors of Clinton -Grandview Heights JEDZ, and approving amendments to enable the JEDZ to enter into economic development agreements with businesses desiring to operate or expand within the JEDZ",
+     "kind": "Resolution"
+    },
+    {
+     "number": "4.",
+     "title": "Res. 36 -2025: A Resolution to certify to the Franklin County Auditor and Treasurer a list of properties to be assessed for the cost of 2025 sidewalk improvements advanced by the City of Grandview Heights, Ohio",
+     "kind": "Resolution"
+    },
+    {
+     "number": "5.",
+     "title": "Ord. 2025 -10: An Ordinance to make annual appropriations for current expenses and other expenditures of the City of Grandview Heights, State of Ohio, during the fiscal year ending December 31, 2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "6.",
+     "title": "Ord. 2025 -11: An Ordinance to make appropriations to various departments within the City of Grandview Heights municipal government to purchase equipment and make capital improvements in 2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "7.",
+     "title": "Ord. 2025 -12: An Ordinance to update the terms and conditions of employment for employees of the City of Grandview Heights not covered by collective bargaining for 2026",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Resolution": 4,
+    "Ordinance": 3
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3593",
+   "name": "City Council",
+   "date": "2025-10-13",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3593",
+   "title": "October 13, 2025 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025 -09: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2025. 3rd Reading. Previous readings 9/8/2025 and 9/22/2025. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 32-2025: A Resolution to Honor and Recognize October 13 th as Indigenous Peoples\u2019 Day",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1,
+    "Resolution": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3594",
+   "name": "Council Committees",
+   "date": "2025-10-13",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3594",
+   "title": "October 13, 2025 Finance Committee Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-09: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2025. 3rd Reading Previous readings 9/8/2025 and 9/22/2025. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3584",
+   "name": "City Council",
+   "date": "2025-09-22",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3584",
+   "title": "September 22, 2025 Special Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-09: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2025. 2nd Reading. Previous reading 9/8/2025. Assigned to the Finance Committee SPECIAL CITY COUNCIL MEETING",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 30-2025: A Resolution accept ing the recommendations of the Grandview Heights Tax Incentive Review Council of various City of Grandview Heights tax incentives",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 31-2025: A Resolution recognizing September as National Suicide Prevention and Action Month in the City of Grandview Heights",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1,
+    "Resolution": 2
+   },
+   "has_agenda": true,
+   "parse": 2
   }
  ],
- "updated": "2026-09-30T00:48:42+00:00"
+ "updated": "2026-09-30T00:55:02+00:00"
 }
