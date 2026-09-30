@@ -23,11 +23,16 @@ import requests
 BASE = "https://www.grandviewheights.gov/"
 FEEDS = [BASE + "RSSFeed.aspx?ModID=58&CID=All-calendar.xml"]
 MAX_ARCHIVE_ID = 120
+PARSE_VERSION = 2   # bump to re-read saved agendas after changing how items are pulled out
+# page headers and footers repeated on each page of an agenda
+PAGE_JUNK = re.compile(r"^(A G E N D A|AGENDA$|CITY OF GRANDVIEW HEIGHTS|GRANDVIEW HEIGHTS,? OHIO|.*\bPage \d+\b|\d{8}(\s+\d{8})?$"
+                       r"|CITY COUNCIL (REGULAR |SPECIAL )?MEETING|(REGULAR|SPECIAL) (COUNCIL )?MEETING|COUNCIL COMMITTEES?\b"
+                       r"|(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),? [A-Z][a-z]+ \d{1,2},? \d{4})", re.I)
 DAYS_BACK = 550
 OUT = Path("docs/council.json")
 UA = "grandview-zoning-watch/1.1 (community site, runs once daily)"
 COUNCIL = re.compile(r"council", re.I)
-MAX_NEW_PER_RUN = 25
+MAX_NEW_PER_RUN = 40
 KINDS = [
     ("Ordinance", re.compile(r"\bord(inance)?\b\.?\s*(no\.?\s*)?\d|\bAN ORDINANCE\b|^ordinance", re.I)),
     ("Resolution", re.compile(r"\bres(olution)?\b\.?\s*(no\.?\s*)?\d|\bA RESOLUTION\b|^resolution", re.I)),
@@ -92,8 +97,10 @@ def items_from_text(text):
         if m:
             cur = {"number": m[1].strip(), "title": m[2].strip()}
             found.append(cur)
-        elif cur and len(cur["title"]) < 400 and not re.match(r"^(page \d|agenda|grandview heights)", line, re.I):
+        elif cur and len(cur["title"]) < 400 and not PAGE_JUNK.match(line):
             cur["title"] += " " + line
+    for f in found:   # stop at the next section heading run into the same line ("... • Other Business • Adjournment")
+        f["title"] = re.split(r"\s+[•●▪]\s+|\s+A G E N D A\b", f["title"])[0].strip(" .,;")
     return [f for f in found if f["title"] and not ROUTINE.match(f["title"]) and len(f["title"]) > 3]
 
 
@@ -147,6 +154,8 @@ def run(state, now, parse_date, packet_agenda_text):
     since = (date.today() - timedelta(days=DAYS_BACK)).isoformat()
     docs = []
     for amid, name in council_archives(state).items():
+        if not re.search(r"agenda", name, re.I):   # the ordinance and resolution archives hold passed legislation, not agendas
+            continue
         try:
             for title, url in archive_items(get(f"{BASE}Archive.aspx?AMID={amid}").text):
                 d = parse_date(title)
@@ -154,7 +163,7 @@ def run(state, now, parse_date, packet_agenda_text):
                     docs.append({"id": "adid-" + re.search(r"ADID=(\d+)", url)[1], "title": title, "archive": name, "url": url, "date": d})
         except Exception as err:
             print(f"Council: archive {amid} failed ({err})")
-    todo = sorted((d for d in docs if d["id"] not in have), key=lambda d: d["date"], reverse=True)
+    todo = sorted((d for d in docs if have.get(d["id"], {}).get("parse") != PARSE_VERSION), key=lambda d: d["date"], reverse=True)
     print(f"Council: {len(docs)} agendas since {since}, {len(todo)} new to read")
     for d in todo[:MAX_NEW_PER_RUN]:
         try:
@@ -166,7 +175,8 @@ def run(state, now, parse_date, packet_agenda_text):
             it["kind"] = classify(f"{it['number']} {it['title']}")
         kind = re.sub(r"\s*(agendas?|archive)\s*", " ", d["archive"], flags=re.I).strip() or "City Council"
         have[d["id"]] = {"id": d["id"], "name": kind if COUNCIL.search(kind) else "City Council", "date": d["date"], "time": "",
-                         "url": d["url"], "title": d["title"], "items": items, "counts": summarize(items), "has_agenda": True}
+                         "url": d["url"], "title": d["title"], "items": items, "counts": summarize(items), "has_agenda": True,
+                         "parse": PARSE_VERSION}
         print(f"  {d['date']} {d['title']}: {len(items)} items")
     # upcoming meetings from the calendar that don't have a packet yet
     try:

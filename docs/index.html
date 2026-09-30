@@ -182,6 +182,7 @@
   body:not([data-view="council"]) #council { display: none; }
   body:not([data-view="exp"]) #exp { display: none; }
   .tabs .exp-tab { font-style: italic; }
+  @media (max-width: 440px) { .tabs button { padding: 7px 9px; font-size: 0.85rem; } }
 
   /* city council */
   #council { display: grid; gap: 14px; }
@@ -1970,7 +1971,7 @@
         return `
         <div class="card cm">
           <div class="cm-head"><h2>${esc(m.name || "City Council")}</h2>
-            <span class="cm-date">${esc(fmtDate(m.date))}${m.time ? " · " + esc(new Date("2000-01-01T" + m.time).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })) : ""}</span>
+            <span class="cm-date">${esc(fmtDate(m.date))}${m.time ? " · " + esc(m.time.replace(/^0/, "")) : ""}</span>
             ${up ? '<span class="chip soon">Upcoming</span>' : ""}
             <a href="${esc(m.url)}" target="_blank" rel="noopener">Full agenda &#8599;</a></div>
           <p class="cm-sum">${!m.has_agenda ? "No agenda posted yet." : !(m.items || []).length ? "Agenda posted; its items couldn't be read automatically, so open the full agenda."
