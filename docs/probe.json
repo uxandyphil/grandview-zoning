@@ -1,79 +1,98 @@
 {
- "updated": "2026-09-30T00:26:46+00:00",
- "pages": {
-  "https://clerknewfiling.franklincountyohio.gov/api/submissions/28316369/documents": {
-   "status": 200,
-   "type": "application/zip",
-   "len": 5375074,
-   "head": "PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000\u00e6\u00a2=]\u001dhW\u00b3\u00c4HC\u0000!yM\u0000\u0015\u0000\u0000\u00001790716939148-110.pdf\u00ac\u00ba\u0005T]\u00cd\u00d26\u0088Kpw8\u00b8\u0005\u000ezpww\u000b\u00ee\u00ee\u00ee\u00ee\u00ee!\u0004\r\u00ee\u00ee\u001e4@\bNp\u0082\u0006w\u0097\u0081\u00bc\u00ef\u0095\u00b9\u00f7\u00fbf\u00cd\u00cc\u00fa\u00cf^\u00bd\u00bbwUS\u00ddUOu\u00af\u00eegA\u00a9(*\u00ce\u00c0\u00cc\u00c8\u0081DY\u00f4{\u00a2\u001f\u0080\u00c4\u00cc\u00c9\u0004`\u0002\u00d8\u001bY!\u00f1\u00f2\u0002e-\u00edL\r\u009d,\u00bdLM\u0000\u00cc@\u0005\u00003'\u000bP\u0012\u00a0\r\u00e0`g\u0006\u00b02s\u00e8\u0002e\u0001\u00ecL\u001c\u001c,\u009c\u00cc@1\u0000\u0007\u0007\u001b\u0013\u0007P\u001e\u00c0\u00ce\u0001T}\u0013\u00b3\u00b2\u0083\u00d8\u00f8\u00f9\u0091L\u00edL\u00de\u008c\u0001\u00feO\u00fc\u0090<\u009cL\u00cd\u00fe\u00cc\u0090\u0099\u0015\u0080\u00c4\u00f4\u00f7\u008f\u0019\u0004\u00f8S\u0003\u00ec\u0090\u00de\u00fd-\u0002q\u00b2\u00ff\u00a7\u008c\u00f9U\u00f8_2\u0016\u00ae\u00ff\u00ea\u00c7\u00ce\u00c2\u00f4\u00df2\u000e\u00a6\u00ff\u001a\u0003\u00c4\f\u00fao\u0019+\u0088\u00e9?dl\u009c\\\u00ec\u00ec\u00ff-\u00e3\u00e0\u00faO\u0019\u00d7kp\u00ffC\u00c6\u00c1\u00c1\u00ca\u00c9\u00fa_\u00be\u00bd\u0005\u00ff\u009f2\u0017'CK\u001bS\u00a7W\u00a8\u0094\u00ed\u00ed]^\u0001z\u00d5\u0001\u0094\u0081Rvf\u00f6\u0000f\u0010\u00cb\u009f\u000f\u0095W\u00fc\u0000\u00cc\\\u00ac@E'S\u00b7\u00bf\u0090ag\u0003J\u0089j\u00f3\u00b2s\u0098q\u00b1\u00990\u001b\u00b1\u001a\u001a2s11\u009bp1\u0081\u00ccLX\rY\u00cc\u00d8Y@\u00a6&\\\u00c6\u00fc\u00bc\u001cl,\u00c6\u001c\u00a6\u00a6l\u00a6\u00c6\u00ec\u0086 v\u0016v\u0016f\u0013\u0013Cv\u0090\u0011+\u009b\u00b11\u0017\u0093!3\u00bf\u00ee+\u00c4\u00ce.\u0086N.\u007f\u00a0aB\u00a2\u00a4\u0014S\u0010\u00ff?\u0083\u00f6\u00ff\u0080\u00ff_\u00fe\u00fd\u009d\u009c\u00aa\u009e\u000e\u00a6@\u0011C\u0017C\u001b{s\u00a0\u00a2\u00a1\u00b9\u00a93\u0080\u00f9-\u00ae\u00af.\u00cb\u0099\u00ba\u0018\u009a\u00bcj^c\u00f0\u001a@\u0080\u00f2\u00bf\u00f2\u0090\u0099\u008b\u00e5_\u0016\u0014\u0001L@\u0015\u0000+\b\u0004\u00945\u00b53w\u00b1\u0000\u00b0\u00b0\u0082\u0080\u00e2\u00966.\u00a6N@q\u001bC\u0017SQSc{\u0013S~~g\u0017'SC[\u00a4w\u001e\u008b\u00c6\u0006\u0006\u0006\u0010\u00f97\u0088\u00ef\u0011\u0011c\u00ce\u0010\u0085\u0011\u00e1\u0000P\u0098\u0090Bq000B\u00e0Bp`\u00d31\u0006PF,\u00ef<2X\u00c4\u00a0\u00c7\u00bc\u00f3[\u00f1",
-   "browser": {
-    "calls": [
-     {
-      "error": "Page.goto: Download is starting\nCall log:\n  - navigating to \"https://clerknewfiling.franklincountyohio.gov/api/submissions/28316369/documents\", waiting until \"networkidle\"\n"
-     }
-    ],
-    "body": ""
-   }
-  },
-  "https://clerknewfiling.franklincountyohio.gov/api/submissions/28316363/documents": {
-   "status": 200,
-   "type": "application/zip",
-   "len": 4430822,
-   "head": "PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000\u00e8\u00a2=]$\u00b3\u00ddIWj6\u0000\n :\u0000\u0015\u0000\u0000\u00001790716659132-535.pdf\u00ac\u00ba\u0005T\u001d\u00cb\u00d2?\u008a\u00bb\u0005\r\u00beq\u000b\u00ee\u00ae\u00c1\u00dd\u0083\u00bb[pw'xpw\u00d7\u00a0\t\u00ee.\u00c1\u00dd\u00dd}\u00e3\u000fr\u00ce\u00fd\u00ee\u00b7\u00ce\u00bd\u00ef\u00ad\u00f7\u00de\u00fa\u00cf03\u00d5\u00d5\u00d5]\u00d5\u00f5\u00eb\u001ez\u00aa6\u0099\u00bc\u0088(-#\u001d;\"Y\u00e1\u00c1x\u000f\u0000\u0091\u0083\r\u00c0\u0000\u00b05\u00b0@\u00e4\u00e1\u00a1\u00976\u00b71\u00d6\u00b77w76\u00020\u00d2\u00cb\u000188\u00e8\u00c5\u0001\u009a\u0000v\u0016\u000e\u0000\u00133\u00a76\u00bd4\u0080\u0099\u0083\u0081\u0093\u0089\u0093\u0081\u00fe3\u0080\u009d\u009d\u0085\u009d\u0089^\u0016\u00c0\u00c4F\u00af\u00fc\u00cefgae\u00e1\u00e3C4\u00b61z\u00ef\u000b\u00f0\u007f\u00e6@t\u00b576y\u00b7\u0090\u0091\u0019\u0080\u00c8\u00f0\u00f7\u00c1\u00f8f\u00f0\u00fb\u0001\u00b0A\u0084\u00fb\u009b\u00c5\u00c6\u00c1\u00fa\u001f<N\u000e\u00f6\u007f\u00f2\u0018\u0099\u00188\u00ff\u00c9cce`\u00f9'\u008f\u00fdM\u00f4?x,\u00ac\u00cc\u00ff\u00c1cc\u00f9\u00a7^\u0016N\u000e\u0016\u00c6\u00ff\u00e4\u00b1\u00fdS\u0007\u00eb\u00bb\u00e6\u007f\u00f0\u00de\\\u00ca\u00f2\u001f\u00f6\u00bd)\u00e6\u00f87\u00cf\u00d1^\u00df\u00dc\u00ca\u00d8\u00fe\r*E[[G\u00c0\u00fb\u0010\u0001\u008a\u00f4\u00126&\u00b6\u0000v\u00d6?\u00b4\u00d2\u001bz\u0000NNzy{c\u00e7\u00bfpaa\u00a5\u0097\u0010\u00d1\u00e4af6b3\u00d6g`e71`e2ff\u00e24dca0\u00d0701be60\u00d4g\u00e7\u00e3a6`74bd3ag2y\u0003\u0099\u0095\u009d\u0089\u0099\u00c3\u0080\u0089\u0091\u0099\u0081\u00c5\u00c0\u0080\u0081\u008d\u0089C\u009fO\u00fb\r`\u0007G}{\u00c7?\u00b00 \u0092\u0091}\u0096\u0013\u00fd?\u0085\u00f5\u007f\u00c5\u00ff\u00cf\u0000\u00ff\u009e\u009c\u00canv\u00c6\u00f4\u00c2\u00fa\u008e\u00faV\u00b6\u00a6\u00f4\u00f2\u00fa\u00a6\u00c6\u000e\u0000\u008e\u00bf\u00c6,c\u00ec\u00a8o\u00f4V\u0001`\u007f\u009f\u00cb\u008a\u00ff\u009e\u0086\u009c\u001c\u00ffn.\u000f`\u00a0W\u0002010\u00d0K\u001b\u00db\u0098:\u009a\u0001\u0018Y9\u00e9E\u00cd\u00ad\u001c\u008d\u00ed\u00e9E\u00ad\u00f4\u001d\u008dE\u008c\rm\u008d\u008c\u00f9\u00f8\u001c\u001c\u00ed\u008d\u00f5\u00ad\u0011\u00e1\\\u0017\r\u00f5\u00f4\u00f4\u00c0r\u00d9\u0011>! |\u00a3\u00ff\u0018\u0088\u008d\"\u00f0\u0091\u0012\u00ca\u001f\u000f\u0011\u00c1\u001f\u00cc\u001f\u00a5\u0083\u00b2\u0098\u00baUo\n\u00a1-\u0011\n\u00aa\u009e\u00aby\u00ea\u00c4\u001a\u008d\u0082\u0081!\u0019Xw\u00cb",
-   "browser": {
-    "calls": [
-     {
-      "error": "Page.goto: Download is starting\nCall log:\n  - navigating to \"https://clerknewfiling.franklincountyohio.gov/api/submissions/28316363/documents\", waiting until \"networkidle\"\n"
-     }
-    ],
-    "body": ""
-   }
-  },
-  "https://grandviewheightsoh.portal.civicclerk.com/": {
-   "browser": {
-    "calls": [
-     {
-      "url": "https://southcentralus-3.in.applicationinsights.azure.com//v2/track",
-      "status": 200,
-      "type": "application/json; charset=utf-8",
-      "sample": "{\"itemsReceived\":2,\"itemsAccepted\":2,\"appId\":null,\"errors\":[]}"
-     },
-     {
-      "url": "https://docaccess.com/domains/grandviewheightsoh.portal.civicclerk.com/domain.json",
-      "status": 403,
-      "type": "application/xml"
-     },
-     {
-      "url": "https://grandviewheightsoh.api.civicclerk.com/v1/Settings/GetIdentityServerConfiguration",
-      "status": 404,
-      "type": ""
-     }
-    ],
-    "body": ""
-   }
-  },
-  "https://franklin.oh.publicsearch.us/results?department=RP&limit=50&offset=0&recordedDateRange=20260901%2C20260929&searchOcrText=false&searchType=quickSearch&searchValue=GRANDVIEW%20HEIGHTS": {
-   "browser": {
-    "calls": [
-     {
-      "url": "https://franklin.oh.publicsearch.us/vendor/custom.4a0ba46ee0b6b964b44b2909b64ccbd5._hs",
-      "status": 200,
-      "type": "text/hyperscript; charset=utf-8"
-     },
-     {
-      "url": "https://sessions.bugsnag.com/",
-      "status": 202,
-      "type": "application/json",
-      "sample": "{\"status\":\"accepted\"}"
-     },
-     {
-      "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-R8DLNV5LWZ&gtm=45je69t0h2v9119857232z8898072479za20gzb898072479zd898072479xf1&_p=1790728044058&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=EA&cid=1023054996.1790728045&frm=0&ir=1&ngs=1&pscdl=noapi&rcb=0&sr=1280x720&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul",
-      "status": 204,
-      "type": "text/plain"
-     }
-    ],
-    "body": "1-50 of 53 results for \"GRANDVIEW HEIGHTS + 09/01/2026-09/29/2026\"\nSkip To Header Nav\nSkip To Workspace Tabs\nSkip To Main Content\nTHE COUNTY OF\nFranklin\nRECORDER\nDaniel J. O'Connor Jr.\nNEW SEARCH\nRESULTS\nSearch Results\nDocument Types\nASSIGNMENTS\nDEEDS\nLEASES\nMISCELLANEOUS\nMORTGAGES\nRELEASES\nUCC FILINGS\nRecorded Years\n2020-Present\u00a0(53)\nSearch results table for Real Property\n\t\t\tGRANTOR\tGRANTEE\tDOC TYPE\tRECORDED DATE\tINST NUMBER\tBOOK/VOLUME/PAGE\tLEGAL DESCRIPTION\tREFERENCES\tREMARKS\n\n\t\n\t\n\tGSI GRANDVIEW HEIGHTS COLUMBUS LLC\tPGIM REAL ESTATE US DEBT FUND SELLER IV LLC\tASSIGN OF FS REAL ESTATE\t9/8/2026\t202609080109137\t--/--/--\tLt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM PARTITION Pcl# 030-002498-00 Acreage 0.711 Plt PB 8 PG 24A PT 9\t202607220088355\tN/A\n\n\t\n\t\n\tGRANDVIEW HEIGHTS CITY SCHOOL DISTRICT BOARD OF EDUCATION\tTOWERCO VI LLC\tLEASE\t9/9/2026\t202609090109368\t--/--/--\tLt/Un 203~208 URLIN GRANDVIEW HEIGHTS Plt PB 17 PG 148\tN/A\tN/A\n\n\t\n\t\n\tBOARD OF EDUCATION OF THE GRANDVIEW HEIGHTS CITY SCHOOL DISTRICT\tOHIO POWER CO\tEASEMENT\t9/2/2026\t202609020107359\t--/--/--\tLt/Un 123~135 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001652-00 Plt PB 13 PG 13 PT 123-135\tN/A\tN/A\n\n\t\n\t\n\tALEXANDER WILLIAM G\tBOZICK FRANK G\tDEED\t9/28/2026\t202609280118329\t--/--/--\tLt/Un 61~62 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-000678-00 Plt PB 4 PG 332 PT 61-62\tN/A\tN/A\n\n\t\n\t\n\tART RICHARD A\tMORTGAGE ELECTRONIC REGISTRATION SYSTEMS INC\tRELEASE OF MORTGAGE\t9/2/2026\t202609020107497\t--/--/--\tLt/Un 117 URLINS GRANDVIEW HEIGHTS SUBD Plt PB 4 PG 332\t202001140006199\tN/A\n\n\t\n\t\n\tCHARNAS MATTHEW\tCHARNAS MATTHEW TR\tTRUST\t9/3/2026\t202609030108107\t--/--/--\tLt/Un 117 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-002224-00 Plt PB 4 PG 332\tN/A\tN/A\n\n\t\n\t\n\tALEXANDER ELIZABETH\tALEXANDER ELIZABETH S\tAFFIDAVIT\t9/22/2026\t202609220115590\t--/--/--\tLt/Un 61~62 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-000678-00 Plt PB 4 PG 332 PT 61-62\tN/A\tN/A\n\n\t\n\t\n\tCHARNAS MATTHEW TR\tJPMORGAN CHASE BANK NA\tMORTGAGE\t9/3/2026\t202609030108108\t--/--/--\tLt/Un 117 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-002224-00 Plt PB 4 PG 332\tN/A\tN/A\n\n\t\n\t\n\tGSI GRANDVIEW HEIGHTS COLUMBUS LLC\tPGIM REAL ESTATE US DEBT FUND SELLER IV LLC\tASSIGN OF MORTGAGE\t9/8/2026\t202609080109136\t--/--/--\tLt/Un 9 JEFFERSON ZOLLINGERS HEIRS FARM SUBD PARTITION Pcl# 030-002498-00 Plt PB 8 PG 2A PT 9\t202405130046375\tN/A\n\n\t\n\t\n\tART RICHARD A TR\tCHARNAS MICHAEL TR\tDEED\t9/3/2026\t202609030108106\t--/--/--\tLt/Un 117 URLINS GRANDVIEW HEIGHTS ADDN Pcl# 030-002224-00 Plt PB 4 PG 332\tN/A\tN/A\n\n\t\n\t\n\tMINISTER MICHELLE M\tROCKET MORTGAGE LLC\tMORTGAGE\t9/11/2026\t202609110111130\t--/--/--\tUn 522 SUMMIT CHASE CONDO Pcl# 030-002643-00 Plt CB 3PG 895\tN/A\tN/A\n\n\t\n\t\n\tWARSAME IBRAHIM\tHUNTINGTON NATIONAL BANK\tMORTGAGE\t9/24/2026\t202609240116665\t--/--/--\tLt/Un 49 GRANDVIEW YARD PHASE 6 Pcl# 030-003293-00 Plt PB 124 PG 56\tN/A\tN/A\n\n\t\n\t\n\tMCCAULEY WILLIAM\tMILANO ENZO GIUSEPPE\tDEED\t9/28/2026\t202609280118370\t--/--/--\tUn 20-888 GRANDVIEW YARD CONDO EAST Pcl# 030-003107-00 Plt CB 250 PG 76\tN/A\tN/A\n\n\t\n\t\n\tBOO ENTERPRISES LLC\tGALLERNO "
-   }
-  }
- }
+ "updated": "2026-09-30T00:32:44+00:00",
+ "public_documents_pages": [
+  "https://www.grandviewheights.gov/81/Public-Documents"
+ ],
+ "https://www.grandviewheights.gov/81/Public-Documents": [
+  [
+   "Building & Zoning Documents and Map",
+   "https://www.grandviewheights.gov/DocumentCenter/View/8671/2023-GVH-Zoning-Map"
+  ],
+  [
+   "Design Guidelines Draft",
+   "https://www.grandviewheights.gov/DocumentCenter/View/8673/Design-Guidelines-2024"
+  ],
+  [
+   "Planning Commission Minutes and Agendas",
+   "http://www.grandviewheights.org/Archive.asp"
+  ],
+  [
+   "Board of Zoning Appeals Minutes and Agendas",
+   "http://www.grandviewheights.org/Archive.asp"
+  ],
+  [
+   "City Council Documents",
+   "https://www.grandviewheights.gov/Archive.aspx"
+  ],
+  [
+   "City Council Minutes and Agendas",
+   "https://www.grandviewheights.gov/Archive.aspx"
+  ],
+  [
+   "City Council Ordinances",
+   "https://www.grandviewheights.gov/Archive.aspx"
+  ],
+  [
+   "City Council Resolutions",
+   "https://www.grandviewheights.gov/Archive.aspx"
+  ],
+  [
+   "Building & Zoning Documents",
+   "https://www.grandviewheights.gov/DocumentCenter/Index/17"
+  ],
+  [
+   "Zoning Map",
+   "https://www.grandviewheights.gov/DocumentCenter/View/8671/2023-GVH-Zoning-Map"
+  ],
+  [
+   "Design Guidelines",
+   "https://www.grandviewheights.gov/DocumentCenter/View/8673/Design-Guidelines-2024"
+  ],
+  [
+   "BZA Meeting Documents",
+   "https://www.grandviewheights.gov/DocumentCenter/Index/173"
+  ],
+  [
+   "Planning Commission Meeting Documents",
+   "https://www.grandviewheights.gov/DocumentCenter/Index/41"
+  ],
+  [
+   "City Council Documents",
+   "https://www.grandviewheights.gov/archive.aspx"
+  ],
+  [
+   "City Council Meeting Packets",
+   "https://www.grandviewheights.gov/DocumentCenter/Index/18"
+  ],
+  [
+   "City Council Ordinances",
+   "https://www.grandviewheights.gov/Archive.aspx"
+  ],
+  [
+   "City Council Resolutions",
+   "https://www.grandviewheights.gov/Archive.aspx"
+  ],
+  [
+   "Agendas, Budgets, Reports",
+   "https://www.grandviewheights.gov/archive.aspx"
+  ],
+  [
+   "Documents",
+   "https://www.grandviewheights.gov/DocumentCenter/Index/15"
+  ],
+  [
+   "Agendas & Minutes",
+   "https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34"
+  ]
+ ],
+ "agenda_links_on_home": [
+  [
+   "Agendas & Minutes",
+   "https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34"
+  ],
+  [
+   "Codified Ordinances  Review recently passed ordinances and resolutions by the Grandview Heights City Council.",
+   "https://codelibrary.amlegal.com/codes/grandviewhts/latest/overview"
+  ]
+ ]
 }
