@@ -151,22 +151,28 @@ SALE_LABELS = ["Case Status", "Case #", "Parcel ID", "Property Address", "Apprai
 
 
 def parse_sale_text(body):
-    """Sales from the preview page's text. Each sale starts with a status header ("Auction Starts",
-    "Auction Status", "Auction Sold"), then "Label: value" pairs (on one line or two)."""
+    """Sales from the preview page's text. Each sale is a run of "Label: value" pairs starting with
+    "Case Status:". What comes just before it says how it went: "Auction Starts" (waiting),
+    "Auction Status Withdrawn", "Auction Sold ... Amount ... Sold To ...", or nothing in the closed list."""
     body = body.replace("\u00a0", " ")
     alt = "|".join(re.escape(l) for l in SALE_LABELS)
+    parts = re.split(r"(?=Case\s+Status\s*:)", body)
     items = []
-    for chunk in re.split(r"(?=\bAuction\s+(?:Starts|Status|Sold)\b)", body)[1:]:
-        if not re.search(r"Case\s+Status\s*:", chunk):
-            continue
-        head = re.sub(r"\s+", " ", re.split(r"Case\s+Status\s*:", chunk)[0]).strip()
-        field = lambda lab: (re.search(rf"{re.escape(lab)}\s*:\s*(.*?)(?=(?:{alt})\s*:|\Z)", chunk, re.S) or [None, ""])[1].strip()
+    for i, chunk in enumerate(parts[1:], 1):
+        # the header for this sale is the tail of the previous part, after its last "Label: value" line
+        prev = parts[i - 1]
+        tail = prev[max(prev.rfind("Deposit Requirement"), prev.rfind("Opening Bid"), prev.rfind("Preview Items"), 0):]
+        tail = re.sub(r"^(Deposit Requirement|Opening Bid)\s*:\s*\S+", "", tail)
+        head = re.sub(r"\s+", " ", tail).strip()
+        field = lambda lab: (re.search(rf"{re.escape(lab)}\s*:\s*(.*?)(?=(?:{alt})\s*:|Auction\s+(?:Starts|Status|Sold)|\Z)", chunk, re.S)
+                             or [None, ""])[1].strip()
         num = lambda lab: int(float(re.sub(r"[^\d.]", "", field(lab)) or 0)) or None
         addr = [l.strip() for l in re.split(r"\n|\t", field("Property Address")) if l.strip()]
-        status = ("Sold" if re.search(r"\bsold\b", head, re.I) else "Scheduled" if re.match(r"Auction\s+Starts", head)
-                  else (re.sub(r"^Auction\s+Status\s*", "", head).split(" ") or ["Unknown"])[0] or "Unknown")
-        amount = re.search(r"Amount\s*\$?([\d,]+(?:\.\d\d)?)", head)
-        sold_to = re.search(r"Sold\s+To\s*(3rd Party Bidder|Plaintiff)", head, re.I)
+        st = re.search(r"Auction\s+Status\s+(\w+)", head)
+        status = ("Sold" if re.search(r"Auction\s+Sold|\bSold\s+To\b", head, re.I) else "Scheduled" if re.search(r"Auction\s+Starts", head)
+                  else st[1] if st else "Closed" if "Closed or Canceled" in body[:body.find(chunk)] else "Unknown")
+        amount = re.search(r"Amount\s*:?\s*\$?([\d,]+(?:\.\d\d)?)", head)
+        sold_to = re.search(r"Sold\s+To\s*:?\s*(3rd Party Bidder|Plaintiff)", head, re.I)
         items.append({"case": field("Case #").split("(")[0].strip(), "parcel": parcel_fmt(field("Parcel ID")),
                       "address": addr[0].title() if addr else "", "city": addr[1].split(",")[0].strip().title() if len(addr) > 1 else "",
                       "appraised": num("Appraised Value"), "opening_bid": num("Opening Bid"), "status": status.title(),

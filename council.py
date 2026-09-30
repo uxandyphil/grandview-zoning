@@ -1,26 +1,29 @@
 """
 City Council agendas, summarized.
 
-The city posts each council meeting's packet (agenda first, then supporting documents) in the
-Document Center's "City Council Meeting Packets" folder, linked from its Public Documents page.
-Each run opens that folder (it loads with JavaScript, so in a headless browser), reads the agenda
-pages at the front of each new packet, and pulls out the items: ordinances, resolutions, public
-hearings, and so on, in the agenda's own words (no model writes the summary). Upcoming council
-meetings from the city calendar's RSS feed are listed too, until their packet is posted.
+The city posts council agendas in its Archive Center ("City Council Minutes and Agendas" on the
+Public Documents page), the same system the zoning board agendas come from. The archives are
+numbered and the index doesn't list them, so the first run checks the numbers once and remembers
+which hold council agendas. Each run then reads new agenda PDFs and pulls out the items:
+ordinances, resolutions, public hearings, and so on, in the agenda's own words (no model writes the
+summary). Upcoming council meetings from the city calendar's RSS feed are listed too, until their
+agenda is posted.
 Meetings are kept once read, so the history builds up. Writes docs/council.json. Runs from scrape.py.
 """
 
 import json
 import re
+import time
 from html import unescape
 from pathlib import Path
+from urllib.parse import urljoin
 
 import requests
 
 BASE = "https://www.grandviewheights.gov/"
 FEEDS = [BASE + "RSSFeed.aspx?ModID=58&CID=All-calendar.xml"]
-PACKETS_FOLDER = 18          # Document Center: City Council Meeting Packets
-MAX_FOLDERS = 30
+MAX_ARCHIVE_ID = 120
+DAYS_BACK = 550
 OUT = Path("docs/council.json")
 UA = "grandview-zoning-watch/1.1 (community site, runs once daily)"
 COUNCIL = re.compile(r"council", re.I)
@@ -101,59 +104,70 @@ def summarize(items):
     return counts
 
 
-def packets(parse_date):
-    """[{id, name, url, date}] for documents in the packets folder and its year/month subfolders."""
-    from playwright.sync_api import sync_playwright
-    docs, seen, queue = {}, set(), [(str(PACKETS_FOLDER), "", 0)]
-    with sync_playwright() as p:
-        b = p.chromium.launch()
-        page = b.new_page(user_agent=UA)
-        while queue and len(seen) < MAX_FOLDERS:
-            fid, fname, depth = queue.pop(0)
-            if fid in seen:
-                continue
-            seen.add(fid)
-            page.goto(f"{BASE}DocumentCenter/Index/{fid}", wait_until="networkidle", timeout=60000)
-            page.wait_for_timeout(1500)
-            found = page.eval_on_selector_all("a[href*='DocumentCenter/']",
-                                              "els => els.map(e => ({href: e.href, text: (e.textContent || '').trim()}))")
-            print(f"  packets folder {fid} '{fname}': {[(l['text'][:50], l['href'][-40:]) for l in found][:40]}")
-            for l in found:
-                if m := re.search(r"DocumentCenter/View/(\d+)", l["href"]):
-                    name = l["text"] or l["href"].rsplit("/", 1)[-1].replace("-", " ")
-                    docs.setdefault(m[1], {"id": "doc-" + m[1], "name": name, "url": l["href"].split("?")[0],
-                                           "date": parse_date(name) or parse_date(l["href"]) or parse_date(fname), "folder": fname})
-                elif (m := re.search(r"DocumentCenter/Index/(\d+)", l["href"])) and depth < 2 and m[1] not in seen \
-                        and re.search(r"20\d\d|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|council|packet|agenda", l["text"], re.I):
-                    queue.append((m[1], l["text"], depth + 1))
-        b.close()
-    print(f"Council: {len(docs)} documents in {len(seen)} packet folders")
-    return list(docs.values())
+def archive_items(html):
+    """[(title, url)] for the documents listed on an Archive Center page."""
+    return [(re.sub(r"<[^>]+>|\s+", " ", unescape(t)).strip(), urljoin(BASE, unescape(h)))
+            for h, t in re.findall(r'<a\b[^>]*href="([^"]*ADID=\d+[^"]*)"[^>]*>(.*?)</a>', html, re.I | re.S)]
+
+
+def archive_name(html):
+    """The archive's own name: the last heading-like text before its first document."""
+    first = re.search(r'href="[^"]*ADID=', html)
+    head = html[:first.start()] if first else html
+    names = [unescape(re.sub(r"\s+", " ", t)).strip() for _, t in re.findall(r"<(h[1-4]|strong|span|legend)[^>]*>([^<]{3,90})</\1>", head, re.I)]
+    names = [n for n in names if not re.search(r"archive center|skip to|sign in|search|loading|menu", n, re.I)]
+    return names[-1] if names else ""
+
+
+def council_archives(state):
+    """{archive id: name} for Archive Center archives of council agendas (found once, then remembered)."""
+    if state.get("council_archives"):
+        return state["council_archives"]
+    found = {}
+    for amid in range(1, MAX_ARCHIVE_ID + 1):
+        try:
+            html = get(f"{BASE}Archive.aspx?AMID={amid}").text
+        except requests.RequestException:
+            continue
+        items = archive_items(html)
+        if items:
+            found[str(amid)] = archive_name(html) or items[0][0]
+        time.sleep(0.4)
+    print(f"Council: archives found {found}")
+    council = {a: n for a, n in found.items() if COUNCIL.search(n) and not re.search(r"minutes|committee of the whole minutes", n, re.I)}
+    if council:
+        state["council_archives"] = council
+    return council
 
 
 def run(state, now, parse_date, packet_agenda_text):
-    from datetime import date, datetime
+    from datetime import date, datetime, timedelta
     data = json.loads(OUT.read_text()) if OUT.exists() else {"meetings": []}
-    have = {m["id"]: m for m in data["meetings"] if m["id"].startswith("doc-")}   # calendar entries are rebuilt each run
-    try:
-        docs = [d for d in packets(parse_date) if not re.search(r"minutes", d["name"], re.I)]
-    except Exception as err:
-        print(f"Council: couldn't read the packets folder ({err})")
-        docs = []
-    todo = sorted((d for d in docs if d["id"] not in have and d["date"]), key=lambda d: d["date"], reverse=True)
-    print(f"Council: {len(docs)} packets, {len(todo)} new to read")
+    have = {m["id"]: m for m in data["meetings"] if m["id"].startswith("adid-")}   # calendar entries are rebuilt each run
+    since = (date.today() - timedelta(days=DAYS_BACK)).isoformat()
+    docs = []
+    for amid, name in council_archives(state).items():
+        try:
+            for title, url in archive_items(get(f"{BASE}Archive.aspx?AMID={amid}").text):
+                d = parse_date(title)
+                if d and d >= since and not re.search(r"minutes", title, re.I):
+                    docs.append({"id": "adid-" + re.search(r"ADID=(\d+)", url)[1], "title": title, "archive": name, "url": url, "date": d})
+        except Exception as err:
+            print(f"Council: archive {amid} failed ({err})")
+    todo = sorted((d for d in docs if d["id"] not in have), key=lambda d: d["date"], reverse=True)
+    print(f"Council: {len(docs)} agendas since {since}, {len(todo)} new to read")
     for d in todo[:MAX_NEW_PER_RUN]:
         try:
             items = items_from_text(packet_agenda_text(d["url"]))
         except Exception as err:
-            print(f"  {d['name']}: {err}")
+            print(f"  {d['title']}: {err}")
             continue
         for it in items:
             it["kind"] = classify(f"{it['number']} {it['title']}")
-        name = re.sub(r"\s*(packet|agenda)\s*", " ", re.sub(r"\b\d{1,2}[-_.]\d{1,2}[-_.]\d{2,4}\b|\b20\d\d\b", "", d["name"]), flags=re.I).strip(" -_") or "City Council"
-        have[d["id"]] = {"id": d["id"], "name": name if COUNCIL.search(name) else "City Council " + name, "date": d["date"], "time": "",
-                         "url": d["url"], "items": items, "counts": summarize(items), "has_agenda": True}
-        print(f"  {d['date']} {d['name']}: {len(items)} items")
+        kind = re.sub(r"\s*(agendas?|archive)\s*", " ", d["archive"], flags=re.I).strip() or "City Council"
+        have[d["id"]] = {"id": d["id"], "name": kind if COUNCIL.search(kind) else "City Council", "date": d["date"], "time": "",
+                         "url": d["url"], "title": d["title"], "items": items, "counts": summarize(items), "has_agenda": True}
+        print(f"  {d['date']} {d['title']}: {len(items)} items")
     # upcoming meetings from the calendar that don't have a packet yet
     try:
         dated = {m["date"] for m in have.values()}
