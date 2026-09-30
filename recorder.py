@@ -101,10 +101,12 @@ def run(state, now):
     new = 0
     with sync_playwright() as p:
         b = p.chromium.launch()
-        page = b.new_page(user_agent=UA)
         for a, z in windows:
+            ctx = b.new_context(user_agent=UA)   # fresh each time: the site carries the last search over otherwise
+            page = ctx.new_page()
             try:
                 got = read_window(page, a, z)
+                ctx.close()
             except Exception as err:
                 print(f"Recorder: {a} to {z} failed ({err})")
                 b.close()

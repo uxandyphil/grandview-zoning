@@ -117,10 +117,12 @@ def run_filings(data, state, address_re):
     todo = [s for s in fc if s["submissionId"] not in seen][:MAX_COMPLAINTS_PER_RUN]
     print(f"Foreclosure filings: {len(subs)} new civil filings in the feed, {len(fc)} foreclosures, {len(todo)} to read")
     have = {f["id"] for f in data["filings"]}
-    found = 0
+    found = read = 0
     for s in todo:
         try:
-            hit = grandview_property(complaint_text(s), address_re)
+            text = complaint_text(s)
+            read += len(text) > 500
+            hit = grandview_property(text, address_re)
         except Exception as err:
             print(f"  {s['submissionId']}: {err}")
             continue          # try again next run
@@ -131,7 +133,7 @@ def run_filings(data, state, address_re):
                                     "category": s.get("caseCategoryDescription"), "address": hit[0], "parcel": hit[1]})
             found += 1
     del seen[:-3000]
-    print(f"  {found} new Grandview foreclosure filings")
+    print(f"  {read} complaints read, {found} new Grandview foreclosure filings")
 
 
 # ---------- 2. sheriff sales ----------
@@ -141,32 +143,30 @@ def fridays(center, back, ahead):
     return [f + timedelta(weeks=i) for i in range(-back, ahead + 1)]
 
 
+SALE_LABELS = ["Case Status", "Case #", "Parcel ID", "Property Address", "Appraised Value", "Opening Bid", "Deposit Requirement",
+               "Assessed Value", "Plaintiff Max Bid"]
+
+
 def parse_sale_text(body):
     """Sales from the preview page's text. Each sale starts with a status header ("Auction Starts",
-    "Auction Status", "Auction Sold") followed by tab-separated "Label:\tvalue" lines."""
+    "Auction Status", "Auction Sold"), then "Label: value" pairs (on one line or two)."""
+    body = body.replace("\u00a0", " ")
+    alt = "|".join(re.escape(l) for l in SALE_LABELS)
     items = []
-    for chunk in re.split(r"(?=\bAuction (?:Starts|Status|Sold)\b)", body)[1:]:
-        head, _, rest = chunk.partition("Case Status:")
-        if not rest:
+    for chunk in re.split(r"(?=\bAuction\s+(?:Starts|Status|Sold)\b)", body)[1:]:
+        if not re.search(r"Case\s+Status\s*:", chunk):
             continue
-        fields, last = {}, None
-        for line in ("Case Status:" + rest).split("\n"):
-            if ":" in line and not line.startswith(("\t", " ")) and line.split(":", 1)[0].strip():
-                last, v = line.split(":", 1)
-                last = last.strip().lower()
-                fields[last] = v.strip()
-            elif last and line.strip():   # a continuation line (the city and zip under the address)
-                fields[last] += "\n" + line.strip()
-        head = re.sub(r"\s+", " ", head).strip()
-        num = lambda k: int(float(re.sub(r"[^\d.]", "", fields.get(k, "")) or 0)) or None
-        addr = fields.get("property address", "").split("\n")
-        status = ("Sold" if re.search(r"\bsold\b", head, re.I) else "Scheduled" if head.startswith("Auction Starts")
-                  else re.sub(r"^Auction Status\s*", "", head).split(" ")[0] or "Unknown")
+        head = re.sub(r"\s+", " ", re.split(r"Case\s+Status\s*:", chunk)[0]).strip()
+        field = lambda lab: (re.search(rf"{re.escape(lab)}\s*:\s*(.*?)(?=(?:{alt})\s*:|\Z)", chunk, re.S) or [None, ""])[1].strip()
+        num = lambda lab: int(float(re.sub(r"[^\d.]", "", field(lab)) or 0)) or None
+        addr = [l.strip() for l in re.split(r"\n|\t", field("Property Address")) if l.strip()]
+        status = ("Sold" if re.search(r"\bsold\b", head, re.I) else "Scheduled" if re.match(r"Auction\s+Starts", head)
+                  else (re.sub(r"^Auction\s+Status\s*", "", head).split(" ") or ["Unknown"])[0] or "Unknown")
         amount = re.search(r"Amount\s*\$?([\d,]+(?:\.\d\d)?)", head)
-        sold_to = re.search(r"Sold To\s*(3rd Party Bidder|Plaintiff)", head, re.I)
-        items.append({"case": fields.get("case #", "").split(" (")[0].strip(), "parcel": parcel_fmt(fields.get("parcel id")),
-                      "address": addr[0].strip().title(), "city": addr[1].split(",")[0].strip().title() if len(addr) > 1 else "",
-                      "appraised": num("appraised value"), "opening_bid": num("opening bid"), "status": status.title(),
+        sold_to = re.search(r"Sold\s+To\s*(3rd Party Bidder|Plaintiff)", head, re.I)
+        items.append({"case": field("Case #").split("(")[0].strip(), "parcel": parcel_fmt(field("Parcel ID")),
+                      "address": addr[0].title() if addr else "", "city": addr[1].split(",")[0].strip().title() if len(addr) > 1 else "",
+                      "appraised": num("Appraised Value"), "opening_bid": num("Opening Bid"), "status": status.title(),
                       "sold_for": int(float(amount[1].replace(",", ""))) if amount else None,
                       "sold_to": ("Plaintiff" if sold_to and sold_to[1].lower() == "plaintiff" else "3rd party bidder" if sold_to else None)})
     return items
@@ -195,7 +195,10 @@ def run_sales(data, state):
                     page.wait_for_function("document.body.innerText.includes('Case Status')", timeout=20000)
                 except Exception:
                     page.wait_for_timeout(3000)
-                items = parse_sale_text(page.evaluate("document.body.innerText"))
+                body = page.evaluate("document.body.innerText")
+                items = parse_sale_text(body)
+                if not items and not counts:
+                    print(f"  sheriff sale {d}: no sales read; page text starts: {re.sub(chr(10) + '+', ' / ', body)[:700]!r}")
             except Exception as err:
                 print(f"  sheriff sale {d}: {err}")
                 continue

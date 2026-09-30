@@ -1,25 +1,26 @@
 """
 City Council agendas, summarized.
 
-The city posts council meetings on its website calendar (Calendar.aspx), and each meeting's page
-links its agenda. Each run reads the calendar's RSS feed for council meetings (council and its
-committees), opens each meeting's page, follows the agenda link, and pulls out the agenda's items:
-ordinances, resolutions, public hearings, and so on, in the agenda's own words (no model writes the
-summary). Meetings are kept once found, so the history builds up. Writes docs/council.json.
-Runs from scrape.py.
+The city posts each council meeting's packet (agenda first, then supporting documents) in the
+Document Center's "City Council Meeting Packets" folder, linked from its Public Documents page.
+Each run opens that folder (it loads with JavaScript, so in a headless browser), reads the agenda
+pages at the front of each new packet, and pulls out the items: ordinances, resolutions, public
+hearings, and so on, in the agenda's own words (no model writes the summary). Upcoming council
+meetings from the city calendar's RSS feed are listed too, until their packet is posted.
+Meetings are kept once read, so the history builds up. Writes docs/council.json. Runs from scrape.py.
 """
 
-import io
 import json
 import re
 from html import unescape
 from pathlib import Path
-from urllib.parse import urljoin
 
 import requests
 
 BASE = "https://www.grandviewheights.gov/"
 FEEDS = [BASE + "RSSFeed.aspx?ModID=58&CID=All-calendar.xml"]
+PACKETS_FOLDER = 18          # Document Center: City Council Meeting Packets
+MAX_FOLDERS = 30
 OUT = Path("docs/council.json")
 UA = "grandview-zoning-watch/1.1 (community site, runs once daily)"
 COUNCIL = re.compile(r"council", re.I)
@@ -65,28 +66,6 @@ def meetings_from_feed():
     return list(out.values())
 
 
-def agenda_links(event_url):
-    """Links on a meeting's calendar page that look like its agenda."""
-    html = get(event_url).text
-    links = []
-    for href, text in re.findall(r'<a\b[^>]*href="([^"#]+)"[^>]*>(.*?)</a>', html, re.I | re.S):
-        text = re.sub(r"<[^>]+>|\s+", " ", unescape(text)).strip()
-        url = urljoin(BASE, unescape(href))
-        if re.search(r"DocumentCenter/View|AgendaCenter/ViewFile|\.pdf|ViewFile|Archive\.aspx\?ADID", url, re.I) and \
-                not re.search(r"minutes", text + url, re.I):
-            links.append((text, url))
-    links.sort(key=lambda l: 0 if re.search(r"agenda", l[0] + l[1], re.I) else 1)
-    return links
-
-
-def pdf_text(url):
-    r = get(url)
-    if not r.content.startswith(b"%PDF"):
-        raise ValueError("not a PDF")
-    from pypdf import PdfReader
-    return "\n".join(p.extract_text() or "" for p in PdfReader(io.BytesIO(r.content)).pages[:15])
-
-
 def classify(title):
     for kind, pat in KINDS:
         if pat.search(title):
@@ -122,39 +101,70 @@ def summarize(items):
     return counts
 
 
-def run(state, now):
-    from datetime import datetime
+def packets(parse_date):
+    """[{id, name, url, date}] for documents in the packets folder and its year/month subfolders."""
+    from playwright.sync_api import sync_playwright
+    docs, seen, queue = {}, set(), [(str(PACKETS_FOLDER), "", 0)]
+    with sync_playwright() as p:
+        b = p.chromium.launch()
+        page = b.new_page(user_agent=UA)
+        while queue and len(seen) < MAX_FOLDERS:
+            fid, fname, depth = queue.pop(0)
+            if fid in seen:
+                continue
+            seen.add(fid)
+            page.goto(f"{BASE}DocumentCenter/Index/{fid}", wait_until="networkidle", timeout=60000)
+            page.wait_for_timeout(1500)
+            for l in page.eval_on_selector_all("a[href*='DocumentCenter/']",
+                                               "els => els.map(e => ({href: e.href, text: (e.textContent || '').trim()}))"):
+                if m := re.search(r"DocumentCenter/View/(\d+)", l["href"]):
+                    name = l["text"] or l["href"].rsplit("/", 1)[-1].replace("-", " ")
+                    docs.setdefault(m[1], {"id": "doc-" + m[1], "name": name, "url": l["href"].split("?")[0],
+                                           "date": parse_date(name) or parse_date(l["href"]) or parse_date(fname), "folder": fname})
+                elif (m := re.search(r"DocumentCenter/Index/(\d+)", l["href"])) and depth < 2 and m[1] not in seen \
+                        and re.search(r"20\d\d|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|council|packet|agenda", l["text"], re.I):
+                    queue.append((m[1], l["text"], depth + 1))
+        b.close()
+    print(f"Council: {len(docs)} documents in {len(seen)} packet folders")
+    return list(docs.values())
+
+
+def run(state, now, parse_date, packet_agenda_text):
+    from datetime import date, datetime
     data = json.loads(OUT.read_text()) if OUT.exists() else {"meetings": []}
-    have = {m["id"]: m for m in data["meetings"]}
+    have = {m["id"]: m for m in data["meetings"] if m["id"].startswith("doc-")}   # calendar entries are rebuilt each run
     try:
-        found = meetings_from_feed()
+        docs = [d for d in packets(parse_date) if not re.search(r"minutes", d["name"], re.I)]
     except Exception as err:
-        print(f"Council: couldn't read the calendar feed ({err})")
-        return
-    todo = [m for m in found if not have.get(m["id"], {}).get("items")]
-    print(f"Council: {len(found)} council meetings in the calendar feed, {len(todo)} to read")
-    for m in todo[:MAX_NEW_PER_RUN]:
+        print(f"Council: couldn't read the packets folder ({err})")
+        docs = []
+    todo = sorted((d for d in docs if d["id"] not in have and d["date"]), key=lambda d: d["date"], reverse=True)
+    print(f"Council: {len(docs)} packets, {len(todo)} new to read")
+    for d in todo[:MAX_NEW_PER_RUN]:
         try:
-            d = datetime.strptime(m["date_text"], "%B %d, %Y").date().isoformat() if m["date_text"] else ""
-        except ValueError:
-            d = ""
-        items, agenda = [], None
-        try:
-            links = agenda_links(m["url"])
-            print(f"  {m['name']} {d}: links {[t for t, u in links][:6]}")
-            for text, url in links[:3]:
-                try:
-                    items = items_from_text(pdf_text(url))
-                    agenda = url
-                    break
-                except Exception as err:
-                    print(f"    {url}: {err}")
+            items = items_from_text(packet_agenda_text(d["url"]))
         except Exception as err:
-            print(f"  {m['url']}: {err}")
+            print(f"  {d['name']}: {err}")
+            continue
         for it in items:
             it["kind"] = classify(f"{it['number']} {it['title']}")
-        have[m["id"]] = {"id": m["id"], "name": m["name"], "date": d, "time": m["time_text"], "url": agenda or m["url"],
-                         "event_url": m["url"], "items": items, "counts": summarize(items), "has_agenda": bool(agenda)}
+        name = re.sub(r"\s*(packet|agenda)\s*", " ", re.sub(r"\b\d{1,2}[-_.]\d{1,2}[-_.]\d{2,4}\b|\b20\d\d\b", "", d["name"]), flags=re.I).strip(" -_") or "City Council"
+        have[d["id"]] = {"id": d["id"], "name": name if COUNCIL.search(name) else "City Council " + name, "date": d["date"], "time": "",
+                         "url": d["url"], "items": items, "counts": summarize(items), "has_agenda": True}
+        print(f"  {d['date']} {d['name']}: {len(items)} items")
+    # upcoming meetings from the calendar that don't have a packet yet
+    try:
+        dated = {m["date"] for m in have.values()}
+        for m in meetings_from_feed():
+            try:
+                day = datetime.strptime(m["date_text"], "%B %d, %Y").date().isoformat()
+            except ValueError:
+                continue
+            if day >= date.today().isoformat() and day not in dated:
+                have["cal-" + m["id"]] = {"id": "cal-" + m["id"], "name": m["name"], "date": day, "time": m["time_text"],
+                                          "url": m["url"], "items": [], "counts": {}, "has_agenda": False}
+    except Exception as err:
+        print(f"Council: calendar feed failed ({err})")
     data["meetings"] = sorted(have.values(), key=lambda m: m["date"], reverse=True)
     data["updated"] = now
     OUT.write_text(json.dumps(data, indent=1))
