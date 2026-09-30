@@ -1258,7 +1258,312 @@
    },
    "has_agenda": true,
    "parse": 2
+  },
+  {
+   "id": "adid-3578",
+   "name": "City Council",
+   "date": "2025-09-08",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3578",
+   "title": "September 8, 2025 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Res. 27-2025: A Resolution accepting financial assistance from the Ohio Bureau of Workers\u2019 Compensation Safety Intervention Grant to apply to the purchase of equipment for the Parks and Recreation Department",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 28-2025: A Resolution accepting the amounts and rates as determined by the Franklin County Budget Commission and authorizing the necessary tax levies and certifying them to the County Auditor",
+     "kind": "Resolution"
+    },
+    {
+     "number": "3.",
+     "title": "Res. 29-2025: A Resolution authorizing the City of Grandview Heights to pursue lease financing for the acquisition of a Sanitation Truck",
+     "kind": "Resolution"
+    },
+    {
+     "number": "4.",
+     "title": "Ord. 2025- 09: An Ordinance to approve supplemental appropriations for the",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Resolution": 3,
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3568",
+   "name": "City Council",
+   "date": "2025-08-04",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3568",
+   "title": "August 4, 2025, Regular Council Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Res. 26 -2025: A Resolution Authorizing the City of Grandview Heights to participate in the proposed Opioid Litigation Settlement involving Alvogen, Amneal, Apotex, Hikma, Indivious, Mylan, Sun and Zydus",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Resolution": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3554",
+   "name": "City Council",
+   "date": "2025-07-14",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3554",
+   "title": "July 14, 2025 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Res. 24-2025: A Resolution accepting a grant from the 2025- 2026 Ohio EMS Grant from the Ohio Department of Public Safety",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 25-2025: A Resolution to accept the material terms of the Purdue Pharma L.P. & Sackler Family Settlement concerning alleged misconduct related to opioids",
+     "kind": "Resolution"
+    },
+    {
+     "number": "1.",
+     "title": "New Liquor Permit: Request for D -5J Liquor Permit #10004208- 1 Guide Fortune LLC, dba 775 Yard St Ste 190, 775 Yard St Ste 190, Grandview Heights, OH 43212",
+     "kind": "Other"
+    }
+   ],
+   "counts": {
+    "Resolution": 2,
+    "Other": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3545",
+   "name": "City Council",
+   "date": "2025-06-23",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3545",
+   "title": "June 23, 2025 Special Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-08: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2025. 3rd Reading. Previous readings 5/27/2025 and 6/9/2025. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3546",
+   "name": "Council Committees",
+   "date": "2025-06-23",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3546",
+   "title": "June 23, 2025 Finance Committee Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-08: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2025. 3rd Reading. Previous readings 5/27/2025 and 6/9/2025. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3536",
+   "name": "City Council",
+   "date": "2025-06-09",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3536",
+   "title": "June 9, 2025 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-08: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2025. 2nd Reading. Previous reading 5/27/2025",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 21-2025: A Resolution in support of LGBTQ+ Pride Month in Grandview Heights, Ohio",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 22-2025: A Resolution recognizing June 19th, 2025 as Juneteenth Day in Grandview Heights, Ohio",
+     "kind": "Resolution"
+    },
+    {
+     "number": "3.",
+     "title": "Res. 23-2025: A Resolution in opposition to House Bills 335 and 309, which threaten public safety, could decimate local municipalities\u2019 budgets and ability to provide services, create volatile tax burdens for residents, and hinder municipalities\u2019 ability to save for future needs",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1,
+    "Resolution": 3
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3533",
+   "name": "City Council",
+   "date": "2025-05-27",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3533",
+   "title": "May 27, 2025 Special Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-07: An Ordinance to amend Codified Ordinance 157.03 of the City of readings 4/14/2025 and 5/12/2025",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Ord. 2025-08: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2025",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 2
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3524",
+   "name": "City Council",
+   "date": "2025-05-12",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3524",
+   "title": "May 12, 2025 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-06: An Ordinance to amend Grandview Heights Codified Ordinance 141.02, to authorize adoption of updated versions of the City\u2019s Community Plan. Assigned to Planning & Administration Committee. 3rd Reading. Previous readings 3/17/2025 and 4/14/2025",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2025-07: An Ordinance to amend Codified Ordinance 157.03 of the City of 4/14/2025",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 18-2025: A Resolution to request the Franklin County Budget Commission to disburse the 0.25 mills of available inside millage to the City of Grandview Heights, Ohio",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 19-2025: A Resolution adopting a tax budget for fiscal year 2026",
+     "kind": "Resolution"
+    },
+    {
+     "number": "3.",
+     "title": "Res. 20-2025: A Resolution recognizing Professional Municipal Clerks Day",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 2,
+    "Resolution": 3
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3506",
+   "name": "City Council",
+   "date": "2025-04-14",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3506",
+   "title": "April 14, 2025 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-05: An Ordinance authorizing the Director of Building & Zoning to cause plans, specifications, and estimates of cost for the construction or repair of certain sidewalks within the City of Grandview Heights to be prepared and filed with the Clerk of the City of Grandview Heights City Council in accordance with Section 729.02 of the Ohio Revised Code, and declaring it an emergency. Previous reading 3/17/2025",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2025-06: An Ordinance to amend Grandview Heights Codified Ordinance 141.02, to authorize adoption of updated versions of the City\u2019s Community Plan. Assigned to Planning & Administration Committee. Previous reading 3/17/2025",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 13-2025: A Resolution to waive the provisions of Section 529.07(b)(3) of the Codified Ordinances for the Tour de Grandview Cycling Classic Event on Saturday, June 7, 2025 in the City of Grandview Heights",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 14-2025: A Resolution to waive the provisions of Section 529.07(b)(3) of the Codified Ordinances for the Grandview Hop on June 28, July 26, August 23, and September 27, 2025 in the City of Grandview Heights",
+     "kind": "Resolution"
+    },
+    {
+     "number": "3.",
+     "title": "Res. 15-2025: A Resolution to waive the provisions of Section 529.07(b)(3) of the Codified Ordinances for the Bobcat Boosters Ox Roast event September 5 -6, 2025 in the City of Grandview Heights",
+     "kind": "Resolution"
+    },
+    {
+     "number": "4.",
+     "title": "Res. 16-2025: A Resolution to waive the provisions of Section 529.07(b)(3) of the Codified Ordinances for the M3S Sports Quarter Marathon and 5K Run event August 17, 2025 in the City of Grandview Heights",
+     "kind": "Resolution"
+    },
+    {
+     "number": "5.",
+     "title": "Res. 17-2025: A Resolution declaring April as Fair Housing Month in Grandview Heights, Ohio",
+     "kind": "Resolution"
+    },
+    {
+     "number": "6.",
+     "title": "Ord. 2025-07: An Ordinance to amend Codified Ordinance 157.03 of the City of",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 3,
+    "Resolution": 5
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3508",
+   "name": "Council Committees",
+   "date": "2025-04-14",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3508",
+   "title": "April 14, 2025 Planning & Administration Committee Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2025-06: An Ordinance to amend Grandview Heights Codified Ordinance 141.02, to authorize adoption of updated versions of the City\u2019s Community Plan Other Business Adjournment AGENDA SUBJECT TO CHANGE",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
   }
  ],
- "updated": "2026-09-30T00:55:02+00:00"
+ "updated": "2026-09-30T00:59:54+00:00"
 }
