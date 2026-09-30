@@ -115,8 +115,10 @@ def packets(parse_date):
             seen.add(fid)
             page.goto(f"{BASE}DocumentCenter/Index/{fid}", wait_until="networkidle", timeout=60000)
             page.wait_for_timeout(1500)
-            for l in page.eval_on_selector_all("a[href*='DocumentCenter/']",
-                                               "els => els.map(e => ({href: e.href, text: (e.textContent || '').trim()}))"):
+            found = page.eval_on_selector_all("a[href*='DocumentCenter/']",
+                                              "els => els.map(e => ({href: e.href, text: (e.textContent || '').trim()}))")
+            print(f"  packets folder {fid} '{fname}': {[(l['text'][:50], l['href'][-40:]) for l in found][:40]}")
+            for l in found:
                 if m := re.search(r"DocumentCenter/View/(\d+)", l["href"]):
                     name = l["text"] or l["href"].rsplit("/", 1)[-1].replace("-", " ")
                     docs.setdefault(m[1], {"id": "doc-" + m[1], "name": name, "url": l["href"].split("?")[0],

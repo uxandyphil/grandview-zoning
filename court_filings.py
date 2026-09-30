@@ -33,6 +33,7 @@ HEADERS = {"User-Agent": UA}
 GRANDVIEW_PARCEL = re.compile(r"\b0?3[05][-\s]?\d{6}[-\s]?\d{2}\b")
 FUTURE_WEEKS, RECENT_WEEKS, BACKFILL_PER_RUN, BACKFILL_WEEKS = 6, 3, 8, 104
 MAX_COMPLAINTS_PER_RUN = 40
+VERSION = 2   # bump to read the feed's foreclosure complaints again
 
 
 def parcel_fmt(v):
@@ -107,6 +108,8 @@ def grandview_property(text, address_re):
 
 
 def run_filings(data, state, address_re):
+    if state.get("court_version") != VERSION:
+        state["court_seen"], state["court_version"] = [], VERSION
     seen = state.setdefault("court_seen", [])
     try:
         subs = requests.get(FILINGS_API, headers=HEADERS, timeout=60).json()
@@ -197,12 +200,14 @@ def run_sales(data, state):
                     page.wait_for_timeout(3000)
                 body = page.evaluate("document.body.innerText")
                 items = parse_sale_text(body)
-                if not items and not counts:
-                    print(f"  sheriff sale {d}: no sales read; page text starts: {re.sub(chr(10) + '+', ' / ', body)[:700]!r}")
+                if not items and sum(1 for v in counts.values() if v == 0) < 2:
+                    at = body.find("Preview Items")
+                    print(f"  sheriff sale {d}: no sales read; page text: {re.sub(chr(10) + '+', ' / ', body[at:at + 1500])!r}")
             except Exception as err:
                 print(f"  sheriff sale {d}: {err}")
                 continue
             counts[d.isoformat()] = len(items)
+            print(f"  sheriff sale {d}: {len(items)} sales")
             for it in items:
                 if (it["parcel"] or "")[:3] in ("030", "035") or re.search(r"grandview", it["city"], re.I):
                     sales[(it["case"], d.isoformat())] = {**it, "date": d.isoformat()}
