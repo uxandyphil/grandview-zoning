@@ -28,7 +28,21 @@
    "date": "2025-10-10",
    "lat": 39.976771700848,
    "lon": -83.050565976991
+  },
+  {
+   "case": "24CV4049",
+   "parcel": "030-002996-00",
+   "address": "930 Quay Avenue Unit C",
+   "city": "Columbus",
+   "appraised": 210000,
+   "opening_bid": 88585,
+   "status": "Closed",
+   "sold_for": null,
+   "sold_to": null,
+   "date": "2025-01-31",
+   "lat": 39.97622389469,
+   "lon": -83.039601446405
   }
  ],
- "updated": "2026-09-30T01:21:36+00:00"
+ "updated": "2026-09-30T16:38:12+00:00"
 }
