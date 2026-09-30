@@ -1,4 +1,10 @@
 {
+  "council_archives": {
+    "37": "City Council Agendas",
+    "46": "City Council Ordinances",
+    "47": "City Council Resolutions",
+    "49": "Council Committees Agendas"
+  },
   "county_permits": {
     "folder": "2026-09-15 Appraisal",
     "version": 15
@@ -82,6 +88,10 @@
       -83.050565976991
     ],
     "1000 URLIN AVENUE, Grandview Heights, OH 43212": [
+      39.976771700848,
+      -83.050565976991
+    ],
+    "1000 Urlin Avenue Apt 1402, Grandview Heights, OH": [
       39.976771700848,
       -83.050565976991
     ],
@@ -12241,6 +12251,14 @@
     ]
   },
   "sheriff_weeks_done": [
+    "2025-10-10",
+    "2025-10-17",
+    "2025-10-24",
+    "2025-10-31",
+    "2025-11-07",
+    "2025-11-14",
+    "2025-11-21",
+    "2025-11-28",
     "2025-12-05",
     "2025-12-12",
     "2025-12-19",

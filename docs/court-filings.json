@@ -1,5 +1,34 @@
 {
  "filings": [],
- "sales": [],
- "updated": "2026-09-30T00:43:42+00:00"
+ "sales": [
+  {
+   "case": "24CV1954",
+   "parcel": "030-002703-00",
+   "address": "1000 Urlin Avenue Apt 1402",
+   "city": "Columbus",
+   "appraised": 282000,
+   "opening_bid": null,
+   "status": "Closed",
+   "sold_for": null,
+   "sold_to": null,
+   "date": "2025-10-31",
+   "lat": 39.976771700848,
+   "lon": -83.050565976991
+  },
+  {
+   "case": "24CV1954",
+   "parcel": "030-002703-00",
+   "address": "1000 Urlin Avenue Apt 1402",
+   "city": "Columbus",
+   "appraised": 282000,
+   "opening_bid": 188000,
+   "status": "Closed",
+   "sold_for": null,
+   "sold_to": null,
+   "date": "2025-10-10",
+   "lat": 39.976771700848,
+   "lon": -83.050565976991
+  }
+ ],
+ "updated": "2026-09-30T00:48:42+00:00"
 }
