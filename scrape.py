@@ -457,13 +457,20 @@ def main():
     except Exception as err:
         print(f"County permits step failed: {err}")
 
-    try:  # temporary: see where the recorder's cloud search lives
+    try:  # temporary: list the city's Public Documents folders
         import probe_sources
         probe_sources.run(state, now)
     except Exception as err:
         print(f"Probe failed: {err}")
 
-    # City Council agendas from CivicClerk, summarized by item
+    # County Recorder documents mentioning Grandview Heights (PublicSearch)
+    try:
+        import recorder
+        recorder.run(state, now)
+    except Exception as err:
+        print(f"Recorder step failed: {err}")
+
+    # City Council agendas from the city calendar, summarized by item
     try:
         import council
         council.run(state, now)

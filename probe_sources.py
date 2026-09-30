@@ -1,65 +1,37 @@
 """
-Temporary: records the data requests a few public pages make (City Council's CivicClerk portal, the
-recorder's PublicSearch, and one foreclosure filing's documents), and writes docs/probe.json, so the
-importers can call the right addresses. Removed once they work.
+Temporary: lists the folders on the city's Public Documents page, in case council agendas live in
+the Document Center rather than on the calendar. Writes docs/probe.json. Removed once agendas are found.
 """
 
 import json
+import re
+from html import unescape
 from pathlib import Path
+from urllib.parse import urljoin
 
 import requests
 
 OUT = Path("docs/probe.json")
-UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
-PAGES = [
-    "https://grandviewheightsoh.portal.civicclerk.com/",
-    "https://franklin.oh.publicsearch.us/results?department=RP&limit=50&offset=0&recordedDateRange=20260901%2C20260929"
-    "&searchOcrText=false&searchType=quickSearch&searchValue=GRANDVIEW%20HEIGHTS",
-]
+BASE = "https://www.grandviewheights.gov/"
+UA = "grandview-zoning-watch/1.1 (community site, runs once daily)"
 
 
-def watch(page_url, b):
-    """Every XHR/fetch the page makes, with a sample of each JSON response."""
-    page, calls = b.new_page(user_agent=UA), []
-    def on_response(r):
-        if r.request.resource_type in ("xhr", "fetch"):
-            entry = {"url": r.url[:400], "status": r.status, "type": r.headers.get("content-type", "")}
-            try:
-                if "json" in entry["type"]:
-                    entry["sample"] = r.text()[:1500]
-            except Exception:
-                pass
-            calls.append(entry)
-    page.on("response", on_response)
-    try:
-        page.goto(page_url, wait_until="networkidle", timeout=60000)
-    except Exception as err:
-        calls.append({"error": str(err)[:200]})
-    page.wait_for_timeout(5000)
-    body = page.evaluate("document.body ? document.body.innerText : ''")[:3000]
-    page.close()
-    return {"calls": calls[:60], "body": body}
+def links(url):
+    html = requests.get(url, headers={"User-Agent": UA}, timeout=60).text
+    return [(re.sub(r"<[^>]+>|\s+", " ", unescape(t)).strip(), urljoin(url, unescape(h)))
+            for h, t in re.findall(r'<a\b[^>]*href="([^"#]+)"[^>]*>(.*?)</a>', html, re.I | re.S)]
 
 
 def run(state, now):
-    report = {"updated": now, "pages": {}}
-    # one foreclosure filing's documents, by plain request and by browser
+    report = {"updated": now}
     try:
-        subs = requests.get("https://clerknewfiling.franklincountyohio.gov/api/submissions", headers={"User-Agent": UA}, timeout=60).json()
-        fc = [s for s in subs if "oreclos" in (s.get("caseCategoryDescription") or "")][:2]
-        for s in fc:
-            u = "https://clerknewfiling.franklincountyohio.gov" + s["url"]
-            r = requests.get(u, headers={"User-Agent": UA}, timeout=60)
-            report["pages"][u] = {"status": r.status_code, "type": r.headers.get("content-type"), "len": len(r.content),
-                                  "head": r.content[:600].decode("latin-1")}
-            PAGES.append(u)
+        home = links(BASE)
+        pub = [u for t, u in home if re.search(r"public documents", t, re.I)]
+        report["public_documents_pages"] = pub[:5]
+        for u in pub[:2]:
+            report[u] = [(t, l) for t, l in links(u) if re.search(r"DocumentCenter|council|agenda|minutes", t + l, re.I)][:80]
+        report["agenda_links_on_home"] = [(t, u) for t, u in home if re.search(r"agenda|council|minutes", t + u, re.I)][:40]
     except Exception as err:
-        report["filings_error"] = str(err)[:300]
-    from playwright.sync_api import sync_playwright
-    with sync_playwright() as p:
-        b = p.chromium.launch()
-        for u in PAGES:
-            report["pages"].setdefault(u, {})["browser"] = watch(u, b)
-            print(f"Probe: {u[:90]} -> {len(report['pages'][u]['browser']['calls'])} calls")
-        b.close()
+        report["error"] = str(err)[:300]
     OUT.write_text(json.dumps(report, indent=1))
+    print("Probe: public documents", report.get("public_documents_pages"))

@@ -18,6 +18,7 @@ Writes docs/court-filings.json. Runs from scrape.py.
 import io
 import json
 import re
+import zipfile
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -66,6 +67,17 @@ def complaint_text(sub):
     r.raise_for_status()
     if r.content.startswith(b"%PDF"):
         pdf = r.content
+    elif r.content.startswith(b"PK"):   # a zip of the filing's PDFs; the complaint comes first
+        z = zipfile.ZipFile(io.BytesIO(r.content))
+        names = sorted((n for n in z.namelist() if n.lower().endswith(".pdf")), key=lambda n: z.getinfo(n).filename)
+        if not names:
+            raise ValueError("no PDF in the zip")
+        text = ""
+        for n in names[:3]:   # the complaint, and sometimes a separate exhibit with the legal description
+            text += "\n".join((p.extract_text() or "") for p in PdfReader(io.BytesIO(z.read(n))).pages[:8]) + "\n"
+            if re.search(r"Grandview|0?3[05]-\d{6}", text, re.I):
+                break
+        return text
     else:
         urls = document_urls(r.json())
         if not urls:
