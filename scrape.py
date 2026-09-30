@@ -457,11 +457,25 @@ def main():
     except Exception as err:
         print(f"County permits step failed: {err}")
 
-    try:  # temporary: see what the council, recorder, sheriff and court sites return
+    try:  # temporary: see where the recorder's cloud search lives
         import probe_sources
         probe_sources.run(state, now)
     except Exception as err:
         print(f"Probe failed: {err}")
+
+    # City Council agendas from CivicClerk, summarized by item
+    try:
+        import council
+        council.run(state, now)
+    except Exception as err:
+        print(f"Council step failed: {err}")
+
+    # Foreclosure filings (Clerk of Courts) and sheriff sales for Grandview properties
+    try:
+        import court_filings
+        court_filings.run(state, lambda address: geocode(address, state["geocache"]), now, ADDRESS_RE)
+    except Exception as err:
+        print(f"Court filings step failed: {err}")
 
     # New business filings from Ohio Secretary of State reports uploaded to sos-uploads/
     try:

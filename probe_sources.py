@@ -13,17 +13,13 @@ import requests
 
 OUT = Path("docs/probe.json")
 PAGES = [
-    "https://www.grandviewheights.gov/calendar.aspx?view=list&CID=26,14,27,34",
-    "https://www.grandviewheights.gov/RSSFeed.aspx?ModID=58&CID=All-calendar.xml",
-    "https://www.grandviewheights.gov/common/modules/iCalendar/iCalendar.aspx?catID=26&feed=calendar",
-    "https://grandviewheightsoh.portal.civicclerk.com/",
-    "https://grandviewheights-oh.municodemeetings.com/",
     "https://www.franklincountyohio.gov/Agency-Directory/Recorder/Real-Estate/Public-Records-Search",
+    "https://franklin.oh.publicsearch.us/",
+    "https://franklincountyoh.publicsearch.us/",
 ]
-BROWSER_ALWAYS = ("view=list", "civicclerk", "municodemeetings")
-KEEP = re.compile(r"cloud|countyfusion|tyler|laredo|agenda|council|DocumentCenter|Calendar|EID=|minutes|sale|sheriff|foreclos|filing|record|search|case|auction|calendar|list|"
-                  r"ViewFile|ADID|AMID|\.(pdf|xlsx?|csv|txt)\b", re.I)
-FOLLOW = re.compile(r"cloud|search records|recordsearch|EID=|new.*filings|unapproved|search records|official records|sheriff sale|real estate sale|"
+BROWSER_ALWAYS = ("publicsearch", "Public-Records-Search", "zzz")
+KEEP = re.compile(r".")
+FOLLOW = re.compile(r"search our records|cloud search|publicsearch|search records|recordsearch|EID=|new.*filings|unapproved|search records|official records|sheriff sale|real estate sale|"
                     r"auction calendar|preview|foreclos", re.I)
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
 
