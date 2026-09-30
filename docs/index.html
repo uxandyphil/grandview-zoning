@@ -197,6 +197,16 @@
   .cm li { margin: 3px 0; font-size: 0.92rem; }
   .cm li .num { color: var(--muted); font-size: 0.82rem; margin-right: 4px; }
   .cm details summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; margin-top: 10px; }
+  .cm-ai { margin: 12px 0 4px; padding: 12px 14px; border-radius: 10px; background: color-mix(in srgb, var(--t-bldg) 8%, var(--surface));
+           border: 1px solid color-mix(in srgb, var(--t-bldg) 25%, var(--line)); }
+  .cm-ai .cm-ai-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--t-bldg); }
+  .cm-ai p { margin: 6px 0 0; }
+  .cm-ai ul { margin: 8px 0 0; padding-left: 18px; }
+  .cm-ai li { margin: 6px 0; }
+  .cm-ai .stage { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--muted); border: 1px solid var(--line);
+                  border-radius: 999px; padding: 0 7px; margin-left: 4px; white-space: nowrap; }
+  .cm-ai .why { color: var(--muted); }
+  .cm-ai .cm-ai-note { font-size: 0.78rem; color: var(--muted); margin-top: 8px; }
   .cm-search { width: 100%; box-sizing: border-box; font: inherit; padding: 9px 12px; border: 1px solid var(--line);
                border-radius: 8px; background: var(--surface); color: var(--ink); }
 
@@ -1948,12 +1958,15 @@
     const tally = {};
     thisYear.forEach((m) => Object.entries(m.counts || {}).forEach(([k, n]) => { tally[k] = (tally[k] || 0) + n; }));
     const q = (state.councilQ || "").trim().toLowerCase();
-    const shown = M.filter((m) => !q || (m.name + " " + (m.items || []).map((i) => i.title).join(" ")).toLowerCase().includes(q));
+    const aiText = (m) => m.ai ? [m.ai.overview, ...(m.ai.items || []).map((i) => i.title + " " + i.what + " " + i.why)].join(" ") : "";
+    const shown = M.filter((m) => !q || (m.name + " " + (m.items || []).map((i) => i.title).join(" ") + " " + aiText(m)).toLowerCase().includes(q));
     el.innerHTML = `
       <div class="card exp-intro"><b>City Council agendas</b>, read each day from meetings on the city's
         <a href="https://www.grandviewheights.gov/calendar.aspx?CID=26,14,27,34" target="_blank" rel="noopener">website calendar</a>.
         Each meeting is summarized by pulling the ordinances, resolutions, hearings, and other items from its agenda, in the agenda's own
-        words. Agendas list what council will take up, not what it decided; check the minutes for votes.</div>
+        words. Meetings from September 28, 2026 on also get a plain-language summary written by AI (Claude) to explain what the
+        items mean; it can make mistakes, so the city's own wording is kept below it. Agendas list what council will take up,
+        not what it decided; check the minutes for votes.</div>
       <div class="kpis">
         <div class="card kpi"><div class="k-label">Meetings in ${esc(year)}</div><div class="k-value">${thisYear.length}</div></div>
         <div class="card kpi"><div class="k-label">Ordinances on agendas</div><div class="k-value">${tally.Ordinance || 0}</div></div>
@@ -1974,6 +1987,15 @@
             <span class="cm-date">${esc(fmtDate(m.date))}${m.time ? " · " + esc(m.time.replace(/^0/, "")) : ""}</span>
             ${up ? '<span class="chip soon">Upcoming</span>' : ""}
             <a href="${esc(m.url)}" target="_blank" rel="noopener">Full agenda &#8599;</a></div>
+          ${m.ai ? `<div class="cm-ai">
+            <div class="cm-ai-label">AI summary in plain language</div>
+            <p>${esc(m.ai.overview)}</p>
+            ${(m.ai.items || []).length ? `<ul>${m.ai.items.map((i) => `<li><b>${esc(i.title)}</b>${i.stage ? ` <span class="stage">${esc(i.stage)}</span>` : ""}
+              <br>${esc(i.what)}${i.why ? ` <span class="why">${esc(i.why)}</span>` : ""}</li>`).join("")}</ul>` : ""}
+            ${(m.ai.terms || []).length ? `<details><summary>Terms explained</summary><ul>${m.ai.terms.map((t) =>
+              `<li><b>${esc(t.term)}:</b> ${esc(t.meaning)}</li>`).join("")}</ul></details>` : ""}
+            <div class="cm-ai-note">Written by AI (Claude) from the agenda. It can get things wrong; the agenda items below are the city's own words.</div>
+          </div>` : ""}
           <p class="cm-sum">${!m.has_agenda ? "No agenda posted yet." : !(m.items || []).length ? "Agenda posted; its items couldn't be read automatically, so open the full agenda."
             : esc(councilSummary(m.counts || {}) || "No ordinances or resolutions on this agenda.")}</p>
           ${main.map(([k, l]) => `<h3>${esc(l.length === 1 ? k : councilPlural[k])}</h3>${list(l)}`).join("")}

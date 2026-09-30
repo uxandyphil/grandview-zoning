@@ -174,9 +174,12 @@ def run(state, now, parse_date, packet_agenda_text):
         for it in items:
             it["kind"] = classify(f"{it['number']} {it['title']}")
         kind = re.sub(r"\s*(agendas?|archive)\s*", " ", d["archive"], flags=re.I).strip() or "City Council"
+        old = have.get(d["id"], {})
         have[d["id"]] = {"id": d["id"], "name": kind if COUNCIL.search(kind) else "City Council", "date": d["date"], "time": "",
                          "url": d["url"], "title": d["title"], "items": items, "counts": summarize(items), "has_agenda": True,
                          "parse": PARSE_VERSION}
+        if old.get("ai"):   # keep the AI summary; council_summaries remakes it only if the agenda changed
+            have[d["id"]]["ai"] = old["ai"]
         print(f"  {d['date']} {d['title']}: {len(items)} items")
     # upcoming meetings from the calendar that don't have a packet yet
     try:
@@ -192,6 +195,11 @@ def run(state, now, parse_date, packet_agenda_text):
     except Exception as err:
         print(f"Council: calendar feed failed ({err})")
     data["meetings"] = sorted(have.values(), key=lambda m: m["date"], reverse=True)
+    try:   # plain-language AI summaries for recent meetings
+        import council_summaries
+        council_summaries.run(data["meetings"])
+    except Exception as err:
+        print(f"Council summaries failed: {err}")
     data["updated"] = now
     OUT.write_text(json.dumps(data, indent=1))
     print(f"Council: {len(data['meetings'])} meetings on file")
