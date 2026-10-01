@@ -1237,6 +1237,7 @@
           <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-${k}-show">Show these houses on the map</button></div>
         </div>`).join("")}</div>
       <div class="card panel" id="x-homes"></div>
+      <div class="card panel" id="x-demo"></div>
       <div class="card panel" id="x-occ"></div>
       <div class="card panel" id="x-fc"></div>
       <div class="card panel" id="x-sheriff"></div>
@@ -1247,6 +1248,7 @@
       <div class="card panel" id="x-biz"></div>
       <div class="card panel" id="x-land"></div>`;
     renderHomes();
+    renderDemos();
     renderOccupancy();
     renderForeclosures();
     renderSheriff();
@@ -1342,6 +1344,89 @@
     state.xlabel = `(${t.one.toLowerCase()})`; state.xnoun = "property";
     $("opt-x").textContent = t.label;
     browseWith({ board: "xhouses" });
+  }
+
+  // ---------- demolitions ----------
+  // City demolition permits (OpenGov DEMO series) and county permits that describe tearing down a whole structure
+  const DEMO_WHOLE = /\b(raze|tear ?down|wreck)|demolition of (the )?(existing )?(commercial |residential |single.family |two.family )?(structure|building|house|home|dwelling|garage|school|.*elementary)|demo(lish)? (of )?(the )?(existing )?(old )?(\d[\d,]* sq\.? ?ft\.? )?(res\w* )?(dwlg|dwelling|house|home|garage|building|structure|maint)|building demolition|complete demolition|garage demolition|^demo(lition)?\.?$|demolition-(commercial|residential)/i;
+  const DEMO_PARTIAL = /\b(minor|selective|partial|interior)\b.{0,12}demo|demo\w* (existing )?(front |rear )?(porch|deck|concrete|floor|kitchen|bath|wall|patio|driveway|steps?|chimney|ceiling)|recheck|plan revision|temporary|for use during|fence|tent|event/i;
+  const DEMO_KIND = { "House or building": "var(--t-bldg)", "Garage or shed": "var(--t-other)", "Commercial or school": "var(--t-comm)",
+    "Interior only": "var(--t-elec)" };
+  function demoKind(c, text) {
+    if (/interior (finishes|demo|tenant|alteration)|tenant (alteration|improvement|fill)|removal of all interior/i.test(text)) return "Interior only";
+    if (/\b(dwlg|dwelling|house|home|res)\b/i.test(text)) return "House or building";
+    if (/\b(garage|shed|accessory|carport)\b/i.test(text)) return "Garage or shed";
+    if (/commercial|school|elementary|office|store|restaurant|church|maint|warehouse|\d[\d,]* sq\.? ?ft/i.test(text) || c.cat === "comm") return "Commercial or school";
+    const parcel = (state.parcels || []).find((x) => (c.permit.parcel && x.parcel === c.permit.parcel) || normAddr(x.address) === normAddr(c.address));
+    if (parcel && /^[46]/.test(parcel.luc || "")) return "Commercial or school";
+    return "House or building";
+  }
+  function demolitions() {
+    const out = [];
+    for (const c of state.cases) {
+      if (c.board !== "Building permit" || !c.permit) continue;
+      const p = c.permit, text = [p.description, p.county_description].filter(Boolean).join(" ");
+      const city = /demolition permit/i.test(p.type || "") || /^DEMO-/i.test(p.number || "");
+      if (!city && !(DEMO_WHOLE.test(text) && !DEMO_PARTIAL.test(text))) continue;
+      out.push({ c, date: c.meeting_date || p.date || "", address: c.address, kind: demoKind(c, text), text,
+        url: p.source === "county" ? p.url : p.url, number: p.source === "county" ? p.permit_no : p.number, city });
+    }
+    // one demolition per address within four months (a city permit and its county record, or a recheck)
+    out.sort((a, b) => (b.city - a.city) || b.date.localeCompare(a.date));
+    const kept = [];
+    for (const d of out) {
+      const k = normAddr(d.address);
+      if (kept.some((x) => normAddr(x.address) === k && Math.abs(new Date(x.date || 0) - new Date(d.date || 0)) < 120 * 864e5)) continue;
+      kept.push(d);
+    }
+    return kept.sort((a, b) => b.date.localeCompare(a.date));
+  }
+  function showDemos(list, label) {
+    state.xitems = list.map((d) => {
+      const h = (state.parcels || []).find((x) => normAddr(x.address) === normAddr(d.address)) || { parcel: d.c.permit.parcel || "", luc: "", address: d.address };
+      return { id: "xdemo|" + d.c.id, board: "House", house: h, href: d.url, noun: "demolition", court: true, cat: "other",
+        address: d.address || "Address not listed", lat: d.c.lat ?? h.lat, lon: d.c.lon ?? h.lon, meeting_date: null,
+        popup: `${d.kind} demolition, ${fmtDate(d.date)}`,
+        description: [`${d.kind} demolition`, d.date ? fmtDate(d.date) : "", d.number ? "permit " + d.number : "", d.text.slice(0, 160)].filter(Boolean).join(" · ") };
+    }).sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0));
+    state.xlabel = label; state.xnoun = "demolition";
+    $("opt-x").textContent = "Demolitions";
+    browseWith({ board: "xhouses" });
+  }
+  function renderDemos() {
+    const el = $("x-demo"), D = demolitions();
+    if (!D.length) { el.innerHTML = `<h2>Demolitions</h2><p class="note">No demolition permits found yet.</p>`; return; }
+    const years = [...new Set(D.map((d) => d.date.slice(0, 4)).filter(Boolean))].sort();
+    const yrs = []; for (let y = +years[0]; y <= +today.slice(0, 4); y++) yrs.push(String(y));
+    const kinds = Object.keys(DEMO_KIND).filter((k) => D.some((d) => d.kind === k));
+    const recent = D.filter((d) => d.date).slice(0, 10);
+    const thisYear = D.filter((d) => d.date.startsWith(today.slice(0, 4))).length;
+    el.innerHTML = `
+      <h2>Demolitions</h2>
+      <p class="p-sub">Buildings torn down in Grandview, from the city's demolition permits and county permit records that describe
+        tearing down a whole house, garage, or building (porch, deck, fence, and remodeling demo work is left out). A few city demolition
+        permits are for gutting a building's interior; those are marked "Interior only". A permit means a demolition was approved; most
+        happen within weeks. Demolitions before 2023 come only from the county's records, so some may be missing.</p>
+      <div class="x-big">${D.length.toLocaleString()}</div>
+      <div class="x-of">demolitions since ${esc(years[0])}${thisYear ? `, <b>${thisYear}</b> so far in ${esc(today.slice(0, 4))}` : ""}</div>
+      ${yrs.length > 1 ? `<h3 class="x-land-h">By year</h3>
+        <div class="legend">${kinds.map((k) => `<span class="tag"><span class="sw" style="background:${DEMO_KIND[k]}"></span>${esc(k)}</span>`).join("")}</div>
+        <div class="chart" id="x-demo-chart"></div>` : ""}
+      <h3 class="x-land-h">Most recent</h3>
+      <div class="x-sales">${recent.map((d) => `
+        <a class="prow land" href="${esc(d.url || "#")}" target="_blank" rel="noopener">
+          <span class="pdot" style="background:${DEMO_KIND[d.kind]};border-radius:50%" aria-hidden="true"></span>
+          <span class="ptype">${esc(d.address ? streetCase(d.address) : "Address not listed")}</span>
+          <span class="pdate">${esc(monYr(d.date))}</span>
+          <span class="teaser">${esc([d.kind, d.text && (!d.city || /demo|tear|raze|remov/i.test(d.text)) ? d.text.slice(0, 90) + (d.text.length > 90 ? "…" : "")
+            : d.number ? "City demolition permit " + d.number : ""].filter(Boolean).join(" · "))} &#8599;</span>
+        </a>`).join("")}</div>
+      <div class="d-actions" style="margin:12px 0 0"><button class="btn" type="button" id="x-demo-show">Show these on the map</button></div>`;
+    if ($("x-demo-chart")) stackedBars($("x-demo-chart"), yrs, kinds.map((k) => ({ label: k, color: DEMO_KIND[k],
+      values: yrs.map((y) => D.filter((d) => d.kind === k && d.date.startsWith(y)).length) })),
+      { fmt: (y) => "'" + y.slice(2), title: (y) => `Demolitions in ${y}`, height: 170,
+        onClick: (y) => showDemos(D.filter((d) => d.date.startsWith(y)), `in ${y}`) });
+    $("x-demo-show").onclick = () => showDemos(D, "");
   }
 
   // ---------- rentals vs homeowners ----------
