@@ -42,7 +42,21 @@
    "date": "2025-01-31",
    "lat": 39.97622389469,
    "lon": -83.039601446405
+  },
+  {
+   "case": "23CV3458",
+   "parcel": "030-002752-00",
+   "address": "1000 Urlin Ave Unit 2002",
+   "city": "Columbus",
+   "appraised": 186000,
+   "opening_bid": 124000,
+   "status": "Closed",
+   "sold_for": null,
+   "sold_to": null,
+   "date": "2024-11-01",
+   "lat": 39.976771700848,
+   "lon": -83.050565976991
   }
  ],
- "updated": "2026-10-01T00:54:34+00:00"
+ "updated": "2026-10-01T00:57:29+00:00"
 }
