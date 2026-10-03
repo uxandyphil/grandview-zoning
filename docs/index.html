@@ -177,12 +177,19 @@
   .tabs button { font: 600 0.9rem "Instrument Sans", sans-serif; color: var(--muted); background: none; border: 0;
                  border-radius: 7px; padding: 7px 16px; cursor: pointer; }
   .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
-  body[data-view="trends"] .browse-only, body[data-view="exp"] .browse-only, body[data-view="council"] .browse-only { display: none; }
+  body[data-view="trends"] .browse-only, body[data-view="exp"] .browse-only, body[data-view="council"] .browse-only,
+    body[data-view="alert"] .browse-only { display: none; }
+  body:not([data-view="alert"]) #alert { display: none; }
+  #alert { display: grid; gap: 14px; }
+  .tabs .alert-tab { color: #B3261E; }
+  .tabs .alert-tab[aria-selected="true"] { background: #B3261E; color: #fff; }
+  @media (prefers-color-scheme: dark) { .tabs .alert-tab { color: #F2A19A; } .tabs .alert-tab[aria-selected="true"] { background: #F2A19A; color: #15201B; } }
   body:not([data-view="trends"]) #trends { display: none; }
   body:not([data-view="council"]) #council { display: none; }
   body:not([data-view="exp"]) #exp { display: none; }
   .tabs .exp-tab { font-style: italic; }
-  @media (max-width: 440px) { .tabs button { padding: 7px 9px; font-size: 0.85rem; } }
+  @media (max-width: 440px) { .tabs button { padding: 7px 7px; font-size: 0.8rem; } }
+  @media (max-width: 380px) { .tabs button { padding: 6px 5px; font-size: 0.76rem; } }
 
   /* city council */
   #council { display: grid; gap: 14px; }
@@ -307,12 +314,14 @@
       <button type="button" role="tab" id="tab-browse" aria-selected="true">Browse</button>
       <button type="button" role="tab" id="tab-trends" aria-selected="false">Trends</button>
       <button type="button" role="tab" id="tab-council" aria-selected="false">Council</button>
+      <button type="button" role="tab" id="tab-alert" class="alert-tab" aria-selected="false">Alert</button>
       <button type="button" role="tab" id="tab-exp" class="exp-tab" aria-selected="false">Experimental</button>
     </div>
   </header>
 
   <section id="trends" aria-label="Trends"></section>
   <section id="council" aria-label="City Council"></section>
+  <section id="alert" aria-label="Alert: homes bought by businesses"></section>
   <section id="exp" aria-label="Experimental"></section>
 
   <div class="card browse-only"><div id="map" role="region" aria-label="Map of zoning cases and permits"></div></div>
@@ -678,7 +687,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz || c.court || c.recd ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz || c.court || c.recd ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : []), ...(c.alert ? [bizText(c.house)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -2093,26 +2102,151 @@
       input._t = setTimeout(() => { renderCouncil().then(() => { const i = $("cm-q"); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }); }, 250); });
   }
 
+  // ---------- alert: homes bought by businesses ----------
+  // From the county tax file: who owns each home (business, trust, lender, government, or a person; names only for
+  // non-people) and its last sale. Recent deeds to companies come from the recorder search.
+  const isBiz = (p) => p.owner_kind === "business";
+  const ownerKey = (n) => (n || "").replace(/[.,]/g, "").replace(/\s+/g, " ").trim();
+  const ownerLabel = (n) => ownerName(ownerKey(n)).replace(/\b(Lp|Llc|Inc|Ltd|Llp|Pllc|Sfr|Reit|Ii|Iii|Iv)\b/g, (m) => m.toUpperCase());
+  const homeLabel = (p) => houseKind(p.luc);
+  function bizText(p) {
+    const s = p.last_sale || {};
+    return [ownerLabel(p.owner_name), p.owner_where ? "based in " + p.owner_where : "", p.institutional ? "national rental company" : "",
+      s.date ? `bought ${monYr(s.date)}${s.price ? " for " + money$(s.price) : ""}` : "",
+      s.parcels > 1 ? `part of a ${s.parcels}-property deal` : "", p.occ === "rental" ? "registered rental" : ""].filter(Boolean).join(", ");
+  }
+  function showAlert(list, label) {
+    state.xitems = list.map((p) => ({ id: "xalert|" + p.parcel, board: "House", house: p, noun: "home", alert: true, cat: "other",
+      address: p.address || "Address not listed", lat: p.lat, lon: p.lon, meeting_date: null, popup: bizText(p),
+      description: [homeLabel(p), bizText(p)].join(" · ") }))
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0));
+    state.xlabel = label; state.xnoun = "home";
+    $("opt-x").textContent = "Owned by businesses";
+    browseWith({ board: "xhouses" });
+  }
+  function renderAlert() {
+    const el = $("alert"), P = state.parcels || [];
+    const homes = P.filter((p) => p.owner_kind);
+    if (!homes.length) {
+      el.innerHTML = `<div class="card note">Home ownership data arrives with the next county import.</div>`;
+      return;
+    }
+    const biz = homes.filter(isBiz);
+    const year = new Date(today); year.setFullYear(year.getFullYear() - 1);
+    const lastYear = year.toISOString().slice(0, 10);
+    const recentBiz = biz.filter((p) => p.last_sale && p.last_sale.date >= lastYear);
+    const byOwner = {};
+    biz.forEach((p) => { const k = ownerKey(p.owner_name); (byOwner[k] = byOwner[k] || []).push(p); });
+    const multi = Object.entries(byOwner).filter(([, l]) => l.length > 1).sort((a, b) => b[1].length - a[1].length);
+    const outOfState = biz.filter((p) => p.owner_where && !/, OH$/.test(p.owner_where));
+    const inst = biz.filter((p) => p.institutional);
+    const count = (k) => homes.filter((p) => p.owner_kind === k).length;
+    const pct = (n) => Math.round(n / homes.length * 1000) / 10;
+    const years = []; for (let y = 2010; y <= +today.slice(0, 4); y++) years.push(String(y));
+    const purchases = biz.filter((p) => p.last_sale && p.last_sale.date).sort((a, b) => b.last_sale.date.localeCompare(a.last_sale.date));
+    const homeParcels = new Set(homes.map((p) => p.parcel));
+    const deeds = (state.recorder || []).filter((d) => /deed/i.test(d.type) && (d.to || []).some((n) => n !== "Individual")
+      && (d.parcels || []).some((x) => homeParcels.has(x))).slice(0, 8);
+    const kinds = { "Single-family": "var(--t-bldg)", Duplex: "var(--t-hvac)", "Three-family": "var(--t-hvac)", Condo: "var(--t-plmb)" };
+    const kindOf = (p) => (homeType(p.luc) || { label: "Other" }).label;
+    el.innerHTML = `
+      <div class="card exp-intro"><b>Keeping an eye on companies buying Grandview homes.</b> Every house, duplex, and condo whose
+        owner of record is a company (an LLC, corporation, or partnership), from the county's tax records, updated monthly. Some are
+        local landlords or a family's own LLC; others are investment firms. National single-family rental companies are flagged
+        when their names or affiliates are recognized. People's names are never shown, and homes held in family trusts aren't counted.</div>
+      <div class="kpis">
+        <div class="card kpi"><div class="k-label">Homes owned by businesses</div><div class="k-value">${biz.length.toLocaleString()}</div>
+          <div class="k-sub">${pct(biz.length)}% of ${homes.length.toLocaleString()} homes</div></div>
+        <div class="card kpi"><div class="k-label">Bought by a business in the last year</div><div class="k-value">${recentBiz.length}</div>
+          <div class="k-sub">by last sale date</div></div>
+        <div class="card kpi"><div class="k-label">Companies with 2+ Grandview homes</div><div class="k-value">${multi.length}</div>
+          <div class="k-sub">holding ${multi.reduce((s, [, l]) => s + l.length, 0)} homes</div></div>
+        <div class="card kpi"><div class="k-label">Owned by out-of-state companies</div><div class="k-value">${outOfState.length}</div>
+          <div class="k-sub">${inst.length ? `${inst.length} by national rental companies` : "none by known national rental companies"}</div></div>
+      </div>
+      <div class="card panel">
+        <h2>When businesses bought the homes they own now</h2>
+        <p class="p-sub">By the date of each home's last sale. Homes a business bought and later sold to a person aren't counted, so
+          earlier years are undercounted. Click a year to see those homes.</p>
+        <div class="legend">${Object.keys(kinds).filter((k) => biz.some((p) => kindOf(p) === k)).map((k) =>
+          `<span class="tag"><span class="sw" style="background:${kinds[k]}"></span>${esc(k)}</span>`).join("")}</div>
+        <div class="chart" id="al-years"></div>
+      </div>
+      <div class="row2">
+        <div class="card panel"><h2>Biggest business owners</h2>
+          <p class="p-sub">Companies by number of Grandview homes. Related companies often use slightly different names, so the same
+            investor can appear more than once. Tap to see their homes.</p><div id="al-owners"></div></div>
+        <div class="card panel"><h2>Where the companies are based</h2>
+          <p class="p-sub">From the owner's mailing address on the tax bill.</p><div id="al-where"></div></div>
+      </div>
+      <div class="card panel">
+        <h2>Recent purchases by businesses</h2>
+        <p class="p-sub">The most recent sales of homes now owned by a company. "Part of a multi-property deal" means several parcels
+          changed hands in one sale, which is common in bulk investor purchases (and in condo or lot combinations).</p>
+        <div class="x-sales">${purchases.slice(0, 16).map((p) => `
+          <a class="prow land" href="${PARCEL_LINK + esc(p.parcel)}" target="_blank" rel="noopener">
+            <span class="pdot" style="background:${p.institutional ? "#B3261E" : kinds[kindOf(p)] || "var(--t-other)"};border-radius:50%" aria-hidden="true"></span>
+            <span class="ptype">${esc(p.address ? streetCase(p.address) : "Address not listed")}</span>
+            <span class="pdate">${esc(monYr(p.last_sale.date))}</span>
+            <span class="teaser">${esc([homeLabel(p), bizText(p)].join(" · "))} &#8599;</span>
+          </a>`).join("")}</div>
+        <div class="d-actions" style="margin:12px 0 0"><button class="btn primary" type="button" id="al-show">See all ${biz.length.toLocaleString()} business-owned homes on the map</button></div>
+      </div>
+      ${deeds.length ? `<div class="card panel">
+        <h2>Latest deeds to companies</h2>
+        <p class="p-sub">Deeds recorded with the County Recorder that transfer a Grandview home to an organization. These show up weeks
+          before the county's monthly tax file catches up. Only deeds that mention Grandview Heights are found.</p>
+        <div class="x-sales">${deeds.map((d) => { const h = (state.parcels || []).find((p) => d.parcels.includes(p.parcel)); return `
+          <a class="prow land" href="${REC_SEARCH + encodeURIComponent(d.inst)}" target="_blank" rel="noopener">
+            <span class="pdot" style="background:#B3261E;border-radius:50%" aria-hidden="true"></span>
+            <span class="ptype">${esc(h && h.address ? streetCase(h.address) : "Parcel " + d.parcels[0])}</span>
+            <span class="pdate">${esc(monYr(d.date))}</span>
+            <span class="teaser">${esc(`${d.type} to ${d.to.filter((n) => n !== "Individual").join(", ")}`)} &#8599;</span>
+          </a>`; }).join("")}</div>
+      </div>` : ""}
+      <div class="card exp-intro"><b>Other owners, not counted above:</b> ${count("trust").toLocaleString()} homes are held in trusts
+        (usually a family's estate planning), ${count("lender")} by banks or mortgage companies (often after a foreclosure), and
+        ${count("government")} by the city, schools, churches, or condo associations. A company owner isn't necessarily an outside
+        investor; see the Rentals vs. homeowners panel on the Experimental tab for who lives in each home.</div>`;
+    stackedBars($("al-years"), years, Object.keys(kinds).map((k) => ({ label: k, color: kinds[k],
+      values: years.map((y) => biz.filter((p) => kindOf(p) === k && p.last_sale && p.last_sale.date.startsWith(y)).length) }))
+      .filter((s) => s.values.some(Boolean)),
+      { fmt: (y) => "'" + y.slice(2), title: (y) => `Homes bought by businesses in ${y}`, height: 190,
+        onClick: (y) => showAlert(biz.filter((p) => p.last_sale && p.last_sale.date.startsWith(y)), `bought by a business in ${y}`) });
+    hbars($("al-owners"), Object.entries(byOwner).sort((a, b) => b[1].length - a[1].length).slice(0, 10).map(([k, l]) => ({
+      label: ownerLabel(k), value: l.length, color: l.some((p) => p.institutional) ? "#B3261E" : "var(--t-comm)", l })),
+      (r) => showAlert(r.l, `owned by ${r.label}`));
+    const byWhere = {};
+    biz.forEach((p) => { const k = p.owner_where ? (/, OH$/.test(p.owner_where) ? (/grandview|columbus|upper arlington|bexley|dublin|worthington|hilliard/i.test(p.owner_where) ? "Central Ohio" : "Elsewhere in Ohio") : "Out of state") : "Unknown"; (byWhere[k] = byWhere[k] || []).push(p); });
+    hbars($("al-where"), ["Central Ohio", "Elsewhere in Ohio", "Out of state", "Unknown"].filter((k) => byWhere[k]).map((k) => ({
+      label: k, value: byWhere[k].length, color: k === "Out of state" ? "#B3261E" : "var(--t-bldg)", l: byWhere[k] })),
+      (r) => showAlert(r.l, `owned by businesses (${r.label.toLowerCase()})`));
+    $("al-show").onclick = () => showAlert(biz, "owned by businesses");
+  }
+
   // ---------- view switching ----------
   let trendsDrawn = false;
   let expDrawn = false;
   let councilDrawn = false;
+  let alertDrawn = false;
   function setView(v) {
     document.body.dataset.view = v;
-    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-exp", "exp"]])
+    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-alert", "alert"], ["tab-exp", "exp"]])
       $(id).setAttribute("aria-selected", String(v === name));
     if (v === "trends" && !trendsDrawn) { renderTrends(); trendsDrawn = true; }
     if (v === "exp" && !expDrawn) { renderExp(); expDrawn = true; }
     if (v === "council" && !councilDrawn) { renderCouncil(); councilDrawn = true; }
+    if (v === "alert" && !alertDrawn) { renderAlert(); alertDrawn = true; }
     if (v === "browse") setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
     if (!location.hash.startsWith("#permit="))
-      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council"
+      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council" : v === "alert" ? "#alert"
         : location.pathname + location.search);
   }
   $("tab-browse").addEventListener("click", () => setView("browse"));
   $("tab-trends").addEventListener("click", () => setView("trends"));
   $("tab-exp").addEventListener("click", () => setView("exp"));
   $("tab-council").addEventListener("click", () => setView("council"));
+  $("tab-alert").addEventListener("click", () => setView("alert"));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
     const v = document.body.dataset.view;
     if (v === "trends") renderTrends(); else trendsDrawn = false;
@@ -2121,6 +2255,7 @@
   if (location.hash === "#trends") setView("trends");
   if (location.hash === "#experimental") setView("exp");
   if (location.hash === "#council") setView("council");
+  if (location.hash === "#alert") setView("alert");
 
   render();
   const linked = decodeURIComponent((location.hash.match(/^#permit=(.+)$/) || [])[1] || "");
