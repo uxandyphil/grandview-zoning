@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 15  # bump to force a re-import of the current month's file
+IMPORT_VERSION = 16  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -420,6 +420,44 @@ def load_occupancy(tables, parcels):
     print(f"  owner lives there: {len(owner)}, registered rentals: {len(rental)} ({sum(rental.values())} units), both: {len(owner & set(rental))}")
 
 
+HOME_LUC = re.compile(r"^5(1\d|2\d|3\d|5[0-8])$")   # houses, duplexes, three-family, condos (not condo garages)
+OWNER_GOV = re.compile(r"\b(CITY OF|VILLAGE OF|COUNTY|STATE OF|BOARD OF (EDUCATION|COMMISSIONERS)|SCHOOL|UNITED STATES|"
+                       r"HOUSING AUTHORITY|LAND BANK|LAND REUTILIZATION|CHURCH|DIOCESE|UNIVERSITY|HOSPITAL|"
+                       r"CONDOMINIUM|CONDO ASSOC|HOMEOWNERS|OWNERS ASSOC)", re.I)
+OWNER_LENDER = re.compile(r"\b(BANK|MORTGAGE|FEDERAL NATIONAL|FEDERAL HOME LOAN|FANNIE|FREDDIE|SECRETARY OF HOUSING|"
+                          r"HOUSING AND URBAN|SAVINGS|CREDIT UNION|LOAN TRUST|TRUST COMPANY|N\.?A\.?$)\b", re.I)
+OWNER_BIZ = re.compile(r"\b(LLC|L\.?L\.?C|INC|CORP|CORPORATION|COMPANY|LP|L\.?P|LTD|LLP|PLLC|HOLDINGS?|PROPERTIES|INVESTMENTS?|"
+                       r"INVESTORS|REALTY|PARTNERSHIP|VENTURES?|ENTERPRISES?|DEVELOPMENT|MANAGEMENT|RENTALS?|"
+                       r"ASSETS|EQUITY|REIT|BORROWER|SFR|ACQUISITIONS?|OPPORTUNITIES|PORTFOLIO)\b|&\s*CO\.?$", re.I)
+# (surname-like words such as HOMES, GROUP, CAPITAL, FUND are left out so a person is never shown as a business)
+OWNER_TRUST = re.compile(r"\b(TRUST(EE|S)?|TR|TRS|REVOCABLE|IRREVOCABLE)\b", re.I)
+# Large single-family rental companies and iBuyers, by name or common affiliate wording
+INSTITUTIONAL = re.compile(r"INVITATION HOMES|\bIH\d? (BORROWER|PROPERTY)|AMERICAN HOMES 4 RENT|\bAMH\b|PROGRESS RESIDENTIAL|"
+                           r"\bFKH\b|FIRSTKEY|TRICON|AMHERST|MAIN STREET RENEWAL|VINEBROOK|PRETIUM|HOME PARTNERS|"
+                           r"CERBERUS|BLACKSTONE|\bSFR (JV|INVESTMENTS|BORROWER)|OPENDOOR|OFFERPAD|ROOFSTOCK|MYND|"
+                           r"BAMBOO BRIDGE|CAFFEINATED|RESICAP|HAVENBROOK|STARWOOD|PATHLIGHT|YAMASA|MAYMONT", re.I)
+
+
+def owner_kind(name):
+    if not name:
+        return None
+    if OWNER_GOV.search(name):
+        return "government"
+    if OWNER_LENDER.search(name):
+        return "lender"
+    if OWNER_BIZ.search(name):
+        return "business"
+    if OWNER_TRUST.search(name):
+        return "trust"
+    return "individual"
+
+
+def owner_place(line):
+    """'Columbus, OH' from an address line like 'COLUMBUS OH 43212-1234'; None if it doesn't look like one."""
+    m = re.search(r"([A-Z][A-Z .'-]+?)[ ,]+([A-Z]{2})\s+\d{5}", str(line or "").upper())
+    return f"{m[1].strip().title()}, {m[2]}" if m else None
+
+
 def _read_owners(tables, want, parcels, luc_names):
     header, pc, own, own2, luc, desc, n = None, None, None, None, None, None, 0
     for row in tables.rows("parcel"):
@@ -440,6 +478,24 @@ def _read_owners(tables, want, parcels, luc_names):
             code = str(row.get(luc) or "").strip()
             if code and code not in luc_names and title(row.get(desc)):
                 luc_names[code] = title(row.get(desc))
+        p = parcels.get(pid)
+        if own and p and HOME_LUC.match(p.get("luc") or ""):
+            # Who owns each home: only a kind for people; name and city for businesses, trusts, lenders, governments
+            name = " & ".join(dict.fromkeys(title(row.get(c)) for c in (own, own2) if c and title(row.get(c))))
+            kind = owner_kind(name)
+            if kind:
+                p["owner_kind"] = kind
+                if kind not in ("individual", "trust"):   # family trusts are people's names too
+                    p["owner_name"] = name.upper()
+                    place = owner_place(row.get("OwnerAddress2")) or owner_place(row.get("OwnerAddress1"))
+                    if place:
+                        p["owner_where"] = place
+                    if INSTITUTIONAL.search(name):
+                        p["institutional"] = True
+            d = parse_date(row.get("LastSaleDate"))
+            if d:
+                p["last_sale"] = {"date": d, "price": money(row.get("LastSaleAmount")) or None,
+                                  "parcels": int(re.sub(r"\D", "", str(row.get("LastSaleParcelCount") or "")) or 1)}
         if not own or pid not in want:
             continue
         names = [title(row.get(c)) for c in (own, own2) if c]
@@ -637,7 +693,8 @@ def run(state, geocode, now):
                           "built": p.get("built"), "acres": p.get("acres"), "lat": o.get("lat"), "lon": o.get("lon"),
                           **({"owner": p.get("owner") or o.get("owner")}
                              if VACANT_LUC.match(p["luc"] or "") and (p.get("owner") or o.get("owner")) else {}),
-                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units", "tax", "assessments")
+                          **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units", "tax", "assessments",
+                                       "owner_kind", "owner_name", "owner_where", "institutional", "last_sale")
                              if p.get(k) is not None}})
         lucs = {}
         for p in plist:
