@@ -2105,7 +2105,7 @@
   // ---------- alert: homes bought by businesses ----------
   // From the county tax file: who owns each home (business, trust, lender, government, or a person; names only for
   // non-people) and its last sale. Recent deeds to companies come from the recorder search.
-  const isBiz = (p) => p.owner_kind === "business";
+  const isBizOwned = (p) => p.owner_kind === "business";
   const ownerKey = (n) => (n || "").replace(/[.,]/g, "").replace(/\s+/g, " ").trim();
   const ownerLabel = (n) => ownerName(ownerKey(n)).replace(/\b(Lp|Llc|Inc|Ltd|Llp|Pllc|Sfr|Reit|Ii|Iii|Iv)\b/g, (m) => m.toUpperCase());
   const homeLabel = (p) => houseKind(p.luc);
@@ -2131,7 +2131,7 @@
       el.innerHTML = `<div class="card note">Home ownership data arrives with the next county import.</div>`;
       return;
     }
-    const biz = homes.filter(isBiz);
+    const biz = homes.filter(isBizOwned);
     const year = new Date(today); year.setFullYear(year.getFullYear() - 1);
     const lastYear = year.toISOString().slice(0, 10);
     const recentBiz = biz.filter((p) => p.last_sale && p.last_sale.date >= lastYear);
