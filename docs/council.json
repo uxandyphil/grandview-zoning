@@ -11,6 +11,56 @@
    "has_agenda": false
   },
   {
+   "id": "adid-3796",
+   "name": "City Council",
+   "date": "2026-10-05",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3796",
+   "title": "October 5, 2026 Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026 -15: An Ordinance to notify parties doing business with the City of Grandview Heights of unacceptable contractual provisions. 3rd reading. Previous readings 9/14/2026 and 9/28/2026. Assigned to the Finance Committee",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2026-16: An Ordinance to make annual appropriations for current expenses and other expenditures of the City of Grandview Heights, State of Ohio, during the fiscal year ending December 31, 2027. Previous reading 9/28/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2026-17: An Ordinance to make appropriations to various departments within the City of Grandview Heights municipal government to purchase equipment and make capital improvements in 2027. Previous reading 9/28/2026",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 3
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3795",
+   "name": "Council Committees",
+   "date": "2026-10-05",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3795",
+   "title": "October 5, 2026 Finance Committee Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026- 15: An Ordinance to notify parties doing business with the City of Grandview Heights of unacceptable contractual provisions. 3rd reading. Previous readings 9/14/2026 and 9/28/2026. Assigned to the Finance Committee Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
+     "kind": "Ordinance"
+    }
+   ],
+   "counts": {
+    "Ordinance": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
    "id": "adid-3794",
    "name": "City Council",
    "date": "2026-09-28",
@@ -1565,5 +1615,5 @@
    "parse": 2
   }
  ],
- "updated": "2026-10-02T16:27:59+00:00"
+ "updated": "2026-10-03T15:01:59+00:00"
 }

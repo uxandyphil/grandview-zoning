@@ -60,7 +60,9 @@
     28322878,
     28322675,
     28322651,
-    28322250
+    28322250,
+    28325898,
+    28325196
   ],
   "court_version": 2,
   "geocache": {
@@ -12147,7 +12149,7 @@
     "WYANDOTTE RD, Grandview Heights, OH 43212": null,
     "YARD ST, Grandview Heights, OH 43212": null
   },
-  "recorder_through": "2026-10-02",
+  "recorder_through": "2026-10-03",
   "recorder_version": 2,
   "seen": {
     "Board of Zoning Appeals": [
@@ -12379,6 +12381,7 @@
     "2026-08-14",
     "2026-08-21",
     "2026-08-28",
-    "2026-09-04"
+    "2026-09-04",
+    "2026-09-11"
   ]
 }
