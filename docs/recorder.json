@@ -1,6 +1,21 @@
 {
  "documents": [
   {
+   "inst": "202610050121154",
+   "type": "Deed",
+   "date": "2026-10-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001765-00"
+   ],
+   "legal": "Lt/Un 247 GRANDVIEW HEIGHTS CITY OF Pcl# 030-001765-00 Plt PB 13 PG 13"
+  },
+  {
    "inst": "202610020120715",
    "type": "Mortgage",
    "date": "2026-10-02",
@@ -3738,5 +3753,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-04T15:36:53+00:00"
+ "updated": "2026-10-05T19:29:10+00:00"
 }
