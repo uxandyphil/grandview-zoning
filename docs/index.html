@@ -2250,8 +2250,9 @@
     const add = (p, k, date) => { if (!p) return; const m = sig.get(p.parcel) || sig.set(p.parcel, new Map()).get(p.parcel); if (!m.has(k) || (date || "") > (m.get(k) || "")) m.set(k, date || ""); };
     // recorder documents in the last year; a later deed means the home already changed hands
     const docs = (state.recorder || []).filter((d) => d.date >= yr1);
-    const lastDeed = {};
-    docs.filter((d) => /^deed/i.test(d.type)).forEach((d) => d.parcels.forEach((x) => { if (!lastDeed[x] || d.date > lastDeed[x]) lastDeed[x] = d.date; }));
+    const lastDeed = {}, deedDoc = {};
+    docs.filter((d) => /^deed/i.test(d.type)).forEach((d) => d.parcels.forEach((x) => {
+      if (!lastDeed[x] || d.date > lastDeed[x]) { lastDeed[x] = d.date; deedDoc[x] = d; } }));
     const released = new Set(docs.filter((d) => /^release of (mechanics )?lien/i.test(d.type)).flatMap((d) => d.parcels));
     docs.forEach((d) => {
       const k = /^(affidavit|certificate of transfer)/i.test(d.type) ? "estate" : /^power of att/i.test(d.type) ? "poa"
@@ -2271,19 +2272,41 @@
       if (person && s && s < yr30) add(p, "long", s);
       if (p.owner_kind === "individual" && p.occ === "rental" && s && s < yr15) add(p, "landlord", s);
     });
-    const out = [];
-    let sold = 0;
+    const out = [], sold = [];
     sig.forEach((m, parcel) => {
       const p = byParcel.get(parcel), dates = [...m.values()].filter(Boolean);
-      if (lastDeed[parcel] && dates.every((d) => d <= lastDeed[parcel])) { sold++; return; }
+      if (lastDeed[parcel] && dates.every((d) => d <= lastDeed[parcel])) {
+        const list = SELL_SIGNALS.filter((s) => m.has(s.k));
+        // the most recent signal with a date in the last year (estate paperwork, a lien, and so on), if any
+        const recent = list.filter((s) => (m.get(s.k) || "") >= yr1).sort((a, b) => m.get(b.k).localeCompare(m.get(a.k)))[0];
+        sold.push({ p, list, score: list.reduce((a, s) => a + s.w, 0), deed: deedDoc[parcel], recent, recentDate: recent ? m.get(recent.k) : "" });
+        return;
+      }
       if ((p.last_sale || {}).date >= yr1 && !m.has("foreclosure") && !m.has("bank")) return;   // just bought
       const list = SELL_SIGNALS.filter((s) => m.has(s.k));
       out.push({ p, list, score: list.reduce((a, s) => a + s.w, 0), latest: dates.sort().pop() || "" });
     });
     out.sort((a, b) => b.score - a.score || b.latest.localeCompare(a.latest));
+    sold.sort((a, b) => b.deed.date.localeCompare(a.deed.date));
     return (state.sellers = { all: out, homes, sold });
   }
   const sellText = (r) => r.list.map((s) => s.text).join(", ");
+  // Who a deed went to, without people's names: the recorder search lists people as "Individual"; trust names can hold
+  // people's names, so only clear business names are shown
+  const SELL_BIZ = /\b(LLC|L\.L\.C|INC|CORP|CORPORATION|COMPANY|LP|LTD|LLP|PLLC|HOLDINGS?|PROPERTIES|INVESTMENTS?|REALTY|VENTURES?|ENTERPRISES?|MANAGEMENT|BANK|ASSOCIATION)\b/i;
+  function deedBuyer(d) {
+    const to = (d && d.to) || [], biz = to.filter((n) => n !== "Individual" && SELL_BIZ.test(n) && !/\bTRUST\b/i.test(n));
+    if (biz.length) return { biz: true, text: "a company: " + biz.map(ownerLabel).join(", ") };
+    return { biz: false, text: to.some((n) => /\bTRUST\b/i.test(n)) ? "a family trust" : to.length ? "a person or family" : "buyer not listed" };
+  }
+  const daysBetween = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
+  function soldText(r) {
+    const b = deedBuyer(r.deed), lag = r.recent ? daysBetween(r.recentDate, r.deed.date) : null;
+    const price = r.p.last_sale && r.p.last_sale.date >= r.deed.date && r.p.last_sale.price ? " for " + money$(r.p.last_sale.price) : "";
+    return [`${r.deed.type.toLowerCase()} to ${b.text}${price}`,
+      r.recent ? `${lag <= 0 ? "the same day as" : lag < 60 ? lag + " days after" : Math.round(lag / 30.4) + " months after"} the ${r.recent.label.toLowerCase()}` : "",
+      "signals: " + r.list.map((s) => s.label.toLowerCase()).join(", ")].filter(Boolean).join(" · ");
+  }
   function showSellers(rows, label) {
     state.xitems = rows.map((r) => ({ id: "xsell|" + r.p.parcel, board: "House", house: r.p, noun: "home", sell: true, cat: "other",
       address: r.p.address || "Address not listed", lat: r.p.lat, lon: r.p.lon, meeting_date: null, popup: sellText(r),
@@ -2304,6 +2327,9 @@
     const has = (k) => all.filter((r) => r.list.some((s) => s.k === k));
     const recFrom = (state.recorder || []).map((d) => d.date).sort()[0];
     const color = (n) => n >= 4 ? "#B3261E" : n >= 3 ? "var(--t-zon)" : n >= 2 ? "var(--t-hvac)" : "var(--t-bldg)";
+    const soldBiz = sold.filter((r) => deedBuyer(r.deed).biz).length;
+    const soldSig = SELL_SIGNALS.map((s) => [s, sold.filter((r) => r.list.includes(s)).length]).filter(([, n]) => n)
+      .map(([s, n]) => `${s.label.toLowerCase()} (${n})`);
     const byStreet = {};
     all.forEach((r) => { const s = streetOf(r.p.address || ""); if (s) (byStreet[s] = byStreet[s] || []).push(r); });
     el.innerHTML = `
@@ -2319,8 +2345,8 @@
           <div class="k-sub">estate, foreclosure, bank-owned, or several signs</div></div>
         <div class="card kpi"><div class="k-label">Estate paperwork in the last year</div><div class="k-value">${has("estate").length}</div>
           <div class="k-sub">affidavits and certificates of transfer</div></div>
-        <div class="card kpi"><div class="k-label">Already sold</div><div class="k-value">${sold}</div>
-          <div class="k-sub">had a signal, then a deed was recorded</div></div>
+        <div class="card kpi"><div class="k-label">Already sold</div><div class="k-value">${sold.length}</div>
+          <div class="k-sub">had a signal, then a deed was recorded${sold.length ? ` · <a href="#sl-sold" id="sl-sold-link">details below</a>` : ""}</div></div>
       </div>
       <div class="row2">
         <div class="card panel"><h2>Signals</h2>
@@ -2342,6 +2368,23 @@
           <button class="btn primary" type="button" id="sl-strong">See ${strong.length} strong signals on the map</button>
           <button class="btn" type="button" id="sl-all">See all ${all.length.toLocaleString()}</button></div>
       </div>
+      ${sold.length ? `<div class="card panel" id="sl-sold">
+        <h2>Homes that changed hands after a signal</h2>
+        <p class="p-sub">Homes that showed at least one signal and then had a deed recorded with the County Recorder${recFrom ? ` (deeds collected
+          since ${esc(monYr(recFrom))})` : ""}. These drop off the list above. ${soldSig.length ? `The signals they had: ${esc(soldSig.join(", "))}.` : ""}
+          ${soldBiz ? `<b>${soldBiz} went to ${plural("company", soldBiz)}</b>, ${sold.length - soldBiz} to people or family trusts.` : `None went to a company; all went to people or family trusts.`}
+          A deed isn't always a sale on the open market: after an owner dies, a deed often passes the home to a spouse, heirs, or a trust,
+          so "the estate paperwork, then a deed" can mean a family transfer. The price appears once the county's monthly tax file
+          catches up.</p>
+        <div class="x-sales">${sold.map((r) => `
+          <a class="prow land" href="${REC_SEARCH + encodeURIComponent(r.deed.inst)}" target="_blank" rel="noopener">
+            <span class="pdot" style="background:${deedBuyer(r.deed).biz ? "#B3261E" : "var(--t-bldg)"};border-radius:50%" aria-hidden="true"></span>
+            <span class="ptype">${esc(r.p.address ? streetCase(r.p.address) : "Address not listed")}</span>
+            <span class="pdate">${esc(new Date(r.deed.date + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }))}</span>
+            <span class="teaser">${esc([homeLabel(r.p) + (/^55/.test(r.p.luc) ? ` (parcel ${r.p.parcel})` : ""), soldText(r)].join(" · "))} &#8599;</span>
+          </a>`).join("")}</div>
+        <p class="p-sub" style="margin:10px 0 0">${soldBiz ? "Red dots went to a company. " : ""}Each links to the deed at the County Recorder.</p>
+      </div>` : ""}
       <div class="card exp-intro"><b>Where this comes from:</b> owners, last sales, back taxes, and assessments from the county's tax
         records (updated monthly); recorded documents from the County Recorder${recFrom ? ` (collected since ${esc(monYr(recFrom))}, so
         older estate paperwork isn't included)` : ""}; foreclosure cases and sheriff sales from the courts; code violation cases from the
@@ -2353,6 +2396,7 @@
       label: streetCase(s), value: l.length, color: "var(--t-bldg)", l })), (r) => showSellers(r.l, `with a seller signal on ${r.label}`));
     $("sl-strong").onclick = () => showSellers(strong, "with strong seller signals");
     $("sl-all").onclick = () => showSellers(all, "with a seller signal");
+    if ($("sl-sold-link")) $("sl-sold-link").onclick = (e) => { e.preventDefault(); $("sl-sold").scrollIntoView({ behavior: "smooth" }); };
   }
 
   // ---------- view switching ----------
