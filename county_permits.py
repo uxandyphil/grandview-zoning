@@ -36,7 +36,7 @@ ARCHIVES_PER_RUN = 3                     # each archive is a large download
 DISTRICTS = ("030", "035")          # City of Grandview Heights, Grandview Hts-Columbus
 EARLIEST_YEAR = 2005
 GEOCODE_PER_RUN = 1200
-IMPORT_VERSION = 16  # bump to force a re-import of the current month's file
+IMPORT_VERSION = 17  # bump to force a re-import of the current month's file
 COLUMNS_OUT = Path("docs/county-columns.json")   # every table's columns plus sample rows, to fix guessed column names
 PARCEL_LINK = "https://audr-apps.franklincountyohio.gov/redir/Link/Parcel/"
 HEADERS = {"User-Agent": "grandview-zoning-watch (community site; monthly download)"}
@@ -271,6 +271,8 @@ def load_land_details(tables, parcels):
 
     for row in tables.rows("parcel"):
         pid = parcel_id(row.get("PARCEL ID"))
+        if pid in parcels and HOME_LUC.match(parcels[pid].get("luc") or ""):   # appraised value of each home, for the Sellers tab
+            parcels[pid]["value"] = money(first(row, "APRTOT", "COSTTOT")) or None
         if pid not in want:
             continue
         p = parcels[pid]
@@ -694,7 +696,7 @@ def run(state, geocode, now):
                           **({"owner": p.get("owner") or o.get("owner")}
                              if VACANT_LUC.match(p["luc"] or "") and (p.get("owner") or o.get("owner")) else {}),
                           **{k: p[k] for k in ("land_value", "total_value", "sale_date", "sale_price", "sales", "associated", "corner", "foreclosures", "occ", "rental_units", "tax", "assessments",
-                                       "owner_kind", "owner_name", "owner_where", "institutional", "last_sale")
+                                       "owner_kind", "owner_name", "owner_where", "institutional", "last_sale", "value")
                              if p.get(k) is not None}})
         lucs = {}
         for p in plist:

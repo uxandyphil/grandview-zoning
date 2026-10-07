@@ -181,6 +181,7 @@
     body[data-view="alert"] .browse-only, body[data-view="sellers"] .browse-only { display: none; }
   body:not([data-view="sellers"]) #sellers { display: none; }
   #sellers { display: grid; gap: 14px; }
+  #sellers .price-line { display: block; margin-top: 4px; color: var(--ink); }
   body:not([data-view="alert"]) #alert { display: none; }
   #alert { display: grid; gap: 14px; }
   .tabs .alert-tab { color: #B3261E; }
@@ -2291,6 +2292,45 @@
     return (state.sellers = { all: out, homes, sold });
   }
   const sellText = (r) => r.list.map((s) => s.text).join(", ");
+  const priceLine = (p) => { const g = priceGuide(p); return g ? `<span class="price-line">Worth about <b>${money$(g.lo)} to ${money$(g.hi)}</b> · investor offer likely <b>${money$(g.offLo)} to ${money$(g.offHi)}</b></span>` : ""; };
+  // Price guide: what a home is likely worth, and what a company would likely offer. The county's appraised value times
+  // the ratio of recent sale prices to appraised values (by home type); the investor offer applies the gap between what
+  // companies and people paid for Grandview homes in the same years.
+  const pmedian = (a) => { const s = a.slice().sort((x, y) => x - y), n = s.length; return !n ? null : n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; };
+  const pctl = (a, q) => { const s = a.slice().sort((x, y) => x - y); return s.length ? s[Math.round(q * (s.length - 1))] : null; };
+  const r5k = (n) => Math.round(n / 5000) * 5000;
+  function priceModel() {
+    if (state.priceModel !== undefined) return state.priceModel;
+    const homes = (state.parcels || []).filter((p) => p.owner_kind && p.value > 0);
+    const sale = (p) => p.last_sale && p.last_sale.parcels === 1 && p.last_sale.price >= 50000 && p.last_sale.date ? p.last_sale : null;
+    const ratio = (p) => sale(p).price / p.value;
+    const usable = homes.filter((p) => sale(p) && ratio(p) > 0.4 && ratio(p) < 2.5);
+    const people = usable.filter((p) => p.owner_kind === "individual" || p.owner_kind === "trust");
+    const since = yearsAgo(2), recent = people.filter((p) => sale(p).date >= since);
+    if (recent.length < 20) return (state.priceModel = null);
+    const typeOf = (p) => (homeType(p.luc) || { label: "Other" }).label;
+    const band = (l) => { const m = pmedian(l); return { mid: m, lo: Math.max(pctl(l, 0.25), m * 0.88), hi: Math.min(pctl(l, 0.75), m * 1.12), n: l.length }; };
+    const all = band(recent.map(ratio)), byType = {};
+    [...new Set(recent.map(typeOf))].forEach((t) => { const l = recent.filter((p) => typeOf(p) === t).map(ratio); if (l.length >= 10) byType[t] = band(l); });
+    // what companies paid compared with people buying in the same year
+    const yearMid = {};
+    [...new Set(people.map((p) => sale(p).date.slice(0, 4)))].forEach((y) => {
+      const l = people.filter((p) => sale(p).date.startsWith(y)).map(ratio); if (l.length >= 5) yearMid[y] = pmedian(l); });
+    const invFrom = yearsAgo(6);
+    const rel = usable.filter((p) => p.owner_kind === "business" && sale(p).date >= invFrom && yearMid[sale(p).date.slice(0, 4)])
+      .map((p) => ratio(p) / yearMid[sale(p).date.slice(0, 4)]);
+    const invMid = pmedian(rel);
+    const inv = rel.length >= 8 && invMid < 1 ? { mid: invMid, lo: Math.max(pctl(rel, 0.25), 0.6), hi: Math.min(pctl(rel, 0.75), 0.98), n: rel.length, fallback: false }
+      : { mid: 0.85, lo: 0.8, hi: 0.9, n: rel.length, fallback: true };
+    return (state.priceModel = { all, byType, inv, sales: recent.length, invFrom: invFrom.slice(0, 4), since });
+  }
+  function priceGuide(p) {
+    const m = priceModel();
+    if (!m || !(p.value > 0)) return null;
+    const b = m.byType[(homeType(p.luc) || {}).label] || m.all, mid = p.value * b.mid;
+    return { lo: r5k(p.value * b.lo), mid: r5k(mid), hi: r5k(p.value * b.hi), offLo: r5k(mid * m.inv.lo), offHi: r5k(mid * m.inv.hi) };
+  }
+  const priceText = (p) => { const g = priceGuide(p); return g ? `worth about ${money$(g.lo)} to ${money$(g.hi)}; an investor would likely offer ${money$(g.offLo)} to ${money$(g.offHi)}` : ""; };
   // Who a deed went to, without people's names: the recorder search lists people as "Individual"; trust names can hold
   // people's names, so only clear business names are shown
   const SELL_BIZ = /\b(LLC|L\.L\.C|INC|CORP|CORPORATION|COMPANY|LP|LTD|LLP|PLLC|HOLDINGS?|PROPERTIES|INVESTMENTS?|REALTY|VENTURES?|ENTERPRISES?|MANAGEMENT|BANK|ASSOCIATION)\b/i;
@@ -2310,7 +2350,7 @@
   function showSellers(rows, label) {
     state.xitems = rows.map((r) => ({ id: "xsell|" + r.p.parcel, board: "House", house: r.p, noun: "home", sell: true, cat: "other",
       address: r.p.address || "Address not listed", lat: r.p.lat, lon: r.p.lon, meeting_date: null, popup: sellText(r),
-      description: [homeLabel(r.p), `${r.score} ${plural("point", r.score)}: ${sellText(r)}`].join(" · ") }))
+      description: [homeLabel(r.p), `${r.score} ${plural("point", r.score)}: ${sellText(r)}`, priceText(r.p)].filter(Boolean).join(" · ") }))
       .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0));
     state.xlabel = label; state.xnoun = "home";
     $("opt-x").textContent = "Seller signals";
@@ -2327,6 +2367,7 @@
     const has = (k) => all.filter((r) => r.list.some((s) => s.k === k));
     const recFrom = (state.recorder || []).map((d) => d.date).sort()[0];
     const color = (n) => n >= 4 ? "#B3261E" : n >= 3 ? "var(--t-zon)" : n >= 2 ? "var(--t-hvac)" : "var(--t-bldg)";
+    const pm = priceModel();
     const soldBiz = sold.filter((r) => deedBuyer(r.deed).biz).length;
     const soldSig = SELL_SIGNALS.map((s) => [s, sold.filter((r) => r.list.includes(s)).length]).filter(([, n]) => n)
       .map(([s, n]) => `${s.label.toLowerCase()} (${n})`);
@@ -2354,6 +2395,23 @@
         <div class="card panel"><h2>Streets with the most</h2>
           <p class="p-sub">Homes with any signal, by street. Longer streets naturally have more.</p><div id="sl-streets"></div></div>
       </div>
+      ${pm ? `<div class="card panel">
+        <h2>Price guide</h2>
+        <p class="p-sub">Next to each home below: what it's likely worth, and what a company buying it would likely offer. Rough
+          guides from public records, not appraisals; they can't see a home's condition, updates, or lot.</p>
+        <div class="kpis" style="margin:4px 0 12px">
+          <div class="kpi" style="padding:0"><div class="k-label">Homes sold for</div><div class="k-value">${Math.round(pm.all.mid * 100)}%</div>
+            <div class="k-sub">of the county's appraised value, the middle of ${pm.sales} sales by people since ${esc(monYr(pm.since))}</div></div>
+          <div class="kpi" style="padding:0"><div class="k-label">Companies paid</div><div class="k-value">${Math.round((1 - pm.inv.mid) * 100)}% less</div>
+            <div class="k-sub">${pm.inv.fallback ? `a typical investor discount; too few Grandview company purchases (${pm.inv.n}) to measure it here`
+              : `than people did in the same years, the middle of ${pm.inv.n} company purchases since ${pm.invFrom}`}</div></div>
+        </div>
+        <p class="p-sub"><b>Worth about</b> is the county's appraised value times what similar homes (single-family, duplex, or condo) have
+          sold for compared with their appraisals, as a range where most of those sales landed. <b>An investor would likely offer</b> applies
+          the gap above. Owners in a hurry (after a death, with back taxes, or facing foreclosure) often get offers at the low end or below.
+          <b>If you're selling:</b> an offer well under the "worth about" range is a lowball. A real estate agent's free market analysis or a
+          licensed appraisal will be more accurate than this, and listing a home usually brings more than a quick cash sale.</p>
+      </div>` : ""}
       <div class="card panel">
         <h2>Strongest signals</h2>
         <p class="p-sub">Homes with the most points, newest records first among ties. Each links to the county's page for the parcel.</p>
@@ -2362,7 +2420,7 @@
             <span class="pdot" style="background:${color(r.score)};border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(r.p.address ? streetCase(r.p.address) : "Address not listed")}</span>
             <span class="pdate">${r.score} ${plural("pt", r.score)}</span>
-            <span class="teaser">${esc([homeLabel(r.p) + (/^55/.test(r.p.luc) ? ` (parcel ${r.p.parcel})` : ""), sellText(r)].join(" · "))} &#8599;</span>
+            <span class="teaser">${esc([homeLabel(r.p) + (/^55/.test(r.p.luc) ? ` (parcel ${r.p.parcel})` : ""), sellText(r)].join(" · "))} &#8599;${priceLine(r.p)}</span>
           </a>`).join("")}</div>
         <div class="d-actions" style="margin:12px 0 0">
           <button class="btn primary" type="button" id="sl-strong">See ${strong.length} strong signals on the map</button>
