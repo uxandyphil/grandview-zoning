@@ -1,6 +1,62 @@
 {
  "documents": [
   {
+   "inst": "202610060121743",
+   "type": "Mortgage",
+   "date": "2026-10-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "WESBANCO BANK INC"
+   ],
+   "parcels": [
+    "030-000233-00"
+   ],
+   "legal": "Lt/Un 541 GLADDINGTON HEIGHTS ADDN Pcl# 030-000233-00 Plt PB 4 PG 334"
+  },
+  {
+   "inst": "202610060121623",
+   "type": "Mortgage",
+   "date": "2026-10-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Un 1208 SEVILLE CONDO Pcl# 0300002430 Plt CB 4 PG 136-138"
+  },
+  {
+   "inst": "202610060121622",
+   "type": "Deed",
+   "date": "2026-10-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Un 1208 SEVILLE CONDO Pcl# 030002430 Plt CB 4 PG 136-138"
+  },
+  {
+   "inst": "202610060121606",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST BANK OF CENTRAL OHIO"
+   ],
+   "parcels": [
+    "030-000678-00"
+   ],
+   "legal": "Lt/Un 61~62 GRANDVIEW HEIGHTS ADDN Pcl# 030-000678-00 Plt PB 4 PG 332 PT 61-62"
+  },
+  {
    "inst": "202610060121359",
    "type": "Affidavit",
    "date": "2026-10-06",
@@ -3783,5 +3839,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-06T17:01:44+00:00"
+ "updated": "2026-10-07T00:22:34+00:00"
 }
