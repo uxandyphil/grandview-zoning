@@ -178,7 +178,9 @@
                  border-radius: 7px; padding: 7px 16px; cursor: pointer; }
   .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
   body[data-view="trends"] .browse-only, body[data-view="exp"] .browse-only, body[data-view="council"] .browse-only,
-    body[data-view="alert"] .browse-only { display: none; }
+    body[data-view="alert"] .browse-only, body[data-view="sellers"] .browse-only { display: none; }
+  body:not([data-view="sellers"]) #sellers { display: none; }
+  #sellers { display: grid; gap: 14px; }
   body:not([data-view="alert"]) #alert { display: none; }
   #alert { display: grid; gap: 14px; }
   .tabs .alert-tab { color: #B3261E; }
@@ -188,8 +190,8 @@
   body:not([data-view="council"]) #council { display: none; }
   body:not([data-view="exp"]) #exp { display: none; }
   .tabs .exp-tab { font-style: italic; }
-  @media (max-width: 440px) { .tabs button { padding: 7px 7px; font-size: 0.8rem; } }
-  @media (max-width: 380px) { .tabs button { padding: 6px 5px; font-size: 0.76rem; } }
+  @media (max-width: 440px) { .tabs { flex-wrap: wrap; } .tabs button { padding: 7px 8px; font-size: 0.8rem; } }
+  @media (max-width: 380px) { .tabs { flex-wrap: wrap; } .tabs button { padding: 6px 7px; font-size: 0.8rem; } }
 
   /* city council */
   #council { display: grid; gap: 14px; }
@@ -315,6 +317,7 @@
       <button type="button" role="tab" id="tab-trends" aria-selected="false">Trends</button>
       <button type="button" role="tab" id="tab-council" aria-selected="false">Council</button>
       <button type="button" role="tab" id="tab-alert" class="alert-tab" aria-selected="false">Alert</button>
+      <button type="button" role="tab" id="tab-sellers" aria-selected="false">Sellers</button>
       <button type="button" role="tab" id="tab-exp" class="exp-tab" aria-selected="false">Experimental</button>
     </div>
   </header>
@@ -322,6 +325,7 @@
   <section id="trends" aria-label="Trends"></section>
   <section id="council" aria-label="City Council"></section>
   <section id="alert" aria-label="Alert: homes bought by businesses"></section>
+  <section id="sellers" aria-label="Seller signals: homes that may change hands soon"></section>
   <section id="exp" aria-label="Experimental"></section>
 
   <div class="card browse-only"><div id="map" role="region" aria-label="Map of zoning cases and permits"></div></div>
@@ -687,7 +691,7 @@
             <span class="pdot" style="background:var(--muted);border-radius:50%" aria-hidden="true"></span>
             <span class="ptype">${esc(c.address)}</span>
             <span class="pdate">${c.land ? (c.house.acres ? fmtAcres(c.house.acres) : "") : c.house.built ? "Built " + c.house.built : ""}</span>
-            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz || c.court || c.recd ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : []), ...(c.alert ? [bizText(c.house)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
+            <span class="teaser">${esc(c.land ? [landKind(c.house.luc) + (c.lat == null ? ", not on map" : ""), ...landFacts(c.house)].join(" · ") : c.viol || c.biz || c.court || c.recd || c.sell ? c.description : [houseKind(c.house.luc), ...(c.fc ? c.house.foreclosures.map(fcText) : []), ...(c.occ ? [occText(c.house)] : []), ...(c.taxed ? [taxText(c.house.tax)] : []), ...(c.liens ? [saText(c.house.assessments)] : []), ...(c.alert ? [bizText(c.house)] : [])].join(" · "))}${c.house.parcel ? ` · county parcel ${esc(c.house.parcel)}` : ""} &#8599;</span>
           </a>`).join("")}</div>
       </details>${(first = false) || ""}`;
       }
@@ -2224,22 +2228,151 @@
     $("al-show").onclick = () => showAlert(biz, "owned by businesses");
   }
 
+  // ---------- seller signals: homes that may change hands soon ----------
+  // Public-record signs that an owner may sell: estate paperwork, foreclosure, back taxes, liens, decades of ownership,
+  // a longtime landlord. Each home gets a score; nothing here is a prediction. People's names are never shown.
+  const SELL_SIGNALS = [
+    { k: "foreclosure", w: 3, label: "In foreclosure", text: "foreclosure case or sheriff sale pending" },
+    { k: "bank", w: 3, label: "Owned by a bank", text: "owned by a bank or mortgage company" },
+    { k: "estate", w: 3, label: "Estate paperwork", text: "affidavit or certificate of transfer recorded (often after an owner dies)" },
+    { k: "tax", w: 2, label: "Back taxes", text: "behind on property taxes" },
+    { k: "poa", w: 1, label: "Power of attorney", text: "power of attorney recorded" },
+    { k: "lien", w: 1, label: "Lien recorded", text: "lien recorded" },
+    { k: "assess", w: 1, label: "Unpaid assessments", text: "unpaid special assessments" },
+    { k: "viol", w: 1, label: "Code violation case", text: "code violation case in the last year" },
+    { k: "long", w: 1, label: "Owned 30+ years", text: "same owner for 30+ years" },
+    { k: "landlord", w: 1, label: "Longtime landlord", text: "longtime landlord (15+ years)" },
+  ];
+  function sellerSignals() {
+    if (state.sellers) return state.sellers;
+    const homes = (state.parcels || []).filter((p) => p.owner_kind), byParcel = new Map(homes.map((p) => [p.parcel, p]));
+    const yr1 = yearsAgo(1), yr15 = yearsAgo(15), yr30 = yearsAgo(30), sig = new Map();
+    const add = (p, k, date) => { if (!p) return; const m = sig.get(p.parcel) || sig.set(p.parcel, new Map()).get(p.parcel); if (!m.has(k) || (date || "") > (m.get(k) || "")) m.set(k, date || ""); };
+    // recorder documents in the last year; a later deed means the home already changed hands
+    const docs = (state.recorder || []).filter((d) => d.date >= yr1);
+    const lastDeed = {};
+    docs.filter((d) => /^deed/i.test(d.type)).forEach((d) => d.parcels.forEach((x) => { if (!lastDeed[x] || d.date > lastDeed[x]) lastDeed[x] = d.date; }));
+    const released = new Set(docs.filter((d) => /^release of (mechanics )?lien/i.test(d.type)).flatMap((d) => d.parcels));
+    docs.forEach((d) => {
+      const k = /^(affidavit|certificate of transfer)/i.test(d.type) ? "estate" : /^power of att/i.test(d.type) ? "poa"
+        : /^(mechanics )?lien$/i.test(d.type) || /lis pendens|judgment/i.test(d.type) ? "lien" : null;
+      if (k) d.parcels.forEach((x) => { if (!(k === "lien" && released.has(x))) add(byParcel.get(x), k, d.date); });
+    });
+    const C = state.court || {};
+    (C.sales || []).filter((x) => x.status === "Scheduled" && x.date >= today).forEach((x) => add(byParcel.get(x.parcel), "foreclosure", x.date));
+    (C.filings || []).filter((x) => x.date >= yr1).forEach((x) => add(byParcel.get(x.parcel), "foreclosure", x.date));
+    (state.violations || []).filter((v) => (v.date || "") >= yr1).forEach((v) => {
+      const a = normAddr(v.address || ""); add(a && homes.find((p) => normAddr(p.address) === a), "viol", v.date); });
+    homes.forEach((p) => {
+      const s = (p.last_sale || {}).date || "", person = p.owner_kind === "individual" || p.owner_kind === "trust";
+      if (p.owner_kind === "lender") add(p, "bank", s);
+      if (p.tax && p.tax.owed > 0) add(p, "tax");
+      if ((p.assessments || []).some((a) => a.unpaid > 0)) add(p, "assess");
+      if (person && s && s < yr30) add(p, "long", s);
+      if (p.owner_kind === "individual" && p.occ === "rental" && s && s < yr15) add(p, "landlord", s);
+    });
+    const out = [];
+    let sold = 0;
+    sig.forEach((m, parcel) => {
+      const p = byParcel.get(parcel), dates = [...m.values()].filter(Boolean);
+      if (lastDeed[parcel] && dates.every((d) => d <= lastDeed[parcel])) { sold++; return; }
+      if ((p.last_sale || {}).date >= yr1 && !m.has("foreclosure") && !m.has("bank")) return;   // just bought
+      const list = SELL_SIGNALS.filter((s) => m.has(s.k));
+      out.push({ p, list, score: list.reduce((a, s) => a + s.w, 0), latest: dates.sort().pop() || "" });
+    });
+    out.sort((a, b) => b.score - a.score || b.latest.localeCompare(a.latest));
+    return (state.sellers = { all: out, homes, sold });
+  }
+  const sellText = (r) => r.list.map((s) => s.text).join(", ");
+  function showSellers(rows, label) {
+    state.xitems = rows.map((r) => ({ id: "xsell|" + r.p.parcel, board: "House", house: r.p, noun: "home", sell: true, cat: "other",
+      address: r.p.address || "Address not listed", lat: r.p.lat, lon: r.p.lon, meeting_date: null, popup: sellText(r),
+      description: [homeLabel(r.p), `${r.score} ${plural("point", r.score)}: ${sellText(r)}`].join(" · ") }))
+      .sort((a, b) => streetOf(a.address).localeCompare(streetOf(b.address)) || (parseInt(a.address) || 0) - (parseInt(b.address) || 0));
+    state.xlabel = label; state.xnoun = "home";
+    $("opt-x").textContent = "Seller signals";
+    browseWith({ board: "xhouses" });
+  }
+  function renderSellers() {
+    const el = $("sellers");
+    const { all, homes, sold } = sellerSignals();
+    if (!homes.length) {
+      el.innerHTML = `<div class="card note">Home ownership data arrives with the next county import.</div>`;
+      return;
+    }
+    const strong = all.filter((r) => r.score >= 3);
+    const has = (k) => all.filter((r) => r.list.some((s) => s.k === k));
+    const recFrom = (state.recorder || []).map((d) => d.date).sort()[0];
+    const color = (n) => n >= 4 ? "#B3261E" : n >= 3 ? "var(--t-zon)" : n >= 2 ? "var(--t-hvac)" : "var(--t-bldg)";
+    const byStreet = {};
+    all.forEach((r) => { const s = streetOf(r.p.address || ""); if (s) (byStreet[s] = byStreet[s] || []).push(r); });
+    el.innerHTML = `
+      <div class="card exp-intro"><b>Homes that may change hands soon.</b> Public records that often come before a sale: estate
+        paperwork after an owner dies, a foreclosure case, back taxes, liens, an owner who has held the home for decades, or a longtime
+        landlord. Each sign adds points (3 for the strongest, 1 for the weakest), so homes with several signs rise to the top. These are
+        hints, not predictions: most families with a sign never sell, and most sales come with no warning at all. Watch these alongside
+        the Alert tab to see who buys when they do. People's names are never shown.</div>
+      <div class="kpis">
+        <div class="card kpi"><div class="k-label">Homes with a seller signal</div><div class="k-value">${all.length.toLocaleString()}</div>
+          <div class="k-sub">${Math.round(all.length / homes.length * 1000) / 10}% of ${homes.length.toLocaleString()} homes</div></div>
+        <div class="card kpi"><div class="k-label">Strong signals (3+ points)</div><div class="k-value">${strong.length}</div>
+          <div class="k-sub">estate, foreclosure, bank-owned, or several signs</div></div>
+        <div class="card kpi"><div class="k-label">Estate paperwork in the last year</div><div class="k-value">${has("estate").length}</div>
+          <div class="k-sub">affidavits and certificates of transfer</div></div>
+        <div class="card kpi"><div class="k-label">Already sold</div><div class="k-value">${sold}</div>
+          <div class="k-sub">had a signal, then a deed was recorded</div></div>
+      </div>
+      <div class="row2">
+        <div class="card panel"><h2>Signals</h2>
+          <p class="p-sub">How many homes show each sign. A home can show more than one. Tap to see them.</p><div id="sl-kinds"></div></div>
+        <div class="card panel"><h2>Streets with the most</h2>
+          <p class="p-sub">Homes with any signal, by street. Longer streets naturally have more.</p><div id="sl-streets"></div></div>
+      </div>
+      <div class="card panel">
+        <h2>Strongest signals</h2>
+        <p class="p-sub">Homes with the most points, newest records first among ties. Each links to the county's page for the parcel.</p>
+        <div class="x-sales">${all.slice(0, 20).map((r) => `
+          <a class="prow land" href="${PARCEL_LINK + esc(r.p.parcel)}" target="_blank" rel="noopener">
+            <span class="pdot" style="background:${color(r.score)};border-radius:50%" aria-hidden="true"></span>
+            <span class="ptype">${esc(r.p.address ? streetCase(r.p.address) : "Address not listed")}</span>
+            <span class="pdate">${r.score} ${plural("pt", r.score)}</span>
+            <span class="teaser">${esc([homeLabel(r.p) + (/^55/.test(r.p.luc) ? ` (parcel ${r.p.parcel})` : ""), sellText(r)].join(" · "))} &#8599;</span>
+          </a>`).join("")}</div>
+        <div class="d-actions" style="margin:12px 0 0">
+          <button class="btn primary" type="button" id="sl-strong">See ${strong.length} strong signals on the map</button>
+          <button class="btn" type="button" id="sl-all">See all ${all.length.toLocaleString()}</button></div>
+      </div>
+      <div class="card exp-intro"><b>Where this comes from:</b> owners, last sales, back taxes, and assessments from the county's tax
+        records (updated monthly); recorded documents from the County Recorder${recFrom ? ` (collected since ${esc(monYr(recFrom))}, so
+        older estate paperwork isn't included)` : ""}; foreclosure cases and sheriff sales from the courts; code violation cases from the
+        city when it publishes them. A home drops off once a deed shows it sold. Homes bought in the last year are left out unless a
+        bank owns them or they're in foreclosure. Business-owned homes are on the Alert tab instead.</div>`;
+    hbars($("sl-kinds"), SELL_SIGNALS.map((s) => ({ label: s.label, value: has(s.k).length, color: color(s.w), l: has(s.k) })).filter((r) => r.value),
+      (r) => showSellers(r.l, `with a seller signal (${r.label.toLowerCase()})`));
+    hbars($("sl-streets"), Object.entries(byStreet).sort((a, b) => b[1].length - a[1].length).slice(0, 10).map(([s, l]) => ({
+      label: streetCase(s), value: l.length, color: "var(--t-bldg)", l })), (r) => showSellers(r.l, `with a seller signal on ${r.label}`));
+    $("sl-strong").onclick = () => showSellers(strong, "with strong seller signals");
+    $("sl-all").onclick = () => showSellers(all, "with a seller signal");
+  }
+
   // ---------- view switching ----------
   let trendsDrawn = false;
   let expDrawn = false;
   let councilDrawn = false;
   let alertDrawn = false;
+  let sellersDrawn = false;
   function setView(v) {
     document.body.dataset.view = v;
-    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-alert", "alert"], ["tab-exp", "exp"]])
+    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-alert", "alert"], ["tab-sellers", "sellers"], ["tab-exp", "exp"]])
       $(id).setAttribute("aria-selected", String(v === name));
     if (v === "trends" && !trendsDrawn) { renderTrends(); trendsDrawn = true; }
     if (v === "exp" && !expDrawn) { renderExp(); expDrawn = true; }
     if (v === "council" && !councilDrawn) { renderCouncil(); councilDrawn = true; }
     if (v === "alert" && !alertDrawn) { renderAlert(); alertDrawn = true; }
+    if (v === "sellers" && !sellersDrawn) { renderSellers(); sellersDrawn = true; }
     if (v === "browse") setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
     if (!location.hash.startsWith("#permit="))
-      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council" : v === "alert" ? "#alert"
+      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council" : v === "alert" ? "#alert" : v === "sellers" ? "#sellers"
         : location.pathname + location.search);
   }
   $("tab-browse").addEventListener("click", () => setView("browse"));
@@ -2247,6 +2380,7 @@
   $("tab-exp").addEventListener("click", () => setView("exp"));
   $("tab-council").addEventListener("click", () => setView("council"));
   $("tab-alert").addEventListener("click", () => setView("alert"));
+  $("tab-sellers").addEventListener("click", () => setView("sellers"));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
     const v = document.body.dataset.view;
     if (v === "trends") renderTrends(); else trendsDrawn = false;
@@ -2256,6 +2390,7 @@
   if (location.hash === "#experimental") setView("exp");
   if (location.hash === "#council") setView("council");
   if (location.hash === "#alert") setView("alert");
+  if (location.hash === "#sellers") setView("sellers");
 
   render();
   const linked = decodeURIComponent((location.hash.match(/^#permit=(.+)$/) || [])[1] || "");
