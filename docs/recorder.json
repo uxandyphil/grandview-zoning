@@ -1,6 +1,36 @@
 {
  "documents": [
   {
+   "inst": "202610080122799",
+   "type": "Deed",
+   "date": "2026-10-08",
+   "from": [
+    "COGS ULTD LLC"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000232-00"
+   ],
+   "legal": "Lt/Un 542~543 GLADDINGTON HEIGHTS SUBD Pcl# 030-000232-00 Plt PB 4 PG 335-336"
+  },
+  {
+   "inst": "202610080122798",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-08",
+   "from": [
+    "COGS ULTD LLC"
+   ],
+   "to": [
+    "PRIMARIA CAPITAL LLC"
+   ],
+   "parcels": [
+    "030-000232-00"
+   ],
+   "legal": "Lt/Un 542~543 GLADDINGTON HEIGHTS SUBD Pcl# 030-000232-00 Plt PB 4 PG 335-336"
+  },
+  {
    "inst": "202610060121923",
    "type": "Contin Of Fs Real Estate",
    "date": "2026-10-06",
@@ -3852,5 +3882,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-08T02:16:29+00:00"
+ "updated": "2026-10-08T17:41:36+00:00"
 }
