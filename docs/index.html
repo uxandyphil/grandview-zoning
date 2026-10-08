@@ -178,7 +178,22 @@
                  border-radius: 7px; padding: 7px 16px; cursor: pointer; }
   .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
   body[data-view="trends"] .browse-only, body[data-view="exp"] .browse-only, body[data-view="council"] .browse-only,
-    body[data-view="alert"] .browse-only, body[data-view="sellers"] .browse-only { display: none; }
+    body[data-view="alert"] .browse-only, body[data-view="sellers"] .browse-only, body[data-view="zoning"] .browse-only { display: none; }
+  body:not([data-view="zoning"]) #zoning { display: none; }
+  #zoning, #zoning .zlist { display: grid; gap: 14px; }
+  #zoning .zc { padding: 16px 18px; }
+  #zoning .zc-dist { margin: 4px 0 0; color: var(--muted); font-size: 0.85rem; }
+  #zoning .zc-reqs { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  #zoning .zc-topic { font-weight: 600; }
+  #zoning .zc-sec { font-size: 0.85rem; color: var(--muted); margin-left: 4px; white-space: nowrap; }
+  #zoning .zc-what { margin: 3px 0 0; }
+  #zoning .zc-rule { margin: 3px 0 0; color: var(--muted); font-size: 0.88rem; }
+  #zoning .zq { display: flex; gap: 8px; flex-wrap: wrap; }
+  #zoning .zq select { font: inherit; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); padding: 0 8px; }
+  #zoning .zrules details { border-top: 1px solid var(--line); padding: 8px 0; }
+  #zoning .zrules summary { cursor: pointer; }
+  #zoning .zrules p { margin: 6px 0 0; color: var(--muted); font-size: 0.9rem; }
+  #zoning .muted { color: var(--muted); font-weight: 400; }
   body:not([data-view="sellers"]) #sellers { display: none; }
   #sellers { display: grid; gap: 14px; }
   #sellers .price-line { display: block; margin-top: 4px; color: var(--ink); }
@@ -317,6 +332,7 @@
       <button type="button" role="tab" id="tab-browse" aria-selected="true">Browse</button>
       <button type="button" role="tab" id="tab-trends" aria-selected="false">Trends</button>
       <button type="button" role="tab" id="tab-council" aria-selected="false">Council</button>
+      <button type="button" role="tab" id="tab-zoning" aria-selected="false">Zoning</button>
       <button type="button" role="tab" id="tab-alert" class="alert-tab" aria-selected="false">Alert</button>
       <button type="button" role="tab" id="tab-sellers" aria-selected="false">Sellers</button>
       <button type="button" role="tab" id="tab-exp" class="exp-tab" aria-selected="false">Experimental</button>
@@ -325,6 +341,7 @@
 
   <section id="trends" aria-label="Trends"></section>
   <section id="council" aria-label="City Council"></section>
+  <section id="zoning" aria-label="Zoning appeals and the zoning code"></section>
   <section id="alert" aria-label="Alert: homes bought by businesses"></section>
   <section id="sellers" aria-label="Seller signals: homes that may change hands soon"></section>
   <section id="exp" aria-label="Experimental"></section>
@@ -2457,24 +2474,175 @@
     if ($("sl-sold-link")) $("sl-sold-link").onclick = (e) => { e.preventDefault(); $("sl-sold").scrollIntoView({ behavior: "smooth" }); };
   }
 
+  // ---------- zoning appeals and the code sections behind them ----------
+  // Each Board of Zoning Appeals and Planning Commission case cites the Zoning Code sections it asks relief from. What each
+  // section covers is summed up from the city's own agenda wording; the full text is in the city's codified ordinances.
+  const ZCODE_HOME = "https://codelibrary.amlegal.com/codes/grandviewhts/latest/grandviewhts_oh/0-0-0-11372";
+  const ZCODE = {
+    "1133.02": { t: "Definitions", d: "What the zoning code's terms mean.", url: "https://codelibrary.amlegal.com/codes/grandviewhts/latest/grandviewhts_oh/0-0-0-11783" },
+    "1141.03": { t: "Lot splits and replats", d: "Changing property lines: splitting a lot, combining lots, or amending a subdivision plat. These go to the Planning Commission." },
+    "1153.02": { t: "Garages, sheds, and other accessory buildings", d: "How big a detached garage or shed can be (compared with the house), how tall (15 feet), and how close to property lines (3 feet) and to the house (10 feet)." },
+    "1155.01": { t: "RS-1 district rules", d: "Single-family homes on larger lots: side yards of at least 10 feet each and 25 feet combined, a rear yard of 20% of the lot's depth (up to 30 feet), plus limits on lot coverage and height." },
+    "1155.02": { t: "RS-2 district rules", d: "Most Grandview houses: side yards of at least 6 feet each and 12 feet combined, a rear yard of 20% of the lot's depth (up to 30 feet), buildings covering at most 40% of the lot, and up to 2.5 stories." },
+    "1155.04": { t: "RA district rules", d: "Two-family and apartment district: 10-foot side yards, buildings covering at most 30% of the lot, and no short-term rentals under 30 days unless the owner lives there.", url: "https://codelibrary.amlegal.com/codes/grandviewhts/latest/grandviewhts_oh/0-0-0-12820" },
+    "1155.07": { t: "Design (aesthetic) review", d: "New houses, new garages, and big changes to a home's exterior need the board to review how they'll look." },
+    "1155.08": { t: "Demolition review", d: "Tearing down a house or garage needs the board's approval." },
+    "1155.09": { t: "Extra yard rules", d: "More setback rules, including wider side yards on corner lots and rules for porches and existing homes." },
+    "1155.11": { t: "What can extend into a yard", d: "Porches, steps, and similar features allowed to stick into a required yard. An open porch can; an enclosed one needs approval." },
+    "1155.13": { t: "Off-street parking", d: "Each home needs two off-street parking spaces per dwelling unit, side by side." },
+    "1155.14": { t: "Driveways and parking areas", d: "Parking spaces must be at least 9 by 19 feet, and driveways and parking can cover at most 45% of the back yard." },
+    "1155.15": { t: "Fences", d: "How tall and how solid a fence can be, how far forward it can go, and fences beside the street or alley on corner lots." },
+    "1157.08": { t: "Fences (business districts)", d: "Fence rules outside the residential districts." },
+  };
+  const zTopic = (sec, sub) => {
+    const s = sec, c = (sub || "").toLowerCase();
+    if (s === "1153.02") return "Garages and sheds";
+    if (/^1155\.0[1-4]$/.test(s)) return /^\(c\)\(3\)/.test(c) ? "Lot coverage" : /^\(c\)\(4\)/.test(c) ? "Height" : "Setbacks (yard space)";
+    if (s === "1155.09" || s === "1155.11") return "Setbacks (yard space)";
+    if (s === "1155.07") return "Design review";
+    if (s === "1155.08") return "Demolition";
+    if (s === "1155.13" || s === "1155.14") return "Parking and driveways";
+    if (/^115[57]\.(15|08)$/.test(s) && s !== "1155.08") return "Fences";
+    if (s === "1141.03") return "Lot splits";
+    return "Other";
+  };
+  const Z_STOP = /\s+(?:[a-h]\s*[-–]\s+The\s+(?:applicant|Applicant)|Case\s+\d+:|OTHER BUSINESS|NEW BUSINESS|OLD BUSINESS|ADJOURNMENT|STAFF COMMUN|Michael Hulsey|Robert Mezera|Darryl Hughes|Charles Boshane|\d+\.\s+P\.C\.)/;
+  function zoningRequests(desc) {
+    const out = [], re = /sections?\s+((?:11\d\d\.\d+(?:\s*\([a-zA-Z0-9]+\))*(?:\s*(?:,|and|&)\s*)?)+)/gi;
+    let m;
+    while ((m = re.exec(desc))) {
+      let rest = desc.slice(m.index + m[0].length);
+      const subLead = (rest.match(/^\s*((?:\([a-zA-Z0-9]+\)\s*)+)/) || [, ""])[1];
+      rest = rest.slice(subLead.length);
+      const part = rest.split(Z_STOP)[0];
+      let what = part.replace(/\s+/g, " ").trim().replace(/[.;,\s]+$/, "");
+      if (what.length > 220) what = what.slice(0, 217).replace(/\s+\S*$/, "") + "…";
+      else if (part.length === rest.length && !/[.)”"]\s*$/.test(rest)) what += "…";   // the agenda text was cut off here
+      const secs = m[1].match(/11\d\d\.\d+(?:\s*\([a-zA-Z0-9]+\))*/g) || [];
+      secs.forEach((full, i) => {
+        const base = full.match(/11\d\d\.\d+/)[0], sub = (full.slice(base.length) + (i === secs.length - 1 ? subLead : "")).replace(/\s+/g, "");
+        out.push({ sec: base, sub, full: base + sub, topic: zTopic(base, sub), what });
+      });
+    }
+    return out.filter((r, i, a) => a.findIndex((x) => x.full === r.full && x.what === r.what) === i);
+  }
+  const zDistrict = (desc) => (desc.match(/Zoning(?: District)?:\s*([A-Z]{1,3}-?\d?(?:\s+GSOD)?)/) || [, ""])[1];
+  const zFeet = (a, b) => { const R = 20902231, dLat = (b.lat - a.lat) * Math.PI / 180, dLon = (b.lon - a.lon) * Math.PI / 180,
+    x = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * Math.PI / 180) * Math.cos(b.lat * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(x)); };
+  function zoningCases() {
+    if (state.zcases) return state.zcases;
+    return (state.zcases = (state.cases || []).filter((c) => /zoning appeals|planning commission/i.test(c.board || ""))
+      .map((c) => ({ c, reqs: zoningRequests(c.description || ""), district: zDistrict(c.description || ""), street: streetOf(c.address || "") }))
+      .sort((a, b) => (b.c.meeting_date || "").localeCompare(a.c.meeting_date || "")));
+  }
+  function zCard(z, near) {
+    const c = z.c, up = c.meeting_date >= today;
+    return `<div class="card zc">
+      <div class="cm-head"><h2>${esc(c.address ? streetCase(c.address) : "Address not listed")}</h2>
+        <span class="cm-date">${esc(c.board === "Planning Commission" ? "Planning Commission" : "Zoning Appeals")} · ${esc(fmtDate(c.meeting_date))}</span>
+        ${up ? '<span class="chip soon">Upcoming hearing</span>' : ""}
+        ${near != null ? `<span class="chip">${near < 60 ? "this address" : Math.round(near / 10) * 10 + " ft away"}</span>` : ""}
+        <a href="${esc(c.agenda_url)}" target="_blank" rel="noopener">Agenda &#8599;</a></div>
+      ${z.district ? `<p class="zc-dist">Zoned ${esc(z.district.replace(" GSOD", ", Green Space Overlay"))}</p>` : ""}
+      ${z.reqs.length ? `<ul class="zc-reqs">${z.reqs.map((r, i) => { const k = ZCODE[r.sec] || {}; return `<li>
+          <span class="zc-topic">${esc(r.topic)}</span> <a class="zc-sec" href="${esc(k.url || ZCODE_HOME)}" target="_blank" rel="noopener"
+            title="${esc(k.url ? "Read this section" : "Open the city's zoning code, then find section " + r.sec)}">§ ${esc(r.full)} &#8599;</a>
+          ${r.what.replace(/…$/, "").length >= 15 ? `<div class="zc-what">Asks ${esc(/^(to|for)\s/i.test(r.what) ? r.what.replace(/^\w+/, (w) => w.toLowerCase()) : "for " + r.what)}</div>` : ""}
+          ${k.t && z.reqs.findIndex((x) => x.sec === r.sec) === i ? `<div class="zc-rule"><b>${esc(k.t)}:</b> ${esc(k.d)}</div>` : ""}</li>`; }).join("")}</ul>`
+        : `<p class="zc-what">${esc((c.description || "").replace(/^.*?(?=The applicant|The Applicant|$)/, "").slice(0, 260) || "See the agenda for details.")}</p>`}
+      ${up ? `<p class="zc-what"><b>You can weigh in:</b> neighbors may comment in person at the hearing or send comments to the board beforehand; the agenda has the details.</p>` : ""}
+    </div>`;
+  }
+  function renderZoning() {
+    const el = $("zoning"), Z = zoningCases();
+    if (!Z.length) { el.innerHTML = `<div class="card note">No zoning cases on file yet.</div>`; return; }
+    const q = state.zq ?? (() => { try { return localStorage.getItem("gz-zoning-q") || ""; } catch (e) { return ""; } })();
+    state.zq = q;
+    const streets = [...new Set(Z.map((z) => z.street).filter(Boolean).concat((state.parcels || []).filter((p) => p.owner_kind).map((p) => streetOf(p.address))))].sort();
+    const nq = normAddr(q), hasNum = /^\d+\s/.test(nq);
+    const spot = hasNum ? (state.parcels || []).find((p) => normAddr(p.address) === nq && p.lat != null) || Z.map((z) => z.c).find((c) => normAddr(c.address) === nq && c.lat != null) : null;
+    const qStreet = streetOf(q);
+    let hits = [], label = "";
+    if (spot) {
+      hits = Z.filter((z) => z.c.lat != null).map((z) => ({ z, d: zFeet(spot, z.c) })).filter((h) => h.d <= state.zr || streetOf(h.z.c.address) === qStreet && h.d <= 1500)
+        .sort((a, b) => a.d - b.d);
+      label = `within ${state.zr.toLocaleString()} feet of ${streetCase(q)}${hits.some((h) => h.d > state.zr) ? ", plus the rest of the block" : ""}`;
+    } else if (q.trim()) {
+      const ql = qStreet.toLowerCase();
+      hits = Z.filter((z) => z.street.toLowerCase() === ql || z.street.toLowerCase().includes(ql) && ql.length > 2).map((z) => ({ z, d: null }));
+      label = `on ${qStreet || q}`;
+    }
+    const topic = state.ztopic, filt = (l) => topic ? l.filter((h) => h.z.reqs.some((r) => r.topic === topic)) : l;
+    const upcoming = Z.filter((z) => z.c.meeting_date >= today);
+    const byTopic = {};
+    Z.forEach((z) => [...new Set(z.reqs.map((r) => r.topic))].forEach((t) => (byTopic[t] = byTopic[t] || []).push(z)));
+    const secCount = {};
+    Z.forEach((z) => [...new Set(z.reqs.map((r) => r.sec))].forEach((s) => secCount[s] = (secCount[s] || 0) + 1));
+    const first = Z[Z.length - 1].c.meeting_date;
+    const list = q.trim() ? filt(hits) : filt(Z.slice(0, 12).map((z) => ({ z, d: null })));
+    el.innerHTML = `
+      <div class="card exp-intro"><b>Zoning appeals and the rules behind them.</b> When a project doesn't meet the zoning code (too
+        close to a property line, too much of the lot covered, a fence too tall), the owner can ask the Board of Zoning Appeals for a
+        variance. Look up your street or address to see every request nearby, what each one asks for, and what the rule says.
+        ${Z.length} cases since ${esc(monYr(first))}, from the board's agendas.</div>
+      <div class="card panel">
+        <h2>Look up a street or address</h2>
+        <div class="zq">
+          <input class="search" id="zq" type="search" list="zq-streets" placeholder="e.g. Oxley Rd or 1220 Oxley Rd" value="${esc(q)}" aria-label="Street or address">
+          <select id="zr" aria-label="Distance" ${spot ? "" : "hidden"}>${[300, 600, 1000, 2000].map((r) => `<option value="${r}"${r === state.zr ? " selected" : ""}>within ${r.toLocaleString()} ft</option>`).join("")}</select>
+        </div>
+        <datalist id="zq-streets">${streets.map((s) => `<option value="${esc(s)}">`).join("")}</datalist>
+        <p class="p-sub" style="margin:8px 0 0">${q.trim() ? `${list.length} ${plural("case", list.length)} ${esc(label)}${topic ? ` about ${esc(topic.toLowerCase())}` : ""}.
+          ${hits.length ? `<button class="btn" type="button" id="zq-map">Show on map</button>` : ""}`
+          : `Type a street name, or a full address to see cases near it. Showing the ${list.length} most recent cases for now.`}
+          ${topic ? ` <button class="btn" type="button" id="zt-clear">Show all topics</button>` : ""}</p>
+      </div>
+      ${upcoming.length && !q.trim() ? `<div class="card exp-intro"><b>Upcoming:</b> ${upcoming.map((z) => `${esc(streetCase(z.c.address))} on ${esc(fmtDate(z.c.meeting_date))}`).join("; ")}.</div>` : ""}
+      <div id="zlist" class="zlist">${list.map((h) => zCard(h.z, h.d)).join("") || `<div class="card note">No zoning cases ${esc(label)} since ${esc(monYr(first))}.</div>`}</div>
+      <div class="row2">
+        <div class="card panel"><h2>What people ask for</h2>
+          <p class="p-sub">Cases by topic. Tap one to show only those${q.trim() ? " in your results" : ""}.</p><div id="zt"></div></div>
+        <div class="card panel"><h2>The rules, explained</h2>
+          <p class="p-sub">Zoning Code sections cited in these cases, in plain words. The full text is in the
+            <a href="${ZCODE_HOME}" target="_blank" rel="noopener">city's Planning and Zoning Code</a> (Part Eleven of the codified ordinances).</p>
+          <div class="zrules">${Object.keys(ZCODE).filter((s) => secCount[s]).sort((a, b) => secCount[b] - secCount[a]).map((s) => `
+            <details><summary><b>§ ${s}</b> ${esc(ZCODE[s].t)} <span class="muted">· ${secCount[s]} ${plural("case", secCount[s])}</span></summary>
+              <p>${esc(ZCODE[s].d)} <a href="${esc(ZCODE[s].url || ZCODE_HOME)}" target="_blank" rel="noopener">${ZCODE[s].url ? "Read the section" : "Find it in the code"} &#8599;</a></p></details>`).join("")}</div>
+          <p class="p-sub" style="margin:10px 0 0">Summaries come from how the city's agendas describe each rule and may leave out details or
+            recent changes. Check the code or ask the Building and Zoning Department before relying on them.</p></div>
+      </div>`;
+    hbars($("zt"), Object.entries(byTopic).sort((a, b) => b[1].length - a[1].length).map(([t, l]) => ({ label: t, value: l.length,
+      color: t === topic ? "#B3261E" : "var(--t-zon)", t })), (r) => { state.ztopic = state.ztopic === r.t ? null : r.t; renderZoning(); });
+    const input = $("zq");
+    input.addEventListener("input", () => { clearTimeout(input._t); input._t = setTimeout(() => {
+      state.zq = input.value; try { localStorage.setItem("gz-zoning-q", input.value); } catch (e) {}
+      renderZoning(); const i = $("zq"); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }, 350); });
+    $("zr").onchange = (e) => { state.zr = +e.target.value; renderZoning(); };
+    if ($("zt-clear")) $("zt-clear").onclick = () => { state.ztopic = null; renderZoning(); };
+    if ($("zq-map")) $("zq-map").onclick = () => browseWith({ q: hasNum ? qStreet : q, board: "all" });
+  }
+
   // ---------- view switching ----------
   let trendsDrawn = false;
   let expDrawn = false;
   let councilDrawn = false;
   let alertDrawn = false;
   let sellersDrawn = false;
+  let zoningDrawn = false;
   function setView(v) {
     document.body.dataset.view = v;
-    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-alert", "alert"], ["tab-sellers", "sellers"], ["tab-exp", "exp"]])
+    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-zoning", "zoning"], ["tab-alert", "alert"], ["tab-sellers", "sellers"], ["tab-exp", "exp"]])
       $(id).setAttribute("aria-selected", String(v === name));
     if (v === "trends" && !trendsDrawn) { renderTrends(); trendsDrawn = true; }
     if (v === "exp" && !expDrawn) { renderExp(); expDrawn = true; }
     if (v === "council" && !councilDrawn) { renderCouncil(); councilDrawn = true; }
     if (v === "alert" && !alertDrawn) { renderAlert(); alertDrawn = true; }
     if (v === "sellers" && !sellersDrawn) { renderSellers(); sellersDrawn = true; }
+    if (v === "zoning" && !zoningDrawn) { state.zr = state.zr || 600; renderZoning(); zoningDrawn = true; }
     if (v === "browse") setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
     if (!location.hash.startsWith("#permit="))
-      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council" : v === "alert" ? "#alert" : v === "sellers" ? "#sellers"
+      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council" : v === "alert" ? "#alert" : v === "sellers" ? "#sellers" : v === "zoning" ? "#zoning"
         : location.pathname + location.search);
   }
   $("tab-browse").addEventListener("click", () => setView("browse"));
@@ -2483,6 +2651,7 @@
   $("tab-council").addEventListener("click", () => setView("council"));
   $("tab-alert").addEventListener("click", () => setView("alert"));
   $("tab-sellers").addEventListener("click", () => setView("sellers"));
+  $("tab-zoning").addEventListener("click", () => setView("zoning"));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
     const v = document.body.dataset.view;
     if (v === "trends") renderTrends(); else trendsDrawn = false;
@@ -2493,6 +2662,7 @@
   if (location.hash === "#council") setView("council");
   if (location.hash === "#alert") setView("alert");
   if (location.hash === "#sellers") setView("sellers");
+  if (location.hash === "#zoning") setView("zoning");
 
   render();
   const linked = decodeURIComponent((location.hash.match(/^#permit=(.+)$/) || [])[1] || "");
