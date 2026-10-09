@@ -1,6 +1,36 @@
 {
  "documents": [
   {
+   "inst": "202610090123065",
+   "type": "Mechanics Lien",
+   "date": "2026-10-09",
+   "from": [
+    "CJE RESTORATION LLC"
+   ],
+   "to": [
+    "NORTHERN WINDOW & DOOR INC"
+   ],
+   "parcels": [
+    "030-002260-00"
+   ],
+   "legal": "Lt/Un 40~41 URLINS SECOND GRANDVIEW HEIGHTS SUBD Pcl# 030-002260-00 Plt PB 5 PG 230 PT 40-41"
+  },
+  {
+   "inst": "202610090123040",
+   "type": "Affidavit",
+   "date": "2026-10-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "SMITH SCOTT TRUST TOD"
+   ],
+   "parcels": [
+    "030-002682-00"
+   ],
+   "legal": "Un 1006 SUMMIT CHASE CONDO Pcl# 030-002682-00 Plt CB 3 PG 895-1020"
+  },
+  {
    "inst": "202610080122799",
    "type": "Deed",
    "date": "2026-10-08",
@@ -3882,5 +3912,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-08T17:41:36+00:00"
+ "updated": "2026-10-09T17:16:58+00:00"
 }
