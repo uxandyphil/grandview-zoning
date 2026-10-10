@@ -1,14 +1,55 @@
 {
  "meetings": [
   {
-   "id": "cal-3236",
-   "name": "Regular Council Meeting",
+   "id": "adid-3798",
+   "name": "City Council",
    "date": "2026-10-12",
-   "time": "07:00 PM",
-   "url": "https://www.grandviewheights.gov/Calendar.aspx?EID=3236",
-   "items": [],
-   "counts": {},
-   "has_agenda": false
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3798",
+   "title": "October 12, 2026 Regular Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026-16: An Ordinance to make annual appropriations for current expenses and other expenditures of the Cit y of Grandview Heights, State of Ohio, during the fiscal year ending December 31, 2027. 3rd reading. Previous readings 9/28/2026 and 10/05/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2026-17: An Ordinance to make appropriations to various departments within the City of Grandview Heights municipal government to purchase equipment and make capital improvements in 2027. 3rd reading. Previous readings 9/28/2026 and 10/05/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 32-2026: A Resolution accepting the amounts and rates as determined by the Franklin County Budget Commission and authorizing the necessary tax levies and certifying them to the County Auditor",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 2,
+    "Resolution": 1
+   },
+   "has_agenda": true,
+   "parse": 2
+  },
+  {
+   "id": "adid-3797",
+   "name": "Council Committees",
+   "date": "2026-10-12",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3797",
+   "title": "October 12, 2026 Finance Committee Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Community Partners Grant Application: Sustainable Grandview Adjournment Chris Smith Chris Smith, Chair Finance Committee Grandview Heights City Council",
+     "kind": "Other"
+    }
+   ],
+   "counts": {
+    "Other": 1
+   },
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3796",
@@ -1615,5 +1656,5 @@
    "parse": 2
   }
  ],
- "updated": "2026-10-09T17:16:58+00:00"
+ "updated": "2026-10-10T16:05:11+00:00"
 }
