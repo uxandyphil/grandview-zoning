@@ -19,6 +19,7 @@ import os
 import re
 import smtplib
 import sys
+import tempfile
 import time
 from datetime import datetime, timezone
 from email.message import EmailMessage
@@ -45,6 +46,8 @@ STATE_FILE = Path("state.json")
 CASES_FILE = Path("docs/cases.json")
 MAX_BACKFILL = int(os.environ.get("MAX_BACKFILL", "40"))
 MAX_PDF_BYTES = 12_000_000
+MAX_PACKET_BYTES = 400_000_000   # meeting packets carry every application's plans; 149 pages can top 60 MB
+CASE_PARSE_VERSION = 3           # bump to re-read every agenda after changing how cases are pulled out
 DRY_RUN = "--dry-run" in sys.argv
 
 UA = "grandview-zoning-watch/1.1 (community site, runs once daily)"
@@ -115,6 +118,11 @@ SUFFIXES = {"avenue": "ave", "street": "st", "road": "rd", "boulevard": "blvd", 
             "terrace": "ter", "west": "w", "east": "e", "north": "n", "south": "s"}
 
 
+def one_address(address):
+    """'823 - 827 Timberman Rd' -> '827 Timberman Rd', so a lot range maps and matches like a single address."""
+    return re.sub(r"^\d+[A-Z]?\s*(?:-|–|&|and|thru|through)\s*(\d+[A-Z]?)\s", r"\1 ", address.strip(), flags=re.I)
+
+
 def norm_address(address):
     words = re.sub(r"[^a-z0-9 ]", " ", address.lower()).split()
     return " ".join(SUFFIXES.get(w, ORDINALS.get(w, w)) for w in words)
@@ -127,13 +135,23 @@ def title_case(address):
 
 # ---------- parsing ----------
 
-def pdf_pages(url, max_bytes=MAX_PDF_BYTES):
-    resp = get(url)
-    if len(resp.content) > max_bytes:
-        raise ValueError("file too large")
-    if not resp.content.startswith(b"%PDF"):
+def pdf_pages(url, max_bytes=MAX_PDF_BYTES, max_pages=None):
+    """Text of each page. Streams the download to a temporary file so big packets don't sit in memory."""
+    time.sleep(PAUSE_SECONDS)
+    buf, size = tempfile.SpooledTemporaryFile(max_size=20_000_000), 0
+    with requests.get(url, headers=HEADERS, timeout=180, stream=True) as resp:
+        resp.raise_for_status()
+        for chunk in resp.iter_content(1 << 20):
+            size += len(chunk)
+            if size > max_bytes:
+                raise ValueError(f"file too large (over {max_bytes // 1_000_000} MB)")
+            buf.write(chunk)
+    buf.seek(0)
+    if not buf.read(5).startswith(b"%PDF"):
         raise ValueError("not a PDF")
-    return [page.extract_text() or "" for page in PdfReader(io.BytesIO(resp.content)).pages]
+    buf.seek(0)
+    pages = PdfReader(buf).pages
+    return [page.extract_text() or "" for page in (pages[:max_pages] if max_pages else pages)]
 
 
 def pdf_text(url):
@@ -143,9 +161,9 @@ def pdf_text(url):
 def packet_agenda_text(url):
     """A meeting packet starts with the agenda, then applications (which list
     neighbors' addresses). Keep only the agenda pages: up to ADJOURNMENT."""
-    pages = pdf_pages(url, max_bytes=60_000_000)
+    pages = pdf_pages(url, max_bytes=MAX_PACKET_BYTES, max_pages=8)
     kept = []
-    for page in pages[:6]:
+    for page in pages:
         kept.append(page)
         if re.search(r"ADJOURN", page, re.I):
             break
@@ -182,6 +200,84 @@ def extract_cases(text):
         desc = re.split(r"\b(ADJOURN|OTHER BUSINESS|STAFF COMMUNICATIONS)", desc, flags=re.I)[0]
         cases.append((address, desc.strip(" .,:;-")))
     return cases
+
+
+# The agenda lists each case as a block:
+#   Case 3:  B.Z.A. Case: 18-2026 (030-001198-00)  Address: 1750 W First Ave  Applicant: ...  Owner: ...
+#            Zoning District: RS-2 (Residential Single)
+#   a - The applicant is requesting ... pursuant to Zoning Code Section 1155.15(d) for ...
+CASE_HEAD_RE = re.compile(
+    r"(?:\bCase\s*(\d{1,2})\s*:\s*)?(?:\b\d{1,2}\.\s*)?\b(B\.?\s?Z\.?\s?A\.?|P\.?\s?C\.?)\s*Case\s*(?:No\.?|#)?\s*:?\s*"
+    r"(\d{1,3}-\d{2,4})\s*(?:\(\s*(\d{3}-\d{6}-\d{2})\s*\))?", re.I)
+CASE_FIELD_RE = re.compile(r"\b(Address|Location|Applicants?\s*/\s*O+wners?|Applicants?|O+wners?|Zoning District|Zoning)\s*:", re.I)
+DISTRICT_RE = re.compile(r"^([A-Z]{1,3}-?\d?(?:\s+GSOD)?(?:\s*\([^)]{0,80}\))?)\s*(.*)$")
+REQUEST_RE = re.compile(r"(?:^|\s)([a-h])\s*[-–—.)]\s+(?=The\s|Applicant|Request)", re.I)
+AGENDA_END_RE = re.compile(r"\b(ADJOURN\w*|OTHER BUSINESS|STAFF COMMUNICATIONS?|APPROVAL OF (?:THE )?MINUTES)\b")
+AGENDA_JUNK_RE = re.compile(
+    r"(?:\b[A-Z][a-z]+ [A-Z][a-z]+, Director\s+)?Building and Zoning Department\s+\S+@grandviewheights\.gov"
+    r"|1260 McKinley Avenue\s*[•·]?\s*Columbus, OH 43222\s*[•·]?\s*614\.481\.6220|\bPage \d+\b", re.I)
+
+
+def extract_structured_cases(text):
+    """[{address, case_no, parcel, applicant, owner, district, requests, section, order, description}] from an
+    agenda laid out in case blocks, or [] if it isn't."""
+    flat = AGENDA_JUNK_RE.sub(" ", re.sub(r"\s+", " ", text or ""))
+    heads = list(CASE_HEAD_RE.finditer(flat))
+    out = []
+    for i, h in enumerate(heads):
+        end = heads[i + 1].start() if i + 1 < len(heads) else len(flat)
+        block = flat[h.end():end]
+        block = AGENDA_END_RE.split(block)[0] if i + 1 == len(heads) else block
+        block = re.split(r"\b(?:OLD|NEW|UNFINISHED) BUSINESS\b", block)[0]
+        req_at = REQUEST_RE.search(block)
+        head_part, req_part = (block[:req_at.start()], block[req_at.start():]) if req_at else (block, "")
+        fields, marks = {}, list(CASE_FIELD_RE.finditer(head_part))
+        for j, m in enumerate(marks):
+            val = head_part[m.end():marks[j + 1].start() if j + 1 < len(marks) else len(head_part)].strip(" .,;:-")
+            label = re.sub(r"\s+", " ", m[1].lower())
+            if "/" in label:   # "Applicant/Owner: ..." names both
+                fields.setdefault("applicant", val)
+                fields.setdefault("owner", val)
+                continue
+            key = "address" if label in ("address", "location") else "district" if label.startswith("zoning") \
+                else "applicant" if label.startswith("applicant") else "owner" if re.match(r"o+wner", label) else label
+            fields.setdefault(key, val)
+        loose = ""
+        if fields.get("district"):   # "RS-2 (Single family dwelling)", then sometimes the request itself
+            dm = DISTRICT_RE.match(fields["district"])
+            if dm:
+                fields["district"], loose = dm[1].strip(), dm[2].strip()
+        address = fields.get("address") or next((a for _, a in find_addresses(head_part)[1]), None)
+        if not address:
+            continue
+        address = re.sub(r"\s*,?\s*Grandview Heights.*$", "", address)
+        address = re.split(r"\s*\(|\s+Applicants?\b|\s+O+wners?\b", address)[0].strip(" .,/")
+        if not re.match(r"\d", address):
+            continue
+        pieces = [p.strip(" .;") for p in REQUEST_RE.split(req_part)]
+        requests_ = [pieces[k + 1] for k in range(1, len(pieces) - 1, 2) if pieces[k + 1]]
+        if not requests_ and len(loose) > 25 and re.search(r"seek|request|variance|approv", loose, re.I):
+            requests_ = [re.split(r"\s+[A-Z][a-z]+ [A-Z][a-z]+, Director\b", loose)[0].strip(" .;")]
+        before = flat[:h.start()]
+        sec = max(((m.start(), m[1].title()) for m in re.finditer(r"\b(OLD|NEW|UNFINISHED) BUSINESS\b", before)), default=(0, None))[1]
+        board = "Board of Zoning Appeals" if re.match(r"B", h[2], re.I) else "Planning Commission"
+        desc = " ".join(f"{k.title() if k != 'district' else 'Zoning District'}: {fields[k]}"
+                        for k in ("applicant", "owner", "district") if fields.get(k))
+        desc = (desc + " " + " ".join(f"{chr(97 + n)} - {r}" for n, r in enumerate(requests_))).strip()
+        out.append({"address": address, "case_no": h[3], "case_board": board, "parcel": h[4] or "",
+                    "applicant": fields.get("applicant", ""), "owner": fields.get("owner", ""),
+                    "district": fields.get("district", ""), "requests": requests_,
+                    "section": f"{sec} business" if sec else "", "order": int(h[1]) if h[1] else i + 1,
+                    "description": desc[:1500]})
+    return out
+
+
+def agenda_cases(text):
+    """[(address, description, details)]: case blocks when the agenda has them, else addresses found in the text."""
+    found = extract_structured_cases(text)
+    if found:
+        return [(c["address"], c["description"], c) for c in found]
+    return [(a, d, None) for a, d in extract_cases(text)]
 
 
 def case_address_from_document(text):
@@ -305,19 +401,21 @@ class CaseStore:
 
     def __init__(self, existing, geocache, now):
         self.cases, self.geocache, self.now, self.new = {}, geocache, now, []
+        self.touched, self.read_urls = set(), set()   # keys added and agendas read this run
         for c in existing:
             c.setdefault("documents", [])
             self.cases[self.key(c["meeting_date"], c["address"])] = c
 
     @staticmethod
     def key(date, address):
-        return f"{date or 'nodate'}|{norm_address(address)}"
+        return f"{date or 'nodate'}|{norm_address(one_address(address))}"
 
-    def add(self, board, address, date, description="", agenda_url=None, document=None, notify=True):
+    def add(self, board, address, date, description="", agenda_url=None, document=None, notify=True, details=None):
         k = self.key(date, address)
+        self.touched.add(k)
         case = self.cases.get(k)
         if case is None:
-            coords = geocode(address + CITY_SUFFIX, self.geocache)
+            coords = geocode(one_address(address) + CITY_SUFFIX, self.geocache)
             case = {"id": k, "board": board, "address": title_case(address),
                     "description": description, "meeting_date": date, "agenda_url": agenda_url,
                     "documents": [], "lat": coords[0] if coords else None,
@@ -325,7 +423,13 @@ class CaseStore:
             self.cases[k] = case
             if notify:
                 self.new.append(case)
-        if description and len(description) > len(case.get("description") or ""):
+        if details:   # the agenda's own case block: these replace anything guessed earlier
+            case["address"] = title_case(address)
+            case["description"] = description
+            case.update({f: details[f] for f in ("case_no", "parcel", "applicant", "owner", "district", "requests", "section", "order")})
+            board = details.get("case_board") or board
+            case["board"] = board
+        elif description and len(description) > len(case.get("description") or "") and not case.get("case_no"):
             case["description"] = description
         if agenda_url and not case.get("agenda_url"):
             case["agenda_url"] = agenda_url
@@ -362,12 +466,12 @@ def email_digest(new_cases):
 
 # ---------- main ----------
 
-def run_archives(store, state, backfill):
+def run_archives(store, state, backfill, reparse=False):
     for board, archive_url in discover_archives().items():
         seen = set(state["seen"].get(board, []))
         items = list_archive_items(archive_url)
         todo = sorted((i for i in items if i not in seen), key=int)
-        if backfill and len(todo) > MAX_BACKFILL:
+        if backfill and not reparse and len(todo) > MAX_BACKFILL:
             seen.update(todo[:-MAX_BACKFILL])
             todo = todo[-MAX_BACKFILL:]
         print(f"Archive {board}: {len(items)} agendas, processing {len(todo)}")
@@ -379,8 +483,9 @@ def run_archives(store, state, backfill):
                 print(f"  skip {url}: {err}")
                 continue
             date = parse_date(text)
-            for address, desc in extract_cases(text):
-                store.add(board, address, date, desc, agenda_url=url, notify=not backfill)
+            store.read_urls.add(url)
+            for address, desc, details in agenda_cases(text):
+                store.add(board, address, date, desc, agenda_url=url, notify=not backfill, details=details)
             seen.add(item_id)
         state["seen"][board] = sorted(seen, key=int)
 
@@ -405,8 +510,11 @@ def run_document_center(store, state):
                 is_packet = re.search(r"packet", name, re.I)
                 text = packet_agenda_text(url) if is_packet else pdf_text(url)
                 date = date or parse_date(text)
-                for address, desc in extract_cases(text):
-                    store.add(board, address, date, desc, agenda_url=url, notify=not backfill)
+                store.read_urls.add(url)
+                found = agenda_cases(text)
+                print(f"  {name}: {len(found)} cases")
+                for address, desc, details in found:
+                    store.add(board, address, date, desc, agenda_url=url, notify=not backfill, details=details)
             else:
                 address = next((a for _, a in find_addresses(name)[1]), None) \
                     or next((a for _, a in find_addresses(folder)[1]), None)
@@ -435,8 +543,24 @@ def main():
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     store = CaseStore(load_json(CASES_FILE, {"cases": []})["cases"], state["geocache"], now)
 
-    run_archives(store, state, backfill=first_run)
+    # After a parser change, read every agenda again (without emailing old cases as new)
+    reparse = not first_run and state.get("case_parse") != CASE_PARSE_VERSION
+    if reparse:
+        print(f"Re-reading every agenda for case parser v{CASE_PARSE_VERSION}")
+        for k in list(state["seen"]):
+            state["seen"][k] = []
+        state["seen"].pop("doccenter_v2", None)
+    run_archives(store, state, backfill=first_run or reparse, reparse=reparse)
     run_document_center(store, state)
+    if reparse:
+        # cases from an agenda that was read again but no longer produced them were misreads (boilerplate addresses)
+        stale = [k for k, c in store.cases.items() if c.get("agenda_url") in store.read_urls and k not in store.touched
+                 and not c.get("documents")]
+        for k in stale:
+            print(f"    dropped {store.cases[k]['address']} ({store.cases[k]['meeting_date']})")
+            del store.cases[k]
+        print(f"  dropped {len(stale)} cases no longer found in their agendas")
+        state["case_parse"] = CASE_PARSE_VERSION
 
     ordered = store.ordered()
     save_json(CASES_FILE, {"updated": now, "cases": ordered})

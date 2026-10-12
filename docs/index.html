@@ -183,6 +183,14 @@
   #zoning, #zoning .zlist { display: grid; gap: 14px; }
   #zoning .zc { padding: 16px 18px; }
   #zoning .zc-dist { margin: 4px 0 0; color: var(--muted); font-size: 0.85rem; }
+  #zoning .zc-flat { box-shadow: none; border: 1px solid var(--line); }
+  #zoning .zagenda .zlist { display: grid; gap: 10px; }
+  #zoning .zagenda-h { margin: 16px 0 8px; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  #zoning .zc-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 4px 16px; margin: 8px 0 0; }
+  #zoning .zc-meta div { display: flex; gap: 6px; font-size: 0.9rem; min-width: 0; }
+  #zoning .zc-meta dt { color: var(--muted); white-space: nowrap; }
+  #zoning .zc-meta dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+  #zoning .chip.near { background: #B3261E; color: #fff; }
   #zoning .zc-reqs { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
   #zoning .zc-topic { font-weight: 600; }
   #zoning .zc-sec { font-size: 0.85rem; color: var(--muted); margin-left: 4px; white-space: nowrap; }
@@ -2533,25 +2541,33 @@
   function zoningCases() {
     if (state.zcases) return state.zcases;
     return (state.zcases = (state.cases || []).filter((c) => /zoning appeals|planning commission/i.test(c.board || ""))
-      .map((c) => ({ c, reqs: zoningRequests(c.description || ""), district: zDistrict(c.description || ""), street: streetOf(c.address || "") }))
+      .map((c) => ({ c, reqs: (c.requests || []).length ? c.requests.flatMap((r) => zoningRequests(r + ".")) : zoningRequests(c.description || ""), district: zDistrict(c.description || ""), street: streetOf(c.address || "") }))
       .sort((a, b) => (b.c.meeting_date || "").localeCompare(a.c.meeting_date || "")));
   }
-  function zCard(z, near) {
+  // case number, parcel, applicant and owner, as the agenda lists them (public hearing notice)
+  function zMeta(c) {
+    const row = (k, v) => v ? `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>` : "";
+    if (!c.case_no && !c.applicant) return "";
+    return `<dl class="zc-meta">${row(c.board === "Planning Commission" ? "P.C. case" : "B.Z.A. case", c.case_no)}${row("Parcel", c.parcel)}
+      ${row("Applicant", c.applicant)}${row("Owner", c.owner)}</dl>`;
+  }
+  function zCard(z, near, opts = {}) {
     const c = z.c, up = c.meeting_date >= today;
-    return `<div class="card zc">
+    return `<div class="card zc${opts.flat ? " zc-flat" : ""}">
       <div class="cm-head"><h2>${esc(c.address ? streetCase(c.address) : "Address not listed")}</h2>
-        <span class="cm-date">${esc(c.board === "Planning Commission" ? "Planning Commission" : "Zoning Appeals")} · ${esc(fmtDate(c.meeting_date))}</span>
-        ${up ? '<span class="chip soon">Upcoming hearing</span>' : ""}
-        ${near != null ? `<span class="chip">${near < 60 ? "this address" : Math.round(near / 10) * 10 + " ft away"}</span>` : ""}
+        ${opts.flat ? "" : `<span class="cm-date">${esc(c.board === "Planning Commission" ? "Planning Commission" : "Zoning Appeals")} · ${esc(fmtDate(c.meeting_date))}</span>`}
+        ${up && !opts.flat ? '<span class="chip soon">Upcoming hearing</span>' : ""}
+        ${near != null ? `<span class="chip${near < 1000 ? " near" : ""}">${normAddr(state.zq || "") === normAddr(c.address || "").replace(/^\d+[A-Z]?\s*-\s*/, "") || normAddr(state.zq || "") === normAddr(c.address || "") ? "this address" : Math.max(10, Math.round(near / 10) * 10) + " ft from you"}</span>` : ""}
         <a href="${esc(c.agenda_url)}" target="_blank" rel="noopener">Agenda &#8599;</a></div>
-      ${z.district ? `<p class="zc-dist">Zoned ${esc(z.district.replace(" GSOD", ", Green Space Overlay"))}</p>` : ""}
+      ${zMeta(c)}
+      ${c.district || z.district ? `<p class="zc-dist">Zoned ${esc((c.district || z.district).replace(" GSOD", ", Green Space Overlay"))}</p>` : ""}
       ${z.reqs.length ? `<ul class="zc-reqs">${z.reqs.map((r, i) => { const k = ZCODE[r.sec] || {}; return `<li>
           <span class="zc-topic">${esc(r.topic)}</span> <a class="zc-sec" href="${esc(k.url || ZCODE_HOME)}" target="_blank" rel="noopener"
             title="${esc(k.url ? "Read this section" : "Open the city's zoning code, then find section " + r.sec)}">§ ${esc(r.full)} &#8599;</a>
           ${r.what.replace(/…$/, "").length >= 15 ? `<div class="zc-what">Asks ${esc(/^(to|for)\s/i.test(r.what) ? r.what.replace(/^\w+/, (w) => w.toLowerCase()) : "for " + r.what)}</div>` : ""}
           ${k.t && z.reqs.findIndex((x) => x.sec === r.sec) === i ? `<div class="zc-rule"><b>${esc(k.t)}:</b> ${esc(k.d)}</div>` : ""}</li>`; }).join("")}</ul>`
         : `<p class="zc-what">${esc((c.description || "").replace(/^.*?(?=The applicant|The Applicant|$)/, "").slice(0, 260) || "See the agenda for details.")}</p>`}
-      ${up ? `<p class="zc-what"><b>You can weigh in:</b> neighbors may comment in person at the hearing or send comments to the board beforehand; the agenda has the details.</p>` : ""}
+      ${up && !opts.flat ? `<p class="zc-what"><b>You can weigh in:</b> neighbors may comment in person at the hearing or send comments to the board beforehand; the agenda has the details.</p>` : ""}
     </div>`;
   }
   function renderZoning() {
@@ -2563,6 +2579,22 @@
     const nq = normAddr(q), hasNum = /^\d+\s/.test(nq);
     const spot = hasNum ? (state.parcels || []).find((p) => normAddr(p.address) === nq && p.lat != null) || Z.map((z) => z.c).find((c) => normAddr(c.address) === nq && c.lat != null) : null;
     const qStreet = streetOf(q);
+    // the next hearing's agenda (or the latest one), in the agenda's own order
+    const nextDate = Z.map((z) => z.c.meeting_date).filter((d) => d >= today).sort()[0];
+    const agendaDate = nextDate || Z[0].c.meeting_date;
+    const agenda = Z.filter((z) => z.c.meeting_date === agendaDate)
+      .sort((a, b) => (a.c.board || "").localeCompare(b.c.board || "") || (a.c.order || 99) - (b.c.order || 99));
+    const agendaSections = [];
+    agenda.forEach((z) => { const k = [z.c.board, z.c.section || ""].join("|"), last = agendaSections[agendaSections.length - 1];
+      if (last && last.k === k) last.l.push(z); else agendaSections.push({ k, board: z.c.board, section: z.c.section, l: [z] }); });
+    const agendaHtml = `<div class="card panel zagenda">
+        <h2>${nextDate ? "Next hearing" : "Latest agenda"}: ${esc(fmtDate(agendaDate))}</h2>
+        <p class="p-sub">${agenda.length} ${plural("request", agenda.length)} from neighbors, as listed on the city's agenda${spot ? `, with how far each is from ${esc(streetCase(q))}` : ""}.
+          ${nextDate ? "Neighbors may comment in person at the hearing or send comments to the board beforehand; the agenda has the details." : ""}
+          <a href="${esc(agenda[0].c.agenda_url)}" target="_blank" rel="noopener">Open the agenda &#8599;</a></p>
+        ${agendaSections.map((g) => `${agendaSections.length > 1 || g.section ? `<h3 class="zagenda-h">${esc([g.board === "Planning Commission" ? "Planning Commission" : agendaSections.some((x) => x.board !== g.board) ? "Board of Zoning Appeals" : "", g.section || ""].filter(Boolean).join(": "))}</h3>` : ""}
+          <div class="zlist">${g.l.map((z) => zCard(z, spot && z.c.lat != null ? zFeet(spot, z.c) : null, { flat: true })).join("")}</div>`).join("")}
+      </div>`;
     let hits = [], label = "";
     if (spot) {
       hits = Z.filter((z) => z.c.lat != null).map((z) => ({ z, d: zFeet(spot, z.c) })).filter((h) => h.d <= state.zr || streetOf(h.z.c.address) === qStreet && h.d <= 1500)
@@ -2574,7 +2606,6 @@
       label = `on ${qStreet || q}`;
     }
     const topic = state.ztopic, filt = (l) => topic ? l.filter((h) => h.z.reqs.some((r) => r.topic === topic)) : l;
-    const upcoming = Z.filter((z) => z.c.meeting_date >= today);
     const byTopic = {};
     Z.forEach((z) => [...new Set(z.reqs.map((r) => r.topic))].forEach((t) => (byTopic[t] = byTopic[t] || []).push(z)));
     const secCount = {};
@@ -2586,6 +2617,7 @@
         close to a property line, too much of the lot covered, a fence too tall), the owner can ask the Board of Zoning Appeals for a
         variance. Look up your street or address to see every request nearby, what each one asks for, and what the rule says.
         ${Z.length} cases since ${esc(monYr(first))}, from the board's agendas.</div>
+      ${agendaHtml}
       <div class="card panel">
         <h2>Look up a street or address</h2>
         <div class="zq">
@@ -2598,7 +2630,6 @@
           : `Type a street name, or a full address to see cases near it. Showing the ${list.length} most recent cases for now.`}
           ${topic ? ` <button class="btn" type="button" id="zt-clear">Show all topics</button>` : ""}</p>
       </div>
-      ${upcoming.length && !q.trim() ? `<div class="card exp-intro"><b>Upcoming:</b> ${upcoming.map((z) => `${esc(streetCase(z.c.address))} on ${esc(fmtDate(z.c.meeting_date))}`).join("; ")}.</div>` : ""}
       <div id="zlist" class="zlist">${list.map((h) => zCard(h.z, h.d)).join("") || `<div class="card note">No zoning cases ${esc(label)} since ${esc(monYr(first))}.</div>`}</div>
       <div class="row2">
         <div class="card panel"><h2>What people ask for</h2>
