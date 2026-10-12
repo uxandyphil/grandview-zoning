@@ -47,7 +47,7 @@ CASES_FILE = Path("docs/cases.json")
 MAX_BACKFILL = int(os.environ.get("MAX_BACKFILL", "40"))
 MAX_PDF_BYTES = 12_000_000
 MAX_PACKET_BYTES = 400_000_000   # meeting packets carry every application's plans; 149 pages can top 60 MB
-CASE_PARSE_VERSION = 2           # bump to re-read every agenda after changing how cases are pulled out
+CASE_PARSE_VERSION = 3           # bump to re-read every agenda after changing how cases are pulled out
 DRY_RUN = "--dry-run" in sys.argv
 
 UA = "grandview-zoning-watch/1.1 (community site, runs once daily)"
@@ -209,7 +209,8 @@ def extract_cases(text):
 CASE_HEAD_RE = re.compile(
     r"(?:\bCase\s*(\d{1,2})\s*:\s*)?(?:\b\d{1,2}\.\s*)?\b(B\.?\s?Z\.?\s?A\.?|P\.?\s?C\.?)\s*Case\s*(?:No\.?|#)?\s*:?\s*"
     r"(\d{1,3}-\d{2,4})\s*(?:\(\s*(\d{3}-\d{6}-\d{2})\s*\))?", re.I)
-CASE_FIELD_RE = re.compile(r"\b(Address|Location|Applicant|Owner|Zoning District|Zoning)\s*:", re.I)
+CASE_FIELD_RE = re.compile(r"\b(Address|Location|Applicants?\s*/\s*O+wners?|Applicants?|O+wners?|Zoning District|Zoning)\s*:", re.I)
+DISTRICT_RE = re.compile(r"^([A-Z]{1,3}-?\d?(?:\s+GSOD)?(?:\s*\([^)]{0,80}\))?)\s*(.*)$")
 REQUEST_RE = re.compile(r"(?:^|\s)([a-h])\s*[-–—.)]\s+(?=The\s|Applicant|Request)", re.I)
 AGENDA_END_RE = re.compile(r"\b(ADJOURN\w*|OTHER BUSINESS|STAFF COMMUNICATIONS?|APPROVAL OF (?:THE )?MINUTES)\b")
 AGENDA_JUNK_RE = re.compile(
@@ -233,14 +234,30 @@ def extract_structured_cases(text):
         fields, marks = {}, list(CASE_FIELD_RE.finditer(head_part))
         for j, m in enumerate(marks):
             val = head_part[m.end():marks[j + 1].start() if j + 1 < len(marks) else len(head_part)].strip(" .,;:-")
-            key = {"location": "address", "zoning district": "district", "zoning": "district"}.get(m[1].lower(), m[1].lower())
+            label = re.sub(r"\s+", " ", m[1].lower())
+            if "/" in label:   # "Applicant/Owner: ..." names both
+                fields.setdefault("applicant", val)
+                fields.setdefault("owner", val)
+                continue
+            key = "address" if label in ("address", "location") else "district" if label.startswith("zoning") \
+                else "applicant" if label.startswith("applicant") else "owner" if re.match(r"o+wner", label) else label
             fields.setdefault(key, val)
+        loose = ""
+        if fields.get("district"):   # "RS-2 (Single family dwelling)", then sometimes the request itself
+            dm = DISTRICT_RE.match(fields["district"])
+            if dm:
+                fields["district"], loose = dm[1].strip(), dm[2].strip()
         address = fields.get("address") or next((a for _, a in find_addresses(head_part)[1]), None)
         if not address:
             continue
-        address = re.sub(r"\s*,?\s*Grandview Heights.*$", "", address).strip(" .,")
+        address = re.sub(r"\s*,?\s*Grandview Heights.*$", "", address)
+        address = re.split(r"\s*\(|\s+Applicants?\b|\s+O+wners?\b", address)[0].strip(" .,/")
+        if not re.match(r"\d", address):
+            continue
         pieces = [p.strip(" .;") for p in REQUEST_RE.split(req_part)]
         requests_ = [pieces[k + 1] for k in range(1, len(pieces) - 1, 2) if pieces[k + 1]]
+        if not requests_ and len(loose) > 25 and re.search(r"seek|request|variance|approv", loose, re.I):
+            requests_ = [re.split(r"\s+[A-Z][a-z]+ [A-Z][a-z]+, Director\b", loose)[0].strip(" .;")]
         before = flat[:h.start()]
         sec = max(((m.start(), m[1].title()) for m in re.finditer(r"\b(OLD|NEW|UNFINISHED) BUSINESS\b", before)), default=(0, None))[1]
         board = "Board of Zoning Appeals" if re.match(r"B", h[2], re.I) else "Planning Commission"
