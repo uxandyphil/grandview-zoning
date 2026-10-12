@@ -1,5 +1,5 @@
 {
-  "case_parse": 2,
+  "case_parse": 3,
   "council_archives": {
     "37": "City Council Agendas",
     "46": "City Council Ordinances",
@@ -932,6 +932,10 @@
       39.980536019607,
       -83.037641401189
     ],
+    "1069 Virginia Avenue, Grandview Heights, OH 43212": [
+      39.980536019607,
+      -83.037641401189
+    ],
     "1070 BROADVIEW AVE, Grandview Heights, OH 43212": [
       39.978760148346,
       -83.047215319454
@@ -1074,6 +1078,10 @@
       -83.04524714295
     ],
     "1081 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.979707736706,
+      -83.04524714295
+    ],
+    "1081 Grandview Avenue, Grandview Heights, OH 43212": [
       39.979707736706,
       -83.04524714295
     ],
@@ -2446,6 +2454,10 @@
       39.983219094192,
       -83.03624385373
     ],
+    "1164 West Second Avenue, Grandview Heights, OH 43212": [
+      39.983219094192,
+      -83.03624385373
+    ],
     "1165 ELMWOOD AVE, Grandview Heights, OH 43212": [
       39.980570658017,
       -83.051870698116
@@ -3340,6 +3352,10 @@
       -83.050568257694
     ],
     "1211 Ashland Avenue Applicant/, Grandview Heights, OH 43212": [
+      39.981650114267,
+      -83.050568257694
+    ],
+    "1211 Ashland Avenue, Grandview Heights, OH 43212": [
       39.981650114267,
       -83.050568257694
     ],
@@ -5106,6 +5122,10 @@
       39.983109731088,
       -83.052811137803
     ],
+    "1300 Westwood Avenue, Grandview Heights, OH 43212": [
+      39.983109731088,
+      -83.052811137803
+    ],
     "1301 AVONDALE AVE, Grandview Heights, OH 43212": [
       39.984266104942,
       -83.041775426196
@@ -5218,6 +5238,10 @@
       39.981674586748,
       -83.039741678054
     ],
+    "1306 West First Avenue, Grandview Heights, OH 43212": [
+      39.981674586748,
+      -83.039741678054
+    ],
     "1307 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.983602503526,
       -83.050416971301
@@ -5239,6 +5263,10 @@
       -83.040072595175
     ],
     "1307 Inglis Avenue Applicant/Oowner: Chuck Evans, Grandview Heights, OH 43212": [
+      39.98062139827,
+      -83.040072595175
+    ],
+    "1307 Inglis Avenue, Grandview Heights, OH 43212": [
       39.98062139827,
       -83.040072595175
     ],
@@ -5355,6 +5383,10 @@
       -83.040461179301
     ],
     "1313 Haines Avenue Applicant/, Grandview Heights, OH 43212": [
+      39.982465619591,
+      -83.040461179301
+    ],
+    "1313 Haines Avenue, Grandview Heights, OH 43212": [
       39.982465619591,
       -83.040461179301
     ],
@@ -5504,6 +5536,10 @@
       -83.040995497278
     ],
     "1319 Murrell Avenue Applicant/, Grandview Heights, OH 43212": [
+      39.984097406449,
+      -83.040995497278
+    ],
+    "1319 Murrell Avenue, Grandview Heights, OH 43212": [
       39.984097406449,
       -83.040995497278
     ],
@@ -6600,6 +6636,10 @@
       -83.051584658883
     ],
     "1369 Elmwood Avenue Applicant/, Grandview Heights, OH 43212": [
+      39.984747224142,
+      -83.051584658883
+    ],
+    "1369 Elmwood Avenue, Grandview Heights, OH 43212": [
       39.984747224142,
       -83.051584658883
     ],
@@ -8016,6 +8056,10 @@
       -83.055482797057
     ],
     "1495 Wyandotte Road Applicant/, Grandview Heights, OH 43212": [
+      39.986861612227,
+      -83.055482797057
+    ],
+    "1495 Wyandotte Road, Grandview Heights, OH 43212": [
       39.986861612227,
       -83.055482797057
     ],
@@ -10292,6 +10336,10 @@
       -83.032539482437
     ],
     "858 Copeland Road Applicants/Owners: Rick and Stephanie Herman, Grandview Heights, OH 43212": [
+      39.976466262709,
+      -83.032539482437
+    ],
+    "858 Copeland Road, Grandview Heights, OH 43212": [
       39.976466262709,
       -83.032539482437
     ],
