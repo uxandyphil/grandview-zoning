@@ -4,8 +4,18 @@
    "id": "cal-3237",
    "name": "Special Council Meeting*",
    "date": "2026-10-26",
-   "time": "07:00 PM",
+   "time": "06:00 PM",
    "url": "https://www.grandviewheights.gov/Calendar.aspx?EID=3237",
+   "items": [],
+   "counts": {},
+   "has_agenda": false
+  },
+  {
+   "id": "cal-3345",
+   "name": "Special Council Meeting*",
+   "date": "2026-10-19",
+   "time": "06:30 PM",
+   "url": "https://www.grandviewheights.gov/Calendar.aspx?EID=3345",
    "items": [],
    "counts": {},
    "has_agenda": false
@@ -1666,5 +1676,5 @@
    "parse": 2
   }
  ],
- "updated": "2026-10-12T20:05:34+00:00"
+ "updated": "2026-10-13T17:54:33+00:00"
 }
