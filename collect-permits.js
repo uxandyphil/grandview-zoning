@@ -60,12 +60,15 @@
     } catch (e) { log("Starting fresh (couldn't load the site's copy)"); }
   } else log(`Loaded ${Object.keys(permits).length} permits saved in this browser`);
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
+  // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
+  let recordFields = null, recordLabels = null;
 
   function download() {
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
-    const blob = new Blob([JSON.stringify({ updated: new Date().toISOString(), permits: list }, null, 2)],
+    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels };
+    const blob = new Blob([JSON.stringify({ ...meta, permits: list }, null, 2)],
       { type: "application/json" });
     const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "permits.json" });
     document.body.appendChild(a); a.click(); a.remove();
@@ -262,17 +265,62 @@
       const nm = Object.entries(flat).find(([k]) => /streetname/i.test(k));
       if (no && nm) address = cleanAddr(`${no[1]} ${nm[1]}`);
     }
-    return { address, date };
+    return { address, date, contractors: contractorsFrom(flat) };
   }
-  let jsonWorks = true;
+  // ---------- contractors: the companies named on each permit ----------
+  // Names come from contractor/company fields, and from business names (LLC, Inc., Plumbing, Roofing...) in other
+  // fields or the page text. Applicant and contact fields count only when the name is clearly a business, so
+  // homeowners pulling their own permits aren't listed.
+  const TRADE = "LLC|L\\.L\\.C\\.?|Inc\\.?|Incorporated|Corp\\.?|Corporation|Company|Ltd\\.?|LP|Plumbing|Electric(?:al)?|Roofing|Heating|Cooling|HVAC|" +
+    "Mechanical|Construction|Builders?|Homes|Remodel(?:ing|ers)?|Renovations?|Services?|Contracting|Contractors?|Exteriors|Fenc(?:e|ing)|" +
+    "Pools?|Solar|Energy|Restoration|Waterproofing|Concrete|Masonry|Excavating|Landscap(?:e|ing)|Windows|Siding|Gutters|Sewer|Drain(?:age)?|" +
+    "Insulation|Paving|Design(?:s)?|Development|Enterprises|Group|Systems|Air|Comfort|Glass|Doors|Basements?|Foundations?|Demolition|Signs?";
+  const bizRe = new RegExp(`\\b(?:${TRADE})\\b`, "i");
+  const bizInText = new RegExp(`((?:[A-Z0-9&][\\w&'.-]*[ \\t]+){0,6}(?:LLC|L\\.L\\.C\\.?|Inc\\.?|Corp\\.?|Company|Co\\.|Ltd\\.?))(?=[\\s,.;)]|$)`, "g");
+  const notName = /@|https?:|^\d|\d{3}[-. )]\d{3}|^(yes|no|true|false|n\/a|none|null|self|owner|homeowner)$/i;
+  const tidy = (n) => String(n).replace(/\s+/g, " ").replace(/^[\s,.;:-]+|[\s,;:-]+$/g, "").slice(0, 80);
+  function contractorsFrom(flat) {
+    const out = new Map();
+    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !cityHall.test(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
+    for (const [k, v] of Object.entries(flat)) {
+      if (typeof v !== "string") continue;
+      const key = k.toLowerCase();
+      if (/contractor|company|business|licens|firm|organi[sz]ation|vendor/.test(key) && !/type|id$|number|date|status|email|phone|address|street|city|zip|state/.test(key)) add(v);
+      else if (/applicant|contact|name/.test(key) && !/first|last|middle|user/.test(key) && bizRe.test(v) && v.length < 80) add(v);
+      for (const m of v.matchAll(bizInText)) add(m[1]);
+    }
+    return [...out.values()].slice(0, 6);
+  }
+  function contractorsFromText(text) {
+    const out = new Map(), lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
+    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
+    lines.forEach((l, i) => {
+      const m = /^(contractor|contractor name|company|company name|business name|licensed professional|organization)\s*:?\s*(.*)$/i.exec(l);
+      if (m) add(m[2] || lines[i + 1] || "");
+    });
+    for (const m of text.matchAll(bizInText)) add(m[1]);
+    return [...out.values()].slice(0, 6);
+  }
+  let jsonWorks = true, frameChecks = 0, frameHasContractors = false;
   async function details(p) {
     if (jsonWorks) {
       try {
         const r = await fetch(`${API}/records/${p.entity_id}`, { headers });
-        if (r.ok) { const d = fromJson(await r.json()); if (d.address) return d; }
+        if (r.ok) {
+          const json = await r.json();
+          if (!recordFields) recordFields = Object.keys(flatten(json)).slice(0, 300);
+          const d = fromJson(json);
+          // if the record data names no contractor, check a few record pages to see whether the page lists them
+          if (d.address && (d.contractors.length || (frameChecks >= 3 && !frameHasContractors))) return d;
+          if (d.address) { frameChecks++; const f = await fromFrame(p); if (f.contractors.length) frameHasContractors = true;
+            return { ...d, contractors: d.contractors.length ? d.contractors : f.contractors }; }
+        }
         else if (r.status === 404) jsonWorks = false;
       } catch (e) { jsonWorks = false; }
     }
+    return fromFrame(p);
+  }
+  async function fromFrame(p) {
     // Fall back to loading the record page in a hidden frame and reading its text
     const frame = Object.assign(document.createElement("iframe"), { src: `/records/${p.entity_id}` });
     frame.style.cssText = "position:fixed;left:-9999px;width:1200px;height:900px";
@@ -288,27 +336,30 @@
     const region = label ? text.slice(label.index + label[0].length, label.index + label[0].length + 300) : text;
     const m = [...region.matchAll(new RegExp(addrRe.source, "gi"))].find((x) => !cityHall.test(x[0]));
     const dm = /(Submitted|Applied|Created|Date)\D{0,20}(\d{1,2}\/\d{1,2}\/20\d\d)/i.exec(text);
-    return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null };
+    if (!recordLabels && text) recordLabels = text.split("\n").map((l) => l.trim()).filter((l) => l && l.length < 40 && !/\d/.test(l)).slice(0, 120);
+    return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null, contractors: contractorsFromText(text) };
   }
 
-  const todo = Object.values(permits).filter((p) => !p.details && p.entity_id)
+  // new permits, plus ones read before contractors were collected
+  const todo = Object.values(permits).filter((p) => (!p.details || !("contractors" in p)) && p.entity_id)
     .sort((a, b) => b.entity_id - a.entity_id).slice(0, MAX_DETAILS);
-  let found = 0;
+  let found = 0, withContractor = 0;
   for (const [i, p] of todo.entries()) {
     if (stopped) break;
-    status(`Reading addresses: ${i + 1} of ${todo.length}`);
+    status(`Reading addresses and contractors: ${i + 1} of ${todo.length}`);
     try {
       await sleep(PAUSE);
       const d = await details(p);
-      Object.assign(p, { address: d.address, date: d.date || p.date, details: true });
+      Object.assign(p, { address: d.address || p.address, date: d.date || p.date, details: true, contractors: d.contractors || [] });
       if (d.address) found++;
-      if (i === 0) log(`${p.number}: ${d.address || "no address found"}${d.date ? ", filed " + d.date : ""}`);
+      if (d.contractors && d.contractors.length) withContractor++;
+      if (i === 0) log(`${p.number}: ${d.address || "no address found"}${d.date ? ", filed " + d.date : ""}${d.contractors && d.contractors.length ? ", " + d.contractors.join(", ") : ""}`);
       save();
     } catch (e) { log(`${p.number}: ${e.message}`); }
   }
-  const left = Object.values(permits).filter((p) => !p.details).length;
-  log(`Addresses: ${found} of ${todo.length} found${left ? `, ${left} left for next time` : ""}`);
-  status(`Done. ${Object.keys(permits).length} permits${left ? ` (run again later for ${left} more addresses)` : ""}. Click Download.`);
+  const left = Object.values(permits).filter((p) => !p.details || !("contractors" in p)).length;
+  log(`Addresses: ${found} of ${todo.length} found; contractors on ${withContractor}${left ? `; ${left} left for next time` : ""}`);
+  status(`Done. ${Object.keys(permits).length} permits${left ? ` (run again later for ${left} more)` : ""}. Click Download.`);
   $("gvz-dl").disabled = false;
   $("gvz-stop").remove();
 })();

@@ -178,7 +178,18 @@
                  border-radius: 7px; padding: 7px 16px; cursor: pointer; }
   .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
   body[data-view="trends"] .browse-only, body[data-view="exp"] .browse-only, body[data-view="council"] .browse-only,
-    body[data-view="alert"] .browse-only, body[data-view="sellers"] .browse-only, body[data-view="zoning"] .browse-only { display: none; }
+    body[data-view="alert"] .browse-only, body[data-view="sellers"] .browse-only, body[data-view="zoning"] .browse-only,
+    body[data-view="contractors"] .browse-only { display: none; }
+  body:not([data-view="contractors"]) #contractors { display: none; }
+  #contractors { display: grid; gap: 14px; }
+  #contractors .co-trades { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 4px 16px; }
+  #contractors .co-trades h3 { margin: 8px 0 4px; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+  #contractors .co-trades ol { margin: 0; padding: 0; list-style: none; }
+  #contractors .co-trades li { margin: 3px 0; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  #contractors #co-q { width: 100%; box-sizing: border-box; }
+  #contractors .linkish { font: inherit; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; text-align: left; text-decoration: underline; text-underline-offset: 2px; }
+  #contractors .co-row { width: 100%; text-align: left; font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  #contractors .muted { color: var(--muted); }
   body:not([data-view="zoning"]) #zoning { display: none; }
   #zoning, #zoning .zlist { display: grid; gap: 14px; }
   #zoning .zc { padding: 16px 18px; }
@@ -341,6 +352,7 @@
       <button type="button" role="tab" id="tab-trends" aria-selected="false">Trends</button>
       <button type="button" role="tab" id="tab-council" aria-selected="false">Council</button>
       <button type="button" role="tab" id="tab-zoning" aria-selected="false">Zoning</button>
+      <button type="button" role="tab" id="tab-contractors" aria-selected="false">Contractors</button>
       <button type="button" role="tab" id="tab-alert" class="alert-tab" aria-selected="false">Alert</button>
       <button type="button" role="tab" id="tab-sellers" aria-selected="false">Sellers</button>
       <button type="button" role="tab" id="tab-exp" class="exp-tab" aria-selected="false">Experimental</button>
@@ -350,6 +362,7 @@
   <section id="trends" aria-label="Trends"></section>
   <section id="council" aria-label="City Council"></section>
   <section id="zoning" aria-label="Zoning appeals and the zoning code"></section>
+  <section id="contractors" aria-label="Contractor businesses on building permits"></section>
   <section id="alert" aria-label="Alert: homes bought by businesses"></section>
   <section id="sellers" aria-label="Seller signals: homes that may change hands soon"></section>
   <section id="exp" aria-label="Experimental"></section>
@@ -549,7 +562,7 @@
           const cat = catOf(p.type || "");
           return { id: "permit|" + p.number, board: "Building permit", permit: p, cat, est, pyear,
             address: p.address || (p.details ? "Address not listed" : "Address still being looked up"),
-            lat: p.lat, lon: p.lon, description: [typeLabel(p.type), p.type, p.description].filter(Boolean).join(". "),
+            lat: p.lat, lon: p.lon, description: [typeLabel(p.type), p.type, p.description, (p.contractors || []).length ? "Contractor: " + p.contractors.join(", ") : ""].filter(Boolean).join(". "),
             meeting_date: when || null };
         }));
       }
@@ -2654,6 +2667,97 @@
     if ($("zq-map")) $("zq-map").onclick = () => browseWith({ q: hasNum ? qStreet : q, board: "all" });
   }
 
+  // ---------- contractors: companies named on building permits ----------
+  // From the city's OpenGov permit records, read by collect-permits.js. Only company names are kept there.
+  const coKey = (n) => String(n || "").toUpperCase().replace(/[.,'’]/g, "").replace(/&/g, " AND ")
+    .replace(/\b(LLC|L L C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|LP|THE)\b/g, " ").replace(/\s+/g, " ").trim();
+  function contractorIndex() {
+    if (state.coIndex) return state.coIndex;
+    const permits = state.cases.filter((c) => c.board === "Building permit" && c.permit && c.permit.entity_id);   // city (OpenGov) permits
+    const read = permits.filter((c) => "contractors" in c.permit);
+    const cos = new Map();
+    read.forEach((c) => [...new Set((c.permit.contractors || []).map(coKey))].forEach((k) => {
+      if (!k || k.length < 3) return;
+      const name = c.permit.contractors.find((n) => coKey(n) === k);
+      const e = cos.get(k) || cos.set(k, { key: k, names: {}, list: [] }).get(k);
+      e.names[name] = (e.names[name] || 0) + 1; e.list.push(c);
+    }));
+    cos.forEach((e) => {
+      e.name = Object.entries(e.names).sort((a, b) => b[1] - a[1])[0][0];
+      const t = {}; e.list.forEach((c) => { const k = typeLabel(c.permit.type); t[k] = (t[k] || 0) + 1; });
+      e.trades = Object.entries(t).sort((a, b) => b[1] - a[1]);
+      e.last = e.list.map((c) => c.meeting_date || "").sort().pop();
+      e.homes = new Set(e.list.map((c) => normAddr(c.address))).size;
+    });
+    return (state.coIndex = { permits, read, list: [...cos.values()].sort((a, b) => b.list.length - a.list.length || b.last.localeCompare(a.last)) });
+  }
+  function showContractor(e) { browseWith({ q: e.name }); }
+  function renderContractors() {
+    const el = $("contractors"), { permits, read, list } = contractorIndex();
+    const how = `Contractor names come from each permit's record on the city's
+      <a href="https://grandviewheightsoh.portal.opengov.com/search" target="_blank" rel="noopener">OpenGov portal</a>, collected with
+      <code>collect-permits.js</code> (see the README): open the portal, paste the script in the browser console, click Download when it's
+      done, and upload the file as <code>docs/permits.json</code>. It reads 300 permits per run, so run it a few times to cover them all.`;
+    if (!list.length) {
+      el.innerHTML = `<div class="card exp-intro"><b>Contractor businesses.</b> Which companies pull the most permits in Grandview: builders,
+        roofers, plumbers, electricians, HVAC, fences, and more.</div>
+        <div class="card note">${read.length ? `${read.length.toLocaleString()} of ${permits.length.toLocaleString()} permits have been checked for a
+          contractor so far, and none named a company.` : `No contractor names collected yet: ${permits.length.toLocaleString()} permits are waiting
+          to be checked.`} ${how}</div>`;
+      return;
+    }
+    const q = state.coQ || "", ql = coKey(q);
+    const shown = ql ? list.filter((e) => e.key.includes(ql) || e.trades.some(([t]) => t.toUpperCase().includes(q.toUpperCase()))) : list;
+    const withCo = read.filter((c) => (c.permit.contractors || []).length);
+    const yr = yearsAgo(1), recent = withCo.filter((c) => (c.meeting_date || "") >= yr);
+    const trades = {};
+    list.forEach((e) => { const t = e.trades[0][0]; (trades[t] = trades[t] || []).push(e); });
+    const busiestByTrade = Object.entries(trades).sort((a, b) => b[1].length - a[1].length).slice(0, 8);
+    el.innerHTML = `
+      <div class="card exp-intro"><b>Contractor businesses.</b> The companies named most often on Grandview building permits, from the
+        city's permit records. Homeowners pulling their own permits aren't listed, only businesses.
+        ${read.length < permits.length ? `So far ${read.length.toLocaleString()} of ${permits.length.toLocaleString()} permits have been checked.` : ""}</div>
+      <div class="kpis">
+        <div class="card kpi"><div class="k-label">Contractor businesses</div><div class="k-value">${list.length.toLocaleString()}</div>
+          <div class="k-sub">named on at least one permit</div></div>
+        <div class="card kpi"><div class="k-label">Permits naming a company</div><div class="k-value">${withCo.length.toLocaleString()}</div>
+          <div class="k-sub">${Math.round(withCo.length / Math.max(1, read.length) * 100)}% of permits checked</div></div>
+        <div class="card kpi"><div class="k-label">Busiest contractor</div><div class="k-value" style="font-size:1.25rem">${esc(list[0].name)}</div>
+          <div class="k-sub">${list[0].list.length} ${plural("permit", list[0].list.length)} at ${list[0].homes} ${plural("address", list[0].homes)}</div></div>
+        <div class="card kpi"><div class="k-label">In the last year</div><div class="k-value">${recent.length.toLocaleString()}</div>
+          <div class="k-sub">permits naming a company, from ${new Set(recent.flatMap((c) => c.permit.contractors.map(coKey))).size} companies</div></div>
+      </div>
+      <div class="row2">
+        <div class="card panel"><h2>Most permits</h2>
+          <p class="p-sub">The 15 companies on the most Grandview permits. Tap one to see its permits on the map.</p><div id="co-top"></div></div>
+        <div class="card panel"><h2>Busiest by trade</h2>
+          <p class="p-sub">Each company is grouped by the kind of permit it pulls most.</p>
+          <div class="co-trades">${busiestByTrade.map(([t, l]) => `<div><h3>${esc(t)}</h3><ol>${l.slice(0, 4).map((e) =>
+            `<li><button class="linkish" type="button" data-co="${esc(e.key)}">${esc(e.name)}</button><span class="muted">${e.list.length}</span></li>`).join("")}</ol></div>`).join("")}</div></div>
+      </div>
+      <div class="card panel">
+        <h2>Find a contractor</h2>
+        <input class="search" id="co-q" type="search" placeholder="Company name or trade, e.g. roofing" value="${esc(q)}" aria-label="Find a contractor">
+        <div class="x-sales" style="margin-top:10px">${shown.slice(0, 40).map((e) => `
+          <button class="prow land co-row" type="button" data-co="${esc(e.key)}">
+            <span class="pdot" style="background:var(--t-bldg);border-radius:50%" aria-hidden="true"></span>
+            <span class="ptype">${esc(e.name)}</span>
+            <span class="pdate">${e.list.length} ${plural("permit", e.list.length)}</span>
+            <span class="teaser">${esc(e.trades.slice(0, 3).map(([t, n]) => `${t} ${n}`).join(", "))} · ${e.homes} ${plural("address", e.homes)} · latest ${esc(monYr(e.last))}</span>
+          </button>`).join("") || `<p class="p-sub">No contractor matches “${esc(q)}”.</p>`}</div>
+        ${shown.length > 40 ? `<p class="p-sub">Showing 40 of ${shown.length}. Type to narrow it down.</p>` : ""}
+      </div>
+      <div class="card exp-intro"><b>About these names:</b> they're the businesses listed on each permit's public record. The same company can
+        appear under slightly different names, and a permit can list more than one company (say, a builder and its electrician).
+        ${read.length < permits.length ? how : ""}</div>`;
+    const byKey = new Map(list.map((e) => [e.key, e]));
+    hbars($("co-top"), list.slice(0, 15).map((e) => ({ label: e.name, value: e.list.length, color: "var(--t-bldg)", e })), (r) => showContractor(r.e));
+    el.querySelectorAll("[data-co]").forEach((b) => b.addEventListener("click", () => showContractor(byKey.get(b.dataset.co))));
+    const input = $("co-q");
+    input.addEventListener("input", () => { clearTimeout(input._t); input._t = setTimeout(() => { state.coQ = input.value; renderContractors();
+      const i = $("co-q"); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }, 250); });
+  }
+
   // ---------- view switching ----------
   let trendsDrawn = false;
   let expDrawn = false;
@@ -2661,19 +2765,21 @@
   let alertDrawn = false;
   let sellersDrawn = false;
   let zoningDrawn = false;
+  let contractorsDrawn = false;
   function setView(v) {
     document.body.dataset.view = v;
-    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-zoning", "zoning"], ["tab-alert", "alert"], ["tab-sellers", "sellers"], ["tab-exp", "exp"]])
+    for (const [id, name] of [["tab-browse", "browse"], ["tab-trends", "trends"], ["tab-council", "council"], ["tab-zoning", "zoning"], ["tab-contractors", "contractors"], ["tab-alert", "alert"], ["tab-sellers", "sellers"], ["tab-exp", "exp"]])
       $(id).setAttribute("aria-selected", String(v === name));
     if (v === "trends" && !trendsDrawn) { renderTrends(); trendsDrawn = true; }
     if (v === "exp" && !expDrawn) { renderExp(); expDrawn = true; }
     if (v === "council" && !councilDrawn) { renderCouncil(); councilDrawn = true; }
     if (v === "alert" && !alertDrawn) { renderAlert(); alertDrawn = true; }
     if (v === "sellers" && !sellersDrawn) { renderSellers(); sellersDrawn = true; }
+    if (v === "contractors" && !contractorsDrawn) { renderContractors(); contractorsDrawn = true; }
     if (v === "zoning" && !zoningDrawn) { state.zr = state.zr || 600; renderZoning(); zoningDrawn = true; }
     if (v === "browse") setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
     if (!location.hash.startsWith("#permit="))
-      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council" : v === "alert" ? "#alert" : v === "sellers" ? "#sellers" : v === "zoning" ? "#zoning"
+      history.replaceState(null, "", v === "trends" ? "#trends" : v === "exp" ? "#experimental" : v === "council" ? "#council" : v === "alert" ? "#alert" : v === "sellers" ? "#sellers" : v === "zoning" ? "#zoning" : v === "contractors" ? "#contractors"
         : location.pathname + location.search);
   }
   $("tab-browse").addEventListener("click", () => setView("browse"));
@@ -2683,6 +2789,7 @@
   $("tab-alert").addEventListener("click", () => setView("alert"));
   $("tab-sellers").addEventListener("click", () => setView("sellers"));
   $("tab-zoning").addEventListener("click", () => setView("zoning"));
+  $("tab-contractors").addEventListener("click", () => setView("contractors"));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
     const v = document.body.dataset.view;
     if (v === "trends") renderTrends(); else trendsDrawn = false;
@@ -2694,6 +2801,7 @@
   if (location.hash === "#alert") setView("alert");
   if (location.hash === "#sellers") setView("sellers");
   if (location.hash === "#zoning") setView("zoning");
+  if (location.hash === "#contractors") setView("contractors");
 
   render();
   const linked = decodeURIComponent((location.hash.match(/^#permit=(.+)$/) || [])[1] || "");
