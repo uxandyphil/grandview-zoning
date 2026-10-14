@@ -1,6 +1,51 @@
 {
  "documents": [
   {
+   "inst": "202610140124748",
+   "type": "Mortgage",
+   "date": "2026-10-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIFTH THIRD BANK NA CENTRAL OHIO"
+   ],
+   "parcels": [
+    "030-000088-00"
+   ],
+   "legal": "Lt/Un 62 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-000088-00 Plt PB 4 PG 332 PT 62"
+  },
+  {
+   "inst": "202610140124698",
+   "type": "Mortgage",
+   "date": "2026-10-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HUNTINGTON NATIONAL BANK"
+   ],
+   "parcels": [
+    "030-001582-00"
+   ],
+   "legal": "Lt/Un 26 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001582-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202610140124650",
+   "type": "Affidavit",
+   "date": "2026-10-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001765-00"
+   ],
+   "legal": "Lt/Un 247 GRANDVIEW HEIGHTS Pcl# 030-001765-00 Plt PB 13 PG 13"
+  },
+  {
    "inst": "202610130124493",
    "type": "Mortgage",
    "date": "2026-10-13",
@@ -3957,5 +4002,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-14T01:51:35+00:00"
+ "updated": "2026-10-14T15:41:02+00:00"
 }
