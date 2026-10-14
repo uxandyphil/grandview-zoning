@@ -182,14 +182,24 @@
     body[data-view="contractors"] .browse-only { display: none; }
   body:not([data-view="contractors"]) #contractors { display: none; }
   #contractors { display: grid; gap: 14px; }
-  #contractors .co-trades { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 4px 16px; }
-  #contractors .co-trades h3 { margin: 8px 0 4px; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
-  #contractors .co-trades ol { margin: 0; padding: 0; list-style: none; }
-  #contractors .co-trades li { margin: 3px 0; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
-  #contractors #co-q { width: 100%; box-sizing: border-box; }
-  #contractors .linkish { font: inherit; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; text-align: left; text-decoration: underline; text-underline-offset: 2px; }
-  #contractors .co-row { width: 100%; text-align: left; font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-  #contractors .muted { color: var(--muted); }
+  #contractors #co-q { width: 100%; box-sizing: border-box; margin-top: 12px; }
+  #contractors .co-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  #contractors .chipbtn { font: 600 0.9rem "Instrument Sans", sans-serif; color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+    border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+  #contractors .chipbtn span { color: var(--muted); font-weight: 400; margin-left: 2px; }
+  #contractors .chipbtn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  #contractors .chipbtn[aria-pressed="true"] span { color: inherit; opacity: .75; }
+  #contractors .co-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; }
+  #contractors .co-card { display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+  #contractors .co-card:first-child { border-top: 0; }
+  #contractors .co-rank { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--bg); display: grid; place-items: center;
+    font-weight: 700; color: var(--muted); }
+  #contractors .co-body { min-width: 0; flex: 1; }
+  #contractors .co-name { font-weight: 700; font-size: 1.05rem; overflow-wrap: anywhere; }
+  #contractors .co-stats { margin-top: 2px; }
+  #contractors .co-tr { margin-top: 2px; color: var(--muted); font-size: 0.88rem; }
+  #contractors .co-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  #contractors .co-acts .btn { font-size: 0.85rem; padding: 6px 10px; text-decoration: none; }
   body:not([data-view="zoning"]) #zoning { display: none; }
   #zoning, #zoning .zlist { display: grid; gap: 14px; }
   #zoning .zc { padding: 16px 18px; }
@@ -562,7 +572,7 @@
           const cat = catOf(p.type || "");
           return { id: "permit|" + p.number, board: "Building permit", permit: p, cat, est, pyear,
             address: p.address || (p.details ? "Address not listed" : "Address still being looked up"),
-            lat: p.lat, lon: p.lon, description: [typeLabel(p.type), p.type, p.description, (p.contractors || []).length ? "Contractor: " + p.contractors.join(", ") : ""].filter(Boolean).join(". "),
+            lat: p.lat, lon: p.lon, description: [typeLabel(p.type), p.type, p.description, p.cv >= 2 && (p.contractors || []).length ? "Contractor: " + p.contractors.join(", ") : ""].filter(Boolean).join(". "),
             meeting_date: when || null };
         }));
       }
@@ -2667,92 +2677,109 @@
     if ($("zq-map")) $("zq-map").onclick = () => browseWith({ q: hasNum ? qStreet : q, board: "all" });
   }
 
-  // ---------- contractors: companies named on building permits ----------
-  // From the city's OpenGov permit records, read by collect-permits.js. Only company names are kept there.
+  // ---------- contractors: who Grandview neighbors hire, by trade ----------
+  // From the city's OpenGov permit records, read by collect-permits.js, which keeps company names only.
   const coKey = (n) => String(n || "").toUpperCase().replace(/[.,'’]/g, "").replace(/&/g, " AND ")
     .replace(/\b(LLC|L L C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|LP|THE)\b/g, " ").replace(/\s+/g, " ").trim();
+  // form labels an older collector picked up by mistake ("Name *", "Information", ...), and one-word fragments
+  const CO_JUNK = /\*\s*$|\+\s*\d+\s+additional|primary contact|^(information|contractor information|(company|business|contractor)?\s*name|address|city|state|zip|email|phone|company|contractor|occupancy type|type of .*|building permit number|residential or commercial.*)$/i;
+  const CO_GENERIC = /^(DEVELOPMENT|CONSTRUCTION|SERVICES?|PLUMBING|ELECTRIC(AL)?|ROOFING|HOMES|BUILDERS?|GROUP|SYSTEMS|ENTERPRISES|HEATING|COOLING|AIR)$/;
+  const CO_TRADES = [
+    { k: "elec", label: "Electricians", test: (c) => c.cat === "elec" },
+    { k: "hvac", label: "Heating and cooling", test: (c) => c.cat === "hvac" },
+    { k: "plmb", label: "Plumbers", test: (c) => c.cat === "plmb" },
+    { k: "bldg", label: "Builders and remodelers", test: (c) => c.cat === "bldg" },
+    { k: "comm", label: "Commercial builders", test: (c) => c.cat === "comm" },
+    { k: "demo", label: "Demolition", test: (c) => /demolition/i.test(c.permit.type || "") },
+    { k: "sign", label: "Sign companies", test: (c) => /sign/i.test(c.permit.type || "") },
+  ];
+  const tradeOf = (c) => CO_TRADES.find((t) => t.test(c));
   function contractorIndex() {
     if (state.coIndex) return state.coIndex;
     const permits = state.cases.filter((c) => c.board === "Building permit" && c.permit && c.permit.entity_id);   // city (OpenGov) permits
-    const read = permits.filter((c) => "contractors" in c.permit);
+    const read = permits.filter((c) => c.permit.cv >= 2);   // read by the collector that finds contractor names correctly
+    const jobs = read.filter((c) => tradeOf(c));             // zoning certificates name the business applying, not a contractor
     const cos = new Map();
-    read.forEach((c) => [...new Set((c.permit.contractors || []).map(coKey))].forEach((k) => {
-      if (!k || k.length < 3) return;
-      const name = c.permit.contractors.find((n) => coKey(n) === k);
-      const e = cos.get(k) || cos.set(k, { key: k, names: {}, list: [] }).get(k);
-      e.names[name] = (e.names[name] || 0) + 1; e.list.push(c);
-    }));
+    jobs.forEach((c) => {
+      const names = (c.permit.contractors || []).filter((n) => !CO_JUNK.test(String(n).trim()));
+      [...new Set(names.map(coKey))].forEach((k) => {
+        if (!k || k.length < 3 || CO_GENERIC.test(k)) return;
+        const name = names.find((n) => coKey(n) === k);
+        const e = cos.get(k) || cos.set(k, { key: k, names: {}, list: [] }).get(k);
+        e.names[name] = (e.names[name] || 0) + 1; e.list.push(c);
+      });
+    });
+    const recentFrom = yearsAgo(2);
     cos.forEach((e) => {
       e.name = Object.entries(e.names).sort((a, b) => b[1] - a[1])[0][0];
-      const t = {}; e.list.forEach((c) => { const k = typeLabel(c.permit.type); t[k] = (t[k] || 0) + 1; });
-      e.trades = Object.entries(t).sort((a, b) => b[1] - a[1]);
-      e.last = e.list.map((c) => c.meeting_date || "").sort().pop();
+      const t = {}; e.list.forEach((c) => { const k = tradeOf(c).k; t[k] = (t[k] || 0) + 1; });
+      e.trades = Object.entries(t).sort((a, b) => b[1] - a[1]).map(([k, n]) => [CO_TRADES.find((x) => x.k === k), n]);
+      const dates = e.list.map((c) => c.meeting_date || "").filter(Boolean).sort();
+      e.first = dates[0] || ""; e.last = dates[dates.length - 1] || "";
+      e.recent = e.list.filter((c) => (c.meeting_date || "") >= recentFrom).length;
       e.homes = new Set(e.list.map((c) => normAddr(c.address))).size;
     });
-    return (state.coIndex = { permits, read, list: [...cos.values()].sort((a, b) => b.list.length - a.list.length || b.last.localeCompare(a.last)) });
+    const list = [...cos.values()].sort((a, b) => b.list.length - a.list.length || b.recent - a.recent || b.last.localeCompare(a.last));
+    return (state.coIndex = { permits, read, jobs, list });
   }
-  function showContractor(e) { browseWith({ q: e.name }); }
+  const coSearch = (e) => "https://www.google.com/search?q=" + encodeURIComponent(`"${e.name}" Columbus Ohio`);
+  const CO_LICENSE = "https://elicense.ohio.gov/oh_verifylicense";
   function renderContractors() {
-    const el = $("contractors"), { permits, read, list } = contractorIndex();
-    const how = `Contractor names come from each permit's record on the city's
+    const el = $("contractors"), { permits, read, jobs, list } = contractorIndex();
+    const how = `Names come from each permit's record on the city's
       <a href="https://grandviewheightsoh.portal.opengov.com/search" target="_blank" rel="noopener">OpenGov portal</a>, collected with
-      <code>collect-permits.js</code> (see the README): open the portal, paste the script in the browser console, click Download when it's
-      done, and upload the file as <code>docs/permits.json</code>. It reads 300 permits per run, so run it a few times to cover them all.`;
+      <code>collect-permits.js</code> (steps in the README): open the portal, paste the script in the browser console, click Download when
+      it's done, and upload the file as <code>docs/permits.json</code>. It reads 300 permits per run, so run it a few times to cover them all.`;
+    const intro = `<div class="card exp-intro"><b>Popular contractors in Grandview.</b> Need an electrician, plumber, HVAC company, or
+      builder? These are the companies Grandview neighbors hire most, counted from the city's building permits. A busy contractor isn't
+      always a good one, so check reviews, licensing, and insurance before you hire.</div>`;
     if (!list.length) {
-      el.innerHTML = `<div class="card exp-intro"><b>Contractor businesses.</b> Which companies pull the most permits in Grandview: builders,
-        roofers, plumbers, electricians, HVAC, fences, and more.</div>
-        <div class="card note">${read.length ? `${read.length.toLocaleString()} of ${permits.length.toLocaleString()} permits have been checked for a
-          contractor so far, and none named a company.` : `No contractor names collected yet: ${permits.length.toLocaleString()} permits are waiting
-          to be checked.`} ${how}</div>`;
+      el.innerHTML = `${intro}<div class="card note">${read.length ? `${read.length.toLocaleString()} of ${permits.length.toLocaleString()} permits
+        have been checked so far, and none named a contractor yet.` : `Contractor names are still being collected:
+        ${permits.length.toLocaleString()} permits are waiting to be checked.`} ${how}</div>`;
       return;
     }
-    const q = state.coQ || "", ql = coKey(q);
-    const shown = ql ? list.filter((e) => e.key.includes(ql) || e.trades.some(([t]) => t.toUpperCase().includes(q.toUpperCase()))) : list;
-    const withCo = read.filter((c) => (c.permit.contractors || []).length);
-    const yr = yearsAgo(1), recent = withCo.filter((c) => (c.meeting_date || "") >= yr);
-    const trades = {};
-    list.forEach((e) => { const t = e.trades[0][0]; (trades[t] = trades[t] || []).push(e); });
-    const busiestByTrade = Object.entries(trades).sort((a, b) => b[1].length - a[1].length).slice(0, 8);
-    el.innerHTML = `
-      <div class="card exp-intro"><b>Contractor businesses.</b> The companies named most often on Grandview building permits, from the
-        city's permit records. Homeowners pulling their own permits aren't listed, only businesses.
-        ${read.length < permits.length ? `So far ${read.length.toLocaleString()} of ${permits.length.toLocaleString()} permits have been checked.` : ""}</div>
-      <div class="kpis">
-        <div class="card kpi"><div class="k-label">Contractor businesses</div><div class="k-value">${list.length.toLocaleString()}</div>
-          <div class="k-sub">named on at least one permit</div></div>
-        <div class="card kpi"><div class="k-label">Permits naming a company</div><div class="k-value">${withCo.length.toLocaleString()}</div>
-          <div class="k-sub">${Math.round(withCo.length / Math.max(1, read.length) * 100)}% of permits checked</div></div>
-        <div class="card kpi"><div class="k-label">Busiest contractor</div><div class="k-value" style="font-size:1.25rem">${esc(list[0].name)}</div>
-          <div class="k-sub">${list[0].list.length} ${plural("permit", list[0].list.length)} at ${list[0].homes} ${plural("address", list[0].homes)}</div></div>
-        <div class="card kpi"><div class="k-label">In the last year</div><div class="k-value">${recent.length.toLocaleString()}</div>
-          <div class="k-sub">permits naming a company, from ${new Set(recent.flatMap((c) => c.permit.contractors.map(coKey))).size} companies</div></div>
-      </div>
-      <div class="row2">
-        <div class="card panel"><h2>Most permits</h2>
-          <p class="p-sub">The 15 companies on the most Grandview permits. Tap one to see its permits on the map.</p><div id="co-top"></div></div>
-        <div class="card panel"><h2>Busiest by trade</h2>
-          <p class="p-sub">Each company is grouped by the kind of permit it pulls most.</p>
-          <div class="co-trades">${busiestByTrade.map(([t, l]) => `<div><h3>${esc(t)}</h3><ol>${l.slice(0, 4).map((e) =>
-            `<li><button class="linkish" type="button" data-co="${esc(e.key)}">${esc(e.name)}</button><span class="muted">${e.list.length}</span></li>`).join("")}</ol></div>`).join("")}</div></div>
+    const counts = Object.fromEntries(CO_TRADES.map((t) => [t.k, list.filter((e) => e.trades.some(([x]) => x.k === t.k)).length]));
+    const trade = counts[state.coTrade] ? state.coTrade : "all", q = state.coQ || "", ql = coKey(q);
+    const inTrade = (e) => trade === "all" || e.trades.some(([x]) => x.k === trade);
+    const jobsIn = (e) => trade === "all" ? e.list.length : e.trades.find(([x]) => x.k === trade)[1];
+    const shown = list.filter((e) => inTrade(e) && (!ql || e.key.includes(ql))).sort((a, b) => jobsIn(b) - jobsIn(a) || b.recent - a.recent);
+    const tLabel = trade === "all" ? "all trades" : CO_TRADES.find((t) => t.k === trade).label.toLowerCase();
+    el.innerHTML = `${intro}
+      <div class="card panel">
+        <h2>What do you need done?</h2>
+        <div class="co-chips" role="group" aria-label="Trade">
+          <button type="button" class="chipbtn" data-trade="all" aria-pressed="${trade === "all"}">All trades <span>${list.length}</span></button>
+          ${CO_TRADES.filter((t) => counts[t.k]).map((t) => `<button type="button" class="chipbtn" data-trade="${t.k}" aria-pressed="${trade === t.k}">${esc(t.label)} <span>${counts[t.k]}</span></button>`).join("")}
+        </div>
+        <input class="search" id="co-q" type="search" placeholder="Or search a company name" value="${esc(q)}" aria-label="Search a company">
       </div>
       <div class="card panel">
-        <h2>Find a contractor</h2>
-        <input class="search" id="co-q" type="search" placeholder="Company name or trade, e.g. roofing" value="${esc(q)}" aria-label="Find a contractor">
-        <div class="x-sales" style="margin-top:10px">${shown.slice(0, 40).map((e) => `
-          <button class="prow land co-row" type="button" data-co="${esc(e.key)}">
-            <span class="pdot" style="background:var(--t-bldg);border-radius:50%" aria-hidden="true"></span>
-            <span class="ptype">${esc(e.name)}</span>
-            <span class="pdate">${e.list.length} ${plural("permit", e.list.length)}</span>
-            <span class="teaser">${esc(e.trades.slice(0, 3).map(([t, n]) => `${t} ${n}`).join(", "))} · ${e.homes} ${plural("address", e.homes)} · latest ${esc(monYr(e.last))}</span>
-          </button>`).join("") || `<p class="p-sub">No contractor matches “${esc(q)}”.</p>`}</div>
-        ${shown.length > 40 ? `<p class="p-sub">Showing 40 of ${shown.length}. Type to narrow it down.</p>` : ""}
+        <h2>Most hired: ${esc(tLabel)}</h2>
+        <p class="p-sub">Ranked by how many Grandview jobs each company pulled a permit for${trade === "all" ? "" : " in this trade"}.</p>
+        <ol class="co-list">${shown.slice(0, 25).map((e, i) => `<li class="co-card">
+          <div class="co-rank">${i + 1}</div>
+          <div class="co-body">
+            <div class="co-name">${esc(e.name)}</div>
+            <div class="co-stats"><b>${jobsIn(e)}</b> Grandview ${plural("job", jobsIn(e))}${trade === "all" ? "" : ` in this trade`} at ${e.homes} ${plural("address", e.homes)}
+              · ${e.recent} in the last 2 years · latest ${esc(monYr(e.last))}${e.first && e.first.slice(0, 4) !== e.last.slice(0, 4) ? ` · since ${e.first.slice(0, 4)}` : ""}</div>
+            ${e.trades.length > 1 || trade === "all" ? `<div class="co-tr">${e.trades.map(([t, n]) => `${esc(t.label)} ${n}`).join(" · ")}</div>` : ""}
+            <div class="co-acts">
+              <button class="btn" type="button" data-co="${esc(e.key)}">See their jobs on the map</button>
+              <a class="btn" href="${coSearch(e)}" target="_blank" rel="noopener">Look them up &#8599;</a>
+              <a class="btn" href="${CO_LICENSE}" target="_blank" rel="noopener" title="Ohio's license lookup: search the company or contractor name">Check Ohio license &#8599;</a>
+            </div>
+          </div></li>`).join("") || `<p class="p-sub">No contractor matches “${esc(q)}”${trade === "all" ? "" : " in this trade"}.</p>`}</ol>
+        ${shown.length > 25 ? `<p class="p-sub">Showing the top 25 of ${shown.length}. Search to find others.</p>` : ""}
       </div>
-      <div class="card exp-intro"><b>About these names:</b> they're the businesses listed on each permit's public record. The same company can
-        appear under slightly different names, and a permit can list more than one company (say, a builder and its electrician).
-        ${read.length < permits.length ? how : ""}</div>`;
+      <div class="card exp-intro"><b>About these counts:</b> each permit names the company that pulled it, so the counts show who does the
+        most permitted work here, not who does it best. Small jobs that don't need a permit aren't counted. The same company can appear under
+        slightly different names. ${read.length < permits.length ? `So far ${read.length.toLocaleString()} of ${permits.length.toLocaleString()}
+        city permits have been checked, so the rankings will fill in as the rest are read. ${how}` : ""}</div>`;
     const byKey = new Map(list.map((e) => [e.key, e]));
-    hbars($("co-top"), list.slice(0, 15).map((e) => ({ label: e.name, value: e.list.length, color: "var(--t-bldg)", e })), (r) => showContractor(r.e));
-    el.querySelectorAll("[data-co]").forEach((b) => b.addEventListener("click", () => showContractor(byKey.get(b.dataset.co))));
+    el.querySelectorAll("[data-co]").forEach((b) => b.addEventListener("click", () => browseWith({ q: byKey.get(b.dataset.co).name })));
+    el.querySelectorAll("[data-trade]").forEach((b) => b.addEventListener("click", () => { state.coTrade = b.dataset.trade;
+      try { localStorage.setItem("gz-co-trade", state.coTrade); } catch (e) {} renderContractors(); }));
     const input = $("co-q");
     input.addEventListener("input", () => { clearTimeout(input._t); input._t = setTimeout(() => { state.coQ = input.value; renderContractors();
       const i = $("co-q"); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }, 250); });
@@ -2775,7 +2802,9 @@
     if (v === "council" && !councilDrawn) { renderCouncil(); councilDrawn = true; }
     if (v === "alert" && !alertDrawn) { renderAlert(); alertDrawn = true; }
     if (v === "sellers" && !sellersDrawn) { renderSellers(); sellersDrawn = true; }
-    if (v === "contractors" && !contractorsDrawn) { renderContractors(); contractorsDrawn = true; }
+    if (v === "contractors" && !contractorsDrawn) {
+      try { state.coTrade = state.coTrade || localStorage.getItem("gz-co-trade") || "all"; } catch (e) {}
+      renderContractors(); contractorsDrawn = true; }
     if (v === "zoning" && !zoningDrawn) { state.zr = state.zr || 600; renderZoning(); zoningDrawn = true; }
     if (v === "browse") setTimeout(() => map.invalidateSize && map.invalidateSize(), 0);
     if (!location.hash.startsWith("#permit="))

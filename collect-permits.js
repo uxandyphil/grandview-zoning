@@ -61,13 +61,14 @@
   } else log(`Loaded ${Object.keys(permits).length} permits saved in this browser`);
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
   // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
-  let recordFields = null, recordLabels = null;
+  let recordFields = null, recordLabels = null, recordForm = null;
+  const CONTRACTOR_VERSION = 2;   // permits read by an older version are read again
 
   function download() {
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
-    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels };
+    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels, record_form: recordForm };
     const blob = new Blob([JSON.stringify({ ...meta, permits: list }, null, 2)],
       { type: "application/json" });
     const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "permits.json" });
@@ -276,12 +277,15 @@
     "Pools?|Solar|Energy|Restoration|Waterproofing|Concrete|Masonry|Excavating|Landscap(?:e|ing)|Windows|Siding|Gutters|Sewer|Drain(?:age)?|" +
     "Insulation|Paving|Design(?:s)?|Development|Enterprises|Group|Systems|Air|Comfort|Glass|Doors|Basements?|Foundations?|Demolition|Signs?";
   const bizRe = new RegExp(`\\b(?:${TRADE})\\b`, "i");
+  const tradeRe = new RegExp(`\\b(?:${TRADE.replace(/^.*?\|LP\|/, "")})\\b`, "i");   // trade words only, no LLC/Inc
   const bizInText = new RegExp(`((?:[A-Z0-9&][\\w&'.-]*[ \\t]+){0,6}(?:LLC|L\\.L\\.C\\.?|Inc\\.?|Corp\\.?|Company|Co\\.|Ltd\\.?))(?=[\\s,.;)]|$)`, "g");
   const notName = /@|https?:|^\d|\d{3}[-. )]\d{3}|^(yes|no|true|false|n\/a|none|null|self|owner|homeowner)$/i;
+  // form labels and headings that aren't names ("Name *", "Contractor Information", "Company Name Primary Contact ...")
+  const isLabel = (n) => /\*\s*$|\+\s*\d+\s+additional|primary contact/i.test(n) || /^(information|contractor information|(company|business|contractor)?\s*name|address|city|state|zip|email|phone|company|contractor|occupancy type|type of .*|building permit number|residential or commercial.*|inc|llc|co|corp|ltd)\.?$/i.test(n.trim());
   const tidy = (n) => String(n).replace(/\s+/g, " ").replace(/^[\s,.;:-]+|[\s,;:-]+$/g, "").slice(0, 80);
   function contractorsFrom(flat) {
     const out = new Map();
-    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !cityHall.test(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
+    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !isLabel(n) && !cityHall.test(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
     for (const [k, v] of Object.entries(flat)) {
       if (typeof v !== "string") continue;
       const key = k.toLowerCase();
@@ -291,14 +295,52 @@
     }
     return [...out.values()].slice(0, 6);
   }
+  // The record page shows its application form; values sit inside form fields, which the page's text leaves out.
+  // Walk the page in order, remembering the current section heading, and read each field's label and value.
+  function formFields(doc) {
+    const out = [];
+    let section = "";
+    const labelOf = (el) => {
+      let l = "";
+      if (el.id) { const f = doc.querySelector(`label[for="${CSS.escape(el.id)}"]`); if (f) l = f.innerText; }
+      if (!l) l = el.getAttribute("aria-label") || "";
+      for (let n = el.parentElement, i = 0; !l && n && i < 4; n = n.parentElement, i++) {
+        const f = n.querySelector("label, legend, [class*='label' i]"); if (f && !f.contains(el)) l = f.innerText; }
+      return tidy(l || el.getAttribute("placeholder") || "").replace(/\s*\*$/, "");
+    };
+    for (const el of doc.body.querySelectorAll("*")) {
+      const own = el.children.length === 0 ? (el.textContent || "").trim() : "";
+      if (/^(H[1-6]|LEGEND)$/.test(el.tagName) && el.innerText && el.innerText.length < 80) section = tidy(el.innerText);
+      else if (own && own.length < 60 && (/information$/i.test(own) || /^(contractor|applicant|owner|contact|licensed professional)s?\b/i.test(own))
+        && !el.closest("label")) section = tidy(own);
+      else if (/^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName) && !/hidden|checkbox|radio|button|submit/.test(el.type || "")) {
+        const value = el.tagName === "SELECT" ? ((el.selectedOptions && el.selectedOptions[0]) || {}).text || "" : el.value || "";
+        out.push({ section, label: labelOf(el), value: tidy(value) });
+      }
+    }
+    return out;
+  }
+  function contractorsFromFields(fields) {
+    const out = new Map();
+    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !isLabel(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
+    const isCompany = (lab) => /company|business|contractor|firm/.test(lab) && !/type|number|license|phone|email|address/.test(lab);
+    const sections = [...new Set(fields.map((f) => f.section))];
+    for (const secName of sections) {
+      const fs = fields.filter((f) => f.section === secName && f.value), sec = secName.toLowerCase();
+      if (/owner/.test(sec)) continue;   // the property owner (or a business tenant) isn't who did the work
+      const companies = fs.filter((f) => isCompany(f.label.toLowerCase()));
+      companies.forEach((f) => add(f.value));
+      if (companies.length) continue;
+      const names = fs.filter((f) => /^name$|full name|contact name/.test(f.label.toLowerCase()));
+      // contractor sections: the name is the contractor even without "LLC"; applicants only when clearly a trade business
+      if (/contractor|licensed|professional/.test(sec)) names.forEach((f) => add(f.value));
+      else if (/applicant|contact/.test(sec)) names.filter((f) => tradeRe.test(f.value)).forEach((f) => add(f.value));
+    }
+    return [...out.values()].slice(0, 6);
+  }
   function contractorsFromText(text) {
-    const out = new Map(), lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
-    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
-    lines.forEach((l, i) => {
-      const m = /^(contractor|contractor name|company|company name|business name|licensed professional|organization)\s*:?\s*(.*)$/i.exec(l);
-      if (m) add(m[2] || lines[i + 1] || "");
-    });
-    for (const m of text.matchAll(bizInText)) add(m[1]);
+    const out = new Map();
+    for (const m of text.matchAll(bizInText)) { const n = tidy(m[1]); if (n.length >= 3 && !isLabel(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); }
     return [...out.values()].slice(0, 6);
   }
   let jsonWorks = true, frameChecks = 0, frameHasContractors = false;
@@ -325,23 +367,28 @@
     const frame = Object.assign(document.createElement("iframe"), { src: `/records/${p.entity_id}` });
     frame.style.cssText = "position:fixed;left:-9999px;width:1200px;height:900px";
     document.body.appendChild(frame);
-    let text = "";
+    let text = "", fields = [];
     for (let i = 0; i < 30; i++) {
       await sleep(500);
       try { text = frame.contentDocument.body.innerText || ""; } catch (e) { break; }
       if (addrRe.test(text) && text.includes(p.number.split("-").pop())) break;
     }
+    try { await sleep(800); fields = formFields(frame.contentDocument); } catch (e) { fields = []; }
     frame.remove();
+    // one record's form layout (labels and sections, never values) goes in the download to help tune this
+    if (!recordForm && fields.length) recordForm = fields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
     const label = /(Location|Address|Property)\s*:?\s*\n?/i.exec(text);
     const region = label ? text.slice(label.index + label[0].length, label.index + label[0].length + 300) : text;
     const m = [...region.matchAll(new RegExp(addrRe.source, "gi"))].find((x) => !cityHall.test(x[0]));
     const dm = /(Submitted|Applied|Created|Date)\D{0,20}(\d{1,2}\/\d{1,2}\/20\d\d)/i.exec(text);
     if (!recordLabels && text) recordLabels = text.split("\n").map((l) => l.trim()).filter((l) => l && l.length < 40 && !/\d/.test(l)).slice(0, 120);
-    return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null, contractors: contractorsFromText(text) };
+    const fromFields = contractorsFromFields(fields);
+    return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null,
+      contractors: fromFields.length ? fromFields : contractorsFromText(text) };
   }
 
   // new permits, plus ones read before contractors were collected
-  const todo = Object.values(permits).filter((p) => (!p.details || !("contractors" in p)) && p.entity_id)
+  const todo = Object.values(permits).filter((p) => (!p.details || p.cv !== CONTRACTOR_VERSION) && p.entity_id)
     .sort((a, b) => b.entity_id - a.entity_id).slice(0, MAX_DETAILS);
   let found = 0, withContractor = 0;
   for (const [i, p] of todo.entries()) {
@@ -350,14 +397,14 @@
     try {
       await sleep(PAUSE);
       const d = await details(p);
-      Object.assign(p, { address: d.address || p.address, date: d.date || p.date, details: true, contractors: d.contractors || [] });
+      Object.assign(p, { address: d.address || p.address, date: d.date || p.date, details: true, contractors: d.contractors || [], cv: CONTRACTOR_VERSION });
       if (d.address) found++;
       if (d.contractors && d.contractors.length) withContractor++;
       if (i === 0) log(`${p.number}: ${d.address || "no address found"}${d.date ? ", filed " + d.date : ""}${d.contractors && d.contractors.length ? ", " + d.contractors.join(", ") : ""}`);
       save();
     } catch (e) { log(`${p.number}: ${e.message}`); }
   }
-  const left = Object.values(permits).filter((p) => !p.details || !("contractors" in p)).length;
+  const left = Object.values(permits).filter((p) => !p.details || p.cv !== CONTRACTOR_VERSION).length;
   log(`Addresses: ${found} of ${todo.length} found; contractors on ${withContractor}${left ? `; ${left} left for next time` : ""}`);
   status(`Done. ${Object.keys(permits).length} permits${left ? ` (run again later for ${left} more)` : ""}. Click Download.`);
   $("gvz-dl").disabled = false;
