@@ -827,6 +827,7 @@
       39.983201684702,
       -83.033661654223
     ],
+    "1064 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1064 EDGEHILL RD, Grandview Heights, OH 43212": [
       39.984149854119,
       -83.02933827625
@@ -4502,6 +4503,10 @@
     "1277 Bluff Ave, Grandview Heights, OH 43212": [
       39.978689122698,
       -83.039029086902
+    ],
+    "1277 Grandview Avenue, Grandview Heights, OH 43212": [
+      39.983970534387,
+      -83.044917000509
     ],
     "1277 MORNING AVE, Grandview Heights, OH 43212": [
       39.984282172199,
@@ -9629,6 +9634,10 @@
       39.975820138887,
       -83.030427175545
     ],
+    "806-808 COPELAND RD, Grandview Heights, OH 43212": [
+      39.975806257262,
+      -83.032587207035
+    ],
     "807 THOMAS RD, Grandview Heights, OH 43212": [
       39.97574998216,
       -83.033869820057
@@ -10077,6 +10086,10 @@
     "841 THOMAS RD, Grandview Heights, OH 43212": [
       39.976109700449,
       -83.033843995865
+    ],
+    "841 W GOODALE BLVD, Grandview Heights, OH 43212": [
+      39.974201368053,
+      -83.026438597246
     ],
     "842 N 4TH ST, Grandview Heights, OH 43212": null,
     "842 PALMER RD, Grandview Heights, OH 43212": [
@@ -12235,6 +12248,10 @@
       39.974329472672,
       -83.029506378825
     ],
+    "985-999 W GOODALE AVE, Grandview Heights, OH 43212": [
+      39.974369540916,
+      -83.030428584255
+    ],
     "986 GOODALE BL, Grandview Heights, OH 43212": [
       39.974418190281,
       -83.028916412808
@@ -12455,7 +12472,7 @@
     "WYANDOTTE RD, Grandview Heights, OH 43212": null,
     "YARD ST, Grandview Heights, OH 43212": null
   },
-  "recorder_through": "2026-10-13",
+  "recorder_through": "2026-10-14",
   "recorder_version": 2,
   "seen": {
     "Board of Zoning Appeals": [

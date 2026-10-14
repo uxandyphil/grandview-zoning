@@ -53,7 +53,7 @@ It remembers progress in your browser, so later runs only fetch new
 permits. It reads up to 300 permit records per run; run it again for the rest.
 From each record it takes the address, the filing date, and the contractor
 businesses named on it (for the Contractors tab; homeowners' own names are
-skipped). Permits read before contractors were collected are read again once.
+skipped). Permits read by an older version of the script are read again once.
 The daily Action adds map locations to any permit with an address.
 
 ## County permits (history and costs)
