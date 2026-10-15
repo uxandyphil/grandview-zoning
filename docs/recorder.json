@@ -1,6 +1,47 @@
 {
  "documents": [
   {
+   "inst": "202610140124911",
+   "type": "Affidavit",
+   "date": "2026-10-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HAWK TRUST TOD"
+   ],
+   "parcels": [
+    "030-003282-00"
+   ],
+   "legal": "Lt/Un 38 GRANDVIEW YARD PHASE 6 Pcl# 030-003282-00 Plt PB 124 PG 56"
+  },
+  {
+   "inst": "202610140124865",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION SAVINGS BANK"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 191~192 FRANK S WAGENHALS ET AL AMENDED SUBD Pcl# 030-000484 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202610140124850",
+   "type": "Deed",
+   "date": "2026-10-14",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "1067 BROADVIEW LLC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 1 INGLIS SUBD Pcl# 030-000632 Plt PB 16 PG 32 PT 1"
+  },
+  {
    "inst": "202610140124748",
    "type": "Mortgage",
    "date": "2026-10-14",
@@ -4002,5 +4043,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-14T15:41:02+00:00"
+ "updated": "2026-10-15T00:09:28+00:00"
 }

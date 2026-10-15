@@ -1,6 +1,29 @@
 {
   "cases": [
     {
+      "address": "1587 W Third Avenue",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13749/PC-Packet-2026-10-21",
+      "applicant": "Perkins & Will (on behalf of Grandview Heights Schools)",
+      "board": "Planning Commission",
+      "case_no": "08-2025",
+      "description": "Applicant: Perkins & Will (on behalf of Grandview Heights Schools) Owner: Grandview Heights Board of Education Zoning District: RS-2 (Residential Single) a - The Applicant is seeking review and approval per Grandview Heights Zoning Code section 1157.06 Major Site Plan Review of revisions submitted to application PC08- 2025 for the dumpster enclosure b - The Applicant is seeking a variance from Grandview Heights Zoning Code section 1157.07(c)(2)(A) to permit a dumpster enclosure with a material different from the principle building and a two-foot clearance between itself and the dumpster",
+      "district": "RS-2 (Residential Single)",
+      "documents": [],
+      "first_seen": "2026-10-15T00:09:28+00:00",
+      "id": "2026-10-21|1587 w 3rd ave",
+      "lat": 39.98517141966,
+      "lon": -83.047336084584,
+      "meeting_date": "2026-10-21",
+      "order": 1,
+      "owner": "Grandview Heights Board of Education",
+      "parcel": "030-002858-00",
+      "requests": [
+        "The Applicant is seeking review and approval per Grandview Heights Zoning Code section 1157.06 Major Site Plan Review of revisions submitted to application PC08- 2025 for the dumpster enclosure",
+        "The Applicant is seeking a variance from Grandview Heights Zoning Code section 1157.07(c)(2)(A) to permit a dumpster enclosure with a material different from the principle building and a two-foot clearance between itself and the dumpster"
+      ],
+      "section": "New business"
+    },
+    {
       "address": "823 - 827 Timberman Rd",
       "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13744/BZA-Packet-2026-10-14",
       "applicant": "Vincent Hanson",
@@ -3532,5 +3555,5 @@
       "section": "New business"
     }
   ],
-  "updated": "2026-10-14T15:41:02+00:00"
+  "updated": "2026-10-15T00:09:28+00:00"
 }

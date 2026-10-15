@@ -104,7 +104,10 @@
     28344101,
     28343070,
     28342932,
-    28341789
+    28341789,
+    28351638,
+    28350802,
+    28350444
   ],
   "court_version": 2,
   "geocache": {
@@ -1215,6 +1218,10 @@
       -83.033409647945
     ],
     "1089 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.979773846444,
+      -83.033776321836
+    ],
+    "1089 W First Avenue, Grandview Heights, OH 43212": [
       39.979773846444,
       -83.033776321836
     ],
@@ -8326,6 +8333,10 @@
       39.988167909844,
       -83.055387731507
     ],
+    "1555 ARLINGTON AVE, Grandview Heights, OH 43212": [
+      39.987888779666,
+      -83.060086395194
+    ],
     "1555 W ARLINGTON AVE, Grandview Heights, OH 43212": [
       39.987888779666,
       -83.060086395194
@@ -8918,6 +8929,10 @@
     "1799 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982132536245,
       -83.053182449511
+    ],
+    "1799-1811 W FIFTH AVE, Grandview Heights, OH 43212": [
+      39.989198450688,
+      -83.055169738402
     ],
     "1800 BLUFF AVE, Grandview Heights, OH 43212": [
       39.978981892735,
@@ -9582,6 +9597,10 @@
       -83.025642059336
     ],
     "800 YARD, Grandview Heights, OH 43212": [
+      39.975939211653,
+      -83.025642059336
+    ],
+    "800 Yard Street, Grandview Heights, OH 43212": [
       39.975939211653,
       -83.025642059336
     ],
@@ -11765,6 +11784,10 @@
       -83.034816218666
     ],
     "949 PULLMAN PL, Grandview Heights, OH 43212": null,
+    "949-951 KRAMER AVE, Grandview Heights, OH 43212": [
+      39.97728468783,
+      -83.04008410283
+    ],
     "950 BOBCAT AVE, Grandview Heights, OH 43212": [
       39.979929559908,
       -83.028723172448
@@ -12486,7 +12509,7 @@
     "WYANDOTTE RD, Grandview Heights, OH 43212": null,
     "YARD ST, Grandview Heights, OH 43212": null
   },
-  "recorder_through": "2026-10-14",
+  "recorder_through": "2026-10-15",
   "recorder_version": 2,
   "seen": {
     "Board of Zoning Appeals": [
@@ -12614,7 +12637,8 @@
       "13632",
       "13633",
       "13659",
-      "13744"
+      "13744",
+      "13749"
     ]
   },
   "sheriff_weeks_done": [
