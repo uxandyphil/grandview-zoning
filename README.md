@@ -58,6 +58,9 @@ businesses named on it (for the Contractors tab; homeowners' own names are
 skipped). Permits read by an older version of the script are read again once.
 The daily Action adds map locations to any permit with an address.
 
+To skip the manual steps, `tools/permits-runner/` runs the same collector on a schedule on your own computer
+and publishes `docs/permits.json` by itself. Setup is in its README.
+
 ## County permits (history and costs)
 
 `county_permits.py` reads the Franklin County Auditor's monthly public data
