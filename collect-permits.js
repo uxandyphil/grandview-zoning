@@ -18,7 +18,8 @@
   PREFIXES.push(...ENFORCE_PREFIXES);
   const LOOKAHEAD = 12;      // misses in a row before a series stops
   const MAX_DETAILS = 200;   // record pages per click; run again to continue
-  const FRAME_RECYCLE = 25;  // open record pages in one hidden frame, rebuilt this often so the tab doesn't run out of memory
+  const FRAME_RECYCLE = 10;  // when whole record pages must be read: one hidden frame, rebuilt this often
+  const FRAME_LIMIT = 40;    // and at most this many pages per run
   const YEARS_BACK = 3;      // also collect this many past years (finished years are only walked once)
   const PAUSE = 1500;        // ms between requests
   const STORE = "gvz-permits-v1";
@@ -69,7 +70,8 @@
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
-    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels, record_form: recordForm };
+    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels, record_form: recordForm,
+      record_apis: recordApis && recordApis.map((u) => u.replace(/[?&](token|key|auth)[^&]*/gi, "")) };
     const blob = new Blob([JSON.stringify({ ...meta, permits: list }, null, 2)],
       { type: "application/json" });
     const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "permits.json" });
@@ -344,23 +346,56 @@
     for (const m of text.matchAll(bizInText)) { const n = tidy(m[1]); if (n.length >= 3 && !isLabel(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); }
     return [...out.values()].slice(0, 6);
   }
-  let jsonWorks = true, frameChecks = 0, frameHasContractors = false;
-  async function details(p) {
-    if (jsonWorks) {
-      try {
-        const r = await fetch(`${API}/records/${p.entity_id}`, { headers });
-        if (r.ok) {
-          const json = await r.json();
-          if (!recordFields) recordFields = Object.keys(flatten(json)).slice(0, 300);
-          const d = fromJson(json);
-          // if the record data names no contractor, check a few record pages to see whether the page lists them
-          if (d.address && (d.contractors.length || (frameChecks >= 3 && !frameHasContractors))) return d;
-          if (d.address) { frameChecks++; const f = await fromFrame(p); if (f.contractors.length) frameHasContractors = true;
-            return { ...d, contractors: d.contractors.length ? d.contractors : f.contractors }; }
-        }
-        else if (r.status === 404) jsonWorks = false;
-      } catch (e) { jsonWorks = false; }
+  // Each record page is a full web app, and loading hundreds of them crashed the tab ("Aw, Snap!"). So: open ONE
+  // record page, note which data addresses it fetched for that record, then fetch just that data for every permit.
+  let recordApis = null, framesThisRun = 0;
+  async function learnRecordApis(p) {
+    recordApis = [];
+    const frame = recordFrame();
+    frame.src = `/records/${p.entity_id}`;
+    for (let i = 0; i < 40; i++) {
+      await sleep(500);
+      let text = ""; try { text = frame.contentDocument.body.innerText || ""; } catch (e) { break; }
+      if (text.includes(p.number.split("-").pop()) && addrRe.test(text)) { await sleep(2500); break; }
     }
+    let urls = [];
+    try { urls = frame.contentWindow.performance.getEntriesByType("resource").map((e) => e.name); } catch (e) {}
+    releaseFrame(true);
+    const id = String(p.entity_id);
+    recordApis = [...new Set(urls.filter((u) => u.includes(id) && !/\.(js|css|png|jpe?g|svg|woff2?|ico)(\?|$)/i.test(u))
+      .map((u) => u.split(id).join("{id}")))].slice(0, 10);
+    log(recordApis.length ? `Found ${recordApis.length} data addresses for a permit; reading permits from those` : "Couldn't find the permit data addresses; reading pages instead");
+  }
+  // label/value pairs anywhere in the record data, with the nearest enclosing heading as the section
+  function fieldsFromJson(o, section = "", out = []) {
+    if (Array.isArray(o)) { o.forEach((x) => fieldsFromJson(x, section, out)); return out; }
+    if (!o || typeof o !== "object") return out;
+    const lab = ["label", "name", "title", "displayName", "fieldName", "question"].map((k) => o[k]).find((v) => typeof v === "string" && v.length < 80);
+    const val = ["value", "answer", "response", "displayValue", "text"].map((k) => o[k]).find((v) => typeof v === "string" || typeof v === "number");
+    if (lab && val !== undefined) out.push({ section, label: tidy(lab).replace(/\s*\*$/, ""), value: tidy(String(val)) });
+    const sec = lab && val === undefined && Object.values(o).some((v) => v && typeof v === "object") ? tidy(lab) : section;
+    for (const v of Object.values(o)) if (v && typeof v === "object") fieldsFromJson(v, sec, out);
+    return out;
+  }
+  async function fromApis(p) {
+    const parts = (await Promise.all(recordApis.map((t) => fetch(t.split("{id}").join(p.entity_id), { headers })
+      .then((r) => (r.ok ? r.json() : null)).catch(() => null)))).filter(Boolean);
+    if (!parts.length) return null;
+    if (!recordFields) recordFields = Object.keys(flatten(parts)).slice(0, 400);
+    const d = fromJson(parts), fields = fieldsFromJson(parts);
+    if (!recordForm && fields.length) recordForm = fields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
+    const fromFields = contractorsFromFields(fields);
+    return { ...d, contractors: fromFields.length ? fromFields : d.contractors };
+  }
+  async function details(p) {
+    if (recordApis === null) await learnRecordApis(p);
+    if (recordApis.length) {
+      const d = await fromApis(p);
+      if (d && (d.address || d.contractors.length || p.address)) return d;
+    }
+    // last resort: read the page itself, a limited number per run so the tab stays healthy
+    if (framesThisRun >= FRAME_LIMIT) return null;
+    framesThisRun++;
     return fromFrame(p);
   }
   // One hidden frame for all record pages: blanked after each page and rebuilt every FRAME_RECYCLE pages, since each
@@ -374,10 +409,10 @@
     }
     return frameEl;
   }
-  function releaseFrame() {
+  function releaseFrame(drop) {
     if (!frameEl) return;
     framePages++;
-    if (framePages % FRAME_RECYCLE === 0) { frameEl.src = "about:blank"; frameEl.remove(); frameEl = null; }
+    if (drop || framePages % FRAME_RECYCLE === 0) { frameEl.src = "about:blank"; frameEl.remove(); frameEl = null; }
     else frameEl.src = "about:blank";
   }
   async function fromFrame(p) {
@@ -415,6 +450,7 @@
     try {
       await sleep(PAUSE);
       const d = await details(p);
+      if (!d) { log(`Read ${FRAME_LIMIT} full pages this run, the most that's safe at once. Reload the portal and run again to continue.`); break; }
       Object.assign(p, { address: d.address || p.address, date: d.date || p.date, details: true, contractors: d.contractors || [], cv: CONTRACTOR_VERSION });
       if (d.address) found++;
       if (d.contractors && d.contractors.length) withContractor++;
