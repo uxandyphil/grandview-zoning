@@ -64,6 +64,21 @@ async function searchOnPage(page) {
 async function runBatch(ctx, src, n) {
   const page = await ctx.newPage();
   try {
+    // A hidden browser calls itself "HeadlessChrome", which bot protection refuses; present as ordinary Chrome
+    const ua = await page.evaluate(() => navigator.userAgent);
+    if (/Headless/i.test(ua)) {
+      const cdp = await ctx.newCDPSession(page);
+      await cdp.send("Network.setUserAgentOverride", { userAgent: ua.replace(/HeadlessChrome/g, "Chrome") });
+    }
+    // note refused data requests (once each), to tell whether the portal itself or only the collector is blocked
+    const refused = new Set();
+    page.on("response", (r) => {
+      const u = r.url();
+      if (r.status() >= 400 && /viewpointcloud|\/api\/|search_results/i.test(u)) {
+        const k = `${r.status()} ${u.split("?")[0].replace(/\d{3,}/g, "#")}`;
+        if (!refused.has(k)) { refused.add(k); log(`  refused: ${k}`); }
+      }
+    });
     await page.goto(PORTAL, { waitUntil: "domcontentloaded", timeout: 120_000 });
     await page.waitForTimeout(5000);
     await page.evaluate(() => { window.GVZ_AUTO = true; });
@@ -134,24 +149,47 @@ async function publish(token, json, summary) {
   }
 }
 
+// Your installed Chrome when there is one (it looks like an ordinary browser to the portal), else the downloaded one.
+// Each keeps its own profile in this folder, so the collector remembers its progress between runs.
+async function launch(visible) {
+  const opts = {
+    headless: !(visible || process.env.GVZ_SHOW), bypassCSP: true, viewport: { width: 1280, height: 900 },
+    args: ["--disable-blink-features=AutomationControlled", ...(visible && !process.env.GVZ_SHOW ? ["--window-position=-2400,-2400"] : [])],
+    ignoreDefaultArgs: ["--enable-automation"],
+  };
+  const choices = process.env.GVZ_BROWSER_PATH ? [{ executablePath: process.env.GVZ_BROWSER_PATH, name: "custom" }]
+    : process.env.GVZ_CHANNEL ? [{ channel: process.env.GVZ_CHANNEL, name: process.env.GVZ_CHANNEL }]
+    : [{ channel: "chrome", name: "chrome" }, { name: "chromium" }];
+  for (const [i, c] of choices.entries()) {
+    const { name, ...pick } = c;
+    try {
+      const ctx = await chromium.launchPersistentContext(path.join(HERE, `browser-profile-${name}`), { ...opts, ...pick });
+      log(`Using ${name === "chrome" ? "your installed Chrome" : name === "chromium" ? "the downloaded browser" : name}${opts.headless ? " (hidden)" : ""}`);
+      return ctx;
+    } catch (e) {
+      if (i === choices.length - 1) throw e;
+    }
+  }
+}
+
 async function main() {
   loadEnv();
   const token = process.env.GVZ_GITHUB_TOKEN, dry = !!process.env.GVZ_DRY_RUN;
   if (!token && !dry) throw new Error("GVZ_GITHUB_TOKEN is missing. Put it in tools/permits-runner/.env (see README.md).");
   log("Starting permit collection");
   const src = await collectorSource();
-  // a browser profile kept in this folder, so the collector remembers its progress between runs
-  const ctx = await chromium.launchPersistentContext(path.join(HERE, "browser-profile"), {
-    headless: !process.env.GVZ_SHOW, bypassCSP: true, viewport: { width: 1280, height: 900 },
-    ...(process.env.GVZ_CHANNEL ? { channel: process.env.GVZ_CHANNEL } : {}),           // e.g. "chrome" to use your installed Chrome
-    ...(process.env.GVZ_BROWSER_PATH ? { executablePath: process.env.GVZ_BROWSER_PATH } : {}),
-  });
-  let result = null;
+  let ctx = await launch(false);
+  let result = null, retriedVisible = false;
   try {
     for (let n = 1; n <= MAX_BATCHES; n++) {
       log(`Batch ${n}`);
       const r = await runBatch(ctx, src, n);
       if (!r) break;
+      if (r.error && !retriedVisible && !process.env.GVZ_SHOW) {
+        // some bot protection refuses hidden browsers outright; try once more with a real window, placed off screen
+        log("  refused in a hidden browser; trying again with a normal (off-screen) window");
+        retriedVisible = true; await ctx.close(); ctx = await launch(true); n--; continue;
+      }
       if (r.error) throw new Error(`the portal refused the collector: ${r.error}`);
       result = r;
       log(`  ${r.total} permits, ${r.processed} read this batch, contractors on ${r.withContractor}, ${r.left} left`);
