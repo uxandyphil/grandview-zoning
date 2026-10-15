@@ -17,7 +17,8 @@
   const ENFORCE_WORDS = ["violation", "code enforcement", "complaint", "property maintenance", "nuisance"];
   PREFIXES.push(...ENFORCE_PREFIXES);
   const LOOKAHEAD = 12;      // misses in a row before a series stops
-  const MAX_DETAILS = 300;   // record pages per click; run again to continue
+  const MAX_DETAILS = 200;   // record pages per click; run again to continue
+  const FRAME_RECYCLE = 25;  // open record pages in one hidden frame, rebuilt this often so the tab doesn't run out of memory
   const YEARS_BACK = 3;      // also collect this many past years (finished years are only walked once)
   const PAUSE = 1500;        // ms between requests
   const STORE = "gvz-permits-v1";
@@ -302,15 +303,15 @@
     let section = "";
     const labelOf = (el) => {
       let l = "";
-      if (el.id) { const f = doc.querySelector(`label[for="${CSS.escape(el.id)}"]`); if (f) l = f.innerText; }
+      if (el.id) { const f = doc.querySelector(`label[for="${CSS.escape(el.id)}"]`); if (f) l = f.textContent; }
       if (!l) l = el.getAttribute("aria-label") || "";
       for (let n = el.parentElement, i = 0; !l && n && i < 4; n = n.parentElement, i++) {
-        const f = n.querySelector("label, legend, [class*='label' i]"); if (f && !f.contains(el)) l = f.innerText; }
+        const f = n.querySelector("label, legend, [class*='label' i]"); if (f && !f.contains(el)) l = f.textContent; }
       return tidy(l || el.getAttribute("placeholder") || "").replace(/\s*\*$/, "");
     };
     for (const el of doc.body.querySelectorAll("*")) {
       const own = el.children.length === 0 ? (el.textContent || "").trim() : "";
-      if (/^(H[1-6]|LEGEND)$/.test(el.tagName) && el.innerText && el.innerText.length < 80) section = tidy(el.innerText);
+      if (/^(H[1-6]|LEGEND)$/.test(el.tagName) && el.textContent && el.textContent.length < 80) section = tidy(el.textContent);
       else if (own && own.length < 60 && (/information$/i.test(own) || /^(contractor|applicant|owner|contact|licensed professional)s?\b/i.test(own))
         && !el.closest("label")) section = tidy(own);
       else if (/^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName) && !/hidden|checkbox|radio|button|submit/.test(el.type || "")) {
@@ -362,11 +363,27 @@
     }
     return fromFrame(p);
   }
+  // One hidden frame for all record pages: blanked after each page and rebuilt every FRAME_RECYCLE pages, since each
+  // page is a full web app and opening hundreds of separate frames made the tab crash ("Aw, Snap!")
+  let frameEl = null, framePages = 0;
+  function recordFrame() {
+    if (!frameEl) {
+      frameEl = document.createElement("iframe");
+      frameEl.style.cssText = "position:fixed;left:-9999px;width:1200px;height:900px";
+      document.body.appendChild(frameEl);
+    }
+    return frameEl;
+  }
+  function releaseFrame() {
+    if (!frameEl) return;
+    framePages++;
+    if (framePages % FRAME_RECYCLE === 0) { frameEl.src = "about:blank"; frameEl.remove(); frameEl = null; }
+    else frameEl.src = "about:blank";
+  }
   async function fromFrame(p) {
-    // Fall back to loading the record page in a hidden frame and reading its text
-    const frame = Object.assign(document.createElement("iframe"), { src: `/records/${p.entity_id}` });
-    frame.style.cssText = "position:fixed;left:-9999px;width:1200px;height:900px";
-    document.body.appendChild(frame);
+    // Load the record page in the hidden frame and read it
+    const frame = recordFrame();
+    frame.src = `/records/${p.entity_id}`;
     let text = "", fields = [];
     for (let i = 0; i < 30; i++) {
       await sleep(500);
@@ -374,7 +391,7 @@
       if (addrRe.test(text) && text.includes(p.number.split("-").pop())) break;
     }
     try { await sleep(800); fields = formFields(frame.contentDocument); } catch (e) { fields = []; }
-    frame.remove();
+    releaseFrame();
     // one record's form layout (labels and sections, never values) goes in the download to help tune this
     if (!recordForm && fields.length) recordForm = fields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
     const label = /(Location|Address|Property)\s*:?\s*\n?/i.exec(text);
@@ -391,6 +408,7 @@
   const todo = Object.values(permits).filter((p) => (!p.details || p.cv !== CONTRACTOR_VERSION) && p.entity_id)
     .sort((a, b) => b.entity_id - a.entity_id).slice(0, MAX_DETAILS);
   let found = 0, withContractor = 0;
+  $("gvz-dl").disabled = false;   // what's done so far can be downloaded any time
   for (const [i, p] of todo.entries()) {
     if (stopped) break;
     status(`Reading addresses and contractors: ${i + 1} of ${todo.length}`);
@@ -401,9 +419,11 @@
       if (d.address) found++;
       if (d.contractors && d.contractors.length) withContractor++;
       if (i === 0) log(`${p.number}: ${d.address || "no address found"}${d.date ? ", filed " + d.date : ""}${d.contractors && d.contractors.length ? ", " + d.contractors.join(", ") : ""}`);
-      save();
+      if (i % 5 === 4) save();
     } catch (e) { log(`${p.number}: ${e.message}`); }
   }
+  save();
+  if (frameEl) { frameEl.remove(); frameEl = null; }
   const left = Object.values(permits).filter((p) => !p.details || p.cv !== CONTRACTOR_VERSION).length;
   log(`Addresses: ${found} of ${todo.length} found; contractors on ${withContractor}${left ? `; ${left} left for next time` : ""}`);
   status(`Done. ${Object.keys(permits).length} permits${left ? ` (run again later for ${left} more)` : ""}. Click Download.`);
