@@ -67,13 +67,15 @@
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
   // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
   let recordFields = null, recordLabels = null, recordForm = null;
-  const CONTRACTOR_VERSION = 2;   // permits read by an older version are read again
+  const CONTRACTOR_VERSION = 3;   // permits read by an older version are read again
+  let recordShapes = null;        // field names (never values) of each data list, to check the form matching
 
   function payload() {
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
     const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels, record_form: recordForm,
+      record_shapes: recordShapes,
       record_apis: recordApis && recordApis.map((u) => u.replace(/[?&](token|key|auth)[^&]*/gi, "")) };
     return JSON.stringify({ ...meta, permits: list }, null, 2);
   }
@@ -382,12 +384,43 @@
     for (const v of Object.values(o)) if (v && typeof v === "object") fieldsFromJson(v, sec, out);
     return out;
   }
+  // The portal keeps a record's form in separate lists: sections (headings), fields (labels, each in a section) and
+  // entries (values, each pointing at a field by its id). Join them back into section / label / value rows.
+  const rowsOf = (j) => (Array.isArray(j) ? j : j && Array.isArray(j.data) ? j.data : j && j.data ? [j.data] : [])
+    .filter((o) => o && typeof o === "object").map((o) => ({ id: o.id, ...(o.attributes || o) }));
+  const pick = (o, re) => { for (const [k, v] of Object.entries(o)) if (re.test(k) && v !== null && v !== "" && typeof v !== "object") return v; };
+  const valueOf = (o) => {
+    let v = pick(o, /^(value|entry|displayValue|response|text|valueText|answer)$/i);
+    if (v === undefined) for (const [k, x] of Object.entries(o)) if (/^(value|values|displayValue)$/i.test(k) && x && typeof x === "object")
+      v = [].concat(x).map((y) => (y && typeof y === "object" ? y.label || y.name || y.value || "" : y)).filter(Boolean).join(", ");
+    return v;
+  };
+  function formRows(parts) {
+    const list = (name) => parts.filter((x) => x.name === name).flatMap((x) => rowsOf(x.json));
+    const sections = new Map(list("form_sections").map((o) => [String(o.id), pick(o, /^(label|name|title|sectionLabel|sectionName|heading)$/i) || ""]));
+    const fieldDefs = new Map(list("form_fields").map((o) => [String(o.id), {
+      label: pick(o, /^(label|name|title|fieldLabel|question|displayName)$/i) || "",
+      section: pick(o, /form_?section_?id$|^section_?id$/i) }]));
+    const out = [];
+    for (const e of list("form_field_entries").concat(list("multi_entry_item_entries"))) {
+      const fid = pick(e, /form_?field_?id$|^field_?id$/i), f = fieldDefs.get(String(fid));
+      const v = valueOf(e);
+      if (!f || v === undefined) continue;
+      out.push({ section: tidy(sections.get(String(f.section)) || ""), label: tidy(f.label).replace(/\s*\*$/, ""), value: tidy(String(v)) });
+    }
+    return out;
+  }
   async function fromApis(p) {
     const parts = (await Promise.all(recordApis.map((t) => fetch(t.split("{id}").join(p.entity_id), { headers })
-      .then((r) => (r.ok ? r.json() : null)).catch(() => null)))).filter(Boolean);
+      .then((r) => (r.ok ? r.json() : null)).then((json) => ({ name: t.split("?")[0].split("/").pop(), json })).catch(() => null))))
+      .filter((x) => x && x.json);
     if (!parts.length) return null;
-    if (!recordFields) recordFields = Object.keys(flatten(parts)).slice(0, 400);
-    const d = fromJson(parts), fields = fieldsFromJson(parts);
+    if (!recordShapes) recordShapes = Object.fromEntries(parts.map((x) => { const r = rowsOf(x.json)[0];
+      return [x.name, r ? Object.keys(r).slice(0, 40) : Object.keys(x.json || {}).slice(0, 20)]; }));
+    const jsons = parts.map((x) => x.json);
+    if (!recordFields) recordFields = Object.keys(flatten(jsons)).slice(0, 400);
+    const joined = formRows(parts);
+    const d = fromJson(jsons), fields = joined.length ? joined : fieldsFromJson(jsons);
     if (!recordForm && fields.length) recordForm = fields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
     const fromFields = contractorsFromFields(fields);
     return { ...d, contractors: fromFields.length ? fromFields : d.contractors };
