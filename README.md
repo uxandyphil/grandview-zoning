@@ -50,7 +50,9 @@ your own browser:
    here, replacing `permits.json`.
 
 It remembers progress in your browser, so later runs only fetch new
-permits. It reads up to 300 permit records per run; run it again for the rest.
+permits. It reads up to 200 permit records per run; run it again for the rest. If the
+tab ever crashes, reload the portal and paste the script again: it picks up
+where it left off, and Download works at any point during a run.
 From each record it takes the address, the filing date, and the contractor
 businesses named on it (for the Contractors tab; homeowners' own names are
 skipped). Permits read by an older version of the script are read again once.
