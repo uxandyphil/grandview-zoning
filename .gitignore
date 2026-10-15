@@ -1,6 +1,0 @@
-# permits runner: secrets and local state
-tools/permits-runner/.env
-tools/permits-runner/node_modules/
-tools/permits-runner/browser-profile*/
-tools/permits-runner/*.log
-tools/permits-runner/permits.json

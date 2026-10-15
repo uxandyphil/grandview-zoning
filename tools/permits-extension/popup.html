@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Grandview permits</title>
+<style>
+  :root { --ink: #15201B; --muted: #5E6B64; --line: #ccd3cf; --bg: #F3F5F4; --ok: #2E7D4F; --bad: #B3261E; }
+  @media (prefers-color-scheme: dark) { :root { --ink: #E8EDEA; --muted: #95A39B; --line: #33403A; --bg: #18201C; --ok: #7FD19F; --bad: #F2A19A; } }
+  body { width: 340px; margin: 0; padding: 14px 16px; font: 14px/1.45 system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+  h1 { font-size: 15px; margin: 0 0 8px; }
+  .muted { color: var(--muted); font-size: 12.5px; }
+  .ok { color: var(--ok); } .bad { color: var(--bad); }
+  button { font: inherit; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+  button.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .row { display: flex; gap: 8px; margin: 10px 0; }
+  input { width: 100%; box-sizing: border-box; font: inherit; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--ink); }
+  details { margin-top: 10px; } summary { cursor: pointer; color: var(--muted); }
+  pre { white-space: pre-wrap; font-size: 11.5px; color: var(--muted); max-height: 180px; overflow: auto; margin: 6px 0 0; }
+</style></head>
+<body>
+  <h1>Grandview permits collector</h1>
+  <div id="state">Loading…</div>
+  <div class="row"><button class="primary" id="run">Run now</button><button id="stop" hidden>Stop</button></div>
+  <div class="muted" id="next"></div>
+  <div class="muted" id="update" hidden></div>
+  <details id="keybox"><summary id="keysum">GitHub key</summary>
+    <p class="muted">A fine-grained GitHub token for uxandyphil/grandview-zoning with Contents: Read and write. It's kept only in this Chrome.</p>
+    <input id="token" type="password" placeholder="github_pat_…" autocomplete="off">
+    <div class="row"><button id="save">Save key</button></div>
+  </details>
+  <details><summary>Recent activity</summary><pre id="log"></pre></details>
+  <script src="popup.js"></script>
+</body></html>
