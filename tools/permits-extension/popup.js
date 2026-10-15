@@ -4,7 +4,7 @@ const ago = (t) => { const m = Math.round((Date.now() - t) / 60000); return m < 
 async function render() {
   const { run, lastRun, token, log } = await chrome.storage.local.get(["run", "lastRun", "token", "log"]);
   if (run) {
-    const what = run.phase === "publishing" ? "Publishing to the site…" : `Running: batch ${run.batch}${run.status ? ` · ${run.status}` : ""}`;
+    const what = `Running: batch ${run.batch}${run.published ? ` · uploaded ${run.published} ${run.published === 1 ? "time" : "times"} so far` : ""}${run.status ? ` · ${run.status}` : ""}`;
     $("state").textContent = what;
   } else if (lastRun) {
     $("state").innerHTML = `<span class="${lastRun.ok ? "ok" : "bad"}">${lastRun.ok ? "Last run worked" : "Last run didn't finish"}</span> ${ago(lastRun.at)}<br><span class="muted"></span>`;
