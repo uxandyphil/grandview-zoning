@@ -1,8 +1,409 @@
 {
-  "updated": "2026-10-15T00:29:49.333Z",
-  "record_fields": null,
-  "record_labels": null,
-  "record_form": null,
+  "updated": "2026-10-15T02:01:12.170Z",
+  "record_fields": [
+    "0.validator.log_context.request_id",
+    "0.validator.log_context.trace_id",
+    "0.validator.log_context.community",
+    "0.validator.log_context.service",
+    "0.entity_types.3.entities.22393.conditions.0.type",
+    "0.entity_types.3.entities.22393.conditions.0.id",
+    "0.entity_types.3.entities.22393.conditions.0.entityPrimaryKey",
+    "0.entity_types.3.entities.22393.conditions.0.entityTypeID",
+    "0.entity_types.3.entities.22393.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.3.entities.22393.conditions.0.dependentEntityTypeID",
+    "0.entity_types.3.entities.22393.conditions.0.comparate1",
+    "0.entity_types.3.entities.22393.conditions.0.logicTypeID",
+    "0.entity_types.3.entities.22393.conditions.0.recordID",
+    "0.entity_types.3.entities.22393.conditions.0.dependentEntityValue",
+    "0.entity_types.3.entities.22393.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.3.entities.22393.conditions.0.entityFormSectionID",
+    "0.entity_types.3.entities.22393.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.3.entities.22393.conditions.0.isSatisfied",
+    "0.entity_types.3.entities.22393.is_satisfied",
+    "0.entity_types.3.entities.22393.logical_operator",
+    "0.entity_types.3.entities.22393.form_section_id",
+    "0.entity_types.3.entities.22434.conditions.0.type",
+    "0.entity_types.3.entities.22434.conditions.0.id",
+    "0.entity_types.3.entities.22434.conditions.0.entityPrimaryKey",
+    "0.entity_types.3.entities.22434.conditions.0.entityTypeID",
+    "0.entity_types.3.entities.22434.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.3.entities.22434.conditions.0.dependentEntityTypeID",
+    "0.entity_types.3.entities.22434.conditions.0.comparate1",
+    "0.entity_types.3.entities.22434.conditions.0.logicTypeID",
+    "0.entity_types.3.entities.22434.conditions.0.recordID",
+    "0.entity_types.3.entities.22434.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.3.entities.22434.conditions.0.entityFormSectionID",
+    "0.entity_types.3.entities.22434.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.3.entities.22434.conditions.0.isSatisfied",
+    "0.entity_types.3.entities.22434.conditions.1.type",
+    "0.entity_types.3.entities.22434.conditions.1.id",
+    "0.entity_types.3.entities.22434.conditions.1.entityPrimaryKey",
+    "0.entity_types.3.entities.22434.conditions.1.entityTypeID",
+    "0.entity_types.3.entities.22434.conditions.1.dependentEntityPrimaryKey",
+    "0.entity_types.3.entities.22434.conditions.1.dependentEntityTypeID",
+    "0.entity_types.3.entities.22434.conditions.1.comparate1",
+    "0.entity_types.3.entities.22434.conditions.1.logicTypeID",
+    "0.entity_types.3.entities.22434.conditions.1.recordID",
+    "0.entity_types.3.entities.22434.conditions.1.logicalOperatorTypeID",
+    "0.entity_types.3.entities.22434.conditions.1.entityFormSectionID",
+    "0.entity_types.3.entities.22434.conditions.1.dependentEntityFormSectionID",
+    "0.entity_types.3.entities.22434.conditions.1.isSatisfied",
+    "0.entity_types.3.entities.22434.conditions.2.type",
+    "0.entity_types.3.entities.22434.conditions.2.id",
+    "0.entity_types.3.entities.22434.conditions.2.entityPrimaryKey",
+    "0.entity_types.3.entities.22434.conditions.2.entityTypeID",
+    "0.entity_types.3.entities.22434.conditions.2.dependentEntityPrimaryKey",
+    "0.entity_types.3.entities.22434.conditions.2.dependentEntityTypeID",
+    "0.entity_types.3.entities.22434.conditions.2.comparate1",
+    "0.entity_types.3.entities.22434.conditions.2.logicTypeID",
+    "0.entity_types.3.entities.22434.conditions.2.recordID",
+    "0.entity_types.3.entities.22434.conditions.2.logicalOperatorTypeID",
+    "0.entity_types.3.entities.22434.conditions.2.entityFormSectionID",
+    "0.entity_types.3.entities.22434.conditions.2.dependentEntityFormSectionID",
+    "0.entity_types.3.entities.22434.conditions.2.isSatisfied",
+    "0.entity_types.3.entities.22434.is_satisfied",
+    "0.entity_types.3.entities.22434.logical_operator",
+    "0.entity_types.3.entities.22434.form_section_id",
+    "0.entity_types.4.entities.1011789.conditions.0.type",
+    "0.entity_types.4.entities.1011789.conditions.0.id",
+    "0.entity_types.4.entities.1011789.conditions.0.entityPrimaryKey",
+    "0.entity_types.4.entities.1011789.conditions.0.entityTypeID",
+    "0.entity_types.4.entities.1011789.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.4.entities.1011789.conditions.0.dependentEntityTypeID",
+    "0.entity_types.4.entities.1011789.conditions.0.comparate1",
+    "0.entity_types.4.entities.1011789.conditions.0.logicTypeID",
+    "0.entity_types.4.entities.1011789.conditions.0.recordID",
+    "0.entity_types.4.entities.1011789.conditions.0.dependentEntityValue",
+    "0.entity_types.4.entities.1011789.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.4.entities.1011789.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.4.entities.1011789.conditions.0.isSatisfied",
+    "0.entity_types.4.entities.1011789.conditions.1.type",
+    "0.entity_types.4.entities.1011789.conditions.1.id",
+    "0.entity_types.4.entities.1011789.conditions.1.entityPrimaryKey",
+    "0.entity_types.4.entities.1011789.conditions.1.entityTypeID",
+    "0.entity_types.4.entities.1011789.conditions.1.dependentEntityPrimaryKey",
+    "0.entity_types.4.entities.1011789.conditions.1.dependentEntityTypeID",
+    "0.entity_types.4.entities.1011789.conditions.1.comparate1",
+    "0.entity_types.4.entities.1011789.conditions.1.logicTypeID",
+    "0.entity_types.4.entities.1011789.conditions.1.recordID",
+    "0.entity_types.4.entities.1011789.conditions.1.dependentEntityValue",
+    "0.entity_types.4.entities.1011789.conditions.1.logicalOperatorTypeID",
+    "0.entity_types.4.entities.1011789.conditions.1.dependentEntityFormSectionID",
+    "0.entity_types.4.entities.1011789.conditions.1.isSatisfied",
+    "0.entity_types.4.entities.1011789.is_satisfied",
+    "0.entity_types.4.entities.1011789.logical_operator",
+    "0.entity_types.5.entities.451.conditions.0.type",
+    "0.entity_types.5.entities.451.conditions.0.id",
+    "0.entity_types.5.entities.451.conditions.0.entityPrimaryKey",
+    "0.entity_types.5.entities.451.conditions.0.entityTypeID",
+    "0.entity_types.5.entities.451.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.5.entities.451.conditions.0.dependentEntityTypeID",
+    "0.entity_types.5.entities.451.conditions.0.comparate1",
+    "0.entity_types.5.entities.451.conditions.0.logicTypeID",
+    "0.entity_types.5.entities.451.conditions.0.recordID",
+    "0.entity_types.5.entities.451.conditions.0.dependentEntityValue",
+    "0.entity_types.5.entities.451.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.5.entities.451.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.5.entities.451.conditions.0.isSatisfied",
+    "0.entity_types.5.entities.451.is_satisfied",
+    "0.entity_types.5.entities.451.logical_operator",
+    "0.entity_types.5.entities.454.conditions.0.type",
+    "0.entity_types.5.entities.454.conditions.0.id",
+    "0.entity_types.5.entities.454.conditions.0.entityPrimaryKey",
+    "0.entity_types.5.entities.454.conditions.0.entityTypeID",
+    "0.entity_types.5.entities.454.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.5.entities.454.conditions.0.dependentEntityTypeID",
+    "0.entity_types.5.entities.454.conditions.0.comparate1",
+    "0.entity_types.5.entities.454.conditions.0.logicTypeID",
+    "0.entity_types.5.entities.454.conditions.0.recordID",
+    "0.entity_types.5.entities.454.conditions.0.dependentEntityValue",
+    "0.entity_types.5.entities.454.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.5.entities.454.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.5.entities.454.conditions.0.isSatisfied",
+    "0.entity_types.5.entities.454.is_satisfied",
+    "0.entity_types.5.entities.454.logical_operator",
+    "0.entity_types.6.entities.74505.conditions.0.type",
+    "0.entity_types.6.entities.74505.conditions.0.id",
+    "0.entity_types.6.entities.74505.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.74505.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.74505.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.74505.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.74505.conditions.0.comparate1",
+    "0.entity_types.6.entities.74505.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.74505.conditions.0.recordID",
+    "0.entity_types.6.entities.74505.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.74505.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.74505.conditions.0.hasActivity",
+    "0.entity_types.6.entities.74505.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.74505.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.74505.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.74505.conditions.1.type",
+    "0.entity_types.6.entities.74505.conditions.1.id",
+    "0.entity_types.6.entities.74505.conditions.1.entityPrimaryKey",
+    "0.entity_types.6.entities.74505.conditions.1.entityTypeID",
+    "0.entity_types.6.entities.74505.conditions.1.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.74505.conditions.1.dependentEntityTypeID",
+    "0.entity_types.6.entities.74505.conditions.1.comparate1",
+    "0.entity_types.6.entities.74505.conditions.1.logicTypeID",
+    "0.entity_types.6.entities.74505.conditions.1.recordID",
+    "0.entity_types.6.entities.74505.conditions.1.logicalOperatorTypeID",
+    "0.entity_types.6.entities.74505.conditions.1.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.74505.conditions.1.hasActivity",
+    "0.entity_types.6.entities.74505.conditions.1.recordStepStatus",
+    "0.entity_types.6.entities.74505.conditions.1.recordStepVisibility",
+    "0.entity_types.6.entities.74505.conditions.1.isSatisfied",
+    "0.entity_types.6.entities.74505.is_satisfied",
+    "0.entity_types.6.entities.74505.logical_operator",
+    "0.entity_types.6.entities.74505.record_step_status",
+    "0.entity_types.6.entities.74505.has_step_activity",
+    "0.entity_types.6.entities.74506.conditions.0.type",
+    "0.entity_types.6.entities.74506.conditions.0.id",
+    "0.entity_types.6.entities.74506.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.74506.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.74506.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.74506.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.74506.conditions.0.comparate1",
+    "0.entity_types.6.entities.74506.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.74506.conditions.0.recordID",
+    "0.entity_types.6.entities.74506.conditions.0.dependentEntityValue",
+    "0.entity_types.6.entities.74506.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.74506.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.74506.conditions.0.hasActivity",
+    "0.entity_types.6.entities.74506.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.74506.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.74506.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.74506.is_satisfied",
+    "0.entity_types.6.entities.74506.logical_operator",
+    "0.entity_types.6.entities.74506.record_step_status",
+    "0.entity_types.6.entities.74506.has_step_activity",
+    "0.entity_types.8.entities.13962.conditions.0.type",
+    "0.entity_types.8.entities.13962.conditions.0.id",
+    "0.entity_types.8.entities.13962.conditions.0.entityPrimaryKey",
+    "0.entity_types.8.entities.13962.conditions.0.entityTypeID",
+    "0.entity_types.8.entities.13962.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.8.entities.13962.conditions.0.dependentEntityTypeID",
+    "0.entity_types.8.entities.13962.conditions.0.comparate1",
+    "0.entity_types.8.entities.13962.conditions.0.logicTypeID",
+    "0.entity_types.8.entities.13962.conditions.0.recordID",
+    "0.entity_types.8.entities.13962.conditions.0.dependentEntityValue",
+    "0.entity_types.8.entities.13962.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.8.entities.13962.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.8.entities.13962.conditions.0.isSatisfied",
+    "0.entity_types.8.entities.13962.is_satisfied",
+    "0.entity_types.8.entities.13962.logical_operator",
+    "0.entity_types.8.entities.13963.conditions.0.type",
+    "0.entity_types.8.entities.13963.conditions.0.id",
+    "0.entity_types.8.entities.13963.conditions.0.entityPrimaryKey",
+    "0.entity_types.8.entities.13963.conditions.0.entityTypeID",
+    "0.entity_types.8.entities.13963.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.8.entities.13963.conditions.0.dependentEntityTypeID",
+    "0.entity_types.8.entities.13963.conditions.0.comparate1",
+    "0.entity_types.8.entities.13963.conditions.0.logicTypeID",
+    "0.entity_types.8.entities.13963.conditions.0.recordID",
+    "0.entity_types.8.entities.13963.conditions.0.dependentEntityValue",
+    "0.entity_types.8.entities.13963.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.8.entities.13963.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.8.entities.13963.conditions.0.isSatisfied",
+    "0.entity_types.8.entities.13963.is_satisfied",
+    "0.entity_types.8.entities.13963.logical_operator",
+    "0.entity_types.13.entities.17885.conditions.0.type",
+    "0.entity_types.13.entities.17885.conditions.0.id",
+    "0.entity_types.13.entities.17885.conditions.0.entityPrimaryKey",
+    "0.entity_types.13.entities.17885.conditions.0.entityTypeID",
+    "0.entity_types.13.entities.17885.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17885.conditions.0.dependentEntityTypeID",
+    "0.entity_types.13.entities.17885.conditions.0.comparate1",
+    "0.entity_types.13.entities.17885.conditions.0.logicTypeID",
+    "0.entity_types.13.entities.17885.conditions.0.recordID",
+    "0.entity_types.13.entities.17885.conditions.0.dependentEntityValue",
+    "0.entity_types.13.entities.17885.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.13.entities.17885.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.13.entities.17885.conditions.0.hasActivity",
+    "0.entity_types.13.entities.17885.conditions.0.secondDependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17885.conditions.0.isSatisfied",
+    "0.entity_types.13.entities.17885.is_satisfied",
+    "0.entity_types.13.entities.17885.logical_operator",
+    "0.entity_types.13.entities.17886.conditions.0.type",
+    "0.entity_types.13.entities.17886.conditions.0.id",
+    "0.entity_types.13.entities.17886.conditions.0.entityPrimaryKey",
+    "0.entity_types.13.entities.17886.conditions.0.entityTypeID",
+    "0.entity_types.13.entities.17886.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17886.conditions.0.dependentEntityTypeID",
+    "0.entity_types.13.entities.17886.conditions.0.comparate1",
+    "0.entity_types.13.entities.17886.conditions.0.logicTypeID",
+    "0.entity_types.13.entities.17886.conditions.0.recordID",
+    "0.entity_types.13.entities.17886.conditions.0.dependentEntityValue",
+    "0.entity_types.13.entities.17886.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.13.entities.17886.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.13.entities.17886.conditions.0.hasActivity",
+    "0.entity_types.13.entities.17886.conditions.0.secondDependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17886.conditions.0.isSatisfied",
+    "0.entity_types.13.entities.17886.is_satisfied",
+    "0.entity_types.13.entities.17886.logical_operator",
+    "0.entity_types.13.entities.17887.conditions.0.type",
+    "0.entity_types.13.entities.17887.conditions.0.id",
+    "0.entity_types.13.entities.17887.conditions.0.entityPrimaryKey",
+    "0.entity_types.13.entities.17887.conditions.0.entityTypeID",
+    "0.entity_types.13.entities.17887.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17887.conditions.0.dependentEntityTypeID",
+    "0.entity_types.13.entities.17887.conditions.0.comparate1",
+    "0.entity_types.13.entities.17887.conditions.0.logicTypeID",
+    "0.entity_types.13.entities.17887.conditions.0.recordID",
+    "0.entity_types.13.entities.17887.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.13.entities.17887.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.13.entities.17887.conditions.0.hasActivity",
+    "0.entity_types.13.entities.17887.conditions.0.secondDependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17887.conditions.0.isSatisfied",
+    "0.entity_types.13.entities.17887.conditions.1.type",
+    "0.entity_types.13.entities.17887.conditions.1.id",
+    "0.entity_types.13.entities.17887.conditions.1.entityPrimaryKey",
+    "0.entity_types.13.entities.17887.conditions.1.entityTypeID",
+    "0.entity_types.13.entities.17887.conditions.1.dependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17887.conditions.1.dependentEntityTypeID",
+    "0.entity_types.13.entities.17887.conditions.1.comparate1",
+    "0.entity_types.13.entities.17887.conditions.1.logicTypeID",
+    "0.entity_types.13.entities.17887.conditions.1.recordID",
+    "0.entity_types.13.entities.17887.conditions.1.dependentEntityValue",
+    "0.entity_types.13.entities.17887.conditions.1.logicalOperatorTypeID",
+    "0.entity_types.13.entities.17887.conditions.1.dependentEntityFormSectionID",
+    "0.entity_types.13.entities.17887.conditions.1.hasActivity",
+    "0.entity_types.13.entities.17887.conditions.1.secondDependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17887.conditions.1.isSatisfied",
+    "0.entity_types.13.entities.17887.is_satisfied",
+    "0.entity_types.13.entities.17887.logical_operator",
+    "0.entity_types.13.entities.17888.conditions.0.type",
+    "0.entity_types.13.entities.17888.conditions.0.id",
+    "0.entity_types.13.entities.17888.conditions.0.entityPrimaryKey",
+    "0.entity_types.13.entities.17888.conditions.0.entityTypeID",
+    "0.entity_types.13.entities.17888.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17888.conditions.0.dependentEntityTypeID",
+    "0.entity_types.13.entities.17888.conditions.0.comparate1",
+    "0.entity_types.13.entities.17888.conditions.0.logicTypeID",
+    "0.entity_types.13.entities.17888.conditions.0.recordID",
+    "0.entity_types.13.entities.17888.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.13.entities.17888.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.13.entities.17888.conditions.0.hasActivity",
+    "0.entity_types.13.entities.17888.conditions.0.secondDependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17888.conditions.0.isSatisfied",
+    "0.entity_types.13.entities.17888.conditions.1.type",
+    "0.entity_types.13.entities.17888.conditions.1.id",
+    "0.entity_types.13.entities.17888.conditions.1.entityPrimaryKey",
+    "0.entity_types.13.entities.17888.conditions.1.entityTypeID",
+    "0.entity_types.13.entities.17888.conditions.1.dependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17888.conditions.1.dependentEntityTypeID",
+    "0.entity_types.13.entities.17888.conditions.1.comparate1",
+    "0.entity_types.13.entities.17888.conditions.1.logicTypeID",
+    "0.entity_types.13.entities.17888.conditions.1.recordID",
+    "0.entity_types.13.entities.17888.conditions.1.dependentEntityValue",
+    "0.entity_types.13.entities.17888.conditions.1.logicalOperatorTypeID",
+    "0.entity_types.13.entities.17888.conditions.1.dependentEntityFormSectionID",
+    "0.entity_types.13.entities.17888.conditions.1.hasActivity",
+    "0.entity_types.13.entities.17888.conditions.1.secondDependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17888.conditions.1.isSatisfied",
+    "0.entity_types.13.entities.17888.is_satisfied",
+    "0.entity_types.13.entities.17888.logical_operator",
+    "0.entity_types.13.entities.17889.conditions.0.type",
+    "0.entity_types.13.entities.17889.conditions.0.id",
+    "0.entity_types.13.entities.17889.conditions.0.entityPrimaryKey",
+    "0.entity_types.13.entities.17889.conditions.0.entityTypeID",
+    "0.entity_types.13.entities.17889.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17889.conditions.0.dependentEntityTypeID",
+    "0.entity_types.13.entities.17889.conditions.0.comparate1",
+    "0.entity_types.13.entities.17889.conditions.0.logicTypeID",
+    "0.entity_types.13.entities.17889.conditions.0.recordID",
+    "0.entity_types.13.entities.17889.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.13.entities.17889.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.13.entities.17889.conditions.0.hasActivity",
+    "0.entity_types.13.entities.17889.conditions.0.secondDependentEntityPrimaryKey",
+    "0.entity_types.13.entities.17889.conditions.0.isSatisfied",
+    "0.entity_types.13.entities.17889.is_satisfied",
+    "0.entity_types.13.entities.17889.logical_operator",
+    "0.log_context.request_id",
+    "0.log_context.trace_id",
+    "0.log_context.community",
+    "0.log_context.service"
+  ],
+  "record_labels": [
+    "Skip to main content",
+    "City of Grandview Heights, OH",
+    "Search",
+    "Login",
+    "Sign Up",
+    "Re-Roofing Permit",
+    "Applicant",
+    "Brian Moore",
+    "Location",
+    "View location details",
+    "Created",
+    "Status",
+    "Complete",
+    "Expires",
+    "Details",
+    "Project Information",
+    "City of Grandview Heights",
+    "Occupancy Type *",
+    "Residential",
+    "Estimated Project Cost *",
+    "Who is doing the work? *",
+    "Contractor",
+    "Project Description *",
+    "toggle tooltip",
+    "Contractor Information",
+    "Company Name *",
+    "Right Way Roofing",
+    "Primary Contact Name *",
+    "Brian Moore",
+    "Company Address *",
+    "Contractor City *",
+    "Columbus",
+    "Contractor State *",
+    "Ohio",
+    "Contractor Zip *",
+    "Contractor Email *",
+    "sales@rightwayroofingohio.com",
+    "Business Phone *",
+    "Property Owner Contact Information",
+    "Telephone Number *",
+    "Email Address *",
+    "brian@rightwayroofingohio.com",
+    "Affidavit",
+    "Documents",
+    "Certificate of Completion",
+    "Roof Permit",
+    "City of Grandview Heights, OH",
+    "Your Profile",
+    "Sign Up",
+    "Your Records",
+    "Resources",
+    "Search for Records",
+    "Claim a Record",
+    "Employee Login",
+    "Portal powered by OpenGov"
+  ],
+  "record_form": [
+    {
+      "section": "Add Attachment",
+      "label": "Title",
+      "filled": false
+    },
+    {
+      "section": "Add Attachment",
+      "label": "Description",
+      "filled": false
+    }
+  ],
+  "record_apis": [
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/records/{id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/conditions_maps?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_sections?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_field_entries?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_fields?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/multi_entry_items?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/multi_entry_item_entries?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/record_attachments?page=public&recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/locations?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/docs?recordID={id}"
+  ],
   "permits": [
     {
       "number": "WIND-26-23",
@@ -74,6 +475,20 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-23",
+      "type": "Gas Piping Permit",
+      "entity_id": "29688",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29688",
+      "address": "1375 W SECOND AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
       "details": true,
       "contractors": [],
       "cv": 2
@@ -207,6 +622,20 @@
       "cv": 2
     },
     {
+      "number": "GAS-26-22",
+      "type": "Gas Piping Permit",
+      "entity_id": "29541",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29541",
+      "address": "804 GLADDEN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
       "number": "WIND-26-20",
       "type": "Window/Door Replacement Permit",
       "entity_id": "29528",
@@ -249,6 +678,36 @@
       "details": true,
       "contractors": [
         "Rosati Windows LLC"
+      ],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-21",
+      "type": "Gas Piping Permit",
+      "entity_id": "29445",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29445",
+      "address": "1987 VILLAGE CT",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-20",
+      "type": "Gas Piping Permit",
+      "entity_id": "29418",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29418",
+      "address": "1557 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [
+        "CONSTRUCT PLUMBING AND DESIGN LLC"
       ],
       "cv": 2
     },
@@ -746,6 +1205,20 @@
       "cv": 2
     },
     {
+      "number": "GAS-26-19",
+      "type": "Gas Piping Permit",
+      "entity_id": "29091",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29091",
+      "address": "1065 OXLEY RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
       "number": "WIND-26-12",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28869",
@@ -769,6 +1242,36 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-18",
+      "type": "Gas Piping Permit",
+      "entity_id": "28846",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/28846",
+      "address": "1450 ARLINGTON AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [
+        "Design LLC"
+      ],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-17",
+      "type": "Gas Piping Permit",
+      "entity_id": "28761",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/28761",
+      "address": "1272 HOPE AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
       "details": true,
       "contractors": [],
       "cv": 2
@@ -820,108 +1323,212 @@
       "type": "Siding Permit",
       "entity_id": "28670",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28670",
-      "address": null,
+      "address": "1224 EASTVIEW AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "WIND-26-10",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28664",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28664",
-      "address": null,
+      "address": "1398 W SECOND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-15",
+      "type": "Gas Piping Permit",
+      "entity_id": "28654",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/28654",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-14",
+      "type": "Gas Piping Permit",
+      "entity_id": "28620",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/28620",
+      "address": "1367 HAINES AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-13",
+      "type": "Gas Piping Permit",
+      "entity_id": "28569",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/28569",
+      "address": "1312 GRANDVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-10",
       "type": "Siding Permit",
       "entity_id": "28543",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28543",
-      "address": null,
+      "address": "1257 ASHLAND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "WIND-26-9",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28541",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28541",
-      "address": null,
+      "address": "1274 W SECOND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-9",
       "type": "Siding Permit",
       "entity_id": "28428",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28428",
-      "address": null,
+      "address": "1295 WESTWOOD AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "WIND-26-8",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28347",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28347",
-      "address": null,
+      "address": "1434 WYANDOTTE RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "WIND-26-7",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28325",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28325",
-      "address": null,
+      "address": "1061 GRANDVIEW AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "WIND-26-6",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28324",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28324",
-      "address": null,
+      "address": "1190 ELMWOOD AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "CJE Restoration LLC"
+      ],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-12",
+      "type": "Gas Piping Permit",
+      "entity_id": "28245",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/28245",
+      "address": "1397 W SECOND AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-10",
+      "type": "Gas Piping Permit",
+      "entity_id": "28142",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/28142",
+      "address": "1313 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-8",
       "type": "Siding Permit",
       "entity_id": "28138",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28138",
-      "address": null,
+      "address": "1515 WYANDOTTE RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-9",
+      "type": "Gas Piping Permit",
+      "entity_id": "28125",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/28125",
+      "address": "1066 URLIN AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-7",
@@ -933,234 +1540,320 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "NRI EQUITY LAND INVESTMENTS LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "WIND-26-5",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28013",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28013",
-      "address": null,
+      "address": "1201 DOVER AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Rosati Windows LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "WIND-26-4",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28012",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28012",
-      "address": null,
+      "address": "921 MCCLAIN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "WIND-26-3",
       "type": "Window/Door Replacement Permit",
       "entity_id": "28011",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28011",
-      "address": null,
+      "address": "1301 AVONDALE AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Rosati Windows LLC"
+      ],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-16",
+      "type": "Gas Piping Permit",
+      "entity_id": "27988",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/27988",
+      "address": "1455 FAIRVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-6",
       "type": "Siding Permit",
       "entity_id": "27951",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27951",
-      "address": null,
+      "address": "1480 LINCOLN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "APCO Industries Inc"
+      ],
+      "cv": 2
     },
     {
       "number": "GAS-26-8",
       "type": "Gas Piping Permit",
       "entity_id": "27815",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27815",
-      "address": null,
+      "address": "1252 BROADVIEW AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-5",
       "type": "Siding Permit",
       "entity_id": "27757",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27757",
-      "address": null,
+      "address": "1288 BROADVIEW AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "McCarty Customized Improvements Ltd."
+      ],
+      "cv": 2
     },
     {
       "number": "GAS-26-7",
       "type": "Gas Piping Permit",
       "entity_id": "27750",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27750",
-      "address": null,
+      "address": "1812 W FIRST AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "WIND-26-2",
       "type": "Window/Door Replacement Permit",
       "entity_id": "27730",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27730",
-      "address": null,
+      "address": "1314 MULFORD RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "APCO Industries Inc"
+      ],
+      "cv": 2
     },
     {
       "number": "SIDE-26-4",
       "type": "Siding Permit",
       "entity_id": "27709",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27709",
-      "address": null,
+      "address": "1192 GRANDVIEW AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-3",
       "type": "Sidewalk Permit",
       "entity_id": "27622",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27622",
-      "address": null,
+      "address": "996 PARKWAY DR",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "& Drain Cleaning Inc."
+      ],
+      "cv": 2
     },
     {
       "number": "GAS-26-6",
       "type": "Gas Piping Permit",
       "entity_id": "27609",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27609",
-      "address": null,
+      "address": "1083 LINCOLN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Limes Plumbing Inc."
+      ],
+      "cv": 2
     },
     {
       "number": "GAS-26-5",
       "type": "Gas Piping Permit",
       "entity_id": "27600",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27600",
-      "address": null,
+      "address": "1733 MERRICK RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "WIND-26-1",
       "type": "Window/Door Replacement Permit",
       "entity_id": "27584",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27584",
-      "address": null,
+      "address": "1201 ASHLAND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "GAS-26-4",
       "type": "Gas Piping Permit",
       "entity_id": "27572",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27572",
-      "address": null,
+      "address": "1336 W FIRST AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Ohio Plumbing Works LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "GAS-26-3",
       "type": "Gas Piping Permit",
       "entity_id": "27483",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27483",
-      "address": null,
+      "address": "1771 W FIRST AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Construct Plumbing Design LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "GAS-26-2",
       "type": "Gas Piping Permit",
       "entity_id": "27414",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27414",
-      "address": null,
+      "address": "1114 VIRGINIA AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "GAS-26-1",
       "type": "Gas Piping Permit",
       "entity_id": "27385",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27385",
-      "address": null,
+      "address": "1134 GLENN AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-2",
       "type": "Siding Permit",
       "entity_id": "27371",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27371",
-      "address": null,
+      "address": "924-926 THOMAS RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIDE-26-1",
       "type": "Siding Permit",
       "entity_id": "27334",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27334",
-      "address": null,
+      "address": "1802 W THIRD AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 2
+    },
+    {
+      "number": "GAS-26-11",
+      "type": "Gas Piping Permit",
+      "entity_id": "23758",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23758",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
       "details": false
     },
     {
@@ -2116,84 +2809,102 @@
       "type": "Re-Roofing Permit",
       "entity_id": "28506",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28506",
-      "address": null,
+      "address": "1012 BURR AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-30",
       "type": "Re-Roofing Permit",
       "entity_id": "28291",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28291",
-      "address": null,
+      "address": "820 GLADDEN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Central Ohio Exteriors LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "ROOF-26-29",
       "type": "Re-Roofing Permit",
       "entity_id": "28270",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28270",
-      "address": null,
+      "address": "1090 ELMWOOD AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-28",
       "type": "Re-Roofing Permit",
       "entity_id": "28258",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28258",
-      "address": null,
+      "address": "1300 LINCOLN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-27",
       "type": "Re-Roofing Permit",
       "entity_id": "28229",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28229",
-      "address": null,
+      "address": "1032 W SECOND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-26",
       "type": "Re-Roofing Permit",
       "entity_id": "28228",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28228",
-      "address": null,
+      "address": "1203 LINCOLN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-25",
       "type": "Re-Roofing Permit",
       "entity_id": "28215",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28215",
-      "address": null,
+      "address": "1319 MURRELL AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Muth & Company"
+      ],
+      "cv": 2
     },
     {
       "number": "ROOF-26-24",
@@ -2205,31 +2916,39 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Allstate Exteriors LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "ROOF-26-23",
       "type": "Re-Roofing Permit",
       "entity_id": "28137",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28137",
-      "address": null,
+      "address": "1515 WYANDOTTE RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-22",
       "type": "Re-Roofing Permit",
       "entity_id": "28118",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28118",
-      "address": null,
+      "address": "1175 GLENN AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-21",
@@ -2241,43 +2960,51 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-20",
       "type": "Re-Roofing Permit",
       "entity_id": "28043",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28043",
-      "address": null,
+      "address": "1466 W FIRST AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-18",
       "type": "Re-Roofing Permit",
       "entity_id": "28023",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28023",
-      "address": null,
+      "address": "1305 W FIRST AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-17",
       "type": "Re-Roofing Permit",
       "entity_id": "28003",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/28003",
-      "address": null,
+      "address": "1980 W THIRD AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-19",
@@ -2289,19 +3016,25 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Moore Roofing LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "ROOF-26-32",
       "type": "Re-Roofing Permit",
       "entity_id": "27970",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27970",
-      "address": null,
+      "address": "1148 WYANDOTTE RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-16",
@@ -2313,55 +3046,67 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-15",
       "type": "Re-Roofing Permit",
       "entity_id": "27910",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27910",
-      "address": null,
+      "address": "1452 W SECOND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-14",
       "type": "Re-Roofing Permit",
       "entity_id": "27831",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27831",
-      "address": null,
+      "address": "1288 HOLLYWOOD AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-13",
       "type": "Re-Roofing Permit",
       "entity_id": "27823",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27823",
-      "address": null,
+      "address": "1354 ASHLAND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Snyders Unlimited Contracting LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "ROOF-26-12",
       "type": "Re-Roofing Permit",
       "entity_id": "27778",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27778",
-      "address": null,
+      "address": "1334 ASHLAND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-11",
@@ -2373,127 +3118,153 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-10",
       "type": "Re-Roofing Permit",
       "entity_id": "27731",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27731",
-      "address": null,
+      "address": "1599 ROXBURY RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Sublime Roofing LLC"
+      ],
+      "cv": 2
     },
     {
       "number": "ROOF-26-9",
       "type": "Re-Roofing Permit",
       "entity_id": "27719",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27719",
-      "address": null,
+      "address": "1409 HAINES AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-8",
       "type": "Re-Roofing Permit",
       "entity_id": "27716",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27716",
-      "address": null,
+      "address": "926 MCCLAIN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-7",
       "type": "Re-Roofing Permit",
       "entity_id": "27684",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27684",
-      "address": null,
+      "address": "1340 MULFORD AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-6",
       "type": "Re-Roofing Permit",
       "entity_id": "27671",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27671",
-      "address": null,
+      "address": "1440 WYANDOTTE RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Allied Roofing Inc."
+      ],
+      "cv": 2
     },
     {
       "number": "ROOF-26-5",
       "type": "Re-Roofing Permit",
       "entity_id": "27669",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27669",
-      "address": null,
+      "address": "1400 W FIRST AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-4",
       "type": "Re-Roofing Permit",
       "entity_id": "27634",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27634",
-      "address": null,
+      "address": "1222 LINCOLN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-3",
       "type": "Re-Roofing Permit",
       "entity_id": "27591",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27591",
-      "address": null,
+      "address": "2099 W FIFTH AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-2",
       "type": "Re-Roofing Permit",
       "entity_id": "27544",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27544",
-      "address": null,
+      "address": "1355 W SECOND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ROOF-26-1",
       "type": "Re-Roofing Permit",
       "entity_id": "27374",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27374",
-      "address": null,
+      "address": "883-885 THOMAS RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-23-26",
@@ -6209,7 +6980,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-61",
@@ -6221,7 +6994,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-50",
@@ -6233,7 +7008,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-60",
@@ -6245,7 +7022,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-49",
@@ -6257,7 +7036,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-59",
@@ -6269,7 +7050,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-19",
@@ -6281,7 +7064,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-18",
@@ -6293,7 +7078,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-58",
@@ -6305,7 +7092,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-53",
@@ -6317,7 +7106,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-17",
@@ -6329,7 +7120,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-48",
@@ -6341,7 +7134,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-52",
@@ -6353,7 +7148,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-56",
@@ -6365,7 +7162,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-28",
@@ -6377,7 +7176,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-47",
@@ -6389,7 +7190,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-27",
@@ -6401,7 +7204,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-60",
@@ -6413,7 +7218,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-55",
@@ -6425,7 +7232,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-51",
@@ -6437,7 +7246,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-50",
@@ -6449,7 +7260,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-53",
@@ -6461,7 +7274,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-57",
@@ -6473,7 +7288,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-46",
@@ -6485,7 +7302,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-26",
@@ -6497,7 +7316,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-45",
@@ -6509,7 +7330,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-44",
@@ -6521,7 +7344,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-63",
@@ -6533,7 +7358,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-49",
@@ -6545,7 +7372,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-56",
@@ -6557,7 +7386,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-48",
@@ -6569,7 +7400,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-52",
@@ -6581,7 +7414,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-51",
@@ -6593,7 +7428,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-47",
@@ -6605,7 +7442,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-50",
@@ -6617,7 +7456,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-49",
@@ -6629,7 +7470,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-46",
@@ -6641,7 +7484,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-59",
@@ -6653,7 +7498,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-58",
@@ -6665,7 +7512,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-55",
@@ -6677,7 +7526,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-25",
@@ -6689,7 +7540,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-54",
@@ -6701,7 +7554,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-24",
@@ -6713,7 +7568,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-43",
@@ -6725,7 +7582,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-48",
@@ -6737,7 +7596,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-57",
@@ -6749,7 +7610,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-56",
@@ -6761,7 +7624,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-55",
@@ -6773,7 +7638,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-42",
@@ -6785,7 +7652,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-43",
@@ -6797,7 +7666,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-54",
@@ -6809,7 +7680,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-47",
@@ -6821,7 +7694,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-53",
@@ -6833,7 +7708,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "DEMO-26-3",
@@ -6845,7 +7722,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-41",
@@ -6857,7 +7736,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-52",
@@ -6869,7 +7750,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-53",
@@ -6881,7 +7764,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-46",
@@ -6893,7 +7778,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-22",
@@ -6905,7 +7792,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-45",
@@ -6917,7 +7806,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-44",
@@ -6929,7 +7820,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-40",
@@ -6941,7 +7834,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-21",
@@ -6953,7 +7848,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-20",
@@ -6965,7 +7862,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-52",
@@ -6977,7 +7876,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-51",
@@ -6989,7 +7890,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-43",
@@ -7001,7 +7904,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-23",
@@ -7013,7 +7918,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-51",
@@ -7025,7 +7932,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-49",
@@ -7037,7 +7946,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-48",
@@ -7049,7 +7960,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "DEMO-26-2",
@@ -7061,7 +7974,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-47",
@@ -7073,7 +7988,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-41",
@@ -7085,7 +8002,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-15",
@@ -7097,7 +8016,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-39",
@@ -7109,7 +8030,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-42",
@@ -7121,7 +8044,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "C-26-19",
@@ -7133,7 +8058,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-41",
@@ -7145,7 +8072,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-49",
@@ -7157,7 +8086,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-48",
@@ -7169,7 +8100,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-50",
@@ -7181,7 +8114,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-47",
@@ -7193,7 +8128,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-46",
@@ -7205,7 +8142,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-45",
@@ -7217,7 +8156,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-56",
@@ -7229,7 +8170,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-50",
@@ -7241,7 +8184,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-39",
@@ -7253,7 +8198,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-14",
@@ -7265,7 +8212,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-37",
@@ -7277,7 +8226,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-46",
@@ -7289,7 +8240,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-44",
@@ -7301,7 +8254,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-44",
@@ -7313,7 +8268,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-43",
@@ -7325,7 +8282,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-38",
@@ -7337,7 +8296,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-39",
@@ -7349,7 +8310,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-13",
@@ -7361,7 +8324,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-43",
@@ -7373,7 +8338,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-42",
@@ -7385,7 +8352,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-35",
@@ -7397,7 +8366,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-42",
@@ -7409,7 +8380,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-34",
@@ -7421,7 +8394,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-38",
@@ -7433,7 +8408,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-41",
@@ -7445,7 +8422,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-41",
@@ -7457,7 +8436,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-37",
@@ -7469,7 +8450,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-37",
@@ -7481,7 +8464,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-39",
@@ -7493,7 +8478,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-35",
@@ -7505,7 +8492,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-38",
@@ -7517,7 +8506,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-36",
@@ -7529,7 +8520,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-40",
@@ -7541,7 +8534,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-34",
@@ -7553,7 +8548,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-7",
@@ -7565,7 +8562,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-37",
@@ -7577,7 +8576,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-39",
@@ -7589,7 +8590,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-32",
@@ -7601,7 +8604,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-40",
@@ -7613,7 +8618,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-45",
@@ -7625,7 +8632,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-31",
@@ -7637,7 +8646,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-30",
@@ -7649,7 +8660,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-36",
@@ -7661,7 +8674,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-37",
@@ -7673,7 +8688,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-76",
@@ -7685,7 +8702,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-36",
@@ -7697,7 +8716,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-35",
@@ -7709,7 +8730,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "R-26-29",
@@ -7721,7 +8744,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-35",
@@ -7733,7 +8758,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-32",
@@ -7745,7 +8772,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-31",
@@ -7757,7 +8786,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-6",
@@ -7769,7 +8800,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-34",
@@ -7781,7 +8814,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-34",
@@ -7793,7 +8828,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-33",
@@ -7805,7 +8842,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-36",
@@ -7817,7 +8856,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-32",
@@ -7829,7 +8870,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-33",
@@ -7841,7 +8884,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-30",
@@ -7853,7 +8898,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-31",
@@ -7865,7 +8912,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-5",
@@ -7877,7 +8926,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-4",
@@ -7889,7 +8940,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-32",
@@ -7901,7 +8954,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-31",
@@ -7913,7 +8968,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-29",
@@ -7925,7 +8982,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-29",
@@ -7937,7 +8996,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-28",
@@ -7949,7 +9010,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "DEMO-26-1",
@@ -7961,7 +9024,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-27",
@@ -7973,7 +9038,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-30",
@@ -7985,7 +9052,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-25",
@@ -7997,7 +9066,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-26",
@@ -8009,7 +9080,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-28",
@@ -8021,7 +9094,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-35",
@@ -8033,7 +9108,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-29",
@@ -8045,7 +9122,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-34",
@@ -8057,7 +9136,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-12",
@@ -8069,7 +9150,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-11",
@@ -8081,7 +9164,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-10",
@@ -8093,7 +9178,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-9",
@@ -8105,7 +9192,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-28",
@@ -8117,7 +9206,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-24",
@@ -8129,7 +9220,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-27",
@@ -8141,7 +9234,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-23",
@@ -8153,7 +9248,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-22",
@@ -8165,7 +9262,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-27",
@@ -8177,7 +9276,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-21",
@@ -8189,7 +9290,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-26",
@@ -8201,7 +9304,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-26",
@@ -8213,7 +9318,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-33",
@@ -8225,7 +9332,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-20",
@@ -8237,7 +9346,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-25",
@@ -8249,7 +9360,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-30",
@@ -8261,7 +9374,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-24",
@@ -8273,7 +9388,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-19",
@@ -8285,7 +9402,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-25",
@@ -8297,7 +9416,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-23",
@@ -8309,7 +9430,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-24",
@@ -8321,7 +9444,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-18",
@@ -8333,7 +9458,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-23",
@@ -8345,7 +9472,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-22",
@@ -8357,7 +9486,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-31",
@@ -8369,7 +9500,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-17",
@@ -8381,7 +9514,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-15",
@@ -8393,7 +9528,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-21",
@@ -8405,7 +9542,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-16",
@@ -8417,7 +9556,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-20",
@@ -8429,7 +9570,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-14",
@@ -8441,7 +9584,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-30",
@@ -8453,7 +9598,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-12",
@@ -8465,7 +9612,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-29",
@@ -8477,7 +9626,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-22",
@@ -8489,7 +9640,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-28",
@@ -8501,7 +9654,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-27",
@@ -8513,7 +9668,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-26",
@@ -8525,7 +9682,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-25",
@@ -8537,7 +9696,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-19",
@@ -8549,7 +9710,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-10",
@@ -8561,7 +9724,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-18",
@@ -8573,7 +9738,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-21",
@@ -8585,7 +9752,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-20",
@@ -8597,7 +9766,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-17",
@@ -8609,7 +9780,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-19",
@@ -8621,7 +9794,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-24",
@@ -8633,7 +9808,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-18",
@@ -8645,7 +9822,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-22",
@@ -8657,7 +9836,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-23",
@@ -8669,7 +9850,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-16",
@@ -8681,7 +9864,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-17",
@@ -8693,7 +9878,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-21",
@@ -8705,7 +9892,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-20",
@@ -8717,7 +9906,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-13",
@@ -8729,7 +9920,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-2",
@@ -8741,7 +9934,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-16",
@@ -8753,7 +9948,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-14",
@@ -8765,7 +9962,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-19",
@@ -8777,7 +9976,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-18",
@@ -8789,7 +9990,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-13",
@@ -8801,7 +10004,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-15",
@@ -8813,7 +10018,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-17",
@@ -8825,7 +10032,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-12",
@@ -8837,7 +10046,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-16",
@@ -8849,7 +10060,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-12",
@@ -8861,7 +10074,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-15",
@@ -8873,7 +10088,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-13",
@@ -8885,7 +10102,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-8",
@@ -8897,7 +10116,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-13",
@@ -8909,7 +10130,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-12",
@@ -8921,7 +10144,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-9",
@@ -8933,7 +10158,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-11",
@@ -8945,7 +10172,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-11",
@@ -8957,7 +10186,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-11",
@@ -8969,7 +10200,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-10",
@@ -8981,7 +10214,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-10",
@@ -8993,7 +10228,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-7",
@@ -9005,7 +10242,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-14",
@@ -9017,7 +10256,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-6",
@@ -9029,7 +10270,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-5",
@@ -9041,7 +10284,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-10",
@@ -9053,7 +10298,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-9",
@@ -9065,7 +10312,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-9",
@@ -9077,7 +10326,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-7",
@@ -9089,7 +10340,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-8",
@@ -9101,7 +10354,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-4",
@@ -9113,7 +10368,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-8",
@@ -9125,7 +10382,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-9",
@@ -9137,7 +10396,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-6",
@@ -9149,7 +10410,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-5",
@@ -9161,7 +10424,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-15",
@@ -9173,7 +10438,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-7",
@@ -9185,7 +10452,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-8",
@@ -9197,7 +10466,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-3",
@@ -9209,7 +10480,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-1",
@@ -9221,7 +10494,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-4",
@@ -9233,7 +10508,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-3",
@@ -9245,7 +10522,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-6",
@@ -9257,7 +10536,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-5",
@@ -9269,7 +10550,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-6",
@@ -9281,7 +10564,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-5",
@@ -9293,7 +10578,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-4",
@@ -9305,7 +10592,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-4",
@@ -9317,7 +10606,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-2",
@@ -9329,7 +10620,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-26-1",
@@ -9341,7 +10634,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-3",
@@ -9353,7 +10648,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-7",
@@ -9365,7 +10662,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-2",
@@ -9377,7 +10676,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-3",
@@ -9389,7 +10690,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-2",
@@ -9401,7 +10704,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-26-1",
@@ -9413,7 +10718,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-26-1",
@@ -9425,7 +10732,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-26-1",
@@ -9437,7 +10746,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-110",
@@ -9449,7 +10760,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-111",
@@ -9461,7 +10774,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-108",
@@ -9473,7 +10788,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-110",
@@ -9485,7 +10802,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "DEMO-25-4",
@@ -9497,7 +10816,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-154",
@@ -9509,7 +10830,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-26-2",
@@ -9521,7 +10844,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-162",
@@ -9533,7 +10858,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-161",
@@ -9545,7 +10872,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-153",
@@ -9557,7 +10886,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-106",
@@ -9569,7 +10900,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-152",
@@ -9581,7 +10914,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-159",
@@ -9593,7 +10928,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-158",
@@ -9605,7 +10942,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-151",
@@ -9617,7 +10956,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-105",
@@ -9629,7 +10970,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-150",
@@ -9641,7 +10984,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-157",
@@ -9653,7 +10998,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-109",
@@ -9665,7 +11012,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-156",
@@ -9677,7 +11026,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-155",
@@ -9689,7 +11040,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-103",
@@ -9701,7 +11054,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-149",
@@ -9713,7 +11068,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-102",
@@ -9725,7 +11082,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-160",
@@ -9737,7 +11096,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-101",
@@ -9749,7 +11110,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-154",
@@ -9761,7 +11124,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-100",
@@ -9773,7 +11138,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-153",
@@ -9785,7 +11152,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-108",
@@ -9797,7 +11166,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "DEMO-25-3",
@@ -9809,7 +11180,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-146",
@@ -9821,7 +11194,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-147",
@@ -9833,7 +11208,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-109",
@@ -9845,7 +11222,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-99",
@@ -9857,7 +11236,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-152",
@@ -9869,7 +11250,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-25-31",
@@ -9881,7 +11264,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-144",
@@ -9893,7 +11278,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-151",
@@ -9905,7 +11292,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-150",
@@ -9917,7 +11306,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-107",
@@ -9929,7 +11320,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-143",
@@ -9941,7 +11334,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-149",
@@ -9953,7 +11348,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-148",
@@ -9965,7 +11362,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-96",
@@ -9977,7 +11376,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-106",
@@ -9989,7 +11390,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-147",
@@ -10001,7 +11404,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-146",
@@ -10013,7 +11418,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-145",
@@ -10025,7 +11432,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-142",
@@ -10037,7 +11446,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-144",
@@ -10049,7 +11460,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-104",
@@ -10061,7 +11474,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-143",
@@ -10073,7 +11488,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-105",
@@ -10085,7 +11502,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-97",
@@ -10097,7 +11516,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-141",
@@ -10109,7 +11530,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-142",
@@ -10121,7 +11544,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-95",
@@ -10133,7 +11558,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-104",
@@ -10145,7 +11572,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-103",
@@ -10157,7 +11586,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-98",
@@ -10169,7 +11600,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-94",
@@ -10181,7 +11614,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-140",
@@ -10193,7 +11628,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-139",
@@ -10205,7 +11642,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-140",
@@ -10217,7 +11656,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-148",
@@ -10229,7 +11670,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-25-30",
@@ -10241,7 +11684,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-138",
@@ -10253,7 +11698,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-93",
@@ -10265,7 +11712,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-92",
@@ -10277,7 +11726,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-137",
@@ -10289,7 +11740,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-136",
@@ -10301,7 +11754,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-141",
@@ -10313,7 +11768,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "P-25-91",
@@ -10325,7 +11782,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-138",
@@ -10337,7 +11796,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-102",
@@ -10349,7 +11810,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-136",
@@ -10361,7 +11824,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "ZON-25-101",
@@ -10373,7 +11838,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-135",
@@ -10385,7 +11852,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "SIGN-25-29",
@@ -10397,7 +11866,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "E-25-135",
@@ -10409,7 +11880,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-134",
@@ -10421,7 +11894,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:18:03+00:00",
-      "details": true
+      "details": true,
+      "contractors": [],
+      "cv": 2
     },
     {
       "number": "H-25-132",
