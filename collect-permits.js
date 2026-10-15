@@ -4,8 +4,8 @@
 // 3. Paste this whole file and press Enter
 // A panel appears in the corner. When it says "Done", click Download and upload
 // the file to docs/permits.json in the grandview-zoning repo.
-// (tools/permits-runner runs this same script on a schedule, with window.GVZ_AUTO set: no clicks needed, and the
-// result is left in window.GVZ_RESULT for the runner to publish.)
+// (The Chrome extension in tools/permits-extension runs this same script weekly with window.GVZ_AUTO set: no clicks,
+// and the result is left in window.GVZ_RESULT for the extension to publish.)
 (async () => {
   const API = window.GVZ_API || "https://api-east.viewpointcloud.com/v2/grandviewheightsoh";
   const SITE_JSON = "https://uxandyphil.github.io/grandview-zoning/permits.json";
@@ -472,3 +472,4 @@
   $("gvz-stop").remove();
   window.GVZ_RESULT = { json: payload(), total: Object.keys(permits).length, processed: todo.length, left, withContractor };
 })();
+void 0;   // the script's result is "nothing", so the Chrome extension doesn't wait for the whole run to finish

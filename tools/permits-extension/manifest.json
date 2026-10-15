@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Grandview permits collector",
+  "version": "1.0",
+  "description": "Collects Grandview Heights permits from the city's OpenGov portal every week and publishes them to the grandview-zoning site.",
+  "permissions": ["alarms", "storage", "unlimitedStorage", "scripting", "tabs", "notifications"],
+  "host_permissions": [
+    "https://grandviewheightsoh.portal.opengov.com/*",
+    "https://api.github.com/*",
+    "https://raw.githubusercontent.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "Grandview permits", "default_icon": "icon.png" },
+  "icons": { "128": "icon.png" }
+}

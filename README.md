@@ -58,8 +58,9 @@ businesses named on it (for the Contractors tab; homeowners' own names are
 skipped). Permits read by an older version of the script are read again once.
 The daily Action adds map locations to any permit with an address.
 
-To skip the manual steps, `tools/permits-runner/` runs the same collector on a schedule on your own computer
-and publishes `docs/permits.json` by itself. Setup is in its README.
+To skip the manual steps, the Chrome extension in `tools/permits-extension/` runs the same collector in your own
+Chrome once a week and publishes `docs/permits.json` by itself. Setup is in its README. (A program-controlled
+browser doesn't work: the portal refuses it.)
 
 ## County permits (history and costs)
 
