@@ -4,6 +4,8 @@
 // 3. Paste this whole file and press Enter
 // A panel appears in the corner. When it says "Done", click Download and upload
 // the file to docs/permits.json in the grandview-zoning repo.
+// (tools/permits-runner runs this same script on a schedule, with window.GVZ_AUTO set: no clicks needed, and the
+// result is left in window.GVZ_RESULT for the runner to publish.)
 (async () => {
   const API = window.GVZ_API || "https://api-east.viewpointcloud.com/v2/grandviewheightsoh";
   const SITE_JSON = "https://uxandyphil.github.io/grandview-zoning/permits.json";
@@ -17,7 +19,7 @@
   const ENFORCE_WORDS = ["violation", "code enforcement", "complaint", "property maintenance", "nuisance"];
   PREFIXES.push(...ENFORCE_PREFIXES);
   const LOOKAHEAD = 12;      // misses in a row before a series stops
-  const MAX_DETAILS = 200;   // record pages per click; run again to continue
+  const MAX_DETAILS = window.GVZ_MAX_DETAILS || 200;   // record pages per click; run again to continue
   const FRAME_RECYCLE = 10;  // when whole record pages must be read: one hidden frame, rebuilt this often
   const FRAME_LIMIT = 40;    // and at most this many pages per run
   const YEARS_BACK = 3;      // also collect this many past years (finished years are only walked once)
@@ -45,7 +47,8 @@
     </div>`;
   document.body.appendChild(panel);
   const $ = (id) => panel.querySelector("#" + id);
-  const status = (t) => { $("gvz-status").textContent = t; };
+  const status = (t) => { $("gvz-status").textContent = t; window.GVZ_STATUS = t; };
+  window.GVZ_RESULT = null;
   const log = (t) => { const d = document.createElement("div"); d.textContent = t; $("gvz-log").prepend(d); console.log("[permits]", t); };
   let stopped = false;
   $("gvz-stop").onclick = () => { stopped = true; status("Stopping after this request…"); };
@@ -66,14 +69,16 @@
   let recordFields = null, recordLabels = null, recordForm = null;
   const CONTRACTOR_VERSION = 2;   // permits read by an older version are read again
 
-  function download() {
+  function payload() {
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
     const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels, record_form: recordForm,
       record_apis: recordApis && recordApis.map((u) => u.replace(/[?&](token|key|auth)[^&]*/gi, "")) };
-    const blob = new Blob([JSON.stringify({ ...meta, permits: list }, null, 2)],
-      { type: "application/json" });
+    return JSON.stringify({ ...meta, permits: list }, null, 2);
+  }
+  function download() {
+    const blob = new Blob([payload()], { type: "application/json" });
     const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "permits.json" });
     document.body.appendChild(a); a.click(); a.remove();
   }
@@ -120,7 +125,7 @@
     localStorage.setItem(STORE + "-headers", JSON.stringify(headers));
     await sleep(1500);
     try { firstData = await search("R-26-82"); log("Got it, searching works now"); }
-    catch (e2) { status(`The permit search refused requests (${e2.message}). Nothing changed.`); return; }
+    catch (e2) { status(`The permit search refused requests (${e2.message}). Nothing changed.`); window.GVZ_RESULT = { error: e2.message }; return; }
   }
 
   // ---------- finding record numbers ----------
@@ -465,4 +470,5 @@
   status(`Done. ${Object.keys(permits).length} permits${left ? ` (run again later for ${left} more)` : ""}. Click Download.`);
   $("gvz-dl").disabled = false;
   $("gvz-stop").remove();
+  window.GVZ_RESULT = { json: payload(), total: Object.keys(permits).length, processed: todo.length, left, withContractor };
 })();
