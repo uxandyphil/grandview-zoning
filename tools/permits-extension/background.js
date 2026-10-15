@@ -35,7 +35,10 @@ async function ensureSchedule() {
   const a = await chrome.alarms.get("weekly");
   if (!a) chrome.alarms.create("weekly", { when: nextSunday(), periodInMinutes: WEEK_MIN });
 }
-chrome.runtime.onInstalled.addListener(ensureSchedule);
+chrome.runtime.onInstalled.addListener(async () => {
+  await ensureSchedule();
+  if (await get("run")) chrome.alarms.create("tick", { periodInMinutes: 0.5 });   // updated mid-run: carry on
+});
 chrome.runtime.onStartup.addListener(async () => {
   await ensureSchedule();
   // if Chrome was closed at the scheduled time, catch up shortly after it opens
@@ -103,10 +106,6 @@ async function step() {
       .catch((e) => note(`Couldn't start the collector: ${e.message}`));
     return set({ run: { ...run, phase: "running", at: now } });
   }
-  if (run.phase === "publishing") {   // resumes an upload Chrome interrupted
-    if (now - run.pubAt < 180_000) return;
-    return publishNow(run);
-  }
   if (run.phase !== "running") return;
   const { status, result } = (await inPage(run.tabId, () => ({ status: window.GVZ_STATUS || "", result: window.GVZ_RESULT }))) || {};
   if (status !== run.status) await set({ run: { ...run, status } });
@@ -125,16 +124,24 @@ async function step() {
   if (result.error) return finish(false, `The portal refused the request (${result.error})`);
   await set({ lastJson: result.json });
   await note(`Batch ${run.batch}: ${result.total} permits, ${result.processed} read, contractors on ${result.withContractor}, ${result.left} left`);
+  // upload after every batch, so the site gets progress even if the run stops partway. If Chrome interrupts this,
+  // the next tick finds the same finished batch and uploads it again (an unchanged file is skipped).
+  let published = run.published || 0;
+  try {
+    if (await publish(await get("token"), result.json, `${result.total} permits; ${result.left} still to read.`)) {
+      published++;
+      await note(`Uploaded to the site (${result.total} permits, ${result.left} still to read)`);
+    }
+  } catch (e) {
+    await note(`Upload failed: ${e.message}${result.left ? "; it will try again after the next batch" : ""}`);
+    if (!result.left || !result.processed || run.batch >= MAX_BATCHES) return finish(false, `Upload failed: ${e.message}`);
+  }
   if (result.left && result.processed && run.batch < MAX_BATCHES) {
     await chrome.tabs.reload(run.tabId);   // a fresh page for each batch keeps memory low
-    return set({ run: { ...run, phase: "loading", batch: run.batch + 1, at: now, status: "", searched: 0, asked: false } });
+    return set({ run: { ...run, phase: "loading", batch: run.batch + 1, at: now, status: "", searched: 0, asked: false, published } });
   }
-  return publishNow({ ...run, summary: `${result.total} permits; ${result.left} still to read.`, total: result.total });
-}
-async function publishNow(run) {
-  await set({ run: { ...run, phase: "publishing", pubAt: Date.now() } });
-  const published = await publish(await get("token"), await get("lastJson"), run.summary);
-  await finish(true, published ? `Published ${run.total} permits to the site` : "No permit changes since the last upload");
+  await finish(true, published ? `Done: ${result.total} permits on the site${result.left ? `, ${result.left} left for next time` : ""}`
+    : "Done: no permit changes since the last upload");
 }
 
 async function finish(ok, message) {

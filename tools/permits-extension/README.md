@@ -31,9 +31,9 @@ Click the house icon. Under **GitHub key**, paste the key you made earlier (it s
 Settings > Developer settings > Personal access tokens > Fine-grained tokens > Generate new token.
 
 ### 4. Run it once
-Click **Run now**. A small portal window opens in the corner and works on its own. The extension's popup shows
-progress, and **Recent activity** lists each batch. When it says "Published ... permits to the site", the site has
-the new permits within a couple of minutes.
+Click **Run now**. A small portal window opens in the corner and works on its own. It reads permits in batches of
+up to 200 and uploads to the site after every batch, so the site fills in as it goes (each upload shows up within a
+couple of minutes). **Recent activity** in the popup lists each batch and upload; "Done" means the run finished.
 
 If a notification asks for one search, type `R-26-82` in the small window's search box and press Enter. It continues
 by itself after that.
