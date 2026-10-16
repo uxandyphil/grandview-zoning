@@ -46,7 +46,9 @@
     },
     {
       "address": "1452 W SECOND AVE",
-      "contractors": [],
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -60,7 +62,9 @@
     },
     {
       "address": "1385 HAINES AVE",
-      "contractors": [],
+      "contractors": [
+        "BluSky Roofing LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -286,7 +290,9 @@
     },
     {
       "address": "1516 LINCOLN RD",
-      "contractors": [],
+      "contractors": [
+        "Rosati Windows LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -300,7 +306,9 @@
     },
     {
       "address": "1397 GLENN AVE",
-      "contractors": [],
+      "contractors": [
+        "Rosati Windows LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -328,7 +336,9 @@
     },
     {
       "address": "1557 LINCOLN RD",
-      "contractors": [],
+      "contractors": [
+        "CONSTRUCT PLUMBING AND DESIGN LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -342,7 +352,9 @@
     },
     {
       "address": "1254-1256 GRANDVIEW AVE",
-      "contractors": [],
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -356,7 +368,9 @@
     },
     {
       "address": "1100 URLIN AVE",
-      "contractors": [],
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -370,7 +384,9 @@
     },
     {
       "address": "904 TIMBERMAN RD",
-      "contractors": [],
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -384,7 +400,9 @@
     },
     {
       "address": "1580 LINCOLN RD",
-      "contractors": [],
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -454,7 +472,9 @@
     },
     {
       "address": "1182 OAKLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "OUtdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -468,7 +488,9 @@
     },
     {
       "address": "1178 OAKLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -482,7 +504,9 @@
     },
     {
       "address": "1066 URLIN AVE",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -496,7 +520,9 @@
     },
     {
       "address": "1189 ASHLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -566,7 +592,9 @@
     },
     {
       "address": "1100 URLIN AVE",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -594,7 +622,9 @@
     },
     {
       "address": "1158 OAKLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -678,7 +708,9 @@
     },
     {
       "address": "1659 RIDGEWAY PL",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -706,7 +738,9 @@
     },
     {
       "address": "1112 URLIN AVE",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -720,7 +754,9 @@
     },
     {
       "address": "1149 ASHLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -734,7 +770,10 @@
     },
     {
       "address": "1690 MERRICK RD",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC",
+        "1690 Merrick Rd LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -748,7 +787,9 @@
     },
     {
       "address": "1115 URLIN AVE",
-      "contractors": [],
+      "contractors": [
+        "Outdoor LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -846,7 +887,9 @@
     },
     {
       "address": "1450 ARLINGTON AVE",
-      "contractors": [],
+      "contractors": [
+        "Design LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -1056,7 +1099,9 @@
     },
     {
       "address": "1190 ELMWOOD AVE",
-      "contractors": [],
+      "contractors": [
+        "CJE Restoration LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -1126,7 +1171,9 @@
     },
     {
       "address": null,
-      "contractors": [],
+      "contractors": [
+        "NRI EQUITY LAND INVESTMENTS LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -1450,7 +1497,9 @@
     },
     {
       "address": "1668-1670 W FIRST AVE",
-      "contractors": [],
+      "contractors": [
+        "SBR Enterprises LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -1478,7 +1527,9 @@
     },
     {
       "address": "1580 W First Avenue",
-      "contractors": [],
+      "contractors": [
+        "Steiner Builders LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -1660,7 +1711,9 @@
     },
     {
       "address": "1580 W First Avenue",
-      "contractors": [],
+      "contractors": [
+        "SignSmith LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -1958,7 +2011,9 @@
     },
     {
       "address": "1096 W SECOND AVE",
-      "contractors": [],
+      "contractors": [
+        "Hinkle & Van Dine Roofing LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2014,7 +2069,9 @@
     },
     {
       "address": "1336 ELMWOOD AVE",
-      "contractors": [],
+      "contractors": [
+        "Muth & Company"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2056,7 +2113,9 @@
     },
     {
       "address": "1318 ASHLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "Feazel Roofing LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2070,7 +2129,9 @@
     },
     {
       "address": "1318 ASHLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "Feazel Roofing LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2126,7 +2187,9 @@
     },
     {
       "address": null,
-      "contractors": [],
+      "contractors": [
+        "Feazel Roofing LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2182,7 +2245,9 @@
     },
     {
       "address": "1363 MULFORD AVE",
-      "contractors": [],
+      "contractors": [
+        "B&T Roofing Ltd."
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2196,7 +2261,9 @@
     },
     {
       "address": "958 TIMBERMAN RD",
-      "contractors": [],
+      "contractors": [
+        "Twincreek Roofing &Exteriors LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2392,7 +2459,9 @@
     },
     {
       "address": "820 GLADDEN RD",
-      "contractors": [],
+      "contractors": [
+        "Central Ohio Exteriors LLC"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2462,7 +2531,9 @@
     },
     {
       "address": "1319 MURRELL AVE",
-      "contractors": [],
+      "contractors": [
+        "Muth & Company"
+      ],
       "cv": 3,
       "date": null,
       "details": true,
@@ -2968,7 +3039,9 @@
     },
     {
       "address": "1557 LINCOLN RD",
-      "contractors": [],
+      "contractors": [
+        "CONSTRUCT PLUMBING DESIGN LLC"
+      ],
       "cv": 3,
       "date": "2026-09-22",
       "details": true,
@@ -2982,7 +3055,9 @@
     },
     {
       "address": "1273 BROADVIEW AVE",
-      "contractors": [],
+      "contractors": [
+        "Mike Powers Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-09-22",
       "details": true,
@@ -3010,7 +3085,9 @@
     },
     {
       "address": "1064 DUBLIN RD",
-      "contractors": [],
+      "contractors": [
+        "GVX Retail LLC"
+      ],
       "cv": 3,
       "date": "2026-09-21",
       "details": true,
@@ -3080,7 +3157,9 @@
     },
     {
       "address": "794 NORTHWEST BL",
-      "contractors": [],
+      "contractors": [
+        "Andrews Builders Inc"
+      ],
       "cv": 3,
       "date": "2026-09-18",
       "details": true,
@@ -3122,7 +3201,9 @@
     },
     {
       "address": "1060 GLENDALE AVE",
-      "contractors": [],
+      "contractors": [
+        "COGS ULTD LLC"
+      ],
       "cv": 3,
       "date": "2026-09-18",
       "details": true,
@@ -3178,7 +3259,9 @@
     },
     {
       "address": "1153 FAIRVIEW AVE",
-      "contractors": [],
+      "contractors": [
+        "Trades ELE LLC"
+      ],
       "cv": 3,
       "date": "2026-09-17",
       "details": true,
@@ -3220,7 +3303,9 @@
     },
     {
       "address": "1147 WYANDOTTE RD",
-      "contractors": [],
+      "contractors": [
+        "Rausch Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-09-16",
       "details": true,
@@ -3248,7 +3333,9 @@
     },
     {
       "address": "1036 PALMER RD",
-      "contractors": [],
+      "contractors": [
+        "Royalty Plumbing LLC"
+      ],
       "cv": 3,
       "date": "2026-09-15",
       "details": true,
@@ -3556,7 +3643,9 @@
     },
     {
       "address": "1263 BROADVIEW AVE",
-      "contractors": [],
+      "contractors": [
+        "WCA Group LLC"
+      ],
       "cv": 3,
       "date": "2026-09-03",
       "details": true,
@@ -3570,7 +3659,9 @@
     },
     {
       "address": "1397 HAINES AVE",
-      "contractors": [],
+      "contractors": [
+        "CHC Service Co Inc"
+      ],
       "cv": 3,
       "date": "2026-09-03",
       "details": true,
@@ -3640,7 +3731,9 @@
     },
     {
       "address": "1397 HAINES AVE",
-      "contractors": [],
+      "contractors": [
+        "E & S Elelctric LLC"
+      ],
       "cv": 3,
       "date": "2026-09-01",
       "details": true,
@@ -3752,7 +3845,9 @@
     },
     {
       "address": "1202 ASHLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "Mike Powers Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-08-31",
       "details": true,
@@ -3808,7 +3903,9 @@
     },
     {
       "address": "1987 VILLAGE CT",
-      "contractors": [],
+      "contractors": [
+        "Excel Electrical Contractor Corp"
+      ],
       "cv": 3,
       "date": "2026-08-31",
       "details": true,
@@ -3864,7 +3961,9 @@
     },
     {
       "address": "813 GLADDEN RD",
-      "contractors": [],
+      "contractors": [
+        "Excel Electrical Contractor Corp"
+      ],
       "cv": 3,
       "date": "2026-08-27",
       "details": true,
@@ -3976,7 +4075,9 @@
     },
     {
       "address": "1905 W FIRST AVE",
-      "contractors": [],
+      "contractors": [
+        "Plumbing One LLC"
+      ],
       "cv": 3,
       "date": "2026-08-20",
       "details": true,
@@ -3990,7 +4091,9 @@
     },
     {
       "address": "1458 North Star Avenue",
-      "contractors": [],
+      "contractors": [
+        "Speelman Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-08-18",
       "details": true,
@@ -4004,7 +4107,9 @@
     },
     {
       "address": "4317 CAMBORNE ROAD",
-      "contractors": [],
+      "contractors": [
+        "Byrne Warehousing Inc"
+      ],
       "cv": 3,
       "date": "2026-08-17",
       "details": true,
@@ -4088,7 +4193,9 @@
     },
     {
       "address": "1326 GLENN AVE",
-      "contractors": [],
+      "contractors": [
+        "E & S Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-08-11",
       "details": true,
@@ -4214,7 +4321,9 @@
     },
     {
       "address": "5885 TRAFALGAR LN",
-      "contractors": [],
+      "contractors": [
+        "Development Co."
+      ],
       "cv": 3,
       "date": "2026-08-07",
       "details": true,
@@ -4522,7 +4631,9 @@
     },
     {
       "address": "775 YARD ST",
-      "contractors": [],
+      "contractors": [
+        "Gibson Electrical LLC"
+      ],
       "cv": 3,
       "date": "2026-07-29",
       "details": true,
@@ -4634,7 +4745,9 @@
     },
     {
       "address": "1987 VILLAGE CT",
-      "contractors": [],
+      "contractors": [
+        "JS Brown & Company"
+      ],
       "cv": 3,
       "date": "2026-07-28",
       "details": true,
@@ -4648,7 +4761,9 @@
     },
     {
       "address": "1587 W Third Avenue",
-      "contractors": [],
+      "contractors": [
+        "Elford Inc"
+      ],
       "cv": 3,
       "date": "2026-07-27",
       "details": true,
@@ -4746,7 +4861,9 @@
     },
     {
       "address": "837 Goodale Blvd",
-      "contractors": [],
+      "contractors": [
+        "BCA Mechanical LLC"
+      ],
       "cv": 3,
       "date": "2026-07-23",
       "details": true,
@@ -4774,7 +4891,9 @@
     },
     {
       "address": "1700 W FIRST AVE",
-      "contractors": [],
+      "contractors": [
+        "Eric Call Contracting LLC"
+      ],
       "cv": 3,
       "date": "2026-07-23",
       "details": true,
@@ -4802,7 +4921,9 @@
     },
     {
       "address": "1700 W FIRST AVE",
-      "contractors": [],
+      "contractors": [
+        "Eric Call Contracting LLC"
+      ],
       "cv": 3,
       "date": "2026-07-23",
       "details": true,
@@ -4858,7 +4979,9 @@
     },
     {
       "address": "800 YARD ST",
-      "contractors": [],
+      "contractors": [
+        "Locher Electric Company"
+      ],
       "cv": 3,
       "date": "2026-07-23",
       "details": true,
@@ -4914,7 +5037,9 @@
     },
     {
       "address": "1167 VIRGINIA AVE",
-      "contractors": [],
+      "contractors": [
+        "Eric Call Contracting LLC"
+      ],
       "cv": 3,
       "date": "2026-07-23",
       "details": true,
@@ -4984,7 +5109,9 @@
     },
     {
       "address": "1050 YARD ST",
-      "contractors": [],
+      "contractors": [
+        "Design LLC"
+      ],
       "cv": 3,
       "date": "2026-07-21",
       "details": true,
@@ -5026,7 +5153,9 @@
     },
     {
       "address": "1555 ARLINGTON AVE",
-      "contractors": [],
+      "contractors": [
+        "Gerhart Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-07-20",
       "details": true,
@@ -5040,7 +5169,9 @@
     },
     {
       "address": "1216 WYANDOTTE RD",
-      "contractors": [],
+      "contractors": [
+        "Excel Electrical Contractor Corp"
+      ],
       "cv": 3,
       "date": "2026-07-20",
       "details": true,
@@ -5138,7 +5269,9 @@
     },
     {
       "address": "837 Goodale Blvd",
-      "contractors": [],
+      "contractors": [
+        "Coffing Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-07-16",
       "details": true,
@@ -5250,7 +5383,9 @@
     },
     {
       "address": "1147 WYANDOTTE RD",
-      "contractors": [],
+      "contractors": [
+        "Rausch Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-07-13",
       "details": true,
@@ -5292,7 +5427,9 @@
     },
     {
       "address": "1153 VIRGINIA AVE",
-      "contractors": [],
+      "contractors": [
+        "AC CO Inc"
+      ],
       "cv": 3,
       "date": "2026-07-13",
       "details": true,
@@ -5418,7 +5555,9 @@
     },
     {
       "address": "1450 ARLINGTON AVE",
-      "contractors": [],
+      "contractors": [
+        "CONSTRUCT PLUMBING AND DESIGN LLC"
+      ],
       "cv": 3,
       "date": "2026-07-08",
       "details": true,
@@ -5460,7 +5599,9 @@
     },
     {
       "address": "1357 ASHLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "Safe Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-07-08",
       "details": true,
@@ -5572,7 +5713,9 @@
     },
     {
       "address": "1196 WILLARD AVE",
-      "contractors": [],
+      "contractors": [
+        "Jewell Building Company"
+      ],
       "cv": 3,
       "date": "2026-07-02",
       "details": true,
@@ -5586,7 +5729,9 @@
     },
     {
       "address": "1196 WILLARD AVE",
-      "contractors": [],
+      "contractors": [
+        "Jewell Building Company"
+      ],
       "cv": 3,
       "date": "2026-07-02",
       "details": true,
@@ -5628,7 +5773,9 @@
     },
     {
       "address": "1587 W Third Avenue",
-      "contractors": [],
+      "contractors": [
+        "Elford Inc"
+      ],
       "cv": 3,
       "date": "2026-07-01",
       "details": true,
@@ -5656,7 +5803,10 @@
     },
     {
       "address": "1335 CAMBRIDGE BLVD",
-      "contractors": [],
+      "contractors": [
+        "CHC Service Co Inc",
+        "CHC Service Co."
+      ],
       "cv": 3,
       "date": "2026-07-01",
       "details": true,
@@ -5698,7 +5848,9 @@
     },
     {
       "address": "2150 MARBLE CLIFF OFC PK",
-      "contractors": [],
+      "contractors": [
+        "Zapa Cbus Inc."
+      ],
       "cv": 3,
       "date": "2026-06-29",
       "details": true,
@@ -5712,7 +5864,9 @@
     },
     {
       "address": "1143 OXLEY RD",
-      "contractors": [],
+      "contractors": [
+        "Porter Plumbing LLC"
+      ],
       "cv": 3,
       "date": "2026-06-29",
       "details": true,
@@ -5796,7 +5950,9 @@
     },
     {
       "address": "1198 LINCOLN RD",
-      "contractors": [],
+      "contractors": [
+        "Quality Electric Inc"
+      ],
       "cv": 3,
       "date": "2026-06-26",
       "details": true,
@@ -5824,7 +5980,9 @@
     },
     {
       "address": "1301 MURRELL AVE",
-      "contractors": [],
+      "contractors": [
+        "Roto Rooter Servicing Company"
+      ],
       "cv": 3,
       "date": "2026-06-22",
       "details": true,
@@ -5838,7 +5996,9 @@
     },
     {
       "address": "1279 MULFORD AVE",
-      "contractors": [],
+      "contractors": [
+        "Trades ELE LLC"
+      ],
       "cv": 3,
       "date": "2026-06-22",
       "details": true,
@@ -5922,7 +6082,10 @@
     },
     {
       "address": "1291 Grandview Avenue",
-      "contractors": [],
+      "contractors": [
+        "A&R GRANDVIEW LLC",
+        "Guane Artworks LLC"
+      ],
       "cv": 3,
       "date": "2026-06-17",
       "details": true,
@@ -6020,7 +6183,9 @@
     },
     {
       "address": "1317 WYANDOTTE AVE",
-      "contractors": [],
+      "contractors": [
+        "Kramer Electrical Service LLC"
+      ],
       "cv": 3,
       "date": "2026-06-16",
       "details": true,
@@ -6034,7 +6199,9 @@
     },
     {
       "address": "1201 ASHLAND AVE",
-      "contractors": [],
+      "contractors": [
+        "WESS Electric LLC"
+      ],
       "cv": 3,
       "date": "2026-06-16",
       "details": true,
@@ -6244,7 +6411,9 @@
     },
     {
       "address": "1587 W Third Avenue",
-      "contractors": [],
+      "contractors": [
+        "Elford Inc."
+      ],
       "cv": 3,
       "date": "2026-06-09",
       "details": true,
@@ -6286,7 +6455,9 @@
     },
     {
       "address": "775 YARD ST",
-      "contractors": [],
+      "contractors": [
+        "Continental Building Company"
+      ],
       "cv": 3,
       "date": "2026-06-08",
       "details": true,

@@ -63,19 +63,32 @@
       if (r.ok) for (const p of (await r.json()).permits || []) permits[p.number] = p;
       log(`Loaded ${Object.keys(permits).length} permits from your site`);
     } catch (e) { log("Starting fresh (couldn't load the site's copy)"); }
-  } else log(`Loaded ${Object.keys(permits).length} permits saved in this browser`);
+  } else {
+    log(`Loaded ${Object.keys(permits).length} permits saved in this browser`);
+    // contractor names already on the site fill in any this browser lost (an earlier version could erase them)
+    try {
+      const r = await fetch(SITE_JSON, { cache: "no-store" });
+      let filled = 0;
+      if (r.ok) for (const sp of (await r.json()).permits || []) {
+        const lp = permits[sp.number];
+        if (lp && !(lp.contractors || []).length && (sp.contractors || []).length) { lp.contractors = sp.contractors; filled++; }
+      }
+      if (filled) log(`Restored contractor names on ${filled} permits from your site`);
+    } catch (e) {}
+  }
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
   // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
   let recordFields = null, recordLabels = null, recordForm = null;
   const CONTRACTOR_VERSION = 3;   // permits read by an older version are read again
   let recordShapes = null;        // field names (never values) of each data list, to check the form matching
+  let recordStatus = null;        // what each data list answered on the first permit (200 = OK)
 
   function payload() {
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
     const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels, record_form: recordForm,
-      record_shapes: recordShapes,
+      record_shapes: recordShapes, record_status: recordStatus,
       record_apis: recordApis && recordApis.map((u) => u.replace(/[?&](token|key|auth)[^&]*/gi, "")) };
     return JSON.stringify({ ...meta, permits: list }, null, 2);
   }
@@ -88,12 +101,14 @@
 
   // ---------- API ----------
   let headers = {};
-  try { headers = JSON.parse(localStorage.getItem(STORE + "-headers") || "{}"); } catch (e) {}
+  // header names in lower case, so a fresh value replaces an old one instead of both being sent
+  const lowerKeys = (h) => Object.fromEntries(Object.entries(h || {}).map(([k, v]) => [k.toLowerCase(), v]));
+  try { headers = lowerKeys(JSON.parse(localStorage.getItem(STORE + "-headers") || "{}")); } catch (e) {}
   const FORBIDDEN = /^(host|origin|referer|user-agent|cookie|connection|content-length|priority|if-none-match|if-modified-since|accept-encoding|sec-)/i;
 
   function captureHeaders() {
     return new Promise((resolve) => {
-      const keep = (h) => { const o = {}; for (const [k, v] of Object.entries(h)) if (!FORBIDDEN.test(k)) o[k] = v; resolve(o); };
+      const keep = (h) => { const o = {}; for (const [k, v] of Object.entries(h)) if (!FORBIDDEN.test(k)) o[k.toLowerCase()] = v; resolve(o); };
       const open = XMLHttpRequest.prototype.open, setH = XMLHttpRequest.prototype.setRequestHeader,
         send = XMLHttpRequest.prototype.send, f = window.fetch;
       XMLHttpRequest.prototype.open = function (m, u) { this._gvzU = String(u); this._gvzH = {}; return open.apply(this, arguments); };
@@ -360,11 +375,36 @@
     recordApis = [];
     const frame = recordFrame();
     frame.src = `/records/${p.entity_id}`;
+    // Copy the request headers the record page itself sends to the data service (its current access pass): as soon
+    // as the page's window exists, before its code runs, wrap its request functions to note them.
+    const captured = {};
+    const API_RE = /viewpointcloud|\/v2\//i;
+    const hook = setInterval(() => {
+      try {
+        const w = frame.contentWindow;
+        if (!w || w.__gvzHooked || !/\/records\//.test(w.location.href)) return;
+        w.__gvzHooked = true;
+        const X = w.XMLHttpRequest.prototype, open = X.open, setH = X.setRequestHeader, f = w.fetch;
+        X.open = function (m, u) { this.__gvzU = String(u); return open.apply(this, arguments); };
+        X.setRequestHeader = function (k, v) { if (API_RE.test(this.__gvzU || "") && !FORBIDDEN.test(k)) captured[k.toLowerCase()] = v; return setH.apply(this, arguments); };
+        w.fetch = function (input, init) {
+          const u = String((input && input.url) || input);
+          if (API_RE.test(u)) new w.Headers((init && init.headers) || (input && input.headers) || {}).forEach((v, k) => { if (!FORBIDDEN.test(k)) captured[k.toLowerCase()] = v; });
+          return f.apply(w, arguments);   // must run as the page's own fetch
+        };
+      } catch (e) {}
+    }, 5);
     for (let i = 0; i < 40; i++) {
       await sleep(500);
       let text = ""; try { text = frame.contentDocument.body.innerText || ""; } catch (e) { break; }
       if (text.includes(p.number.split("-").pop()) && addrRe.test(text)) { await sleep(2500); break; }
     }
+    clearInterval(hook);
+    if (Object.keys(captured).length) {
+      headers = { ...headers, ...captured };
+      localStorage.setItem(STORE + "-headers", JSON.stringify(headers));
+      log(`Using the portal's current access headers (${Object.keys(captured).join(", ")})`);
+    } else log("The record page sent no special headers");
     let urls = [];
     try { urls = frame.contentWindow.performance.getEntriesByType("resource").map((e) => e.name); } catch (e) {}
     releaseFrame(true);
@@ -410,10 +450,46 @@
     }
     return out;
   }
+  // The portal's access pass, if the app keeps one in this site's storage (a token shaped like eyJ....).
+  function storedToken() {
+    let best = "";
+    for (const store of [localStorage, sessionStorage]) {
+      try {
+        for (let i = 0; i < store.length; i++) {
+          for (const m of String(store.getItem(store.key(i)) || "").matchAll(/eyJ[\w-]{10,}\.[\w-]{10,}\.[\w-]{10,}/g)) if (m[0].length > best.length) best = m[0];
+        }
+      } catch (e) {}
+    }
+    return best;
+  }
+  // Ways to ask a data list, tried in order when one is refused: the saved headers; with this browser's cookies;
+  // with the stored access pass; both. The first that works is remembered for that list.
+  const ASK_WAYS = ["plain", "cookies", "token", "token+cookies"];
+  const askWay = {};
+  async function ask(url, name) {
+    const token = storedToken();
+    let last = null;
+    for (const way of askWay[name] ? [askWay[name]] : ASK_WAYS) {
+      if (/token/.test(way) && !token) continue;
+      const h = /token/.test(way) ? { ...headers, authorization: `Bearer ${token}` } : headers;
+      try {
+        const r = await fetch(url, { headers: h, ...(/cookies/.test(way) ? { credentials: "include" } : {}) });
+        last = r.status;
+        if (r.ok) { askWay[name] = way; return { status: `${r.status}${way === "plain" ? "" : ` (${way})`}`, json: await r.json() }; }
+        if (r.status !== 401 && r.status !== 403) break;
+      } catch (e) { last = String(e.message || e).slice(0, 40); }
+    }
+    return { status: last, json: null };
+  }
   async function fromApis(p) {
-    const parts = (await Promise.all(recordApis.map((t) => fetch(t.split("{id}").join(p.entity_id), { headers })
-      .then((r) => (r.ok ? r.json() : null)).then((json) => ({ name: t.split("?")[0].split("/").pop(), json })).catch(() => null))))
-      .filter((x) => x && x.json);
+    const status = {};
+    const parts = (await Promise.all(recordApis.map(async (t) => {
+      const name = t.split("?")[0].split("/").pop();
+      const { status: st, json } = await ask(t.split("{id}").join(p.entity_id), name);
+      status[name] = st;
+      return json ? { name, json } : null;
+    }))).filter(Boolean);
+    if (!recordStatus) { recordStatus = status; log(`Data lists: ${Object.entries(status).map(([k, v]) => `${k} ${v}`).join(", ")}`); }
     if (!parts.length) return null;
     if (!recordShapes) recordShapes = Object.fromEntries(parts.map((x) => { const r = rowsOf(x.json)[0];
       return [x.name, r ? Object.keys(r).slice(0, 40) : Object.keys(x.json || {}).slice(0, 20)]; }));
@@ -489,7 +565,9 @@
       await sleep(PAUSE);
       const d = await details(p);
       if (!d) { log(`Read ${FRAME_LIMIT} full pages this run, the most that's safe at once. Reload the portal and run again to continue.`); break; }
-      Object.assign(p, { address: d.address || p.address, date: d.date || p.date, details: true, contractors: d.contractors || [], cv: CONTRACTOR_VERSION });
+      // a re-read that finds no contractor keeps any names an earlier read found
+      const contractors = (d.contractors || []).length ? d.contractors : (p.contractors || []);
+      Object.assign(p, { address: d.address || p.address, date: d.date || p.date, details: true, contractors, cv: CONTRACTOR_VERSION });
       if (d.address) found++;
       if (d.contractors && d.contractors.length) withContractor++;
       if (i === 0) log(`${p.number}: ${d.address || "no address found"}${d.date ? ", filed " + d.date : ""}${d.contractors && d.contractors.length ? ", " + d.contractors.join(", ") : ""}`);
