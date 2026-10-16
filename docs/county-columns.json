@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-07T01:16:52+00:00",
+ "updated": "2026-10-16T15:08:14+00:00",
  "tables": {
   "Build": {
    "columns": [
@@ -748,6 +748,35 @@
    "Tab-Delimited.zip"
   ],
   "2026-09-15 Tax Accounting": [
+   "Excel.zip",
+   "Parcel.xlsx",
+   "Payment2023.xlsx",
+   "Payment2024.xlsx",
+   "Payment2025.xlsx",
+   "RentalContact.xlsx",
+   "Sa.xlsx",
+   "Tab-Delimited.zip",
+   "TaxDetail.xlsx",
+   "TaxDistribution.xlsx",
+   "Transfer010.xlsx",
+   "Transfer020-277.xlsx",
+   "Transfer410-610.xlsx",
+   "Value.xlsx"
+  ],
+  "2026-10-15 Appraisal": [
+   "Build.xlsx",
+   "Dwelling.xlsx",
+   "Excel.zip",
+   "Improvement.xlsx",
+   "Land.xlsx",
+   "Parcel.xlsx",
+   "Permit.xlsx",
+   "Sales010.xlsx",
+   "Sales020-277.xlsx",
+   "Sales410-610.xlsx",
+   "Tab-Delimited.zip"
+  ],
+  "2026-10-15 Tax Accounting": [
    "Excel.zip",
    "Parcel.xlsx",
    "Payment2023.xlsx",

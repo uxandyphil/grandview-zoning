@@ -1,6 +1,107 @@
 {
  "documents": [
   {
+   "inst": "202610160125675",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-16",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "STATE BANK AND TRUST CO"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 530 GLADDINGTON HEIGHTS SUBD Pcl# 030-000422 Plt PB 4 PG 334"
+  },
+  {
+   "inst": "202610150125423",
+   "type": "Notice Of Commencement",
+   "date": "2026-10-15",
+   "from": [
+    "COGS ULTD LLC"
+   ],
+   "to": [
+    "COGS ULTD LLC"
+   ],
+   "parcels": [
+    "030-001973-00"
+   ],
+   "legal": "Lt/Un 113 URLINS GRANDVIEW HEIGHTS Pcl# 030-001973-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202610150125422",
+   "type": "Mortgage",
+   "date": "2026-10-15",
+   "from": [
+    "COGS ULTD LLC"
+   ],
+   "to": [
+    "KIAVI FUNDING LLC"
+   ],
+   "parcels": [
+    "030-001973-00"
+   ],
+   "legal": "Lt/Un 113 URLINS GRANDVIEW HEIGHTS Pcl# 030-001973-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202610150125421",
+   "type": "Deed",
+   "date": "2026-10-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "COGS ULTD LLC"
+   ],
+   "parcels": [
+    "030-001973-00"
+   ],
+   "legal": "Lt/Un 113 URLINS GRANDVIEW HEIGHTS Pcl# 030-001973-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202610150125337",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "STATE BANK AND TRUST CO"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 530 GLADDINGTON HEIGHTS SUBD Pcl# 030-000422 Plt PB 4 PG 334"
+  },
+  {
+   "inst": "202610150125280",
+   "type": "Mortgage",
+   "date": "2026-10-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION SAVINGS BANK"
+   ],
+   "parcels": [
+    "030-002873-00"
+   ],
+   "legal": "Lt/Un 1010 NORTHWEST GRANDVIEW CONDO Pcl# 030-002873-00 Plt CB 171 PG 44-50"
+  },
+  {
+   "inst": "202610150125279",
+   "type": "Deed",
+   "date": "2026-10-15",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002837-00"
+   ],
+   "legal": "Lt/Un 1010 NORTHWEST GRANDVIEW CONDO Pcl# 030-002837-00 Plt CB 171 PG 44-50"
+  },
+  {
    "inst": "202610140124911",
    "type": "Affidavit",
    "date": "2026-10-14",
@@ -4043,5 +4144,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-15T15:28:35+00:00"
+ "updated": "2026-10-16T15:08:14+00:00"
 }
