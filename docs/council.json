@@ -11,14 +11,16 @@
    "has_agenda": false
   },
   {
-   "id": "cal-3345",
-   "name": "Special Council Meeting*",
+   "id": "adid-3799",
+   "name": "City Council",
    "date": "2026-10-19",
-   "time": "06:30 PM",
-   "url": "https://www.grandviewheights.gov/Calendar.aspx?EID=3345",
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3799",
+   "title": "October 19, 2026 Council Meeting Agenda",
    "items": [],
    "counts": {},
-   "has_agenda": false
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3798",
@@ -1676,5 +1678,5 @@
    "parse": 2
   }
  ],
- "updated": "2026-10-16T15:08:14+00:00"
+ "updated": "2026-10-17T14:01:43+00:00"
 }
