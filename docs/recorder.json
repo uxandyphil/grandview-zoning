@@ -1,6 +1,36 @@
 {
  "documents": [
   {
+   "inst": "202610190125972",
+   "type": "Deed",
+   "date": "2026-10-19",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000491-00"
+   ],
+   "legal": "Lt/Un 10 RIDGWAYS SUBD Pcl# 030-000491-00 Plt PB 10 PG 322 PT 10"
+  },
+  {
+   "inst": "202610190125971",
+   "type": "Trust",
+   "date": "2026-10-19",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000491-00"
+   ],
+   "legal": "Lt/Un 10 RIDGWAYS SUBD Pcl# 030-000491-00 Plt PB 10 PG 322 PT 10"
+  },
+  {
    "inst": "202610160125675",
    "type": "Release Of Mortgage",
    "date": "2026-10-16",
@@ -4144,5 +4174,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-18T14:14:37+00:00"
+ "updated": "2026-10-19T17:18:30+00:00"
 }
