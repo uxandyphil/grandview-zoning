@@ -1,6 +1,79 @@
 {
  "documents": [
   {
+   "inst": "202610200127112",
+   "type": "Mortgage",
+   "date": "2026-10-20",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "CME FEDERAL CREDIT UNION"
+   ],
+   "parcels": [
+    "030-002603-00"
+   ],
+   "legal": "Un 15 SUMMIT CHASE CONDO Pcl# 030-002603-00 Plt CB 3 PG 895"
+  },
+  {
+   "inst": "202610200127111",
+   "type": "Deed",
+   "date": "2026-10-20",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002603-00"
+   ],
+   "legal": "Un 15 SUMMIT CHASE CONDO Pcl# 030-002603-00 Plt CB 3 PG 895"
+  },
+  {
+   "inst": "202610200127107",
+   "type": "Mortgage",
+   "date": "2026-10-20",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "VANDERBILT MORTGAGE AND FINANCE INC"
+   ],
+   "parcels": [
+    "030-000422-00"
+   ],
+   "legal": "Lt/Un 530 GLADDINGTON HEIGHTS Pcl# 030-000422-00 Plt PB 4 PG 334"
+  },
+  {
+   "inst": "202610200127106",
+   "type": "Deed",
+   "date": "2026-10-20",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000422-00"
+   ],
+   "legal": "Lt/Un 530 GLADDINGTON HEIGHTS Pcl# 030-000422-00 Plt PB 4 PG 334"
+  },
+  {
+   "inst": "202610200127052",
+   "type": "Mortgage",
+   "date": "2026-10-20",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "GUARANTEED RATE INC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 123 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-001988 Plt PB 4 PG 332"
+  },
+  {
    "inst": "202610190125972",
    "type": "Deed",
    "date": "2026-10-19",
@@ -4174,5 +4247,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-19T17:18:30+00:00"
+ "updated": "2026-10-20T15:32:15+00:00"
 }
