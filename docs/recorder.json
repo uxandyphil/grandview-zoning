@@ -1,6 +1,34 @@
 {
  "documents": [
   {
+   "inst": "202610220128197",
+   "type": "Affidavit",
+   "date": "2026-10-22",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 40 URLINS SECOND GRANDVIEW HEIGHTS SUBD Pcl# 030-000093 Plt PB 5 PG 230 PT 40"
+  },
+  {
+   "inst": "202610210127972",
+   "type": "Affidavit",
+   "date": "2026-10-21",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000544-00"
+   ],
+   "legal": "Lt/Un 43 NORTHWEST BOULEVARD ADDN PLAT NO 1 Pcl# 030-000544-00 Plt PB 10 PG 242"
+  },
+  {
    "inst": "202610200127473",
    "type": "Release Of Mechanics Lien",
    "date": "2026-10-20",
@@ -4262,5 +4290,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-21T15:48:36+00:00"
+ "updated": "2026-10-22T15:46:34+00:00"
 }
