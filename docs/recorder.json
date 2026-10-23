@@ -1,6 +1,51 @@
 {
  "documents": [
   {
+   "inst": "202610230129021",
+   "type": "Mortgage",
+   "date": "2026-10-23",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "CROSSCOUNTRY MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-001574-00"
+   ],
+   "legal": "Lt/Un 13 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001574-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202610230129020",
+   "type": "Deed",
+   "date": "2026-10-23",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001574-00"
+   ],
+   "legal": "Lt/Un 13 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001574-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202610220128387",
+   "type": "Affidavit",
+   "date": "2026-10-22",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002760-00"
+   ],
+   "legal": "Un 2011 SUMMIT CHASE CONDO Pcl# 030-002760-00 Plt CB 3 PG 895"
+  },
+  {
    "inst": "202610220128197",
    "type": "Affidavit",
    "date": "2026-10-22",
@@ -4290,5 +4335,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-22T15:46:34+00:00"
+ "updated": "2026-10-23T15:36:48+00:00"
 }
