@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25T19:39:40.067Z",
+  "updated": "2026-10-25T21:00:00.953Z",
   "record_fields": null,
   "record_labels": [
     "Skip to main content",
@@ -7,20 +7,51 @@
     "Search",
     "Login",
     "Sign Up",
-    "Fence Permit",
+    "Gas Piping Permit",
     "Applicant",
-    "Stacy Flowers",
+    "Eric Maxwell",
     "Location",
     "View location details",
     "Created",
     "Status",
-    "Complete",
+    "Active",
     "Expires",
     "Details",
+    "Project Information",
+    "City of Grandview Heights",
+    "Who is performing the work? *",
+    "Contractor",
+    "Building Permit Number *",
+    "toggle tooltip",
+    "Occupancy Type *",
+    "Commercial",
+    "Estimated Project Cost *",
+    "Linear feet of pipe",
+    "toggle tooltip",
+    "Number of Total Fixtures *",
+    "Project Description *",
+    "toggle tooltip",
+    "Part of a building project",
+    "Contractor Information",
+    "Company Name *",
+    "Primary Contact Name *",
+    "Eric Maxwell",
+    "Company Address *",
+    "Contractor City *",
+    "Cincinatti",
+    "Contractor State *",
+    "OH",
+    "Contractor Zip *",
+    "Contractor Email *",
+    "eric.maxwell@feldmech.com",
+    "Business Phone *",
+    "Property Owner Contact Information",
+    "Email Address",
+    "jim.buffer@ghschools.org",
+    "Telephone Number *",
     "Affidavit",
-    "--",
     "Documents",
-    "Fence Permit",
+    "Gas Piping Permit",
     "City of Grandview Heights, OH",
     "Your Profile",
     "Sign Up",
@@ -879,60 +910,72 @@
       "type": "Fence Permit",
       "entity_id": "27983",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27983",
-      "address": null,
+      "address": "1257 W SECOND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "SWR-26-8",
       "type": "Sewer Lateral Replacement/Repair",
       "entity_id": "27982",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27982",
-      "address": null,
+      "address": "964 MCCLAIN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-17",
       "type": "Fence Permit",
       "entity_id": "27971",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27971",
-      "address": null,
+      "address": "1910-1914 W FIRST AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-15",
       "type": "Fence Permit",
       "entity_id": "27912",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27912",
-      "address": null,
+      "address": "1464 INGLIS AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "SWR-26-7",
       "type": "Sewer Lateral Replacement/Repair",
       "entity_id": "27877",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27877",
-      "address": null,
+      "address": "1322-1324 BLUFF AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Charles Evans Drainmaster Inc."
+      ],
+      "cv": 3
     },
     {
       "number": "FENC-26-12",
@@ -944,7 +987,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-13",
@@ -2370,7 +2415,7 @@
       "first_seen": "2026-10-15T01:20:00+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIDE-26-6",
@@ -2383,10 +2428,8 @@
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [
-        "APCO Industries Inc"
-      ],
-      "cv": 2
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "GAS-26-8",
@@ -3762,7 +3805,7 @@
       "contractors": [
         "Moore Roofing LLC"
       ],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-32",
@@ -3776,7 +3819,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-16",
@@ -3790,7 +3833,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-15",
@@ -3804,7 +3847,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-14",
@@ -9166,21 +9209,21 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-40",
       "type": "HVAC Permit",
       "entity_id": 27987,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27987",
-      "address": "1383 MULFORD RD",
+      "address": "1383 MULFORD AVE",
       "date": "2026-04-09",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-34",
@@ -9194,21 +9237,23 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIGN-26-7",
       "type": "Sign Permit",
       "entity_id": 27972,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27972",
-      "address": "751 NORTHWEST BLVD",
+      "address": "1291 Grandview Avenue",
       "date": "2026-04-07",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "A&R GRANDVIEW LLC"
+      ],
+      "cv": 3
     },
     {
       "number": "E-26-37",
@@ -9222,7 +9267,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-39",
@@ -9236,7 +9281,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "R-26-32",
@@ -9250,7 +9295,7 @@
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-40",
@@ -9264,7 +9309,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-45",
@@ -9278,7 +9323,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "R-26-31",
@@ -9292,7 +9337,7 @@
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "R-26-30",
@@ -9306,7 +9351,7 @@
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-36",
@@ -9320,7 +9365,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-37",
@@ -9334,7 +9379,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-76",
@@ -9348,7 +9393,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-36",
@@ -9361,22 +9406,26 @@
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "Rausch Electric LLC"
+      ],
+      "cv": 3
     },
     {
       "number": "ZON-26-35",
       "type": "Certificate of Zoning Compliance",
       "entity_id": 27931,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27931",
-      "address": "577 W NATIONWIDE BLVD",
+      "address": "1312 GRANDVIEW AVE",
       "date": "2026-04-01",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "1312 Grandview Realty LLC"
+      ],
+      "cv": 3
     },
     {
       "number": "R-26-29",
@@ -9390,7 +9439,7 @@
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-35",
@@ -9404,21 +9453,21 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-32",
       "type": "Plumbing Permit",
       "entity_id": 27919,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27919",
-      "address": "1227 W 1ST AVE",
+      "address": "1227 W FIRST AVE",
       "date": "2026-04-01",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-31",
@@ -9432,21 +9481,23 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIGN-26-6",
       "type": "Sign Permit",
       "entity_id": 27911,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27911",
-      "address": "2501 BROOKWOOD RD",
+      "address": "1943 W FIFTH AVE",
       "date": "2026-03-31",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "Morrison Sign Company"
+      ],
+      "cv": 3
     },
     {
       "number": "ZON-26-34",
@@ -9460,7 +9511,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-34",
@@ -9474,21 +9525,21 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-33",
       "type": "Certificate of Zoning Compliance",
       "entity_id": 27887,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27887",
-      "address": "1060 BROADVIEW Ave",
+      "address": "1060 BROADVIEW AVE",
       "date": "2026-03-30",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-36",
@@ -9502,7 +9553,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-32",
@@ -9516,7 +9567,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-33",
@@ -9529,8 +9580,10 @@
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "G&M Electrical Contractors Inc"
+      ],
+      "cv": 3
     },
     {
       "number": "P-26-30",
@@ -9544,7 +9597,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-31",
