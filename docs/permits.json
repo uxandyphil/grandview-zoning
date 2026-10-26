@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26T02:37:27.483Z",
+  "updated": "2026-10-26T03:54:39.143Z",
   "record_fields": null,
   "record_labels": [
     "Skip to main content",
@@ -7,50 +7,53 @@
     "Search",
     "Login",
     "Sign Up",
-    "Certificate of Zoning Compliance",
+    "HVAC Permit",
     "Applicant",
-    "Cobie Cribbs",
+    "Andy Rumora",
     "Location",
     "View location details",
     "Created",
     "Status",
     "Complete",
     "Expires",
-    "--",
     "Details",
     "Project Information",
-    "Who is Applying for the Zoning Review",
-    "Owner or Agent for the Owner",
-    "Residential or Commercial Review? *",
-    "Residential Property",
-    "Type of Work Proposed *",
-    "New Structure",
-    "Property Owner Name *",
-    "Brant Poling",
-    "Property Owner Phone *",
-    "Property Owner email *",
-    "bpoling@poling-law.com",
-    "Applicant Name *",
-    "Cobie Cribbs, APCO INDUSTRIES",
-    "Applicant phone number *",
-    "Applicant email *",
-    "cobiecribbs@apco.com",
-    "Zoning Certificate Information",
+    "City of Grandview Heights",
+    "Who is performing the work? *",
+    "Contractor",
     "Occupancy Type *",
+    "Commercial",
+    "Type of Work Proposed *",
+    "Alteration",
+    "Estimated Project Cost *",
+    "Square Footage of Work Area *",
+    "Project Description *",
     "toggle tooltip",
-    "Current Zoning District *",
-    "Proposed Change *",
-    "toggle tooltip",
-    "Patio",
-    "Square Footage of Lot",
-    "Please Describe Your Project",
-    "toggle tooltip",
-    "Board of Zoning Appeals Case Number",
-    "toggle tooltip",
+    "Part of a building project",
+    "Building Permit Number *",
+    "Contractor Information",
+    "Company Name *",
+    "METRO MECHANICAL INC",
+    "Primary Contact Name *",
+    "Joe Tate",
+    "Contractor Address *",
+    "Contractor City *",
+    "Hilliard",
+    "Contractor State *",
+    "OH",
+    "Contractor Zip *",
+    "Contractor Email *",
+    "kathy@metroheatingandair.com",
+    "Business Phone *",
+    "Property Owner Contact Information",
+    "Email Address *",
     "--",
-    "No",
+    "Telephone Number *",
+    "Affidavit",
     "Documents",
-    "Certificate of Zoning Compliance",
+    "Certificate of Completion-Commercial",
+    "HVAC Permit",
+    "Required Inspections",
     "City of Grandview Heights, OH",
     "Your Profile",
     "Sign Up",
@@ -1558,7 +1561,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "SWR-26-3",
@@ -1570,31 +1575,41 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-5",
       "type": "Fence Permit",
       "entity_id": "27424",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27424",
-      "address": null,
+      "address": "1333 W SECOND AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Frost Fence LLC"
+      ],
+      "cv": 3
     },
     {
       "number": "FENC-26-4",
       "type": "Fence Permit",
       "entity_id": "27422",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27422",
-      "address": null,
+      "address": "4628 North Galena Rd",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Frost Fence LLC"
+      ],
+      "cv": 3
     },
     {
       "number": "FENC-26-3",
@@ -3028,7 +3043,7 @@
       "contractors": [
         "Construct Plumbing Design LLC"
       ],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "GAS-26-2",
@@ -3042,7 +3057,7 @@
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "GAS-26-1",
@@ -11160,7 +11175,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-17",
@@ -11174,7 +11189,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-12",
@@ -11187,8 +11202,10 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "Crawford Mechanical Services Inc"
+      ],
+      "cv": 3
     },
     {
       "number": "H-26-16",
@@ -11202,7 +11219,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-12",
@@ -11216,21 +11233,21 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-15",
       "type": "HVAC Permit",
       "entity_id": 27513,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27513",
-      "address": "1480 DUBLIN RD",
+      "address": "1631 ROXBURY RD",
       "date": "2026-02-02",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-13",
@@ -11243,8 +11260,10 @@
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "AES OHIO LLC"
+      ],
+      "cv": 3
     },
     {
       "number": "ZON-26-8",
@@ -11258,35 +11277,35 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-13",
       "type": "HVAC Permit",
       "entity_id": 27504,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27504",
-      "address": "1275 ELMWOOD AVE",
+      "address": "4849 Evanswood Drive",
       "date": "2026-01-30",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-12",
       "type": "HVAC Permit",
       "entity_id": 27501,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27501",
-      "address": "5435 SUNSET CT",
+      "address": "1863 West Main Street",
       "date": "2026-01-29",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-9",
@@ -11300,21 +11319,21 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-11",
       "type": "HVAC Permit",
       "entity_id": 27495,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27495",
-      "address": "1436 INGLIS AVE",
+      "address": "8160 Howe Industrial Parkway",
       "date": "2026-01-29",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-11",
@@ -11328,21 +11347,21 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-11",
       "type": "Plumbing Permit",
       "entity_id": 27490,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27490",
-      "address": "955 THOMAS RD",
+      "address": "4300 Tuller Road",
       "date": "2026-01-29",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-10",
@@ -11355,8 +11374,10 @@
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "Gibson Electrical LLC"
+      ],
+      "cv": 3
     },
     {
       "number": "H-26-10",
@@ -11369,8 +11390,11 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "CHC Service Co Inc",
+        "CHC Service Co."
+      ],
+      "cv": 3
     },
     {
       "number": "ZON-26-7",
@@ -11384,7 +11408,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-14",
@@ -11398,7 +11422,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-6",
@@ -11412,7 +11436,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-5",
@@ -11426,7 +11450,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-10",
@@ -11440,7 +11464,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-9",
@@ -11454,7 +11478,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-9",
@@ -11467,8 +11491,10 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "Limes Plumbing Inc."
+      ],
+      "cv": 3
     },
     {
       "number": "E-26-7",
@@ -11481,22 +11507,24 @@
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "AES OHIO LLC"
+      ],
+      "cv": 3
     },
     {
       "number": "E-26-8",
       "type": "Electrical Permit",
       "entity_id": 27455,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27455",
-      "address": "1587 W THIRD AVE",
+      "address": "1241 FAIRVIEW AVE",
       "date": "2026-01-23",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-4",
@@ -11510,7 +11538,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-8",
@@ -11524,35 +11552,37 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-9",
       "type": "HVAC Permit",
       "entity_id": 27448,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27448",
-      "address": "1001 PARKWY DR",
+      "address": "1001 PARKWAY DR",
       "date": "2026-01-22",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-6",
       "type": "Plumbing Permit",
       "entity_id": 27445,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27445",
-      "address": "3886 N HIGH ST",
+      "address": "804 GLADDEN RD",
       "date": "2026-01-21",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 2
+      "contractors": [
+        "Accountable Plumbing & Backflow Co."
+      ],
+      "cv": 3
     },
     {
       "number": "P-26-5",
@@ -11566,7 +11596,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-15",
@@ -11580,7 +11610,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-7",
@@ -11594,7 +11624,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-8",
@@ -11608,7 +11638,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-3",
@@ -11622,7 +11652,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-1",
