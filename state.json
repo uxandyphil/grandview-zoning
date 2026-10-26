@@ -128,7 +128,9 @@
     28373163,
     28375627,
     28375589,
-    28375470
+    28375470,
+    28376986,
+    28376978
   ],
   "court_version": 2,
   "geocache": {
@@ -1544,6 +1546,10 @@
     "1107 MULFORD RD, Grandview Heights, OH 43212": [
       39.978810466588,
       -83.03382360863
+    ],
+    "1107-1109 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978812684314,
+      -83.033877920643
     ],
     "1108 LINCOLN RD, Grandview Heights, OH 43212": [
       39.979354856559,
@@ -4204,6 +4210,10 @@
       39.981387036502,
       -83.038477420345
     ],
+    "1255-1293 GRANDVIEW AVE, Grandview Heights, OH 43212": [
+      39.984228755137,
+      -83.0448963024
+    ],
     "1256 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.98306666829,
       -83.050308757041
@@ -5671,6 +5681,10 @@
     "1322 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.983367307042,
       -83.055325125261
+    ],
+    "1322-1324 BLUFF AVE, Grandview Heights, OH 43212": [
+      39.9788444143,
+      -83.03977845347
     ],
     "1323 ASHLAND AVE, Grandview Heights, OH 43212": [
       39.983958190117,
@@ -9123,6 +9137,7 @@
       39.97925125384,
       -83.054065942648
     ],
+    "1863 West Main Street, Grandview Heights, OH 43212": null,
     "1866 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982321216821,
       -83.054837849385
@@ -9240,6 +9255,10 @@
       39.982366977431,
       -83.055880462542
     ],
+    "1910-1914 W FIRST AVE, Grandview Heights, OH 43212": [
+      39.982371135646,
+      -83.055977025009
+    ],
     "1935 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982293393706,
       -83.056907310113
@@ -9247,6 +9266,10 @@
     "1941 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982294996568,
       -83.056943436845
+    ],
+    "1943 W FIFTH AVE, Grandview Heights, OH 43212": [
+      39.989340151374,
+      -83.058858425941
     ],
     "1953 BLUFF AVE, Grandview Heights, OH 43212": [
       39.979871710138,
@@ -9333,6 +9356,7 @@
     "2150 MARBLE CLIFF OFC PK, Grandview Heights, OH 43212": null,
     "2170 W LANE AVE, Grandview Heights, OH 43212": null,
     "2200 CARDIGAN AVE, Grandview Heights, OH 43212": null,
+    "2200-2300 W FIFTH AVE, Grandview Heights, OH 43212": null,
     "2202 ASCHINGER BLVD, Grandview Heights, OH 43212": [
       39.989716116503,
       -83.028952099064
@@ -9351,6 +9375,7 @@
     "27 BONNETT AVE, Grandview Heights, OH 43212": null,
     "2700 PATRIOT BLVD, Grandview Heights, OH 43212": null,
     "2779 PEACHBLOW RD, Grandview Heights, OH 43212": null,
+    "2791 Crawfis Rd, Grandview Heights, OH 43212": null,
     "280 CORNELIUS STREET, Grandview Heights, OH 43212": null,
     "2814 EXMOOR RD, Grandview Heights, OH 43212": null,
     "2834 SW 25TH PL, Grandview Heights, OH 43212": null,
@@ -9384,11 +9409,15 @@
     "4131 WORTH AVE, Grandview Heights, OH 43212": null,
     "41425 INGLIS AVE, Grandview Heights, OH 43212": null,
     "4145 POWELL RD, Grandview Heights, OH 43212": null,
+    "4300 Tuller Road, Grandview Heights, OH 43212": null,
     "4317 CAMBORNE ROAD, Grandview Heights, OH 43212": null,
     "4325 VISTA DR, Grandview Heights, OH 43212": null,
     "456 W. First Avenue, Grandview Heights, OH 43212": null,
     "4577 HIGHTOP DR, Grandview Heights, OH 43212": null,
+    "4628 North Galena Rd, Grandview Heights, OH 43212": null,
     "4715 NORTH SHORE DR, Grandview Heights, OH 43212": null,
+    "4849 Evanswood Drive, Grandview Heights, OH 43212": null,
+    "49 S Grant Ave, Grandview Heights, OH 43212": null,
     "5 STONEGATE VILLAGE DR, Grandview Heights, OH 43212": [
       39.978493924927,
       -83.053326866202
@@ -9405,6 +9434,7 @@
     "577 Nationwide Blvd, Grandview Heights, OH 43212": null,
     "577 W NATIONWIDE BLVD, Grandview Heights, OH 43212": null,
     "5885 TRAFALGAR LN, Grandview Heights, OH 43212": null,
+    "5963 Carrbridge Court, Grandview Heights, OH 43212": null,
     "5979 HARLEM RD, Grandview Heights, OH 43212": null,
     "6 STONEGATE VILLAGE DR, Grandview Heights, OH 43212": [
       39.977962380338,
@@ -9653,6 +9683,10 @@
       39.975939211653,
       -83.025642059336
     ],
+    "800-802 AVONDALE AVE, Grandview Heights, OH 43212": [
+      39.975296023196,
+      -83.042467210704
+    ],
     "801 TIMBERMAN RD, Grandview Heights, OH 43212": [
       39.975748348485,
       -83.030565603531
@@ -9814,6 +9848,7 @@
       39.975849487042,
       -83.033712915522
     ],
+    "8160 Howe Industrial Parkway, Grandview Heights, OH 43212": null,
     "817 MCCLAIN ST, Grandview Heights, OH 43212": [
       39.975091947355,
       -83.036175405987
@@ -10046,6 +10081,7 @@
       39.975466601291,
       -83.036149191007
     ],
+    "8333 Basil Western Rd, Grandview Heights, OH 43212": null,
     "834 GLADDEN RD, Grandview Heights, OH 43212": [
       39.975732667345,
       -83.031463754616
@@ -11448,6 +11484,10 @@
       39.97807985652,
       -83.037986899623
     ],
+    "928-932 TIMBERMAN RD, Grandview Heights, OH 43212": [
+      39.97793872488,
+      -83.031499566312
+    ],
     "929 COPELAND RD, Grandview Heights, OH 43212": [
       39.977510787072,
       -83.032618459751
@@ -12578,7 +12618,7 @@
     "WYANDOTTE RD, Grandview Heights, OH 43212": null,
     "YARD ST, Grandview Heights, OH 43212": null
   },
-  "recorder_through": "2026-10-25",
+  "recorder_through": "2026-10-26",
   "recorder_version": 2,
   "seen": {
     "Board of Zoning Appeals": [

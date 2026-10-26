@@ -1,6 +1,16 @@
 {
  "meetings": [
   {
+   "id": "cal-3238",
+   "name": "Regular Council Meeting",
+   "date": "2026-11-09",
+   "time": "07:00 PM",
+   "url": "https://www.grandviewheights.gov/Calendar.aspx?EID=3238",
+   "items": [],
+   "counts": {},
+   "has_agenda": false
+  },
+  {
    "id": "adid-3810",
    "name": "City Council",
    "date": "2026-10-26",
@@ -1680,5 +1690,5 @@
    "parse": 2
   }
  ],
- "updated": "2026-10-25T14:44:14+00:00"
+ "updated": "2026-10-26T17:06:23+00:00"
 }
