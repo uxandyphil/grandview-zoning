@@ -1,57 +1,449 @@
 {
-  "updated": "2026-10-25T21:00:00.953Z",
-  "record_fields": null,
+  "updated": "2026-10-26T01:56:53.684Z",
+  "record_fields": [
+    "0.validator.log_context.request_id",
+    "0.validator.log_context.trace_id",
+    "0.validator.log_context.community",
+    "0.validator.log_context.service",
+    "0.entity_types.3.entities.18910.conditions.0.type",
+    "0.entity_types.3.entities.18910.conditions.0.id",
+    "0.entity_types.3.entities.18910.conditions.0.entityPrimaryKey",
+    "0.entity_types.3.entities.18910.conditions.0.entityTypeID",
+    "0.entity_types.3.entities.18910.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.3.entities.18910.conditions.0.dependentEntityTypeID",
+    "0.entity_types.3.entities.18910.conditions.0.comparate1",
+    "0.entity_types.3.entities.18910.conditions.0.logicTypeID",
+    "0.entity_types.3.entities.18910.conditions.0.recordID",
+    "0.entity_types.3.entities.18910.conditions.0.dependentEntityValue",
+    "0.entity_types.3.entities.18910.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.3.entities.18910.conditions.0.entityFormSectionID",
+    "0.entity_types.3.entities.18910.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.3.entities.18910.conditions.0.isSatisfied",
+    "0.entity_types.3.entities.18910.is_satisfied",
+    "0.entity_types.3.entities.18910.logical_operator",
+    "0.entity_types.3.entities.18910.form_section_id",
+    "0.entity_types.3.entities.18911.conditions.0.type",
+    "0.entity_types.3.entities.18911.conditions.0.id",
+    "0.entity_types.3.entities.18911.conditions.0.entityPrimaryKey",
+    "0.entity_types.3.entities.18911.conditions.0.entityTypeID",
+    "0.entity_types.3.entities.18911.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.3.entities.18911.conditions.0.dependentEntityTypeID",
+    "0.entity_types.3.entities.18911.conditions.0.comparate1",
+    "0.entity_types.3.entities.18911.conditions.0.logicTypeID",
+    "0.entity_types.3.entities.18911.conditions.0.recordID",
+    "0.entity_types.3.entities.18911.conditions.0.dependentEntityValue",
+    "0.entity_types.3.entities.18911.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.3.entities.18911.conditions.0.entityFormSectionID",
+    "0.entity_types.3.entities.18911.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.3.entities.18911.conditions.0.isSatisfied",
+    "0.entity_types.3.entities.18911.is_satisfied",
+    "0.entity_types.3.entities.18911.logical_operator",
+    "0.entity_types.3.entities.18911.form_section_id",
+    "0.entity_types.3.entities.18912.conditions.0.type",
+    "0.entity_types.3.entities.18912.conditions.0.id",
+    "0.entity_types.3.entities.18912.conditions.0.entityPrimaryKey",
+    "0.entity_types.3.entities.18912.conditions.0.entityTypeID",
+    "0.entity_types.3.entities.18912.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.3.entities.18912.conditions.0.dependentEntityTypeID",
+    "0.entity_types.3.entities.18912.conditions.0.comparate1",
+    "0.entity_types.3.entities.18912.conditions.0.logicTypeID",
+    "0.entity_types.3.entities.18912.conditions.0.recordID",
+    "0.entity_types.3.entities.18912.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.3.entities.18912.conditions.0.entityFormSectionID",
+    "0.entity_types.3.entities.18912.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.3.entities.18912.conditions.0.isSatisfied",
+    "0.entity_types.3.entities.18912.is_satisfied",
+    "0.entity_types.3.entities.18912.logical_operator",
+    "0.entity_types.3.entities.18912.form_section_id",
+    "0.entity_types.3.entities.18913.conditions.0.type",
+    "0.entity_types.3.entities.18913.conditions.0.id",
+    "0.entity_types.3.entities.18913.conditions.0.entityPrimaryKey",
+    "0.entity_types.3.entities.18913.conditions.0.entityTypeID",
+    "0.entity_types.3.entities.18913.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.3.entities.18913.conditions.0.dependentEntityTypeID",
+    "0.entity_types.3.entities.18913.conditions.0.comparate1",
+    "0.entity_types.3.entities.18913.conditions.0.logicTypeID",
+    "0.entity_types.3.entities.18913.conditions.0.recordID",
+    "0.entity_types.3.entities.18913.conditions.0.dependentEntityValue",
+    "0.entity_types.3.entities.18913.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.3.entities.18913.conditions.0.entityFormSectionID",
+    "0.entity_types.3.entities.18913.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.3.entities.18913.conditions.0.isSatisfied",
+    "0.entity_types.3.entities.18913.is_satisfied",
+    "0.entity_types.3.entities.18913.logical_operator",
+    "0.entity_types.3.entities.18913.form_section_id",
+    "0.entity_types.4.entities.1011223.conditions.0.type",
+    "0.entity_types.4.entities.1011223.conditions.0.id",
+    "0.entity_types.4.entities.1011223.conditions.0.entityPrimaryKey",
+    "0.entity_types.4.entities.1011223.conditions.0.entityTypeID",
+    "0.entity_types.4.entities.1011223.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.4.entities.1011223.conditions.0.dependentEntityTypeID",
+    "0.entity_types.4.entities.1011223.conditions.0.comparate1",
+    "0.entity_types.4.entities.1011223.conditions.0.logicTypeID",
+    "0.entity_types.4.entities.1011223.conditions.0.recordID",
+    "0.entity_types.4.entities.1011223.conditions.0.dependentEntityValue",
+    "0.entity_types.4.entities.1011223.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.4.entities.1011223.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.4.entities.1011223.conditions.0.isSatisfied",
+    "0.entity_types.4.entities.1011223.is_satisfied",
+    "0.entity_types.4.entities.1011223.logical_operator",
+    "0.entity_types.4.entities.1011225.conditions.0.type",
+    "0.entity_types.4.entities.1011225.conditions.0.id",
+    "0.entity_types.4.entities.1011225.conditions.0.entityPrimaryKey",
+    "0.entity_types.4.entities.1011225.conditions.0.entityTypeID",
+    "0.entity_types.4.entities.1011225.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.4.entities.1011225.conditions.0.dependentEntityTypeID",
+    "0.entity_types.4.entities.1011225.conditions.0.comparate1",
+    "0.entity_types.4.entities.1011225.conditions.0.logicTypeID",
+    "0.entity_types.4.entities.1011225.conditions.0.recordID",
+    "0.entity_types.4.entities.1011225.conditions.0.dependentEntityValue",
+    "0.entity_types.4.entities.1011225.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.4.entities.1011225.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.4.entities.1011225.conditions.0.isSatisfied",
+    "0.entity_types.4.entities.1011225.is_satisfied",
+    "0.entity_types.4.entities.1011225.logical_operator",
+    "0.entity_types.6.entities.89949.conditions.0.type",
+    "0.entity_types.6.entities.89949.conditions.0.id",
+    "0.entity_types.6.entities.89949.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89949.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89949.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89949.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89949.conditions.0.comparate1",
+    "0.entity_types.6.entities.89949.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89949.conditions.0.recordID",
+    "0.entity_types.6.entities.89949.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89949.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89949.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89949.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89949.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89949.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89949.is_satisfied",
+    "0.entity_types.6.entities.89949.logical_operator",
+    "0.entity_types.6.entities.89949.record_step_status",
+    "0.entity_types.6.entities.89949.has_step_activity",
+    "0.entity_types.6.entities.89951.conditions.0.type",
+    "0.entity_types.6.entities.89951.conditions.0.id",
+    "0.entity_types.6.entities.89951.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89951.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89951.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89951.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89951.conditions.0.comparate1",
+    "0.entity_types.6.entities.89951.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89951.conditions.0.recordID",
+    "0.entity_types.6.entities.89951.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89951.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89951.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89951.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89951.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89951.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89951.is_satisfied",
+    "0.entity_types.6.entities.89951.logical_operator",
+    "0.entity_types.6.entities.89951.record_step_status",
+    "0.entity_types.6.entities.89951.has_step_activity",
+    "0.entity_types.6.entities.89952.conditions.0.type",
+    "0.entity_types.6.entities.89952.conditions.0.id",
+    "0.entity_types.6.entities.89952.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89952.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89952.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89952.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89952.conditions.0.comparate1",
+    "0.entity_types.6.entities.89952.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89952.conditions.0.recordID",
+    "0.entity_types.6.entities.89952.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89952.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89952.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89952.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89952.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89952.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89952.conditions.1.type",
+    "0.entity_types.6.entities.89952.conditions.1.id",
+    "0.entity_types.6.entities.89952.conditions.1.entityPrimaryKey",
+    "0.entity_types.6.entities.89952.conditions.1.entityTypeID",
+    "0.entity_types.6.entities.89952.conditions.1.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89952.conditions.1.dependentEntityTypeID",
+    "0.entity_types.6.entities.89952.conditions.1.comparate1",
+    "0.entity_types.6.entities.89952.conditions.1.logicTypeID",
+    "0.entity_types.6.entities.89952.conditions.1.recordID",
+    "0.entity_types.6.entities.89952.conditions.1.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89952.conditions.1.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89952.conditions.1.hasActivity",
+    "0.entity_types.6.entities.89952.conditions.1.recordStepStatus",
+    "0.entity_types.6.entities.89952.conditions.1.recordStepVisibility",
+    "0.entity_types.6.entities.89952.conditions.1.isSatisfied",
+    "0.entity_types.6.entities.89952.is_satisfied",
+    "0.entity_types.6.entities.89952.logical_operator",
+    "0.entity_types.6.entities.89952.record_step_status",
+    "0.entity_types.6.entities.89952.has_step_activity",
+    "0.entity_types.6.entities.89953.conditions.0.type",
+    "0.entity_types.6.entities.89953.conditions.0.id",
+    "0.entity_types.6.entities.89953.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89953.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89953.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89953.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89953.conditions.0.comparate1",
+    "0.entity_types.6.entities.89953.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89953.conditions.0.recordID",
+    "0.entity_types.6.entities.89953.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89953.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89953.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89953.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89953.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89953.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89953.is_satisfied",
+    "0.entity_types.6.entities.89953.logical_operator",
+    "0.entity_types.6.entities.89953.record_step_status",
+    "0.entity_types.6.entities.89953.has_step_activity",
+    "0.entity_types.6.entities.89954.conditions.0.type",
+    "0.entity_types.6.entities.89954.conditions.0.id",
+    "0.entity_types.6.entities.89954.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89954.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89954.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89954.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89954.conditions.0.comparate1",
+    "0.entity_types.6.entities.89954.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89954.conditions.0.recordID",
+    "0.entity_types.6.entities.89954.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89954.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89954.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89954.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89954.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89954.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89954.is_satisfied",
+    "0.entity_types.6.entities.89954.logical_operator",
+    "0.entity_types.6.entities.89954.record_step_status",
+    "0.entity_types.6.entities.89954.has_step_activity",
+    "0.entity_types.6.entities.89955.conditions.0.type",
+    "0.entity_types.6.entities.89955.conditions.0.id",
+    "0.entity_types.6.entities.89955.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89955.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89955.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89955.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89955.conditions.0.comparate1",
+    "0.entity_types.6.entities.89955.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89955.conditions.0.recordID",
+    "0.entity_types.6.entities.89955.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89955.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89955.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89955.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89955.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89955.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89955.is_satisfied",
+    "0.entity_types.6.entities.89955.logical_operator",
+    "0.entity_types.6.entities.89955.record_step_status",
+    "0.entity_types.6.entities.89955.has_step_activity",
+    "0.entity_types.6.entities.89956.conditions.0.type",
+    "0.entity_types.6.entities.89956.conditions.0.id",
+    "0.entity_types.6.entities.89956.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89956.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89956.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89956.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89956.conditions.0.comparate1",
+    "0.entity_types.6.entities.89956.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89956.conditions.0.recordID",
+    "0.entity_types.6.entities.89956.conditions.0.dependentEntityValue",
+    "0.entity_types.6.entities.89956.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89956.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89956.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89956.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89956.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89956.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89956.conditions.1.type",
+    "0.entity_types.6.entities.89956.conditions.1.id",
+    "0.entity_types.6.entities.89956.conditions.1.entityPrimaryKey",
+    "0.entity_types.6.entities.89956.conditions.1.entityTypeID",
+    "0.entity_types.6.entities.89956.conditions.1.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89956.conditions.1.dependentEntityTypeID",
+    "0.entity_types.6.entities.89956.conditions.1.comparate1",
+    "0.entity_types.6.entities.89956.conditions.1.logicTypeID",
+    "0.entity_types.6.entities.89956.conditions.1.recordID",
+    "0.entity_types.6.entities.89956.conditions.1.dependentEntityValue",
+    "0.entity_types.6.entities.89956.conditions.1.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89956.conditions.1.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89956.conditions.1.hasActivity",
+    "0.entity_types.6.entities.89956.conditions.1.recordStepStatus",
+    "0.entity_types.6.entities.89956.conditions.1.recordStepVisibility",
+    "0.entity_types.6.entities.89956.conditions.1.isSatisfied",
+    "0.entity_types.6.entities.89956.conditions.2.type",
+    "0.entity_types.6.entities.89956.conditions.2.id",
+    "0.entity_types.6.entities.89956.conditions.2.entityPrimaryKey",
+    "0.entity_types.6.entities.89956.conditions.2.entityTypeID",
+    "0.entity_types.6.entities.89956.conditions.2.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89956.conditions.2.dependentEntityTypeID",
+    "0.entity_types.6.entities.89956.conditions.2.comparate1",
+    "0.entity_types.6.entities.89956.conditions.2.logicTypeID",
+    "0.entity_types.6.entities.89956.conditions.2.recordID",
+    "0.entity_types.6.entities.89956.conditions.2.dependentEntityValue",
+    "0.entity_types.6.entities.89956.conditions.2.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89956.conditions.2.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89956.conditions.2.hasActivity",
+    "0.entity_types.6.entities.89956.conditions.2.recordStepStatus",
+    "0.entity_types.6.entities.89956.conditions.2.recordStepVisibility",
+    "0.entity_types.6.entities.89956.conditions.2.isSatisfied",
+    "0.entity_types.6.entities.89956.is_satisfied",
+    "0.entity_types.6.entities.89956.logical_operator",
+    "0.entity_types.6.entities.89956.record_step_status",
+    "0.entity_types.6.entities.89956.has_step_activity",
+    "0.entity_types.6.entities.89957.conditions.0.type",
+    "0.entity_types.6.entities.89957.conditions.0.id",
+    "0.entity_types.6.entities.89957.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89957.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89957.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89957.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89957.conditions.0.comparate1",
+    "0.entity_types.6.entities.89957.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89957.conditions.0.recordID",
+    "0.entity_types.6.entities.89957.conditions.0.dependentEntityValue",
+    "0.entity_types.6.entities.89957.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89957.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89957.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89957.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89957.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89957.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89957.conditions.1.type",
+    "0.entity_types.6.entities.89957.conditions.1.id",
+    "0.entity_types.6.entities.89957.conditions.1.entityPrimaryKey",
+    "0.entity_types.6.entities.89957.conditions.1.entityTypeID",
+    "0.entity_types.6.entities.89957.conditions.1.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89957.conditions.1.dependentEntityTypeID",
+    "0.entity_types.6.entities.89957.conditions.1.comparate1",
+    "0.entity_types.6.entities.89957.conditions.1.logicTypeID",
+    "0.entity_types.6.entities.89957.conditions.1.recordID",
+    "0.entity_types.6.entities.89957.conditions.1.dependentEntityValue",
+    "0.entity_types.6.entities.89957.conditions.1.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89957.conditions.1.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89957.conditions.1.hasActivity",
+    "0.entity_types.6.entities.89957.conditions.1.recordStepStatus",
+    "0.entity_types.6.entities.89957.conditions.1.recordStepVisibility",
+    "0.entity_types.6.entities.89957.conditions.1.isSatisfied",
+    "0.entity_types.6.entities.89957.is_satisfied",
+    "0.entity_types.6.entities.89957.logical_operator",
+    "0.entity_types.6.entities.89957.record_step_status",
+    "0.entity_types.6.entities.89957.has_step_activity",
+    "0.entity_types.6.entities.89958.conditions.0.type",
+    "0.entity_types.6.entities.89958.conditions.0.id",
+    "0.entity_types.6.entities.89958.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89958.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89958.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89958.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89958.conditions.0.comparate1",
+    "0.entity_types.6.entities.89958.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89958.conditions.0.recordID",
+    "0.entity_types.6.entities.89958.conditions.0.dependentEntityValue",
+    "0.entity_types.6.entities.89958.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89958.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89958.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89958.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89958.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89958.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89958.is_satisfied",
+    "0.entity_types.6.entities.89958.logical_operator",
+    "0.entity_types.6.entities.89958.record_step_status",
+    "0.entity_types.6.entities.89958.has_step_activity",
+    "0.entity_types.6.entities.89959.conditions.0.type",
+    "0.entity_types.6.entities.89959.conditions.0.id",
+    "0.entity_types.6.entities.89959.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89959.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89959.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89959.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89959.conditions.0.comparate1",
+    "0.entity_types.6.entities.89959.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89959.conditions.0.recordID",
+    "0.entity_types.6.entities.89959.conditions.0.dependentEntityValue",
+    "0.entity_types.6.entities.89959.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89959.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89959.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89959.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89959.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89959.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89959.is_satisfied",
+    "0.entity_types.6.entities.89959.logical_operator",
+    "0.entity_types.6.entities.89959.record_step_status",
+    "0.entity_types.6.entities.89959.has_step_activity",
+    "0.entity_types.6.entities.89960.conditions.0.type",
+    "0.entity_types.6.entities.89960.conditions.0.id",
+    "0.entity_types.6.entities.89960.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89960.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89960.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89960.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89960.conditions.0.comparate1",
+    "0.entity_types.6.entities.89960.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89960.conditions.0.recordID",
+    "0.entity_types.6.entities.89960.conditions.0.dependentEntityValue",
+    "0.entity_types.6.entities.89960.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89960.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89960.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89960.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89960.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89960.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89960.is_satisfied",
+    "0.entity_types.6.entities.89960.logical_operator",
+    "0.entity_types.6.entities.89960.record_step_status",
+    "0.entity_types.6.entities.89960.has_step_activity",
+    "0.entity_types.6.entities.89961.conditions.0.type",
+    "0.entity_types.6.entities.89961.conditions.0.id",
+    "0.entity_types.6.entities.89961.conditions.0.entityPrimaryKey",
+    "0.entity_types.6.entities.89961.conditions.0.entityTypeID",
+    "0.entity_types.6.entities.89961.conditions.0.dependentEntityPrimaryKey",
+    "0.entity_types.6.entities.89961.conditions.0.dependentEntityTypeID",
+    "0.entity_types.6.entities.89961.conditions.0.comparate1",
+    "0.entity_types.6.entities.89961.conditions.0.logicTypeID",
+    "0.entity_types.6.entities.89961.conditions.0.recordID",
+    "0.entity_types.6.entities.89961.conditions.0.dependentEntityValue",
+    "0.entity_types.6.entities.89961.conditions.0.logicalOperatorTypeID",
+    "0.entity_types.6.entities.89961.conditions.0.dependentEntityFormSectionID",
+    "0.entity_types.6.entities.89961.conditions.0.hasActivity",
+    "0.entity_types.6.entities.89961.conditions.0.recordStepStatus",
+    "0.entity_types.6.entities.89961.conditions.0.recordStepVisibility",
+    "0.entity_types.6.entities.89961.conditions.0.isSatisfied",
+    "0.entity_types.6.entities.89961.is_satisfied",
+    "0.entity_types.6.entities.89961.logical_operator",
+    "0.entity_types.6.entities.89961.record_step_status",
+    "0.entity_types.6.entities.89961.has_step_activity",
+    "0.entity_types.6.entities.89962.conditions.0.type",
+    "0.entity_types.6.entities.89962.conditions.0.id"
+  ],
   "record_labels": [
     "Skip to main content",
     "City of Grandview Heights, OH",
     "Search",
     "Login",
     "Sign Up",
-    "Gas Piping Permit",
+    "Building Permit - Residential",
     "Applicant",
-    "Eric Maxwell",
+    "Derrick Layer Custom Homes & Remodeling",
     "Location",
     "View location details",
     "Created",
     "Status",
     "Active",
     "Expires",
+    "--",
     "Details",
     "Project Information",
-    "City of Grandview Heights",
-    "Who is performing the work? *",
+    "Who is applying for this permit? *",
     "Contractor",
-    "Building Permit Number *",
-    "toggle tooltip",
-    "Occupancy Type *",
-    "Commercial",
+    "Type of Work Proposed *",
+    "Detached Garage",
     "Estimated Project Cost *",
-    "Linear feet of pipe",
+    "Square Footage *",
     "toggle tooltip",
-    "Number of Total Fixtures *",
     "Project Description *",
-    "toggle tooltip",
-    "Part of a building project",
+    "new detatched three car garage",
     "Contractor Information",
     "Company Name *",
-    "Primary Contact Name *",
-    "Eric Maxwell",
-    "Company Address *",
-    "Contractor City *",
-    "Cincinatti",
-    "Contractor State *",
-    "OH",
-    "Contractor Zip *",
+    "Derrick Layer Custom Homes",
+    "Contractor Name *",
+    "Derrick Layer",
+    "Contractor Address *",
     "Contractor Email *",
-    "eric.maxwell@feldmech.com",
-    "Business Phone *",
-    "Property Owner Contact Information",
-    "Email Address",
-    "jim.buffer@ghschools.org",
-    "Telephone Number *",
+    "derrick.layer@sbcglobal.net",
+    "Contractor Phone *",
+    "Owner Information",
+    "Owner Email *",
     "Affidavit",
+    "Derrick Layer",
     "Documents",
-    "Gas Piping Permit",
+    "No documents have been issued...",
     "City of Grandview Heights, OH",
     "Your Profile",
     "Sign Up",
@@ -74,9 +466,446 @@
       "filled": false
     }
   ],
-  "record_shapes": null,
-  "record_apis": [],
+  "record_shapes": {
+    "conditions_maps": [
+      "map_builder",
+      "retriever",
+      "validator",
+      "entity_types",
+      "log_context"
+    ]
+  },
+  "record_apis": [
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/records/{id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/conditions_maps?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_sections?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_field_entries?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_fields?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/multi_entry_items?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/multi_entry_item_entries?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/record_attachments?page=public&recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/locations?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/docs?recordID={id}"
+  ],
   "permits": [
+    {
+      "number": "R-26-107",
+      "type": "Building Permit - Residential",
+      "entity_id": "29832",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29832",
+      "address": "1364 WESTWOOD AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "ZON-26-127",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29831",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29831",
+      "address": "1364 WESTWOOD AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "C-26-58",
+      "type": "Building Permit - Commercial",
+      "entity_id": "29827",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29827",
+      "address": "2200-2300 W FIFTH AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "P-26-99",
+      "type": "Plumbing Permit",
+      "entity_id": "29826",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29826",
+      "address": "1410 ARLINGTON AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "E-26-115",
+      "type": "Electrical Permit",
+      "entity_id": "29822",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29822",
+      "address": "1301 MURRELL AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "R-26-106",
+      "type": "Building Permit - Residential",
+      "entity_id": "29813",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29813",
+      "address": "1283 BROADVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "ZON-26-126",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29812",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29812",
+      "address": "1283 BROADVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "SIGN-26-37",
+      "type": "Sign Permit",
+      "entity_id": "29811",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29811",
+      "address": "775 YARD ST",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "SIGN-26-36",
+      "type": "Sign Permit",
+      "entity_id": "29810",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29810",
+      "address": "775 YARD ST",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "H-26-133",
+      "type": "HVAC Permit",
+      "entity_id": "29809",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29809",
+      "address": "1342 W FIRST AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "H-26-132",
+      "type": "HVAC Permit",
+      "entity_id": "29805",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29805",
+      "address": "1348 ASHLAND AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "ZON-26-125",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29802",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29802",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "ZON-26-124",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29801",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29801",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "ND Enterprises LLC"
+      ],
+      "cv": 3
+    },
+    {
+      "number": "E-26-114",
+      "type": "Electrical Permit",
+      "entity_id": "29795",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29795",
+      "address": "1129 GRANDVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "Diles Electrical Service LLC"
+      ],
+      "cv": 3
+    },
+    {
+      "number": "R-26-104",
+      "type": "Building Permit - Residential",
+      "entity_id": "29794",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29794",
+      "address": "1557 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "R-26-105",
+      "type": "Building Permit - Residential",
+      "entity_id": "29793",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29793",
+      "address": "1753 W FIRST AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "C-26-57",
+      "type": "Building Permit - Commercial",
+      "entity_id": "29791",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29791",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "C-26-56",
+      "type": "Building Permit - Commercial",
+      "entity_id": "29790",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29790",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "ZON-26-123",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29789",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29789",
+      "address": "1499 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "R-26-103",
+      "type": "Building Permit - Residential",
+      "entity_id": "29787",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29787",
+      "address": "1046 GRANDVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "J S Brown & Company"
+      ],
+      "cv": 3
+    },
+    {
+      "number": "P-26-98",
+      "type": "Plumbing Permit",
+      "entity_id": "29786",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29786",
+      "address": "1889 W FIRST AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "C-26-55",
+      "type": "Building Permit - Commercial",
+      "entity_id": "29784",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29784",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "Foxfield Construction Ltd"
+      ],
+      "cv": 3
+    },
+    {
+      "number": "H-26-131",
+      "type": "HVAC Permit",
+      "entity_id": "29783",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29783",
+      "address": "1202 ASHLAND AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "ROOF-26-76",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29777",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29777",
+      "address": "1433 INGLIS AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "WIND-26-26",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29770",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29770",
+      "address": "1530 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
+      "cv": 3
+    },
+    {
+      "number": "ROOF-26-75",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29767",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29767",
+      "address": "815 GLADDEN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "BC Construction Services LLC"
+      ],
+      "cv": 3
+    },
+    {
+      "number": "P-26-97",
+      "type": "Plumbing Permit",
+      "entity_id": "29764",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29764",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "R-26-102",
+      "type": "Building Permit - Residential",
+      "entity_id": "29760",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29760",
+      "address": "1224 EASTVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
+    {
+      "number": "H-26-134",
+      "type": "HVAC Permit",
+      "entity_id": "29742",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29742",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 3
+    },
     {
       "number": "WIND-26-25",
       "type": "Window/Door Replacement Permit",
@@ -996,36 +1825,42 @@
       "type": "Fence Permit",
       "entity_id": "27828",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27828",
-      "address": null,
+      "address": "1065 OXLEY RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "SWR-26-6",
       "type": "Sewer Lateral Replacement/Repair",
       "entity_id": "27824",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27824",
-      "address": null,
+      "address": "1227 W FIRST AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-14",
       "type": "Fence Permit",
       "entity_id": "27822",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27822",
-      "address": null,
+      "address": "1587 W Third Avenue",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-11",
@@ -1037,7 +1872,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-10",
@@ -1049,7 +1886,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-9",
@@ -1061,19 +1900,23 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "FENC-26-8",
       "type": "Fence Permit",
       "entity_id": "27655",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27655",
-      "address": null,
+      "address": "1226 LINCOLN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "SWR-26-4",
@@ -1085,7 +1928,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "SWR-26-5",
@@ -2443,7 +3288,7 @@
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIDE-26-5",
@@ -2456,10 +3301,8 @@
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [
-        "McCarty Customized Improvements Ltd."
-      ],
-      "cv": 2
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "GAS-26-7",
@@ -2473,7 +3316,7 @@
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "WIND-26-2",
@@ -2486,10 +3329,8 @@
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [
-        "APCO Industries Inc"
-      ],
-      "cv": 2
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "SIDE-26-4",
@@ -2503,7 +3344,7 @@
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIDE-26-3",
@@ -3861,7 +4702,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-13",
@@ -3874,10 +4715,8 @@
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
-      "contractors": [
-        "Snyders Unlimited Contracting LLC"
-      ],
-      "cv": 2
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "ROOF-26-12",
@@ -3891,7 +4730,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-11",
@@ -3905,7 +4744,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-10",
@@ -3918,10 +4757,8 @@
       "lon": null,
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
-      "contractors": [
-        "Sublime Roofing LLC"
-      ],
-      "cv": 2
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "ROOF-26-9",
@@ -3935,7 +4772,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-8",
@@ -3949,7 +4786,7 @@
       "first_seen": "2026-10-14T01:48:12+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-7",
@@ -3963,7 +4800,7 @@
       "first_seen": "2026-10-14T01:48:12+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-6",
@@ -3976,10 +4813,8 @@
       "lon": null,
       "first_seen": "2026-10-14T01:48:12+00:00",
       "details": true,
-      "contractors": [
-        "Allied Roofing Inc."
-      ],
-      "cv": 2
+      "contractors": [],
+      "cv": 3
     },
     {
       "number": "ROOF-26-5",
@@ -3993,7 +4828,7 @@
       "first_seen": "2026-10-14T01:48:12+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ROOF-26-4",
@@ -9611,7 +10446,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIGN-26-5",
@@ -9625,7 +10460,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIGN-26-4",
@@ -9639,7 +10474,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-32",
@@ -9653,7 +10488,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-31",
@@ -9667,7 +10502,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-29",
@@ -9681,7 +10516,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-29",
@@ -9695,7 +10530,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-28",
@@ -9709,7 +10544,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "DEMO-26-1",
@@ -9723,7 +10558,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-27",
@@ -9737,7 +10572,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-30",
@@ -9751,7 +10586,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-25",
@@ -9765,7 +10600,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-26",
@@ -9779,7 +10614,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-28",
@@ -9793,7 +10628,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-35",
@@ -9807,7 +10642,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-29",
@@ -9821,7 +10656,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-34",
@@ -9835,7 +10670,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIGN-26-12",
@@ -9849,7 +10684,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIGN-26-11",
@@ -9863,7 +10698,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIGN-26-10",
@@ -9877,7 +10712,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "SIGN-26-9",
@@ -9891,7 +10726,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-28",
@@ -9905,7 +10740,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-24",
@@ -9919,7 +10754,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-27",
@@ -9933,7 +10768,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-23",
@@ -9947,7 +10782,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-22",
@@ -9961,7 +10796,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-27",
@@ -9975,7 +10810,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-21",
@@ -9989,7 +10824,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-26",
@@ -10003,7 +10838,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-26",
@@ -10017,7 +10852,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-33",
@@ -10031,7 +10866,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-20",
@@ -10045,7 +10880,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-25",
@@ -10059,7 +10894,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-30",
@@ -10073,7 +10908,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-24",
@@ -10087,7 +10922,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-19",
@@ -10101,7 +10936,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-25",
@@ -10115,7 +10950,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "E-26-23",
@@ -10129,7 +10964,7 @@
       "first_seen": "2026-09-26T02:51:34+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-24",
@@ -10143,7 +10978,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-18",
@@ -10157,7 +10992,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-23",
@@ -10171,7 +11006,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-22",
@@ -10185,7 +11020,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-31",
@@ -10199,7 +11034,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-17",
@@ -10213,7 +11048,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-15",
@@ -10227,7 +11062,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-21",
@@ -10241,7 +11076,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-16",
@@ -10255,7 +11090,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "P-26-20",
@@ -10269,7 +11104,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "ZON-26-14",
@@ -10283,7 +11118,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 2
+      "cv": 3
     },
     {
       "number": "H-26-30",
