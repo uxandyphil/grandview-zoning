@@ -1,6 +1,51 @@
 {
  "documents": [
   {
+   "inst": "202610280130519",
+   "type": "Mortgage",
+   "date": "2026-10-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "WESBANCO BANK INC"
+   ],
+   "parcels": [
+    "030-003282-00"
+   ],
+   "legal": "Lt/Un 38 GRANDVIEW YARD PHASE 6 Pcl# 030-003282-00 Plt PB 124 PG 56"
+  },
+  {
+   "inst": "202610280130489",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [
+    "030-001600-00"
+   ],
+   "legal": "Lt/Un 55 NORTHWEST BOULEVARD PLAT NO 3 Pcl# 030-001600-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202610280130286",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-28",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "MORTGAGE ELECTRONIC REGISTRATION SYSTEMS INC"
+   ],
+   "parcels": [
+    "030-001574-00"
+   ],
+   "legal": "Lt/Un 13 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-00157400 Plt PB 13 PG 13"
+  },
+  {
    "inst": "202610270129871",
    "type": "Mortgage",
    "date": "2026-10-27",
@@ -4438,5 +4483,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-27T16:09:39+00:00"
+ "updated": "2026-10-28T16:56:56+00:00"
 }
