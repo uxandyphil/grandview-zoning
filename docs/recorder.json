@@ -1,6 +1,120 @@
 {
  "documents": [
   {
+   "inst": "202610300131463",
+   "type": "Deed",
+   "date": "2026-10-30",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 8~9 RIDGEWAY SUBD Pcl# 030-002238 Plt PB 10 PG 322-323 PT 8-9"
+  },
+  {
+   "inst": "202610300131454",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-30",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "MORTGAGE ELECTRONIC REGISTRATION SYSTEMS INC"
+   ],
+   "parcels": [],
+   "legal": "Un 1010 NORTHWEST GRANDVIEW CONDO Pcl# 030-002873 Plt CB 171 PG 44-50"
+  },
+  {
+   "inst": "202610290131378",
+   "type": "Mortgage",
+   "date": "2026-10-29",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "ROCKET MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-002081-00"
+   ],
+   "legal": "Lt/Un 33 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 030-002081-00 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202610290131377",
+   "type": "Deed",
+   "date": "2026-10-29",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002081-00"
+   ],
+   "legal": "Lt/Un 33 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 030-002081-00 Plt PB 14 PG 30"
+  },
+  {
+   "inst": "202610290131376",
+   "type": "Trust",
+   "date": "2026-10-29",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 2 RULE SUBD Pcl# 030-002384 Plt PB 21 PG 23"
+  },
+  {
+   "inst": "202610290131153",
+   "type": "Release Of Mortgage",
+   "date": "2026-10-29",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION SAVINGS BANK"
+   ],
+   "parcels": [
+    "030-002398-00"
+   ],
+   "legal": "Lt/Un 6 AMICON SUBD AMEND Pcl# 030-002398-00 Plt PB 25 PG 32"
+  },
+  {
+   "inst": "202610290131149",
+   "type": "Mortgage",
+   "date": "2026-10-29",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [
+    "030-002937-00"
+   ],
+   "legal": "Un 10-1383-B JAMESTOWN OF GRANDVIEW CONDO Pcl# 030-002937-00 Plt CB 192 PG 49-54"
+  },
+  {
+   "inst": "202610290131148",
+   "type": "Deed",
+   "date": "2026-10-29",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002937-00"
+   ],
+   "legal": "Un 10-1383-B JAMESTOWN OF GRANDVIEW CONDO Pcl# 030-002937-00 Plt CB 192 PG 49-54"
+  },
+  {
    "inst": "202610280130519",
    "type": "Mortgage",
    "date": "2026-10-28",
@@ -4483,5 +4597,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-10-28T16:56:56+00:00"
+ "updated": "2026-10-30T16:55:55+00:00"
 }
