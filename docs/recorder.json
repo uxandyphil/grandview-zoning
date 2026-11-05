@@ -1,6 +1,51 @@
 {
  "documents": [
   {
+   "inst": "202611050133801",
+   "type": "Rr Mortgage",
+   "date": "2026-11-05",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK MA"
+   ],
+   "parcels": [
+    "030-002224-00"
+   ],
+   "legal": "Lt/Un 117 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-002224-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202611040133188",
+   "type": "Mod Of Mortgage",
+   "date": "2026-11-04",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HUNTINGTON NATIONAL BANK"
+   ],
+   "parcels": [
+    "030-000743-00"
+   ],
+   "legal": "Lt/Un 32~33 NORTHWEST BOULEVARD ADDN Pcl# 030-000743-00 Plt PB 14 PG 6 PT 32-33"
+  },
+  {
+   "inst": "202611040133157",
+   "type": "Mortgage",
+   "date": "2026-11-04",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIFTH THIRD BANK NA CENTRAL OHIO"
+   ],
+   "parcels": [
+    "030-003436-00"
+   ],
+   "legal": "Lt/Un 29 GRANDVIEW YARD PHASE 7 Pcl# 030-003436-00 Plt PB 131 PG 14"
+  },
+  {
    "inst": "202611020132310",
    "type": "Deed",
    "date": "2026-11-02",
@@ -4612,5 +4657,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-03T18:12:41+00:00"
+ "updated": "2026-11-05T18:28:08+00:00"
 }
