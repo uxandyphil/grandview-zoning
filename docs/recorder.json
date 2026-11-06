@@ -1,6 +1,66 @@
 {
  "documents": [
   {
+   "inst": "202611060134338",
+   "type": "Mortgage",
+   "date": "2026-11-06",
+   "from": [
+    "1067 BROADVIEW LLC"
+   ],
+   "to": [
+    "CORN CITY STATE BANK"
+   ],
+   "parcels": [
+    "030-000632-00"
+   ],
+   "legal": "Lt/Un 1 INGLIS SUBD Pcl# 030-000632-00 Plt PB 16 PG 32 PT 1"
+  },
+  {
+   "inst": "202611060134295",
+   "type": "Mortgage",
+   "date": "2026-11-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIFTH THIRD BANK NA CENTRAL OHIO"
+   ],
+   "parcels": [
+    "030-000314-00"
+   ],
+   "legal": "Lt/Un 261~263 JOHN R TILTONS GLADDINGTON HEIGHTS SUBD Pcl# 030-000314-00 Plt PB 4 PG 334"
+  },
+  {
+   "inst": "202611060134177",
+   "type": "Deed",
+   "date": "2026-11-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001780-00"
+   ],
+   "legal": "Lt/Un 263 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001780-00 Plt PB 13 PG 13"
+  },
+  {
+   "inst": "202611060134176",
+   "type": "Trust",
+   "date": "2026-11-06",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001780-00"
+   ],
+   "legal": "Lt/Un 263 NORTHWEST BOULEVARD ADDN PLAT NO 3 Pcl# 030-001780-00 Plt PB 13 PG 13"
+  },
+  {
    "inst": "202611050133801",
    "type": "Rr Mortgage",
    "date": "2026-11-05",
@@ -4657,5 +4717,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-05T18:28:08+00:00"
+ "updated": "2026-11-06T17:47:53+00:00"
 }
