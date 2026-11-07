@@ -1,6 +1,72 @@
 {
   "cases": [
     {
+      "address": "1474 Mulford Rd",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13786/BZA-Packet-2026-11-12",
+      "applicant": "Brenda Parker",
+      "board": "Board of Zoning Appeals",
+      "case_no": "23-2026",
+      "description": "Applicant: Brenda Parker Owner: James W and Lindsey J Boyd Zoning District: RS-2 (Residential Single) a - The applicant is requesting a variance from Grandview Heights Zoning Code Section 1153.02(a) to increase the area of an accessory structure from a maximum of 576 square feet to 747 square feet",
+      "district": "RS-2 (Residential Single)",
+      "documents": [],
+      "first_seen": "2026-11-07T16:43:24+00:00",
+      "id": "2026-11-12|1474 mulford rd",
+      "lat": 39.980055445719,
+      "lon": -83.044155704891,
+      "meeting_date": "2026-11-12",
+      "order": 2,
+      "owner": "James W and Lindsey J Boyd",
+      "parcel": "030-000136-00",
+      "requests": [
+        "The applicant is requesting a variance from Grandview Heights Zoning Code Section 1153.02(a) to increase the area of an accessory structure from a maximum of 576 square feet to 747 square feet"
+      ],
+      "section": "New business"
+    },
+    {
+      "address": "1101 W Second Ave",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13786/BZA-Packet-2026-11-12",
+      "applicant": "Thomas Weickert",
+      "board": "Board of Zoning Appeals",
+      "case_no": "22-2026",
+      "description": "Applicant: Thomas Weickert Owner: Thomas Weickert Zoning District: RS-2 (Residential Single) a - The applicant is requesting a variance from Grandview Heights Zoning Code Section 1155.15(f) to permit a fence of 6\u2019 in height to extend 31 feet forward of the rear of the main building",
+      "district": "RS-2 (Residential Single)",
+      "documents": [],
+      "first_seen": "2026-11-07T16:43:24+00:00",
+      "id": "2026-11-12|1101 w 2nd ave",
+      "lat": 39.983193869594,
+      "lon": -83.034316211102,
+      "meeting_date": "2026-11-12",
+      "order": 1,
+      "owner": "Thomas Weickert",
+      "parcel": "030-002089-00",
+      "requests": [
+        "The applicant is requesting a variance from Grandview Heights Zoning Code Section 1155.15(f) to permit a fence of 6\u2019 in height to extend 31 feet forward of the rear of the main building"
+      ],
+      "section": "New business"
+    },
+    {
+      "address": "1060 Glendale Ave",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13786/BZA-Packet-2026-11-12",
+      "applicant": "Jennifer Tatum",
+      "board": "Board of Zoning Appeals",
+      "case_no": "24-2026",
+      "description": "Applicant: Jennifer Tatum Owner: COGS ULTD LLC Zoning District: RS-2 (Residential Single) a - The Applicant is requesting review and approval under Grandview Heights Planning and Zoning Code Section 1155.07 Aesthetic Review for an addition to the primary structure",
+      "district": "RS-2 (Residential Single)",
+      "documents": [],
+      "first_seen": "2026-11-07T16:43:24+00:00",
+      "id": "2026-11-12|1060 glendale ave",
+      "lat": 39.979373491373,
+      "lon": -83.043607845904,
+      "meeting_date": "2026-11-12",
+      "order": 3,
+      "owner": "COGS ULTD LLC",
+      "parcel": "030-000363-00",
+      "requests": [
+        "The Applicant is requesting review and approval under Grandview Heights Planning and Zoning Code Section 1155.07 Aesthetic Review for an addition to the primary structure"
+      ],
+      "section": "New business"
+    },
+    {
       "address": "1587 W Third Avenue",
       "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13749/PC-Packet-2026-10-21",
       "applicant": "Perkins & Will (on behalf of Grandview Heights Schools)",
@@ -3555,5 +3621,5 @@
       "section": "New business"
     }
   ],
-  "updated": "2026-11-06T17:47:53+00:00"
+  "updated": "2026-11-07T16:43:24+00:00"
 }
