@@ -1,6 +1,139 @@
 {
  "documents": [
   {
+   "inst": "202611090135071",
+   "type": "Mortgage",
+   "date": "2026-11-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "TELHIO CREDIT UNION INC"
+   ],
+   "parcels": [
+    "030-002639-00"
+   ],
+   "legal": "Un 518 SUMMIT CHASE CONDO Pcl# 030-002639-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202611090135069",
+   "type": "Deed",
+   "date": "2026-11-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002639-00"
+   ],
+   "legal": "Un 518 SUMMIT CHASE CONDO Pcl# 030-002639-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202611090135068",
+   "type": "Trust",
+   "date": "2026-11-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002639-00"
+   ],
+   "legal": "Un 518 SUMMIT CHASE CONDO Pcl# 030-002639-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202611090135045",
+   "type": "Release",
+   "date": "2026-11-09",
+   "from": [
+    "GRANDVIEW HEIGHTS CITY OF"
+   ],
+   "to": [
+    "1275 OLENTANGY LLC"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 8 WILLIAM NEILS HEIRS SUBD Acreage 1.118 Plt PB 3 PG 168 PT 8"
+  },
+  {
+   "inst": "202611090135006",
+   "type": "Easement",
+   "date": "2026-11-09",
+   "from": [
+    "BOARD OF EDUCATION GRANDVIEW HEIGHTS VILLAGE SCHOOL DISTRICT"
+   ],
+   "to": [
+    "COLUMBUS CITY OF"
+   ],
+   "parcels": [
+    "035-002858-00"
+   ],
+   "legal": "Lt/Un 203 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 035-002858-00 Plt PB 17 PG 149 PT 203"
+  },
+  {
+   "inst": "202611090134969",
+   "type": "Deed",
+   "date": "2026-11-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "1031 REVERSE EXCHANGE STRATEGIES THREE LLC"
+   ],
+   "parcels": [
+    "030-001302-00"
+   ],
+   "legal": "Lt/Un 596~597 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001302-00 Plt PB 14 PG 6 PT 596"
+  },
+  {
+   "inst": "202611090134893",
+   "type": "Deed",
+   "date": "2026-11-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002646-00"
+   ],
+   "legal": "Un 605 SUMMIT CHASE CONDO Pcl# 030-002646-00 Plt CB 3 PG 895-1020"
+  },
+  {
+   "inst": "202611090134630",
+   "type": "Mortgage",
+   "date": "2026-11-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNITED WHOLESALE MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-001923-00"
+   ],
+   "legal": "Lt/Un 348 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-001923-00 Plt PB 4 PG 412"
+  },
+  {
+   "inst": "202611090134629",
+   "type": "Deed",
+   "date": "2026-11-09",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001923-00"
+   ],
+   "legal": "Lt/Un 348 FS WAGENHALS ET AL AMENDED SUBD Pcl# 030-001923-00 Plt PB 4 PG 412 PT 348"
+  },
+  {
    "inst": "202611060134581",
    "type": "Deed",
    "date": "2026-11-06",
@@ -4730,5 +4863,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-08T16:54:03+00:00"
+ "updated": "2026-11-09T21:15:56+00:00"
 }
