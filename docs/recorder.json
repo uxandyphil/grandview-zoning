@@ -1,6 +1,19 @@
 {
  "documents": [
   {
+   "inst": "202611100135358",
+   "type": "Affidavit",
+   "date": "2026-11-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "VALERIE S MCCCAW TRUST TOD"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 380 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001090 Plt PB 14 PG 6"
+  },
+  {
    "inst": "202611090135071",
    "type": "Mortgage",
    "date": "2026-11-09",
@@ -4863,5 +4876,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-09T21:15:56+00:00"
+ "updated": "2026-11-10T18:25:25+00:00"
 }
