@@ -84,7 +84,7 @@
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
   // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
   let recordFields = null, recordForm = null;
-  const CONTRACTOR_VERSION = 5;   // permits read by an older version are read again
+  const CONTRACTOR_VERSION = 6;   // permits read by an older version are read again
   let recordShapes = null;        // field names (never values) of each data list, to check the form matching
   let recordStatus = null;        // what each data list answered on the first permit (200 = OK)
 
@@ -532,9 +532,12 @@
     if (recordApis === null) await learnRecordApis(p);
     if (recordApis.length) {
       const d = await fromApis(p);
-      if (d && (d.address || d.contractors.length || p.address)) return d;
+      // the data lists count only when they return the permit's form; otherwise read the page, which shows it
+      if (d && d.parsed) return d;
+      recordApis = [];
+      log("The data lists didn't return the permit's form; reading each permit's page instead");
     }
-    // last resort: read the page itself, a limited number per run so the tab stays healthy
+    // read the page itself, a limited number per batch so the tab stays healthy
     if (framesThisRun >= FRAME_LIMIT) return null;
     framesThisRun++;
     return fromFrame(p);
