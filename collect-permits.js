@@ -531,7 +531,7 @@
     }, 5);
     for (let i = 0; i < 40; i++) {
       await sleep(500);
-      let text = ""; try { text = frame.contentDocument.body.innerText || ""; } catch (e) { break; }
+      let text = ""; try { text = frame.contentDocument.body.innerText || ""; } catch (e) { continue; }   // still loading
       if (text.includes(p.number.split("-").pop()) && addrRe.test(text)) { await sleep(2500); break; }
     }
     clearInterval(hook);
@@ -672,17 +672,29 @@
     if (drop || framePages % FRAME_RECYCLE === 0) { frameEl.src = "about:blank"; frameEl.remove(); frameEl = null; }
     else frameEl.src = "about:blank";
   }
+  // What a record page that never showed its permit looked like. Only a description: no page text is kept, since a
+  // page can hold people's names.
+  function pageTrouble(frame, text) {
+    try { void frame.contentWindow.location.href; } catch (e) { return "the portal sent the page to another site"; }
+    if (!text.trim()) return "the page stayed blank";
+    if (/denied|blocked|forbidden|captcha|robot|unusual|too many|rate limit|verify you/i.test(text)) return "the portal showed an access check";
+    if (/sign in|log in|login/i.test(text)) return "the portal asked to sign in";
+    if (/went wrong|error|not found|unavailable/i.test(text)) return "the portal showed an error";
+    return "the page didn't show the permit";
+  }
   async function fromFrame(p) {
     // Load the record page in the hidden frame and read it
     const frame = recordFrame();
     frame.src = `/records/${p.entity_id}`;
     let text = "", fields = [];
-    for (let i = 0; i < 30; i++) {
+    // up to 20 seconds for the permit to show; a page that can't be read yet (still loading, no body) is checked again
+    for (let i = 0; i < 40; i++) {
       await sleep(500);
-      try { text = frame.contentDocument.body.innerText || ""; } catch (e) { break; }
+      try { text = frame.contentDocument.body.innerText || ""; } catch (e) { text = ""; continue; }
       if (addrRe.test(text) && text.includes(p.number.split("-").pop())) break;
     }
     try { await sleep(800); fields = formFields(frame.contentDocument); } catch (e) { fields = []; }
+    const trouble = pageTrouble(frame, text);   // used only if the page turns out not to show the permit
     releaseFrame();
     const label = /(Location|Address|Property)\s*:?\s*\n?/i.exec(text);
     const region = label ? text.slice(label.index + label[0].length, label.index + label[0].length + 300) : text;
@@ -701,7 +713,7 @@
     const parsed = textFields.length > 0;
     // no questions, no address and no permit number: the page never showed the permit (refused, or still loading)
     const showsNumber = text.toUpperCase().replace(/-0+(?=\d)/g, "-").includes(String(p.number).toUpperCase());
-    if (!parsed && !m && !showsNumber) return { failed: true };
+    if (!parsed && !m && !showsNumber) return { failed: true, why: trouble };
     const fromFields = contractorsFromFields(parsed ? textFields : fields);
     return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null, parsed,
       contractors: parsed || fromFields.length ? fromFields : contractorsFromText(text) };
@@ -722,8 +734,8 @@
       // A page that didn't load isn't counted as read, so it's tried again next time. Three in a row means the portal
       // has stopped showing pages, so the run stops instead of asking for more.
       if (d.failed) {
-        log(`${p.number}: the page didn't load`);
-        if (++failedInARow >= 3) { pagesStopped = "permit pages stopped loading"; break; }
+        log(`${p.number}: the page didn't load (${d.why})`);
+        if (++failedInARow >= 3) { pagesStopped = `permit pages stopped loading: ${d.why}`; break; }
         continue;
       }
       failedInARow = 0; read++;
