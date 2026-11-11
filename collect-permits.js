@@ -79,7 +79,7 @@
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
   // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
   let recordFields = null, recordLabels = null, recordForm = null;
-  const CONTRACTOR_VERSION = 3;   // permits read by an older version are read again
+  const CONTRACTOR_VERSION = 4;   // permits read by an older version are read again
   let recordShapes = null;        // field names (never values) of each data list, to check the form matching
   let recordStatus = null;        // what each data list answered on the first permit (200 = OK)
 
@@ -377,18 +377,21 @@
     frame.src = `/records/${p.entity_id}`;
     // Copy the request headers the record page itself sends to the data service (its current access pass): as soon
     // as the page's window exists, before its code runs, wrap its request functions to note them.
-    const captured = {};
+    const captured = {}, seenUrls = new Set();
     const API_RE = /viewpointcloud|\/v2\//i;
     const hook = setInterval(() => {
       try {
         const w = frame.contentWindow;
         if (!w || w.__gvzHooked || !/\/records\//.test(w.location.href)) return;
         w.__gvzHooked = true;
+        // the browser's list of loaded resources holds 250 by default; the portal can load more than that
+        try { w.performance.setResourceTimingBufferSize(3000); } catch (e) {}
         const X = w.XMLHttpRequest.prototype, open = X.open, setH = X.setRequestHeader, f = w.fetch;
-        X.open = function (m, u) { this.__gvzU = String(u); return open.apply(this, arguments); };
+        X.open = function (m, u) { this.__gvzU = String(u); if (API_RE.test(this.__gvzU)) seenUrls.add(new URL(this.__gvzU, w.location.href).href); return open.apply(this, arguments); };
         X.setRequestHeader = function (k, v) { if (API_RE.test(this.__gvzU || "") && !FORBIDDEN.test(k)) captured[k.toLowerCase()] = v; return setH.apply(this, arguments); };
         w.fetch = function (input, init) {
           const u = String((input && input.url) || input);
+          if (API_RE.test(u)) { try { seenUrls.add(new URL(u, w.location.href).href); } catch (e) {} }
           if (API_RE.test(u)) new w.Headers((init && init.headers) || (input && input.headers) || {}).forEach((v, k) => { if (!FORBIDDEN.test(k)) captured[k.toLowerCase()] = v; });
           return f.apply(w, arguments);   // must run as the page's own fetch
         };
@@ -405,8 +408,8 @@
       localStorage.setItem(STORE + "-headers", JSON.stringify(headers));
       log(`Using the portal's current access headers (${Object.keys(captured).join(", ")})`);
     } else log("The record page sent no special headers");
-    let urls = [];
-    try { urls = frame.contentWindow.performance.getEntriesByType("resource").map((e) => e.name); } catch (e) {}
+    let urls = [...seenUrls];
+    try { urls = urls.concat(frame.contentWindow.performance.getEntriesByType("resource").map((e) => e.name)); } catch (e) {}
     releaseFrame(true);
     const id = String(p.entity_id);
     recordApis = [...new Set(urls.filter((u) => u.includes(id) && !/\.(js|css|png|jpe?g|svg|woff2?|ico)(\?|$)/i.test(u))
