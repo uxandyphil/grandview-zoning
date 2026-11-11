@@ -53,8 +53,9 @@ It remembers progress in your browser, so later runs only fetch new
 permits. It reads up to 200 permit records per run (80 when it has to open
 each permit's page); run it again for the rest. It looks for new permits at
 most every 12 hours, so later runs the same day only read permit pages. If the
-portal refuses its requests, it stops and keeps what it has; run it again
-later. If the tab ever crashes, reload the portal and paste the script again:
+portal refuses its searches, it skips looking for new permits for an hour and
+keeps reading permit pages; if the pages stop loading, it stops and keeps what
+it has, so run it again later. If the tab ever crashes, reload the portal and paste the script again:
 it picks up where it left off, and Download works at any point during a run.
 From each record it takes the address, the filing date, and the contractor
 businesses named on it (for the Contractors tab). People's names are never

@@ -37,8 +37,9 @@ Click **Run now**. A small portal window opens in the corner and works on its ow
 (each upload shows up within a couple of minutes). **Recent activity** in the popup lists each batch and upload; "Done"
 means the run finished.
 
-If the portal starts refusing requests, the run stops by itself and a notification says so. Nothing is lost: try
-**Run now** again later, for example the next day.
+If the portal refuses its searches, the run skips looking for new permits for an hour and keeps reading permit
+pages. It stops by itself only if the pages stop loading, and a notification says so. Nothing is lost: try **Run now**
+again later, for example the next day.
 
 If a notification asks for one search, type `R-26-82` in the small window's search box and press Enter. It continues
 by itself after that.
