@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11T14:43:18.575Z",
+  "updated": "2026-11-11T15:02:02.185Z",
   "record_fields": null,
   "record_labels": [
     "Skip to main content",
@@ -7,38 +7,52 @@
     "Search",
     "Login",
     "Sign Up",
-    "Building Permit - Residential",
+    "Plumbing Permit",
     "Applicant",
-    "Cheryl VanDeusen",
+    "Chris Cimperman",
     "Location",
     "View location details",
     "Created",
     "Status",
     "Active",
     "Expires",
+    "--",
     "Details",
     "Project Information",
-    "Who is applying for this permit? *",
-    "Owner",
-    "Type of Work Proposed *",
-    "Interior Alteration",
-    "Yes",
-    "Type of interior alteration *",
-    "basement",
-    "Are you doing the work your self? *",
-    "toggle tooltip",
-    "No",
+    "City of Grandview Heights",
+    "Who is performing the work? *",
+    "Contractor",
+    "Occupancy Type *",
+    "Residential",
     "Estimated Project Cost *",
-    "Square Footage *",
+    "Project Decsription *",
     "toggle tooltip",
-    "Project Description *",
-    "Owner Information",
-    "Owner Email *",
-    "Affidavit",
-    "Cheryl L. VanDeusen",
+    "Stand alone project",
+    "Contractor Information",
+    "Company Name *",
+    "CMC Plumbing & Drain",
+    "Primary Contact Name *",
+    "Chris Cimperman",
+    "Company Address *",
+    "Contractor City *",
+    "Wester",
+    "Contractor State *",
+    "OH",
+    "Contractor Zip *",
+    "Contractor Email *",
+    "Cmchsllc@gmail.com",
+    "Business Phone *",
+    "Property Owner Information",
+    "Email Address *",
+    "Phone Number *",
+    "Fixtures",
+    "Fixture Type\tNumber of Fixtures",
+    "Actions",
+    "Certification",
+    "Christopher Cimperman",
+    "Total Fixtures",
     "Documents",
-    "Residential Plan Approval",
-    "Residential Building Permit",
+    "No documents have been issued...",
     "City of Grandview Heights, OH",
     "Your Profile",
     "Sign Up",
@@ -66,6 +80,20 @@
   "record_apis": [],
   "permits": [
     {
+      "number": "P-26-102",
+      "type": "Plumbing Permit",
+      "entity_id": "29937",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29937",
+      "address": "1430 MULFORD RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
       "number": "R-26-113",
       "type": "Building Permit - Residential",
       "entity_id": "29935",
@@ -77,7 +105,21 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-137",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29931",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29931",
+      "address": "1113 WESTWOOD AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
     },
     {
       "number": "R-26-112",
@@ -91,7 +133,23 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-135",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29924",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29924",
+      "address": "1295 Grandview Avenue",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [
+        "Wagbros Company"
+      ],
+      "cv": 4
     },
     {
       "number": "E-26-123",
@@ -105,7 +163,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "R-26-111",
@@ -119,7 +177,23 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-134",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29895",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29895",
+      "address": "1257 Grandview Avenue",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [
+        "Wagbros Company"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-143",
@@ -133,7 +207,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-142",
@@ -147,7 +221,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "E-26-122",
@@ -163,7 +237,21 @@
       "contractors": [
         "J Davis Electric LLC"
       ],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-133",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29880",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29880",
+      "address": "1226 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
     },
     {
       "number": "H-26-141",
@@ -177,7 +265,77 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-131",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29875",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29875",
+      "address": "1050 YARD ST",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-130",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29874",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29874",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-136",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29873",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29873",
+      "address": "1151 OAKLAND AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-132",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29872",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29872",
+      "address": "1320 BROADVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "C-26-59",
+      "type": "Building Permit - Commercial",
+      "entity_id": "29871",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29871",
+      "address": "1050 YARD ST",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
     },
     {
       "number": "R-26-110",
@@ -191,7 +349,21 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "P-26-101",
+      "type": "Plumbing Permit",
+      "entity_id": "29869",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29869",
+      "address": "1488 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
     },
     {
       "number": "E-26-121",
@@ -205,7 +377,21 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "P-26-100",
+      "type": "Plumbing Permit",
+      "entity_id": "29867",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29867",
+      "address": "882 MCCLAIN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
     },
     {
       "number": "R-26-108",
@@ -219,7 +405,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-140",
@@ -233,7 +419,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "E-26-120",
@@ -247,7 +433,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "R-26-109",
@@ -261,7 +447,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "E-26-119",
@@ -275,7 +461,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-139",
@@ -289,7 +475,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-138",
@@ -303,7 +489,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-137",
@@ -317,7 +503,21 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-129",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29843",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29843",
+      "address": "1753 W FIRST AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
     },
     {
       "number": "H-26-135",
@@ -331,7 +531,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "E-26-117",
@@ -345,7 +545,23 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-128",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29835",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29835",
+      "address": "2200-2300 W FIFTH AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:49:07+00:00",
+      "details": true,
+      "contractors": [
+        "Ohio Power Company"
+      ],
+      "cv": 4
     },
     {
       "number": "E-26-116",
@@ -361,7 +577,7 @@
       "contractors": [
         "J Davis Electric LLC"
       ],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "E-26-118",
@@ -403,7 +619,7 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "ZON-26-127",
@@ -417,7 +633,7 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "C-26-58",
@@ -431,7 +647,7 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "P-26-99",
@@ -445,21 +661,21 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "E-26-115",
       "type": "Electrical Permit",
       "entity_id": "29822",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29822",
-      "address": "1301 MURRELL AVE",
+      "address": "1051 VIRGINIA AVE",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "R-26-106",
