@@ -1,13 +1,14 @@
 # Permit collector, as a Chrome extension
 
 The city's permit portal blocks cloud servers and program-controlled browsers, but it works in your everyday
-Chrome. This extension runs `collect-permits.js` there for you: once a week it opens the portal in a small
-background window, collects new permits and contractor names, publishes `docs/permits.json` to GitHub, and closes
-the window. No pasting, no downloading, no uploading.
+Chrome. This extension runs `collect-permits.js` there for you: when you click **Run now**, it opens the portal in a
+small background window, collects new permits and contractor names, publishes `docs/permits.json` to GitHub after
+every batch, and closes the window when it's done. No pasting, no downloading, no uploading.
 
-Chrome needs to be open at the scheduled time. If it isn't, the extension catches up a few minutes after Chrome
-next opens. The first run reads every permit and can take an hour or two; later runs only read what's new. You can
-keep using Chrome while it runs; just leave the small portal window alone.
+It never runs on its own: start it with **Run now** and stop it any time with **Stop** (or by closing Chrome). Every
+finished batch is already on the site, and the next **Run now** picks up where it left off. A full re-read of every
+permit takes a few hours; later runs only read what's new. You can keep using Chrome while it runs; just leave the
+small portal window alone.
 
 ## Set up on a Mac (about 10 minutes, once)
 
@@ -38,7 +39,7 @@ couple of minutes). **Recent activity** in the popup lists each batch and upload
 If a notification asks for one search, type `R-26-82` in the small window's search box and press Enter. It continues
 by itself after that.
 
-That's it: it now runs every week on its own.
+Run it again whenever you want the site's permits and contractors brought up to date.
 
 ## Updating
 When the popup says a newer version is on GitHub, run the two download lines from step 1 again, then click the
