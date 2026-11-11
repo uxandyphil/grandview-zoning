@@ -1,6 +1,81 @@
 {
  "documents": [
   {
+   "inst": "202611100135650",
+   "type": "Release Of Mortgage",
+   "date": "2026-11-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "SECRETARY OF HOUSING AND URBAN DEVELOPMENT"
+   ],
+   "parcels": [
+    "030-002132-00"
+   ],
+   "legal": "Lt/Un 105~106 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 030-002132-00 Plt PB 14 PG 30 PT 105-106"
+  },
+  {
+   "inst": "202611100135587",
+   "type": "Mortgage",
+   "date": "2026-11-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "FIRST COMMONWEALTH BANK"
+   ],
+   "parcels": [
+    "030-002132-00"
+   ],
+   "legal": "Lt/Un 105~106 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 030-002132-00 Plt PB 14 PG 30 PT 105-106"
+  },
+  {
+   "inst": "202611100135586",
+   "type": "Deed",
+   "date": "2026-11-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002132-00"
+   ],
+   "legal": "Lt/Un 105~106 NORTHWEST BOULEVARD ADDN PLAT NO 5 Pcl# 030-002132-00 Plt PB 14 PG 30 PT 105-106"
+  },
+  {
+   "inst": "202611100135566",
+   "type": "Mortgage",
+   "date": "2026-11-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "JPMORGAN CHASE BANK NA"
+   ],
+   "parcels": [
+    "030-000260-00"
+   ],
+   "legal": "Lt/Un 375 FS WAGENTHALS AMENDED SUBD Pcl# 030-000260-00 Plt PB 4 PG 412-413"
+  },
+  {
+   "inst": "202611100135565",
+   "type": "Deed",
+   "date": "2026-11-10",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000260-00"
+   ],
+   "legal": "Lt/Un 375 FS WAGENHALS AMENDED Pcl# 030-000260-00 Plt PB 4 PG 412-413"
+  },
+  {
    "inst": "202611100135358",
    "type": "Affidavit",
    "date": "2026-11-10",
@@ -4876,5 +4951,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-10T18:25:25+00:00"
+ "updated": "2026-11-11T15:50:59+00:00"
 }
