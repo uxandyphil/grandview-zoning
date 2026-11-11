@@ -1,13 +1,12 @@
 // Grandview permits collector (Chrome extension)
 //
-// Once a week (or when you click "Run now"), opens the city's permit portal in a small background window of your
-// own Chrome, runs collect-permits.js there (the same script you'd paste by hand, which the portal accepts), and
-// publishes the result to docs/permits.json on GitHub. Each step is driven by a timer that survives Chrome
-// suspending this background script, so a run picks up where it was.
+// When you click "Run now", opens the city's permit portal in a small background window of your own Chrome, runs
+// collect-permits.js there (the same script you'd paste by hand, which the portal accepts), and publishes the result
+// to docs/permits.json on GitHub after each batch. It runs only when started, and stops when it's done or you click
+// "Stop". Each step is driven by a timer that survives Chrome suspending this background script.
 
 const REPO = "uxandyphil/grandview-zoning", BRANCH = "main", FILE = "docs/permits.json";
 const PORTAL = "https://grandviewheightsoh.portal.opengov.com/search";
-const WEEK_MIN = 7 * 24 * 60;
 const MAX_BATCHES = 40;                 // each batch reads up to 200 permits (80 when whole pages are read), in a freshly loaded page
 const BATCH_LIMIT_MS = 75 * 60_000;     // give up on a batch after 75 minutes
 
@@ -22,32 +21,23 @@ function notify(title, message) {
   chrome.notifications.create({ type: "basic", iconUrl: "icon.png", title, message });
 }
 
-// ---------- schedule ----------
-// Sundays at 9:07 PM, your time
-function nextSunday() {
-  const d = new Date();
-  d.setHours(21, 7, 0, 0);
-  d.setDate(d.getDate() + ((7 - d.getDay()) % 7));
-  if (d <= new Date()) d.setDate(d.getDate() + 7);
-  return d.getTime();
-}
-async function ensureSchedule() {
-  const a = await chrome.alarms.get("weekly");
-  if (!a) chrome.alarms.create("weekly", { when: nextSunday(), periodInMinutes: WEEK_MIN });
+// ---------- starting and stopping ----------
+// No schedule: it runs only when you click "Run now". (Older versions also ran every Sunday; that alarm is removed.)
+async function clearOldSchedule() {
+  await chrome.alarms.clear("weekly");
+  await chrome.alarms.clear("catchup");
 }
 chrome.runtime.onInstalled.addListener(async () => {
-  await ensureSchedule();
-  if (await get("run")) chrome.alarms.create("tick", { periodInMinutes: 0.5 });   // updated mid-run: carry on
+  await clearOldSchedule();
+  if (await get("run")) chrome.alarms.create("tick", { periodInMinutes: 0.5 });   // reloaded mid-run: carry on
 });
 chrome.runtime.onStartup.addListener(async () => {
-  await ensureSchedule();
-  // if Chrome was closed at the scheduled time, catch up shortly after it opens
-  const last = await get("lastSuccess");
-  if (!last || Date.now() - last > (WEEK_MIN + 60) * 60_000) chrome.alarms.create("catchup", { delayInMinutes: 3 });
-  if (await get("run")) chrome.alarms.create("tick", { periodInMinutes: 0.5 });
+  await clearOldSchedule();
+  // Chrome was closed during a run: don't restart it on its own. Every finished batch is already on the site, and
+  // "Run now" picks up where it left off.
+  if (await get("run")) await finish(false, "Chrome was closed during the run. Click Run now to pick up where it left off.");
 });
 chrome.alarms.onAlarm.addListener((a) => {
-  if (a.name === "weekly" || a.name === "catchup") startRun("scheduled");
   if (a.name === "tick") tick();
 });
 chrome.runtime.onMessage.addListener((msg, _s, reply) => {
@@ -150,7 +140,7 @@ async function finish(ok, message) {
   await chrome.storage.local.remove("run");
   if (run) { try { await chrome.windows.remove(run.windowId); } catch {} }
   await note(message);
-  await set({ lastRun: { at: Date.now(), ok, message }, ...(ok ? { lastSuccess: Date.now() } : {}) });
+  await set({ lastRun: { at: Date.now(), ok, message } });
   if (!ok && message !== "Stopped by you") notify("Grandview permits didn't finish", message);
 }
 

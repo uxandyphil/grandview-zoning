@@ -13,8 +13,8 @@ async function render() {
   $("run").hidden = !!run; $("stop").hidden = !run;
   $("keysum").textContent = token ? "GitHub key (saved)" : "GitHub key (needed)";
   if (!token) $("keybox").open = true;
-  const a = await chrome.alarms.get("weekly");
-  $("next").textContent = a ? `Next scheduled run: ${new Date(a.scheduledTime).toLocaleString()}. Chrome needs to be open then; if it isn't, it runs soon after Chrome opens.` : "";
+  $("next").textContent = run ? "Uploads to the site after every batch. Click Stop any time; Run now later picks up where it left off."
+    : "Runs only when you click Run now, and stops when it's done or you click Stop.";
   $("log").textContent = (log || []).slice().reverse().join("\n") || "Nothing yet.";
 }
 
