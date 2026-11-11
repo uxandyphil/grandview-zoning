@@ -75,6 +75,8 @@
         const lp = permits[sp.number];
         const names = (sp.contractors || []).filter((n) => !looksLikeType(n));
         if (lp && !(lp.contractors || []).length && names.length) { lp.contractors = names; filled++; }
+        // map locations come from the site's nightly job; keep them so an upload doesn't take the pins off the map
+        if (lp && lp.lat == null && sp.lat != null) { lp.lat = sp.lat; lp.lon = sp.lon; }
       }
       if (filled) log(`Restored contractor names on ${filled} permits from your site`);
     } catch (e) {}
