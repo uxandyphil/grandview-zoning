@@ -23,10 +23,72 @@
   const FRAME_RECYCLE = 10;  // when whole record pages must be read: one hidden frame, rebuilt this often
   const FRAME_LIMIT = 80;    // and at most this many pages per run
   const YEARS_BACK = 3;      // also collect this many past years (finished years are only walked once)
-  const PAUSE = 1500;        // ms between requests
+  const PAUSE = 1500;        // ms between searches
+  const PAGE_PAUSE = 3000;   // ms between permit pages (loading one is many requests)
+  const RECHECK = 12 * 3600_000;   // look for new permits (and retry the data lists) at most this often:
+                                   // a run's later batches only read pages
+  const REFUSED = /\bHTTP (401|403|429)\b/;   // the portal saying no, or "slow down": stop instead of pushing on
   const STORE = "gvz-permits-v1";
   // permit types ("HVAC Permit", "Re-Roofing Permit", "Sewer Lateral Replacement/Repair") are never contractors
   const looksLikeType = (n) => /\bpermits?$|\bcertificate\b|\blateral\b|replacement\/repair|registration$|application$/i.test(String(n).trim());
+  // Business words: a name with one of these is a company's
+  const TRADE = "LLC|L\\.L\\.C\\.?|Inc\\.?|Incorporated|Corp\\.?|Corporation|Company|Co|Ltd\\.?|LP|Plumbing|Electric(?:al)?|" +
+    "Roofing|Heating|Cooling|HVAC|Mechanical|Construction|Builders?|Homes|Remodel(?:ing|ers)?|Renovations?|" +
+    "Services?|Contracting|Contractors?|Exteriors|Fenc(?:e|ing)|Pools?|Solar|Energy|Restoration|Waterproofing|" +
+    "Concrete|Masonry|Excavating|Landscap(?:e|ing)|Windows|Siding|Gutters|Sewer|Drain(?:age)?|Insulation|" +
+    "Paving|Design(?:s)?|Development|Enterprises|Group|Systems|Air|Comfort|Glass|Doors|Basements?|Foundations?|" +
+    "Demolition|Signs?|Plumbers|Roof|Builds?|Realty|Properties|Investors|Partners|Associates|Solutions|Pros|" +
+    "Team|Brothers|Bros|Sons|Works|Depot|Supply";
+  const bizRe = new RegExp(`\\b(?:${TRADE})\\b`, "i");
+  const tradeRe = new RegExp(`\\b(?:${TRADE.replace(/^.*?\|LP\|/, "")})\\b`, "i");   // trade words only, no LLC/Inc
+  // People's names never go on the site. A contractor "name" that's just a person's ("Matt Hildebrand", "robert") is
+  // left out, and a person's name tacked onto a company's ("All Star Services Chad Garrett") is trimmed off.
+  // (permits.py and the site's page apply the same rule.)
+  const FIRST_NAMES = new Set(("aaron abby abigail adam adrian al alan albert alex alexander alfred alice alicia alison allen allison alyssa " +
+    "amanda amber amy andre andrea andrew andy angela angie anita ann anna anne annette anthony antonio arnold art " +
+    "arthur ashley audrey austin barb barbara barry becky ben benjamin bernard beth betty beverly bill billy blake " +
+    "bob bobby bonnie brad bradley brandon brenda brendan brent brett brian brittany brooke bruce bryan bryce caleb " +
+    "calvin cameron candace carl carla carlos carmen carol caroline carolyn carrie casey cassandra catherine cathy " +
+    "chad charlene charles charlie charlotte chelsea cheryl chris christian christina christine christopher chuck " +
+    "cindy claire clarence clark claudia clifford clint cody colin colleen connie connor corey courtney craig curt " +
+    "curtis cynthia dale damian damon dan dana daniel danielle danny darin darlene darrell darren darryl daryl dave " +
+    "david dean deb debbie deborah debra denise dennis derek derrick devin diana diane dick don donald donna donnie " +
+    "doris dorothy doug douglas drew duane dustin dwayne dwight dylan earl ed eddie edgar edith edward eileen elaine " +
+    "eleanor eli elijah elizabeth ellen elliot emily emma eric erica erik erin ernest esther ethan eugene eva evan " +
+    "evelyn florence floyd frances francis frank franklin fred freddie frederick gabriel gail garrett gary gavin gene " +
+    "geoff geoffrey george gerald gina gloria greg gregg gregory gwen hannah harold harry heather heidi helen henry " +
+    "herbert holly howard ian irene isaac jack jackie jacob jacqueline jake jamal james jamie jan jane janet janice " +
+    "jared jason jay jean jeanne jeff jeffery jeffrey jen jenna jennifer jenny jeremiah jeremy jerome jerry jesse " +
+    "jessica jill jim jimmie jimmy jo joan joann joanne joe joel joey john johnny jon jonathan jorge jose joseph " +
+    "josephine josh joshua joyce juan judith judy julia julian julie justin karen karl kate katherine kathleen " +
+    "kathryn kathy katie kay kayla keith kelly ken kendra kenneth kenny kevin kim kimberly kirk kristen kristin " +
+    "kristina kristy kurt kyle lance larry laura lauren lawrence leah lee leo leon leonard leroy leslie linda lindsay " +
+    "lisa lloyd lois lonnie lori lorraine louis louise lucas lucy luis luke malcolm mandy manuel marc marcia marcus " +
+    "margaret maria marie marilyn mario marion marjorie mark martha martin marvin mary matt matthew maureen max megan " +
+    "melanie melinda melissa meredith michael michele michelle mickey miguel mike mildred mitch mitchell molly monica " +
+    "nancy natalie nathan nathaniel neal neil nicholas nick nicole nina noah norma norman olivia omar oscar owen " +
+    "paige pam pamela pat patricia patrick paul paula pauline pedro peggy penny pete peter phil philip phillip " +
+    "phyllis rachel ralph randall randy ray raymond rebecca reggie regina renee rhonda richard rick ricky rita rob " +
+    "robbie robert roberta roberto robin rod rodney roger roland ron ronald ronnie rosemary ross roy ruben russ " +
+    "russell ruth ryan sabrina sally sam samantha samuel sandra sandy sara sarah scott sean seth shane shannon sharon " +
+    "shaun shawn sheila shelby shelly sherry shirley sidney sophia stacey stacy stan stanley stephanie stephen steve " +
+    "steven stuart sue susan suzanne sylvia tamara tammy tanya tara ted teresa terrence terry theodore theresa thomas " +
+    "tiffany tim timothy tina toby todd tom tommy tony tonya tracey tracy travis trent trevor troy tyler valerie " +
+    "vanessa vernon veronica vicki vickie victor victoria vince vincent virginia vivian walter wanda warren wayne " +
+    "wendy wesley whitney william willie yolanda zach zachary zack").split(" "));
+  const looksLikePerson = (n) => {
+    const w = String(n).trim().split(/\s+/);
+    if (bizRe.test(n) || !FIRST_NAMES.has(w[0].toLowerCase().replace(/[^a-z]/g, ""))) return false;
+    return w.length <= 2 || (w.length === 3 && /^[a-z]\.?$/i.test(w[1]));
+  };
+  const cleanName = (n) => {
+    n = String(n).replace(/\s+/g, " ").trim();
+    const cut = n.replace(/(?:\s+[-–]\s*|\s*[-–]\s+)[A-Za-z][\w'’]*$/, "");   // "Columbus Worthington Air- Daubenmire"
+    if (cut !== n && bizRe.test(cut)) n = cut;
+    const m = /^(.*\S)\s+([A-Za-z]+)\s+[A-Za-z'’-]+$/.exec(n);              // "All Star Services Chad Garrett"
+    if (m && FIRST_NAMES.has(m[2].toLowerCase()) && bizRe.test(m[1])) n = m[1];
+    return n;
+  };
 
   if (!window.GVZ_TEST && !location.hostname.endsWith("portal.opengov.com")) {
     alert("Open grandviewheightsoh.portal.opengov.com first, then paste this in its console.");
@@ -73,7 +135,7 @@
       let filled = 0;
       if (r.ok) for (const sp of (await r.json()).permits || []) {
         const lp = permits[sp.number];
-        const names = (sp.contractors || []).filter((n) => !looksLikeType(n));
+        const names = (sp.contractors || []).map(cleanName).filter((n) => !looksLikeType(n) && !looksLikePerson(n));
         if (lp && !(lp.contractors || []).length && names.length) { lp.contractors = names; filled++; }
         // map locations come from the site's nightly job; keep them so an upload doesn't take the pins off the map
         if (lp && lp.lat == null && sp.lat != null) { lp.lat = sp.lat; lp.lon = sp.lon; }
@@ -81,10 +143,13 @@
       if (filled) log(`Restored contractor names on ${filled} permits from your site`);
     } catch (e) {}
   }
+  // people's names never go to the site, including any an older version saved in this browser
+  for (const p of Object.values(permits))
+    if ((p.contractors || []).length) p.contractors = [...new Set(p.contractors.map(cleanName))].filter((n) => !looksLikePerson(n));
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
   // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
-  let recordFields = null, recordForm = null;
-  const CONTRACTOR_VERSION = 6;   // permits read by an older version are read again
+  let recordFields = null, recordForm = null, recordForms = {};
+  const CONTRACTOR_VERSION = 7;   // permits read by an older version are read again (6 could count a page that never loaded)
   let recordShapes = null;        // field names (never values) of each data list, to check the form matching
   let recordStatus = null;        // what each data list answered on the first permit (200 = OK)
 
@@ -92,7 +157,7 @@
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
-    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_form: recordForm,
+    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_form: recordForm, record_forms: recordForms,
       record_shapes: recordShapes, record_status: recordStatus,
       record_apis: recordApis && recordApis.map((u) => u.replace(/[?&](token|key|auth)[^&]*/gi, "")) };
     return JSON.stringify({ ...meta, permits: list }, null, 2);
@@ -164,50 +229,76 @@
     }
   };
   harvest(firstData);
+  // A dropped connection or a server error gets a few more tries. A refusal gets one, after a pause in case it was a
+  // blip; if the portal still says no, the run stops instead of pushing on.
+  async function searchWithRetry(key, retries = 3) {
+    for (let attempt = 0; ; attempt++) {
+      try { return await search(key); }
+      catch (e) {
+        const refused = REFUSED.test(e.message);
+        if (attempt >= (refused ? 1 : retries) || stopped) throw e;
+        const wait = refused ? 120 : [30, 60, 120][attempt];
+        status(refused ? `The portal refused a search (${e.message}). Waiting ${wait} seconds, then trying once more…`
+          : `Connection hiccup (${e.message}). Waiting ${wait} seconds, then trying again…`);
+        log(`${key}: ${e.message}, retrying in ${wait}s`);
+        await sleep(wait * 1000);
+      }
+    }
+  }
   async function get(number) {
     if (permits[number]) return permits[number];
     if (!pool[number] && !searched.has(number)) {
       searched.add(number);
       await sleep(PAUSE);
-      let data;
-      for (let attempt = 0; ; attempt++) {
-        try { data = await search(number); break; }
-        catch (e) {  // a blip or the server asking us to slow down: wait, then retry
-          if (attempt >= 3 || stopped) throw e;
-          const wait = [30, 60, 120][attempt];
-          status(`Connection hiccup (${e.message}). Waiting ${wait} seconds, then trying again…`);
-          log(`${number}: ${e.message}, retrying in ${wait}s`);
-          await sleep(wait * 1000);
-        }
-      }
+      const data = await searchWithRetry(number);
       searches++;
       harvest(data);
     }
     return pool[number];
   }
 
-  // Keyword searches for code enforcement records; any series they turn up gets walked like the others
-  for (const word of ENFORCE_WORDS) {
-    if (stopped) break;
-    status(`Looking for code enforcement records… (${word})`);
-    try { await sleep(PAUSE); harvest(await search(word)); searches++; } catch (e) { log(`"${word}" search: ${e.message}`); }
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(STORE + "-done") || "{}"); } catch (e) {}
+  const saveDone = () => localStorage.setItem(STORE + "-done", JSON.stringify(done));
+  const due = (key) => Date.now() - (done[key] || 0) >= RECHECK;   // not done in the last 12 hours
+  let refusedBy = null;   // why the portal refused, if it did
+  // The portal refused: stop instead of pushing on. What's found so far stays saved in this browser and goes to the
+  // site with the next run that works.
+  function refuse(why) {
+    save();
+    status(`The portal is refusing requests right now (${why}), so this run stopped. Try again later, for example tomorrow.`);
+    log(`Stopped: the portal refused (${why})`);
+    $("gvz-dl").disabled = false;
+    window.GVZ_RESULT = { error: why };
   }
-  const enforce = Object.entries(pool).filter(([, v]) => ENFORCE_TYPE.test(v.type || ""));
-  for (const [n] of enforce) { const m = numRe.exec(n); if (m && !PREFIXES.includes(m[1].toUpperCase())) PREFIXES.push(m[1].toUpperCase()); }
-  log(enforce.length ? `Code enforcement: found ${enforce.length} record(s), types: ${[...new Set(enforce.map(([, v]) => v.type))].join(", ")}`
-    : "Code enforcement: none found by keyword search");
+
+  // Keyword searches for code enforcement records; any series they turn up gets walked like the others
+  if (due("words:at")) {
+    let ok = true;
+    for (const word of ENFORCE_WORDS) {
+      if (stopped) break;
+      status(`Looking for code enforcement records… (${word})`);
+      try { await sleep(PAUSE); harvest(await searchWithRetry(word, 0)); searches++; }
+      catch (e) { ok = false; log(`"${word}" search: ${e.message}`); if (REFUSED.test(e.message)) { refusedBy = e.message; break; } }
+    }
+    const enforce = Object.entries(pool).filter(([, v]) => ENFORCE_TYPE.test(v.type || ""));
+    for (const [n] of enforce) { const m = numRe.exec(n); if (m && !PREFIXES.includes(m[1].toUpperCase())) PREFIXES.push(m[1].toUpperCase()); }
+    log(enforce.length ? `Code enforcement: found ${enforce.length} record(s), types: ${[...new Set(enforce.map(([, v]) => v.type))].join(", ")}`
+      : "Code enforcement: none found by keyword search");
+    if (ok && !stopped) { done["words:at"] = Date.now(); saveDone(); }
+  }
   const thisYY = new Date().getFullYear() % 100;
   const YEARS = Array.from({ length: YEARS_BACK + 1 }, (_, i) => String(thisYY - i).padStart(2, "0"));
   const now = new Date().toISOString().slice(0, 19) + "+00:00";
   let added = 0;
-  let done = {};
-  try { done = JSON.parse(localStorage.getItem(STORE + "-done") || "{}"); } catch (e) {}
-  const saveDone = () => localStorage.setItem(STORE + "-done", JSON.stringify(done));
   const known = (prefix, yy) => Object.keys(permits).concat(Object.keys(pool)).some((n) => n.startsWith(`${prefix}-${yy}-`));
 
   try {
    for (const yy of YEARS) {
+    if (refusedBy || stopped) break;
     const past = yy !== YEARS[0];
+    // this year's series are walked again for new permits, at most every 12 hours
+    if (!past && !due(yy + ":walkedAt")) { log(`20${yy}: looked for new permits in the last 12 hours, so not again yet`); continue; }
     let prefixes = past ? done[yy + ":prefixes"] : null;
     // past years remember which series were checked, so newly added series still get checked once
     const checked = past ? (done[yy + ":checked"] || (prefixes ? OLD_PREFIXES : [])) : [];
@@ -252,8 +343,13 @@
       if (past && !stopped) { done[series] = true; saveDone(); }
       log(`${series}: ${added - before} new, up to #${n - LOOKAHEAD - 1}`);
     }
+    if (!past && !stopped) { done[yy + ":walkedAt"] = Date.now(); saveDone(); }
    }
-  } catch (e) { save(); log(`Search stopped: ${e.message}. Progress is saved; run the script again later to continue.`); }
+  } catch (e) {
+    save();
+    if (REFUSED.test(e.message)) refusedBy = e.message;
+    log(`Search stopped: ${e.message}. Progress is saved; run the script again later to continue.`);
+  }
   // keep enforcement records the keyword searches found outside the walked series (added after the walk,
   // since a series resumes after the highest number already saved)
   for (const [number, hit] of Object.entries(pool)) {
@@ -265,6 +361,7 @@
   }
   save();
   log(`${added} new permits from ${searches} searches`);
+  if (refusedBy) return refuse(refusedBy);
 
   // ---------- addresses (from each record's page) ----------
   const street = "(?:Ave(?:nue)?|St(?:reet)?|Rd|Road|Blvd|Boulevard|Dr(?:ive)?|Ct|Court|Pl(?:ace)?|Way|Ln|Lane|Pkwy|Parkway|Cir(?:cle)?|Ter(?:race)?)";
@@ -302,12 +399,6 @@
   // Names come from contractor/company fields, and from business names (LLC, Inc., Plumbing, Roofing...) in other
   // fields or the page text. Applicant and contact fields count only when the name is clearly a business, so
   // homeowners pulling their own permits aren't listed.
-  const TRADE = "LLC|L\\.L\\.C\\.?|Inc\\.?|Incorporated|Corp\\.?|Corporation|Company|Ltd\\.?|LP|Plumbing|Electric(?:al)?|Roofing|Heating|Cooling|HVAC|" +
-    "Mechanical|Construction|Builders?|Homes|Remodel(?:ing|ers)?|Renovations?|Services?|Contracting|Contractors?|Exteriors|Fenc(?:e|ing)|" +
-    "Pools?|Solar|Energy|Restoration|Waterproofing|Concrete|Masonry|Excavating|Landscap(?:e|ing)|Windows|Siding|Gutters|Sewer|Drain(?:age)?|" +
-    "Insulation|Paving|Design(?:s)?|Development|Enterprises|Group|Systems|Air|Comfort|Glass|Doors|Basements?|Foundations?|Demolition|Signs?";
-  const bizRe = new RegExp(`\\b(?:${TRADE})\\b`, "i");
-  const tradeRe = new RegExp(`\\b(?:${TRADE.replace(/^.*?\|LP\|/, "")})\\b`, "i");   // trade words only, no LLC/Inc
   const bizInText = new RegExp(`((?:[A-Z0-9&][\\w&'.-]*[ \\t]+){0,6}(?:LLC|L\\.L\\.C\\.?|Inc\\.?|Corp\\.?|Company|Co\\.|Ltd\\.?))(?=[\\s,.;)]|$)`, "g");
   const notName = /@|https?:|^\d|\d{3}[-. )]\d{3}|^(yes|no|true|false|n\/a|none|null|self|owner|homeowner)$/i;
   // form labels and headings that aren't names ("Name *", "Contractor Information", "Company Name Primary Contact ...")
@@ -315,7 +406,7 @@
   const tidy = (n) => String(n).replace(/\s+/g, " ").replace(/^[\s,.;:-]+|[\s,;:-]+$/g, "").slice(0, 80);
   function contractorsFrom(flat) {
     const out = new Map();
-    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !isLabel(n) && !cityHall.test(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
+    const add = (n) => { n = cleanName(tidy(n)); if (n.length >= 3 && !notName.test(n) && !isLabel(n) && !cityHall.test(n) && !looksLikePerson(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
     for (const [k, v] of Object.entries(flat)) {
       if (typeof v !== "string") continue;
       const key = k.toLowerCase();
@@ -351,21 +442,27 @@
     return out;
   }
   function contractorsFromFields(fields) {
-    const out = new Map();
-    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !isLabel(n) && !looksLikeType(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
-    const isCompany = (lab) => /company|business|contractor|firm/.test(lab) && !/type|number|license|phone|email|address|city|state|zip|contact|website|fax/.test(lab);
-    const sections = [...new Set(fields.map((f) => f.section))];
-    for (const secName of sections) {
+    // The company is the answer to "Company Name" / "Business Name". A contractor's own name ("Contractor Name", or a
+    // name in a contractor section) counts only when its section names no company, and the applicant's account name
+    // (the line under "Applicant" at the top of the page) only when nothing else does. A person's name never counts.
+    const OTHER = /type|number|license|phone|email|address|city|state|zip|contact|website|fax|owner/;
+    const out = new Map(), applicant = [];
+    const add = (n) => {
+      n = cleanName(tidy(n));
+      if (n.length < 3 || notName.test(n) || isLabel(n) || looksLikeType(n) || looksLikePerson(n)) return false;
+      out.set(n.toUpperCase().replace(/[.,]/g, ""), n);
+      return true;
+    };
+    for (const secName of [...new Set(fields.map((f) => f.section))]) {
       const fs = fields.filter((f) => f.section === secName && f.value), sec = secName.toLowerCase();
       if (/owner/.test(sec)) continue;   // the property owner (or a business tenant) isn't who did the work
-      const companies = fs.filter((f) => isCompany(f.label.toLowerCase()));
-      companies.forEach((f) => add(f.value));
-      if (companies.length) continue;
-      const names = fs.filter((f) => /^(name|full name|contractor name|contractor)$/.test(f.label.toLowerCase()));
-      // contractor sections: the name is the contractor even without "LLC"; applicants only when clearly a trade business
-      if (/contractor|licensed|professional/.test(sec)) names.forEach((f) => add(f.value));
-      else if (/applicant|contact/.test(sec)) names.filter((f) => tradeRe.test(f.value)).forEach((f) => add(f.value));
+      const lab = (f) => f.label.toLowerCase(), isName = (f) => /^(name|full name)$/.test(lab(f));
+      const company = fs.filter((f) => /company|business|firm/.test(lab(f)) && !OTHER.test(lab(f)));
+      const contractor = fs.filter((f) => (/contractor/.test(lab(f)) && !OTHER.test(lab(f))) || (isName(f) && /contractor|licensed|professional/.test(sec)));
+      if (!company.map((f) => add(f.value)).some(Boolean)) contractor.forEach((f) => add(f.value));
+      if (/applicant|contact/.test(sec)) applicant.push(...fs.filter((f) => isName(f) && tradeRe.test(f.value)));
     }
+    if (!out.size) applicant.forEach((f) => add(f.value));
     return [...out.values()].slice(0, 6);
   }
   // The portal's record page shows each question with its answer on the next line, under section headings:
@@ -389,7 +486,7 @@
   }
   function contractorsFromText(text) {
     const out = new Map();
-    for (const m of text.matchAll(bizInText)) { const n = tidy(m[1]); if (n.length >= 3 && !isLabel(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); }
+    for (const m of text.matchAll(bizInText)) { const n = cleanName(tidy(m[1])); if (n.length >= 3 && !isLabel(n) && !looksLikePerson(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); }
     return [...out.values()].slice(0, 6);
   }
   // Each record page is a full web app, and loading hundreds of them crashed the tab ("Aw, Snap!"). So: open ONE
@@ -529,12 +626,17 @@
     return { ...d, parsed: joined.length > 0, contractors: joined.length || fromFields.length ? fromFields : d.contractors };
   }
   async function details(p) {
-    if (recordApis === null) await learnRecordApis(p);
+    if (recordApis === null) {
+      // the data lists are tried at most every 12 hours; when they last didn't return the form, read pages straight away
+      if (due("lists:failedAt")) await learnRecordApis(p);
+      else { recordApis = []; log("Reading each permit's page (the data lists didn't return the form in the last 12 hours)"); }
+    }
     if (recordApis.length) {
       const d = await fromApis(p);
       // the data lists count only when they return the permit's form; otherwise read the page, which shows it
       if (d && d.parsed) return d;
       recordApis = [];
+      done["lists:failedAt"] = Date.now(); saveDone();
       log("The data lists didn't return the permit's form; reading each permit's page instead");
     }
     // read the page itself, a limited number per batch so the tab stays healthy
@@ -571,18 +673,24 @@
     }
     try { await sleep(800); fields = formFields(frame.contentDocument); } catch (e) { fields = []; }
     releaseFrame();
-    // one record's form layout (labels and sections, never values) goes in the download to help tune this
-    if (!recordForm && fields.length) recordForm = fields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
     const label = /(Location|Address|Property)\s*:?\s*\n?/i.exec(text);
     const region = label ? text.slice(label.index + label[0].length, label.index + label[0].length + 300) : text;
     const m = [...region.matchAll(new RegExp(addrRe.source, "gi"))].find((x) => !cityHall.test(x[0]));
     const dm = /(Submitted|Applied|Created|Date)\D{0,20}(\d{1,2}\/\d{1,2}\/20\d\d)/i.exec(text);
     const textFields = fieldsFromText(text);
-    if (!recordForm && textFields.length) recordForm = textFields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
+    // one form layout per permit type (questions and section headings, never the answers) goes in the upload to help
+    // tune this; a heading is kept only when it reads like one ("Contractor Information"), so no answer can slip in
+    const heading = (t) => (/^([A-Z][\w/&'-]*\s+){0,5}Information$/.test(t) ? t : "");
+    const layout = (textFields.length ? textFields : fields).slice(0, 60).map((f) => ({ section: heading(f.section), label: f.label, filled: !!f.value }));
+    if (layout.length && p.type && !recordForms[p.type]) recordForms[p.type] = layout;
+    if (!recordForm && layout.length) recordForm = layout;
     // When the page reads as questions and answers, that decides: an empty contractor section means no contractor.
     // Its hidden form widgets (they hold things like the permit type) and stray business names (the property owner
     // or a tenant) are used only for pages that don't read that way.
     const parsed = textFields.length > 0;
+    // no questions, no address and no permit number: the page never showed the permit (refused, or still loading)
+    const showsNumber = text.toUpperCase().replace(/-0+(?=\d)/g, "-").includes(String(p.number).toUpperCase());
+    if (!parsed && !m && !showsNumber) return { failed: true };
     const fromFields = contractorsFromFields(parsed ? textFields : fields);
     return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null, parsed,
       contractors: parsed || fromFields.length ? fromFields : contractorsFromText(text) };
@@ -591,33 +699,46 @@
   // new permits, plus ones read before contractors were collected
   const todo = Object.values(permits).filter((p) => (!p.details || p.cv !== CONTRACTOR_VERSION) && p.entity_id)
     .sort((a, b) => b.entity_id - a.entity_id).slice(0, MAX_DETAILS);
-  let found = 0, withContractor = 0;
+  let found = 0, withContractor = 0, read = 0, failedInARow = 0;
   $("gvz-dl").disabled = false;   // what's done so far can be downloaded any time
   for (const [i, p] of todo.entries()) {
     if (stopped) break;
     status(`Reading addresses and contractors: ${i + 1} of ${todo.length}`);
     try {
-      await sleep(PAUSE);
+      await sleep(PAGE_PAUSE);
       const d = await details(p);
       if (!d) { log(`Read ${FRAME_LIMIT} full pages this run, the most that's safe at once. Reload the portal and run again to continue.`); break; }
+      // A page that didn't load isn't counted as read, so it's tried again next time. Three in a row means the portal
+      // has stopped showing pages, so the run stops instead of asking for more.
+      if (d.failed) {
+        log(`${p.number}: the page didn't load`);
+        if (++failedInARow >= 3) { refusedBy = "permit pages stopped loading"; break; }
+        continue;
+      }
+      failedInARow = 0; read++;
       // A page that read cleanly decides who the contractor is (none, if its contractor section is empty). Only when a
       // read failed does an earlier read's list stand, minus any permit types an older version mistook for names.
-      const real = (list) => (list || []).filter((n) => !looksLikeType(n) && n.toLowerCase() !== String(p.type || "").toLowerCase());
+      const real = (list) => (list || []).map(cleanName).filter((n) => !looksLikeType(n) && !looksLikePerson(n) && n.toLowerCase() !== String(p.type || "").toLowerCase());
       const contractors = d.parsed ? real(d.contractors) : (real(d.contractors).length ? real(d.contractors) : real(p.contractors));
       Object.assign(p, { address: d.address || p.address, date: d.date || p.date, details: true, contractors, cv: CONTRACTOR_VERSION });
       if (d.address) found++;
       if (d.contractors && d.contractors.length) withContractor++;
-      if (i === 0) log(`${p.number}: ${d.address || "no address found"}${d.date ? ", filed " + d.date : ""}${d.contractors && d.contractors.length ? ", " + d.contractors.join(", ") : ""}`);
+      if (read === 1) log(`${p.number}: ${d.address || "no address found"}${d.date ? ", filed " + d.date : ""}${d.contractors && d.contractors.length ? ", " + d.contractors.join(", ") : ""}`);
       if (i % 5 === 4) save();
     } catch (e) { log(`${p.number}: ${e.message}`); }
   }
   save();
   if (frameEl) { frameEl.remove(); frameEl = null; }
+  // Nothing read: the run stops. Some read: they're handed over as usual, and the next batch stops if the portal
+  // still refuses.
+  if (refusedBy && !read) return refuse(refusedBy);
+  if (refusedBy) log(`Stopped this batch early: ${refusedBy}`);
   const left = Object.values(permits).filter((p) => !p.details || p.cv !== CONTRACTOR_VERSION).length;
   log(`Addresses: ${found} of ${todo.length} found; contractors on ${withContractor}${left ? `; ${left} left for next time` : ""}`);
   status(`Done. ${Object.keys(permits).length} permits${left ? ` (run again later for ${left} more)` : ""}. Click Download.`);
   $("gvz-dl").disabled = false;
   $("gvz-stop").remove();
-  window.GVZ_RESULT = { json: payload(), total: Object.keys(permits).length, processed: todo.length, left, withContractor };
+  // "processed" is how many this batch actually read; the Chrome extension ends a run when a batch reads none
+  window.GVZ_RESULT = { json: payload(), total: Object.keys(permits).length, processed: read, left, withContractor };
 })();
 void 0;   // the script's result is "nothing", so the Chrome extension doesn't wait for the whole run to finish
