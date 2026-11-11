@@ -19,6 +19,9 @@ def run(state, geocode, now):
         print("Permits: no docs/permits.json yet")
         return []
     data = json.loads(PERMITS_FILE.read_text())
+    # older collector versions saved a sample of a record page's text, which holds people's names and contact
+    # details; it never belongs in this public file
+    scrubbed = data.pop("record_labels", None) is not None
     permits = data.get("permits", [])
     added = 0
     for p in permits:
@@ -27,7 +30,7 @@ def run(state, geocode, now):
             if coords:
                 p["lat"], p["lon"] = coords
                 added += 1
-    if added:
+    if added or scrubbed:
         PERMITS_FILE.write_text(json.dumps(data, indent=2, sort_keys=True))
     missing = sum(1 for p in permits if not p.get("address"))
     print(f"Permits: {len(permits)} total, {added} newly mapped, {missing} without an address yet")

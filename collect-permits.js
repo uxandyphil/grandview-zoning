@@ -21,7 +21,7 @@
   const LOOKAHEAD = 12;      // misses in a row before a series stops
   const MAX_DETAILS = window.GVZ_MAX_DETAILS || 200;   // record pages per click; run again to continue
   const FRAME_RECYCLE = 10;  // when whole record pages must be read: one hidden frame, rebuilt this often
-  const FRAME_LIMIT = 40;    // and at most this many pages per run
+  const FRAME_LIMIT = 80;    // and at most this many pages per run
   const YEARS_BACK = 3;      // also collect this many past years (finished years are only walked once)
   const PAUSE = 1500;        // ms between requests
   const STORE = "gvz-permits-v1";
@@ -78,7 +78,7 @@
   }
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
   // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
-  let recordFields = null, recordLabels = null, recordForm = null;
+  let recordFields = null, recordForm = null;
   const CONTRACTOR_VERSION = 4;   // permits read by an older version are read again
   let recordShapes = null;        // field names (never values) of each data list, to check the form matching
   let recordStatus = null;        // what each data list answered on the first permit (200 = OK)
@@ -87,7 +87,7 @@
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
-    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_labels: recordLabels, record_form: recordForm,
+    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_form: recordForm,
       record_shapes: recordShapes, record_status: recordStatus,
       record_apis: recordApis && recordApis.map((u) => u.replace(/[?&](token|key|auth)[^&]*/gi, "")) };
     return JSON.stringify({ ...meta, permits: list }, null, 2);
@@ -348,7 +348,7 @@
   function contractorsFromFields(fields) {
     const out = new Map();
     const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !isLabel(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
-    const isCompany = (lab) => /company|business|contractor|firm/.test(lab) && !/type|number|license|phone|email|address/.test(lab);
+    const isCompany = (lab) => /company|business|contractor|firm/.test(lab) && !/type|number|license|phone|email|address|city|state|zip|contact|website|fax/.test(lab);
     const sections = [...new Set(fields.map((f) => f.section))];
     for (const secName of sections) {
       const fs = fields.filter((f) => f.section === secName && f.value), sec = secName.toLowerCase();
@@ -356,12 +356,31 @@
       const companies = fs.filter((f) => isCompany(f.label.toLowerCase()));
       companies.forEach((f) => add(f.value));
       if (companies.length) continue;
-      const names = fs.filter((f) => /^name$|full name|contact name/.test(f.label.toLowerCase()));
+      const names = fs.filter((f) => /^(name|full name|contractor name|contractor)$/.test(f.label.toLowerCase()));
       // contractor sections: the name is the contractor even without "LLC"; applicants only when clearly a trade business
       if (/contractor|licensed|professional/.test(sec)) names.forEach((f) => add(f.value));
       else if (/applicant|contact/.test(sec)) names.filter((f) => tradeRe.test(f.value)).forEach((f) => add(f.value));
     }
     return [...out.values()].slice(0, 6);
+  }
+  // The portal's record page shows each question with its answer on the next line, under section headings:
+  //   Contractor Information / Company Name * / CMC Plumbing & Drain / Primary Contact Name * / ...
+  function fieldsFromText(text) {
+    const lines = text.split("\n").map((l) => l.trim()).filter(Boolean), out = [];
+    const isQ = (l) => /\*\s*$/.test(l);
+    let section = "";
+    for (let i = 0; i < lines.length; i++) {
+      const l = lines[i];
+      if (/information$/i.test(l) && l.length < 60 && !isQ(l)) { section = tidy(l); continue; }
+      if (i < 12 && /^applicant$/i.test(l) && lines[i + 1] && !isQ(lines[i + 1])) { out.push({ section: "Applicant", label: "Name", value: tidy(lines[i + 1]) }); continue; }
+      if (!isQ(l)) continue;
+      let j = i + 1;
+      while (j < lines.length && /^toggle tooltip$/i.test(lines[j])) j++;
+      const next = lines[j] || "";
+      const answered = next && !isQ(next) && !/information$/i.test(next);
+      out.push({ section, label: tidy(l).replace(/\s*\*$/, ""), value: answered ? tidy(next) : "" });
+    }
+    return out;
   }
   function contractorsFromText(text) {
     const out = new Map();
@@ -550,8 +569,9 @@
     const region = label ? text.slice(label.index + label[0].length, label.index + label[0].length + 300) : text;
     const m = [...region.matchAll(new RegExp(addrRe.source, "gi"))].find((x) => !cityHall.test(x[0]));
     const dm = /(Submitted|Applied|Created|Date)\D{0,20}(\d{1,2}\/\d{1,2}\/20\d\d)/i.exec(text);
-    if (!recordLabels && text) recordLabels = text.split("\n").map((l) => l.trim()).filter((l) => l && l.length < 40 && !/\d/.test(l)).slice(0, 120);
-    const fromFields = contractorsFromFields(fields);
+    const textFields = fieldsFromText(text);
+    if (!recordForm && textFields.length) recordForm = textFields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
+    const fromFields = contractorsFromFields(fields.concat(textFields));
     return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null,
       contractors: fromFields.length ? fromFields : contractorsFromText(text) };
   }
