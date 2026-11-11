@@ -8,7 +8,7 @@
 const REPO = "uxandyphil/grandview-zoning", BRANCH = "main", FILE = "docs/permits.json";
 const PORTAL = "https://grandviewheightsoh.portal.opengov.com/search";
 const WEEK_MIN = 7 * 24 * 60;
-const MAX_BATCHES = 15;                 // each batch reads up to 200 permits, in a freshly loaded page
+const MAX_BATCHES = 40;                 // each batch reads up to 200 permits (80 when whole pages are read), in a freshly loaded page
 const BATCH_LIMIT_MS = 75 * 60_000;     // give up on a batch after 75 minutes
 
 const get = async (k) => (await chrome.storage.local.get(k))[k];
