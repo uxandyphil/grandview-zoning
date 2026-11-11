@@ -469,7 +469,11 @@ def email_digest(new_cases):
 def run_archives(store, state, backfill, reparse=False):
     for board, archive_url in discover_archives().items():
         seen = set(state["seen"].get(board, []))
-        items = list_archive_items(archive_url)
+        try:
+            items = list_archive_items(archive_url)
+        except requests.RequestException as err:   # the city's site is slow or down: try again next run
+            print(f"Archive {board}: couldn't load the list ({err.__class__.__name__}); skipping this run")
+            continue
         todo = sorted((i for i in items if i not in seen), key=int)
         if backfill and not reparse and len(todo) > MAX_BACKFILL:
             seen.update(todo[:-MAX_BACKFILL])

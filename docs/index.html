@@ -2683,6 +2683,7 @@
     .replace(/\b(LLC|L L C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|LP|THE)\b/g, " ").replace(/\s+/g, " ").trim();
   // form labels an older collector picked up by mistake ("Name *", "Information", ...), and one-word fragments
   const CO_JUNK = /\*\s*$|\+\s*\d+\s+additional|primary contact|^(information|contractor information|(company|business|contractor)?\s*name|address|city|state|zip|email|phone|company|contractor|occupancy type|type of .*|building permit number|residential or commercial.*)$/i;
+  const CO_TYPE = /\bpermits?$|\bcertificate\b|\blateral\b|replacement\/repair|registration$|application$/i;
   const CO_GENERIC = /^(DEVELOPMENT|CONSTRUCTION|SERVICES?|PLUMBING|ELECTRIC(AL)?|ROOFING|HOMES|BUILDERS?|GROUP|SYSTEMS|ENTERPRISES|HEATING|COOLING|AIR)$/;
   const CO_TRADES = [
     { k: "elec", label: "Electricians", test: (c) => c.cat === "elec" },
@@ -2701,7 +2702,9 @@
     const jobs = read.filter((c) => tradeOf(c));             // zoning certificates name the business applying, not a contractor
     const cos = new Map();
     jobs.forEach((c) => {
-      const names = (c.permit.contractors || []).filter((n) => !CO_JUNK.test(String(n).trim()));
+      // older collector versions sometimes took the permit type ("HVAC Permit") for a company
+      const names = (c.permit.contractors || []).filter((n) => !CO_JUNK.test(String(n).trim()) && !CO_TYPE.test(String(n).trim())
+        && String(n).toLowerCase() !== String(c.permit.type || "").toLowerCase());
       [...new Set(names.map(coKey))].forEach((k) => {
         if (!k || k.length < 3 || CO_GENERIC.test(k)) return;
         const name = names.find((n) => coKey(n) === k);

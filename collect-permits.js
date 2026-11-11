@@ -25,6 +25,8 @@
   const YEARS_BACK = 3;      // also collect this many past years (finished years are only walked once)
   const PAUSE = 1500;        // ms between requests
   const STORE = "gvz-permits-v1";
+  // permit types ("HVAC Permit", "Re-Roofing Permit", "Sewer Lateral Replacement/Repair") are never contractors
+  const looksLikeType = (n) => /\bpermits?$|\bcertificate\b|\blateral\b|replacement\/repair|registration$|application$/i.test(String(n).trim());
 
   if (!window.GVZ_TEST && !location.hostname.endsWith("portal.opengov.com")) {
     alert("Open grandviewheightsoh.portal.opengov.com first, then paste this in its console.");
@@ -71,7 +73,8 @@
       let filled = 0;
       if (r.ok) for (const sp of (await r.json()).permits || []) {
         const lp = permits[sp.number];
-        if (lp && !(lp.contractors || []).length && (sp.contractors || []).length) { lp.contractors = sp.contractors; filled++; }
+        const names = (sp.contractors || []).filter((n) => !looksLikeType(n));
+        if (lp && !(lp.contractors || []).length && names.length) { lp.contractors = names; filled++; }
       }
       if (filled) log(`Restored contractor names on ${filled} permits from your site`);
     } catch (e) {}
@@ -79,7 +82,7 @@
   const save = () => localStorage.setItem(STORE, JSON.stringify(permits));
   // field names and on-page labels from one record (no values), so the site can learn where contractors are listed
   let recordFields = null, recordForm = null;
-  const CONTRACTOR_VERSION = 4;   // permits read by an older version are read again
+  const CONTRACTOR_VERSION = 5;   // permits read by an older version are read again
   let recordShapes = null;        // field names (never values) of each data list, to check the form matching
   let recordStatus = null;        // what each data list answered on the first permit (200 = OK)
 
@@ -347,7 +350,7 @@
   }
   function contractorsFromFields(fields) {
     const out = new Map();
-    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !isLabel(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
+    const add = (n) => { n = tidy(n); if (n.length >= 3 && !notName.test(n) && !isLabel(n) && !looksLikeType(n)) out.set(n.toUpperCase().replace(/[.,]/g, ""), n); };
     const isCompany = (lab) => /company|business|contractor|firm/.test(lab) && !/type|number|license|phone|email|address|city|state|zip|contact|website|fax/.test(lab);
     const sections = [...new Set(fields.map((f) => f.section))];
     for (const secName of sections) {
@@ -521,7 +524,7 @@
     const d = fromJson(jsons), fields = joined.length ? joined : fieldsFromJson(jsons);
     if (!recordForm && fields.length) recordForm = fields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
     const fromFields = contractorsFromFields(fields);
-    return { ...d, contractors: fromFields.length ? fromFields : d.contractors };
+    return { ...d, parsed: joined.length > 0, contractors: joined.length || fromFields.length ? fromFields : d.contractors };
   }
   async function details(p) {
     if (recordApis === null) await learnRecordApis(p);
@@ -571,9 +574,13 @@
     const dm = /(Submitted|Applied|Created|Date)\D{0,20}(\d{1,2}\/\d{1,2}\/20\d\d)/i.exec(text);
     const textFields = fieldsFromText(text);
     if (!recordForm && textFields.length) recordForm = textFields.map((f) => ({ section: f.section, label: f.label, filled: !!f.value }));
-    const fromFields = contractorsFromFields(fields.concat(textFields));
-    return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null,
-      contractors: fromFields.length ? fromFields : contractorsFromText(text) };
+    // When the page reads as questions and answers, that decides: an empty contractor section means no contractor.
+    // Its hidden form widgets (they hold things like the permit type) and stray business names (the property owner
+    // or a tenant) are used only for pages that don't read that way.
+    const parsed = textFields.length > 0;
+    const fromFields = contractorsFromFields(parsed ? textFields : fields);
+    return { address: m ? cleanAddr(m[0]) : null, date: dm ? toDate(dm[2]) : null, parsed,
+      contractors: parsed || fromFields.length ? fromFields : contractorsFromText(text) };
   }
 
   // new permits, plus ones read before contractors were collected
@@ -588,8 +595,10 @@
       await sleep(PAUSE);
       const d = await details(p);
       if (!d) { log(`Read ${FRAME_LIMIT} full pages this run, the most that's safe at once. Reload the portal and run again to continue.`); break; }
-      // a re-read that finds no contractor keeps any names an earlier read found
-      const contractors = (d.contractors || []).length ? d.contractors : (p.contractors || []);
+      // A page that read cleanly decides who the contractor is (none, if its contractor section is empty). Only when a
+      // read failed does an earlier read's list stand, minus any permit types an older version mistook for names.
+      const real = (list) => (list || []).filter((n) => !looksLikeType(n) && n.toLowerCase() !== String(p.type || "").toLowerCase());
+      const contractors = d.parsed ? real(d.contractors) : (real(d.contractors).length ? real(d.contractors) : real(p.contractors));
       Object.assign(p, { address: d.address || p.address, date: d.date || p.date, details: true, contractors, cv: CONTRACTOR_VERSION });
       if (d.address) found++;
       if (d.contractors && d.contractors.length) withContractor++;
