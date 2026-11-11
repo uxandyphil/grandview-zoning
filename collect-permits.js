@@ -27,7 +27,8 @@
   const PAGE_PAUSE = 3000;   // ms between permit pages (loading one is many requests)
   const RECHECK = 12 * 3600_000;   // look for new permits (and retry the data lists) at most this often:
                                    // a run's later batches only read pages
-  const REFUSED = /\bHTTP (401|403|429)\b/;   // the portal saying no, or "slow down": stop instead of pushing on
+  const REFUSED = /\bHTTP (401|403|429)\b/;   // the portal saying no, or "slow down": stop asking instead of pushing on
+  const SEARCH_REST = 3600_000;   // after the portal refuses searches, don't search again for this long
   const STORE = "gvz-permits-v1";
   // permit types ("HVAC Permit", "Re-Roofing Permit", "Sewer Lateral Replacement/Repair") are never contractors
   const looksLikeType = (n) => /\bpermits?$|\bcertificate\b|\blateral\b|replacement\/repair|registration$|application$/i.test(String(n).trim());
@@ -202,17 +203,33 @@
     return r.json();
   }
 
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(STORE + "-done") || "{}"); } catch (e) {}
+  const saveDone = () => localStorage.setItem(STORE + "-done", JSON.stringify(done));
+  const due = (key) => Date.now() - (done[key] || 0) >= RECHECK;   // not done in the last 12 hours
+
+  // Searching only finds new permits. If the portal refuses it, the run doesn't stop: it skips looking for new
+  // permits (and doesn't search again for an hour) and still reads the pages of the permits it already has.
+  let searchRefused = Date.now() - (done["search:refusedAt"] || 0) < SEARCH_REST ? "less than an hour ago" : null;
+  function searchWasRefused(why) {
+    searchRefused = why;
+    done["search:refusedAt"] = Date.now(); saveDone();
+    log(`The portal refused searches (${why}), so this run skips looking for new permits and reads the ones it has`);
+  }
   // Make sure searching works; if not, borrow the headers the portal's own search uses
   let firstData = null;
-  try { firstData = await search("R-26-82"); }
-  catch (e) {
-    status("One step from you: type R-26-82 in the portal's search box and press Enter.");
-    log(`Direct search failed (${e.message}); waiting for you to search once`);
-    headers = await captureHeaders();
-    localStorage.setItem(STORE + "-headers", JSON.stringify(headers));
-    await sleep(1500);
-    try { firstData = await search("R-26-82"); log("Got it, searching works now"); }
-    catch (e2) { status(`The permit search refused requests (${e2.message}). Nothing changed.`); window.GVZ_RESULT = { error: e2.message }; return; }
+  if (searchRefused) log("The portal refused searches less than an hour ago, so this run only reads the permits it has");
+  else {
+    try { firstData = await search("R-26-82"); }
+    catch (e) {
+      status("One step from you: type R-26-82 in the portal's search box and press Enter.");
+      log(`Direct search failed (${e.message}); waiting for you to search once`);
+      const borrowed = await Promise.race([captureHeaders(), sleep(300_000).then(() => null)]);   // up to 5 minutes
+      if (borrowed) { headers = borrowed; localStorage.setItem(STORE + "-headers", JSON.stringify(headers)); }
+      await sleep(1500);
+      try { firstData = await search("R-26-82"); log("Got it, searching works now"); }
+      catch (e2) { searchWasRefused(e2.message); }
+    }
   }
 
   // ---------- finding record numbers ----------
@@ -230,14 +247,14 @@
   };
   harvest(firstData);
   // A dropped connection or a server error gets a few more tries. A refusal gets one, after a pause in case it was a
-  // blip; if the portal still says no, the run stops instead of pushing on.
+  // blip; if the portal still says no, the run stops searching (and goes on to read permit pages).
   async function searchWithRetry(key, retries = 3) {
     for (let attempt = 0; ; attempt++) {
       try { return await search(key); }
       catch (e) {
         const refused = REFUSED.test(e.message);
         if (attempt >= (refused ? 1 : retries) || stopped) throw e;
-        const wait = refused ? 120 : [30, 60, 120][attempt];
+        const wait = refused ? 60 : [30, 60, 120][attempt];
         status(refused ? `The portal refused a search (${e.message}). Waiting ${wait} seconds, then trying once more…`
           : `Connection hiccup (${e.message}). Waiting ${wait} seconds, then trying again…`);
         log(`${key}: ${e.message}, retrying in ${wait}s`);
@@ -257,29 +274,24 @@
     return pool[number];
   }
 
-  let done = {};
-  try { done = JSON.parse(localStorage.getItem(STORE + "-done") || "{}"); } catch (e) {}
-  const saveDone = () => localStorage.setItem(STORE + "-done", JSON.stringify(done));
-  const due = (key) => Date.now() - (done[key] || 0) >= RECHECK;   // not done in the last 12 hours
-  let refusedBy = null;   // why the portal refused, if it did
-  // The portal refused: stop instead of pushing on. What's found so far stays saved in this browser and goes to the
-  // site with the next run that works.
-  function refuse(why) {
+  // Permit pages stopped loading: the run stops instead of pushing on. What's read so far stays saved in this browser
+  // and goes to the site with the next run that works.
+  function stopRun(why) {
     save();
-    status(`The portal is refusing requests right now (${why}), so this run stopped. Try again later, for example tomorrow.`);
-    log(`Stopped: the portal refused (${why})`);
+    status(`Stopped: ${why}. Nothing is lost; try again later, for example tomorrow.`);
+    log(`Stopped: ${why}`);
     $("gvz-dl").disabled = false;
     window.GVZ_RESULT = { error: why };
   }
 
   // Keyword searches for code enforcement records; any series they turn up gets walked like the others
-  if (due("words:at")) {
+  if (!searchRefused && due("words:at")) {
     let ok = true;
     for (const word of ENFORCE_WORDS) {
       if (stopped) break;
       status(`Looking for code enforcement records… (${word})`);
       try { await sleep(PAUSE); harvest(await searchWithRetry(word, 0)); searches++; }
-      catch (e) { ok = false; log(`"${word}" search: ${e.message}`); if (REFUSED.test(e.message)) { refusedBy = e.message; break; } }
+      catch (e) { ok = false; log(`"${word}" search: ${e.message}`); if (REFUSED.test(e.message)) { searchWasRefused(e.message); break; } }
     }
     const enforce = Object.entries(pool).filter(([, v]) => ENFORCE_TYPE.test(v.type || ""));
     for (const [n] of enforce) { const m = numRe.exec(n); if (m && !PREFIXES.includes(m[1].toUpperCase())) PREFIXES.push(m[1].toUpperCase()); }
@@ -295,7 +307,7 @@
 
   try {
    for (const yy of YEARS) {
-    if (refusedBy || stopped) break;
+    if (searchRefused || stopped) break;
     const past = yy !== YEARS[0];
     // this year's series are walked again for new permits, at most every 12 hours
     if (!past && !due(yy + ":walkedAt")) { log(`20${yy}: looked for new permits in the last 12 hours, so not again yet`); continue; }
@@ -347,7 +359,7 @@
    }
   } catch (e) {
     save();
-    if (REFUSED.test(e.message)) refusedBy = e.message;
+    if (REFUSED.test(e.message)) searchWasRefused(e.message);
     log(`Search stopped: ${e.message}. Progress is saved; run the script again later to continue.`);
   }
   // keep enforcement records the keyword searches found outside the walked series (added after the walk,
@@ -361,7 +373,6 @@
   }
   save();
   log(`${added} new permits from ${searches} searches`);
-  if (refusedBy) return refuse(refusedBy);
 
   // ---------- addresses (from each record's page) ----------
   const street = "(?:Ave(?:nue)?|St(?:reet)?|Rd|Road|Blvd|Boulevard|Dr(?:ive)?|Ct|Court|Pl(?:ace)?|Way|Ln|Lane|Pkwy|Parkway|Cir(?:cle)?|Ter(?:race)?)";
@@ -699,7 +710,7 @@
   // new permits, plus ones read before contractors were collected
   const todo = Object.values(permits).filter((p) => (!p.details || p.cv !== CONTRACTOR_VERSION) && p.entity_id)
     .sort((a, b) => b.entity_id - a.entity_id).slice(0, MAX_DETAILS);
-  let found = 0, withContractor = 0, read = 0, failedInARow = 0;
+  let found = 0, withContractor = 0, read = 0, failedInARow = 0, pagesStopped = null;
   $("gvz-dl").disabled = false;   // what's done so far can be downloaded any time
   for (const [i, p] of todo.entries()) {
     if (stopped) break;
@@ -712,7 +723,7 @@
       // has stopped showing pages, so the run stops instead of asking for more.
       if (d.failed) {
         log(`${p.number}: the page didn't load`);
-        if (++failedInARow >= 3) { refusedBy = "permit pages stopped loading"; break; }
+        if (++failedInARow >= 3) { pagesStopped = "permit pages stopped loading"; break; }
         continue;
       }
       failedInARow = 0; read++;
@@ -729,10 +740,10 @@
   }
   save();
   if (frameEl) { frameEl.remove(); frameEl = null; }
-  // Nothing read: the run stops. Some read: they're handed over as usual, and the next batch stops if the portal
-  // still refuses.
-  if (refusedBy && !read) return refuse(refusedBy);
-  if (refusedBy) log(`Stopped this batch early: ${refusedBy}`);
+  // Pages stopped loading. Nothing read: the run stops. Some read: they're handed over as usual, and the next batch
+  // stops if pages still don't load.
+  if (pagesStopped && !read) return stopRun(pagesStopped);
+  if (pagesStopped) log(`Stopped this batch early: ${pagesStopped}`);
   const left = Object.values(permits).filter((p) => !p.details || p.cv !== CONTRACTOR_VERSION).length;
   log(`Addresses: ${found} of ${todo.length} found; contractors on ${withContractor}${left ? `; ${left} left for next time` : ""}`);
   status(`Done. ${Object.keys(permits).length} permits${left ? ` (run again later for ${left} more)` : ""}. Click Download.`);
