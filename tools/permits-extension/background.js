@@ -165,6 +165,19 @@ function samePermits(a, b) {
   const na = norm(a);
   return na !== null && na === norm(b);
 }
+// The site's nightly job adds map locations to docs/permits.json; carry them into the upload so it doesn't take the
+// permits' pins off the map until the next nightly run
+function withMapLocations(json, current) {
+  try {
+    const cur = new Map((JSON.parse(current).permits || []).filter((p) => p.lat != null).map((p) => [p.number, p]));
+    const data = JSON.parse(json);
+    for (const p of data.permits || []) {
+      const c = cur.get(p.number);
+      if (c && p.lat == null) { p.lat = c.lat; p.lon = c.lon; }
+    }
+    return JSON.stringify(data, null, 2);
+  } catch { return json; }
+}
 async function gh(token, pathname, opts = {}) {
   const r = await fetch(`https://api.github.com${pathname}`, {
     ...opts,
@@ -181,6 +194,7 @@ async function publish(token, json, summary) {
     const parent = ref.object.sha;
     const current = await fetch(`https://raw.githubusercontent.com/${REPO}/${parent}/${FILE}`).then((r) => (r.ok ? r.text() : ""));
     if (current && samePermits(current, json)) return false;
+    json = withMapLocations(json, current);
     const head = await gh(token, `/repos/${REPO}/git/commits/${parent}`);
     const blob = await gh(token, `/repos/${REPO}/git/blobs`, { method: "POST", body: JSON.stringify({ content: json, encoding: "utf-8" }) });
     const tree = await gh(token, `/repos/${REPO}/git/trees`, { method: "POST",

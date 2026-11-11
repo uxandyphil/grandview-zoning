@@ -183,7 +183,10 @@
     28404639,
     28408775,
     28414106,
-    28412587
+    28412587,
+    28415967,
+    28415891,
+    28415817
   ],
   "court_version": 2,
   "geocache": {
@@ -1056,6 +1059,7 @@
       39.983201684712,
       -83.033859127745
     ],
+    "1072 DUBLIN RD, Grandview Heights, OH 43212": null,
     "1072 MULFORD RD, Grandview Heights, OH 43212": [
       39.978902618886,
       -83.033286039993
@@ -4299,6 +4303,10 @@
       39.982491385826,
       -83.050504170273
     ],
+    "1257 Grandview Avenue, Grandview Heights, OH 43212": [
+      39.983648028617,
+      -83.044941408927
+    ],
     "1257 NORTHWEST BL, Grandview Heights, OH 43212": [
       39.984042859234,
       -83.038598731435
@@ -5046,6 +5054,10 @@
     "1295 GLENN AVE, Grandview Heights, OH 43212": [
       39.982894551253,
       -83.054243546063
+    ],
+    "1295 Grandview Avenue, Grandview Heights, OH 43212": [
+      39.984260996549,
+      -83.044893663343
     ],
     "1295 HOLLYWOOD AV, Grandview Heights, OH 43212": [
       39.984453060126,
@@ -12683,7 +12695,7 @@
     "WYANDOTTE RD, Grandview Heights, OH 43212": null,
     "YARD ST, Grandview Heights, OH 43212": null
   },
-  "recorder_through": "2026-11-10",
+  "recorder_through": "2026-11-11",
   "recorder_version": 2,
   "seen": {
     "Board of Zoning Appeals": [
