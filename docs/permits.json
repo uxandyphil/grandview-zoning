@@ -1,15 +1,15 @@
 {
-  "updated": "2026-11-11T15:02:02.185Z",
-  "record_fields": null,
+  "updated": "2026-11-11T15:27:05.017Z",
+  "record_fields": [],
   "record_labels": [
     "Skip to main content",
     "City of Grandview Heights, OH",
     "Search",
     "Login",
     "Sign Up",
-    "Plumbing Permit",
+    "Re-Roofing Permit",
     "Applicant",
-    "Chris Cimperman",
+    "John Smith",
     "Location",
     "View location details",
     "Created",
@@ -20,37 +20,30 @@
     "Details",
     "Project Information",
     "City of Grandview Heights",
-    "Who is performing the work? *",
-    "Contractor",
     "Occupancy Type *",
-    "Residential",
+    "Commercial",
     "Estimated Project Cost *",
-    "Project Decsription *",
+    "Project Description *",
     "toggle tooltip",
-    "Stand alone project",
     "Contractor Information",
     "Company Name *",
-    "CMC Plumbing & Drain",
+    "Innovative Roofing Systems",
     "Primary Contact Name *",
-    "Chris Cimperman",
+    "John Smith",
     "Company Address *",
     "Contractor City *",
-    "Wester",
+    "Columbus",
     "Contractor State *",
-    "OH",
+    "Ohio",
     "Contractor Zip *",
     "Contractor Email *",
-    "Cmchsllc@gmail.com",
+    "jsmith@innovativeroofingsystems.com",
     "Business Phone *",
-    "Property Owner Information",
+    "Property Owner Contact Information",
+    "Telephone Number *",
     "Email Address *",
-    "Phone Number *",
-    "Fixtures",
-    "Fixture Type\tNumber of Fixtures",
-    "Actions",
-    "Certification",
-    "Christopher Cimperman",
-    "Total Fixtures",
+    "RehanH@summitchasecondo.com",
+    "Affidavit",
     "Documents",
     "No documents have been issued...",
     "City of Grandview Heights, OH",
@@ -75,9 +68,35 @@
       "filled": false
     }
   ],
-  "record_shapes": null,
-  "record_status": null,
-  "record_apis": [],
+  "record_shapes": {
+    "docs": [
+      "data"
+    ]
+  },
+  "record_status": {
+    "docs": "200",
+    "conditions_maps": 500,
+    "record_attachments": "Failed to fetch",
+    "{id}": 500,
+    "multi_entry_item_entries": "Failed to fetch",
+    "multi_entry_items": "Failed to fetch",
+    "form_fields": "Failed to fetch",
+    "form_field_entries": "Failed to fetch",
+    "form_sections": "Failed to fetch",
+    "locations": "Failed to fetch"
+  },
+  "record_apis": [
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/records/{id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/conditions_maps?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_sections?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_field_entries?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/form_fields?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/multi_entry_items?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/multi_entry_item_entries?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/record_attachments?page=public&recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/locations?recordID={id}",
+    "https://api-east.viewpointcloud.com/v2/grandviewheightsoh/docs?recordID={id}"
+  ],
   "permits": [
     {
       "number": "P-26-102",
@@ -136,6 +155,20 @@
       "cv": 4
     },
     {
+      "number": "ROOF-26-80",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29926",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29926",
+      "address": "1000 Urlin Avenue",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
       "number": "ZON-26-135",
       "type": "Certificate of Zoning Compliance",
       "entity_id": "29924",
@@ -149,6 +182,20 @@
       "contractors": [
         "Wagbros Company"
       ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-40",
+      "type": "Sign Permit",
+      "entity_id": "29922",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29922",
+      "address": "1295 Grandview Avenue",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 4
     },
     {
@@ -180,6 +227,20 @@
       "cv": 4
     },
     {
+      "number": "GAS-26-25",
+      "type": "Gas Piping Permit",
+      "entity_id": "29903",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29903",
+      "address": "1500 WYANDOTTE RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
       "number": "ZON-26-134",
       "type": "Certificate of Zoning Compliance",
       "entity_id": "29895",
@@ -193,6 +254,20 @@
       "contractors": [
         "Wagbros Company"
       ],
+      "cv": 4
+    },
+    {
+      "number": "SIDE-26-44",
+      "type": "Sidewalk Permit",
+      "entity_id": "29888",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29888",
+      "address": "1293 BROADVIEW AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 4
     },
     {
@@ -422,6 +497,22 @@
       "cv": 4
     },
     {
+      "number": "WIND-26-28",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29858",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29858",
+      "address": "947 PALMER RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
+      "cv": 4
+    },
+    {
       "number": "E-26-120",
       "type": "Electrical Permit",
       "entity_id": "29852",
@@ -534,6 +625,20 @@
       "cv": 4
     },
     {
+      "number": "WIND-26-27",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29837",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29837",
+      "address": "1211 N PARKWAY AVE",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
       "number": "E-26-117",
       "type": "Electrical Permit",
       "entity_id": "29836",
@@ -580,20 +685,6 @@
       "cv": 4
     },
     {
-      "number": "E-26-118",
-      "type": "Electrical Permit",
-      "entity_id": "29819",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29819",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-11-11T14:30:56+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
       "number": "H-26-136",
       "type": "HVAC Permit",
       "entity_id": "29037",
@@ -606,6 +697,380 @@
       "details": true,
       "contractors": [],
       "cv": 3
+    },
+    {
+      "number": "ROOF-26-79",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29925",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29925",
+      "address": null,
+      "date": "2026-11-10",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-124",
+      "type": "HVAC Permit",
+      "entity_id": "29729",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29729",
+      "address": "1129 GRANDVIEW AVE",
+      "date": "2026-11-10",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "GAS-26-26",
+      "type": "Gas Piping Permit",
+      "entity_id": "29923",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29923",
+      "address": null,
+      "date": "2026-11-09",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing LLC"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-35",
+      "type": "Sign Permit",
+      "entity_id": "29723",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29723",
+      "address": null,
+      "date": "2026-11-09",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit",
+        "Byrne Warehousing Inc."
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-33",
+      "type": "Sign Permit",
+      "entity_id": "29680",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29680",
+      "address": "1580 W First Avenue",
+      "date": "2026-11-09",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-37",
+      "type": "Sign Permit",
+      "entity_id": "29811",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29811",
+      "address": "775 YARD ST",
+      "date": "2026-11-06",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-78",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29900",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29900",
+      "address": null,
+      "date": "2026-11-05",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-77",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29893",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29893",
+      "address": null,
+      "date": "2026-11-05",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "FENC-26-63",
+      "type": "Fence Permit",
+      "entity_id": "29838",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29838",
+      "address": null,
+      "date": "2026-11-04",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "Fence Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-123",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29789",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29789",
+      "address": "1499 LINCOLN RD",
+      "date": "2026-11-04",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-126",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29812",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29812",
+      "address": "1283 BROADVIEW AVE",
+      "date": "2026-11-03",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-38",
+      "type": "Sign Permit",
+      "entity_id": "29841",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29841",
+      "address": null,
+      "date": "2026-11-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-36",
+      "type": "Sign Permit",
+      "entity_id": "29810",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29810",
+      "address": "775 YARD ST",
+      "date": "2026-11-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-105",
+      "type": "Building Permit - Residential",
+      "entity_id": "29793",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29793",
+      "address": "1753 W FIRST AVE",
+      "date": "2026-11-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-122",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29743",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29743",
+      "address": "1668-1670 W FIRST AVE",
+      "date": "2026-11-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T23:44:37+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-34",
+      "type": "Sign Permit",
+      "entity_id": "29722",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29722",
+      "address": null,
+      "date": "2026-11-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Byrne Warehousing Inc.",
+        "Sign Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-118",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29691",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29691",
+      "address": "1189 WILLARD AVE",
+      "date": "2026-11-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-39",
+      "type": "Sign Permit",
+      "entity_id": "29861",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29861",
+      "address": null,
+      "date": "2026-10-30",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SWR-26-16",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "29849",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29849",
+      "address": null,
+      "date": "2026-10-30",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T15:03:40+00:00",
+      "details": true,
+      "contractors": [
+        "Sewer Lateral Replacement/Repair"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-117",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29677",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29677",
+      "address": "1337 MULFORD AVE",
+      "date": "2026-10-29",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "E-26-118",
+      "type": "Electrical Permit",
+      "entity_id": "29819",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29819",
+      "address": null,
+      "date": "2026-10-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-11T14:30:56+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-134",
+      "type": "HVAC Permit",
+      "entity_id": "29742",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29742",
+      "address": null,
+      "date": "2026-10-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "WIND-26-26",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29770",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29770",
+      "address": "1530 LINCOLN RD",
+      "date": "2026-10-27",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "FENC-26-62",
+      "type": "Fence Permit",
+      "entity_id": "29706",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29706",
+      "address": "1129 GRANDVIEW AVE",
+      "date": "2026-10-27",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Fence Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "R-26-107",
@@ -683,83 +1148,13 @@
       "entity_id": "29813",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29813",
       "address": "1283 BROADVIEW AVE",
-      "date": null,
+      "date": "2026-10-26",
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-126",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": "29812",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29812",
-      "address": "1283 BROADVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIGN-26-37",
-      "type": "Sign Permit",
-      "entity_id": "29811",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29811",
-      "address": "775 YARD ST",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIGN-26-36",
-      "type": "Sign Permit",
-      "entity_id": "29810",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29810",
-      "address": "775 YARD ST",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-133",
-      "type": "HVAC Permit",
-      "entity_id": "29809",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29809",
-      "address": "1342 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-132",
-      "type": "HVAC Permit",
-      "entity_id": "29805",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29805",
-      "address": "1348 ASHLAND AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "ZON-26-125",
@@ -773,7 +1168,7 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "ZON-26-124",
@@ -789,51 +1184,7 @@
       "contractors": [
         "ND Enterprises LLC"
       ],
-      "cv": 3
-    },
-    {
-      "number": "E-26-114",
-      "type": "Electrical Permit",
-      "entity_id": "29795",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29795",
-      "address": "1129 GRANDVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [
-        "Diles Electrical Service LLC"
-      ],
-      "cv": 3
-    },
-    {
-      "number": "R-26-104",
-      "type": "Building Permit - Residential",
-      "entity_id": "29794",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29794",
-      "address": "1557 LINCOLN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-105",
-      "type": "Building Permit - Residential",
-      "entity_id": "29793",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29793",
-      "address": "1753 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "C-26-57",
@@ -847,7 +1198,7 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "C-26-56",
@@ -861,51 +1212,7 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-123",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": "29789",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29789",
-      "address": "1499 LINCOLN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-103",
-      "type": "Building Permit - Residential",
-      "entity_id": "29787",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29787",
-      "address": "1046 GRANDVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [
-        "J S Brown & Company"
-      ],
-      "cv": 3
-    },
-    {
-      "number": "P-26-98",
-      "type": "Plumbing Permit",
-      "entity_id": "29786",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29786",
-      "address": "1889 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "C-26-55",
@@ -921,7 +1228,195 @@
       "contractors": [
         "Foxfield Construction Ltd"
       ],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "H-26-130",
+      "type": "HVAC Permit",
+      "entity_id": "29757",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29757",
+      "address": null,
+      "date": "2026-10-26",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T23:32:58+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit",
+        "EDINGTON ON FIRST LLC"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "P-26-96",
+      "type": "Plumbing Permit",
+      "entity_id": "29751",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29751",
+      "address": null,
+      "date": "2026-10-26",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-122",
+      "type": "HVAC Permit",
+      "entity_id": "29670",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29670",
+      "address": "840-844 GRANDVIEW AVE",
+      "date": "2026-10-26",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-115",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29595",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29595",
+      "address": "1807 W FIRST AVE",
+      "date": "2026-10-23",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "R-26-98",
+      "type": "Building Permit - Residential",
+      "entity_id": 29591,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29591",
+      "address": "1807 W FIRST AVE",
+      "date": "2026-10-23",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-27T00:00:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "H-26-133",
+      "type": "HVAC Permit",
+      "entity_id": "29809",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29809",
+      "address": "1342 W FIRST AVE",
+      "date": "2026-10-22",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-104",
+      "type": "Building Permit - Residential",
+      "entity_id": "29794",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29794",
+      "address": "1557 LINCOLN RD",
+      "date": "2026-10-22",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "R-26-103",
+      "type": "Building Permit - Residential",
+      "entity_id": "29787",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29787",
+      "address": "1046 GRANDVIEW AVE",
+      "date": "2026-10-22",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "J S Brown & Company"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-116",
+      "type": "HVAC Permit",
+      "entity_id": 29523,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29523",
+      "address": "806-808 COPELAND RD",
+      "date": "2026-10-22",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-132",
+      "type": "HVAC Permit",
+      "entity_id": "29805",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29805",
+      "address": "1348 ASHLAND AVE",
+      "date": "2026-10-21",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "E-26-114",
+      "type": "Electrical Permit",
+      "entity_id": "29795",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29795",
+      "address": "1129 GRANDVIEW AVE",
+      "date": "2026-10-21",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "Diles Electrical Service LLC",
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "P-26-98",
+      "type": "Plumbing Permit",
+      "entity_id": "29786",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29786",
+      "address": "1889 W FIRST AVE",
+      "date": "2026-10-21",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-131",
@@ -929,13 +1424,32 @@
       "entity_id": "29783",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29783",
       "address": "1202 ASHLAND AVE",
-      "date": null,
+      "date": "2026-10-21",
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-128",
+      "type": "HVAC Permit",
+      "entity_id": "29746",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29746",
+      "address": "955 YARD ST",
+      "date": "2026-10-21",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T23:32:58+00:00",
+      "details": true,
+      "contractors": [
+        "G Mechanical Inc.",
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "ROOF-26-76",
@@ -943,59 +1457,78 @@
       "entity_id": "29777",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29777",
       "address": "1433 INGLIS AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-26",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29770",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29770",
-      "address": "1530 LINCOLN RD",
-      "date": null,
+      "date": "2026-10-20",
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [
-        "ROSATI WINDOWS LLC"
+        "Re-Roofing Permit"
       ],
-      "cv": 3
+      "cv": 4
     },
     {
-      "number": "ROOF-26-75",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29767",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29767",
-      "address": "815 GLADDEN RD",
-      "date": null,
+      "number": "SIDE-26-43",
+      "type": "Sidewalk Permit",
+      "entity_id": "29676",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29676",
+      "address": "1337 MULFORD AVE",
+      "date": "2026-10-20",
       "lat": null,
       "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
-      "details": true,
-      "contractors": [
-        "BC Construction Services LLC"
-      ],
-      "cv": 3
-    },
-    {
-      "number": "P-26-97",
-      "type": "Plumbing Permit",
-      "entity_id": "29764",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29764",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-26T01:08:13+00:00",
+      "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "E-26-111",
+      "type": "Electrical Permit",
+      "entity_id": "29637",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29637",
+      "address": "906 Yard Street",
+      "date": "2026-10-20",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SWR-26-15",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "29636",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29636",
+      "address": "1093 W SECOND AVE",
+      "date": "2026-10-20",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Sewer Lateral Replacement/Repair"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-32",
+      "type": "Sign Permit",
+      "entity_id": 29472,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29472",
+      "address": "1064 DUBLIN RD",
+      "date": "2026-10-20",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit",
+        "GVX RETAIL I LLC"
+      ],
+      "cv": 4
     },
     {
       "number": "R-26-102",
@@ -1003,27 +1536,111 @@
       "entity_id": "29760",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29760",
       "address": "1224 EASTVIEW AVE",
-      "date": null,
+      "date": "2026-10-19",
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
-      "number": "H-26-134",
+      "number": "H-26-126",
       "type": "HVAC Permit",
-      "entity_id": "29742",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29742",
-      "address": null,
-      "date": null,
+      "entity_id": "29736",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29736",
+      "address": "1191 BROADVIEW AVE",
+      "date": "2026-10-19",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-31",
+      "type": "Sign Permit",
+      "entity_id": 29471,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29471",
+      "address": "1064 DUBLIN RD",
+      "date": "2026-10-19",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit",
+        "GVX RETAIL I LLC"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-28",
+      "type": "Sign Permit",
+      "entity_id": 29438,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29438",
+      "address": "1064 DUBLIN RD",
+      "date": "2026-10-19",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit",
+        "GVX RETAIL I LLC"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-75",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29767",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29767",
+      "address": "815 GLADDEN RD",
+      "date": "2026-10-16",
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "P-26-97",
+      "type": "Plumbing Permit",
+      "entity_id": "29764",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29764",
+      "address": null,
+      "date": "2026-10-16",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-26T01:08:13+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-129",
+      "type": "HVAC Permit",
+      "entity_id": "29755",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29755",
+      "address": "1337 W SECOND AVE",
+      "date": "2026-10-16",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T23:32:58+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "WIND-26-25",
@@ -1037,7 +1654,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "GAS-26-24",
@@ -1051,21 +1668,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "P-26-96",
-      "type": "Plumbing Permit",
-      "entity_id": "29751",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29751",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "WIND-26-24",
@@ -1073,13 +1676,13 @@
       "entity_id": "29750",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29750",
       "address": "1323 MULFORD AVE",
-      "date": null,
+      "date": "2026-10-16",
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "C-26-54",
@@ -1093,155 +1696,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "FENC-26-62",
-      "type": "Fence Permit",
-      "entity_id": "29706",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29706",
-      "address": "1129 GRANDVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SWR-26-15",
-      "type": "Sewer Lateral Replacement/Repair",
-      "entity_id": "29636",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29636",
-      "address": "1093 W SECOND AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "FENC-26-61",
-      "type": "Fence Permit",
-      "entity_id": "29626",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29626",
-      "address": "1270 ASHLAND AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SWR-26-14",
-      "type": "Sewer Lateral Replacement/Repair",
-      "entity_id": "29570",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29570",
-      "address": "1020 ELMWOOD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "FENC-26-60",
-      "type": "Fence Permit",
-      "entity_id": "29562",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29562",
-      "address": "1379 WYANDOTTE RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [
-        "Ace Fence & Deck LLC"
-      ],
-      "cv": 3
-    },
-    {
-      "number": "SWR-26-13",
-      "type": "Sewer Lateral Replacement/Repair",
-      "entity_id": "29556",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29556",
-      "address": "1700 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "FENC-26-59",
-      "type": "Fence Permit",
-      "entity_id": "29545",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29545",
-      "address": "1700 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [
-        "Mae Fence Company"
-      ],
-      "cv": 3
-    },
-    {
-      "number": "FENC-26-58",
-      "type": "Fence Permit",
-      "entity_id": "29488",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29488",
-      "address": "1251 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [
-        "Mills Fence Company LLC"
-      ],
-      "cv": 3
-    },
-    {
-      "number": "FENC-26-57",
-      "type": "Fence Permit",
-      "entity_id": "29463",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29463",
-      "address": "1685 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [
-        "Expert Fence LLC"
-      ],
-      "cv": 3
-    },
-    {
-      "number": "FENC-26-56",
-      "type": "Fence Permit",
-      "entity_id": "29457",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29457",
-      "address": "1146 BROADVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-16T00:41:36+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "FENC-26-54",
@@ -1255,7 +1710,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "FENC-26-53",
@@ -2212,232 +2667,34 @@
       "cv": 3
     },
     {
-      "number": "H-26-130",
-      "type": "HVAC Permit",
-      "entity_id": "29757",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29757",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T23:32:58+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-129",
-      "type": "HVAC Permit",
-      "entity_id": "29755",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29755",
-      "address": "1337 W SECOND AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T23:32:58+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-128",
-      "type": "HVAC Permit",
-      "entity_id": "29746",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29746",
-      "address": "955 YARD ST",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T23:32:58+00:00",
-      "details": true,
-      "contractors": [
-        "G Mechanical Inc."
-      ],
-      "cv": 3
-    },
-    {
       "number": "WIND-26-23",
       "type": "Window/Door Replacement Permit",
       "entity_id": "29734",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29734",
       "address": "1452 W SECOND AVE",
-      "date": null,
+      "date": "2026-10-15",
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
-      "number": "ROOF-26-74",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29714",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29714",
-      "address": "1385 HAINES AVE",
-      "date": null,
+      "number": "E-26-113",
+      "type": "Electrical Permit",
+      "entity_id": "29727",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29727",
+      "address": "1182 W FIRST AVE",
+      "date": "2026-10-15",
       "lat": null,
       "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-73",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29712",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29712",
-      "address": "982 PARKWAY DR",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-72",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29707",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29707",
-      "address": "1342 LINCOLN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-71",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29696",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29696",
-      "address": "1317 MULFORD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "GAS-26-23",
-      "type": "Gas Piping Permit",
-      "entity_id": "29688",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29688",
-      "address": "1375 W SECOND AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T01:20:00+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIDE-26-43",
-      "type": "Sidewalk Permit",
-      "entity_id": "29676",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29676",
-      "address": "1337 MULFORD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-70",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29675",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29675",
-      "address": "1192 GRANDVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-69",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29658",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29658",
-      "address": "857 THOMAS RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-68",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29649",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29649",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
+      "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [
-        "Feazel Roofing LLC"
+        "Electrical Permit"
       ],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-67",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29635",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29635",
-      "address": "1389 WYANDOTTE RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-66",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29622",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29622",
-      "address": "1407 WYANDOTTE RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-22",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29592",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29592",
-      "address": "1463 LINCOLN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "WIND-26-21",
@@ -2451,161 +2708,23 @@
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
-      "number": "ROOF-26-65",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29559",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29559",
-      "address": "1783 W THIRD AVE",
-      "date": null,
+      "number": "FENC-26-59",
+      "type": "Fence Permit",
+      "entity_id": "29545",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29545",
+      "address": "1700 W FIRST AVE",
+      "date": "2026-10-15",
       "lat": null,
       "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
+      "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "GAS-26-22",
-      "type": "Gas Piping Permit",
-      "entity_id": "29541",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29541",
-      "address": "804 GLADDEN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T01:20:00+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-20",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29528",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29528",
-      "address": "1296 ASHLAND AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-19",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29501",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29501",
-      "address": "1516 LINCOLN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-18",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29493",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29493",
-      "address": "1397 GLENN AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "GAS-26-21",
-      "type": "Gas Piping Permit",
-      "entity_id": "29445",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29445",
-      "address": "1987 VILLAGE CT",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T01:20:00+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "GAS-26-20",
-      "type": "Gas Piping Permit",
-      "entity_id": "29418",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29418",
-      "address": "1557 LINCOLN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T01:20:00+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-17",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29416",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29416",
-      "address": "1254-1256 GRANDVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-16",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29415",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29415",
-      "address": "1100 URLIN AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-15",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29414",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29414",
-      "address": "904 TIMBERMAN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "WIND-26-14",
-      "type": "Window/Door Replacement Permit",
-      "entity_id": "29413",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29413",
-      "address": "1580 LINCOLN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-15T00:10:25+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Fence Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "WIND-26-13",
@@ -2619,7 +2738,7 @@
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "SIDE-26-42",
@@ -3654,20 +3773,6 @@
       "details": false
     },
     {
-      "number": "ZON-26-122",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": "29743",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29743",
-      "address": "1668-1670 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
       "number": "H-26-127",
       "type": "HVAC Permit",
       "entity_id": "29741",
@@ -3679,7 +3784,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "C-26-53",
@@ -3693,21 +3798,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-126",
-      "type": "HVAC Permit",
-      "entity_id": "29736",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29736",
-      "address": "1191 BROADVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "P-26-95",
@@ -3715,97 +3806,31 @@
       "entity_id": "29733",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29733",
       "address": "906 Yard Street",
-      "date": null,
+      "date": "2026-10-14",
       "lat": null,
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "H-26-125",
-      "type": "HVAC Permit",
-      "entity_id": "29731",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29731",
-      "address": "1182 W FIRST AVE",
-      "date": null,
+      "number": "ROOF-26-72",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29707",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29707",
+      "address": "1342 LINCOLN RD",
+      "date": "2026-10-14",
       "lat": null,
       "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
+      "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-124",
-      "type": "HVAC Permit",
-      "entity_id": "29729",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29729",
-      "address": "1129 GRANDVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-113",
-      "type": "Electrical Permit",
-      "entity_id": "29727",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29727",
-      "address": "1182 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIGN-26-35",
-      "type": "Sign Permit",
-      "entity_id": "29723",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29723",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIGN-26-34",
-      "type": "Sign Permit",
-      "entity_id": "29722",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29722",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-120",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": "29710",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29710",
-      "address": "1065 OXLEY RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "ZON-26-119",
@@ -3819,7 +3844,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "ZON-26-121",
@@ -3833,91 +3858,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-101",
-      "type": "Building Permit - Residential",
-      "entity_id": "29694",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29694",
-      "address": "1189 WILLARD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-118",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": "29691",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29691",
-      "address": "1189 WILLARD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIGN-26-33",
-      "type": "Sign Permit",
-      "entity_id": "29680",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29680",
-      "address": "1580 W First Avenue",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-117",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": "29677",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29677",
-      "address": "1337 MULFORD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-122",
-      "type": "HVAC Permit",
-      "entity_id": "29670",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29670",
-      "address": "840-844 GRANDVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-112",
-      "type": "Electrical Permit",
-      "entity_id": "29661",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29661",
-      "address": "1375 W SECOND AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-121",
@@ -3931,23 +3872,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "P-26-94",
-      "type": "Plumbing Permit",
-      "entity_id": "29659",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29659",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [
-        "TARPLUMBING LLC"
-      ],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "ZON-26-116",
@@ -3961,7 +3886,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "C-26-52",
@@ -3975,205 +3900,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-111",
-      "type": "Electrical Permit",
-      "entity_id": "29637",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29637",
-      "address": "906 Yard Street",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-100",
-      "type": "Building Permit - Residential",
-      "entity_id": "29627",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29627",
-      "address": "1812 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-109",
-      "type": "Electrical Permit",
-      "entity_id": "29614",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29614",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-99",
-      "type": "Building Permit - Residential",
-      "entity_id": "29606",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29606",
-      "address": "1389 ARLINGTON AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-108",
-      "type": "Electrical Permit",
-      "entity_id": "29597",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29597",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [
-        "Jess Howard Electric Company"
-      ],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-115",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": "29595",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29595",
-      "address": "1807 W FIRST AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "P-26-93",
-      "type": "Plumbing Permit",
-      "entity_id": "29567",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29567",
-      "address": "1020 ELMWOOD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-110",
-      "type": "Electrical Permit",
-      "entity_id": "29564",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29564",
-      "address": "1458 North Star Avenue",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-123",
-      "type": "HVAC Permit",
-      "entity_id": "29554",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29554",
-      "address": "1000 ELMWOOD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T00:19:04+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-64",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29514",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29514",
-      "address": "1091 BROADVIEW AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-63",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29497",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29497",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-62",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29496",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29496",
-      "address": null,
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-61",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29483",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29483",
-      "address": "873 TIMBERMAN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-60",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29410",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29410",
-      "address": "1096 W SECOND AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "ROOF-26-59",
@@ -4187,49 +3914,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-58",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29386",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29386",
-      "address": "1226 LINCOLN RD",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-57",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29375",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29375",
-      "address": "1871 BLUFF AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ROOF-26-56",
-      "type": "Re-Roofing Permit",
-      "entity_id": "29351",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29351",
-      "address": "1336 ELMWOOD AVE",
-      "date": null,
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-10-14T23:44:37+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "DEMO-26-4",
@@ -5034,6 +4719,658 @@
       "cv": 3
     },
     {
+      "number": "H-26-125",
+      "type": "HVAC Permit",
+      "entity_id": "29731",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29731",
+      "address": "1182 W FIRST AVE",
+      "date": "2026-10-13",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-120",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": "29710",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29710",
+      "address": "1065 OXLEY RD",
+      "date": "2026-10-13",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "FENC-26-61",
+      "type": "Fence Permit",
+      "entity_id": "29626",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29626",
+      "address": "1270 ASHLAND AVE",
+      "date": "2026-10-13",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Fence Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-74",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29714",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29714",
+      "address": "1385 HAINES AVE",
+      "date": "2026-10-12",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-73",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29712",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29712",
+      "address": "982 PARKWAY DR",
+      "date": "2026-10-12",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-101",
+      "type": "Building Permit - Residential",
+      "entity_id": "29694",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29694",
+      "address": "1189 WILLARD AVE",
+      "date": "2026-10-12",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "R-26-89",
+      "type": "Building Permit - Residential",
+      "entity_id": 29464,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29464",
+      "address": "1182 W FIRST AVE",
+      "date": "2026-10-12",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-27T00:00:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-70",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29675",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29675",
+      "address": "1192 GRANDVIEW AVE",
+      "date": "2026-10-09",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-71",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29696",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29696",
+      "address": "1317 MULFORD AVE",
+      "date": "2026-10-08",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "GAS-26-23",
+      "type": "Gas Piping Permit",
+      "entity_id": "29688",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29688",
+      "address": "1375 W SECOND AVE",
+      "date": "2026-10-07",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "P-26-94",
+      "type": "Plumbing Permit",
+      "entity_id": "29659",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29659",
+      "address": null,
+      "date": "2026-10-07",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-68",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29649",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29649",
+      "address": null,
+      "date": "2026-10-07",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-123",
+      "type": "HVAC Permit",
+      "entity_id": "29554",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29554",
+      "address": "1000 ELMWOOD AVE",
+      "date": "2026-10-07",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "E-26-112",
+      "type": "Electrical Permit",
+      "entity_id": "29661",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29661",
+      "address": "1375 W SECOND AVE",
+      "date": "2026-10-06",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-69",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29658",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29658",
+      "address": "857 THOMAS RD",
+      "date": "2026-10-06",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "E-26-107",
+      "type": "Electrical Permit",
+      "entity_id": 29549,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29549",
+      "address": "1179 OAKLAND AVE",
+      "date": "2026-10-06",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-100",
+      "type": "Building Permit - Residential",
+      "entity_id": "29627",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29627",
+      "address": "1812 W FIRST AVE",
+      "date": "2026-10-05",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "FENC-26-60",
+      "type": "Fence Permit",
+      "entity_id": "29562",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29562",
+      "address": "1379 WYANDOTTE RD",
+      "date": "2026-10-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Fence Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-114",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": 29548,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29548",
+      "address": "1064 DUBLIN RD",
+      "date": "2026-10-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "E-26-101",
+      "type": "Electrical Permit",
+      "entity_id": 29505,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29505",
+      "address": "1147 WYANDOTTE RD",
+      "date": "2026-10-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Rausch Electric LLC",
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-112",
+      "type": "HVAC Permit",
+      "entity_id": 29449,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29449",
+      "address": "1330 MULFORD AVE",
+      "date": "2026-10-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-67",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29635",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29635",
+      "address": "1389 WYANDOTTE RD",
+      "date": "2026-10-01",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SWR-26-14",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "29570",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29570",
+      "address": "1020 ELMWOOD AVE",
+      "date": "2026-10-01",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Sewer Lateral Replacement/Repair"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-97",
+      "type": "Building Permit - Residential",
+      "entity_id": 29538,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29538",
+      "address": "1060 GLENDALE AVE",
+      "date": "2026-10-01",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-27T00:00:07+00:00",
+      "details": true,
+      "contractors": [
+        "COGS ULTD LLC"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-66",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29622",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29622",
+      "address": "1407 WYANDOTTE RD",
+      "date": "2026-09-30",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "P-26-93",
+      "type": "Plumbing Permit",
+      "entity_id": "29567",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29567",
+      "address": "1020 ELMWOOD AVE",
+      "date": "2026-09-30",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "E-26-110",
+      "type": "Electrical Permit",
+      "entity_id": "29564",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29564",
+      "address": "1458 North Star Avenue",
+      "date": "2026-09-30",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "GAS-26-22",
+      "type": "Gas Piping Permit",
+      "entity_id": "29541",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29541",
+      "address": "804 GLADDEN RD",
+      "date": "2026-09-30",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "E-26-109",
+      "type": "Electrical Permit",
+      "entity_id": "29614",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29614",
+      "address": null,
+      "date": "2026-09-29",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-99",
+      "type": "Building Permit - Residential",
+      "entity_id": "29606",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29606",
+      "address": "1389 ARLINGTON AVE",
+      "date": "2026-09-29",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "P-26-92",
+      "type": "Plumbing Permit",
+      "entity_id": 29569,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29569",
+      "address": "852 MCCLAIN RD",
+      "date": "2026-09-29",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-117",
+      "type": "HVAC Permit",
+      "entity_id": 29542,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29542",
+      "address": "804 GLADDEN RD",
+      "date": "2026-09-29",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "E-26-108",
+      "type": "Electrical Permit",
+      "entity_id": "29597",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29597",
+      "address": null,
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T00:19:04+00:00",
+      "details": true,
+      "contractors": [
+        "Jess Howard Electric Company",
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "WIND-26-22",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29592",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29592",
+      "address": "1463 LINCOLN RD",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "H-26-119",
+      "type": "HVAC Permit",
+      "entity_id": 29585,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29585",
+      "address": "1449 ARLINGTON AVE",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SWR-26-13",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "29556",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29556",
+      "address": "1700 W FIRST AVE",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Sewer Lateral Replacement/Repair"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "C-26-50",
+      "type": "Building Permit - Commercial",
+      "entity_id": 29526,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29526",
+      "address": "794 NORTHWEST BL",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-27T00:00:07+00:00",
+      "details": true,
+      "contractors": [
+        "AWY HOLDIINGS LLC"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "FENC-26-58",
+      "type": "Fence Permit",
+      "entity_id": "29488",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29488",
+      "address": "1251 W FIRST AVE",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Fence Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-90",
+      "type": "Building Permit - Residential",
+      "entity_id": 29468,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29468",
+      "address": "1147 WYANDOTTE RD",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-27T00:00:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-30",
+      "type": "Sign Permit",
+      "entity_id": 29460,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29460",
+      "address": "844 GRANDVIEW AVE",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "SIGN-26-29",
+      "type": "Sign Permit",
+      "entity_id": 29459,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29459",
+      "address": "844 GRANDVIEW AVE",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Sign Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-88",
+      "type": "Building Permit - Residential",
+      "entity_id": 29450,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29450",
+      "address": "1367 MULFORD AVE",
+      "date": "2026-09-28",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-27T00:00:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
       "number": "P-23-26",
       "type": "Plumbing Permit",
       "entity_id": 20364,
@@ -5082,46 +5419,18 @@
       "details": true
     },
     {
-      "number": "R-26-98",
-      "type": "Building Permit - Residential",
-      "entity_id": 29591,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29591",
-      "address": "1807 W FIRST AVE",
-      "date": "2026-09-25",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-119",
-      "type": "HVAC Permit",
-      "entity_id": 29585,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29585",
-      "address": "1449 ARLINGTON AVE",
+      "number": "ZON-26-106",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": 29364,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29364",
+      "address": "956 PALMER RD",
       "date": "2026-09-25",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "P-26-92",
-      "type": "Plumbing Permit",
-      "entity_id": 29569,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29569",
-      "address": "852 MCCLAIN RD",
-      "date": "2026-09-24",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "P-26-91",
@@ -5129,13 +5438,31 @@
       "entity_id": 29566,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29566",
       "address": "1375 W SECOND AVE",
-      "date": "2026-09-23",
+      "date": "2026-09-24",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-65",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29559",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29559",
+      "address": "1783 W THIRD AVE",
+      "date": "2026-09-24",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-118",
@@ -5143,13 +5470,15 @@
       "entity_id": 29558,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29558",
       "address": "1165 W FIRST AVE",
-      "date": "2026-09-23",
+      "date": "2026-09-24",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-90",
@@ -5157,13 +5486,15 @@
       "entity_id": 29557,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29557",
       "address": "955 YARD ST",
-      "date": "2026-09-23",
+      "date": "2026-09-24",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-89",
@@ -5171,13 +5502,15 @@
       "entity_id": 29555,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29555",
       "address": "1557 LINCOLN RD",
-      "date": "2026-09-22",
+      "date": "2026-09-24",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "E-26-106",
@@ -5185,41 +5518,33 @@
       "entity_id": 29550,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29550",
       "address": "1273 BROADVIEW AVE",
-      "date": "2026-09-22",
+      "date": "2026-09-24",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Mike Powers Electric LLC",
+        "Electrical Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "E-26-107",
+      "number": "E-26-103",
       "type": "Electrical Permit",
-      "entity_id": 29549,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29549",
-      "address": "1179 OAKLAND AVE",
-      "date": "2026-09-21",
+      "entity_id": 29513,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29513",
+      "address": "1153 FAIRVIEW AVE",
+      "date": "2026-09-24",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-114",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": 29548,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29548",
-      "address": "1064 DUBLIN RD",
-      "date": "2026-09-21",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Trades ELE LLC",
+        "Electrical Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "E-26-105",
@@ -5227,27 +5552,75 @@
       "entity_id": 29543,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29543",
       "address": "955 YARD ST",
-      "date": "2026-09-21",
+      "date": "2026-09-23",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "H-26-117",
+      "number": "H-26-115",
       "type": "HVAC Permit",
-      "entity_id": 29542,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29542",
-      "address": "804 GLADDEN RD",
-      "date": "2026-09-21",
+      "entity_id": 29517,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29517",
+      "address": "873 WILLIAMS AVE",
+      "date": "2026-09-23",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "R-26-94",
+      "type": "Building Permit - Residential",
+      "entity_id": 29510,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29510",
+      "address": "1060 GLENDALE AVE",
+      "date": "2026-09-23",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-27T00:00:07+00:00",
+      "details": true,
+      "contractors": [
+        "COGS ULTD LLC"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-107",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": 29396,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29396",
+      "address": "1458 North Star Avenue",
+      "date": "2026-09-23",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "C-26-47",
+      "type": "Building Permit - Commercial",
+      "entity_id": 29394,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29394",
+      "address": "1458 North Star Avenue",
+      "date": "2026-09-23",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-27T00:00:07+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
     },
     {
       "number": "E-26-104",
@@ -5260,36 +5633,100 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "R-26-97",
+      "number": "WIND-26-20",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29528",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29528",
+      "address": "1296 ASHLAND AVE",
+      "date": "2026-09-21",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "R-26-95",
       "type": "Building Permit - Residential",
-      "entity_id": 29538,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29538",
-      "address": "1060 GLENDALE AVE",
+      "entity_id": 29516,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29516",
+      "address": "1369 ELMWOOD AVE",
       "date": "2026-09-21",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
-      "number": "C-26-50",
+      "number": "E-26-102",
+      "type": "Electrical Permit",
+      "entity_id": 29512,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29512",
+      "address": "1168 GLENN AVE",
+      "date": "2026-09-21",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "WIND-26-19",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29501",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29501",
+      "address": "1516 LINCOLN RD",
+      "date": "2026-09-21",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "FENC-26-56",
+      "type": "Fence Permit",
+      "entity_id": "29457",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29457",
+      "address": "1146 BROADVIEW AVE",
+      "date": "2026-09-21",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Fence Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "C-26-49",
       "type": "Building Permit - Commercial",
-      "entity_id": 29526,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29526",
-      "address": "794 NORTHWEST BL",
-      "date": "2026-09-18",
+      "entity_id": 29442,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29442",
+      "address": "1660-1666 W FIRST AVE",
+      "date": "2026-09-21",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "SBR ENTERPRISES LLC"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-88",
@@ -5302,22 +5739,10 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-116",
-      "type": "HVAC Permit",
-      "entity_id": 29523,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29523",
-      "address": "806-808 COPELAND RD",
-      "date": "2026-09-18",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "ZON-26-112",
@@ -5331,7 +5756,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "P-26-87",
@@ -5344,92 +5769,26 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "H-26-115",
-      "type": "HVAC Permit",
-      "entity_id": 29517,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29517",
-      "address": "873 WILLIAMS AVE",
-      "date": "2026-09-17",
+      "number": "ROOF-26-64",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29514",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29514",
+      "address": "1091 BROADVIEW AVE",
+      "date": "2026-09-18",
       "lat": null,
       "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
+      "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-95",
-      "type": "Building Permit - Residential",
-      "entity_id": 29516,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29516",
-      "address": "1369 ELMWOOD AVE",
-      "date": "2026-09-17",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-103",
-      "type": "Electrical Permit",
-      "entity_id": 29513,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29513",
-      "address": "1153 FAIRVIEW AVE",
-      "date": "2026-09-17",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-102",
-      "type": "Electrical Permit",
-      "entity_id": 29512,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29512",
-      "address": "1168 GLENN AVE",
-      "date": "2026-09-16",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-94",
-      "type": "Building Permit - Residential",
-      "entity_id": 29510,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29510",
-      "address": "1060 GLENDALE AVE",
-      "date": "2026-09-16",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-101",
-      "type": "Electrical Permit",
-      "entity_id": 29505,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29505",
-      "address": "1147 WYANDOTTE RD",
-      "date": "2026-09-16",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-85",
@@ -5437,13 +5796,15 @@
       "entity_id": 29504,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29504",
       "address": "1074 HILO LN",
-      "date": "2026-09-15",
+      "date": "2026-09-18",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-86",
@@ -5451,13 +5812,15 @@
       "entity_id": 29500,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29500",
       "address": "1036 PALMER RD",
-      "date": "2026-09-15",
+      "date": "2026-09-18",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "R-26-93",
@@ -5465,13 +5828,13 @@
       "entity_id": 29492,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29492",
       "address": "2041 W THIRD AVE",
-      "date": "2026-09-14",
+      "date": "2026-09-18",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "R-26-92",
@@ -5479,13 +5842,107 @@
       "entity_id": 29491,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29491",
       "address": "1389 ARLINGTON AVE",
-      "date": "2026-09-14",
+      "date": "2026-09-18",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "E-26-100",
+      "type": "Electrical Permit",
+      "entity_id": 29469,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29469",
+      "address": "2041 W THIRD AVE",
+      "date": "2026-09-17",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "FENC-26-57",
+      "type": "Fence Permit",
+      "entity_id": "29463",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29463",
+      "address": "1685 W FIRST AVE",
+      "date": "2026-09-17",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-16T00:41:36+00:00",
+      "details": true,
+      "contractors": [
+        "Fence Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "P-26-81",
+      "type": "Plumbing Permit",
+      "entity_id": 29381,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29381",
+      "address": "813 GLADDEN RD",
+      "date": "2026-09-16",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-63",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29497",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29497",
+      "address": null,
+      "date": "2026-09-15",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T23:44:37+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-62",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29496",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29496",
+      "address": null,
+      "date": "2026-09-15",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T23:44:37+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "WIND-26-18",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29493",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29493",
+      "address": "1397 GLENN AVE",
+      "date": "2026-09-15",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
     },
     {
       "number": "H-26-114",
@@ -5493,13 +5950,61 @@
       "entity_id": 29487,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29487",
       "address": "1275 WESTWOOD AVE",
-      "date": "2026-09-14",
+      "date": "2026-09-15",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-61",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29483",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29483",
+      "address": "873 TIMBERMAN RD",
+      "date": "2026-09-15",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T23:44:37+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ZON-26-109",
+      "type": "Certificate of Zoning Compliance",
+      "entity_id": 29451,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29451",
+      "address": "1217 GRANDVIEW AVE",
+      "date": "2026-09-15",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
+    },
+    {
+      "number": "H-26-101",
+      "type": "HVAC Permit",
+      "entity_id": 29372,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29372",
+      "address": "1312 INGLIS AVE",
+      "date": "2026-09-15",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "ZON-26-110",
@@ -5513,7 +6018,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-113",
@@ -5526,64 +6031,10 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIGN-26-32",
-      "type": "Sign Permit",
-      "entity_id": 29472,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29472",
-      "address": "1064 DUBLIN RD",
-      "date": "2026-09-10",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIGN-26-31",
-      "type": "Sign Permit",
-      "entity_id": 29471,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29471",
-      "address": "1064 DUBLIN RD",
-      "date": "2026-09-10",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-100",
-      "type": "Electrical Permit",
-      "entity_id": 29469,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29469",
-      "address": "2041 W THIRD AVE",
-      "date": "2026-09-10",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-90",
-      "type": "Building Permit - Residential",
-      "entity_id": 29468,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29468",
-      "address": "1147 WYANDOTTE RD",
-      "date": "2026-09-10",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-84",
@@ -5596,120 +6047,88 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "R-26-89",
-      "type": "Building Permit - Residential",
-      "entity_id": 29464,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29464",
-      "address": "1182 W FIRST AVE",
+      "number": "GAS-26-21",
+      "type": "Gas Piping Permit",
+      "entity_id": "29445",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29445",
+      "address": "1987 VILLAGE CT",
       "date": "2026-09-10",
       "lat": null,
       "lon": null,
-      "first_seen": "2026-09-27T00:00:07+00:00",
+      "first_seen": "2026-10-15T01:20:00+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
-      "number": "SIGN-26-30",
+      "number": "SIGN-26-27",
       "type": "Sign Permit",
-      "entity_id": 29460,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29460",
-      "address": "844 GRANDVIEW AVE",
+      "entity_id": 29405,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29405",
+      "address": "841 W GOODALE BLVD",
       "date": "2026-09-09",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Sign Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "SIGN-26-29",
-      "type": "Sign Permit",
-      "entity_id": 29459,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29459",
-      "address": "844 GRANDVIEW AVE",
-      "date": "2026-09-09",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-109",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": 29451,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29451",
-      "address": "1217 GRANDVIEW AVE",
-      "date": "2026-09-09",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "R-26-88",
-      "type": "Building Permit - Residential",
-      "entity_id": 29450,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29450",
-      "address": "1367 MULFORD AVE",
-      "date": "2026-09-09",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-112",
+      "number": "H-26-104",
       "type": "HVAC Permit",
-      "entity_id": 29449,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29449",
-      "address": "1330 MULFORD AVE",
+      "entity_id": 29390,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29390",
+      "address": "1200 GRANDVIEW AVE",
       "date": "2026-09-09",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "C-26-49",
-      "type": "Building Permit - Commercial",
-      "entity_id": 29442,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29442",
-      "address": "1660-1666 W FIRST AVE",
-      "date": "2026-09-04",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "SIGN-26-28",
-      "type": "Sign Permit",
-      "entity_id": 29438,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29438",
-      "address": "1064 DUBLIN RD",
-      "date": "2026-09-04",
+      "number": "H-26-110",
+      "type": "HVAC Permit",
+      "entity_id": 29431,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29431",
+      "address": "1277 Grandview Avenue",
+      "date": "2026-09-08",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "GAS-26-20",
+      "type": "Gas Piping Permit",
+      "entity_id": "29418",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29418",
+      "address": "1557 LINCOLN RD",
+      "date": "2026-09-08",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T01:20:00+00:00",
+      "details": true,
+      "contractors": [
+        "CONSTRUCT PLUMBING AND DESIGN LLC"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-111",
@@ -5722,8 +6141,10 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-83",
@@ -5736,22 +6157,98 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "H-26-110",
-      "type": "HVAC Permit",
-      "entity_id": 29431,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29431",
-      "address": "1277 Grandview Avenue",
-      "date": "2026-09-03",
+      "number": "WIND-26-17",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29416",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29416",
+      "address": "1254-1256 GRANDVIEW AVE",
+      "date": "2026-09-04",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "WIND-26-16",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29415",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29415",
+      "address": "1100 URLIN AVE",
+      "date": "2026-09-04",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "WIND-26-15",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29414",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29414",
+      "address": "904 TIMBERMAN RD",
+      "date": "2026-09-04",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "WIND-26-14",
+      "type": "Window/Door Replacement Permit",
+      "entity_id": "29413",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29413",
+      "address": "1580 LINCOLN RD",
+      "date": "2026-09-04",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-15T00:10:25+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-60",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29410",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29410",
+      "address": "1096 W SECOND AVE",
+      "date": "2026-09-04",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T23:44:37+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "P-26-82",
+      "type": "Plumbing Permit",
+      "entity_id": 29388,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29388",
+      "address": "1397 HAINES AVE",
+      "date": "2026-09-04",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-109",
@@ -5764,8 +6261,11 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "WCA Group LLC",
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-108",
@@ -5778,8 +6278,11 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "CHC Service Co Inc",
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "ZON-26-108",
@@ -5787,13 +6290,13 @@
       "entity_id": 29420,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29420",
       "address": "1297 MULFORD AVE",
-      "date": "2026-09-02",
+      "date": "2026-09-03",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-107",
@@ -5801,27 +6304,130 @@
       "entity_id": 29417,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29417",
       "address": "1657 MERRICK RD",
-      "date": "2026-09-02",
+      "date": "2026-09-03",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "SIGN-26-27",
-      "type": "Sign Permit",
-      "entity_id": 29405,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29405",
-      "address": "841 W GOODALE BLVD",
+      "number": "E-26-99",
+      "type": "Electrical Permit",
+      "entity_id": 29398,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29398",
+      "address": "1397 HAINES AVE",
+      "date": "2026-09-03",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "E & S Elelctric LLC",
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "P-26-80",
+      "type": "Plumbing Permit",
+      "entity_id": 29393,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29393",
+      "address": "1105 ORMSBY PL",
+      "date": "2026-09-03",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "E-26-98",
+      "type": "Electrical Permit",
+      "entity_id": 29392,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29392",
+      "address": "1105 ORMSBY PL",
+      "date": "2026-09-03",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "E-26-95",
+      "type": "Electrical Permit",
+      "entity_id": 29379,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29379",
+      "address": "1987 VILLAGE CT",
+      "date": "2026-09-03",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Excel Electrical Contractor Corp",
+        "Electrical Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "H-26-105",
+      "type": "HVAC Permit",
+      "entity_id": 29397,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29397",
+      "address": "1114 GRANDVIEW AVE",
       "date": "2026-09-02",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "P-26-79",
+      "type": "Plumbing Permit",
+      "entity_id": 29395,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29395",
+      "address": "1454 CAMBRIDGE BLVD",
+      "date": "2026-09-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "E-26-97",
+      "type": "Electrical Permit",
+      "entity_id": 29389,
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29389",
+      "address": "1202 ASHLAND AVE",
+      "date": "2026-09-02",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-09-26T16:55:01+00:00",
+      "details": true,
+      "contractors": [
+        "Mike Powers Electric LLC",
+        "Electrical Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-106",
@@ -5835,147 +6441,39 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
-      "number": "E-26-99",
-      "type": "Electrical Permit",
-      "entity_id": 29398,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29398",
-      "address": "1397 HAINES AVE",
+      "number": "ROOF-26-58",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29386",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29386",
+      "address": "1226 LINCOLN RD",
       "date": "2026-09-01",
       "lat": null,
       "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
+      "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
     },
     {
-      "number": "H-26-105",
-      "type": "HVAC Permit",
-      "entity_id": 29397,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29397",
-      "address": "1114 GRANDVIEW AVE",
+      "number": "ROOF-26-57",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29375",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29375",
+      "address": "1871 BLUFF AVE",
       "date": "2026-09-01",
       "lat": null,
       "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
+      "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-107",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": 29396,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29396",
-      "address": "1458 North Star Avenue",
-      "date": "2026-09-01",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "P-26-79",
-      "type": "Plumbing Permit",
-      "entity_id": 29395,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29395",
-      "address": "1454 CAMBRIDGE BLVD",
-      "date": "2026-09-01",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "C-26-47",
-      "type": "Building Permit - Commercial",
-      "entity_id": 29394,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29394",
-      "address": "1458 North Star Avenue",
-      "date": "2026-09-01",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-27T00:00:07+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "P-26-80",
-      "type": "Plumbing Permit",
-      "entity_id": 29393,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29393",
-      "address": "1105 ORMSBY PL",
-      "date": "2026-09-01",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-98",
-      "type": "Electrical Permit",
-      "entity_id": 29392,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29392",
-      "address": "1105 ORMSBY PL",
-      "date": "2026-09-01",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-104",
-      "type": "HVAC Permit",
-      "entity_id": 29390,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29390",
-      "address": "1200 GRANDVIEW AVE",
-      "date": "2026-09-01",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-97",
-      "type": "Electrical Permit",
-      "entity_id": 29389,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29389",
-      "address": "1202 ASHLAND AVE",
-      "date": "2026-08-31",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "P-26-82",
-      "type": "Plumbing Permit",
-      "entity_id": 29388,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29388",
-      "address": "1397 HAINES AVE",
-      "date": "2026-08-31",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-103",
@@ -5988,64 +6486,10 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "P-26-81",
-      "type": "Plumbing Permit",
-      "entity_id": 29381,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29381",
-      "address": "813 GLADDEN RD",
-      "date": "2026-08-31",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "E-26-95",
-      "type": "Electrical Permit",
-      "entity_id": 29379,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29379",
-      "address": "1987 VILLAGE CT",
-      "date": "2026-08-31",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "H-26-101",
-      "type": "HVAC Permit",
-      "entity_id": 29372,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29372",
-      "address": "1312 INGLIS AVE",
-      "date": "2026-08-28",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
-    },
-    {
-      "number": "ZON-26-106",
-      "type": "Certificate of Zoning Compliance",
-      "entity_id": 29364,
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/29364",
-      "address": "956 PALMER RD",
-      "date": "2026-08-27",
-      "lat": null,
-      "lon": null,
-      "first_seen": "2026-09-26T16:55:01+00:00",
-      "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "H-26-102",
@@ -6053,13 +6497,15 @@
       "entity_id": 29363,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29363",
       "address": "1560 ROXBURY RD",
-      "date": "2026-08-27",
+      "date": "2026-08-31",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "HVAC Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "E-26-94",
@@ -6067,13 +6513,16 @@
       "entity_id": 29357,
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29357",
       "address": "813 GLADDEN RD",
-      "date": "2026-08-27",
+      "date": "2026-08-31",
       "lat": null,
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Excel Electrical Contractor Corp",
+        "Electrical Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-78",
@@ -6086,8 +6535,26 @@
       "lon": null,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 3
+      "contractors": [
+        "Plumbing Permit"
+      ],
+      "cv": 4
+    },
+    {
+      "number": "ROOF-26-56",
+      "type": "Re-Roofing Permit",
+      "entity_id": "29351",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/29351",
+      "address": "1336 ELMWOOD AVE",
+      "date": "2026-08-27",
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-10-14T23:44:37+00:00",
+      "details": true,
+      "contractors": [
+        "Re-Roofing Permit"
+      ],
+      "cv": 4
     },
     {
       "number": "P-26-77",
@@ -6101,7 +6568,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "E-26-93",
@@ -6115,7 +6582,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "H-26-99",
@@ -6129,7 +6596,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 3
+      "cv": 4
     },
     {
       "number": "ZON-26-104",
