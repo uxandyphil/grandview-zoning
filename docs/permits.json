@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11T18:52:57.427Z",
+  "updated": "2026-11-11T19:14:20.438Z",
   "record_fields": null,
   "record_form": [
     {
@@ -89,7 +89,8 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [
-        "Clarizio Properties LLc"
+        "Clarizio Properties LLc",
+        "Michael Jarrell"
       ],
       "cv": 6
     },
@@ -120,7 +121,9 @@
       "lon": -83.044893663343,
       "first_seen": "2026-11-11T14:49:07+00:00",
       "details": true,
-      "contractors": [],
+      "contractors": [
+        "Wagbros Company"
+      ],
       "cv": 6
     },
     {
@@ -176,7 +179,9 @@
       "lon": -83.044941408927,
       "first_seen": "2026-11-11T14:49:07+00:00",
       "details": true,
-      "contractors": [],
+      "contractors": [
+        "Wagbros Company"
+      ],
       "cv": 6
     },
     {
@@ -306,7 +311,9 @@
       "lon": null,
       "first_seen": "2026-11-11T14:49:07+00:00",
       "details": true,
-      "contractors": [],
+      "contractors": [
+        "Ohio Power Company"
+      ],
       "cv": 6
     },
     {
@@ -381,7 +388,8 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [
-        "Roth Construction"
+        "Roth Construction",
+        "Andrew Abraham"
       ],
       "cv": 6
     },
@@ -396,8 +404,11 @@
       "lon": -83.045169094232,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "HVAC Mechanical Services Stockham",
+        "HVAC Mechanical"
+      ],
+      "cv": 6
     },
     {
       "number": "GAS-26-26",
@@ -427,7 +438,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [
-        "All Star Services",
+        "All Star Services Chad Garrett",
         "ALLSTAR SERVICES"
       ],
       "cv": 6
@@ -443,10 +454,8 @@
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [
-        "Byrne Warehousing Inc."
-      ],
-      "cv": 5
+      "contractors": [],
+      "cv": 6
     },
     {
       "number": "SIGN-26-33",
@@ -460,7 +469,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "ZON-26-131",
@@ -673,7 +682,8 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [
-        "McCauley Home and Outdoor"
+        "McCauley Home and Outdoor",
+        "Andy McCauley"
       ],
       "cv": 6
     },
@@ -751,7 +761,7 @@
       "first_seen": "2026-11-11T14:30:56+00:00",
       "details": true,
       "contractors": [
-        "Columbus Worthington Air",
+        "Columbus Worthington Air- Daubenmire",
         "COLUMBUS/WORTHINGTON AIR"
       ],
       "cv": 6
@@ -842,7 +852,7 @@
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "SIGN-26-34",
@@ -855,10 +865,8 @@
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [
-        "Byrne Warehousing Inc."
-      ],
-      "cv": 5
+      "contractors": [],
+      "cv": 6
     },
     {
       "number": "ZON-26-118",
@@ -872,7 +880,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "SIGN-26-39",
@@ -900,7 +908,7 @@
       "first_seen": "2026-11-11T15:03:40+00:00",
       "details": true,
       "contractors": [
-        "E and B Wooley Enterprises"
+        "E and B Wooley Enterprises- Wooley"
       ],
       "cv": 6
     },
@@ -916,7 +924,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "E-26-119",
@@ -1009,8 +1017,10 @@
       "lon": null,
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "The Waterworks"
+      ],
+      "cv": 6
     },
     {
       "number": "R-26-107",
@@ -1025,7 +1035,8 @@
       "details": true,
       "contractors": [
         "Derrick Layer Custom Homes & Remodeling",
-        "Derrick Layer Custom Homes"
+        "Derrick Layer Custom Homes",
+        "Derrick Layer"
       ],
       "cv": 6
     },
@@ -1073,7 +1084,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "E-26-116",
@@ -1133,7 +1144,8 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [
-        "Pomante"
+        "Pomante",
+        "robert"
       ],
       "cv": 6
     },
@@ -1221,9 +1233,9 @@
       "first_seen": "2026-10-15T23:32:58+00:00",
       "details": true,
       "contractors": [
-        "EDINGTON ON FIRST LLC"
+        "Morin Services Heating & Cooling"
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "P-26-96",
@@ -1236,8 +1248,10 @@
       "lon": null,
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "WaterWorks"
+      ],
+      "cv": 6
     },
     {
       "number": "H-26-122",
@@ -1250,8 +1264,10 @@
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "AIR FORCE ONE"
+      ],
+      "cv": 6
     },
     {
       "number": "ZON-26-115",
@@ -1265,7 +1281,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "R-26-98",
@@ -1279,7 +1295,7 @@
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "H-26-133",
@@ -1309,7 +1325,8 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [
-        "pomante"
+        "pomante",
+        "robert pomante"
       ],
       "cv": 6
     },
@@ -1325,7 +1342,8 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [
-        "J S Brown & Company"
+        "J S Brown & Company",
+        "Jim sorrell"
       ],
       "cv": 6
     },
@@ -1371,7 +1389,7 @@
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
       "contractors": [
-        "Diles Electrical Services",
+        "Diles Electrical Services- Diles",
         "Diles Electrical Service LLC"
       ],
       "cv": 6
@@ -1422,7 +1440,7 @@
       "contractors": [
         "G Mechanical Inc."
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "ROOF-26-76",
@@ -1451,8 +1469,10 @@
       "lon": -83.040404674755,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Waters Hardscape Designs"
+      ],
+      "cv": 6
     },
     {
       "number": "E-26-111",
@@ -1465,8 +1485,10 @@
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Locher Electric Co"
+      ],
+      "cv": 6
     },
     {
       "number": "SWR-26-15",
@@ -1480,7 +1502,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "SIGN-26-32",
@@ -1509,7 +1531,9 @@
       "lon": -83.03606499259,
       "first_seen": "2026-10-26T01:08:13+00:00",
       "details": true,
-      "contractors": [],
+      "contractors": [
+        "Matt Hildebrand"
+      ],
       "cv": 6
     },
     {
@@ -1523,8 +1547,10 @@
       "lon": -83.046622737117,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Logan Services"
+      ],
+      "cv": 6
     },
     {
       "number": "SIGN-26-31",
@@ -1595,8 +1621,10 @@
       "lon": -83.041097336385,
       "first_seen": "2026-10-15T23:32:58+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Atlas Butler"
+      ],
+      "cv": 6
     },
     {
       "number": "WIND-26-25",
@@ -1612,7 +1640,7 @@
       "contractors": [
         "HEGG Windows & Doors"
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "GAS-26-24",
@@ -1628,7 +1656,7 @@
       "contractors": [
         "WaterWork"
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "WIND-26-24",
@@ -1641,8 +1669,10 @@
       "lon": -83.039903483637,
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "uhs contracting"
+      ],
+      "cv": 6
     },
     {
       "number": "C-26-54",
@@ -1656,7 +1686,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "FENC-26-54",
@@ -1702,6 +1732,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [
+        "Ryan Brothers' Landscaping- Ryan",
         "Ryan Brothers' Landscaping"
       ],
       "cv": 5
@@ -2643,8 +2674,10 @@
       "lon": -83.044135716236,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "ROSATI WINDOWS LLC"
+      ],
+      "cv": 6
     },
     {
       "number": "E-26-113",
@@ -2657,8 +2690,10 @@
       "lon": -83.036774241888,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "ccdelectric"
+      ],
+      "cv": 6
     },
     {
       "number": "WIND-26-21",
@@ -2674,7 +2709,7 @@
       "contractors": [
         "Universal Windows Direct"
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "FENC-26-59",
@@ -2687,8 +2722,10 @@
       "lon": -83.050531202025,
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Mae Fence Company"
+      ],
+      "cv": 6
     },
     {
       "number": "WIND-26-13",
@@ -3751,8 +3788,10 @@
       "lon": -83.051179053513,
       "first_seen": "2026-10-14T23:44:37+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Favret"
+      ],
+      "cv": 6
     },
     {
       "number": "C-26-53",
@@ -3766,7 +3805,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "P-26-95",
@@ -3779,8 +3818,11 @@
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Classic Plumbing",
+        "Classic Plumbing, Inc."
+      ],
+      "cv": 6
     },
     {
       "number": "ROOF-26-72",
@@ -3793,8 +3835,10 @@
       "lon": -83.056559836482,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Able Roof"
+      ],
+      "cv": 6
     },
     {
       "number": "ZON-26-119",
@@ -3808,7 +3852,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "ZON-26-121",
@@ -3822,7 +3866,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "H-26-121",
@@ -3835,8 +3879,11 @@
       "lon": -83.056521600518,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "HVAC Mechanical Services Stockham",
+        "HVAC Mechanical"
+      ],
+      "cv": 6
     },
     {
       "number": "ZON-26-116",
@@ -3850,7 +3897,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "C-26-52",
@@ -3864,7 +3911,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "ROOF-26-59",
@@ -4695,8 +4742,10 @@
       "lon": -83.036774241888,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Surber Mechancial"
+      ],
+      "cv": 6
     },
     {
       "number": "ZON-26-120",
@@ -4710,7 +4759,7 @@
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "FENC-26-61",
@@ -4723,8 +4772,10 @@
       "lon": -83.050290176218,
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Fence-N-Deck Doctors"
+      ],
+      "cv": 6
     },
     {
       "number": "ROOF-26-74",
@@ -4737,8 +4788,10 @@
       "lon": -83.042248227106,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "BluSky Roofing LLC"
+      ],
+      "cv": 6
     },
     {
       "number": "ROOF-26-73",
@@ -4751,8 +4804,10 @@
       "lon": -83.031682901202,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Cardinal Roofing and Construction"
+      ],
+      "cv": 6
     },
     {
       "number": "R-26-101",
@@ -4765,8 +4820,11 @@
       "lon": -83.038789255887,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Pomante",
+        "Robert"
+      ],
+      "cv": 6
     },
     {
       "number": "R-26-89",
@@ -4780,7 +4838,8 @@
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [
-        "The Conal Group"
+        "The Conal Group",
+        "Patrick Daugherty"
       ],
       "cv": 5
     },
@@ -4795,8 +4854,10 @@
       "lon": -83.044946325462,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Goat Roofing and Restoration"
+      ],
+      "cv": 6
     },
     {
       "number": "ROOF-26-71",
@@ -4809,8 +4870,10 @@
       "lon": -83.03972739408,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Able Roof"
+      ],
+      "cv": 6
     },
     {
       "number": "GAS-26-23",
@@ -4823,8 +4886,10 @@
       "lon": -83.042137953309,
       "first_seen": "2026-10-15T01:20:00+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Dave Fox Remodeling"
+      ],
+      "cv": 6
     },
     {
       "number": "P-26-94",
@@ -4837,8 +4902,10 @@
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "TARPLUMBING LLC"
+      ],
+      "cv": 6
     },
     {
       "number": "ROOF-26-68",
@@ -4851,8 +4918,10 @@
       "lon": null,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Feazel Roofing LLC"
+      ],
+      "cv": 6
     },
     {
       "number": "H-26-123",
@@ -4865,8 +4934,10 @@
       "lon": -83.051900923891,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "The Waterworks"
+      ],
+      "cv": 6
     },
     {
       "number": "E-26-112",
@@ -4879,8 +4950,11 @@
       "lon": -83.042137953309,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Integrity Electrical Solutions Bogenrife",
+        "Integrity Electrical Solutions"
+      ],
+      "cv": 6
     },
     {
       "number": "ROOF-26-69",
@@ -4893,8 +4967,10 @@
       "lon": -83.033831843304,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "J.F. Baker Roofing Co"
+      ],
+      "cv": 6
     },
     {
       "number": "E-26-107",
@@ -4907,8 +4983,10 @@
       "lon": -83.049318565088,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Vespa Solar"
+      ],
+      "cv": 6
     },
     {
       "number": "R-26-100",
@@ -4921,8 +4999,11 @@
       "lon": -83.053553026783,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "R.R. Isler Construction",
+        "Eric Isler"
+      ],
+      "cv": 6
     },
     {
       "number": "FENC-26-60",
@@ -4935,8 +5016,11 @@
       "lon": -83.055404660622,
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Ace Fence & Deck",
+        "Ace Fence & Deck LLC"
+      ],
+      "cv": 6
     },
     {
       "number": "ZON-26-114",
@@ -4950,7 +5034,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "E-26-101",
@@ -4995,8 +5079,10 @@
       "lon": -83.055391545751,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Newman Roofing"
+      ],
+      "cv": 6
     },
     {
       "number": "SWR-26-14",
@@ -5010,7 +5096,7 @@
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
       "contractors": [],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "R-26-97",
@@ -5024,9 +5110,10 @@
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [
-        "COGS ULTD LLC"
+        "Metro Renovations",
+        "Esteban Ceron"
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "ROOF-26-66",
@@ -5039,8 +5126,10 @@
       "lon": -83.055367737761,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Newman Roofing"
+      ],
+      "cv": 6
     },
     {
       "number": "P-26-93",
@@ -5053,8 +5142,10 @@
       "lon": -83.05188851695,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Trades RTR, LLC"
+      ],
+      "cv": 6
     },
     {
       "number": "E-26-110",
@@ -5067,8 +5158,10 @@
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Electrical Deign Consultants"
+      ],
+      "cv": 6
     },
     {
       "number": "GAS-26-22",
@@ -5081,8 +5174,10 @@
       "lon": -83.031482966817,
       "first_seen": "2026-10-15T01:20:00+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "mr.mechanical llc"
+      ],
+      "cv": 6
     },
     {
       "number": "E-26-109",
@@ -5095,8 +5190,10 @@
       "lon": null,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Accurate Electric"
+      ],
+      "cv": 6
     },
     {
       "number": "R-26-99",
@@ -5109,8 +5206,12 @@
       "lon": -83.059841265954,
       "first_seen": "2026-10-14T00:19:04+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Derrick Layer Custom Homes & Remodeling",
+        "Derrick Layer Custom Homes",
+        "Derrick Layer"
+      ],
+      "cv": 6
     },
     {
       "number": "P-26-92",
@@ -5123,8 +5224,10 @@
       "lon": -83.035970934126,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Apex Pros"
+      ],
+      "cv": 6
     },
     {
       "number": "H-26-117",
@@ -5137,8 +5240,10 @@
       "lon": -83.031482966817,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "mr mechanical llc"
+      ],
+      "cv": 6
     },
     {
       "number": "E-26-108",
@@ -5154,7 +5259,7 @@
       "contractors": [
         "Jess Howard Electric Company"
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "WIND-26-22",
@@ -5167,8 +5272,10 @@
       "lon": -83.056613777993,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "HEGG Windows & Doors"
+      ],
+      "cv": 6
     },
     {
       "number": "H-26-119",
@@ -5181,8 +5288,11 @@
       "lon": -83.059908017374,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Columbus Worthington Air- Daubenmire",
+        "COLUMBUS/WORTHINGTON AIR"
+      ],
+      "cv": 6
     },
     {
       "number": "SWR-26-13",
@@ -5195,8 +5305,10 @@
       "lon": -83.050531202025,
       "first_seen": "2026-10-16T00:41:36+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "E and B Wooley Enterprises- Wooley"
+      ],
+      "cv": 6
     },
     {
       "number": "C-26-50",
@@ -5210,9 +5322,9 @@
       "first_seen": "2026-09-27T00:00:07+00:00",
       "details": true,
       "contractors": [
-        "AWY HOLDIINGS LLC"
+        "Andrews Builders Inc"
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "FENC-26-58",
@@ -5359,8 +5471,10 @@
       "lon": -83.042137953309,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Dave Fox Remodeling"
+      ],
+      "cv": 6
     },
     {
       "number": "ROOF-26-65",
@@ -5373,8 +5487,10 @@
       "lon": -83.053456965687,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Able Roof"
+      ],
+      "cv": 6
     },
     {
       "number": "H-26-118",
@@ -5387,8 +5503,10 @@
       "lon": -83.035568334068,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "The Eco Plumbers"
+      ],
+      "cv": 6
     },
     {
       "number": "P-26-90",
@@ -5401,8 +5519,10 @@
       "lon": -83.026899982816,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "KE Gutridge"
+      ],
+      "cv": 6
     },
     {
       "number": "P-26-89",
@@ -5415,8 +5535,10 @@
       "lon": -83.056521600518,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "CONSTRUCT PLUMBING DESIGN LLC"
+      ],
+      "cv": 6
     },
     {
       "number": "E-26-106",
@@ -5432,7 +5554,7 @@
       "contractors": [
         "Mike Powers Electric LLC"
       ],
-      "cv": 5
+      "cv": 6
     },
     {
       "number": "E-26-103",
@@ -5461,8 +5583,10 @@
       "lon": -83.026899982816,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Ke Gutridge"
+      ],
+      "cv": 6
     },
     {
       "number": "H-26-115",
@@ -5535,8 +5659,10 @@
       "lon": -83.051584658883,
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "peck electric"
+      ],
+      "cv": 6
     },
     {
       "number": "WIND-26-20",
@@ -5549,8 +5675,10 @@
       "lon": -83.05025773851,
       "first_seen": "2026-10-15T00:10:25+00:00",
       "details": true,
-      "contractors": [],
-      "cv": 5
+      "contractors": [
+        "Universal Windows Direct"
+      ],
+      "cv": 6
     },
     {
       "number": "R-26-95",
@@ -5782,7 +5910,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [
-        "L.P. Plumbing",
+        "L.P. Plumbing- pennington",
         "LPPlumbing"
       ],
       "cv": 5
@@ -6037,7 +6165,7 @@
       "first_seen": "2026-09-26T16:55:01+00:00",
       "details": true,
       "contractors": [
-        "JACK L WOODS PLUMBING CO INC",
+        "JACK L WOODS PLUMBING CO INC- Woods",
         "JACK L WOODS PLUMBING CO"
       ],
       "cv": 5
