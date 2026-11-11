@@ -50,13 +50,19 @@ your own browser:
    here, replacing `permits.json`.
 
 It remembers progress in your browser, so later runs only fetch new
-permits. It reads up to 200 permit records per run; run it again for the rest. If the
-tab ever crashes, reload the portal and paste the script again: it picks up
-where it left off, and Download works at any point during a run.
+permits. It reads up to 200 permit records per run (80 when it has to open
+each permit's page); run it again for the rest. It looks for new permits at
+most every 12 hours, so later runs the same day only read permit pages. If the
+portal refuses its requests, it stops and keeps what it has; run it again
+later. If the tab ever crashes, reload the portal and paste the script again:
+it picks up where it left off, and Download works at any point during a run.
 From each record it takes the address, the filing date, and the contractor
-businesses named on it (for the Contractors tab; homeowners' own names are
-skipped). Permits read by an older version of the script are read again once.
-The daily Action adds map locations to any permit with an address.
+businesses named on it (for the Contractors tab). People's names are never
+kept: a contractor listed only by a person's name is skipped, and a person's
+name added to a company's is trimmed off. Permits read by an older version of
+the script are read again once.
+The daily Action adds map locations to any permit with an address, and removes
+people's names from contractor lists.
 
 To skip the manual steps, the Chrome extension in `tools/permits-extension/` runs the same collector in your own
 Chrome when you click its Run now button and publishes `docs/permits.json` by itself. Setup is in its README. (A program-controlled
