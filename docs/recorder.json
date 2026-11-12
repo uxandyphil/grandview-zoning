@@ -1,6 +1,21 @@
 {
  "documents": [
   {
+   "inst": "202611120136076",
+   "type": "Deed",
+   "date": "2026-11-12",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001386-00"
+   ],
+   "legal": "Lt/Un 151 RICKETTS AND ADYS FAIRDAY ADDN Pcl# 030-001386-00 Plt PB 4 PG 278"
+  },
+  {
    "inst": "202611100135650",
    "type": "Release Of Mortgage",
    "date": "2026-11-10",
@@ -4951,5 +4966,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-11T19:50:39+00:00"
+ "updated": "2026-11-12T18:40:16+00:00"
 }
