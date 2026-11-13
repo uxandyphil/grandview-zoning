@@ -1,6 +1,51 @@
 {
  "documents": [
   {
+   "inst": "202611120136372",
+   "type": "Mortgage",
+   "date": "2026-11-12",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "UNION SAVINGS BANK"
+   ],
+   "parcels": [
+    "030-001129-00"
+   ],
+   "legal": "Lt/Un 419 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001129-00 Plt PB 14 PG 6"
+  },
+  {
+   "inst": "202611120136371",
+   "type": "Affidavit",
+   "date": "2026-11-12",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001129-00"
+   ],
+   "legal": "Lt/Un 419 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001129-00 Plt PB 14 PG 16"
+  },
+  {
+   "inst": "202611120136370",
+   "type": "Deed",
+   "date": "2026-11-12",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001129-00"
+   ],
+   "legal": "Lt/Un 419 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001129-00 Plt PB 14 PG 6"
+  },
+  {
    "inst": "202611120136076",
    "type": "Deed",
    "date": "2026-11-12",
@@ -4966,5 +5011,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-12T18:40:16+00:00"
+ "updated": "2026-11-13T18:20:57+00:00"
 }
