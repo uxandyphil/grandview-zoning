@@ -199,7 +199,11 @@
     28420184,
     28419943,
     28419655,
-    28419525
+    28419525,
+    28422823,
+    28422820,
+    28422751,
+    28422672
   ],
   "court_version": 2,
   "geocache": {
@@ -9866,6 +9870,7 @@
       39.975828980655,
       -83.032585554087
     ],
+    "810 Grandview Ave, Grandview Heights, OH 43212": null,
     "811 COPELAND RD, Grandview Heights, OH 43212": [
       39.975789070099,
       -83.032738224385
@@ -12708,7 +12713,7 @@
     "WYANDOTTE RD, Grandview Heights, OH 43212": null,
     "YARD ST, Grandview Heights, OH 43212": null
   },
-  "recorder_through": "2026-11-13",
+  "recorder_through": "2026-11-14",
   "recorder_version": 2,
   "seen": {
     "Board of Zoning Appeals": [
@@ -12839,7 +12844,8 @@
       "13744",
       "13749",
       "13786",
-      "13792"
+      "13792",
+      "13804"
     ]
   },
   "sheriff_weeks_done": [
@@ -12949,6 +12955,7 @@
     "2026-09-25",
     "2026-10-02",
     "2026-10-09",
-    "2026-10-16"
+    "2026-10-16",
+    "2026-10-23"
   ]
 }

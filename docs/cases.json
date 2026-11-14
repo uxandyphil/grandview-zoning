@@ -1,6 +1,28 @@
 {
   "cases": [
     {
+      "address": "810 Grandview Ave",
+      "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13804/PC-Packet-2026-11-18",
+      "applicant": "810 Grandview LLC",
+      "board": "Planning Commission",
+      "case_no": "16-2026",
+      "description": "Applicant: 810 Grandview LLC Owner: 810 Grandview LLC Zoning District: PUD (Planned Unit Development) a - The Applicant is seeking review and approval per Grandview Heights Zoning Code Section 1157.045(f)(3) of a Preliminary Development Plan for Grandview Crossing",
+      "district": "PUD (Planned Unit Development)",
+      "documents": [],
+      "first_seen": "2026-11-14T16:49:54+00:00",
+      "id": "2026-11-18|810 grandview ave",
+      "lat": null,
+      "lon": null,
+      "meeting_date": "2026-11-18",
+      "order": 1,
+      "owner": "810 Grandview LLC",
+      "parcel": "",
+      "requests": [
+        "The Applicant is seeking review and approval per Grandview Heights Zoning Code Section 1157.045(f)(3) of a Preliminary Development Plan for Grandview Crossing"
+      ],
+      "section": "New business"
+    },
+    {
       "address": "1474 Mulford Rd",
       "agenda_url": "https://www.grandviewheights.gov/DocumentCenter/View/13786/BZA-Packet-2026-11-12",
       "applicant": "Brenda Parker",
@@ -3621,5 +3643,5 @@
       "section": "New business"
     }
   ],
-  "updated": "2026-11-13T18:20:57+00:00"
+  "updated": "2026-11-14T16:49:54+00:00"
 }

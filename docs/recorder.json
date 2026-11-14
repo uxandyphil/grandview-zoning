@@ -1,6 +1,36 @@
 {
  "documents": [
   {
+   "inst": "202611130136889",
+   "type": "Affidavit",
+   "date": "2026-11-13",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000292-00"
+   ],
+   "legal": "Lt/Un 28 WYANDOTTE PLACE Pcl# 030-000292-00 Plt PB 7 PG 366"
+  },
+  {
+   "inst": "202611130136888",
+   "type": "Deed",
+   "date": "2026-11-13",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-000292-00"
+   ],
+   "legal": "Lt/Un 28 WYANDOTTE PLACE Pcl# 030-000292-00 Plt PB 7 PG 366"
+  },
+  {
    "inst": "202611120136372",
    "type": "Mortgage",
    "date": "2026-11-12",
@@ -5011,5 +5041,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-13T18:20:57+00:00"
+ "updated": "2026-11-14T16:49:54+00:00"
 }
