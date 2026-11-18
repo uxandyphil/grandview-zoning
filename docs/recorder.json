@@ -1,6 +1,64 @@
 {
  "documents": [
   {
+   "inst": "202611180138462",
+   "type": "Lien",
+   "date": "2026-11-18",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-002889-00"
+   ],
+   "legal": "Un 1-1386-A JAMESTOWN OF GRANDVIEW CONDO Pcl# 030-002889-00 Plt CB 192 PG 49-54"
+  },
+  {
+   "inst": "202611180138239",
+   "type": "Mortgage",
+   "date": "2026-11-18",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "HUNTINGTON NATIONAL BANK"
+   ],
+   "parcels": [],
+   "legal": "Lt/Un 26 LINCOLN PLACE ADDN Pcl# 030-000151 Plt PB 12 PG 22 PT 26"
+  },
+  {
+   "inst": "202611170138030",
+   "type": "Mortgage",
+   "date": "2026-11-17",
+   "from": [
+    "Individual"
+   ],
+   "to": [
+    "ATLANTIC COAST MORTGAGE LLC"
+   ],
+   "parcels": [
+    "030-001415-00"
+   ],
+   "legal": "Lt/Un 121 URINS GRANDVIEW HEIGHTS ADDN Pcl# 030-001415-00 Plt PB 4 PG 332"
+  },
+  {
+   "inst": "202611170138029",
+   "type": "Deed",
+   "date": "2026-11-17",
+   "from": [
+    "MCSLAGLE PROPERTY MANAGEMENT LLC"
+   ],
+   "to": [
+    "Individual"
+   ],
+   "parcels": [
+    "030-001415-00"
+   ],
+   "legal": "Lt/Un 121 URLINS GRANDVIEW HEIGHTS SUBD Pcl# 030-001415-00 Plt PB 4 PG 332"
+  },
+  {
    "inst": "202611170137766",
    "type": "Mortgage",
    "date": "2026-11-17",
@@ -5084,5 +5142,5 @@
    "legal": "Lt/Un 75~76 NORTHWEST BOULEVARD ADDN PLAT NO 4 Pcl# 030-001099-00 Plt PB 14 PG 6 PT 75-76"
   }
  ],
- "updated": "2026-11-17T19:31:51+00:00"
+ "updated": "2026-11-18T19:13:35+00:00"
 }
