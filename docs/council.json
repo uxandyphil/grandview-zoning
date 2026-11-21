@@ -1,14 +1,50 @@
 {
  "meetings": [
   {
-   "id": "cal-3239",
-   "name": "Special Council Meeting*",
+   "id": "adid-3823",
+   "name": "City Council",
    "date": "2026-11-23",
-   "time": "07:00 PM",
-   "url": "https://www.grandviewheights.gov/Calendar.aspx?EID=3239",
-   "items": [],
-   "counts": {},
-   "has_agenda": false
+   "time": "",
+   "url": "https://www.grandviewheights.gov/Archive.aspx?ADID=3823",
+   "title": "November 23, 2026 Council Meeting Agenda",
+   "items": [
+    {
+     "number": "1.",
+     "title": "Ord. 2026-18: An Ordinance to approve supplemental appropriations for the City of Grandview Heights for the fiscal year ending December 31, 2026. Previous reading 11/9/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "2.",
+     "title": "Ord. 2026-19: An Ordinance authorizing the Mayor and Director of Finance to enter into an amendment to the Development and Incentive Agreement with Pluto Healthcare Staffing Previous reading 11/9/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "3.",
+     "title": "Ord. 2026-20: An Ordinance to Amend Ordinance 2019-08 with Respect to a Community Reinvestment Area Agreement for the Grandview Crossing Development. Previous reading 11/9/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "4.",
+     "title": "Ord. 2026-21: An Ordinance to Amend Ordinance 2019-09 with Respect to a Tax Increment Financing Program for the Grandview Crossing Development. Previous reading 11/9/2026",
+     "kind": "Ordinance"
+    },
+    {
+     "number": "1.",
+     "title": "Res. 33-2026: A Resolution to c ertify to the Franklin County Auditor and Treasurer a list of properties to be assessed for the cost of 2026 sidewalk improvements advanced by the City of",
+     "kind": "Resolution"
+    },
+    {
+     "number": "2.",
+     "title": "Res. 34-2026: A Resolution to authorize the Mayor and Director of Finance of the City of",
+     "kind": "Resolution"
+    }
+   ],
+   "counts": {
+    "Ordinance": 4,
+    "Resolution": 2
+   },
+   "has_agenda": true,
+   "parse": 2
   },
   {
    "id": "adid-3818",
@@ -1725,5 +1761,5 @@
    "parse": 2
   }
  ],
- "updated": "2026-11-20T18:57:14+00:00"
+ "updated": "2026-11-21T17:51:45+00:00"
 }

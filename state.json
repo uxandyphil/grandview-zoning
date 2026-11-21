@@ -7,7 +7,7 @@
     "49": "Council Committees Agendas"
   },
   "county_permits": {
-    "folder": "2026-11-15 Appraisal",
+    "folder": "2026-11-20 Appraisal",
     "version": 17
   },
   "court_seen": [
@@ -221,7 +221,9 @@
     28430011,
     28435892,
     28435092,
-    28437424
+    28437424,
+    28440540,
+    28440488
   ],
   "court_version": 2,
   "geocache": {
@@ -12731,7 +12733,7 @@
     "WYANDOTTE RD, Grandview Heights, OH 43212": null,
     "YARD ST, Grandview Heights, OH 43212": null
   },
-  "recorder_through": "2026-11-20",
+  "recorder_through": "2026-11-21",
   "recorder_version": 2,
   "seen": {
     "Board of Zoning Appeals": [
@@ -12975,6 +12977,7 @@
     "2026-10-02",
     "2026-10-09",
     "2026-10-16",
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-30"
   ]
 }
