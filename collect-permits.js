@@ -719,10 +719,29 @@
       contractors: parsed || fromFields.length ? fromFields : contractorsFromText(text) };
   }
 
-  // new permits, plus ones read before contractors were collected
-  const todo = Object.values(permits).filter((p) => (!p.details || p.cv !== CONTRACTOR_VERSION) && p.entity_id)
-    .sort((a, b) => b.entity_id - a.entity_id).slice(0, MAX_DETAILS);
-  let found = 0, withContractor = 0, read = 0, failedInARow = 0, pagesStopped = null;
+  // Pages that didn't load, remembered in this browser only (never uploaded). Such a permit waits at the back of the
+  // line, and after 3 tries in separate batches it's skipped, so a few permits the portal won't show can't hold up
+  // the rest.
+  const GIVE_UP = 3;
+  let fails = {};
+  try { fails = JSON.parse(localStorage.getItem(STORE + "-fails") || "{}"); } catch (e) {}
+  const saveFails = () => localStorage.setItem(STORE + "-fails", JSON.stringify(fails));
+  const tries = (p) => (fails[p.number] || {}).n || 0;
+  const unread = (p) => !!p.entity_id && (!p.details || p.cv !== CONTRACTOR_VERSION);
+  const skipped = Object.values(permits).filter((p) => unread(p) && tries(p) >= GIVE_UP).length;
+  if (skipped) log(`${skipped} permit${skipped === 1 ? "" : "s"} didn't load in ${GIVE_UP} tries, so ${skipped === 1 ? "it's" : "they're"} skipped`);
+  // new permits, plus ones read before contractors were collected; ones whose page didn't load before go last
+  const todo = Object.values(permits).filter((p) => unread(p) && tries(p) < GIVE_UP)
+    .sort((a, b) => tries(a) - tries(b) || b.entity_id - a.entity_id).slice(0, MAX_DETAILS);
+  let found = 0, withContractor = 0, read = 0, failedInARow = 0, pagesStopped = null, checks = 0, lastGood = null;
+  // pages that failed since the last one that loaded: they count against those permits only once a page loads
+  // again (so the portal is working), never during a stretch when the portal shows no pages at all
+  let unconfirmed = [];
+  const countFails = () => {
+    for (const q of unconfirmed) fails[q.number] = { n: tries(q) + 1, at: Date.now() };
+    if (unconfirmed.length) saveFails();
+    unconfirmed = [];
+  };
   $("gvz-dl").disabled = false;   // what's done so far can be downloaded any time
   for (const [i, p] of todo.entries()) {
     if (stopped) break;
@@ -731,14 +750,32 @@
       await sleep(PAGE_PAUSE);
       const d = await details(p);
       if (!d) { log(`Read ${FRAME_LIMIT} full pages this run, the most that's safe at once. Reload the portal and run again to continue.`); break; }
-      // A page that didn't load isn't counted as read, so it's tried again next time. Three in a row means the portal
-      // has stopped showing pages, so the run stops instead of asking for more.
+      // A page that didn't load isn't counted as read, so it's tried again later. After three in a row, a permit that
+      // loaded before is opened again: if it loads, those were problems with those permits, so the run carries on;
+      // if not, the portal has stopped showing pages, and the run stops instead of asking for more.
       if (d.failed) {
         log(`${p.number}: the page didn't load (${d.why})`);
-        if (++failedInARow >= 3) { pagesStopped = `permit pages stopped loading: ${d.why}`; break; }
-        continue;
+        unconfirmed.push(p);
+        if (++failedInARow < 3) continue;
+        const earlier = lastGood || Object.values(permits).filter((q) => q.cv === CONTRACTOR_VERSION && q.entity_id && (q.contractors || []).length)
+          .sort((a, b) => b.entity_id - a.entity_id)[0];
+        let check = null;
+        if (earlier && checks++ < 5) {
+          status(`Checking that the portal still shows permit pages (opening ${earlier.number} again)…`);
+          await sleep(PAGE_PAUSE);
+          framesThisRun++;
+          check = await fromFrame(earlier);
+        }
+        if (check && !check.failed) {
+          log(`${earlier.number} still loads, so the portal is fine: those permits will be tried again later`);
+          countFails(); failedInARow = 0; continue;
+        }
+        pagesStopped = `permit pages stopped loading: ${check ? check.why : d.why}`;
+        break;
       }
-      failedInARow = 0; read++;
+      failedInARow = 0; read++; lastGood = p;
+      countFails();   // pages that failed just before this one: a problem with those permits, not the portal
+      if (fails[p.number]) { delete fails[p.number]; saveFails(); }
       // A page that read cleanly decides who the contractor is (none, if its contractor section is empty). Only when a
       // read failed does an earlier read's list stand, minus any permit types an older version mistook for names.
       const real = (list) => (list || []).map(cleanName).filter((n) => !looksLikeType(n) && !looksLikePerson(n) && n.toLowerCase() !== String(p.type || "").toLowerCase());
@@ -756,7 +793,7 @@
   // stops if pages still don't load.
   if (pagesStopped && !read) return stopRun(pagesStopped);
   if (pagesStopped) log(`Stopped this batch early: ${pagesStopped}`);
-  const left = Object.values(permits).filter((p) => !p.details || p.cv !== CONTRACTOR_VERSION).length;
+  const left = Object.values(permits).filter((p) => unread(p) && tries(p) < GIVE_UP).length;
   log(`Addresses: ${found} of ${todo.length} found; contractors on ${withContractor}${left ? `; ${left} left for next time` : ""}`);
   status(`Done. ${Object.keys(permits).length} permits${left ? ` (run again later for ${left} more)` : ""}. Click Download.`);
   $("gvz-dl").disabled = false;
