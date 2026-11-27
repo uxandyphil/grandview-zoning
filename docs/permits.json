@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27T20:32:35.651Z",
+  "updated": "2026-11-27T20:44:13.434Z",
   "record_fields": null,
   "record_form": [
     {
@@ -8,92 +8,84 @@
       "filled": true
     },
     {
-      "section": "Project Information",
+      "section": "Permit Information",
       "label": "In which City or Village are you applying for a Permit?",
       "filled": true
     },
     {
-      "section": "Project Information",
-      "label": "Who is performing the work?",
+      "section": "Permit Information",
+      "label": "Occupancy Type?",
       "filled": true
     },
     {
-      "section": "Project Information",
-      "label": "Occupancy Type",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
+      "section": "Permit Information",
       "label": "Estimated Project Cost",
       "filled": true
     },
     {
-      "section": "Project Information",
-      "label": "Project Decsription",
+      "section": "Permit Information",
+      "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
       "filled": true
     },
     {
-      "section": "Project Information",
-      "label": "Is this part of a building project or a stand alone project",
+      "section": "Permit Information",
+      "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
       "filled": true
     },
     {
-      "section": "Contractor Information",
-      "label": "Company Name",
+      "section": "Permit Information",
+      "label": "Is there a City Tree that is in close proximity to the repair?",
       "filled": true
     },
     {
-      "section": "Contractor Information",
-      "label": "Primary Contact Name",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Company Address",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor City",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor State",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor Zip",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor Email",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Business Phone",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Information",
-      "label": "Email Address",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Information",
-      "label": "Phone Number",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Information",
-      "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
+      "section": "Permit Information",
+      "label": "Describe in detail the proposed work being completed including distances from st",
       "filled": true
     }
   ],
   "record_forms": {
+    "Sewer Lateral Replacement/Repair": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Occupancy Type?",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Estimated Project Cost",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Is there a City Tree that is in close proximity to the repair?",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Describe in detail the proposed work being completed including distances from st",
+        "filled": true
+      }
+    ],
     "Plumbing Permit": [
       {
         "section": "",
@@ -173,7 +165,7 @@
       {
         "section": "Property Owner Information",
         "label": "Email Address",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Property Owner Information",
@@ -186,64 +178,7 @@
         "filled": true
       }
     ],
-    "Building Permit - Commercial": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Description of Work",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contact First and Last Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Phone Number",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Email",
-        "filled": true
-      }
-    ],
-    "HVAC Permit": [
+    "Re-Roofing Permit": [
       {
         "section": "",
         "label": "Name",
@@ -252,11 +187,6 @@
       {
         "section": "Project Information",
         "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
         "filled": true
       },
       {
@@ -271,17 +201,7 @@
       },
       {
         "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
         "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project?",
         "filled": true
       },
       {
@@ -296,7 +216,7 @@
       },
       {
         "section": "Contractor Information",
-        "label": "Contractor Address",
+        "label": "Company Address",
         "filled": true
       },
       {
@@ -326,18 +246,127 @@
       },
       {
         "section": "Property Owner Contact Information",
-        "label": "Email Address",
+        "label": "Telephone Number",
         "filled": true
       },
       {
         "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
+        "label": "Email Address",
         "filled": true
       },
       {
         "section": "Property Owner Contact Information",
         "label": "I hereby certify that I have read and understand the entire contents of this app",
         "filled": true
+      }
+    ],
+    "Sign Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Is sign in Grandview Commerce Mixed District",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Type of Sign",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Type of ILLUMINATION",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Two Sided?",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Square footage of Frontage of Tenant Space",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Construction Materials",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Zoning District",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Estimated Project Cost",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "The owner of this building and the undersigned, do hereby covenant and agree to ",
+        "filled": true
+      }
+    ],
+    "Fence Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Primary Contact Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Address",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor City",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor State",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Zip",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Email",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Business Phone",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "In consideration given, the Applicant agrees to install said work in all respect",
+        "filled": false
       }
     ],
     "Electrical Permit": [
@@ -363,7 +392,7 @@
       },
       {
         "section": "Project Information",
-        "label": "Type of Commercial Permit",
+        "label": "Type of Residential Permit",
         "filled": true
       },
       {
@@ -433,6 +462,175 @@
       },
       {
         "section": "Property Owner Contact Information",
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "filled": true
+      }
+    ],
+    "HVAC Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Who is performing the work?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Occupancy Type",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Type of Work Proposed",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Estimated Project Cost",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Square Footage of Work Area",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Project Description",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Is this part of a building project or a stand alone project?",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Primary Contact Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Address",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor City",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor State",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Zip",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Email",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Business Phone",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Email Address",
+        "filled": false
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Telephone Number",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "filled": true
+      }
+    ],
+    "Building Permit - Residential": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Who is applying for this permit?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Type of Work Proposed",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Estimated Project Cost",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Square Footage",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Project Description",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Name",
+        "filled": false
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Address",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Email",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Phone",
+        "filled": true
+      },
+      {
+        "section": "Owner Information",
+        "label": "Owner Email",
+        "filled": true
+      },
+      {
+        "section": "Owner Information",
         "label": "I hereby certify that I have read and understand the entire contents of this app",
         "filled": true
       }
@@ -509,52 +707,40 @@
         "filled": true
       }
     ],
-    "Sewer Lateral Replacement/Repair": [
+    "Siding Permit": [
       {
         "section": "",
         "label": "Name",
         "filled": true
       },
       {
-        "section": "Permit Information",
+        "section": "Project Information",
         "label": "In which City or Village are you applying for a Permit?",
         "filled": true
       },
       {
-        "section": "Permit Information",
-        "label": "Occupancy Type?",
+        "section": "Project Information",
+        "label": "Occupancy Type",
         "filled": true
       },
       {
-        "section": "Permit Information",
+        "section": "Project Information",
         "label": "Estimated Project Cost",
         "filled": true
       },
       {
-        "section": "Permit Information",
-        "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
+        "section": "Project Information",
+        "label": "Who is doing the work?",
         "filled": true
       },
       {
-        "section": "Permit Information",
-        "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
+        "section": "Project Information",
+        "label": "Type of Siding Material",
         "filled": true
       },
       {
-        "section": "Permit Information",
-        "label": "Is there a City Tree that is in close proximity to the repair?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Describe in detail the proposed work being completed including distances from st",
-        "filled": true
-      }
-    ],
-    "Fence Permit": [
-      {
-        "section": "",
-        "label": "Name",
+        "section": "Project Information",
+        "label": "Project Description",
         "filled": true
       },
       {
@@ -598,95 +784,8 @@
         "filled": true
       },
       {
-        "section": "Contractor Information",
-        "label": "In consideration given, the Applicant agrees to install said work in all respect",
-        "filled": false
-      }
-    ],
-    "Demolition Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Demolition",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Have you received Zoning Approval?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Feet of Demolition",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
+        "section": "Property Owner Contact Information",
+        "label": "Telephone Number",
         "filled": true
       },
       {
@@ -696,7 +795,7 @@
       },
       {
         "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
         "filled": true
       }
     ],
@@ -797,7 +896,7 @@
         "filled": true
       }
     ],
-    "Building Permit - Residential": [
+    "Demolition Permit": [
       {
         "section": "",
         "label": "Name",
@@ -805,12 +904,27 @@
       },
       {
         "section": "Project Information",
-        "label": "Who is applying for this permit?",
+        "label": "In which City or Village are you applying for a Permit?",
         "filled": true
       },
       {
         "section": "Project Information",
-        "label": "Type of Work Proposed",
+        "label": "Type of Demolition",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Have you received Zoning Approval?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Project Description",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Have you applied for a variance through the Village of Marble Cliff City Council",
         "filled": true
       },
       {
@@ -820,12 +934,17 @@
       },
       {
         "section": "Project Information",
-        "label": "Square Footage",
+        "label": "Occupancy Type",
         "filled": true
       },
       {
         "section": "Project Information",
-        "label": "Project Description",
+        "label": "Square Feet of Demolition",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Who is performing the work?",
         "filled": true
       },
       {
@@ -835,7 +954,7 @@
       },
       {
         "section": "Contractor Information",
-        "label": "Contractor Name",
+        "label": "Primary Contact Name",
         "filled": true
       },
       {
@@ -845,73 +964,6 @@
       },
       {
         "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Phone",
-        "filled": true
-      },
-      {
-        "section": "Owner Information",
-        "label": "Owner Email",
-        "filled": true
-      },
-      {
-        "section": "Owner Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Re-Roofing Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
         "label": "Contractor City",
         "filled": true
       },
@@ -937,94 +989,7 @@
       },
       {
         "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
         "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Siding Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Siding Material",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
         "filled": true
       },
       {
@@ -1034,263 +999,7 @@
       },
       {
         "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Sign Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Is sign in Grandview Commerce Mixed District",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Type of Sign",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Type of ILLUMINATION",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Two Sided?",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Construction Materials",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Zoning District",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "The owner of this building and the undersigned, do hereby covenant and agree to ",
-        "filled": true
-      }
-    ],
-    "Sidewalk Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Owner's Name",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Owner's Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "City, State, Zipcode",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Window/Door Replacement Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Are the window(s)/door(s) being replaced the same size?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "label": "I (We) certify by signature below that the information contained in this applica",
         "filled": true
       }
     ]
@@ -7105,8 +6814,10 @@
     },
     {
       "address": "964 MCCLAIN RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Eco Plumbers Excavation"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27982",
@@ -7119,8 +6830,10 @@
     },
     {
       "address": "1910-1914 W FIRST AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Mercy Tree and Landscaping"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27971",
@@ -7134,7 +6847,7 @@
     {
       "address": "1464 INGLIS AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27912",
@@ -7147,10 +6860,8 @@
     },
     {
       "address": "1322-1324 BLUFF AVE",
-      "contractors": [
-        "Charles Evans Drainmaster Inc."
-      ],
-      "cv": 3,
+      "contractors": [],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27877",
@@ -7162,9 +6873,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27877"
     },
     {
-      "address": null,
+      "address": "991 W SECOND AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27846",
@@ -7178,7 +6889,7 @@
     {
       "address": "1065 OXLEY RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27828",
@@ -7191,8 +6902,10 @@
     },
     {
       "address": "1227 W FIRST AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Eco Plumbers Excavation"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27824",
@@ -7206,7 +6919,7 @@
     {
       "address": "1587 W Third Avenue",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27822",
@@ -7232,9 +6945,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27785"
     },
     {
-      "address": null,
+      "address": "805 TIMBERMAN RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27767",
@@ -7246,9 +6959,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27767"
     },
     {
-      "address": null,
+      "address": "1169 ELMWOOD AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27755",
@@ -8419,8 +8132,10 @@
     },
     {
       "address": "1480 LINCOLN RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "APCO Industries Inc"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27951",
@@ -8433,8 +8148,10 @@
     },
     {
       "address": "1252 BROADVIEW AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Eaton Plumbing INC."
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27815",
@@ -8447,8 +8164,10 @@
     },
     {
       "address": "1288 BROADVIEW AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "McCarty Customized Improvements Ltd."
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27757",
@@ -8461,8 +8180,10 @@
     },
     {
       "address": "1812 W FIRST AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "FirstCall Mechanical"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27750",
@@ -9424,7 +9145,7 @@
       "contractors": [
         "Moore Roofing LLC"
       ],
-      "cv": 3,
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27979",
@@ -9437,8 +9158,10 @@
     },
     {
       "address": "1148 WYANDOTTE RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "JF Baker Roofing Co"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27970",
@@ -9451,8 +9174,10 @@
     },
     {
       "address": null,
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "BC Construction Services, LLC"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27941",
@@ -9465,8 +9190,10 @@
     },
     {
       "address": "1452 W SECOND AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Schottenstein Roofing"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27910",
@@ -9479,8 +9206,10 @@
     },
     {
       "address": "1288 HOLLYWOOD AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "M.A.J Roofing and Construction"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27831",
@@ -9493,8 +9222,10 @@
     },
     {
       "address": "1354 ASHLAND AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Snyders Unlimited Contracting LLC"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27823",
@@ -9507,8 +9238,10 @@
     },
     {
       "address": "1334 ASHLAND AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "KFX Roofing"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27778",
@@ -9521,8 +9254,10 @@
     },
     {
       "address": null,
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Feazel Roofing, LLC"
+      ],
+      "cv": 7,
       "date": null,
       "details": true,
       "entity_id": "27764",
@@ -16057,8 +15792,10 @@
     },
     {
       "address": "1005 PARKWAY DR",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "The Eco Plumbers"
+      ],
+      "cv": 7,
       "date": "2026-04-08",
       "details": true,
       "entity_id": 27981,
@@ -16071,10 +15808,8 @@
     },
     {
       "address": "1291 Grandview Avenue",
-      "contractors": [
-        "A&R GRANDVIEW LLC"
-      ],
-      "cv": 3,
+      "contractors": [],
+      "cv": 7,
       "date": "2026-04-07",
       "details": true,
       "entity_id": 27972,
@@ -16087,8 +15822,10 @@
     },
     {
       "address": "1524 LINCOLN RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Gladden Electrical Designs"
+      ],
+      "cv": 7,
       "date": "2026-04-07",
       "details": true,
       "entity_id": 27969,
@@ -16101,8 +15838,10 @@
     },
     {
       "address": "955 YARD ST",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Dooley Heating & Air Conditioning, LLC"
+      ],
+      "cv": 7,
       "date": "2026-04-06",
       "details": true,
       "entity_id": 27964,
@@ -16115,8 +15854,10 @@
     },
     {
       "address": "1391 HAINES AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Great Day Improvements LLS"
+      ],
+      "cv": 7,
       "date": "2026-04-06",
       "details": true,
       "entity_id": 27963,
@@ -16129,8 +15870,10 @@
     },
     {
       "address": "5701 DUBLIN RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Garber Electric"
+      ],
+      "cv": 7,
       "date": "2026-04-06",
       "details": true,
       "entity_id": 27961,
@@ -16143,8 +15886,10 @@
     },
     {
       "address": "1440 MULFORD RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Gladden Electric"
+      ],
+      "cv": 7,
       "date": "2026-04-06",
       "details": true,
       "entity_id": 27959,
@@ -16158,7 +15903,7 @@
     {
       "address": "1399 W FIRST AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-04-06",
       "details": true,
       "entity_id": 27954,
@@ -16171,8 +15916,10 @@
     },
     {
       "address": "1210 MULFORD RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Bean construction Services"
+      ],
+      "cv": 7,
       "date": "2026-04-05",
       "details": true,
       "entity_id": 27953,
@@ -16186,7 +15933,7 @@
     {
       "address": "1122 CAMBRIDGE BLVD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-04-03",
       "details": true,
       "entity_id": 27952,
@@ -16199,8 +15946,10 @@
     },
     {
       "address": "1210 ELMWOOD AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "The Eco Plumbers"
+      ],
+      "cv": 7,
       "date": "2026-04-03",
       "details": true,
       "entity_id": 27946,
@@ -16213,8 +15962,10 @@
     },
     {
       "address": "1458 North Star Avenue",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "TBD"
+      ],
+      "cv": 7,
       "date": "2026-04-02",
       "details": true,
       "entity_id": 27940,
@@ -16230,7 +15981,7 @@
       "contractors": [
         "Rausch Electric LLC"
       ],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-04-01",
       "details": true,
       "entity_id": 27933,
@@ -16243,10 +15994,8 @@
     },
     {
       "address": "1312 GRANDVIEW AVE",
-      "contractors": [
-        "1312 Grandview Realty LLC"
-      ],
-      "cv": 3,
+      "contractors": [],
+      "cv": 7,
       "date": "2026-04-01",
       "details": true,
       "entity_id": 27931,
@@ -16259,8 +16008,10 @@
     },
     {
       "address": "1192 GRANDVIEW AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Goat Roofing and Restoration"
+      ],
+      "cv": 7,
       "date": "2026-04-01",
       "details": true,
       "entity_id": 27929,
@@ -16274,7 +16025,7 @@
     {
       "address": "1182 WYANDOTTE RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-04-01",
       "details": true,
       "entity_id": 27922,
@@ -16287,8 +16038,10 @@
     },
     {
       "address": "1227 W FIRST AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "The Eco Plumbers"
+      ],
+      "cv": 7,
       "date": "2026-04-01",
       "details": true,
       "entity_id": 27919,
@@ -16301,8 +16054,10 @@
     },
     {
       "address": "1358 BLUFF AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "The Waterworks, LLC"
+      ],
+      "cv": 7,
       "date": "2026-04-01",
       "details": true,
       "entity_id": 27917,
@@ -16315,10 +16070,8 @@
     },
     {
       "address": "1943 W FIFTH AVE",
-      "contractors": [
-        "Morrison Sign Company"
-      ],
-      "cv": 3,
+      "contractors": [],
+      "cv": 7,
       "date": "2026-03-31",
       "details": true,
       "entity_id": 27911,
@@ -16332,7 +16085,7 @@
     {
       "address": "1165 GLENN AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-31",
       "details": true,
       "entity_id": 27904,
@@ -16346,7 +16099,7 @@
     {
       "address": "1252 BROADVIEW AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-31",
       "details": true,
       "entity_id": 27897,
@@ -16360,7 +16113,7 @@
     {
       "address": "1060 BROADVIEW AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-30",
       "details": true,
       "entity_id": 27887,
@@ -16373,8 +16126,10 @@
     },
     {
       "address": "1318 HAINES AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Logan Services INC"
+      ],
+      "cv": 7,
       "date": "2026-03-30",
       "details": true,
       "entity_id": 27885,
@@ -16388,7 +16143,7 @@
     {
       "address": "1114 VIRGINIA AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-30",
       "details": true,
       "entity_id": 27878,
@@ -16401,10 +16156,8 @@
     },
     {
       "address": "956 PALMER RD",
-      "contractors": [
-        "G&M Electrical Contractors Inc"
-      ],
-      "cv": 3,
+      "contractors": [],
+      "cv": 7,
       "date": "2026-03-27",
       "details": true,
       "entity_id": 27848,
@@ -16417,8 +16170,10 @@
     },
     {
       "address": "955 YARD ST",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Construct Plumbing Design LLC"
+      ],
+      "cv": 7,
       "date": "2026-03-26",
       "details": true,
       "entity_id": 27837,
@@ -16432,7 +16187,7 @@
     {
       "address": "1220 OXLEY RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-26",
       "details": true,
       "entity_id": 27836,
@@ -16444,9 +16199,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27836"
     },
     {
-      "address": "577 W NATIONWIDE BLVD",
+      "address": "1312 GRANDVIEW AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-26",
       "details": true,
       "entity_id": 27835,
@@ -16458,9 +16213,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27835"
     },
     {
-      "address": "577 W NATIONWIDE BLVD",
+      "address": "1312 GRANDVIEW AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-26",
       "details": true,
       "entity_id": 27834,
@@ -16474,7 +16229,7 @@
     {
       "address": "955 YARD ST",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-26",
       "details": true,
       "entity_id": 27833,
@@ -16488,7 +16243,7 @@
     {
       "address": "1384 GLENN AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-24",
       "details": true,
       "entity_id": 27817,
@@ -16501,8 +16256,10 @@
     },
     {
       "address": "1252 BROADVIEW AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Eaton Plumbing INC."
+      ],
+      "cv": 7,
       "date": "2026-03-24",
       "details": true,
       "entity_id": 27814,
@@ -16516,7 +16273,7 @@
     {
       "address": "1450 ARLINGTON AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-23",
       "details": true,
       "entity_id": 27813,
@@ -16528,9 +16285,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27813"
     },
     {
-      "address": "1500 Wyandotte Rd",
+      "address": "1500 WYANDOTTE RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-20",
       "details": true,
       "entity_id": 27810,
@@ -16543,8 +16300,10 @@
     },
     {
       "address": "1450 ARLINGTON AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Pomante Contractors Inc"
+      ],
+      "cv": 7,
       "date": "2026-03-20",
       "details": true,
       "entity_id": 27809,
@@ -16558,7 +16317,7 @@
     {
       "address": "1182 WYANDOTTE RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-20",
       "details": true,
       "entity_id": 27808,
@@ -16572,7 +16331,7 @@
     {
       "address": "1480 LINCOLN RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-20",
       "details": true,
       "entity_id": 27806,
@@ -16586,7 +16345,7 @@
     {
       "address": "995 Yard Street",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-20",
       "details": true,
       "entity_id": 27800,
@@ -16599,8 +16358,10 @@
     },
     {
       "address": "869 PULLMAN WAY",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Ryan Brothers' Landscaping"
+      ],
+      "cv": 7,
       "date": "2026-03-20",
       "details": true,
       "entity_id": 27799,
@@ -16613,8 +16374,10 @@
     },
     {
       "address": "1238 W FIRST AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Jack L Woods Plumbing CO"
+      ],
+      "cv": 7,
       "date": "2026-03-20",
       "details": true,
       "entity_id": 27797,
@@ -16627,8 +16390,10 @@
     },
     {
       "address": "1025 URLIN AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Amson Mechanical LLC"
+      ],
+      "cv": 7,
       "date": "2026-03-20",
       "details": true,
       "entity_id": 27796,
@@ -16640,9 +16405,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27796"
     },
     {
-      "address": "1823 W 1ST AVE",
+      "address": "1823 W FIRST AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-19",
       "details": true,
       "entity_id": 27794,
@@ -16655,8 +16420,10 @@
     },
     {
       "address": "1220 OXLEY RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "American Residential Services LLC dba Columbus Worthington Air"
+      ],
+      "cv": 7,
       "date": "2026-03-19",
       "details": true,
       "entity_id": 27787,
@@ -16670,7 +16437,7 @@
     {
       "address": "1065 OXLEY RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-18",
       "details": true,
       "entity_id": 27782,
@@ -16684,7 +16451,7 @@
     {
       "address": "1065 OXLEY RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-18",
       "details": true,
       "entity_id": 27781,
@@ -16698,7 +16465,7 @@
     {
       "address": "1065 OXLEY RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-18",
       "details": true,
       "entity_id": 27780,
@@ -16710,9 +16477,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27780"
     },
     {
-      "address": "1587 W THIRD AVE",
+      "address": "1241 FAIRVIEW AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-18",
       "details": true,
       "entity_id": 27779,
@@ -16726,7 +16493,7 @@
     {
       "address": "1500 DUBLIN RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-17",
       "details": true,
       "entity_id": 27769,
@@ -16740,7 +16507,7 @@
     {
       "address": "1153 WYANDOTTE RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-16",
       "details": true,
       "entity_id": 27760,
@@ -16754,7 +16521,7 @@
     {
       "address": "776-778 TIMBERMAN RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-16",
       "details": true,
       "entity_id": 27758,
@@ -16768,7 +16535,7 @@
     {
       "address": "1375 W SECOND AVE",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-16",
       "details": true,
       "entity_id": 27756,
@@ -16782,7 +16549,7 @@
     {
       "address": "833 COPELAND RD",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-14",
       "details": true,
       "entity_id": 27752,
@@ -16794,9 +16561,11 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27752"
     },
     {
-      "address": "1101 BROADVIEW AVENUE",
-      "contractors": [],
-      "cv": 3,
+      "address": "1101 BROADVIEW AVE",
+      "contractors": [
+        "CUSTOM AIR CONDITIONING & HEATING"
+      ],
+      "cv": 7,
       "date": "2026-03-12",
       "details": true,
       "entity_id": 27749,
@@ -16810,7 +16579,7 @@
     {
       "address": "775 YARD ST",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-12",
       "details": true,
       "entity_id": 27745,
@@ -16822,9 +16591,9 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/27745"
     },
     {
-      "address": "939 GOODALE BLVD",
+      "address": "939 W GOODALE ST",
       "contractors": [],
-      "cv": 3,
+      "cv": 7,
       "date": "2026-03-10",
       "details": true,
       "entity_id": 27736,
@@ -16837,8 +16606,10 @@
     },
     {
       "address": "1427 ROXBURY RD",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "The Eco Plumbers"
+      ],
+      "cv": 7,
       "date": "2026-03-10",
       "details": true,
       "entity_id": 27735,
@@ -16851,8 +16622,10 @@
     },
     {
       "address": "886 BURR AVE",
-      "contractors": [],
-      "cv": 3,
+      "contractors": [
+        "Logan Services INC"
+      ],
+      "cv": 7,
       "date": "2026-03-10",
       "details": true,
       "entity_id": 27734,
