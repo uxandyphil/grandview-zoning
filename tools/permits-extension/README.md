@@ -39,7 +39,8 @@ means the run finished.
 
 If the portal refuses its searches, the run skips looking for new permits for an hour and keeps reading permit
 pages. It stops by itself only if the pages stop loading, and a notification says so. Nothing is lost: try **Run now**
-again later, for example the next day.
+again later, for example the next day. A permit whose page doesn't load is tried again later, after the others, and
+skipped after 3 tries.
 
 If a notification asks for one search, type `R-26-82` in the small window's search box and press Enter. It continues
 by itself after that.
