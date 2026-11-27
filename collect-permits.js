@@ -1,14 +1,31 @@
-// Grandview permit collector
-// 1. Open https://grandviewheightsoh.portal.opengov.com/search
+// Permit collector for Grandview Heights and Upper Arlington
+// 1. Open https://grandviewheightsoh.portal.opengov.com/search (or https://upperarlingtonoh.portal.opengov.com/search)
 // 2. Open the browser console (right-click > Inspect > Console)
 // 3. Paste this whole file and press Enter
-// A panel appears in the corner. When it says "Done", click Download and upload
-// the file to docs/permits.json in the grandview-zoning repo.
+// A panel appears in the corner. When it says "Done", click Download and upload the file to docs/permits.json
+// (Upper Arlington: docs/permits-ua.json) in the grandview-zoning repo.
 // (The Chrome extension in tools/permits-extension runs this same script with window.GVZ_AUTO set: no clicks,
 // and the result is left in window.GVZ_RESULT for the extension to publish.)
 (async () => {
-  const API = window.GVZ_API || "https://api-east.viewpointcloud.com/v2/grandviewheightsoh";
-  const SITE_JSON = "https://uxandyphil.github.io/grandview-zoning/permits.json";
+  // ---------- which city ----------
+  // Grandview's permit series are known. Other cities' (Upper Arlington's) are learned from what the portal's search
+  // returns, since their permit numbers can look different.
+  const CITIES = {
+    grandviewheightsoh: { name: "Grandview Heights", file: "permits.json", yearsBack: 3, firstKey: "R-26-82",
+      hall: /^1525\s+(W\.?\s+)?Goodale/i, place: "Grandview Heights|Columbus", enforce: true },
+    upperarlingtonoh: { name: "Upper Arlington", file: "permits-ua.json", yearsBack: 1, firstKey: "electrical",
+      hall: /^3600\s+Tremont/i, place: "Upper Arlington|Columbus", learn: true },
+  };
+  const community = window.GVZ_CITY || location.hostname.split(".")[0];
+  const CITY = CITIES[community] || CITIES.grandviewheightsoh;
+  // the portal's own data address, from what the page has already loaded; else the usual one
+  const seenApi = (() => {
+    try { for (const e of performance.getEntriesByType("resource")) {
+      const m = /^(https:\/\/api-[a-z]+\.viewpointcloud\.com\/v2\/[a-z0-9]+)\//i.exec(e.name); if (m) return m[1]; } } catch (e) {}
+    return null;
+  })();
+  const API = window.GVZ_API || seenApi || `https://api-east.viewpointcloud.com/v2/${CITIES[community] ? community : "grandviewheightsoh"}`;
+  const SITE_JSON = `https://uxandyphil.github.io/grandview-zoning/${CITY.file}`;
   const OLD_PREFIXES = ["R", "E", "H", "P", "ZON", "B", "C", "D", "F", "M", "S", "Z", "ROW", "SIGN", "DEMO"];
   // ROOF, WIND (windows), SIDE (siding), GAS, TAP and SWR series show up in the county's records from 2024 on
   const PREFIXES = OLD_PREFIXES.concat(["ROOF", "WIND", "SIDE", "GAS", "TAP", "SWR", "FENC", "POOL", "SOL"]);
@@ -17,12 +34,12 @@
   const ENFORCE_PREFIXES = ["CE", "CODE", "ENF", "VIOL", "COMP", "PM", "NOV", "SWO", "NUIS"];
   const ENFORCE_TYPE = /violat|enforce|complaint|nuisance|property maint|stop work|citation/i;
   const ENFORCE_WORDS = ["violation", "code enforcement", "complaint", "property maintenance", "nuisance"];
-  PREFIXES.push(...ENFORCE_PREFIXES);
+  if (CITY.enforce) PREFIXES.push(...ENFORCE_PREFIXES);
   const LOOKAHEAD = 12;      // misses in a row before a series stops
   const MAX_DETAILS = window.GVZ_MAX_DETAILS || 200;   // record pages per click; run again to continue
   const FRAME_RECYCLE = 10;  // when whole record pages must be read: one hidden frame, rebuilt this often
   const FRAME_LIMIT = 80;    // and at most this many pages per run
-  const YEARS_BACK = 3;      // also collect this many past years (finished years are only walked once)
+  const YEARS_BACK = CITY.yearsBack;   // also collect this many past years (finished years are only walked once)
   const PAUSE = 1500;        // ms between searches
   const PAGE_PAUSE = 3000;   // ms between permit pages (loading one is many requests)
   const RECHECK = 12 * 3600_000;   // look for new permits (and retry the data lists) at most this often:
@@ -95,6 +112,10 @@
     alert("Open grandviewheightsoh.portal.opengov.com first, then paste this in its console.");
     return;
   }
+  if (!window.GVZ_TEST && !CITIES[community]) {
+    alert("This collector works on the Grandview Heights and Upper Arlington portals only.");
+    return;
+  }
   document.getElementById("gvz-panel")?.remove();
 
   // ---------- panel ----------
@@ -103,7 +124,7 @@
   panel.style.cssText = "position:fixed;right:16px;bottom:16px;z-index:2147483647;width:340px;" +
     "background:#fff;color:#15201B;border:1px solid #ccd3cf;border-radius:12px;padding:14px;" +
     "font:14px/1.45 system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.18)";
-  panel.innerHTML = `<div style="font-weight:700;margin-bottom:6px">Grandview permit collector</div>
+  panel.innerHTML = `<div style="font-weight:700;margin-bottom:6px">${CITY.name} permit collector</div>
     <div id="gvz-status" style="margin-bottom:8px">Starting…</div>
     <div id="gvz-log" style="max-height:160px;overflow:auto;font-size:12px;color:#5E6B64;margin-bottom:10px"></div>
     <div style="display:flex;gap:8px">
@@ -158,7 +179,10 @@
     const list = Object.values(permits).sort((a, b) =>
       ((b.date || b.first_seen.slice(0, 10)) + String(b.entity_id).padStart(9, "0"))
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
-    const meta = { updated: new Date().toISOString(), record_fields: recordFields, record_form: recordForm, record_forms: recordForms,
+    // the shapes of this city's permit numbers, when they're learned (Upper Arlington): just their pattern, e.g. 26-123
+    const shapes = (() => { try { return done.formats || null; } catch (e) { return null; } })();
+    const meta = { updated: new Date().toISOString(), city: CITY.name, record_numbers: shapes,
+      record_fields: recordFields, record_form: recordForm, record_forms: recordForms,
       record_shapes: recordShapes, record_status: recordStatus,
       record_apis: recordApis && recordApis.map((u) => u.replace(/[?&](token|key|auth)[^&]*/gi, "")) };
     return JSON.stringify({ ...meta, permits: list }, null, 2);
@@ -220,14 +244,14 @@
   let firstData = null;
   if (searchRefused) log("The portal refused searches less than an hour ago, so this run only reads the permits it has");
   else {
-    try { firstData = await search("R-26-82"); }
+    try { firstData = await search(CITY.firstKey); }
     catch (e) {
-      status("One step from you: type R-26-82 in the portal's search box and press Enter.");
+      status(`One step from you: type ${CITY.learn ? "a street name" : "R-26-82"} in the portal's search box and press Enter.`);
       log(`Direct search failed (${e.message}); waiting for you to search once`);
       const borrowed = await Promise.race([captureHeaders(), sleep(300_000).then(() => null)]);   // up to 5 minutes
       if (borrowed) { headers = borrowed; localStorage.setItem(STORE + "-headers", JSON.stringify(headers)); }
       await sleep(1500);
-      try { firstData = await search("R-26-82"); log("Got it, searching works now"); }
+      try { firstData = await search(CITY.firstKey); log("Got it, searching works now"); }
       catch (e2) { searchWasRefused(e2.message); }
     }
   }
@@ -235,12 +259,25 @@
   // ---------- finding record numbers ----------
   const numRe = /\b([A-Z]{1,5})-(\d{2})-0*(\d{1,6})\b/i;
   const norm = (t) => { const m = numRe.exec(String(t || "")); return m ? `${m[1].toUpperCase()}-${m[2]}-${+m[3]}` : null; };
+  // any permit-number shape (for cities whose series are learned): letters or none, the year (2 or 4 digits) and a
+  // number, with or without dashes; "26-1234", "BLD-26-1234" and "ALTC2601234" all fit
+  const GEN = /^([A-Z]{0,6})([-\s]?)((?:20)?\d{2})([-\s]?)(\d{1,7})$/i;
+  const parts = (t) => {
+    const whole = String(t || "").trim();
+    for (const s of [whole, ...whole.split(/\s+/)]) {
+      const m = GEN.exec(s);
+      if (m && (m[1] || m[2] || m[4])) return { prefix: m[1].toUpperCase(), sep1: m[2], ylen: m[3].length, yy: m[3].slice(-2), sep2: m[4], seq: m[5], text: s };
+    }
+    return null;
+  };
+  const canon = (t) => { const q = parts(t); return q ? `${q.prefix}|${q.yy}|${+q.seq}` : null; };
   const pool = {}, searched = new Set();
   let searches = 0;
   const harvest = (data) => {
     for (const it of Array.isArray(data) ? data : ((data && (data.results || data.value)) || [])) {
       // enforcement records keep their own number even if it isn't shaped like a permit number
-      const n = norm(it.resultText) || (ENFORCE_TYPE.test(it.secondaryText || "") && String(it.resultText || "").trim()) || null;
+      const n = CITY.learn ? (parts(it.resultText) || {}).text || null
+        : norm(it.resultText) || (ENFORCE_TYPE.test(it.secondaryText || "") && String(it.resultText || "").trim()) || null;
       if (n && (it.entityType || "record") === "record" && !pool[n])
         pool[n] = { type: (it.secondaryText || "").trim() || null, id: it.entityID };
     }
@@ -284,8 +321,90 @@
     window.GVZ_RESULT = { error: why };
   }
 
+  // ---------- cities whose permit series are learned (Upper Arlington) ----------
+  // A few keyword searches show what the city's permit numbers look like. Then each series is walked by number, up to
+  // a few hundred searches per batch: up past the newest number known first (new permits), then down toward #1 from
+  // where the last batch left off, so the newest permits are found, and read, first. Contractor registrations and
+  // licenses are left out: they name contractors, but they aren't jobs.
+  const LEARN_WORDS = ["electrical", "plumbing", "mechanical", "hvac", "furnace", "air conditioning", "water heater", "roof",
+    "building", "residential", "commercial", "addition", "remodel", "deck", "fence", "pool", "sign", "demolition", "sewer",
+    "driveway", "sidewalk", "generator", "solar", "window", "basement", "garage", "porch", "patio", "kitchen", "bathroom"];
+  const NOT_A_JOB = /registration|licen[cs]e|renewal/i;
+  const SEARCH_BUDGET = 300;   // searches per batch for walking learned series
+  const fmtNum = (f, yy, n) => f.prefix + f.sep1 + (f.ylen === 4 ? "20" + yy : yy) + f.sep2 + (f.pad ? String(n).padStart(f.pad, "0") : String(n));
+  async function walkLearned() {
+    let budget = SEARCH_BUDGET;
+    const lookup = async (key) => { budget--; await sleep(PAUSE); harvest(await searchWithRetry(key)); searches++; };
+    if (!done.formats || Date.now() - (done.formatsAt || 0) > 30 * 24 * 3600_000) {   // learned again once a month
+      for (const word of LEARN_WORDS) {
+        if (stopped) return;
+        status(`Learning how ${CITY.name} numbers its permits… (${word})`);
+        await lookup(word);
+      }
+      const shapes = {};
+      for (const [k, hit] of Object.entries(pool)) {
+        const q = parts(k);
+        if (!q || +q.yy > thisYY || +q.yy < thisYY - 6) continue;   // a recent year
+        const key = [q.prefix, q.sep1, q.ylen, q.sep2, /^0/.test(q.seq) ? q.seq.length : 0].join("|");
+        const e = shapes[key] || (shapes[key] = { count: 0, notJobs: 0 });
+        e.count++; if (NOT_A_JOB.test(hit.type || "")) e.notJobs++;
+      }
+      done.formats = Object.entries(shapes).filter(([, e]) => e.count >= 2 && e.notJobs * 2 < e.count)
+        .sort((a, b) => b[1].count - a[1].count).slice(0, 12).map(([key, e]) => {
+          const [prefix, sep1, ylen, sep2, pad] = key.split("|");
+          return { prefix, sep1, ylen: +ylen, sep2, pad: +pad, count: e.count };
+        });
+      done.formatsAt = Date.now(); saveDone();
+      log(done.formats.length ? `${CITY.name} permit numbers look like ${done.formats.map((f) => fmtNum(f, YEARS[0], 123)).join(", ")}`
+        : `Couldn't tell how ${CITY.name} numbers its permits from ${Object.keys(pool).length} search results`);
+    }
+    const have = new Set(Object.keys(permits).concat(Object.keys(pool)).map(canon).filter(Boolean));
+    const addFound = () => {   // records the searches turned up become permits
+      for (const [k, hit] of Object.entries(pool)) {
+        if (permits[k] || !canon(k) || NOT_A_JOB.test(hit.type || "")) continue;
+        permits[k] = { number: k, type: hit.type, entity_id: hit.id, url: `${location.origin}/records/${hit.id}`, address: null,
+          date: null, lat: null, lon: null, first_seen: now, details: false };
+        added++;
+      }
+      for (const k of Object.keys(pool)) { const c = canon(k); if (c) have.add(c); }
+    };
+    addFound();
+    for (const yy of YEARS) {
+      for (const f of done.formats || []) {
+        if (stopped || budget <= 0) break;
+        const series = `${f.prefix}${f.sep1}${yy}`, key = (n) => `${f.prefix}|${yy}|${n}`;
+        if (done[series]) continue;
+        const inSeries = () => [...have].filter((k) => k.startsWith(`${f.prefix}|${yy}|`)).map((k) => +k.split("|")[2]);
+        let top = Math.max(0, ...inSeries());
+        // up: new permits past the highest number known (this year's at most every 12 hours; a past year's once)
+        const upDue = yy === YEARS[0] ? due(`${series}:upAt`) : !done[`${series}:upAt`];
+        if (upDue) {
+          let n = top + 1, misses = 0;
+          while (misses < LOOKAHEAD && budget > 0 && !stopped) {
+            status(`Looking for new ${CITY.name} permits… (${fmtNum(f, yy, n)})`);
+            if (!have.has(key(n))) { await lookup(fmtNum(f, yy, n)); addFound(); }
+            if (have.has(key(n))) { top = n; misses = 0; } else misses++;
+            n++;
+          }
+          if (misses >= LOOKAHEAD) { done[`${series}:upAt`] = Date.now(); saveDone(); }
+        }
+        // down: older permits, toward #1, from where the last batch left off
+        let n = Math.min(done[`${series}:down`] ?? top - 1, top - 1);
+        while (n >= 1 && budget > 0 && !stopped) {
+          if (!have.has(key(n))) { status(`Finding older ${CITY.name} permits… (${fmtNum(f, yy, n)})`); await lookup(fmtNum(f, yy, n)); addFound(); }
+          n--;
+        }
+        done[`${series}:down`] = n;
+        if (n < 1 && yy !== YEARS[0] && done[`${series}:upAt`]) done[series] = true;
+        saveDone(); save();
+        log(`${series}: ${inSeries().length} found${n >= 1 ? `; older ones next time (from #${n})` : ""}`);
+      }
+    }
+    if (budget <= 0) log(`Searched ${SEARCH_BUDGET} numbers this batch; more next batch`);
+  }
+
   // Keyword searches for code enforcement records; any series they turn up gets walked like the others
-  if (!searchRefused && due("words:at")) {
+  if (CITY.enforce && !searchRefused && due("words:at")) {
     let ok = true;
     for (const word of ENFORCE_WORDS) {
       if (stopped) break;
@@ -306,7 +425,8 @@
   const known = (prefix, yy) => Object.keys(permits).concat(Object.keys(pool)).some((n) => n.startsWith(`${prefix}-${yy}-`));
 
   try {
-   for (const yy of YEARS) {
+   if (CITY.learn) { if (!searchRefused && !stopped) await walkLearned(); }
+   else for (const yy of YEARS) {
     if (searchRefused || stopped) break;
     const past = yy !== YEARS[0];
     // this year's series are walked again for new permits, at most every 12 hours
@@ -377,8 +497,8 @@
   // ---------- addresses (from each record's page) ----------
   const street = "(?:Ave(?:nue)?|St(?:reet)?|Rd|Road|Blvd|Boulevard|Dr(?:ive)?|Ct|Court|Pl(?:ace)?|Way|Ln|Lane|Pkwy|Parkway|Cir(?:cle)?|Ter(?:race)?)";
   const addrRe = new RegExp(`\\b\\d{1,5}(?:-\\d{1,5})?\\s+(?:[NSEW]\\.?\\s+)?(?:[A-Za-z0-9']+\\.?\\s+){1,3}?${street}\\b\\.?`, "i");
-  const cityHall = /^1525\s+(W\.?\s+)?Goodale/i;
-  const cleanAddr = (a) => a.replace(/\s+/g, " ").replace(/,?\s*(Grandview Heights|Columbus)?,?\s*OH(io)?\b.*$/i, "").replace(/^[\s,.]+|[\s,.]+$/g, "");
+  const cityHall = CITY.hall;
+  const cleanAddr = (a) => a.replace(/\s+/g, " ").replace(new RegExp(`,?\\s*(${CITY.place})?,?\\s*OH(io)?\\b.*$`, "i"), "").replace(/^[\s,.]+|[\s,.]+$/g, "");
   const toDate = (v) => {
     if (typeof v === "number" && v > 1e11) return new Date(v).toISOString().slice(0, 10);
     let m = /(20\d\d-\d\d-\d\d)/.exec(v || ""); if (m) return m[1];

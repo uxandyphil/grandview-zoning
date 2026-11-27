@@ -7,6 +7,7 @@ new agenda PDFs, geocodes them, and republishes the site.
 
     scrape.py                     finds agendas, extracts cases, writes docs/cases.json
     collect-permits.js            run in your browser on the OpenGov portal; downloads permits.json
+                                  (Upper Arlington's portal: permits-ua.json, for the Contractors tab)
     permits.py                    daily: maps permits in docs/permits.json
     docs/index.html               the website (reads cases.json)
     .github/workflows/update.yml  daily job
@@ -69,6 +70,18 @@ people's names from contractor lists.
 To skip the manual steps, the Chrome extension in `tools/permits-extension/` runs the same collector in your own
 Chrome when you click its Run now button and publishes `docs/permits.json` by itself. Setup is in its README. (A program-controlled
 browser doesn't work: the portal refuses it.)
+
+### Upper Arlington (Contractors tab only)
+
+The same collector also works on Upper Arlington's portal
+(https://upperarlingtonoh.portal.opengov.com/search), and the extension
+alternates batches between the two cities. Upper Arlington's permits go to
+`docs/permits-ua.json`, which only the Contractors tab reads (with an All /
+Grandview / Upper Arlington filter); they never appear on Grandview's map or
+lists. Its permit numbers can look different from Grandview's, so the
+collector learns their shape from a few keyword searches, then finds this
+year's and last year's permits by number, a few hundred searches per batch,
+newest first. Contractor registrations aren't counted as jobs.
 
 ## County permits (history and costs)
 
