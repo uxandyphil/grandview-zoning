@@ -1,1112 +1,4 @@
 {
-  "updated": "2026-11-27T19:45:25.069Z",
-  "record_fields": null,
-  "record_form": [
-    {
-      "section": "",
-      "label": "Name",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "In which City or Village are you applying for a Permit?",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Who is performing the work?",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Occupancy Type",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Type of Work Proposed",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Estimated Project Cost",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Square Footage of Work Area",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Project Description",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Is this part of a building project or a stand alone project?",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Building Permit Number",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Company Name",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Primary Contact Name",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor Address",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor City",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor State",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor Zip",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Contractor Email",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Business Phone",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Contact Information",
-      "label": "Email Address",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Contact Information",
-      "label": "Telephone Number",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Contact Information",
-      "label": "I hereby certify that I have read and understand the entire contents of this app",
-      "filled": true
-    }
-  ],
-  "record_forms": {
-    "HVAC Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Building Permit Number",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Certificate of Zoning Compliance": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Residential or Commercial Review?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": false
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner Phone",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner email",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant phone number",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant email",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Current Zoning District",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Proposed Change",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Number of Additional Dwelling Units being Added",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Is there an Architect or Engineer working on this project?",
-        "filled": true
-      }
-    ],
-    "Gas Piping Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In Which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Building Permit Number",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Number of Total Fixtures",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project?",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Plumbing Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Building Permit Number",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Decsription",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "Phone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
-        "filled": true
-      }
-    ],
-    "Re-Roofing Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Electrical Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Residential Permit",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contactor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Building Permit - Commercial": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Description of Work",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contact First and Last Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Phone Number",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Email",
-        "filled": true
-      }
-    ],
-    "Building Permit - Residential": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is applying for this permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Footage",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Phone",
-        "filled": true
-      },
-      {
-        "section": "Owner Information",
-        "label": "Owner Email",
-        "filled": true
-      },
-      {
-        "section": "Owner Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Fence Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "In consideration given, the Applicant agrees to install said work in all respect",
-        "filled": false
-      }
-    ],
-    "Sign Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Is sign in Grandview Commerce Mixed District",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Type of Sign",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Type of ILLUMINATION",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Two Sided?",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Construction Materials",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Zoning District",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "The owner of this building and the undersigned, do hereby covenant and agree to ",
-        "filled": true
-      }
-    ],
-    "Window/Door Replacement Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Are the window(s)/door(s) being replaced the same size?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Window Frame Material",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Are any of these windows in a hazardous location that require safety glazing as ",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Sidewalk Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Owner's Name",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Owner's Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "City, State, Zipcode",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ]
-  },
-  "record_shapes": null,
-  "record_status": null,
-  "record_apis": [],
   "permits": [
     {
       "address": "1322 WYANDOTTE RD",
@@ -1254,8 +146,8 @@
       "details": true,
       "entity_id": "29907",
       "first_seen": "2026-11-11T14:30:56+00:00",
-      "lat": null,
-      "lon": null,
+      "lat": 39.980015726246,
+      "lon": -83.043331321732,
       "number": "R-26-111",
       "type": "Building Permit - Residential",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/29907"
@@ -4323,7 +3215,7 @@
     {
       "address": "1147 WYANDOTTE RD",
       "contractors": [
-        "Shorty’s Plumbing LLC"
+        "Shorty\u2019s Plumbing LLC"
       ],
       "cv": 7,
       "date": "2026-11-09",
@@ -7131,7 +6023,7 @@
     {
       "address": "1330 WYANDOTTE RD",
       "contractors": [
-        "Andrew’s Concrete"
+        "Andrew\u2019s Concrete"
       ],
       "cv": 7,
       "date": null,
@@ -36479,5 +35371,1113 @@
       "type": "HVAC Permit",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/19637"
     }
-  ]
+  ],
+  "record_apis": [],
+  "record_fields": null,
+  "record_form": [
+    {
+      "filled": true,
+      "label": "Name",
+      "section": ""
+    },
+    {
+      "filled": true,
+      "label": "In which City or Village are you applying for a Permit?",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Who is performing the work?",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Occupancy Type",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Type of Work Proposed",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Estimated Project Cost",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Square Footage of Work Area",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Project Description",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Is this part of a building project or a stand alone project?",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Building Permit Number",
+      "section": "Project Information"
+    },
+    {
+      "filled": true,
+      "label": "Company Name",
+      "section": "Contractor Information"
+    },
+    {
+      "filled": true,
+      "label": "Primary Contact Name",
+      "section": "Contractor Information"
+    },
+    {
+      "filled": true,
+      "label": "Contractor Address",
+      "section": "Contractor Information"
+    },
+    {
+      "filled": true,
+      "label": "Contractor City",
+      "section": "Contractor Information"
+    },
+    {
+      "filled": true,
+      "label": "Contractor State",
+      "section": "Contractor Information"
+    },
+    {
+      "filled": true,
+      "label": "Contractor Zip",
+      "section": "Contractor Information"
+    },
+    {
+      "filled": true,
+      "label": "Contractor Email",
+      "section": "Contractor Information"
+    },
+    {
+      "filled": true,
+      "label": "Business Phone",
+      "section": "Contractor Information"
+    },
+    {
+      "filled": true,
+      "label": "Email Address",
+      "section": "Property Owner Contact Information"
+    },
+    {
+      "filled": true,
+      "label": "Telephone Number",
+      "section": "Property Owner Contact Information"
+    },
+    {
+      "filled": true,
+      "label": "I hereby certify that I have read and understand the entire contents of this app",
+      "section": "Property Owner Contact Information"
+    }
+  ],
+  "record_forms": {
+    "Building Permit - Commercial": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "Square Footage of Work Area",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Description of Work",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contact First and Last Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Phone Number",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Email",
+        "section": "Contractor Information"
+      }
+    ],
+    "Building Permit - Residential": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "Who is applying for this permit?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Type of Work Proposed",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Square Footage",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Project Description",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Owner Email",
+        "section": "Owner Information"
+      },
+      {
+        "filled": true,
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "section": "Owner Information"
+      }
+    ],
+    "Certificate of Zoning Compliance": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "Residential or Commercial Review?",
+        "section": "Project Information"
+      },
+      {
+        "filled": false,
+        "label": "Type of Work Proposed",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Property Owner Name",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Property Owner Phone",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Property Owner email",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Applicant Name",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Applicant phone number",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Applicant email",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Occupancy Type",
+        "section": "Zoning Certificate Information"
+      },
+      {
+        "filled": true,
+        "label": "Current Zoning District",
+        "section": "Zoning Certificate Information"
+      },
+      {
+        "filled": true,
+        "label": "Proposed Change",
+        "section": "Zoning Certificate Information"
+      },
+      {
+        "filled": true,
+        "label": "Number of Additional Dwelling Units being Added",
+        "section": "Zoning Certificate Information"
+      },
+      {
+        "filled": true,
+        "label": "Is there an Architect or Engineer working on this project?",
+        "section": "Zoning Certificate Information"
+      }
+    ],
+    "Electrical Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "In which City or Village are you applying for a Permit?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Occupancy Type",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Who is performing the work?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Type of Residential Permit",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Square Footage of Work Area",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Is this part of a building project or a stand alone project",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Project Description",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Primary Contact Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contactor City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Business Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Telephone Number",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "section": "Property Owner Contact Information"
+      }
+    ],
+    "Fence Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Primary Contact Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Business Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": false,
+        "label": "In consideration given, the Applicant agrees to install said work in all respect",
+        "section": "Contractor Information"
+      }
+    ],
+    "Gas Piping Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "In Which City or Village are you applying for a Permit?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Who is performing the work?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Building Permit Number",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Occupancy Type",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Number of Total Fixtures",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Project Description",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Is this part of a building project or a stand alone project?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Primary Contact Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Business Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Telephone Number",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "section": "Property Owner Contact Information"
+      }
+    ],
+    "HVAC Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "In which City or Village are you applying for a Permit?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Who is performing the work?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Occupancy Type",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Type of Work Proposed",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Square Footage of Work Area",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Project Description",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Is this part of a building project or a stand alone project?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Building Permit Number",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Primary Contact Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Business Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Email Address",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "Telephone Number",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "section": "Property Owner Contact Information"
+      }
+    ],
+    "Plumbing Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "In which City or Village are you applying for a Permit?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Who is performing the work?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Building Permit Number",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Occupancy Type",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Project Decsription",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Is this part of a building project or a stand alone project",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Primary Contact Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Business Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Email Address",
+        "section": "Property Owner Information"
+      },
+      {
+        "filled": true,
+        "label": "Phone Number",
+        "section": "Property Owner Information"
+      },
+      {
+        "filled": true,
+        "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
+        "section": "Property Owner Information"
+      }
+    ],
+    "Re-Roofing Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "In which City or Village are you applying for a Permit?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Occupancy Type",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Who is doing the work?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Project Description",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Primary Contact Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Business Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Telephone Number",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "Email Address",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "section": "Property Owner Contact Information"
+      }
+    ],
+    "Sidewalk Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "In which City or Village are you applying for a Permit?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Occupancy Type",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Who is doing the work?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Project Description",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Primary Contact Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Business Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Owner's Name",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "Owner's Address",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "City, State, Zipcode",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "Telephone Number",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "Email Address",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "section": "Property Owner Contact Information"
+      }
+    ],
+    "Sign Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "In which City or Village are you applying for a Permit?",
+        "section": "Sign Information"
+      },
+      {
+        "filled": true,
+        "label": "Is sign in Grandview Commerce Mixed District",
+        "section": "Sign Information"
+      },
+      {
+        "filled": true,
+        "label": "Type of Sign",
+        "section": "Sign Information"
+      },
+      {
+        "filled": true,
+        "label": "Type of ILLUMINATION",
+        "section": "Sign Information"
+      },
+      {
+        "filled": true,
+        "label": "Two Sided?",
+        "section": "Sign Information"
+      },
+      {
+        "filled": true,
+        "label": "Construction Materials",
+        "section": "Sign Information"
+      },
+      {
+        "filled": true,
+        "label": "Zoning District",
+        "section": "Sign Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Sign Information"
+      },
+      {
+        "filled": true,
+        "label": "The owner of this building and the undersigned, do hereby covenant and agree to ",
+        "section": "Contractor Information"
+      }
+    ],
+    "Window/Door Replacement Permit": [
+      {
+        "filled": true,
+        "label": "Name",
+        "section": ""
+      },
+      {
+        "filled": true,
+        "label": "In which City or Village are you applying for a Permit?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Occupancy Type",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Type of Work Proposed",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Are the window(s)/door(s) being replaced the same size?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Type of Window Frame Material",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Are any of these windows in a hazardous location that require safety glazing as ",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Estimated Project Cost",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Who is doing the work?",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Project Description",
+        "section": "Project Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Primary Contact Name",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Company Address",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor City",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor State",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Zip",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Contractor Email",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Business Phone",
+        "section": "Contractor Information"
+      },
+      {
+        "filled": true,
+        "label": "Telephone Number",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "Email Address",
+        "section": "Property Owner Contact Information"
+      },
+      {
+        "filled": true,
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "section": "Property Owner Contact Information"
+      }
+    ]
+  },
+  "record_shapes": null,
+  "record_status": null,
+  "updated": "2026-11-27T19:45:25.069Z"
 }
