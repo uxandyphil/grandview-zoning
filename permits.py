@@ -5,7 +5,8 @@ The city's permit API blocks cloud servers like GitHub's, so permits are
 collected in your own browser with collect-permits.js (or the Chrome extension
 in tools/permits-extension), which uploads docs/permits.json. This daily step
 adds map coordinates to any permit that has an address but no location yet,
-and removes people's names from the contractor lists.
+and removes people's names from the contractor lists (Grandview's, and Upper
+Arlington's in docs/permits-ua.json).
 """
 
 import json
@@ -13,6 +14,8 @@ import re
 from pathlib import Path
 
 PERMITS_FILE = Path("docs/permits.json")
+# Upper Arlington's permits (for the site's Contractors tab): only the name clean-up applies, no map locations
+UA_FILE = Path("docs/permits-ua.json")
 
 # People's names never go on the site. A contractor "name" that's just a person's ("Matt Hildebrand", "robert") is
 # dropped, and a person's name tacked onto a company's ("All Star Services Chad Garrett") is trimmed off.
@@ -89,22 +92,33 @@ def company_names(names):
     return out
 
 
-def run(state, geocode, now):
-    state.pop("permits", None)  # left over from the old server-side collector
-    if not PERMITS_FILE.exists():
-        print("Permits: no docs/permits.json yet")
-        return []
-    data = json.loads(PERMITS_FILE.read_text())
+def scrub(data):
+    """Remove what never belongs in these public files; True if anything changed."""
     # older collector versions saved a sample of a record page's text, which holds people's names and contact
-    # details; it never belongs in this public file
-    scrubbed = data.pop("record_labels", None) is not None
-    permits = data.get("permits", [])
-    for p in permits:
+    # details
+    changed = data.pop("record_labels", None) is not None
+    for p in data.get("permits", []):
         if p.get("contractors"):
             kept = company_names(p["contractors"])
             if kept != p["contractors"]:
                 p["contractors"] = kept
-                scrubbed = True
+                changed = True
+    return changed
+
+
+def run(state, geocode, now):
+    state.pop("permits", None)  # left over from the old server-side collector
+    if UA_FILE.exists():
+        ua = json.loads(UA_FILE.read_text())
+        if scrub(ua):
+            UA_FILE.write_text(json.dumps(ua, indent=2, sort_keys=True))
+        print(f"Permits: {len(ua.get('permits', []))} Upper Arlington permits on file")
+    if not PERMITS_FILE.exists():
+        print("Permits: no docs/permits.json yet")
+        return []
+    data = json.loads(PERMITS_FILE.read_text())
+    scrubbed = scrub(data)
+    permits = data.get("permits", [])
     added = 0
     for p in permits:
         if p.get("address") and p.get("lat") is None:

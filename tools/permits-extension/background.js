@@ -1,13 +1,20 @@
 // Grandview permits collector (Chrome extension)
 //
-// When you click "Run now", opens the city's permit portal in a small background window of your own Chrome, runs
-// collect-permits.js there (the same script you'd paste by hand, which the portal accepts), and publishes the result
-// to docs/permits.json on GitHub after each batch. It runs only when started, and stops when it's done or you click
-// "Stop". Each step is driven by a timer that survives Chrome suspending this background script.
+// When you click "Run now", opens each city's permit portal in turn in a small background window of your own Chrome,
+// runs collect-permits.js there (the same script you'd paste by hand, which the portals accept), and publishes the
+// result to GitHub after each batch. It runs only when started, and stops when it's done or you click "Stop". Each
+// step is driven by a timer that survives Chrome suspending this background script.
 
-const REPO = "uxandyphil/grandview-zoning", BRANCH = "main", FILE = "docs/permits.json";
-const PORTAL = "https://grandviewheightsoh.portal.opengov.com/search";
-const MAX_BATCHES = 40;                 // each batch reads up to 200 permits (80 when whole pages are read), in a freshly loaded page
+const REPO = "uxandyphil/grandview-zoning", BRANCH = "main";
+// Each city's portal and the file its permits go to. A run alternates batches between the cities that still have
+// permits to read, so both fill in from the start; if one city's portal refuses, the run carries on with the other.
+const CITIES = [
+  { name: "Grandview", portal: "https://grandviewheightsoh.portal.opengov.com/search", file: "docs/permits.json", commit: "permits",
+    search: "R-26-82" },
+  { name: "Upper Arlington", portal: "https://upperarlingtonoh.portal.opengov.com/search", file: "docs/permits-ua.json",
+    commit: "Upper Arlington permits", search: "a street name" },
+];
+const MAX_BATCHES = 80;                 // each batch reads up to 200 permits (80 when whole pages are read), in a freshly loaded page
 const BATCH_LIMIT_MS = 75 * 60_000;     // give up on a batch after 75 minutes
 
 const get = async (k) => (await chrome.storage.local.get(k))[k];
@@ -50,10 +57,11 @@ chrome.runtime.onMessage.addListener((msg, _s, reply) => {
 async function startRun(why) {
   if (await get("run")) return;
   if (!(await get("token"))) { await note("Skipped: no GitHub key saved yet (open the extension to add it)"); return; }
-  const win = await chrome.windows.create({ url: PORTAL, focused: false, width: 520, height: 460, left: 0, top: 0 });
+  const win = await chrome.windows.create({ url: CITIES[0].portal, focused: false, width: 520, height: 460, left: 0, top: 0 });
   const tabId = win.tabs[0].id;
   try { await chrome.tabs.update(tabId, { autoDiscardable: false }); } catch {}
-  await set({ run: { phase: "loading", windowId: win.id, tabId, batch: 1, at: Date.now(), searched: 0 } });
+  await set({ run: { phase: "loading", windowId: win.id, tabId, batch: 1, at: Date.now(), searched: 0, city: 0,
+    over: CITIES.map(() => false), results: CITIES.map(() => null) } });
   await note(`Started (${why})`);
   chrome.alarms.create("tick", { periodInMinutes: 0.5 });
 }
@@ -97,41 +105,57 @@ async function step() {
     return set({ run: { ...run, phase: "running", at: now } });
   }
   if (run.phase !== "running") return;
-  const { status, result } = (await inPage(run.tabId, () => ({ status: window.GVZ_STATUS || "", result: window.GVZ_RESULT }))) || {};
+  const ci = run.city || 0, city = CITIES[ci];
+  let { status, result } = (await inPage(run.tabId, () => ({ status: window.GVZ_STATUS || "", result: window.GVZ_RESULT }))) || {};
   if (status !== run.status) await set({ run: { ...run, status } });
   if (!result) {
     if (/One step from you/.test(status || "")) {
       if (!run.searched) { await inPage(run.tabId, pageSearch); await set({ run: { ...run, status, searched: now } }); }
       else if (now - run.searched > 90_000 && !run.asked) {
         await chrome.windows.update(run.windowId, { focused: true });
-        notify("Grandview permits needs one search", "In the small portal window, type R-26-82 in the search box and press Enter. It continues on its own after that.");
+        notify("The permit collector needs one search", `In the small ${city.name} portal window, type ${city.search} in the search box and press Enter. It continues on its own after that.`);
         await set({ run: { ...run, status, asked: true } });
       }
     }
-    if (now - run.at > BATCH_LIMIT_MS) return finish(false, `Batch ${run.batch} took too long`);
-    return;
+    if (now - run.at <= BATCH_LIMIT_MS) return;
+    result = { error: "a batch took too long", timedOut: true };   // give up on this city for this run, carry on with the other
   }
-  if (result.error) return finish(false, `The portal refused the request (${result.error})`);
-  await set({ lastJson: result.json });
-  await note(`Batch ${run.batch}: ${result.total} permits, ${result.processed} read, contractors on ${result.withContractor}, ${result.left} left`);
-  // upload after every batch, so the site gets progress even if the run stops partway. If Chrome interrupts this,
-  // the next tick finds the same finished batch and uploads it again (an unchanged file is skipped).
+  const over = run.over || CITIES.map(() => false), results = run.results || CITIES.map(() => null);
   let published = run.published || 0;
-  try {
-    if (await publish(await get("token"), result.json, `${result.total} permits; ${result.left} still to read.`)) {
-      published++;
-      await note(`Uploaded to the site (${result.total} permits, ${result.left} still to read)`);
+  if (result.error) {
+    over[ci] = true;
+    results[ci] = { error: result.timedOut ? result.error : `the portal refused the request (${result.error})` };
+    await note(`${city.name}: ${results[ci].error}`);
+  } else {
+    await set({ lastJson: result.json });
+    await note(`${city.name} batch: ${result.total} permits, ${result.processed} read, contractors on ${result.withContractor}, ${result.left} left`);
+    // upload after every batch, so the site gets progress even if the run stops partway. If Chrome interrupts this,
+    // the next tick finds the same finished batch and uploads it again (an unchanged file is skipped).
+    results[ci] = { total: result.total, left: result.left };
+    try {
+      if (await publish(await get("token"), result.json, `${result.total} permits; ${result.left} still to read.`, city)) {
+        published++;
+        await note(`Uploaded ${city.name} to the site (${result.total} permits, ${result.left} still to read)`);
+      }
+    } catch (e) {
+      await note(`${city.name} upload failed: ${e.message}${result.left ? "; it will try again after the next batch" : ""}`);
+      results[ci].error = `the upload failed (${e.message})`;
     }
-  } catch (e) {
-    await note(`Upload failed: ${e.message}${result.left ? "; it will try again after the next batch" : ""}`);
-    if (!result.left || !result.processed || run.batch >= MAX_BATCHES) return finish(false, `Upload failed: ${e.message}`);
+    if (!result.left || !result.processed) over[ci] = true;   // nothing left, or a batch that read nothing
   }
-  if (result.left && result.processed && run.batch < MAX_BATCHES) {
-    await chrome.tabs.reload(run.tabId);   // a fresh page for each batch keeps memory low
-    return set({ run: { ...run, phase: "loading", batch: run.batch + 1, at: now, status: "", searched: 0, asked: false, published } });
+  // next: the other city if it still has permits to read, else this one again
+  const next = [(ci + 1) % CITIES.length, ci].find((i) => !over[i]);
+  if (next !== undefined && run.batch < MAX_BATCHES) {
+    if (next === ci) await chrome.tabs.reload(run.tabId);   // a fresh page for each batch keeps memory low
+    else await chrome.tabs.update(run.tabId, { url: CITIES[next].portal });
+    return set({ run: { ...run, phase: "loading", city: next, batch: run.batch + 1, at: now, status: "", searched: 0, asked: false,
+      published, over, results } });
   }
-  await finish(true, published ? `Done: ${result.total} permits on the site${result.left ? `, ${result.left} left for next time` : ""}`
-    : "Done: no permit changes since the last upload");
+  const summary = CITIES.map((c, i) => results[i] && (results[i].error ? `${c.name} stopped: ${results[i].error}`
+    : `${c.name}: ${results[i].total.toLocaleString()} permits on the site${results[i].left ? `, ${results[i].left.toLocaleString()} left for next time` : ""}`))
+    .filter(Boolean).join(". ");
+  const ok = !results.some((r) => r && r.error);
+  await finish(ok, `${!ok ? "" : published ? "Done. " : "Done: no permit changes since the last upload. "}${summary}`);
 }
 
 async function finish(ok, message) {
@@ -141,7 +165,7 @@ async function finish(ok, message) {
   if (run) { try { await chrome.windows.remove(run.windowId); } catch {} }
   await note(message);
   await set({ lastRun: { at: Date.now(), ok, message } });
-  if (!ok && message !== "Stopped by you") notify("Grandview permits didn't finish", message);
+  if (!ok && message !== "Stopped by you") notify("The permit collector didn't finish", message);
 }
 
 // ---------- publishing to GitHub ----------
@@ -177,8 +201,9 @@ async function gh(token, pathname, opts = {}) {
   if (!r.ok) throw new Error(`GitHub ${r.status}${r.status === 401 || r.status === 403 ? " (check the GitHub key)" : ""}`);
   return r.json();
 }
-// one commit to main replacing docs/permits.json; false when nothing changed
-async function publish(token, json, summary) {
+// one commit to main replacing the city's file; false when nothing changed
+async function publish(token, json, summary, city) {
+  const FILE = city.file;
   for (let attempt = 1; attempt <= 3; attempt++) {
     const ref = await gh(token, `/repos/${REPO}/git/ref/heads/${BRANCH}`);
     const parent = ref.object.sha;
@@ -190,7 +215,7 @@ async function publish(token, json, summary) {
     const tree = await gh(token, `/repos/${REPO}/git/trees`, { method: "POST",
       body: JSON.stringify({ base_tree: head.tree.sha, tree: [{ path: FILE, mode: "100644", type: "blob", sha: blob.sha }] }) });
     const commit = await gh(token, `/repos/${REPO}/git/commits`, { method: "POST",
-      body: JSON.stringify({ message: `Update permits from the Chrome collector\n\n${summary}`, tree: tree.sha, parents: [parent] }) });
+      body: JSON.stringify({ message: `Update ${city.commit} from the Chrome collector\n\n${summary}`, tree: tree.sha, parents: [parent] }) });
     try {
       await gh(token, `/repos/${REPO}/git/refs/heads/${BRANCH}`, { method: "PATCH", body: JSON.stringify({ sha: commit.sha }) });
       return true;

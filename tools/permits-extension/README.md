@@ -1,9 +1,13 @@
 # Permit collector, as a Chrome extension
 
-The city's permit portal blocks cloud servers and program-controlled browsers, but it works in your everyday
-Chrome. This extension runs `collect-permits.js` there for you: when you click **Run now**, it opens the portal in a
-small background window, collects new permits and contractor names, publishes `docs/permits.json` to GitHub after
-every batch, and closes the window when it's done. No pasting, no downloading, no uploading.
+The cities' permit portals block cloud servers and program-controlled browsers, but they work in your everyday
+Chrome. This extension runs `collect-permits.js` there for you: when you click **Run now**, it opens a portal in a
+small background window, collects new permits and contractor names, publishes them to GitHub after every batch, and
+closes the window when it's done. No pasting, no downloading, no uploading.
+
+It covers Grandview Heights (`docs/permits.json`) and Upper Arlington (`docs/permits-ua.json`, used only by the
+Contractors tab), alternating batches between them so both fill in from the start. If one city's portal refuses, the
+run carries on with the other.
 
 It never runs on its own: start it with **Run now** and stop it any time with **Stop** (or by closing Chrome). Every
 finished batch is already on the site, and the next **Run now** picks up where it left off. A full re-read of every
@@ -48,8 +52,8 @@ by itself after that.
 Run it again whenever you want the site's permits and contractors brought up to date.
 
 ## Updating
-When the popup says a newer version is on GitHub, run the two download lines from step 1 again, then click the
-reload arrow on the extension's card in `chrome://extensions`.
+When the popup says a newer version is on GitHub, run the download lines from step 1 again (all of them: a new
+version can change any of the files), then click the reload arrow on the extension's card in `chrome://extensions`.
 
 ## Turning it off
 Remove it from `chrome://extensions`, and delete the GitHub key on GitHub if you like.
