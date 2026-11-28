@@ -2747,14 +2747,27 @@
   const coKey = (n) => String(n || "").toUpperCase().replace(/[.,'’]/g, "").replace(/&/g, " AND ")
     .replace(/\b(LLC|L L C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|LP|THE)\b/g, " ").replace(/\s+/g, " ").trim();
   const CO_GENERIC = /^(DEVELOPMENT|CONSTRUCTION|SERVICES?|PLUMBING|ELECTRIC(AL)?|ROOFING|HOMES|BUILDERS?|GROUP|SYSTEMS|ENTERPRISES|HEATING|COOLING|AIR)$/;
+  // A permit's trade comes from its type ("Sewer Lateral Replacement/Repair", "Re-Roofing Permit"...). The first match
+  // wins, and a trade's button only shows when some company has done that work.
+  const byType = (rx) => (c) => rx.test(c.permit.type || "");
   const CO_TRADES = [
     { k: "elec", label: "Electricians", test: (c) => c.cat === "elec" },
     { k: "hvac", label: "Heating and cooling", test: (c) => c.cat === "hvac" },
     { k: "plmb", label: "Plumbers", test: (c) => c.cat === "plmb" },
+    { k: "roof", label: "Roofers", test: byType(/roof/i) },
     { k: "bldg", label: "Builders and remodelers", test: (c) => c.cat === "bldg" },
+    { k: "wind", label: "Windows and doors", test: byType(/window|door/i) },
+    { k: "side", label: "Siding", test: byType(/siding/i) },
+    { k: "fenc", label: "Fences", test: byType(/fence/i) },
+    { k: "walk", label: "Sidewalks and driveways", test: byType(/sidewalk|driveway|curb|apron/i) },
+    { k: "sewr", label: "Sewer lines", test: byType(/sewer|lateral|drain/i) },
+    { k: "gas", label: "Gas lines", test: byType(/\bgas\b/i) },
+    { k: "deck", label: "Decks and porches", test: byType(/deck|porch|patio/i) },
+    { k: "pool", label: "Pools", test: byType(/pool|\bspa\b|hot tub/i) },
+    { k: "solr", label: "Solar", test: byType(/solar|photovoltaic/i) },
     { k: "comm", label: "Commercial builders", test: (c) => c.cat === "comm" },
-    { k: "demo", label: "Demolition", test: (c) => /demolition/i.test(c.permit.type || "") },
-    { k: "sign", label: "Sign companies", test: (c) => /sign/i.test(c.permit.type || "") },
+    { k: "demo", label: "Demolition", test: byType(/demolition/i) },
+    { k: "sign", label: "Sign companies", test: byType(/\bsign\b/i) },
   ];
   const tradeOf = (c) => CO_TRADES.find((t) => t.test(c));
   // Upper Arlington's permits, shaped like Grandview's for the counts (contractor registrations and licenses aren't jobs)
@@ -2807,7 +2820,7 @@
       ? `, ${portal("Upper Arlington", "https://upperarlingtonoh.portal.opengov.com/search")}` : ""}), collected by the Chrome extension in
       <code>tools/permits-extension</code> (setup is in its README). Each run reads more of them, newest first.`;
     const intro = `<div class="card exp-intro"><b>Popular contractors in ${hasUA ? "Grandview and Upper Arlington" : "Grandview"}.</b> Need an
-      electrician, plumber, HVAC company, or builder? These are the companies ${hasUA ? "neighbors in Grandview and Upper Arlington" : "Grandview neighbors"}
+      electrician, plumber, roofer, HVAC company, sewer line repair, or builder? These are the companies ${hasUA ? "neighbors in Grandview and Upper Arlington" : "Grandview neighbors"}
       hire most, counted from ${hasUA ? "each city's" : "the city's"} building permits. A busy contractor isn't always a good one, so check reviews,
       licensing, and insurance before you hire.</div>`;
     if (!list.length) {
@@ -2851,8 +2864,8 @@
           <div class="co-rank">${i + 1}</div>
           <div class="co-body">
             <div class="co-name">${esc(e.name)}</div>
-            <div class="co-stats">${jobsLine(e)} at ${v.homes} ${plural("address", v.homes)}
-              · ${v.recent} in the last 2 years · latest ${esc(monYr(v.last))}${v.first && v.first.slice(0, 4) !== v.last.slice(0, 4) ? ` · since ${v.first.slice(0, 4)}` : ""}</div>
+            <div class="co-stats">${jobsLine(e)} at ${v.homes} ${plural("address", v.homes)}${v.last ? `
+              · ${v.recent} in the last 2 years · latest ${esc(monYr(v.last))}${v.first && v.first.slice(0, 4) !== v.last.slice(0, 4) ? ` · since ${v.first.slice(0, 4)}` : ""}` : ""}</div>
             ${v.trades.length > 1 || trade === "all" ? `<div class="co-tr">${v.trades.map(([t, n]) => `${esc(t.label)} ${n}`).join(" · ")}</div>` : ""}
             <div class="co-acts">
               ${e.list.some((c) => jobCity(c) === "gv") ? `<button class="btn" type="button" data-co="${esc(e.key)}">See their ${hasUA ? "Grandview " : ""}jobs on the map</button>` : ""}
