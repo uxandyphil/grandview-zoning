@@ -5768,6 +5768,7 @@
       39.984178137248,
       -83.049122346205
     ],
+    "132 Johnson Dr, Grandview Heights, OH 43212": null,
     "1320 BROADVIEW AVE, Grandview Heights, OH 43212": [
       39.984422260996,
       -83.046240457885
@@ -9446,6 +9447,10 @@
       39.979871710138,
       -83.057645991078
     ],
+    "1960 VILLAGE CT, Grandview Heights, OH 43212": [
+      39.980744735397,
+      -83.059657376995
+    ],
     "1964 CARDIGAN AVE, Grandview Heights, OH 43212": [
       39.986758265103,
       -83.05889440465
@@ -12040,6 +12045,10 @@
     "946 W FIRST AVE, Grandview Heights, OH 43212": [
       39.982213364894,
       -83.026911413453
+    ],
+    "946-948 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977905791131,
+      -83.033571462703
     ],
     "947 FIRST AVE, Grandview Heights, OH 43212": null,
     "947 HUDSON CROSSING, Grandview Heights, OH 43212": null,
