@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T01:59:16.429Z",
+  "updated": "2026-11-28T02:10:48.327Z",
   "city": "Grandview Heights",
   "record_numbers": null,
   "record_fields": null,
@@ -16,27 +16,17 @@
     },
     {
       "section": "Project Information",
+      "label": "Who is performing the work?",
+      "filled": true
+    },
+    {
+      "section": "Project Information",
+      "label": "Building Permit Number",
+      "filled": true
+    },
+    {
+      "section": "Project Information",
       "label": "Occupancy Type",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Type of Work Proposed",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Are the window(s)/door(s) being replaced the same size?",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Type of Window Frame Material",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Are any of these windows in a hazardous location that require safety glazing as ",
       "filled": true
     },
     {
@@ -46,13 +36,13 @@
     },
     {
       "section": "Project Information",
-      "label": "Who is doing the work?",
+      "label": "Project Decsription",
       "filled": true
     },
     {
       "section": "Project Information",
-      "label": "Project Description",
-      "filled": true
+      "label": "Is this part of a building project or a stand alone project",
+      "filled": false
     },
     {
       "section": "Contractor Information",
@@ -95,23 +85,120 @@
       "filled": true
     },
     {
-      "section": "Property Owner Contact Information",
-      "label": "Telephone Number",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Contact Information",
+      "section": "Property Owner Information",
       "label": "Email Address",
+      "filled": false
+    },
+    {
+      "section": "Property Owner Information",
+      "label": "Phone Number",
       "filled": true
     },
     {
-      "section": "Property Owner Contact Information",
-      "label": "I hereby certify that I have read and understand the entire contents of this app",
+      "section": "Property Owner Information",
+      "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
       "filled": true
     }
   ],
   "record_forms": {
-    "Window/Door Replacement Permit": [
+    "Plumbing Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Who is performing the work?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Building Permit Number",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Occupancy Type",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Estimated Project Cost",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Project Decsription",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Is this part of a building project or a stand alone project",
+        "filled": false
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Primary Contact Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Address",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor City",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor State",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Zip",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Email",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Business Phone",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Information",
+        "label": "Email Address",
+        "filled": false
+      },
+      {
+        "section": "Property Owner Information",
+        "label": "Phone Number",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Information",
+        "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
+        "filled": true
+      }
+    ],
+    "Electrical Permit": [
       {
         "section": "",
         "label": "Name",
@@ -129,6 +216,202 @@
       },
       {
         "section": "Project Information",
+        "label": "Who is performing the work?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Type of Residential Permit",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Estimated Project Cost",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Square Footage of Work Area",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Is this part of a building project or a stand alone project",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Project Description",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Information ID",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Information Expiration",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Telephone Number",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "filled": true
+      }
+    ],
+    "Sign Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": false
+      },
+      {
+        "section": "Sign Information",
+        "label": "Is sign in Grandview Commerce Mixed District",
+        "filled": false
+      },
+      {
+        "section": "Sign Information",
+        "label": "Type of Sign",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Type of ILLUMINATION",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Two Sided?",
+        "filled": false
+      },
+      {
+        "section": "Sign Information",
+        "label": "Square footage of Frontage of Tenant Space",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Construction Materials",
+        "filled": false
+      },
+      {
+        "section": "Sign Information",
+        "label": "Zoning District",
+        "filled": true
+      },
+      {
+        "section": "Sign Information",
+        "label": "Estimated Project Cost",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "The owner of this building and the undersigned, do hereby covenant and agree to ",
+        "filled": true
+      }
+    ],
+    "Certificate of Zoning Compliance": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Residential or Commercial Review?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Type of Work Proposed",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Property Owner Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Property Owner Phone",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Property Owner email",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Applicant Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Applicant phone number",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Applicant email",
+        "filled": true
+      },
+      {
+        "section": "Zoning Certificate Information",
+        "label": "Occupancy Type",
+        "filled": true
+      },
+      {
+        "section": "Zoning Certificate Information",
+        "label": "Current Zoning District",
+        "filled": true
+      },
+      {
+        "section": "Zoning Certificate Information",
+        "label": "Proposed Change",
+        "filled": true
+      },
+      {
+        "section": "Zoning Certificate Information",
+        "label": "Number of Additional Dwelling Units being Added",
+        "filled": true
+      },
+      {
+        "section": "Zoning Certificate Information",
+        "label": "Is there an Architect or Engineer working on this project?",
+        "filled": true
+      }
+    ],
+    "Window/Door Replacement Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Occupancy Type",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
         "label": "Type of Work Proposed",
         "filled": true
       },
@@ -139,12 +422,99 @@
       },
       {
         "section": "Project Information",
-        "label": "Type of Window Frame Material",
+        "label": "Estimated Project Cost",
         "filled": true
       },
       {
         "section": "Project Information",
-        "label": "Are any of these windows in a hazardous location that require safety glazing as ",
+        "label": "Who is doing the work?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Project Description",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Primary Contact Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Address",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor City",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor State",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Zip",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Email",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Business Phone",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Telephone Number",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Email Address",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "filled": true
+      }
+    ],
+    "HVAC Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Who is performing the work?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Occupancy Type",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Type of Work Proposed",
         "filled": true
       },
       {
@@ -154,7 +524,104 @@
       },
       {
         "section": "Project Information",
+        "label": "Square Footage of Work Area",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Project Description",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Is this part of a building project or a stand alone project?",
+        "filled": false
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Company Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Primary Contact Name",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Address",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor City",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor State",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Zip",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Contractor Email",
+        "filled": true
+      },
+      {
+        "section": "Contractor Information",
+        "label": "Business Phone",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Email Address",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Telephone Number",
+        "filled": true
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "filled": true
+      }
+    ],
+    "Siding Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Occupancy Type",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Estimated Project Cost",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
         "label": "Who is doing the work?",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "Type of Siding Material",
         "filled": true
       },
       {
@@ -305,7 +772,7 @@
         "filled": true
       }
     ],
-    "Siding Permit": [
+    "Sidewalk Permit": [
       {
         "section": "",
         "label": "Name",
@@ -319,12 +786,7 @@
       {
         "section": "Project Information",
         "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Project Information",
@@ -333,7 +795,7 @@
       },
       {
         "section": "Project Information",
-        "label": "Type of Siding Material",
+        "label": "Estimated Project Cost",
         "filled": true
       },
       {
@@ -379,58 +841,6 @@
       {
         "section": "Contractor Information",
         "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Sidewalk Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "I understand that this must be my primary residence to do the work as the homeow",
-        "filled": false
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
         "filled": true
       },
       {
@@ -461,448 +871,6 @@
       {
         "section": "Property Owner Contact Information",
         "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Plumbing Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Decsription",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project",
-        "filled": false
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "Phone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
-        "filled": true
-      }
-    ],
-    "HVAC Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": false
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project?",
-        "filled": false
-      },
-      {
-        "section": "Project Information",
-        "label": "Building Permit Number",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": false
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Electrical Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Residential Permit",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Commercial Permit",
-        "filled": false
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Information ID",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Information Expiration",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Certificate of Zoning Compliance": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Residential or Commercial Review?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner Phone",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner email",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant phone number",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant email",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Current Zoning District",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Proposed Change",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Number of Additional Dwelling Units being Added",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Is there an Architect or Engineer working on this project?",
-        "filled": true
-      }
-    ],
-    "Sewer Lateral Replacement/Repair": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Occupancy Type?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Is there a City Tree that is in close proximity to the repair?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Describe in detail the proposed work being completed including distances from st",
-        "filled": true
-      }
-    ],
-    "Sign Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": false
-      },
-      {
-        "section": "Sign Information",
-        "label": "Is sign in Grandview Commerce Mixed District",
-        "filled": false
-      },
-      {
-        "section": "Sign Information",
-        "label": "Type of Sign",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Type of ILLUMINATION",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Two Sided?",
-        "filled": false
-      },
-      {
-        "section": "Sign Information",
-        "label": "Square footage of Frontage of Tenant Space",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Construction Materials",
-        "filled": false
-      },
-      {
-        "section": "Sign Information",
-        "label": "Zoning District",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "The owner of this building and the undersigned, do hereby covenant and agree to ",
         "filled": true
       }
     ]
@@ -1706,12 +1674,16 @@
       "type": "Window/Door Replacement Permit",
       "entity_id": "23581",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/23581",
-      "address": null,
+      "address": "1514 LINCOLN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "UHS Contracting LLC"
+      ],
+      "cv": 7
     },
     {
       "number": "SIDE-24-13",
@@ -1735,7 +1707,11 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "K D Yoder & Associates, Inc"
+      ],
+      "cv": 7
     },
     {
       "number": "ROOF-24-40",
@@ -1747,7 +1723,11 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Feazel Roofing LLC"
+      ],
+      "cv": 7
     },
     {
       "number": "SIDE-24-11",
@@ -1759,7 +1739,11 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Legg & Davis Construction, Inc."
+      ],
+      "cv": 7
     },
     {
       "number": "WIND-24-7",
@@ -1771,7 +1755,11 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "APCO Industries"
+      ],
+      "cv": 7
     },
     {
       "number": "SIDE-24-10",
@@ -1790,12 +1778,16 @@
       "type": "Re-Roofing Permit",
       "entity_id": "23445",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/23445",
-      "address": null,
+      "address": "1351 WYANDOTTE RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Able Roof"
+      ],
+      "cv": 7
     },
     {
       "number": "SIDE-24-9",
@@ -1807,7 +1799,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 7
     },
     {
       "number": "ROOF-24-38",
@@ -1819,19 +1813,25 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 7
     },
     {
       "number": "ROOF-24-37",
       "type": "Re-Roofing Permit",
       "entity_id": "23416",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/23416",
-      "address": null,
+      "address": "941 MCCLAIN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "The Roof Detective"
+      ],
+      "cv": 7
     },
     {
       "number": "SIDE-24-8",
@@ -1843,19 +1843,27 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "E and B Wooley"
+      ],
+      "cv": 7
     },
     {
       "number": "ROOF-24-36",
       "type": "Re-Roofing Permit",
       "entity_id": "23404",
       "url": "https://grandviewheightsoh.portal.opengov.com/records/23404",
-      "address": null,
+      "address": "941 MCCLAIN RD",
       "date": null,
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "The Roof Detective"
+      ],
+      "cv": 7
     },
     {
       "number": "WIND-24-6",
@@ -1867,7 +1875,11 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
-      "details": false
+      "details": true,
+      "contractors": [
+        "Rosati Windows"
+      ],
+      "cv": 7
     },
     {
       "number": "SIDE-24-7",
@@ -32131,7 +32143,11 @@
       "lon": -83.039917190152,
       "number": "P-24-64",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23600"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23600",
+      "contractors": [
+        "Ohio Plumbing Works LLC"
+      ],
+      "cv": 7
     },
     {
       "address": "857 PULLMAN WY",
@@ -32143,7 +32159,9 @@
       "lon": -83.028537305934,
       "number": "E-24-101",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23599"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23599",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "751 NORTHWEST BLVD",
@@ -32155,7 +32173,9 @@
       "lon": -83.029195041502,
       "number": "SIGN-24-20",
       "type": "Sign Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23589"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23589",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1106 Grandview Avenue",
@@ -32167,7 +32187,9 @@
       "lon": -83.045054782705,
       "number": "E-24-107",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23585"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23585",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1106 Grandview Avenue",
@@ -32179,7 +32201,11 @@
       "lon": -83.045054782705,
       "number": "P-24-76",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23584"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23584",
+      "contractors": [
+        "Nate's Great Plumbing"
+      ],
+      "cv": 7
     },
     {
       "address": "1106 Grandview Avenue",
@@ -32191,7 +32217,9 @@
       "lon": -83.045054782705,
       "number": "E-24-106",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23583"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23583",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1398 W SECOND AV",
@@ -32203,7 +32231,9 @@
       "lon": -83.042753004549,
       "number": "ZON-24-46",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23582"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23582",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1794 BLUFF AVE",
@@ -32215,10 +32245,14 @@
       "lon": -83.052686185301,
       "number": "H-24-83",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23580"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23580",
+      "contractors": [
+        "Atlas Butler Heating, Cooling, and Plumbing"
+      ],
+      "cv": 7
     },
     {
-      "address": "2462 DANVERS CT",
+      "address": "905 TIMBERMAN RD",
       "date": "2024-08-01",
       "details": true,
       "entity_id": 23575,
@@ -32227,7 +32261,11 @@
       "lon": null,
       "number": "P-24-63",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23575"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23575",
+      "contractors": [
+        "Plumbing One LLC"
+      ],
+      "cv": 7
     },
     {
       "address": "1494 LINCOLN RD",
@@ -32239,7 +32277,11 @@
       "lon": -83.056432825412,
       "number": "H-24-82",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23572"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23572",
+      "contractors": [
+        "Huddleston Heating and Cooling"
+      ],
+      "cv": 7
     },
     {
       "address": "1114 VIRGINIA AV",
@@ -32251,7 +32293,11 @@
       "lon": -83.037351183407,
       "number": "P-24-62",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23569"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23569",
+      "contractors": [
+        "Eaton Plumbing INC."
+      ],
+      "cv": 7
     },
     {
       "address": "1221 GRANDVIEW AVE",
@@ -32263,10 +32309,14 @@
       "lon": -83.045030592005,
       "number": "P-24-61",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23568"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23568",
+      "contractors": [
+        "Everetts Plumbing Solutions"
+      ],
+      "cv": 7
     },
     {
-      "address": "751 NORTHWEST BLVD",
+      "address": "1295 Grandview Avenue",
       "date": "2024-07-29",
       "details": true,
       "entity_id": 23566,
@@ -32275,10 +32325,12 @@
       "lon": -83.029195041502,
       "number": "SIGN-24-18",
       "type": "Sign Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23566"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23566",
+      "contractors": [],
+      "cv": 7
     },
     {
-      "address": "751 NORTHWEST BLVD",
+      "address": "1291 Grandview Avenue",
       "date": "2024-07-29",
       "details": true,
       "entity_id": 23565,
@@ -32287,10 +32339,12 @@
       "lon": -83.029195041502,
       "number": "SIGN-24-17",
       "type": "Sign Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23565"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23565",
+      "contractors": [],
+      "cv": 7
     },
     {
-      "address": "751 NORTHWEST BLVD",
+      "address": "1291 Grandview Avenue",
       "date": "2024-07-29",
       "details": true,
       "entity_id": 23563,
@@ -32299,7 +32353,9 @@
       "lon": -83.029195041502,
       "number": "SIGN-24-16",
       "type": "Sign Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23563"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23563",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "3363 TREMONT RD",
@@ -32311,7 +32367,9 @@
       "lon": null,
       "number": "ZON-24-45",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23559"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23559",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1221 GRANDVIEW AVE",
@@ -32323,7 +32381,9 @@
       "lon": -83.045030592005,
       "number": "E-24-100",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23558"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23558",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "857 PULLMAN WAY",
@@ -32335,7 +32395,9 @@
       "lon": -83.028537305934,
       "number": "ZON-24-44",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23557"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23557",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1434 MULFORD RD",
@@ -32347,7 +32409,9 @@
       "lon": -83.042978846207,
       "number": "ZON-24-42",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23555"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23555",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1195 WYANDOTTE RD",
@@ -32359,7 +32423,9 @@
       "lon": -83.05563239317,
       "number": "ZON-24-43",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23552"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23552",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1340 WYANDOTTE RD",
@@ -32371,7 +32437,11 @@
       "lon": -83.055301447238,
       "number": "H-24-80",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23541"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23541",
+      "contractors": [
+        "American Air Comfprt"
+      ],
+      "cv": 7
     },
     {
       "address": "121 URICH DR",
@@ -32383,7 +32453,11 @@
       "lon": null,
       "number": "H-24-81",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23538"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23538",
+      "contractors": [
+        "A1 Mechanical of Columbus LLC."
+      ],
+      "cv": 7
     },
     {
       "address": "855 GRANDVIEW AV",
@@ -32395,7 +32469,11 @@
       "lon": null,
       "number": "H-24-79",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23535"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23535",
+      "contractors": [
+        "Air Force One"
+      ],
+      "cv": 7
     },
     {
       "address": "871 W Goodale Blvd",
@@ -32407,7 +32485,9 @@
       "lon": -83.027022301614,
       "number": "SIGN-24-21",
       "type": "Sign Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23524"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23524",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "966 PALMER RD",
@@ -32419,7 +32499,9 @@
       "lon": -83.036887625057,
       "number": "ZON-24-41",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23521"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23521",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1204 NORTHWEST BLVD",
@@ -32431,7 +32513,11 @@
       "lon": -83.036696327891,
       "number": "H-24-77",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23514"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23514",
+      "contractors": [
+        "The Waterworks"
+      ],
+      "cv": 7
     },
     {
       "address": "1549 WYANDOTTE RD",
@@ -32443,7 +32529,9 @@
       "lon": -83.055393221351,
       "number": "ZON-24-40",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23512"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23512",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1340 WYANDOTTE RD",
@@ -32455,7 +32543,9 @@
       "lon": -83.055301447238,
       "number": "P-24-60",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23503"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23503",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "121 URICH DR",
@@ -32467,7 +32557,11 @@
       "lon": null,
       "number": "P-24-59",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23496"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23496",
+      "contractors": [
+        "Temech Plumbing LLC"
+      ],
+      "cv": 7
     },
     {
       "address": "1049 GRANDVIEW AVE",
@@ -32479,10 +32573,14 @@
       "lon": -83.045301512536,
       "number": "E-24-99",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23492"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23492",
+      "contractors": [
+        "EFFICIENT ELECTRIC CORP"
+      ],
+      "cv": 7
     },
     {
-      "address": "2679 MCKINLEY AVE",
+      "address": "1427 ROXBURY RD",
       "date": "2024-07-15",
       "details": true,
       "entity_id": 23484,
@@ -32491,10 +32589,12 @@
       "lon": null,
       "number": "E-24-98",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23484"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23484",
+      "contractors": [],
+      "cv": 7
     },
     {
-      "address": "375 N FRONT ST",
+      "address": "1000 YARD ST",
       "date": "2024-07-15",
       "details": true,
       "entity_id": 23481,
@@ -32503,7 +32603,9 @@
       "lon": null,
       "number": "E-24-97",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23481"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23481",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1289 INGLIS AV",
@@ -32515,7 +32617,11 @@
       "lon": -83.039907912115,
       "number": "H-24-76",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23479"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23479",
+      "contractors": [
+        "American Residential Services LLC dba Columbus Worthington Air"
+      ],
+      "cv": 7
     },
     {
       "address": "605 S FRONT ST",
@@ -32527,7 +32633,9 @@
       "lon": null,
       "number": "ZON-24-39",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23477"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23477",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1137 Fairview Avenue",
@@ -32539,7 +32647,11 @@
       "lon": -83.048110270488,
       "number": "H-24-78",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23472"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23472",
+      "contractors": [
+        "Westin Air"
+      ],
+      "cv": 7
     },
     {
       "address": "605 S FRONT ST",
@@ -32551,7 +32663,11 @@
       "lon": null,
       "number": "P-24-58",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23471"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23471",
+      "contractors": [
+        "Plumbing One LLC"
+      ],
+      "cv": 7
     },
     {
       "address": "1351 MURRELL AV",
@@ -32563,7 +32679,11 @@
       "lon": -83.041250415321,
       "number": "H-24-75",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23467"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23467",
+      "contractors": [
+        "American Residential Services LLC dba Columbus Worthington Air"
+      ],
+      "cv": 7
     },
     {
       "address": "1499 LINCOLN RD",
@@ -32575,7 +32695,11 @@
       "lon": -83.056576422408,
       "number": "E-24-96",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23466"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23466",
+      "contractors": [
+        "Excel Electrical Contractor Corporation White"
+      ],
+      "cv": 7
     },
     {
       "address": "1508 LINCOLN RD",
@@ -32587,7 +32711,9 @@
       "lon": -83.056419151228,
       "number": "E-24-95",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23463"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23463",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "605 S FRONT ST",
@@ -32599,7 +32725,9 @@
       "lon": null,
       "number": "E-24-94",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23462"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23462",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1245 EASTVIEW AVE",
@@ -32611,7 +32739,11 @@
       "lon": -83.036196102306,
       "number": "P-24-57",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23460"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23460",
+      "contractors": [
+        "Ohio Bath Solutions, LLC dba Bath Fitter"
+      ],
+      "cv": 7
     },
     {
       "address": "1525 W Goodale Blvd",
@@ -32623,7 +32755,9 @@
       "lon": -83.044313820481,
       "number": "E-24-93",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23456"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23456",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1422 W FIRST AVE",
@@ -32635,10 +32769,14 @@
       "lon": -83.042990833897,
       "number": "H-24-74",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23447"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23447",
+      "contractors": [
+        "Huddleston Heating and Cooling"
+      ],
+      "cv": 7
     },
     {
-      "address": "5131 POST ROAD",
+      "address": "2 STONEGATE VILLGE DR",
       "date": "2024-07-08",
       "details": true,
       "entity_id": 23446,
@@ -32647,7 +32785,9 @@
       "lon": null,
       "number": "E-24-92",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23446"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23446",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1312 W Second Ave",
@@ -32659,7 +32799,9 @@
       "lon": -83.040422948895,
       "number": "ZON-24-37",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23442"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23442",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2020 CARDIGAN AVE",
@@ -32671,7 +32813,11 @@
       "lon": -83.060214641251,
       "number": "H-24-73",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23441"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23441",
+      "contractors": [
+        "The Waterworks"
+      ],
+      "cv": 7
     },
     {
       "address": "1499 LINCOLN RD",
@@ -32683,7 +32829,9 @@
       "lon": -83.056576422408,
       "number": "ZON-24-36",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23440"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23440",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1100 BROADVIEW AV",
@@ -32695,7 +32843,11 @@
       "lon": -83.046848193194,
       "number": "H-24-72",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23434"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23434",
+      "contractors": [
+        "Custom Air"
+      ],
+      "cv": 7
     },
     {
       "address": "920 QUAY AVE",
@@ -32707,7 +32859,11 @@
       "lon": -83.039617796616,
       "number": "P-24-56",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23431"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23431",
+      "contractors": [
+        "Plumbing One LLC"
+      ],
+      "cv": 7
     },
     {
       "address": "1508 LINCOLN RD",
@@ -32719,7 +32875,11 @@
       "lon": -83.056419151228,
       "number": "H-24-71",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23430"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23430",
+      "contractors": [
+        "Freeland Contracting Company"
+      ],
+      "cv": 7
     },
     {
       "address": "1027 GRANDVIEW AVE",
@@ -32731,7 +32891,11 @@
       "lon": -83.045340430265,
       "number": "P-24-55",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23429"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23429",
+      "contractors": [
+        "Ohio Bath Solutions, LLC dba Bath Fitter"
+      ],
+      "cv": 7
     },
     {
       "address": "900 MCCLAIN RD",
@@ -32743,7 +32907,11 @@
       "lon": -83.035896484723,
       "number": "H-24-70",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23419"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23419",
+      "contractors": [
+        "Logan Services"
+      ],
+      "cv": 7
     },
     {
       "address": "1308 ASHLAND AVE",
@@ -32755,7 +32923,9 @@
       "lon": -83.050243599758,
       "number": "ZON-24-35",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23418"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23418",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1398 W FIRST AV",
@@ -32767,7 +32937,11 @@
       "lon": -83.042379403647,
       "number": "H-24-69",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23413"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23413",
+      "contractors": [
+        "Atlas Butler Heating, Cooling, and Plumbing"
+      ],
+      "cv": 7
     },
     {
       "address": "179 W DUBLIN GRANVILLE RD",
@@ -32779,7 +32953,9 @@
       "lon": null,
       "number": "ZON-24-38",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23412"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23412",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1314 ARLINGTON AVE",
@@ -32791,7 +32967,11 @@
       "lon": -83.059562283985,
       "number": "H-24-68",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23410"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23410",
+      "contractors": [
+        "Atlas Butler Heating, Cooling, and Plumbing"
+      ],
+      "cv": 7
     },
     {
       "address": "1422 W FIRST AVE",
@@ -32803,7 +32983,9 @@
       "lon": -83.042990833897,
       "number": "E-24-91",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23397"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23397",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1016 GRANDVIEW AVE",
@@ -32815,7 +32997,11 @@
       "lon": -83.045208287025,
       "number": "H-24-67",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23396"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23396",
+      "contractors": [
+        "The Favret Company"
+      ],
+      "cv": 7
     },
     {
       "address": "605 S FRONT ST",
@@ -32827,7 +33013,9 @@
       "lon": null,
       "number": "ZON-24-34",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23390"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23390",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1264 HOPE AVE",
@@ -32839,7 +33027,11 @@
       "lon": -83.039903631971,
       "number": "P-24-53",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23389"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23389",
+      "contractors": [
+        "Construct Plumbing Design LLC"
+      ],
+      "cv": 7
     },
     {
       "address": "1157 OAKLAND AVE",
@@ -32851,7 +33043,11 @@
       "lon": -83.049350923187,
       "number": "P-24-52",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23388"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23388",
+      "contractors": [
+        "Construct Plumbing Design LLC"
+      ],
+      "cv": 7
     },
     {
       "address": "995 Yard Street",
@@ -32863,7 +33059,11 @@
       "lon": -83.027263565496,
       "number": "P-24-54",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23385"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23385",
+      "contractors": [
+        "Classic Plumbing, Inc."
+      ],
+      "cv": 7
     },
     {
       "address": "1000 URLIN AVE",
@@ -32875,7 +33075,9 @@
       "lon": -83.050565976991,
       "number": "ZON-24-33",
       "type": "Certificate of Zoning Compliance",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23376"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23376",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1422 W FIRST AV",
@@ -32887,7 +33089,11 @@
       "lon": -83.042990833897,
       "number": "P-24-51",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23373"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23373",
+      "contractors": [
+        "Mul-ti Plumbing & Rooter Services Co"
+      ],
+      "cv": 7
     },
     {
       "address": "845 W Goodale Blvd",
@@ -32899,10 +33105,12 @@
       "lon": -83.026516424495,
       "number": "E-24-89",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23366"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23366",
+      "contractors": [],
+      "cv": 7
     },
     {
-      "address": "375 N FRONT ST",
+      "address": "995 Yard Street",
       "date": "2024-06-24",
       "details": true,
       "entity_id": 23365,
@@ -32911,7 +33119,9 @@
       "lon": null,
       "number": "E-24-88",
       "type": "Electrical Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/23365"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23365",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "845 W Goodale Blvd",
