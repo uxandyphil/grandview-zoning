@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T03:53:59.713Z",
+  "updated": "2026-11-28T04:25:48.680Z",
   "city": "Grandview Heights",
   "record_numbers": null,
   "record_fields": null,
@@ -10,84 +10,52 @@
       "filled": true
     },
     {
-      "section": "Permit Information",
+      "section": "Project Information",
       "label": "In which City or Village are you applying for a Permit?",
       "filled": false
     },
     {
-      "section": "Permit Information",
-      "label": "Occupancy Type?",
+      "section": "Project Information",
+      "label": "Who is performing the work?",
       "filled": false
     },
     {
-      "section": "Permit Information",
+      "section": "Project Information",
+      "label": "Occupancy Type",
+      "filled": false
+    },
+    {
+      "section": "Project Information",
       "label": "Estimated Project Cost",
       "filled": false
     },
     {
-      "section": "Permit Information",
-      "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
+      "section": "Project Information",
+      "label": "Project Decsription",
       "filled": false
     },
     {
-      "section": "Permit Information",
-      "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
+      "section": "Project Information",
+      "label": "Is this part of a building project or a stand alone project",
       "filled": false
     },
     {
-      "section": "Permit Information",
-      "label": "Is there a City Tree that is in close proximity to the repair?",
+      "section": "Property Owner Information",
+      "label": "Email Address",
       "filled": false
     },
     {
-      "section": "Permit Information",
-      "label": "Describe in detail the proposed work being completed including distances from st",
+      "section": "Property Owner Information",
+      "label": "Phone Number",
+      "filled": false
+    },
+    {
+      "section": "Property Owner Information",
+      "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
       "filled": false
     }
   ],
   "record_forms": {
-    "Sewer Lateral Replacement/Repair": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": false
-      },
-      {
-        "section": "Permit Information",
-        "label": "Occupancy Type?",
-        "filled": false
-      },
-      {
-        "section": "Permit Information",
-        "label": "Estimated Project Cost",
-        "filled": false
-      },
-      {
-        "section": "Permit Information",
-        "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
-        "filled": false
-      },
-      {
-        "section": "Permit Information",
-        "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
-        "filled": false
-      },
-      {
-        "section": "Permit Information",
-        "label": "Is there a City Tree that is in close proximity to the repair?",
-        "filled": false
-      },
-      {
-        "section": "Permit Information",
-        "label": "Describe in detail the proposed work being completed including distances from st",
-        "filled": false
-      }
-    ],
     "Plumbing Permit": [
       {
         "section": "",
@@ -137,6 +105,63 @@
       {
         "section": "Property Owner Information",
         "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
+        "filled": false
+      }
+    ],
+    "HVAC Permit": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Project Information",
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Who is performing the work?",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Occupancy Type",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Estimated Project Cost",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Square Footage of Work Area",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Project Description",
+        "filled": false
+      },
+      {
+        "section": "Project Information",
+        "label": "Is this part of a building project or a stand alone project?",
+        "filled": false
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Email Address",
+        "filled": false
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "Telephone Number",
+        "filled": false
+      },
+      {
+        "section": "Property Owner Contact Information",
+        "label": "I hereby certify that I have read and understand the entire contents of this app",
         "filled": false
       }
     ]
@@ -13397,7 +13422,9 @@
       "lon": null,
       "number": "H-23-27",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19906"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19906",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": null,
@@ -13409,7 +13436,9 @@
       "lon": null,
       "number": "H-23-26",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19905"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19905",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": null,
@@ -37875,7 +37904,9 @@
       "lon": -83.060531977406,
       "number": "P-23-121",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19998"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19998",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2015 W Fifth Avenue",
@@ -37887,7 +37918,9 @@
       "lon": -83.060531977406,
       "number": "P-23-120",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19997"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19997",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2015 W Fifth Avenue",
@@ -37899,7 +37932,9 @@
       "lon": -83.060531977406,
       "number": "P-23-119",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19996"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19996",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2015 W Fifth Avenue",
@@ -37911,7 +37946,9 @@
       "lon": -83.060531977406,
       "number": "P-23-118",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19995"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19995",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2015 W Fifth Avenue",
@@ -37923,7 +37960,9 @@
       "lon": -83.060531977406,
       "number": "P-23-117",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19994"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19994",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2015 W Fifth Avenue",
@@ -37935,7 +37974,9 @@
       "lon": -83.060531977406,
       "number": "P-23-116",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19993"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19993",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2015 W Fifth Avenue",
@@ -37947,7 +37988,9 @@
       "lon": -83.060531977406,
       "number": "P-23-115",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19992"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19992",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2015 W Fifth Avenue",
@@ -37959,7 +38002,9 @@
       "lon": -83.060531977406,
       "number": "P-23-114",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19991"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19991",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "925-927 PALMER RD",
@@ -38011,7 +38056,9 @@
       "lon": -83.037432761487,
       "number": "H-23-172",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19928"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19928",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1333 OAKLAND AVE",
@@ -38035,7 +38082,9 @@
       "lon": -83.056791878014,
       "number": "H-23-171",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19927"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19927",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1206 WILLARD AVENUE",
@@ -38047,7 +38096,9 @@
       "lon": -83.038652201558,
       "number": "H-23-170",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19926"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19926",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1470 INGLIS AVE",
@@ -38059,7 +38110,9 @@
       "lon": -83.044197757095,
       "number": "H-23-169",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19925"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19925",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1000 URLIN AVE",
@@ -38235,7 +38288,9 @@
       "lon": -83.027713246481,
       "number": "H-23-168",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19924"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19924",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1134 WYANDOTTE RD",
@@ -38288,7 +38343,7 @@
       "cv": 7
     },
     {
-      "address": "375 N FRONT ST",
+      "address": "800 YARD ST",
       "date": "2023-12-04",
       "details": true,
       "entity_id": 19922,
@@ -38297,7 +38352,9 @@
       "lon": null,
       "number": "H-23-167",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19922"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19922",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "995 Yard Street",
@@ -38309,7 +38366,9 @@
       "lon": -83.027263565496,
       "number": "H-23-166",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19921"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19921",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "812 GLADDEN RD",
@@ -38321,7 +38380,9 @@
       "lon": -83.031478009827,
       "number": "H-23-165",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19920"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19920",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1229 OXLEY RD",
@@ -38338,7 +38399,7 @@
       "cv": 7
     },
     {
-      "address": "2779 PEACHBLOW RD",
+      "address": "1071 W GOODALE ST",
       "date": "2023-11-29",
       "details": true,
       "entity_id": 19919,
@@ -38347,7 +38408,9 @@
       "lon": null,
       "number": "H-23-164",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19919"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19919",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1530 W FIRST AV",
@@ -38359,7 +38422,9 @@
       "lon": -83.045905592698,
       "number": "H-23-163",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19918"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19918",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1582 CAMBRIDGE BLVD",
@@ -38423,7 +38488,9 @@
       "lon": -83.050367972789,
       "number": "H-23-162",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19788"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19788",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1386 GLENN AVE",
@@ -38511,7 +38578,9 @@
       "lon": -83.053944355405,
       "number": "H-23-161",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19787"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19787",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1386 GLENN AVE",
@@ -38580,7 +38649,7 @@
       "cv": 7
     },
     {
-      "address": "280 CORNELIUS STREET",
+      "address": "1558 ROXBURY RD",
       "date": "2023-11-16",
       "details": true,
       "entity_id": 19786,
@@ -38589,7 +38658,9 @@
       "lon": null,
       "number": "H-23-160",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19786"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19786",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1005 PARKWAY DR",
@@ -38613,7 +38684,9 @@
       "lon": -83.059700559593,
       "number": "H-23-159",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19785"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19785",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1430 CAMBRIDGE BL",
@@ -38653,7 +38726,9 @@
       "lon": -83.061990113569,
       "number": "H-23-158",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19784"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19784",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1539 ARLINGTON AVE",
@@ -38665,7 +38740,9 @@
       "lon": -83.060062664693,
       "number": "H-23-157",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19783"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19783",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1412 W SECOND AVE",
@@ -39275,7 +39352,9 @@
       "lon": -83.041568333148,
       "number": "H-23-138",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19807"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19807",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "751 NORTHWEST BLVD",
@@ -39315,7 +39394,9 @@
       "lon": -83.035128740185,
       "number": "H-23-137",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19805"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19805",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1149 W FIRST AVE",
@@ -39339,7 +39420,9 @@
       "lon": -83.061210168854,
       "number": "H-23-136",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19804"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19804",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "789 NORTHWEST BLVD",
@@ -39351,7 +39434,9 @@
       "lon": -83.029228020272,
       "number": "H-23-135",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19803"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19803",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1568 BROADVIEW TERRACE",
@@ -40165,7 +40250,9 @@
       "lon": -83.029359962425,
       "number": "P-23-77",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19975"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19975",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1286 WYANDOTTE RD",
@@ -40237,7 +40324,9 @@
       "lon": -83.035946717718,
       "number": "P-23-76",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19974"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19974",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1000 URLIN AVE",
@@ -40333,7 +40422,9 @@
       "lon": -83.029338517722,
       "number": "P-23-75",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19973"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19973",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1132 EDGEHILL RD",
@@ -40400,7 +40491,7 @@
       "cv": 7
     },
     {
-      "address": "4131 WORTH AVE",
+      "address": "1060 EDGEHILL RD",
       "date": "2023-07-26",
       "details": true,
       "entity_id": 19972,
@@ -40409,7 +40500,9 @@
       "lon": null,
       "number": "P-23-73",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19972"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19972",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1397 GLENN AVE",
@@ -40507,7 +40600,9 @@
       "lon": -83.034895687723,
       "number": "P-23-72",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19971"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19971",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1171 VIRGINIA AVE",
@@ -40583,7 +40678,9 @@
       "lon": -83.026899982816,
       "number": "H-23-100",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19902"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19902",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "0 NO STREET",
@@ -40595,7 +40692,9 @@
       "lon": null,
       "number": "H-23-99",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19901"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19901",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1056 Dublin Road",
@@ -40621,7 +40720,9 @@
       "lon": -83.041383601652,
       "number": "H-23-98",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19900"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19900",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "871 W Goodale Blvd",
@@ -40645,7 +40746,9 @@
       "lon": -83.039736542886,
       "number": "H-23-97",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19899"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19899",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "871 W Goodale Blvd",
@@ -40674,7 +40777,7 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/18881"
     },
     {
-      "address": "1393 MULFORD RD",
+      "address": "820-824 OXLEY RD",
       "date": "2023-07-12",
       "details": true,
       "entity_id": 19898,
@@ -40683,7 +40786,9 @@
       "lon": -83.041926690719,
       "number": "H-23-96",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19898"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19898",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1279 NORTHWEST BLVD",
@@ -40695,7 +40800,9 @@
       "lon": -83.039205780365,
       "number": "H-23-95",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19897"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19897",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1285 BLUFF AV",
@@ -40719,7 +40826,9 @@
       "lon": -83.039761527172,
       "number": "H-23-94",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19831"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19831",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1297 SHERBOURNE LN",
@@ -40755,7 +40864,9 @@
       "lon": null,
       "number": "H-23-93",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19830"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19830",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2041 W THIRD AVE",
@@ -40767,7 +40878,9 @@
       "lon": -83.060354133669,
       "number": "H-23-92",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19829"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19829",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "4131 WORTH AVE",
@@ -40793,7 +40906,9 @@
       "lon": -83.033564234093,
       "number": "H-23-91",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19822"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19822",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1281 ARLINGTON AVE",
@@ -40817,7 +40932,9 @@
       "lon": -83.029456271865,
       "number": "H-23-90",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19821"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19821",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "4131 WORTH AVE",
@@ -40829,7 +40946,9 @@
       "lon": null,
       "number": "H-23-89",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19820"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19820",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1444 LINCOLN RD",
@@ -40841,7 +40960,9 @@
       "lon": -83.056481333963,
       "number": "H-23-88",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19819"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19819",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1350 WEST FIRST AVENUE",
@@ -40865,7 +40986,9 @@
       "lon": -83.049145801572,
       "number": "H-23-87",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19818"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19818",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1463 LINCOLN RD",
@@ -40955,7 +41078,9 @@
       "lon": -83.057985974244,
       "number": "H-23-86",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19817"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19817",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1281 ARLINGTON AVE",
@@ -40993,7 +41118,9 @@
       "lon": -83.056622031046,
       "number": "H-23-85",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19816"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19816",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "330 WEST SPRING STREET",
@@ -41045,7 +41172,9 @@
       "lon": -83.03206934126,
       "number": "H-23-84",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19815"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19815",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "4131 WORTH AVE",
@@ -42271,7 +42400,9 @@
       "lon": -83.0414759674,
       "number": "P-23-36",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19983"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19983",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "955 Yard Street",
@@ -42343,7 +42474,9 @@
       "lon": null,
       "number": "P-23-35",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19982"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19982",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1171 WESTWOOD AVE",
@@ -42355,7 +42488,9 @@
       "lon": -83.053145264759,
       "number": "P-23-34",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19981"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19981",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "987 Grandview Avenue",
@@ -42367,7 +42502,9 @@
       "lon": -83.045396627988,
       "number": "P-23-33",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19980"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19980",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1423 W GOODALE BLVD",
@@ -42379,7 +42516,9 @@
       "lon": -83.042219459397,
       "number": "P-23-32",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19979"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19979",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1203 LINCOLN RD",
@@ -42415,7 +42554,9 @@
       "lon": -83.030785710982,
       "number": "P-23-31",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19978"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19978",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1329 LINCOLN RD",
@@ -42513,7 +42654,9 @@
       "lon": -83.026899982816,
       "number": "P-23-30",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19977"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19977",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "3777 PURDEY CT",
@@ -42549,7 +42692,9 @@
       "lon": null,
       "number": "P-23-29",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19976"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19976",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "3364 LINCOLN AVE",
@@ -42662,7 +42807,7 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/18334"
     },
     {
-      "address": "1166 WYANDOTTE RD",
+      "address": "1100-1102 MULFORD RD",
       "date": "2023-03-24",
       "details": true,
       "entity_id": 19917,
@@ -42671,7 +42816,9 @@
       "lon": -83.05551409961,
       "number": "H-23-38",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19917"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19917",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1760 W FIRST AVE",
@@ -42683,7 +42830,9 @@
       "lon": -83.052195536962,
       "number": "H-23-37",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19916"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19916",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1369 W 1ST AVE",
@@ -42700,7 +42849,7 @@
       "cv": 7
     },
     {
-      "address": "1109 MULFORD DR",
+      "address": "1107-1109 MULFORD RD",
       "date": "2023-03-21",
       "details": true,
       "entity_id": 19915,
@@ -42709,7 +42858,9 @@
       "lon": -83.033877920643,
       "number": "H-23-36",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19915"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19915",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "855 W Goodale Blvd",
@@ -42721,7 +42872,9 @@
       "lon": -83.026710992617,
       "number": "H-23-35",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19914"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19914",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1300 WALNUT ST",
@@ -42733,7 +42886,9 @@
       "lon": null,
       "number": "H-23-34",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19913"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19913",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1423 W GOODALE BLVD",
@@ -42745,7 +42900,9 @@
       "lon": -83.042219459397,
       "number": "H-23-33",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19912"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19912",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "5222 OLENTANGY RIVER RD",
@@ -42769,7 +42926,9 @@
       "lon": -83.053055225621,
       "number": "H-23-32",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19911"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19911",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1300 INGLIS AVE",
@@ -42781,7 +42940,9 @@
       "lon": -83.040007738836,
       "number": "H-23-31",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19910"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19910",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1382 MULFORD RD",
@@ -42793,7 +42954,9 @@
       "lon": -83.041671566909,
       "number": "H-23-30",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19909"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19909",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1299 INGLIS AV",
@@ -42831,7 +42994,9 @@
       "lon": null,
       "number": "H-23-29",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19908"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19908",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1175 W GOODALE BL",
@@ -42843,7 +43008,9 @@
       "lon": -83.035081232913,
       "number": "H-23-28",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19907"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19907",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1799 W FIRST AV",
@@ -42895,7 +43062,9 @@
       "lon": -83.025743761523,
       "number": "H-23-25",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19842"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19842",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2200 CARDIGAN AVE",
@@ -42907,7 +43076,9 @@
       "lon": null,
       "number": "H-23-24",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19841"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19841",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1299 INGLIS AV",
@@ -42943,7 +43114,9 @@
       "lon": -83.05405005756,
       "number": "H-23-23",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19840"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19840",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "5222 OLENTANGY RIVER RD",
@@ -42955,7 +43128,9 @@
       "lon": null,
       "number": "H-23-22",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19839"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19839",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1337 MULFORD RD",
@@ -42979,7 +43154,9 @@
       "lon": -83.050308757041,
       "number": "H-23-21",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19838"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19838",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2834 SW 25TH PL",
@@ -42991,7 +43168,9 @@
       "lon": null,
       "number": "H-23-20",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19837"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19837",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1295 HOLLYWOOD AV",
@@ -43029,7 +43208,9 @@
       "lon": -83.037379520324,
       "number": "H-23-19",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19835"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19835",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1067 VIRGINIA AVE",
@@ -43091,7 +43272,9 @@
       "lon": -83.041706881771,
       "number": "H-23-18",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19833"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19833",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1370 CAMBRIDGE BLVD",
@@ -43115,7 +43298,9 @@
       "lon": -83.040245571699,
       "number": "H-23-17",
       "type": "HVAC Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19832"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19832",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "4131 WORTH AVE",
