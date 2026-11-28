@@ -76,7 +76,7 @@
     "doris dorothy doug douglas drew duane dustin dwayne dwight dylan earl ed eddie edgar edith edward eileen elaine " +
     "eleanor eli elijah elizabeth ellen elliot emily emma eric erica erik erin ernest esther ethan eugene eva evan " +
     "evelyn florence floyd frances francis frank franklin fred freddie frederick gabriel gail garrett gary gavin gene " +
-    "geoff geoffrey george gerald gina gloria greg gregg gregory gwen hannah harold harry heather heidi helen henry " +
+    "geoff geoffrey george gerald gina gloria grant greg gregg gregory gwen hannah harold harry heather heidi helen henry " +
     "herbert holly howard ian irene isaac jack jackie jacob jacqueline jake jamal james jamie jan jane janet janice " +
     "jared jason jay jean jeanne jeff jeffery jeffrey jen jenna jennifer jenny jeremiah jeremy jerome jerry jesse " +
     "jessica jill jim jimmie jimmy jo joan joann joanne joe joel joey john johnny jon jonathan jorge jose joseph " +
@@ -103,6 +103,10 @@
   };
   const cleanName = (n) => {
     n = String(n).replace(/\s+/g, " ").trim();
+    // "Brian Smith - Countryside Electric", "Anna The Eco Plumbers": a person's name in front of the company
+    const lead = /^([A-Za-z]+)\s+(?:[A-Za-z'’-]+\s*[-–:]\s*|[A-Za-z'’-]+\s+(?=[A-Za-z'’-]+\s+(?:Brothers|Bros|Sons)\b)|(?=The\s))(.+)$/i.exec(n);
+    if (lead && FIRST_NAMES.has(lead[1].toLowerCase()) && bizRe.test(lead[2])) n = lead[2];
+    n = n.replace(/\s*\/\s*(general\s+)?contract(or|ing)\s*$/i, "");   // "Gary Smith/Contractor" is a person
     const cut = n.replace(/(?:\s+[-–]\s*|\s*[-–]\s+)[A-Za-z][\w'’]*$/, "");   // "Columbus Worthington Air- Daubenmire"
     if (cut !== n && bizRe.test(cut)) n = cut;
     const m = /^(.*\S)\s+([A-Za-z]+)\s+[A-Za-z'’-]+$/.exec(n);              // "All Star Services Chad Garrett"
