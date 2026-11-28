@@ -338,6 +338,10 @@
       39.977983546905,
       -83.050626857995
     ],
+    "1001-1003 HILO LN, Grandview Heights, OH 43212": [
+      39.980859135081,
+      -83.031774683662
+    ],
     "1002 HILO LN, Grandview Heights, OH 43212": [
       39.980939216143,
       -83.032197068207
@@ -1011,6 +1015,10 @@
     "1065 OXLEY RD, Grandview Heights, OH 43212": [
       39.981073957718,
       -83.035042405974
+    ],
+    "1065-1067 MULFORD RD, Grandview Heights, OH 43212": [
+      39.978783513511,
+      -83.033185417549
     ],
     "1066 LINCOLN RD, Grandview Heights, OH 43212": [
       39.978640481406,
@@ -2325,6 +2333,10 @@
       39.982645941931,
       -83.033068246214
     ],
+    "1150 N PARKWAY, Grandview Heights, OH 43212": [
+      39.982645941931,
+      -83.033068246214
+    ],
     "1150 VIRGINIA AVE, Grandview Heights, OH 43212": [
       39.981892599633,
       -83.037306075624
@@ -2439,6 +2451,10 @@
     ],
     "1156 MARTINSBURG RD, Grandview Heights, OH 43212": null,
     "1156 N PARKWAY AVE, Grandview Heights, OH 43212": [
+      39.982713861618,
+      -83.033056520538
+    ],
+    "1156 N PARKWAY, Grandview Heights, OH 43212": [
       39.982713861618,
       -83.033056520538
     ],
@@ -3410,6 +3426,10 @@
     "1204 WYANDOTTE RD, Grandview Heights, OH 43212": [
       39.981197393698,
       -83.055473545085
+    ],
+    "1204-1206 LINCOLN RD, Grandview Heights, OH 43212": [
+      39.980900972177,
+      -83.056754736286
     ],
     "1205 DOVER AVE, Grandview Heights, OH 43212": [
       39.98363592492,
@@ -5596,6 +5616,10 @@
       -83.056780636223
     ],
     "1313 MULFORD AV, Grandview Heights, OH 43212": [
+      39.979711391563,
+      -83.039610001042
+    ],
+    "1313 MULFORD RD, Grandview Heights, OH 43212": [
       39.979711391563,
       -83.039610001042
     ],
@@ -8252,6 +8276,10 @@
       39.986433228737,
       -83.059827532697
     ],
+    "1492 ROXBURY RD, Grandview Heights, OH 43212": [
+      39.986202065825,
+      -83.06110593579
+    ],
     "1493 LINCOLN RD, Grandview Heights, OH 43212": [
       39.986516493949,
       -83.056582598475
@@ -8785,6 +8813,10 @@
       -83.048454792414
     ],
     "1622 SERENITY CIR, Grandview Heights, OH 43212": null,
+    "1624 ROXBURY RD, Grandview Heights, OH 43212": [
+      39.988861999,
+      -83.061729518745
+    ],
     "1625 GOODALE ST, Grandview Heights, OH 43212": [
       39.976757371552,
       -83.048062002574
@@ -9450,6 +9482,10 @@
       -83.059542165448
     ],
     "2 STONEGATE VILLAGE DR, Grandview Heights, OH 43212": [
+      39.977922133092,
+      -83.053941141799
+    ],
+    "2 STONEGATE VILLGE DR, Grandview Heights, OH 43212": [
       39.977922133092,
       -83.053941141799
     ],
@@ -11191,6 +11227,10 @@
       39.977019705484,
       -83.033781038173
     ],
+    "899-901 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977055385796,
+      -83.033778628637
+    ],
     "9 STONEGATE VILLAGE DR, Grandview Heights, OH 43212": [
       39.978499588465,
       -83.053379276858
@@ -11465,6 +11505,10 @@
     "919 OXLEY RD, Grandview Heights, OH 43212": [
       39.977630445426,
       -83.034870036348
+    ],
+    "919-921 OXLEY RD, Grandview Heights, OH 43212": [
+      39.977683458432,
+      -83.034866448502
     ],
     "920 BURR AVE, Grandview Heights, OH 43212": [
       39.976528075406,
@@ -11848,6 +11892,10 @@
     "939-941 OXLEY RD, Grandview Heights, OH 43212": [
       39.978213588487,
       -83.034830570048
+    ],
+    "939-941 THOMAS RD, Grandview Heights, OH 43212": [
+      39.977768992037,
+      -83.033730437903
     ],
     "940 KRAMER AVE, Grandview Heights, OH 43212": [
       39.976521471351,
@@ -12554,6 +12602,10 @@
       39.983263776309,
       -83.03180532993
     ],
+    "986-992 HILO LN, Grandview Heights, OH 43212": [
+      39.98094887608,
+      -83.032081105123
+    ],
     "987 GRANDVIEW AVE, Grandview Heights, OH 43212": [
       39.97792934369,
       -83.045396627988
@@ -12761,7 +12813,7 @@
     "WYANDOTTE RD, Grandview Heights, OH 43212": null,
     "YARD ST, Grandview Heights, OH 43212": null
   },
-  "recorder_through": "2026-11-27",
+  "recorder_through": "2026-11-28",
   "recorder_version": 2,
   "seen": {
     "Board of Zoning Appeals": [
@@ -13006,6 +13058,7 @@
     "2026-10-09",
     "2026-10-16",
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
   ]
 }
