@@ -33,7 +33,7 @@ david dean deb debbie deborah debra denise dennis derek derrick devin diana dian
 doris dorothy doug douglas drew duane dustin dwayne dwight dylan earl ed eddie edgar edith edward eileen
 elaine eleanor eli elijah elizabeth ellen elliot emily emma eric erica erik erin ernest esther ethan eugene
 eva evan evelyn florence floyd frances francis frank franklin fred freddie frederick gabriel gail garrett gary
-gavin gene geoff geoffrey george gerald gina gloria greg gregg gregory gwen hannah harold harry heather heidi
+gavin gene geoff geoffrey george gerald gina gloria grant greg gregg gregory gwen hannah harold harry heather heidi
 helen henry herbert holly howard ian irene isaac jack jackie jacob jacqueline jake jamal james jamie jan jane
 janet janice jared jason jay jean jeanne jeff jeffery jeffrey jen jenna jennifer jenny jeremiah jeremy jerome
 jerry jesse jessica jill jim jimmie jimmy jo joan joann joanne joe joel joey john johnny jon jonathan jorge
@@ -74,6 +74,10 @@ def looks_like_person(name):
 
 def clean_name(name):
     name = " ".join(str(name).split())
+    lead = re.match(r"^([A-Za-z]+)\s+(?:[A-Za-z'’-]+\s*[-–:]\s*|[A-Za-z'’-]+\s+(?=[A-Za-z'’-]+\s+(?:Brothers|Bros|Sons)\b)|(?=The\s))(.+)$", name, re.I)  # "Brian Smith - Countryside Electric"
+    if lead and lead.group(1).lower() in FIRST_NAMES and BIZ.search(lead.group(2)):
+        name = lead.group(2)
+    name = re.sub(r"\s*/\s*(general\s+)?contract(or|ing)\s*$", "", name, flags=re.I)  # "Gary Smith/Contractor" is a person
     cut = re.sub(r"(?:\s+[-–]\s*|\s*[-–]\s+)[A-Za-z][\w'’]*$", "", name)  # "Columbus Worthington Air- Daubenmire"
     if cut != name and BIZ.search(cut):
         name = cut

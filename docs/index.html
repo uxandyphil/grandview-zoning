@@ -196,6 +196,14 @@
     font-weight: 700; color: var(--muted); }
   #contractors .co-body { min-width: 0; flex: 1; }
   #contractors .co-name { font-weight: 700; font-size: 1.05rem; overflow-wrap: anywhere; }
+  #contractors .co-kind { display: inline-block; vertical-align: 2px; margin-left: 6px; font-size: 0.75rem; font-weight: 600; line-height: 1.5;
+    padding: 0 8px; border-radius: 999px; white-space: nowrap; color: var(--muted); background: var(--bg); border: 1px solid var(--line); }
+  #contractors .co-kind.k-mp { color: var(--permit); background: var(--permit-bg); border-color: transparent; }
+  #contractors .co-kind.k-fr { color: var(--t-plmb); background: color-mix(in srgb, var(--t-plmb) 14%, var(--surface)); border-color: transparent; }
+  #contractors .co-kind.k-nat { color: var(--bza); background: var(--bza-bg); border-color: transparent; }
+  #contractors .co-owner { margin-left: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 400; }
+  #contractors .co-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px; }
+  #contractors .co-legend .co-kind { margin: 0 4px 0 0; }
   #contractors .co-stats { margin-top: 2px; }
   #contractors .co-tr { margin-top: 2px; color: var(--muted); font-size: 0.88rem; }
   #contractors .co-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
@@ -452,7 +460,7 @@
     "doris dorothy doug douglas drew duane dustin dwayne dwight dylan earl ed eddie edgar edith edward eileen elaine " +
     "eleanor eli elijah elizabeth ellen elliot emily emma eric erica erik erin ernest esther ethan eugene eva evan " +
     "evelyn florence floyd frances francis frank franklin fred freddie frederick gabriel gail garrett gary gavin gene " +
-    "geoff geoffrey george gerald gina gloria greg gregg gregory gwen hannah harold harry heather heidi helen henry " +
+    "geoff geoffrey george gerald gina gloria grant greg gregg gregory gwen hannah harold harry heather heidi helen henry " +
     "herbert holly howard ian irene isaac jack jackie jacob jacqueline jake jamal james jamie jan jane janet janice " +
     "jared jason jay jean jeanne jeff jeffery jeffrey jen jenna jennifer jenny jeremiah jeremy jerome jerry jesse " +
     "jessica jill jim jimmie jimmy jo joan joann joanne joe joel joey john johnny jon jonathan jorge jose joseph " +
@@ -479,6 +487,9 @@
   };
   const coClean = (n) => {
     n = String(n).replace(/\s+/g, " ").trim();
+    const lead = /^([A-Za-z]+)\s+(?:[A-Za-z'’-]+\s*[-–:]\s*|[A-Za-z'’-]+\s+(?=[A-Za-z'’-]+\s+(?:Brothers|Bros|Sons)\b)|(?=The\s))(.+)$/i.exec(n);   // "Brian Smith - Countryside Electric"
+    if (lead && CO_FIRST.has(lead[1].toLowerCase()) && CO_BIZ.test(lead[2])) n = lead[2];
+    n = n.replace(/\s*\/\s*(general\s+)?contract(or|ing)\s*$/i, "");   // "Gary Smith/Contractor" is a person
     const cut = n.replace(/(?:\s+[-–]\s*|\s*[-–]\s+)[A-Za-z][\w'’]*$/, "");
     if (cut !== n && CO_BIZ.test(cut)) n = cut;
     const m = /^(.*\S)\s+([A-Za-z]+)\s+[A-Za-z'’-]+$/.exec(n);
@@ -486,7 +497,7 @@
     return n;
   };
   // form labels an older collector picked up by mistake ("Name *", "Information", ...), and permit types ("HVAC Permit")
-  const CO_JUNK = /\*\s*$|\+\s*\d+\s+additional|primary contact|^(information|contractor information|(company|business|contractor)?\s*name|address|city|state|zip|email|phone|company|contractor|occupancy type|type of .*|building permit number|residential or commercial.*)$/i;
+  const CO_JUNK = /\*\s*$|\+\s*\d+\s+additional|primary contact|^(tbd|tba|n\/a|none|unknown|information|contractor information|(company|business|contractor)?\s*name|address|city|state|zip|email|phone|company|contractor|occupancy type|type of .*|building permit number|residential or commercial.*)$/i;
   const CO_TYPE = /\bpermits?$|\bcertificate\b|\blateral\b|replacement\/repair|registration$|application$/i;
   const coNames = (p) => [...new Set((p.contractors || []).map(coClean))].filter((n) => n.length >= 3 && !CO_JUNK.test(n)
     && !CO_TYPE.test(n) && !coPerson(n) && n.toLowerCase() !== String(p.type || "").toLowerCase());
@@ -2752,18 +2763,109 @@
     [/REMODELING|REMODELERS|REMODELLING/g, "REMODEL"], [/CONTRACTORS|CONTRACTING|CONTRACTOR/g, "CONTRACT"], [/CONSTRUCTION/g, "CONSTRUCT"],
     [/SERVICES/g, "SERVICE"], [/WINDOWS/g, "WINDOW"], [/DOORS/g, "DOOR"], [/HOMES/g, "HOME"], [/EXTERIORS/g, "EXTERIOR"],
     [/SYSTEMS/g, "SYSTEM"], [/ENTERPRISES/g, "ENTERPRISE"], [/\bBROTHERS\b|\bBROS\b/g, "BROTHER"]];
+  // "Trades RTR, LLC dba: Mr. Rooter Plumbing": the legal name, then the name customers know
+  const CO_DBA = /^(.+?)[\s,(]+(?:d\/?b\/?a|doing business as)\b[.:]?\s*(.{3,})$/i;
+  const coDba = (n) => { const m = CO_DBA.exec(n); return m && [m[1], m[2].includes("(") ? m[2] : m[2].replace(/\)\s*$/, "")]; };
   const coKey = (n) => {
-    let s = String(n || "").toUpperCase();
-    const dba = /^(.+?)\s+(?:D\/?B\/?A|DOING BUSINESS AS)\b\.?\s*(.{3,})$/.exec(s);   // the name customers know
+    let s = String(n || "").toUpperCase().replace(/[\s,(]+(?:D\/?B\/?A|DOING BUSINESS AS)[.:]?\s*$/, "");
+    const dba = CO_DBA.exec(s);   // the name customers know
     if (dba) s = dba[2];
     s = s.replace(/&/g, " AND ").replace(/['’]S\b/g, "").replace(/[^A-Z0-9 ]/g, " ")
       .replace(/\b(LLC|L L C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|THE|SONS|AND)\b/g, " ").replace(/\bLP\s*$/, " ");
     for (const [rx, to] of CO_STEMS) s = s.replace(rx, to);
-    return s.replace(/\s+/g, "");
+    s = s.replace(/\s+/g, "");
+    return s.length > 5 && s.slice(0, s.length / 2) === s.slice(s.length / 2) ? s.slice(0, s.length / 2) : s;
   };
   const CO_GENERIC = /^(DEVELOPMENT|CONSTRUCT|SERVICE|PLUMB|ELECTRIC|ROOF|HOME|BUILDERS?|GROUP|SYSTEM|ENTERPRISE|HEAT|COOLING|AIR|HEATAIR|HEATCOOLING)$/;
   // words a company's longer name may add to its short one ("Pomante" and "Pomante Contractors")
-  const CO_MORE = /^(?:CONTRACT|CONSTRUCT|SERVICE|GROUP|HEAT|COOLING|AIR|CONDITIONING|PLUMB|ELECTRIC|ROOF|MECHANICAL|DESIGNS?|BUILDERS?|BUILDING|EXCAVATION|EXCAVATING|REMODEL|RESTORATION|HOME|EXTERIOR|WINDOW|DOOR|SOLUTIONS|SYSTEM|INDUSTRIES|ENTERPRISE|COLUMBUS|OHIO)+$/;
+  const CO_MORE = /^(?:CONTRACT|CONSTRUCT|SERVICE|GROUP|HEAT|COOLING|AIR|CONDITIONING|PLUMB|ELECTRIC|ROOF|MECHANICAL|DESIGNS?|BUILDERS?|BUILDING|EXCAVATION|EXCAVATING|REMODEL|RESTORATION|HOME|EXTERIOR|WINDOW|DOOR|SOLUTIONS|SYSTEM|INDUSTRIES|ENTERPRISE|COLUMBUS|OHIO|USA)+$/;
+  // What kind of company: a best guess from the names on its permits. Known chains are matched by brand, and a "doing
+  // business as" name shows who owns a brand ("American Residential Services dba Columbus Worthington Air"). A family
+  // or an owner's name in the company's name ("& Sons", "Brothers", "Jack L Woods Plumbing", "J Davis Electric",
+  // "Nate's Plumbing") points to a mom and pop shop. Everything else is an independent local company, as far as its
+  // name shows (many of those are family-owned too).
+  const coWords = (s) => " " + String(s).toUpperCase().replace(/&/g, " AND ").replace(/[^A-Z0-9]+/g, " ").trim() + " ";
+  // brands run locally by franchise owners or licensed dealers
+  const CO_FRANCHISE = ["Mr. Rooter", "Mr. Electric", "Mister Sparky", "Mr. Handyman", "Mr. Appliance", "One Hour Heating",
+    "Benjamin Franklin Plumbing", "Aire Serv", "1-800-Plumber", "Bluefrog Plumbing", "Rooter-Man", "RooterMan", "Zoom Drain",
+    "Window World", "Renewal by Andersen", "Infinity from Marvin", "Wallaby Windows", "Window Genie", "Glass Doctor",
+    "Bath Fitter", "Re-Bath", "ReBath", "Bath Planet", "Bath Tune-Up", "Five Star Bath", "Kitchen Tune-Up", "Kitchen Solvers",
+    "DreamMaker", "Case Handyman", "Ace Handyman", "Handyman Connection", "House Doctors", "Miracle Method",
+    "Granite Transformations", "Archadeck", "Superior Fence & Rail", "Mossy Oak Fence", "Mighty Dog Roofing",
+    "Storm Guard Roofing", "Roof Maxx", "Koala Insulation", "Precision Garage Door", "Precision Door Service",
+    "Overhead Door Company of", "Everdry", "B-Dry", "Basement Doctor", "Paul Davis Restoration", "Rainbow Restoration",
+    "Rainbow International", "Servpro", "ServiceMaster", "Service Master", "PuroClean", "Restoration 1", "911 Restoration",
+    "1-800 Water Damage", "Rytech", "DRYmedic", "Steamatic", "AdvantaClean", "Lightspeed Restoration", "Ductz",
+    "Dryer Vent Wizard", "American Leak Detection", "Sir Grout", "CertaPro", "Five Star Painting", "Fresh Coat Painters",
+    "WOW 1 Day Painting", "Concrete Craft", "The Grounds Guys", "Monster Tree Service", "Lawn Doctor", "Weed Man",
+    "Spring-Green Lawn", "U.S. Lawns", "America's Swimming Pool", "Signarama", "Sign-A-Rama", "FastSigns", "Image360", "Sonitrol"];
+  // companies that work in many states; "brand=owner" when a brand belongs to one
+  const CO_NATIONAL = ["Home Depot", "Lowe's Home", "Lowes Home", "Sears Home", "Window Nation", "Power Home Remodeling",
+    "Erie Home", "Erie Metal Roofs", "LeafFilter", "Leaf Home", "Champion Windows", "Universal Windows Direct",
+    "Home Genius Exteriors", "West Shore Home", "Great Day Improvements", "Patio Enclosures=Great Day Improvements",
+    "Groundworks", "American Residential Services", "American Residential Svcs=American Residential Services",
+    "Rescue Rooter=American Residential Services", "Columbus Worthington Air=American Residential Services",
+    "Service Experts", "Roto-Rooter", "Roto Rooter", "Airtron", "Wrench Group", "Apex Service Partners", "Sila Services",
+    "Turnpoint Services", "Legacy Service Partners", "Leap Partners", "Frontier Service Partners", "Heartland Home Services",
+    "Authority Brands", "Neighborly", "Tesla Energy", "Tesla Inc", "Sunrun", "SunPower", "Vivint", "ION Solar",
+    "Freedom Forever", "Momentum Solar", "Palmetto Solar", "Sunnova", "ADT", "Brinks Home", "Comfort Systems USA", "EMCOR",
+    "Limbach", "Johnson Controls", "Siemens", "Honeywell", "Trane U.S.", "Trane Technologies", "Otis Elevator", "Schindler",
+    "TK Elevator", "thyssenkrupp", "Cintas", "Davey Tree", "Bartlett Tree", "SavATree", "BrightView",
+    "Yellowstone Landscape", "Holder Construction", "Pepper Construction", "Messer Construction", "Barton Malow",
+    "Mobile Modular", "AES Ohio=AES", "AEP Ohio=American Electric Power", "American Electric Power", "Columbia Gas=NiSource",
+    "Crown Castle", "Charter Communications", "AT&T", "Verizon", "Frontdoor", "American Home Shield",
+    "Nationwide Realty Investors=Nationwide Insurance"].map((b) => b.split("="));
+  const CO_FAMILY = /\b(?:sons?|brothers|bros|daughters?|family)\b|\bmr\.?\s*(?:&|and)\s*mrs\b/i;
+  const CO_HOLDCO = /\b(?:intermediate|holdings?|acquisitions?|topco|midco|bidco)\b/i;   // an investment firm's holding company
+  // words that start or follow a name without being a person's (first names that are also words, places, sales words)
+  const CO_NOT_NAME = new RegExp("^(?:" + "art|amber|austin|brooke|carol|christian|clark|dale|dean|earl|gene|heather|holly|lance|penny|sandy|" +
+    "shelby|sidney|troy|vernon|warren|wayne|the|and|of|a|an|all|any|by|best|better|great|good|first|prime|pro|plus|quality|premier|premium|" +
+    "professional|expert|experts|superior|elite|reliable|dependable|trusted|honest|advanced|precision|accurate|allied|united|" +
+    "national|american|america|ohio|columbus|central|midwest|metro|capital|capitol|city|county|valley|river|creek|lake|lakes|hill|" +
+    "hills|ridge|park|village|heights|grandview|arlington|worthington|dublin|hilliard|westerville|clintonville|bexley|delaware|powell|" +
+    "buckeye|affordable|budget|discount|value|total|complete|absolute|pure|true|right|smart|bright|green|blue|red|gold|golden|silver|" +
+    "platinum|diamond|star|eagle|falcon|phoenix|liberty|patriot|freedom|heritage|legacy|pioneer|classic|modern|custom|creative|" +
+    "innovative|integrity|excel|supreme|royal|imperial|summit|peak|apex|pinnacle|keystone|cornerstone|signature|luxury|dream|vision|" +
+    "craft|handy|quick|fast|rapid|express|emergency|local|hometown|community|north|south|east|west|new|old|big|little|one|ace|" +
+    "perfect|ideal|ultimate|universal|global|direct|eco|go|no|my|mr|mrs|dr|ii|iii|iv" + ")$", "i");
+  const CO_TRADEISH = /remod|plumb|ctric|roof|heat|cool|build|constr|contr|mechan|servic|restor|exterior|window|door|design|solution|system|enterpris|industr|landscap|excavat|concret|mason|paint|fenc|deck|pool|solar|energ|hvac|drain|sewer|gutter|siding|propert|realt|develop|improv|renov|install|repair|supply|glass|tile|floor|cabinet|kitchen|bath|lawn|tree|garden|scape|home|house|light|sign|^air$|^aire$/i;
+  const coSurname = (w) => /^[A-Za-z][A-Za-z'’-]+$/.test(w || "") && !CO_NOT_NAME.test(w) && !CO_TRADEISH.test(w) && !CO_BIZ.test(w);
+  const coInitials = (w) => /^[A-Z]{1,2}$/.test(w || "") && !CO_NOT_NAME.test(w) || /^[A-Z]\.(?:\s?[A-Z]\.?)?$/.test(w || "") || /^[A-Z]&[A-Z]$/.test(w || "");
+  // why a name (or the legal name behind a "dba") sounds like a family or owner-run shop, or ""
+  function coMomPop(n, legal) {
+    const fam = CO_FAMILY.exec(n);
+    if (fam) return `“${fam[0]}” in its ${legal ? "legal " : ""}name points to a family business`;
+    const w = n.replace(/[,()]/g, " ").split(/\s+/).filter(Boolean);
+    const owner = legal ? "Its legal name is a person's name, which points to an owner-run shop" : "Named after its owner, which points to an owner-run shop";
+    const pos = /^([A-Za-z]+)['’]s$/.exec(w[0] || "");   // "Nate's Great Plumbing", "DClark's HVAC"
+    if (pos && !CO_NOT_NAME.test(pos[1]) && !CO_TRADEISH.test(pos[1])) return owner;
+    if (CO_FIRST.has((w[0] || "").toLowerCase()) && !CO_NOT_NAME.test(w[0])) {   // "Mike Powers Electric", "Jack L Woods Plumbing"
+      const i = /^[A-Z]\.?$/i.test(w[1] || "") ? 2 : 1;
+      return coSurname(w[i]) && w.length > i + 1 ? owner : "";
+    }
+    let i = 0;   // initials: "J Davis Electric", "K D Yoder", "R&T Yoder", "E and B Wooley", "J.F. Baker"
+    while (i < 3 && coInitials(w[i])) i += /^(?:&|and)$/i.test(w[i + 1] || "") && coInitials(w[i + 2]) ? 3 : 1;
+    return i && coSurname(w[i]) ? owner : "";
+  }
+  // { k: "fr" | "nat" | "mp" | "ind", why, owner (a parent or brand the shown name doesn't already say) }
+  function coKind(names, shown) {
+    const all = names.map(coWords).join("|"), seen = coWords(shown);
+    const fr = CO_FRANCHISE.find((b) => all.includes(coWords(b)));
+    if (fr) return { k: "fr", why: `Run locally under the ${fr} name, as a franchise or licensed dealer`, owner: seen.includes(coWords(fr)) ? "" : fr + " franchise" };
+    const nat = CO_NATIONAL.find(([b]) => all.includes(coWords(b)));
+    if (nat) {
+      const by = nat[1] || nat[0], said = seen.includes(coWords(by));
+      return { k: "nat", why: said ? "Works in many states" : `Part of ${by}, which works in many states`, owner: said ? "" : "part of " + by };
+    }
+    if (!names.some((n) => CO_HOLDCO.test(n)))
+      for (const n of names) {
+        const [legalName, known] = coDba(n) || ["", n], why = coMomPop(known) || coMomPop(legalName, true);
+        if (why) return { k: "mp", why, owner: "" };
+      }
+    return { k: "ind", why: "A local company that isn't part of a chain, as far as its name shows", owner: "" };
+  }
+  const CO_KIND = { ind: "Independent", mp: "Mom and pop", fr: "Franchise", nat: "Nationwide" };
+  const coKindChip = (k, why) => `<span class="co-kind k-${k}"${why ? ` title="${esc(why)}"` : ""}>${CO_KIND[k]}</span>`;
   // A permit's trade comes from its type ("Sewer Lateral Replacement/Repair", "Re-Roofing Permit"...). The first match
   // wins, and a trade's button only shows when some company has done that work.
   const byType = (rx) => (c) => rx.test(c.permit.type || "");
@@ -2822,10 +2924,23 @@
       for (const c of b.list) if (!a.list.includes(c)) a.list.push(c);
       cos.delete(k);
     }
-    cos.forEach((e) => {   // shown by its most used name (the shorter one on a tie), and a "dba" company by the name customers know
-      e.name = Object.entries(e.names).sort((a, b) => b[1] - a[1] || a[0].length - b[0].length)[0][0];
-      const dba = /\s(?:d\/?b\/?a|doing business as)\.?\s+(.{3,})$/i.exec(e.name);
-      if (dba) e.name = dba[1];
+    // a legal name and the one name it does business as are one company ("Trades RTR, LLC" and "Trades RTR, LLC dba:
+    // Mr. Rooter Plumbing"); a legal name behind more than one brand stays apart
+    const legal = new Map();
+    cos.forEach((e) => Object.keys(e.names).forEach((n) => { const m = coDba(n), k = m && coKey(m[0]);
+      if (k && k !== e.key) legal.set(k, legal.has(k) && legal.get(k) !== e ? null : e); }));
+    legal.forEach((into, k) => {
+      const from = cos.get(k);
+      if (!into || !from || from === into || !cos.has(into.key)) return;
+      for (const [n, c] of Object.entries(from.names)) into.names[n] = (into.names[n] || 0) + c;
+      for (const c of from.list) if (!into.list.includes(c)) into.list.push(c);
+      cos.delete(k);
+    });
+    cos.forEach((e) => {   // shown by its most used name (the shorter one on a tie), or the name customers know when it has a "dba"
+      const byUse = Object.entries(e.names).sort((a, b) => b[1] - a[1] || a[0].length - b[0].length).map(([n]) => n);
+      const dba = byUse.map(coDba).find(Boolean);
+      e.name = dba ? dba[1] : byUse[0];
+      e.kind = coKind(byUse, e.name);
     });
     const list = [...cos.values()].sort((a, b) => b.list.length - a.list.length);
     return (state.coIndex = { permits, read, ua, uaRead, jobs, list });
@@ -2893,10 +3008,12 @@
       <div class="card panel">
         <h2>Most hired: ${esc(tLabel)}${hasUA ? ` in ${esc(where)}` : ""}</h2>
         <p class="p-sub">Ranked by how many ${esc(where)} jobs each company pulled a permit for${trade === "all" ? "" : " in this trade"}.</p>
+        <p class="p-sub co-legend"><span>${coKindChip("ind")}local, not part of a chain</span><span>${coKindChip("mp")}named for a family or its owner</span>
+          <span>${coKindChip("fr")}a national brand, run locally</span><span>${coKindChip("nat")}works in many states</span></p>
         <ol class="co-list">${shown.slice(0, 25).map((e, i) => { const v = views.get(e.key); return `<li class="co-card">
           <div class="co-rank">${i + 1}</div>
           <div class="co-body">
-            <div class="co-name">${esc(e.name)}</div>
+            <div class="co-name">${esc(e.name)}${coKindChip(e.kind.k, e.kind.why)}${e.kind.owner ? `<span class="co-owner">${esc(e.kind.owner)}</span>` : ""}</div>
             <div class="co-stats">${jobsLine(e)} at ${v.homes} ${plural("address", v.homes)}${v.last ? `
               · ${v.recent} in the last 2 years · latest ${esc(monYr(v.last))}${v.first && v.first.slice(0, 4) !== v.last.slice(0, 4) ? ` · since ${v.first.slice(0, 4)}` : ""}` : ""}</div>
             ${v.trades.length > 1 || trade === "all" ? `<div class="co-tr">${v.trades.map(([t, n]) => `${esc(t.label)} ${n}`).join(" · ")}</div>` : ""}
@@ -2911,7 +3028,10 @@
       </div>
       <div class="card exp-intro"><b>About these counts:</b> each permit names the company that pulled it, so the counts show who does the
         most permitted work here, not who does it best. Small jobs that don't need a permit aren't counted. The same company can appear under
-        slightly different names. ${stillReading.length ? `So far ${stillReading.join(" and ")} have been checked, so the rankings will fill in
+        slightly different names. The company types are a best guess from each company's name: known chains and franchises are
+        matched by brand, a "doing business as" name shows who owns a brand, and a family or owner's name ("& Sons", "Brothers",
+        or a name like "Joe Smith Plumbing") marks a mom and pop shop. Many companies marked independent are family-owned too, so call and ask if it
+        matters to you. ${stillReading.length ? `So far ${stillReading.join(" and ")} have been checked, so the rankings will fill in
         as the rest are read. ${how}` : ""}</div>`;
     const byKey = new Map(list.map((e) => [e.key, e]));
     el.querySelectorAll("[data-co]").forEach((b) => b.addEventListener("click", () => browseWith({ q: byKey.get(b.dataset.co).name })));

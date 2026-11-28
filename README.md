@@ -64,6 +64,11 @@ businesses named on it (for the Contractors tab). People's names are never
 kept: a contractor listed only by a person's name is skipped, and a person's
 name added to a company's is trimmed off. Permits read by an older version of
 the script are read again once.
+On the Contractors tab, each company has a chip saying what kind of company it
+probably is: Independent, Mom and pop, Franchise, or Nationwide. It's a guess
+from the company's name: known chains and franchise brands are matched by
+name, a "doing business as" name shows who owns a brand, and a family or
+owner's name ("& Sons", "Brothers", a person's name) marks a mom and pop shop.
 The daily Action adds map locations to any permit with an address, and removes
 people's names from contractor lists.
 
