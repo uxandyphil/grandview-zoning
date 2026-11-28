@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T02:57:25.703Z",
+  "updated": "2026-11-28T03:27:26.417Z",
   "city": "Grandview Heights",
   "record_numbers": null,
   "record_fields": null,
@@ -10,135 +10,72 @@
       "filled": true
     },
     {
-      "section": "Project Information",
-      "label": "In which City or Village are you applying for a Permit?",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Occupancy Type",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Who is performing the work?",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Type of Residential Permit",
-      "filled": false
-    },
-    {
-      "section": "Project Information",
-      "label": "Estimated Project Cost",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Square Footage of Work Area",
-      "filled": false
-    },
-    {
-      "section": "Project Information",
-      "label": "Is this part of a building project or a stand alone project",
-      "filled": true
-    },
-    {
-      "section": "Project Information",
-      "label": "Project Description",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Information ID",
-      "filled": true
-    },
-    {
-      "section": "Contractor Information",
-      "label": "Information Expiration",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Contact Information",
-      "label": "Telephone Number",
-      "filled": true
-    },
-    {
-      "section": "Property Owner Contact Information",
-      "label": "I hereby certify that I have read and understand the entire contents of this app",
+      "section": "",
+      "label": "In consideration given, the Applicant agrees to install said work in all respect",
       "filled": true
     }
   ],
   "record_forms": {
-    "Electrical Permit": [
+    "Fence Permit": [
       {
         "section": "",
         "label": "Name",
         "filled": true
       },
       {
-        "section": "Project Information",
+        "section": "",
+        "label": "In consideration given, the Applicant agrees to install said work in all respect",
+        "filled": true
+      }
+    ],
+    "Sewer Lateral Replacement/Repair": [
+      {
+        "section": "",
+        "label": "Name",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
         "label": "In which City or Village are you applying for a Permit?",
         "filled": true
       },
       {
-        "section": "Project Information",
-        "label": "Occupancy Type",
+        "section": "Permit Information",
+        "label": "Occupancy Type?",
         "filled": true
       },
       {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Residential Permit",
-        "filled": false
-      },
-      {
-        "section": "Project Information",
+        "section": "Permit Information",
         "label": "Estimated Project Cost",
         "filled": true
       },
       {
-        "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": false
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project",
+        "section": "Permit Information",
+        "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
         "filled": true
       },
       {
-        "section": "Project Information",
-        "label": "Project Description",
+        "section": "Permit Information",
+        "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
         "filled": true
       },
       {
-        "section": "Contractor Information",
-        "label": "Information ID",
+        "section": "Permit Information",
+        "label": "Have you applied for a ROW Permit?",
         "filled": true
       },
       {
-        "section": "Contractor Information",
-        "label": "Information Expiration",
+        "section": "Permit Information",
+        "label": "Is there a City Tree that is in close proximity to the repair?",
         "filled": true
       },
       {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
+        "section": "Permit Information",
+        "label": "Describe in detail the proposed work being completed including distances from st",
         "filled": true
       }
     ],
-    "Plumbing Permit": [
+    "Gas Piping Permit": [
       {
         "section": "",
         "label": "Name",
@@ -146,7 +83,7 @@
       },
       {
         "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
+        "label": "In Which City or Village are you applying for a Permit?",
         "filled": true
       },
       {
@@ -171,105 +108,8 @@
       },
       {
         "section": "Project Information",
-        "label": "Project Decsription",
+        "label": "Number of Total Fixtures",
         "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project",
-        "filled": false
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "Email Address",
-        "filled": false
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "Phone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Information",
-        "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
-        "filled": true
-      }
-    ],
-    "HVAC Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Square Footage of Work Area",
-        "filled": false
       },
       {
         "section": "Project Information",
@@ -279,165 +119,6 @@
       {
         "section": "Project Information",
         "label": "Is this part of a building project or a stand alone project?",
-        "filled": false
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Certificate of Zoning Compliance": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Residential or Commercial Review?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Type of Work Proposed",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner Phone",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Property Owner email",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant phone number",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Applicant email",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Current Zoning District",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Proposed Change",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Number of Additional Dwelling Units being Added",
-        "filled": true
-      },
-      {
-        "section": "Zoning Certificate Information",
-        "label": "Is there an Architect or Engineer working on this project?",
-        "filled": true
-      }
-    ],
-    "Re-Roofing Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Occupancy Type",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Who is doing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Project Description",
         "filled": true
       },
       {
@@ -487,69 +168,49 @@
       },
       {
         "section": "Property Owner Contact Information",
-        "label": "Email Address",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
         "label": "I hereby certify that I have read and understand the entire contents of this app",
         "filled": true
       }
     ],
-    "Sign Permit": [
+    "Sewer Tap": [
       {
         "section": "",
         "label": "Name",
         "filled": true
       },
       {
-        "section": "Sign Information",
+        "section": "Permit Information",
         "label": "In which City or Village are you applying for a Permit?",
-        "filled": false
-      },
-      {
-        "section": "Sign Information",
-        "label": "Is sign in Grandview Commerce Mixed District",
-        "filled": false
-      },
-      {
-        "section": "Sign Information",
-        "label": "Type of Sign",
         "filled": true
       },
       {
-        "section": "Sign Information",
-        "label": "Type of ILLUMINATION",
+        "section": "Permit Information",
+        "label": "Occupancy Type?",
         "filled": true
       },
       {
-        "section": "Sign Information",
-        "label": "Two Sided?",
-        "filled": false
-      },
-      {
-        "section": "Sign Information",
-        "label": "Square footage of Frontage of Tenant Space",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
-        "label": "Construction Materials",
-        "filled": false
-      },
-      {
-        "section": "Sign Information",
-        "label": "Zoning District",
-        "filled": true
-      },
-      {
-        "section": "Sign Information",
+        "section": "Permit Information",
         "label": "Estimated Project Cost",
         "filled": true
       },
       {
-        "section": "Contractor Information",
-        "label": "The owner of this building and the undersigned, do hereby covenant and agree to ",
+        "section": "Permit Information",
+        "label": "Domestic Water Tap Size",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Is the Sewer Tap Work in the Right of Way (ROW)?",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Have you applied for ROW Permit?",
+        "filled": true
+      },
+      {
+        "section": "Permit Information",
+        "label": "Is this an existing sewer line?",
         "filled": true
       }
     ]
@@ -713,6 +374,18 @@
       "cv": 7
     },
     {
+      "number": "SWR-24-16",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "24246",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/24246",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
       "number": "ROOF-24-65",
       "type": "Re-Roofing Permit",
       "entity_id": "24240",
@@ -743,6 +416,32 @@
         "Rosati Windows"
       ],
       "cv": 7
+    },
+    {
+      "number": "FENC-24-29",
+      "type": "Fence Permit",
+      "entity_id": "24203",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/24203",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-15",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "24167",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/24167",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
     },
     {
       "number": "WIND-24-17",
@@ -787,6 +486,22 @@
       "details": true,
       "contractors": [
         "APCO Industries"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-14",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "24095",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/24095",
+      "address": "825 GLADDEN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Eco Plumbers Excavation"
       ],
       "cv": 7
     },
@@ -949,6 +664,22 @@
       "cv": 7
     },
     {
+      "number": "GAS-24-37",
+      "type": "Gas Piping Permit",
+      "entity_id": "23974",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23974",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Mark Cantrell Plumbing, LLC"
+      ],
+      "cv": 7
+    },
+    {
       "number": "ROOF-24-59",
       "type": "Re-Roofing Permit",
       "entity_id": "23966",
@@ -1013,6 +744,22 @@
       "cv": 7
     },
     {
+      "number": "GAS-24-36",
+      "type": "Gas Piping Permit",
+      "entity_id": "23946",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23946",
+      "address": "845 W Goodale Blvd",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "CCS Construction Company LLC"
+      ],
+      "cv": 7
+    },
+    {
       "number": "SIDE-24-14",
       "type": "Sidewalk Permit",
       "entity_id": "23941",
@@ -1045,6 +792,34 @@
       "cv": 7
     },
     {
+      "number": "FENC-24-28",
+      "type": "Fence Permit",
+      "entity_id": "23898",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23898",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-35",
+      "type": "Gas Piping Permit",
+      "entity_id": "23884",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23884",
+      "address": "1340 WYANDOTTE RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
       "number": "ROOF-24-55",
       "type": "Re-Roofing Permit",
       "entity_id": "23879",
@@ -1058,6 +833,20 @@
       "contractors": [
         "B&T Roofing Ltd."
       ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-27",
+      "type": "Fence Permit",
+      "entity_id": "23872",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23872",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 7
     },
     {
@@ -1122,6 +911,20 @@
       "contractors": [
         "Imperial Roofing and Contracting LLC"
       ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-26",
+      "type": "Fence Permit",
+      "entity_id": "23813",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23813",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 7
     },
     {
@@ -1205,6 +1008,22 @@
       "cv": 7
     },
     {
+      "number": "GAS-24-34",
+      "type": "Gas Piping Permit",
+      "entity_id": "23766",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23766",
+      "address": "1182 WYANDOTTE RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Columbus Gas Pro LLC"
+      ],
+      "cv": 7
+    },
+    {
       "number": "WIND-24-11",
       "type": "Window/Door Replacement Permit",
       "entity_id": "23753",
@@ -1217,6 +1036,22 @@
       "details": true,
       "contractors": [
         "Rosati Windows"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-33",
+      "type": "Gas Piping Permit",
+      "entity_id": "23746",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23746",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Eaton Plumbing INC."
       ],
       "cv": 7
     },
@@ -1237,6 +1072,38 @@
       "cv": 7
     },
     {
+      "number": "GAS-24-32",
+      "type": "Gas Piping Permit",
+      "entity_id": "23729",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23729",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Doc Thompson Plumbing"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-31",
+      "type": "Gas Piping Permit",
+      "entity_id": "23718",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23718",
+      "address": "1137 Fairview Avenue",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Mark Cantrell Plumbing, LLC"
+      ],
+      "cv": 7
+    },
+    {
       "number": "WIND-24-10",
       "type": "Window/Door Replacement Permit",
       "entity_id": "23715",
@@ -1249,6 +1116,22 @@
       "details": true,
       "contractors": [
         "K D Yoder & Associates, Inc"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-30",
+      "type": "Gas Piping Permit",
+      "entity_id": "23703",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23703",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Crazy Fast Enterprises, Inc."
       ],
       "cv": 7
     },
@@ -1301,6 +1184,36 @@
       "cv": 7
     },
     {
+      "number": "GAS-24-29",
+      "type": "Gas Piping Permit",
+      "entity_id": "23656",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23656",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Temech Plumbing LLC"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-13",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "23655",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23655",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
       "number": "ROOF-24-42",
       "type": "Re-Roofing Permit",
       "entity_id": "23644",
@@ -1333,6 +1246,22 @@
       "cv": 7
     },
     {
+      "number": "GAS-24-28",
+      "type": "Gas Piping Permit",
+      "entity_id": "23619",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23619",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Construct Plumbing Design LLC"
+      ],
+      "cv": 7
+    },
+    {
       "number": "WIND-24-9",
       "type": "Window/Door Replacement Permit",
       "entity_id": "23611",
@@ -1345,6 +1274,36 @@
       "details": true,
       "contractors": [
         "Infinity Retail, LLC D/B/A Infinity from Marvin-Columbus"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-24",
+      "type": "Fence Permit",
+      "entity_id": "23604",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23604",
+      "address": "908 TIMBERMAN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-27",
+      "type": "Gas Piping Permit",
+      "entity_id": "23591",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23591",
+      "address": "1427 ROXBURY RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "TWC Enterprises"
       ],
       "cv": 7
     },
@@ -1375,6 +1334,20 @@
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
       "details": false
+    },
+    {
+      "number": "FENC-24-23",
+      "type": "Fence Permit",
+      "entity_id": "23534",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23534",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
     },
     {
       "number": "SIDE-24-12",
@@ -1422,6 +1395,36 @@
       "contractors": [
         "Legg & Davis Construction, Inc."
       ],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-26",
+      "type": "Gas Piping Permit",
+      "entity_id": "23488",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23488",
+      "address": "1508 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Jack L Woods Plumbing Co"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-12",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "23483",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23483",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 7
     },
     {
@@ -1478,6 +1481,20 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-22",
+      "type": "Fence Permit",
+      "entity_id": "23423",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23423",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
       "details": true,
       "contractors": [],
       "cv": 7
@@ -1545,6 +1562,22 @@
       "cv": 7
     },
     {
+      "number": "GAS-24-25",
+      "type": "Gas Piping Permit",
+      "entity_id": "23391",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23391",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Construct Plumbing Design LLC"
+      ],
+      "cv": 7
+    },
+    {
       "number": "WIND-24-6",
       "type": "Window/Door Replacement Permit",
       "entity_id": "23379",
@@ -1557,6 +1590,38 @@
       "details": true,
       "contractors": [
         "Rosati Windows"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-24",
+      "type": "Gas Piping Permit",
+      "entity_id": "23374",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23374",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Mul-ti Plumbing & Rooter Services Co"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-23",
+      "type": "Gas Piping Permit",
+      "entity_id": "23357",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23357",
+      "address": "1068 EDGEHILL RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Apex Plumbing Pros"
       ],
       "cv": 7
     },
@@ -1641,6 +1706,36 @@
       "cv": 7
     },
     {
+      "number": "GAS-24-22",
+      "type": "Gas Piping Permit",
+      "entity_id": "23306",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23306",
+      "address": "1494 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Construct Plumbing Design LLC"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-20",
+      "type": "Fence Permit",
+      "entity_id": "23303",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23303",
+      "address": "865 COPELAND RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
       "number": "SIDE-24-5",
       "type": "Sidewalk Permit",
       "entity_id": "23302",
@@ -1654,6 +1749,20 @@
       "contractors": [
         "Fritz Baumann & Sons, Inc."
       ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-19",
+      "type": "Fence Permit",
+      "entity_id": "23287",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23287",
+      "address": "1346 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 7
     },
     {
@@ -1781,6 +1890,66 @@
       "cv": 7
     },
     {
+      "number": "FENC-24-17",
+      "type": "Fence Permit",
+      "entity_id": "23170",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23170",
+      "address": "1232 PARKWAY DR",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "GAS-24-21",
+      "type": "Gas Piping Permit",
+      "entity_id": "23168",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23168",
+      "address": "821 GLADDEN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Crazy Fast Enterprises, Inc."
+      ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-16",
+      "type": "Fence Permit",
+      "entity_id": "23154",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23154",
+      "address": "856 PALMER RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-18",
+      "type": "Fence Permit",
+      "entity_id": "23146",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23146",
+      "address": "1424 MULFORD RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Midway Structural dba Lannis Fence"
+      ],
+      "cv": 7
+    },
+    {
       "number": "WIND-24-5",
       "type": "Window/Door Replacement Permit",
       "entity_id": "23049",
@@ -1793,6 +1962,48 @@
       "details": true,
       "contractors": [
         "Rosati Windows"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-25",
+      "type": "Fence Permit",
+      "entity_id": "23043",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/23043",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-14",
+      "type": "Fence Permit",
+      "entity_id": "22982",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22982",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-24-20",
+      "type": "Gas Piping Permit",
+      "entity_id": "22956",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22956",
+      "address": "137 Patti Drive",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Holt Mechanical"
       ],
       "cv": 7
     },
@@ -1810,6 +2021,104 @@
       "contractors": [
         "Holt Mechanical"
       ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-21",
+      "type": "Fence Permit",
+      "entity_id": "22942",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22942",
+      "address": "844 TIMBERMAN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-13",
+      "type": "Fence Permit",
+      "entity_id": "22932",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22932",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-15",
+      "type": "Fence Permit",
+      "entity_id": "22926",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22926",
+      "address": "1514 LINCOLN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-24-1",
+      "type": "Sewer Tap",
+      "entity_id": "22920",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22920",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-12",
+      "type": "Fence Permit",
+      "entity_id": "22887",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22887",
+      "address": "889 MCCLAIN RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-11",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "22863",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22863",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-10",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "22849",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22849",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 7
     },
     {
@@ -2053,6 +2362,20 @@
       "cv": 7
     },
     {
+      "number": "FENC-24-11",
+      "type": "Fence Permit",
+      "entity_id": "22728",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22728",
+      "address": "1650 RIDGEWAY PL",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
       "number": "GAS-24-5",
       "type": "Gas Piping Permit",
       "entity_id": "22697",
@@ -2066,6 +2389,20 @@
       "contractors": [
         "Les Love Heating Cooling Plumbing"
       ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-10",
+      "type": "Fence Permit",
+      "entity_id": "22691",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22691",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 7
     },
     {
@@ -2117,6 +2454,20 @@
       "cv": 7
     },
     {
+      "number": "FENC-24-9",
+      "type": "Fence Permit",
+      "entity_id": "22672",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22672",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
       "number": "GAS-24-2",
       "type": "Gas Piping Permit",
       "entity_id": "22667",
@@ -2130,6 +2481,78 @@
       "contractors": [
         "Pipeworks, LLC"
       ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-8",
+      "type": "Fence Permit",
+      "entity_id": "22650",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22650",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "johnson plus contracting johnson"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-7",
+      "type": "Fence Permit",
+      "entity_id": "22639",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22639",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-5",
+      "type": "Fence Permit",
+      "entity_id": "22623",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22623",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-4",
+      "type": "Fence Permit",
+      "entity_id": "22619",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22619",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-9",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "22602",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22602",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
       "cv": 7
     },
     {
@@ -2149,6 +2572,846 @@
       "cv": 7
     },
     {
+      "number": "SWR-24-8",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "22589",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22589",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-3",
+      "type": "Fence Permit",
+      "entity_id": "22588",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22588",
+      "address": "1581 WYANDOTTE RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-6",
+      "type": "Fence Permit",
+      "entity_id": "22582",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22582",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-2",
+      "type": "Fence Permit",
+      "entity_id": "22509",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22509",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-7",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "22505",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22505",
+      "address": "1471 WYANDOTTE RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "Eco Plumbers Excavation"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-6",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "22478",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/22478",
+      "address": "1405 WYANDOTTE RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-5",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "21362",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/21362",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-4",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "21330",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/21330",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "FENC-24-1",
+      "type": "Fence Permit",
+      "entity_id": "20721",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20721",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-24-3",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20715",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20715",
+      "address": "807-809 THOMAS RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [
+        "American Residential Services LLC Rescue Rooter Plumbing, Drains and Electric"
+      ],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-11",
+      "type": "Sewer Tap",
+      "entity_id": "20475",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20475",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-10",
+      "type": "Sewer Tap",
+      "entity_id": "20474",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20474",
+      "address": "1137 Fairview Avenue",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-2",
+      "type": "Sewer Tap",
+      "entity_id": "20468",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20468",
+      "address": "1068 EDGEHILL RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-1",
+      "type": "Sewer Tap",
+      "entity_id": "20467",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20467",
+      "address": "1064 EDGEHILL RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-8",
+      "type": "Sewer Tap",
+      "entity_id": "20463",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20463",
+      "address": "1056 EDGEHILL RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-7",
+      "type": "Sewer Tap",
+      "entity_id": "20462",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20462",
+      "address": "1060 EDGEHILL RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-6",
+      "type": "Sewer Tap",
+      "entity_id": "20461",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20461",
+      "address": "1587 W Third Avenue",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-5",
+      "type": "Sewer Tap",
+      "entity_id": "20460",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20460",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-4",
+      "type": "Sewer Tap",
+      "entity_id": "20459",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20459",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-3",
+      "type": "Sewer Tap",
+      "entity_id": "20458",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20458",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "TAP-23-9",
+      "type": "Sewer Tap",
+      "entity_id": "20450",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20450",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-23-6",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20427",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20427",
+      "address": "985 PALMER RD",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-23-10",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20424",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20424",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-23-5",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20412",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20412",
+      "address": "1102-1104 HILO LN",
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-23-4",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20411",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20411",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-23-3",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20410",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20410",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-23-9",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20409",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20409",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-23-2",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20402",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20402",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": true,
+      "contractors": [],
+      "cv": 7
+    },
+    {
+      "number": "SWR-23-1",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20401",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20401",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "SWR-24-2",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20395",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20395",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "SWR-23-8",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20391",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20391",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "SWR-23-7",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "20388",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20388",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-33",
+      "type": "Gas Piping Permit",
+      "entity_id": "19396",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19396",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-8",
+      "type": "Gas Piping Permit",
+      "entity_id": "19395",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19395",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-23",
+      "type": "Gas Piping Permit",
+      "entity_id": "19394",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19394",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-22",
+      "type": "Gas Piping Permit",
+      "entity_id": "19393",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19393",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-7",
+      "type": "Gas Piping Permit",
+      "entity_id": "19384",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19384",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-6",
+      "type": "Gas Piping Permit",
+      "entity_id": "19383",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19383",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-21",
+      "type": "Gas Piping Permit",
+      "entity_id": "19382",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19382",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-20",
+      "type": "Gas Piping Permit",
+      "entity_id": "19380",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19380",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-19",
+      "type": "Gas Piping Permit",
+      "entity_id": "19379",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19379",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-32",
+      "type": "Gas Piping Permit",
+      "entity_id": "19373",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19373",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-5",
+      "type": "Gas Piping Permit",
+      "entity_id": "19371",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19371",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-4",
+      "type": "Gas Piping Permit",
+      "entity_id": "19370",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19370",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-31",
+      "type": "Gas Piping Permit",
+      "entity_id": "19367",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19367",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-18",
+      "type": "Gas Piping Permit",
+      "entity_id": "19364",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19364",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-17",
+      "type": "Gas Piping Permit",
+      "entity_id": "19363",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19363",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-3",
+      "type": "Gas Piping Permit",
+      "entity_id": "19347",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19347",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-2",
+      "type": "Gas Piping Permit",
+      "entity_id": "19346",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19346",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-1",
+      "type": "Gas Piping Permit",
+      "entity_id": "19336",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19336",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-30",
+      "type": "Gas Piping Permit",
+      "entity_id": "19330",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19330",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-29",
+      "type": "Gas Piping Permit",
+      "entity_id": "19329",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19329",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-16",
+      "type": "Gas Piping Permit",
+      "entity_id": "19327",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19327",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-15",
+      "type": "Gas Piping Permit",
+      "entity_id": "19326",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19326",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-14",
+      "type": "Gas Piping Permit",
+      "entity_id": "19325",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19325",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-13",
+      "type": "Gas Piping Permit",
+      "entity_id": "19323",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19323",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-12",
+      "type": "Gas Piping Permit",
+      "entity_id": "19322",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19322",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-28",
+      "type": "Gas Piping Permit",
+      "entity_id": "19312",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19312",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-27",
+      "type": "Gas Piping Permit",
+      "entity_id": "19311",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19311",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-11",
+      "type": "Gas Piping Permit",
+      "entity_id": "19308",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19308",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-10",
+      "type": "Gas Piping Permit",
+      "entity_id": "19307",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19307",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-9",
+      "type": "Gas Piping Permit",
+      "entity_id": "19306",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19306",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-26",
+      "type": "Gas Piping Permit",
+      "entity_id": "19305",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19305",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-25",
+      "type": "Gas Piping Permit",
+      "entity_id": "19291",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19291",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
+      "number": "GAS-23-24",
+      "type": "Gas Piping Permit",
+      "entity_id": "19290",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19290",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
+      "details": false
+    },
+    {
       "number": "SIDE-24-1",
       "type": "Sidewalk Permit",
       "entity_id": "376",
@@ -2158,6 +3421,18 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T01:40:09+00:00",
+      "details": false
+    },
+    {
+      "number": "SWR-24-1",
+      "type": "Sewer Lateral Replacement/Repair",
+      "entity_id": "353",
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/353",
+      "address": null,
+      "date": null,
+      "lat": null,
+      "lon": null,
+      "first_seen": "2026-11-28T02:58:39+00:00",
       "details": false
     },
     {
