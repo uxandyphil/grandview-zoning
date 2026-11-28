@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T03:27:26.417Z",
+  "updated": "2026-11-28T03:53:59.713Z",
   "city": "Grandview Heights",
   "record_numbers": null,
   "record_fields": null,
@@ -10,24 +10,42 @@
       "filled": true
     },
     {
-      "section": "",
-      "label": "In consideration given, the Applicant agrees to install said work in all respect",
-      "filled": true
+      "section": "Permit Information",
+      "label": "In which City or Village are you applying for a Permit?",
+      "filled": false
+    },
+    {
+      "section": "Permit Information",
+      "label": "Occupancy Type?",
+      "filled": false
+    },
+    {
+      "section": "Permit Information",
+      "label": "Estimated Project Cost",
+      "filled": false
+    },
+    {
+      "section": "Permit Information",
+      "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
+      "filled": false
+    },
+    {
+      "section": "Permit Information",
+      "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
+      "filled": false
+    },
+    {
+      "section": "Permit Information",
+      "label": "Is there a City Tree that is in close proximity to the repair?",
+      "filled": false
+    },
+    {
+      "section": "Permit Information",
+      "label": "Describe in detail the proposed work being completed including distances from st",
+      "filled": false
     }
   ],
   "record_forms": {
-    "Fence Permit": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "",
-        "label": "In consideration given, the Applicant agrees to install said work in all respect",
-        "filled": true
-      }
-    ],
     "Sewer Lateral Replacement/Repair": [
       {
         "section": "",
@@ -37,45 +55,40 @@
       {
         "section": "Permit Information",
         "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Permit Information",
         "label": "Occupancy Type?",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Permit Information",
         "label": "Estimated Project Cost",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Permit Information",
         "label": "Is this a Sewer Repair, Replacement, or a Disconnect?",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Permit Information",
         "label": "Is the Sewer Repair Work in the Right of Way(ROW)?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Have you applied for a ROW Permit?",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Permit Information",
         "label": "Is there a City Tree that is in close proximity to the repair?",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Permit Information",
         "label": "Describe in detail the proposed work being completed including distances from st",
-        "filled": true
+        "filled": false
       }
     ],
-    "Gas Piping Permit": [
+    "Plumbing Permit": [
       {
         "section": "",
         "label": "Name",
@@ -83,135 +96,48 @@
       },
       {
         "section": "Project Information",
-        "label": "In Which City or Village are you applying for a Permit?",
-        "filled": true
+        "label": "In which City or Village are you applying for a Permit?",
+        "filled": false
       },
       {
         "section": "Project Information",
         "label": "Who is performing the work?",
-        "filled": true
-      },
-      {
-        "section": "Project Information",
-        "label": "Building Permit Number",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Project Information",
         "label": "Occupancy Type",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Project Information",
         "label": "Estimated Project Cost",
-        "filled": true
+        "filled": false
       },
       {
         "section": "Project Information",
-        "label": "Number of Total Fixtures",
-        "filled": true
+        "label": "Project Decsription",
+        "filled": false
       },
       {
         "section": "Project Information",
-        "label": "Project Description",
-        "filled": true
+        "label": "Is this part of a building project or a stand alone project",
+        "filled": false
       },
       {
-        "section": "Project Information",
-        "label": "Is this part of a building project or a stand alone project?",
-        "filled": true
+        "section": "Property Owner Information",
+        "label": "Email Address",
+        "filled": false
       },
       {
-        "section": "Contractor Information",
-        "label": "Company Name",
-        "filled": true
+        "section": "Property Owner Information",
+        "label": "Phone Number",
+        "filled": false
       },
       {
-        "section": "Contractor Information",
-        "label": "Primary Contact Name",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Company Address",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor City",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor State",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Zip",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Contractor Email",
-        "filled": true
-      },
-      {
-        "section": "Contractor Information",
-        "label": "Business Phone",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "Telephone Number",
-        "filled": true
-      },
-      {
-        "section": "Property Owner Contact Information",
-        "label": "I hereby certify that I have read and understand the entire contents of this app",
-        "filled": true
-      }
-    ],
-    "Sewer Tap": [
-      {
-        "section": "",
-        "label": "Name",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "In which City or Village are you applying for a Permit?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Occupancy Type?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Estimated Project Cost",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Domestic Water Tap Size",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Is the Sewer Tap Work in the Right of Way (ROW)?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Have you applied for ROW Permit?",
-        "filled": true
-      },
-      {
-        "section": "Permit Information",
-        "label": "Is this an existing sewer line?",
-        "filled": true
+        "section": "Property Owner Information",
+        "label": "I [the applicant] certify to the accuracy of the information provided in this fo",
+        "filled": false
       }
     ]
   },
@@ -2977,7 +2903,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T02:58:39+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 7
     },
     {
       "number": "SWR-24-2",
@@ -2989,7 +2917,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T02:58:39+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 7
     },
     {
       "number": "SWR-23-8",
@@ -3001,7 +2931,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T02:58:39+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 7
     },
     {
       "number": "SWR-23-7",
@@ -3013,7 +2945,9 @@
       "lat": null,
       "lon": null,
       "first_seen": "2026-11-28T02:58:39+00:00",
-      "details": false
+      "details": true,
+      "contractors": [],
+      "cv": 7
     },
     {
       "number": "GAS-23-33",
@@ -37787,7 +37721,9 @@
       "lon": -83.031762087826,
       "number": "P-24-6",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20068"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20068",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1191 BROADVIEW AVE",
@@ -37799,7 +37735,9 @@
       "lon": -83.046622737117,
       "number": "P-24-5",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20067"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20067",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1271 W 1ST AVE",
@@ -37811,7 +37749,9 @@
       "lon": -83.038870233484,
       "number": "P-24-4",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20066"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20066",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1281 ARLINGTON AVE",
@@ -37847,7 +37787,9 @@
       "lon": -83.050565976991,
       "number": "P-24-3",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20065"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20065",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1281 ARLINGTON AVE",
@@ -37919,7 +37861,9 @@
       "lon": -83.060531977406,
       "number": "P-23-122",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/19999"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/19999",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2015 W Fifth Avenue",
@@ -38465,7 +38409,9 @@
       "lon": -83.04627878056,
       "number": "P-23-104",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20281"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20281",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1339 ASHLAND AVE",
@@ -38525,7 +38471,9 @@
       "lon": -83.042634166251,
       "number": "P-23-103",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20280"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20280",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1494 LINCOLN RD",
@@ -38537,7 +38485,9 @@
       "lon": -83.056432825412,
       "number": "P-23-102",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20279"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20279",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "375 N FRONT ST",
@@ -38573,7 +38523,9 @@
       "lon": -83.053944355405,
       "number": "P-23-100",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20278"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20278",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1189 ASHLAND AV",
@@ -38585,7 +38537,9 @@
       "lon": -83.050590869713,
       "number": "P-23-101",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20276"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20276",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1123 BOBCAT AV",
@@ -38621,7 +38575,9 @@
       "lon": -83.039121684749,
       "number": "P-23-99",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20277"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20277",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "280 CORNELIUS STREET",
@@ -38669,7 +38625,9 @@
       "lon": -83.057882380462,
       "number": "P-23-98",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20275"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20275",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1179 W 1ST AVE",
@@ -38681,7 +38639,9 @@
       "lon": -83.03610959869,
       "number": "P-23-97",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20274"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20274",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1631 ROXBURY RD",
@@ -38741,7 +38701,9 @@
       "lon": -83.041162478857,
       "number": "P-23-96",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20218"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20218",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1051 VIRGINIA AVE",
@@ -38801,7 +38763,9 @@
       "lon": -83.026899982816,
       "number": "P-23-95",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20217"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20217",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1240 BROADVIEW AVE",
@@ -38885,7 +38849,9 @@
       "lon": -83.050565976991,
       "number": "P-23-94",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20145"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20145",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1339 HAINES AVE",
@@ -38948,7 +38914,7 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/18585"
     },
     {
-      "address": "842 N 4TH ST",
+      "address": "1064 DUBLIN RD",
       "date": "2023-10-17",
       "details": true,
       "entity_id": 20102,
@@ -38957,7 +38923,9 @@
       "lon": null,
       "number": "P-23-93",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20102"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20102",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1885 TEWKSBURY RD",
@@ -39077,7 +39045,9 @@
       "lon": null,
       "number": "P-23-92",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20101"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20101",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "6 STONEGATE VILLAGE DR",
@@ -39277,7 +39247,9 @@
       "lon": -83.02646306691,
       "number": "P-23-90",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20290"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20290",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1587 W Third Avenue",
@@ -39289,7 +39261,9 @@
       "lon": -83.047336084584,
       "number": "P-23-91",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20100"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20100",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1361 HAINES AVE",
@@ -39313,7 +39287,9 @@
       "lon": -83.029195041502,
       "number": "P-23-89",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20289"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20289",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1472 CAMBRIDGE BLVD",
@@ -39325,7 +39301,9 @@
       "lon": -83.057789812113,
       "number": "P-23-88",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20288"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20288",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1149 W FIRST AVE",
@@ -39451,7 +39429,9 @@
       "lon": -83.029195041502,
       "number": "P-23-87",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20240"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20240",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "0 GOODALE BL",
@@ -39503,7 +39483,9 @@
       "lon": null,
       "number": "P-23-86",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20239"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20239",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1058 Dublin Road",
@@ -39539,7 +39521,9 @@
       "lon": -83.039256405401,
       "number": "P-23-85",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20055"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20055",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "5465 AMROSIA AVE",
@@ -39599,7 +39583,9 @@
       "lon": -83.051831713603,
       "number": "P-23-84",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20054"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20054",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1000 URLIN AVE",
@@ -39661,7 +39647,9 @@
       "lon": -83.055384986586,
       "number": "P-23-83",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20053"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20053",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1304 WESTWOOD AV",
@@ -39697,7 +39685,9 @@
       "lon": -83.047908523305,
       "number": "P-23-82",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20052"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20052",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "847 PULLMAN WY",
@@ -39769,7 +39759,9 @@
       "lon": null,
       "number": "P-23-81",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20060"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20060",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1201 ASHLAND AVE",
@@ -39889,7 +39881,9 @@
       "lon": -83.055377653199,
       "number": "P-23-80",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20043"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20043",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1297 ELMWOOD AVE",
@@ -39999,7 +39993,9 @@
       "lon": -83.051670059273,
       "number": "P-23-79",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20042"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20042",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "935 TIMBERMAN RD",
@@ -40023,7 +40019,9 @@
       "lon": -83.047698702304,
       "number": "P-23-78",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20040"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20040",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1130 WESTWOOD AVE",
@@ -41119,7 +41117,9 @@
       "lon": -83.03768613978,
       "number": "P-23-60",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20233"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20233",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1297 SHERBOURNE LN",
@@ -41131,7 +41131,9 @@
       "lon": null,
       "number": "P-23-59",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20232"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20232",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1953 BLUFF AVE",
@@ -41227,7 +41229,9 @@
       "lon": -83.058123929048,
       "number": "P-23-58",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20231"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20231",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1297 SHERBOURNE LN",
@@ -41266,7 +41270,7 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/18692"
     },
     {
-      "address": "751 NORTHWEST BLVD",
+      "address": "1279 Grandview Avenue",
       "date": "2023-06-05",
       "details": true,
       "entity_id": 20229,
@@ -41275,7 +41279,9 @@
       "lon": -83.029195041502,
       "number": "P-23-57",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20229"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20229",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1460 CAMBRIDGE BLVD",
@@ -41287,7 +41293,9 @@
       "lon": -83.057819149521,
       "number": "P-23-56",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20228"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20228",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1337 MULFORD RD",
@@ -41347,7 +41355,9 @@
       "lon": -83.052944792335,
       "number": "P-23-55",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20165"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20165",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1373 CAMBRIDGE BLVD",
@@ -41371,7 +41381,9 @@
       "lon": -83.03606499259,
       "number": "P-23-54",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20163"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20163",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1316 LINCOLN RD",
@@ -41419,7 +41431,9 @@
       "lon": null,
       "number": "P-23-53",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20120"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20120",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1309 WESTWOOD AV",
@@ -41503,7 +41517,9 @@
       "lon": -83.037332546371,
       "number": "P-23-52",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20161"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20161",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "845 PULLMAN WY",
@@ -41563,7 +41579,9 @@
       "lon": -83.029981148616,
       "number": "P-23-51",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20121"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20121",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1435 INGLIS AV",
@@ -41659,7 +41677,9 @@
       "lon": -83.026355298922,
       "number": "P-23-49",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20119"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20119",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "375 N FRONT ST",
@@ -41671,7 +41691,9 @@
       "lon": null,
       "number": "P-23-50",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20114"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20114",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "955 Yard Street",
@@ -41719,7 +41741,9 @@
       "lon": -83.041171217084,
       "number": "P-23-48",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20118"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20118",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1304 GLENN AVE",
@@ -41731,7 +41755,9 @@
       "lon": -83.054080976766,
       "number": "P-23-47",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20117"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20117",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "871 PULLMAN WAY",
@@ -41743,7 +41769,9 @@
       "lon": -83.028679406351,
       "number": "P-23-46",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20116"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20116",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1304 GLENN AVE",
@@ -41755,7 +41783,9 @@
       "lon": -83.054080976766,
       "number": "P-23-45",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20115"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20115",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1079 BOBCAT AV",
@@ -41815,7 +41845,9 @@
       "lon": -83.029463022218,
       "number": "P-23-44",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20113"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20113",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1085 BOBCAT AV",
@@ -41827,7 +41859,9 @@
       "lon": -83.029465129393,
       "number": "P-23-43",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20112"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20112",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "920-922 Kramer Ave",
@@ -41863,7 +41897,9 @@
       "lon": -83.040951060419,
       "number": "P-23-42",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20049"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20049",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1337 MULFORD RD",
@@ -41875,7 +41911,9 @@
       "lon": -83.040404674755,
       "number": "P-23-41",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20048"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20048",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2150 MARBLE CLIFF OFC PK",
@@ -41988,7 +42026,7 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/18426"
     },
     {
-      "address": "577 W NATIONWIDE BLVD",
+      "address": "1400 DUBLIN RD",
       "date": "2023-04-26",
       "details": true,
       "entity_id": 20047,
@@ -41997,7 +42035,9 @@
       "lon": null,
       "number": "P-23-40",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20047"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20047",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "987 Grandview Avenue",
@@ -42009,7 +42049,9 @@
       "lon": -83.045396627988,
       "number": "P-23-39",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20046"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20046",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "916 Oxley Road",
@@ -42093,7 +42135,9 @@
       "lon": -83.051591975438,
       "number": "P-23-38",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20045"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20045",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "577 W NATIONWIDE BLVD",
@@ -42129,7 +42173,9 @@
       "lon": -83.036145914135,
       "number": "P-23-37",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20044"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20044",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1479 INGLIS AVE",
@@ -43144,7 +43190,7 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/18726"
     },
     {
-      "address": "4131 WORTH AVE",
+      "address": "1068 EDGEHILL RD",
       "date": "2023-02-21",
       "details": true,
       "entity_id": 20258,
@@ -43153,7 +43199,9 @@
       "lon": null,
       "number": "P-23-20",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20258"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20258",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1295 GLENN AVE",
@@ -43204,7 +43252,7 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/18724"
     },
     {
-      "address": "4131 WORTH AVE",
+      "address": "1064 EDGEHILL RD",
       "date": "2023-02-16",
       "details": true,
       "entity_id": 20257,
@@ -43213,7 +43261,9 @@
       "lon": null,
       "number": "P-23-19",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20257"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20257",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1281 BLUFF AVE",
@@ -43225,7 +43275,9 @@
       "lon": -83.039072307205,
       "number": "P-23-18",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20256"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20256",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1046 GRANDVIEW AV",
@@ -43263,7 +43315,9 @@
       "lon": -83.040590693623,
       "number": "P-23-17",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20255"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20255",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "751 NORTHWEST BLVD",
@@ -43311,7 +43365,9 @@
       "lon": null,
       "number": "P-23-16",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20254"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20254",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1659 RIDGWAY PL",
@@ -43359,7 +43415,9 @@
       "lon": -83.041706881771,
       "number": "P-23-15",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20253"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20253",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1051 URLIN AVE",
@@ -43383,7 +43441,9 @@
       "lon": -83.045153626631,
       "number": "P-23-14",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20187"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20187",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "855 GRANDVIEW AV",
@@ -43445,7 +43505,9 @@
       "lon": -83.049337724605,
       "number": "P-23-13",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20184"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20184",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1653 WESTWOOD AVE",
@@ -43481,7 +43543,9 @@
       "lon": -83.039981119445,
       "number": "P-23-12",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20183"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20183",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "855 GRANDVIEW AV",
@@ -43517,7 +43581,9 @@
       "lon": -83.057981091766,
       "number": "P-23-11",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20182"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20182",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1000 URLIN AVE",
@@ -43565,7 +43631,9 @@
       "lon": -83.045429094248,
       "number": "P-23-10",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20180"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20180",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1780 W 1ST AVE",
@@ -43589,7 +43657,9 @@
       "lon": -83.043642218633,
       "number": "P-23-9",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20179"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20179",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1367 HAINES AVE",
@@ -43604,7 +43674,7 @@
       "url": "https://grandviewheightsoh.portal.opengov.com/records/18631"
     },
     {
-      "address": "6 STONEGATE VILLAGE DR",
+      "address": "6 STONEGATE VILLGE DR",
       "date": "2023-01-25",
       "details": true,
       "entity_id": 20178,
@@ -43613,7 +43683,9 @@
       "lon": -83.053928460088,
       "number": "P-23-8",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20178"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20178",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1062 W SECOND AVE",
@@ -43625,7 +43697,9 @@
       "lon": -83.033612285834,
       "number": "P-23-7",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20176"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20176",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "3300 RIVERSIDE DR",
@@ -43649,7 +43723,9 @@
       "lon": -83.033853110286,
       "number": "P-23-6",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20175"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20175",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1479 INGLIS AVE",
@@ -43661,7 +43737,9 @@
       "lon": -83.044435236698,
       "number": "P-23-5",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20174"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20174",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1456 W 1ST AVE",
@@ -43673,7 +43751,9 @@
       "lon": -83.043925236486,
       "number": "P-23-4",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20173"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20173",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "6 STONEGATE VILLAGE DR",
@@ -43721,7 +43801,9 @@
       "lon": -83.050476660557,
       "number": "P-23-3",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20135"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20135",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1117 GRANDVIEW AVE",
@@ -43757,7 +43839,9 @@
       "lon": -83.036979190272,
       "number": "P-23-2",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20134"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20134",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "1000 URLIN AVE",
@@ -43829,7 +43913,9 @@
       "lon": -83.031926161628,
       "number": "P-23-1",
       "type": "Plumbing Permit",
-      "url": "https://grandviewheightsoh.portal.opengov.com/records/20128"
+      "url": "https://grandviewheightsoh.portal.opengov.com/records/20128",
+      "contractors": [],
+      "cv": 7
     },
     {
       "address": "2170 W LANE AVE",
