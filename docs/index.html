@@ -2744,9 +2744,26 @@
 
   // ---------- contractors: who Grandview neighbors hire, by trade ----------
   // From the city's OpenGov permit records, read by collect-permits.js, which keeps company names only.
-  const coKey = (n) => String(n || "").toUpperCase().replace(/[.,'’]/g, "").replace(/&/g, " AND ")
-    .replace(/\b(LLC|L L C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|LP|THE)\b/g, " ").replace(/\s+/g, " ").trim();
-  const CO_GENERIC = /^(DEVELOPMENT|CONSTRUCTION|SERVICES?|PLUMBING|ELECTRIC(AL)?|ROOFING|HOMES|BUILDERS?|GROUP|SYSTEMS|ENTERPRISES|HEATING|COOLING|AIR)$/;
+  // One key per company, so the spellings of one name count together: "Able Roofing LLC" and "Able Roof", "JF Baker's
+  // Sons Roofing" and "J.F. Baker Roofing Co", "ALLSTAR SERVICES" and "All Star Services". Spaces, punctuation, LLC,
+  // Inc., Co., "and" and "Sons" don't count, trade words count the same in any form (Roofing and Roof, Plumbers and Plumbing,
+  // Services and Service), and a company "doing business as" another name goes under that name.
+  const CO_STEMS = [[/PLUMBERS|PLUMBING|PLUMBER/g, "PLUMB"], [/ROOFERS|ROOFING/g, "ROOF"], [/ELECTRICAL/g, "ELECTRIC"], [/HEATING/g, "HEAT"],
+    [/REMODELING|REMODELERS|REMODELLING/g, "REMODEL"], [/CONTRACTORS|CONTRACTING|CONTRACTOR/g, "CONTRACT"], [/CONSTRUCTION/g, "CONSTRUCT"],
+    [/SERVICES/g, "SERVICE"], [/WINDOWS/g, "WINDOW"], [/DOORS/g, "DOOR"], [/HOMES/g, "HOME"], [/EXTERIORS/g, "EXTERIOR"],
+    [/SYSTEMS/g, "SYSTEM"], [/ENTERPRISES/g, "ENTERPRISE"], [/\bBROTHERS\b|\bBROS\b/g, "BROTHER"]];
+  const coKey = (n) => {
+    let s = String(n || "").toUpperCase();
+    const dba = /^(.+?)\s+(?:D\/?B\/?A|DOING BUSINESS AS)\b\.?\s*(.{3,})$/.exec(s);   // the name customers know
+    if (dba) s = dba[2];
+    s = s.replace(/&/g, " AND ").replace(/['’]S\b/g, "").replace(/[^A-Z0-9 ]/g, " ")
+      .replace(/\b(LLC|L L C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|THE|SONS|AND)\b/g, " ").replace(/\bLP\s*$/, " ");
+    for (const [rx, to] of CO_STEMS) s = s.replace(rx, to);
+    return s.replace(/\s+/g, "");
+  };
+  const CO_GENERIC = /^(DEVELOPMENT|CONSTRUCT|SERVICE|PLUMB|ELECTRIC|ROOF|HOME|BUILDERS?|GROUP|SYSTEM|ENTERPRISE|HEAT|COOLING|AIR|HEATAIR|HEATCOOLING)$/;
+  // words a company's longer name may add to its short one ("Pomante" and "Pomante Contractors")
+  const CO_MORE = /^(?:CONTRACT|CONSTRUCT|SERVICE|GROUP|HEAT|COOLING|AIR|CONDITIONING|PLUMB|ELECTRIC|ROOF|MECHANICAL|DESIGNS?|BUILDERS?|BUILDING|EXCAVATION|EXCAVATING|REMODEL|RESTORATION|HOME|EXTERIOR|WINDOW|DOOR|SOLUTIONS|SYSTEM|INDUSTRIES|ENTERPRISE|COLUMBUS|OHIO)+$/;
   // A permit's trade comes from its type ("Sewer Lateral Replacement/Repair", "Re-Roofing Permit"...). The first match
   // wins, and a trade's button only shows when some company has done that work.
   const byType = (rx) => (c) => rx.test(c.permit.type || "");
@@ -2793,7 +2810,23 @@
         e.names[name] = (e.names[name] || 0) + 1; e.list.push(c);
       });
     });
-    cos.forEach((e) => { e.name = Object.entries(e.names).sort((a, b) => b[1] - a[1])[0][0]; });
+    // a name and a longer version of it are one company ("Derrick Layer Custom Homes" and "... Custom Homes &
+    // Remodeling"), as long as the shorter name is long enough not to be a different company's start, or the longer
+    // one only adds business words ("Pomante" and "Pomante Contractors")
+    const keys = [...cos.keys()].sort((a, b) => a.length - b.length);
+    for (const k of keys) {
+      const into = keys.find((s) => s.length < k.length && k.startsWith(s) && cos.has(s) && (s.length >= 10 || (s.length >= 5 && CO_MORE.test(k.slice(s.length)))));
+      if (!into || !cos.has(k)) continue;
+      const a = cos.get(into), b = cos.get(k);
+      for (const [n, c] of Object.entries(b.names)) a.names[n] = (a.names[n] || 0) + c;
+      for (const c of b.list) if (!a.list.includes(c)) a.list.push(c);
+      cos.delete(k);
+    }
+    cos.forEach((e) => {   // shown by its most used name (the shorter one on a tie), and a "dba" company by the name customers know
+      e.name = Object.entries(e.names).sort((a, b) => b[1] - a[1] || a[0].length - b[0].length)[0][0];
+      const dba = /\s(?:d\/?b\/?a|doing business as)\.?\s+(.{3,})$/i.exec(e.name);
+      if (dba) e.name = dba[1];
+    });
     const list = [...cos.values()].sort((a, b) => b.list.length - a.list.length);
     return (state.coIndex = { permits, read, ua, uaRead, jobs, list });
   }
