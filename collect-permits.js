@@ -13,8 +13,10 @@
   const CITIES = {
     grandviewheightsoh: { name: "Grandview Heights", file: "permits.json", yearsBack: 3, firstKey: "R-26-82",
       hall: /^1525\s+(W\.?\s+)?Goodale/i, place: "Grandview Heights|Columbus", enforce: true },
-    upperarlingtonoh: { name: "Upper Arlington", file: "permits-ua.json", yearsBack: 1, firstKey: "electrical",
-      hall: /^3600\s+Tremont/i, place: "Upper Arlington|Columbus", learn: true },
+    // Upper Arlington numbers its permits like 26-505 (the year, then a number), and its search answers permit numbers
+    upperarlingtonoh: { name: "Upper Arlington", file: "permits-ua.json", yearsBack: 1, firstKey: "26-505",
+      hall: /^3600\s+Tremont/i, place: "Upper Arlington|Columbus", learn: true,
+      numbers: [{ prefix: "", sep1: "", ylen: 2, sep2: "-", pad: 0 }] },
   };
   const community = window.GVZ_CITY || location.hostname.split(".")[0];
   const CITY = CITIES[community] || CITIES.grandviewheightsoh;
@@ -24,7 +26,7 @@
       const m = /^(https:\/\/api-[a-z]+\.viewpointcloud\.com\/v2\/[a-z0-9]+)\//i.exec(e.name); if (m) return m[1]; } } catch (e) {}
     return null;
   })();
-  const API = window.GVZ_API || seenApi || `https://api-east.viewpointcloud.com/v2/${CITIES[community] ? community : "grandviewheightsoh"}`;
+  let API = window.GVZ_API || seenApi || `https://api-east.viewpointcloud.com/v2/${CITIES[community] ? community : "grandviewheightsoh"}`;
   const SITE_JSON = `https://uxandyphil.github.io/grandview-zoning/${CITY.file}`;
   const OLD_PREFIXES = ["R", "E", "H", "P", "ZON", "B", "C", "D", "F", "M", "S", "Z", "ROW", "SIGN", "DEMO"];
   // ROOF, WIND (windows), SIDE (siding), GAS, TAP and SWR series show up in the county's records from 2024 on
@@ -181,7 +183,8 @@
         .localeCompare((a.date || a.first_seen.slice(0, 10)) + String(a.entity_id).padStart(9, "0")));
     // the shapes of this city's permit numbers, when they're learned (Upper Arlington): just their pattern, e.g. 26-123
     const shapes = (() => { try { return done.formats || null; } catch (e) { return null; } })();
-    const meta = { updated: new Date().toISOString(), city: CITY.name, record_numbers: shapes,
+    const searchNote = (() => { try { return { ...diag, searches, refused: searchRefused || null, api: API.replace(/^https:\/\//, "") }; } catch (e) { return null; } })();
+    const meta = { updated: new Date().toISOString(), city: CITY.name, record_numbers: shapes, search_note: searchNote,
       record_fields: recordFields, record_form: recordForm, record_forms: recordForms,
       record_shapes: recordShapes, record_status: recordStatus,
       record_apis: recordApis && recordApis.map((u) => u.replace(/[?&](token|key|auth)[^&]*/gi, "")) };
@@ -203,17 +206,17 @@
 
   function captureHeaders() {
     return new Promise((resolve) => {
-      const keep = (h) => { const o = {}; for (const [k, v] of Object.entries(h)) if (!FORBIDDEN.test(k)) o[k.toLowerCase()] = v; resolve(o); };
+      const keep = (h, url) => { const o = {}; for (const [k, v] of Object.entries(h)) if (!FORBIDDEN.test(k)) o[k.toLowerCase()] = v; resolve({ headers: o, url }); };
       const open = XMLHttpRequest.prototype.open, setH = XMLHttpRequest.prototype.setRequestHeader,
         send = XMLHttpRequest.prototype.send, f = window.fetch;
       XMLHttpRequest.prototype.open = function (m, u) { this._gvzU = String(u); this._gvzH = {}; return open.apply(this, arguments); };
       XMLHttpRequest.prototype.setRequestHeader = function (k, v) { if (this._gvzH) this._gvzH[k] = v; return setH.apply(this, arguments); };
-      XMLHttpRequest.prototype.send = function () { if (/search_results/.test(this._gvzU || "")) keep(this._gvzH); return send.apply(this, arguments); };
+      XMLHttpRequest.prototype.send = function () { if (/search_results/.test(this._gvzU || "")) keep(this._gvzH, this._gvzU); return send.apply(this, arguments); };
       window.fetch = function (input, init) {
         const u = String((input && input.url) || input);
         if (/search_results/.test(u)) {
           const h = {}; new Headers((init && init.headers) || (input && input.headers) || {}).forEach((v, k) => { h[k] = v; });
-          keep(h);
+          keep(h, u);
         }
         return f.apply(this, arguments);
       };
@@ -235,6 +238,7 @@
   // Searching only finds new permits. If the portal refuses it, the run doesn't stop: it skips looking for new
   // permits (and doesn't search again for an hour) and still reads the pages of the permits it already has.
   let searchRefused = Date.now() - (done["search:refusedAt"] || 0) < SEARCH_REST ? "less than an hour ago" : null;
+  const diag = {};   // how this run's searches went, recorded in the upload (no personal data), to tell why a run found nothing
   function searchWasRefused(why) {
     searchRefused = why;
     done["search:refusedAt"] = Date.now(); saveDone();
@@ -242,17 +246,24 @@
   }
   // Make sure searching works; if not, borrow the headers the portal's own search uses
   let firstData = null;
-  if (searchRefused) log("The portal refused searches less than an hour ago, so this run only reads the permits it has");
+  if (searchRefused) { diag.first = "skipped: refused less than an hour ago"; log("The portal refused searches less than an hour ago, so this run only reads the permits it has"); }
   else {
-    try { firstData = await search(CITY.firstKey); }
+    try { firstData = await search(CITY.firstKey); diag.first = "ok"; }
     catch (e) {
-      status(`One step from you: type ${CITY.learn ? "a street name" : "R-26-82"} in the portal's search box and press Enter.`);
+      diag.first = `failed (${e.message})`;
+      status(`One step from you: type ${CITY.firstKey} in the portal's search box and press Enter.`);
       log(`Direct search failed (${e.message}); waiting for you to search once`);
       const borrowed = await Promise.race([captureHeaders(), sleep(300_000).then(() => null)]);   // up to 5 minutes
-      if (borrowed) { headers = borrowed; localStorage.setItem(STORE + "-headers", JSON.stringify(headers)); }
+      if (borrowed) {
+        headers = borrowed.headers; localStorage.setItem(STORE + "-headers", JSON.stringify(headers));
+        // the portal's own search also shows where its data lives
+        const base = /^(https:\/\/[^?#]+?)\/search_results/.exec(String(borrowed.url || ""));
+        if (base && !window.GVZ_API) API = base[1];
+        diag.borrowed = true;
+      }
       await sleep(1500);
-      try { firstData = await search(CITY.firstKey); log("Got it, searching works now"); }
-      catch (e2) { searchWasRefused(e2.message); }
+      try { firstData = await search(CITY.firstKey); diag.first += ", then ok"; log("Got it, searching works now"); }
+      catch (e2) { diag.first += `, then failed (${e2.message})`; searchWasRefused(e2.message); }
     }
   }
 
@@ -335,7 +346,8 @@
   async function walkLearned() {
     let budget = SEARCH_BUDGET;
     const lookup = async (key) => { budget--; await sleep(PAUSE); harvest(await searchWithRetry(key)); searches++; };
-    if (!done.formats || Date.now() - (done.formatsAt || 0) > 30 * 24 * 3600_000) {   // learned again once a month
+    if (CITY.numbers) done.formats = CITY.numbers;   // this city's number shape is known
+    else if (!done.formats || Date.now() - (done.formatsAt || 0) > 30 * 24 * 3600_000) {   // learned again once a month
       for (const word of LEARN_WORDS) {
         if (stopped) return;
         status(`Learning how ${CITY.name} numbers its permits… (${word})`);
@@ -378,6 +390,27 @@
         let top = Math.max(0, ...inSeries());
         // up: new permits past the highest number known (this year's at most every 12 hours; a past year's once)
         const upDue = yy === YEARS[0] ? due(`${series}:upAt`) : !done[`${series}:upAt`];
+        // First jump ahead to about where the series ends now, then narrow it down, so the newest permits are found
+        // first. A number counts as there when it or one of the next two turns up (some numbers are voided).
+        const near = async (n) => {
+          for (const m of [n, n + 3]) {
+            if ([0, 1, 2].some((d) => have.has(key(m + d)))) return true;
+            if (budget <= 0 || stopped) return false;
+            status(`Finding where ${CITY.name}'s 20${yy} permits end… (${fmtNum(f, yy, m)})`);
+            await lookup(fmtNum(f, yy, m)); addFound();
+            if ([0, 1, 2].some((d) => have.has(key(m + d)))) return true;
+          }
+          return false;
+        };
+        if (upDue) {
+          let lo = top, hi = null;
+          for (let step = 256; hi === null && step <= 16384 && budget > 0 && !stopped; step *= 2) {
+            if (await near(lo + step)) lo += step; else hi = lo + step;
+          }
+          while (hi !== null && hi - lo > 8 && budget > 0 && !stopped) { const mid = (lo + hi) >> 1; if (await near(mid)) lo = mid; else hi = mid; }
+          top = Math.max(0, ...inSeries());
+          diag[`${series} newest`] = top;
+        }
         if (upDue) {
           let n = top + 1, misses = 0;
           while (misses < LOOKAHEAD && budget > 0 && !stopped) {
@@ -398,6 +431,7 @@
         if (n < 1 && yy !== YEARS[0] && done[`${series}:upAt`]) done[series] = true;
         saveDone(); save();
         log(`${series}: ${inSeries().length} found${n >= 1 ? `; older ones next time (from #${n})` : ""}`);
+        diag[`${series} found`] = inSeries().length;
       }
     }
     if (budget <= 0) log(`Searched ${SEARCH_BUDGET} numbers this batch; more next batch`);
