@@ -12,7 +12,7 @@ const CITIES = [
   { name: "Grandview", portal: "https://grandviewheightsoh.portal.opengov.com/search", file: "docs/permits.json", commit: "permits",
     search: "R-26-82" },
   { name: "Upper Arlington", portal: "https://upperarlingtonoh.portal.opengov.com/search", file: "docs/permits-ua.json",
-    commit: "Upper Arlington permits", search: "a street name" },
+    commit: "Upper Arlington permits", search: "26-505" },
 ];
 const MAX_BATCHES = 80;                 // each batch reads up to 200 permits (80 when whole pages are read), in a freshly loaded page
 const BATCH_LIMIT_MS = 75 * 60_000;     // give up on a batch after 75 minutes
@@ -70,13 +70,13 @@ async function inPage(tabId, func, args = []) {
   const [r] = await chrome.scripting.executeScript({ target: { tabId }, world: "MAIN", func, args });
   return r && r.result;
 }
-// best effort at the portal's one-time "search R-26-82" step
-function pageSearch() {
+// best effort at the portal's one-time search step (a permit number: R-26-82 in Grandview, 26-505 in Upper Arlington)
+function pageSearch(term) {
   const inputs = [...document.querySelectorAll("input")].filter((i) => i.offsetParent && !/hidden|checkbox|radio/.test(i.type));
   const box = inputs.find((i) => /search/i.test(`${i.type} ${i.placeholder} ${i.getAttribute("aria-label")}`)) || inputs[0];
   if (!box) return false;
   box.focus();
-  Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set.call(box, "R-26-82");
+  Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set.call(box, term || "R-26-82");
   box.dispatchEvent(new Event("input", { bubbles: true }));
   box.dispatchEvent(new Event("change", { bubbles: true }));
   for (const t of ["keydown", "keypress", "keyup"]) box.dispatchEvent(new KeyboardEvent(t, { key: "Enter", code: "Enter", keyCode: 13, which: 13, bubbles: true }));
@@ -110,7 +110,7 @@ async function step() {
   if (status !== run.status) await set({ run: { ...run, status } });
   if (!result) {
     if (/One step from you/.test(status || "")) {
-      if (!run.searched) { await inPage(run.tabId, pageSearch); await set({ run: { ...run, status, searched: now } }); }
+      if (!run.searched) { await inPage(run.tabId, pageSearch, [city.search]); await set({ run: { ...run, status, searched: now } }); }
       else if (now - run.searched > 90_000 && !run.asked) {
         await chrome.windows.update(run.windowId, { focused: true });
         notify("The permit collector needs one search", `In the small ${city.name} portal window, type ${city.search} in the search box and press Enter. It continues on its own after that.`);

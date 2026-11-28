@@ -78,10 +78,12 @@ The same collector also works on Upper Arlington's portal
 alternates batches between the two cities. Upper Arlington's permits go to
 `docs/permits-ua.json`, which only the Contractors tab reads (with an All /
 Grandview / Upper Arlington filter); they never appear on Grandview's map or
-lists. Its permit numbers can look different from Grandview's, so the
-collector learns their shape from a few keyword searches, then finds this
-year's and last year's permits by number, a few hundred searches per batch,
-newest first. Contractor registrations aren't counted as jobs.
+lists. Upper Arlington numbers its permits like 26-505 (the year, then a
+number) and its search answers permit numbers, so the collector jumps ahead
+to find where this year's numbers end, then works down from the newest,
+covering this year and last, a few hundred searches per batch. Contractor
+registrations aren't counted as jobs. Each upload notes how its searches
+went (no personal data), to show why a run found nothing if it does.
 
 ## County permits (history and costs)
 
