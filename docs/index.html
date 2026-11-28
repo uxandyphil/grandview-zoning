@@ -2865,6 +2865,7 @@
     return { k: "ind", why: "A local company that isn't part of a chain, as far as its name shows", owner: "" };
   }
   const CO_KIND = { ind: "Independent", mp: "Mom and pop", fr: "Franchise", nat: "Nationwide" };
+  const CO_SHOW_KIND = false;   // the company-type chips are hidden for now; set to true to show them again
   const coKindChip = (k, why) => `<span class="co-kind k-${k}"${why ? ` title="${esc(why)}"` : ""}>${CO_KIND[k]}</span>`;
   // A permit's trade comes from its type ("Sewer Lateral Replacement/Repair", "Re-Roofing Permit"...). The first match
   // wins, and a trade's button only shows when some company has done that work.
@@ -3008,12 +3009,12 @@
       <div class="card panel">
         <h2>Most hired: ${esc(tLabel)}${hasUA ? ` in ${esc(where)}` : ""}</h2>
         <p class="p-sub">Ranked by how many ${esc(where)} jobs each company pulled a permit for${trade === "all" ? "" : " in this trade"}.</p>
-        <p class="p-sub co-legend"><span>${coKindChip("ind")}local, not part of a chain</span><span>${coKindChip("mp")}named for a family or its owner</span>
-          <span>${coKindChip("fr")}a national brand, run locally</span><span>${coKindChip("nat")}works in many states</span></p>
+        ${CO_SHOW_KIND ? `<p class="p-sub co-legend"><span>${coKindChip("ind")}local, not part of a chain</span><span>${coKindChip("mp")}named for a family or its owner</span>
+          <span>${coKindChip("fr")}a national brand, run locally</span><span>${coKindChip("nat")}works in many states</span></p>` : ""}
         <ol class="co-list">${shown.slice(0, 25).map((e, i) => { const v = views.get(e.key); return `<li class="co-card">
           <div class="co-rank">${i + 1}</div>
           <div class="co-body">
-            <div class="co-name">${esc(e.name)}${coKindChip(e.kind.k, e.kind.why)}${e.kind.owner ? `<span class="co-owner">${esc(e.kind.owner)}</span>` : ""}</div>
+            <div class="co-name">${esc(e.name)}${CO_SHOW_KIND ? coKindChip(e.kind.k, e.kind.why) + (e.kind.owner ? `<span class="co-owner">${esc(e.kind.owner)}</span>` : "") : ""}</div>
             <div class="co-stats">${jobsLine(e)} at ${v.homes} ${plural("address", v.homes)}${v.last ? `
               · ${v.recent} in the last 2 years · latest ${esc(monYr(v.last))}${v.first && v.first.slice(0, 4) !== v.last.slice(0, 4) ? ` · since ${v.first.slice(0, 4)}` : ""}` : ""}</div>
             ${v.trades.length > 1 || trade === "all" ? `<div class="co-tr">${v.trades.map(([t, n]) => `${esc(t.label)} ${n}`).join(" · ")}</div>` : ""}
@@ -3028,10 +3029,10 @@
       </div>
       <div class="card exp-intro"><b>About these counts:</b> each permit names the company that pulled it, so the counts show who does the
         most permitted work here, not who does it best. Small jobs that don't need a permit aren't counted. The same company can appear under
-        slightly different names. The company types are a best guess from each company's name: known chains and franchises are
+        slightly different names. ${CO_SHOW_KIND ? `The company types are a best guess from each company's name: known chains and franchises are
         matched by brand, a "doing business as" name shows who owns a brand, and a family or owner's name ("& Sons", "Brothers",
         or a name like "Joe Smith Plumbing") marks a mom and pop shop. Many companies marked independent are family-owned too, so call and ask if it
-        matters to you. ${stillReading.length ? `So far ${stillReading.join(" and ")} have been checked, so the rankings will fill in
+        matters to you. ` : ""}${stillReading.length ? `So far ${stillReading.join(" and ")} have been checked, so the rankings will fill in
         as the rest are read. ${how}` : ""}</div>`;
     const byKey = new Map(list.map((e) => [e.key, e]));
     el.querySelectorAll("[data-co]").forEach((b) => b.addEventListener("click", () => browseWith({ q: byKey.get(b.dataset.co).name })));
